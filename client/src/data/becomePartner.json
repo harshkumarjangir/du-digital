@@ -1,0 +1,94 @@
+{
+    "hero": {
+        "title": "Grow your travel business with",
+        "brand": "DU Global",
+        "points": [
+            "Access to visa dashboard",
+            "Tailored Support",
+            "Competitive Pricing"
+        ],
+        "cta": "Become a Partner"
+    },
+    "whyUs": [
+        {
+            "title": "Consistent Market Rates",
+            "icon": "percent"
+        },
+        {
+            "title": "Expert Guidance",
+            "icon": "support"
+        },
+        {
+            "title": "Hassle-Free and Fast Process",
+            "icon": "fast"
+        }
+    ],
+    "faq": [
+        {
+            "question": "Exclusive Partner Rates",
+            "answer": "Get special pricing designed exclusively for our partners."
+        },
+        {
+            "question": "Dedicated Dashboard",
+            "answer": "Track and manage all visa applications in one place."
+        },
+        {
+            "question": "Express Visa Processing",
+            "answer": "Fast and priority visa processing support."
+        },
+        {
+            "question": "Confidentiality Guaranteed",
+            "answer": "Your customer data is always protected and secure."
+        }
+    ],
+    "footprints": {
+        "description": [
+            "DU Global is a leading provider with a global footprint, offering specialized services for administrative tasks related to visa processing, passport management, identity verification, and other citizen services. Our expertise extends to Company Formation in the UAE and Immigration, Residency & Citizenship programs, ensuring seamless solutions for our customers.",
+            "Over our 35 centres operating in 6 countries and with an additional 1300 centres available globally with our partner offices, we have the ability to fulfill a wide range of dynamic requirements for our Governmental clients and business partners alike."
+        ],
+        "stats": [
+            {
+                "value": "35",
+                "suffix": "+",
+                "label": "Locations"
+            },
+            {
+                "value": "17",
+                "suffix": " Lac+",
+                "subValue": "(1.7 MILLION+)",
+                "label": "Applications"
+            },
+            {
+                "value": "200",
+                "suffix": "+",
+                "label": "Employees"
+            }
+        ]
+    },
+    "gallery": [
+        {
+            "imageSrc": "/assets/become-partner/gallery/Photo-1.jpeg",
+            "imageName": "Photo-1.jpeg"
+        },
+        {
+            "imageSrc": "/assets/become-partner/gallery/Photo-2.jpeg",
+            "imageName": "Photo-2.jpeg"
+        },
+        {
+            "imageSrc": "/assets/become-partner/gallery/Photo-3.jpeg",
+            "imageName": "Photo-3.jpeg"
+        },
+        {
+            "imageSrc": "/assets/become-partner/gallery/Untitled-du.png",
+            "imageName": "Untitled-du.png"
+        },
+        {
+            "imageSrc": "/assets/become-partner/gallery/Untitled-du-1.png",
+            "imageName": "Untitled-du-1.png"
+        },
+        {
+            "imageSrc": "/assets/become-partner/gallery/Photo-7-scaled-1.jpg",
+            "imageName": "Photo-7-scaled-1.jpg"
+        }
+    ]
+}

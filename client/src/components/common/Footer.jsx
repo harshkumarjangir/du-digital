@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import footerData from "../../data/footerData.json";
 import {
   FaFacebookF,
@@ -26,7 +27,7 @@ export default function Footer() {
   } = footerData;
 
   return (
-    <footer className="bg-gradient-to-br from-black via-[#1a0f0f] to-black text-white py-16">
+    <footer className="bg-gradient-to-br from-black via-[#1a0f0f] to-black text-white py-16 px-8">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
 
         {/* LEFT */}
@@ -41,33 +42,35 @@ export default function Footer() {
               placeholder={newsletter.placeholder}
               className="flex-1 bg-transparent px-4 py-3 outline-none text-sm"
             />
-            <button className="px-4">
-              <img src={newsletter.submitIcon} alt="submit" className="w-6" />
+            <button className="p-1 bg-white rounded-full mr-2">
+              <img src={newsletter.submitIcon} alt="submit" className="w-5" />
             </button>
           </div>
 
-          <div className="mt-6">
-            <p className="mb-3">{socials.title}</p>
-            <div className="flex gap-3">
-              {socials.items.map((item, i) => {
-                const Icon = socialIcons[item.name];
-                return (
-                  <a
-                    key={i}
-                    href={item.url}
-                    target="_blank"
-                    className="w-9 h-9 border border-white/50 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition"
-                  >
-                    <Icon />
-                  </a>
-                );
-              })}
+          <div className="flex max-sm:flex-col justify-between">
+            <div className="mt-6">
+              <p className="mb-3">{socials.title}</p>
+              <div className="flex gap-2">
+                {socials.items.map((item, i) => {
+                  const Icon = socialIcons[item.name];
+                  return (
+                    <Link
+                      key={i}
+                      to={item.url}
+                      target="_blank"
+                      className="w-7 h-7 border border-white/50 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition"
+                    >
+                      <Icon />
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
-          </div>
 
-          <div className="mt-6">
-            <p className="mb-2">{payments.title}</p>
-            <img src={payments.image} alt="payments" className="w-40" />
+            <div className="mt-6">
+              <p className="mb-2">{payments.title}</p>
+              <img src={payments.image} alt="payments" className="w-30" />
+            </div>
           </div>
         </div>
 
@@ -77,9 +80,9 @@ export default function Footer() {
           <ul className="space-y-3">
             {links.items.map((link, i) => (
               <li key={i}>
-                <a href={link.url} className="hover:underline">
+                <Link to={link.url} className="hover:underline">
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

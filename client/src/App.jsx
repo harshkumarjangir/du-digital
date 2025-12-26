@@ -7,6 +7,7 @@ import Footer from './components/common/Footer'
 import ContactUs from './pages/ContactUs'
 import OurOffices from './components/common/OurOffices';
 import Copyright from './components/common/Copyright'
+import BecomePartner from './pages/BecomePartner'
 
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/b2b-partner-program' element={<BecomePartner />} />
         <Route path='/contact-us' element={<ContactUs />} />
         <Route path='*' element={<NotFound />} />
       </Routes>

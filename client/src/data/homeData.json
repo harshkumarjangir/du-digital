@@ -8,28 +8,28 @@
                 "description": "Simplifying your visa experience",
                 "buttonText": "Get Your e-Visa",
                 "buttonLink": "/india-evisa",
-                "image": "/public/assets/home/slider/india-gate.jpg"
+                "image": "/assets/home/slider/india-gate.jpg"
             },
             {
                 "title": "Official Partner to Governments and Embassies globally",
                 "description": "Delivering trusted visa and identity solutions worldwide",
                 "buttonText": "Learn more about DU Global",
                 "buttonLink": "/embassy-government-partners",
-                "image": "/public/assets/home/slider/government-partner.jpg"
+                "image": "/assets/home/slider/government-partner.jpg"
             },
             {
                 "title": "Apply For Any Visa",
                 "description": "From seamless applications to swift approvals, we make your global travels hassle-free",
                 "buttonText": "Get Your Visa Today",
                 "buttonLink": "/apply-for-any-visa",
-                "image": "/public/assets/home/slider/apply-visa.avif"
+                "image": "/assets/home/slider/apply-visa.avif"
             },
             {
                 "title": "Company Setup in UAE",
                 "description": "Empowering Your Business Journey in the UAE – From trade licenses to corporate banking, we handle it all.",
                 "buttonText": "Apply Now",
                 "buttonLink": "/company-setup-in-the-uae",
-                "image": "/public/assets/home/slider/company-uae.avif"
+                "image": "/assets/home/slider/company-uae.avif"
             }
         ]
     }

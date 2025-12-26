@@ -3,7 +3,7 @@ import offices from "../../data/offices.json";
 
 const OfficeCard = ({ city, address, email, phone }) => {
     return (
-        <div className="space-y-1 text-sm leading-relaxed text-gray-200">
+        <div className=" text-sm leading-relaxed text-gray-200">
             <p className="font-semibold text-white">{city}</p>
 
             {address.map((line, i) => (
@@ -58,10 +58,20 @@ const OurOffices = () => {
                         India Offices
                     </h3>
 
-                    <div className="grid gap-8 md:grid-cols-3 border-2 border-white">
-                        {offices.india.map((office, index) => (
-                            <OfficeCard key={index} {...office} />
-                        ))}
+                    <div className="grid gap-8 md:grid-cols-3 border-2 border-white p-3">
+                     <div className=" grid gap-y-5">   {offices.india.map((office, index) => 
+                          [0,3,6].includes(index) && <OfficeCard key={index} {...office} />
+                        )}</div>
+                     <div className=" grid gap-y-1">
+                     {offices.india.map((office, index) => 
+                          [1,4].includes(index) && <OfficeCard key={index} {...office} />
+                        )}
+                     </div>
+                     <div className="grid gap-y-0.5">
+                     {offices.india.map((office, index) => 
+                          [2,5].includes(index) && <OfficeCard key={index} {...office} />
+                        )}
+                     </div>
                     </div>
                 </div>
 
@@ -71,7 +81,7 @@ const OurOffices = () => {
                         Global Offices
                     </h3>
 
-                    <div className="grid gap-8 md:grid-cols-3 border-2 border-white">
+                    <div className="grid gap-8 md:grid-cols-3 border-2 border-white p-3">
                         {offices.global.map((office, index) => (
                             <OfficeCard key={index} {...office} />
                         ))}
