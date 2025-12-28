@@ -1,7 +1,7 @@
 {
     "hero": {
         "title": "Contact us",
-        "backgroundImage": "/public/assets/contact/contact-hero.jpg"
+        "backgroundImage": "/assets/contact/contact-hero.jpg"
     },
     "offices": [
         {

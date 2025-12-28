@@ -1,20 +1,41 @@
-const WhyDuGlobal = ({ data }) => {
-    return (
-        <section className="py-16 text-center">
-            <h2 className="text-3xl font-bold mb-10">Why DU Global?</h2>
+import { FaPercentage, FaHandshake, FaRegCheckCircle } from "react-icons/fa";
 
-            <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 px-6">
-                {data.map((item, i) => (
-                    <div
-                        key={i}
-                        className="border border-red-500 rounded-xl p-6 text-red-600 font-semibold"
-                    >
-                        {item.title}
-                    </div>
-                ))}
-            </div>
-        </section>
-    );
+const iconMap = {
+  rates: FaPercentage,
+  guidance: FaHandshake,
+  fast: FaRegCheckCircle
+};
+
+const WhyDuGlobal = ({ data }) => {
+  return (
+    <section className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Heading */}
+        <h2 className="text-4xl font-bold text-center mb-16">
+          {data.title}
+        </h2>
+
+        {/* Cards */}
+        <div className="grid md:grid-cols-3 gap-8">
+          {data.items.map((item, index) => {
+            const Icon = iconMap[item.icon];
+
+            return (
+              <div
+                key={index}
+                className="border-2 border-red-600 rounded-2xl p-10 flex items-center gap-6"
+              >
+                <Icon className="text-red-600 text-4xl shrink-0" />
+                <p className="text-2xl font-semibold text-red-600">
+                  {item.text}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default WhyDuGlobal;

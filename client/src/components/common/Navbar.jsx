@@ -40,19 +40,19 @@ const Navbar = () => {
     <header className="bg-white relative z-50">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo */}
-        <Link href={navbar.logo.link} className="flex items-center gap-2">
+        <Link to={navbar.logo.link} className="flex items-center gap-2">
           <img src={navbar.logo.src} alt={navbar.logo.alt} className="h-20" />
         </Link>
 
         {/* Desktop Menu */}
-        <nav className="hidden lg:flex gap-8">
+        <nav className="hidden lg:flex gap-4">
           {navbar.items.map((item, i) => (
             <div key={i} className="relative group ">
               {/* Top Level */}
               <NavLink
                 to={item.link || "#"}
                 
-                className={`font-medium text-gray-800 hover:text-red-600 flex items-center gap-1
+                className={`font-semibold text-[15px] text-gray-800 hover:text-red-600 flex items-center gap-1
                    border-b-2 border-transparent group-hover:border-red-600 pb-1 ${
                     isNavActive(item)
                       ? "text-red-600 border-red-600"
@@ -71,16 +71,27 @@ const Navbar = () => {
                group-hover:visible transition-all duration-200"
                 >
                   {/* LEFT PANEL */}
-                  <div className="w-fit text-nowrap bg-white shadow-xl rounded-xl">
+                  <div className="min-w-60 text-wrap bg-white shadow-xl rounded-xl">
                     {item.children.map((child, index) => (
                       <div key={index} className="group/item relative">
-                        <div
-                          className="px-6 py-3 flex justify-between items-center cursor-pointer
+                        {child.link ? (
+                          <Link
+                            to={child.link}
+                            className="px-6 py-3 flex justify-between items-center cursor-pointer
+                       hover:bg-gray-100 hover:text-red-600 block"
+                          >
+                            {child.label}
+                            {child.children && <ChevronDown size={20} color="black" className="-rotate-90" />}
+                          </Link>
+                        ) : (
+                          <div
+                            className="px-6 py-3 flex justify-between items-center cursor-pointer
                        hover:bg-gray-100 hover:text-red-600"
-                        >
-                          {child.label}
-                          {child.children && <ChevronDown size={20} color="black" className="-rotate-90" />}
-                        </div>
+                          >
+                            {child.label}
+                            {child.children && <ChevronDown size={20} color="black" className="-rotate-90" />}
+                          </div>
+                        )}
 
                         {/* RIGHT PANEL – ONLY APPEARS ON CHILD HOVER */}
                         {child.children && (
@@ -95,12 +106,18 @@ const Navbar = () => {
                             <ul className="py-4 bg-white rounded-xl">
                               {child.children.map((sub, i) => (
                                 <li key={i}>
-                                  <a
-                                    href={sub.link}
-                                    className="block px-6 py-2 hover:bg-gray-50 hover:text-red-600"
-                                  >
-                                    {sub.label}
-                                  </a>
+                                  {sub.link ? (
+                                    <Link
+                                      to={sub.link}
+                                      className="block px-6 py-2 hover:bg-gray-50 hover:text-red-600"
+                                    >
+                                      {sub.label}
+                                    </Link>
+                                  ) : (
+                                    <span className="block px-6 py-2 hover:bg-gray-50 hover:text-red-600">
+                                      {sub.label}
+                                    </span>
+                                  )}
                                 </li>
                               ))}
                             </ul>
@@ -151,7 +168,7 @@ const Navbar = () => {
 
             <div className="divide-y divide-white/10">
               {navbar.items.map((item, i) => (
-                <MobileItem key={i} item={item} />
+                <MobileItem key={i} item={item} onClose={() => setOpen(false)} />
               ))}
             </div>
           </div>
@@ -163,9 +180,18 @@ const Navbar = () => {
 }
 
 
-function MobileItem({ item, level = 0 }) {
+function MobileItem({ item, level = 0, onClose }) {
   const [open, setOpen] = useState(false);
   const hasChildren = item.children?.length > 0;
+
+  const handleClick = () => {
+    if (hasChildren) {
+      setOpen(!open);
+    } else if (item.link) {
+      // Close mobile menu when navigating
+      if (onClose) onClose();
+    }
+  };
 
   return (
     <div>
@@ -173,11 +199,17 @@ function MobileItem({ item, level = 0 }) {
       <div
         className={`flex justify-between items-center px-6 py-4 cursor-pointer ${level === 0 ? "text-white" : "text-gray-300"
           }`}
-        onClick={() => hasChildren && setOpen(!open)}
+        onClick={handleClick}
       >
-        <a href={item.link || "#"} className="block w-full">
-          {item.label}
-        </a>
+        {item.link ? (
+          <Link to={item.link} className="block w-full" onClick={onClose}>
+            {item.label}
+          </Link>
+        ) : (
+          <span className="block w-full">
+            {item.label}
+          </span>
+        )}
 
         {hasChildren && (
           <span className="ml-2 text-xl">
@@ -190,7 +222,7 @@ function MobileItem({ item, level = 0 }) {
       {open && hasChildren && (
         <div className="pl-4 bg-[#2f2e2d]">
           {item.children.map((child, i) => (
-            <MobileItem key={i} item={child} level={level + 1} />
+            <MobileItem key={i} item={child} level={level + 1} onClose={onClose} />
           ))}
         </div>
       )}

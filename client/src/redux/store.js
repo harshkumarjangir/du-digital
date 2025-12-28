@@ -1,13 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-
-// Temporary root reducer until feature slices are added.
-// It simply returns the existing state for all actions.
-const rootReducer = (state = {}, action) => {
-  return state;
-};
+import investorReducer from "./slices/investorSlice";
+import contactReducer from "./slices/contactSlice";
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    investor: investorReducer,
+    contact: contactReducer
+  },
 });
 
 export default store;

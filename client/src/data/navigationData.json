@@ -147,6 +147,7 @@
             },
             {
                 "label": "Investor Relation",
+                "link": "/investor-relation",
                 "children": [
                     {
                         "label": "Postal Ballot",
@@ -161,6 +162,10 @@
                         "link": "/annual-returns"
                     },
                     {
+                        "label": "Reconciliation of Share Capital Audit Report",
+                        "link": "/reconciliation-of-share-capital-audit-report"
+                    },
+                    {
                         "label": "Annual Reports",
                         "link": "/annual-reports"
                     },
@@ -169,12 +174,48 @@
                         "link": "/shareholding-pattern"
                     },
                     {
+                        "label": "DP Certificate",
+                        "link": "/dp-certificate"
+                    },
+                    {
+                        "label": "Statement of Utilization of Fund",
+                        "link": "/statement-of-utilization-of-fund"
+                    },
+                    {
+                        "label": "Reg 40 (9) PCS Compliance Certificate",
+                        "link": "/reg-40-9-pcs-compliance-certificate"
+                    },
+                    {
+                        "label": "Reg 7 (3) RTA Compliance Certificate",
+                        "link": "/reg-7-3-rta-compliance-certificate"
+                    },
+                    {
+                        "label": "Statements of Investor Complaints",
+                        "link": "/statements-of-investor-complaints"
+                    },
+                    {
                         "label": "NSE Filings",
                         "link": "/nse-filings"
                     },
                     {
-                        "label": "Policies",
+                        "label": "Policies of the Companies",
                         "link": "/policies-of-the-companies"
+                    },
+                    {
+                        "label": "Miscellaneous",
+                        "link": "/miscellaneous"
+                    },
+                    {
+                        "label": "Subsidiary Financials",
+                        "link": "/subsidiary-financials"
+                    },
+                    {
+                        "label": "Integrated Filing – Financial",
+                        "link": "/integrated-filing-financial"
+                    },
+                    {
+                        "label": "Integrated Filing – Governance",
+                        "link": "/integrated-filing-governance"
                     }
                 ]
             },

@@ -1,3 +1,4 @@
+import CountryPhoneInput from '../components/become-partner/CountryPhoneInput';
 import contactData from '../data/contactData.json'
 
 const ContactUs = () => {
@@ -64,12 +65,13 @@ const ContactUs = () => {
                         required
                     />
 
-                    <input
+                    {/* <input
                         type="tel"
                         placeholder="Phone"
                         className="w-full border rounded-md px-4 py-3"
                         required
-                    />
+                    /> */}
+                    <CountryPhoneInput/>
 
                     <textarea
                         placeholder="Message"
