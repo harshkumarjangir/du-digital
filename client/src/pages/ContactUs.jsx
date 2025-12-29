@@ -218,6 +218,17 @@ const ContactUs = () => {
                     </button>
                 </form>
             </section>
+            {/* ===== Maps ===== */}
+            <section className="grid grid-cols-1 md:grid-cols-3 gap-4 px-6 pb-16">
+                {offices.slice(1).map((office, i) => (
+                    <iframe
+                        key={i}
+                        src={office.mapEmbed}
+                        className="w-full h-[400px] border-0 rounded-md"
+                        loading="lazy"
+                    />
+                ))}
+            </section>
         </div>
     );
 };
@@ -327,17 +338,17 @@ export default ContactUs;
 //                 </form>
 //             </section>
 
-//             {/* ===== Maps ===== */}
-//             <section className="grid grid-cols-1 md:grid-cols-3 gap-4 px-6 pb-16">
-//                 {offices.slice(1).map((office, i) => (
-//                     <iframe
-//                         key={i}
-//                         src={office.mapEmbed}
-//                         className="w-full h-[300px] border rounded-md"
-//                         loading="lazy"
-//                     />
-//                 ))}
-//             </section>
+// {/* ===== Maps ===== */}
+// <section className="grid grid-cols-1 md:grid-cols-3 gap-4 px-6 pb-16">
+//     {offices.slice(1).map((office, i) => (
+//         <iframe
+//             key={i}
+//             src={office.mapEmbed}
+//             className="w-full h-[300px] border rounded-md"
+//             loading="lazy"
+//         />
+//     ))}
+// </section>
 //         </div>
 //     );
 // }
