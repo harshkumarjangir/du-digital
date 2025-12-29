@@ -77,7 +77,8 @@ const Gallery = () => {
           {images.map((img, i) => (
             <SwiperSlide key={img._id || i}>
               <img
-                src={img.imageSrc}
+                // src={img.imageSrc}
+                src={`img.${import.meta.env.VITE_BACKEND_URL}imageSrc`}
                 alt={img.imageName}
                 onClick={() => setActiveIndex(i)}
                 className="h-[220px] w-full object-cover rounded-lg cursor-pointer"

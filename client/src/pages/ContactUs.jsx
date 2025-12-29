@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import CountryPhoneInput from "../components/become-partner/CountryPhoneInput";
 import contactData from "../data/contactData.json";
 import { submitContactForm, clearContactState } from "../redux/slices/contactSlice";
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+
 
 const ContactUs = () => {
     const { hero, offices, form } = contactData;
@@ -85,7 +88,7 @@ const ContactUs = () => {
             </section>
 
             {/* ===== Offices ===== */}
-            <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {offices.map((office, i) => (
                     <div key={i} className="bg-white shadow-md rounded-lg p-6 space-y-3">
                         <h3 className="font-semibold text-lg">{office.title}</h3>
@@ -99,10 +102,51 @@ const ContactUs = () => {
                         </p>
                     </div>
                 ))}
+            </section> */}
+            {/* ===== Offices ===== */}
+            <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {offices.map((office, i) => (
+                    <div
+                        key={i}
+                        className="bg-[#F5F5F5] shadow-md rounded-lg p-6 space-y-4"
+                    >
+                        {/* <FaMapMarkerAlt size={32} className="text-red-600" /> */}
+                        <div className="flex justify-center">
+                            <ArrowUpRight size={36} className="text-red-600 -rotate-90" />
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="font-semibold text-lg text-center">{office.title}</h3>
+
+                        {/* Address */}
+                        <div className="flex items-start gap-3 text-sm text-gray-600">
+                            <FaMapMarkerAlt size={28} className="text-red-600 mt-1" />
+                            <p>{office.address}</p>
+                        </div>
+
+                        {/* Phone */}
+                        <div className="flex items-center gap-3 text-sm">
+                            <FaPhoneAlt size={18} className="text-red-600" />
+                            <span>{office.phone}</span>
+                        </div>
+
+                        {/* Email */}
+                        <div className="flex items-center gap-3 text-sm">
+                            <FaEnvelope size={18} className="text-red-600" />
+                            <a
+                                href={`mailto:${office.email}`}
+                                className="hover:underline break-all"
+                            >
+                                {office.email}
+                            </a>
+                        </div>
+                    </div>
+                ))}
             </section>
 
+
             {/* ===== Contact Form ===== */}
-            <section className="max-w-4xl mx-auto px-6 pb-20 text-center">
+            <section className="max-w-4xl mx-auto px-6 pb-20 text-center bg-[#FAFAFA]">
                 <h2 className="text-2xl font-semibold">{form.title}</h2>
                 <p className="text-gray-600 mt-2">{form.subtitle}</p>
 
@@ -113,7 +157,7 @@ const ContactUs = () => {
                         placeholder="Name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full border rounded-md px-4 py-3"
+                        className="w-full border border-gray-400 outline-none rounded-md px-4 py-3"
                         required
                     />
 
@@ -123,7 +167,7 @@ const ContactUs = () => {
                         placeholder="Email Address"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full border rounded-md px-4 py-3"
+                        className="w-full border border-gray-400 outline-none rounded-md px-4 py-3"
                         required
                     />
 
@@ -135,7 +179,7 @@ const ContactUs = () => {
                         rows="5"
                         value={formData.message}
                         onChange={handleChange}
-                        className="w-full border rounded-md px-4 py-3"
+                        className="w-full border border-gray-400 outline-none rounded-md px-4 py-3"
                     />
 
                     <label className="flex items-start gap-2 text-sm text-gray-600">
@@ -167,9 +211,8 @@ const ContactUs = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className={`bg-red-600 text-white px-8 py-3 rounded-md hover:bg-red-700 transition-colors ${
-                            loading ? 'opacity-50 cursor-not-allowed' : ''
-                        }`}
+                        className={`bg-red-600 text-white px-8 py-3 rounded-md hover:bg-red-700 transition-colors ${loading ? 'opacity-50 cursor-not-allowed' : ''
+                            }`}
                     >
                         {loading ? 'Submitting...' : 'Submit'}
                     </button>

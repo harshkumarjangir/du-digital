@@ -12,6 +12,9 @@ const VideoGallery = () => {
         dispatch(fetchVideos());
     }, [dispatch]);
 
+
+    // Need to put this fiunctionin UseCalback
+
     // Group by category
     const groupedVideos = videos.reduce((acc, video) => {
         const category = video.category || "Uncategorized";

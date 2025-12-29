@@ -5,6 +5,7 @@ import partnerReducer from "./slices/partnerSlice";
 import teamReducer from "./slices/teamSlice";
 import galleryReducer from "./slices/gallerySlice";
 import videoReducer from "./slices/videoSlice";
+import officeReducer from "./slices/officeSlice";
 
 const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
     partner: partnerReducer,
     team: teamReducer,
     gallery: galleryReducer,
-    video: videoReducer
+    video: videoReducer,
+    office: officeReducer
   },
 });
 

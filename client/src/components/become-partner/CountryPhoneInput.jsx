@@ -41,7 +41,7 @@ const CountryPhoneInput = ({ onChange }) => {
     return (
         <div ref={wrapperRef} className="relative w-full">
             <div
-                className="flex items-center border rounded-md px-3 py-3 bg-white cursor-pointer"
+                className="flex items-center border border-gray-400 outline-none rounded-md px-3 py-3 bg-white cursor-pointer"
                 onClick={() => setOpen(!open)}
             >
                 <span className="mr-2">{selected.flag}</span>
