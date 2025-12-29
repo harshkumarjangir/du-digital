@@ -11,6 +11,7 @@ import BecomePartner from './pages/BecomePartner'
 import InvestorRelation from './pages/InvestorRelation'
 import AboutUs from './pages/AboutUs'
 import VideoGallery from './pages/VideoGallery'
+import Careers from './pages/Careers'
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Route path='/contact-us' element={<ContactUs />} />
         <Route path='/investor-relation' element={<InvestorRelation />} />
         <Route path='/:slug' element={<InvestorRelation />} />
+        <Route path='/careers' element={<Careers />} />
         <Route path='/video-gallery' element={<VideoGallery />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
