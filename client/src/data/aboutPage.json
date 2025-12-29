@@ -46,22 +46,48 @@
         }
     ],
     "visionMission": {
+        "heading": "Vision & Mission Overview",
         "vision": "To be a global leader in secure, smart, and innovative service delivery.",
         "mission": "To transform the global mobility ecosystem through technology-driven excellence."
     },
-    "strengths": [
-        {
-            "title": "Streamlined Visa Processing",
-            "description": "Digitized workflows ensuring faster and error-free processing."
-        },
-        {
-            "title": "Exceptional Customer Experience",
-            "description": "High-touch service model for superior satisfaction."
-        }
-    ],
+    "strengths": {
+        "heading": "Our Strengths",
+        "items": [
+            {
+                "title": "Streamlined Visa Processing",
+                "description": "Du Global excels in simplifying the visa application process, leveraging advanced technology and expertise to ensure swift and efficient processing, saving applicants valuable time and effort.",
+                "icon": "process"
+            },
+            {
+                "title": "Exceptional Customer Experience",
+                "description": "With a customer-centric approach at its core, Du Global goes above and beyond to provide personalized assistance, expert guidance and support throughout the visa application journey, ensuring maximum satisfaction and peace of mind for every applicant.",
+                "icon": "customer"
+            },
+            {
+                "title": "Innovative Value Added Services",
+                "description": "Du Global sets itself apart with a range of innovative value-added services, including Mobile Biometrics, Premium Lounge access and Visa @ your Doorstep convenience.",
+                "icon": "value"
+            },
+            {
+                "title": "Global Network and Partnership",
+                "description": "Trusted visa application and verification partner to several embassies and consulates worldwide including UAE, Bangladesh, Thailand, Georgia, South Korea and Malaysia.",
+                "icon": "network"
+            },
+            {
+                "title": "Cost-Effective Solutions",
+                "description": "Optimized solutions that reduce processing costs while maintaining service excellence and compliance.",
+                "icon": "cost"
+            },
+            {
+                "title": "Reliability and Trust",
+                "description": "With years of experience and a proven track record of excellence, Du Global has earned a reputation for reliability, integrity and professionalism.",
+                "icon": "trust"
+            }
+        ]
+    },
     "footprints": {
         "description": [
-            "Over 35 centres operating in 6 countries...",
+            "Over our 35 centres operating in 6 countries and with an additional 1300 centres available globally with our partner offices, we have the ability to fulfill a wide range of dynamic requirements for our Governmental clients and business partners alike.",
             "Supporting governmental and business partners globally."
         ],
         "stats": [
