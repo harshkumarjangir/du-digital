@@ -11,6 +11,7 @@ export interface IUser extends Document {
     region?: string;
     officeLocationId?: any; // or ObjectId
     isActive?: boolean;
+    receivePartnerNotifications?: boolean;
     comparePassword(candidatePassword: string): Promise<boolean>;
 }
 
@@ -27,7 +28,8 @@ const UserSchema: Schema = new Schema(
         region: { type: String },
         phone: { type: String },
         officeLocationId: { type: Schema.Types.ObjectId, ref: "OfficeLocation" },
-        isActive: { type: Boolean, default: true }
+        isActive: { type: Boolean, default: true },
+        receivePartnerNotifications: { type: Boolean, default: false }
     },
     { timestamps: true }
 );

@@ -11,6 +11,31 @@ export const getAllVideos = async (req: Request, res: Response) => {
     }
 };
 
+// Get videos by category with pagination
+export const getVideosByCategory = async (req: Request, res: Response) => {
+    try {
+        const { category } = req.params;
+        const { limit = 10, skip = 0 } = req.query;
+
+        const videos = await Video.find({ category })
+            .sort({ createdAt: -1 })
+            .limit(Number(limit))
+            .skip(Number(skip));
+
+        const total = await Video.countDocuments({ category });
+
+        res.status(200).json({
+            videos,
+            total,
+            length: videos.length,
+            limit: Number(limit),
+            skip: Number(skip)
+        });
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching videos by category", error });
+    }
+};
+
 // Create a new video
 export const createVideo = async (req: Request, res: Response) => {
     try {
@@ -34,10 +59,6 @@ export const createVideo = async (req: Request, res: Response) => {
             videoUrl,
             category,
             description,
-            // If the model had a thumbnail field, we would save it here. 
-            // The current model in the context didn't show it explicitly but the user mentioned "this video show in admin so show in youtub embeded"
-            // I'll stick to the model I saw earlier `Video.model.ts` which just had title, videoUrl, category, description. 
-            // I will add thumbnailUrl to the model if needed, but for now strict adherence to schema provided.
         });
 
         const savedVideo = await newVideo.save();

@@ -59,7 +59,7 @@ const GalleryManager = () => {
         }
     };
 
-    const API_BASE = "http://localhost:3000"; // Or env var
+    
 
     return (
         <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
@@ -103,7 +103,7 @@ const GalleryManager = () => {
                                 <SwiperSlide key={img._id}>
                                     <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                         <img 
-                                            src={`${API_BASE}${img.FileUser}`} 
+                                            src={`${import.meta.env.VITE_API_BASE_URL}${img.FileUser}`} 
                                             alt="Gallery" 
                                             style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }} 
                                         />
@@ -121,7 +121,7 @@ const GalleryManager = () => {
                 {images.map(img => (
                     <div key={img._id} style={{ position: 'relative', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden', height: '150px' }}>
                         <img 
-                            src={`${API_BASE}${img.FileUser}`} 
+                            src={`${import.meta.env.VITE_API_BASE_URL}${img.FileUser}`} 
                             alt="Gallery" 
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                         />

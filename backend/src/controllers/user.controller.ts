@@ -6,7 +6,7 @@ import User from "../models/User.model";
 // @access  Private/Admin
 export const createUser = async (req: Request, res: Response) => {
     try {
-        const { name, email, password, role, permissions } = req.body;
+        const { name, email, password, role, permissions, receivePartnerNotifications } = req.body;
 
         const userExists = await User.findOne({ email });
         if (userExists) {
@@ -18,7 +18,8 @@ export const createUser = async (req: Request, res: Response) => {
             email,
             password,
             role,
-            permissions
+            permissions,
+            receivePartnerNotifications
         });
 
         if (user) {
@@ -61,6 +62,9 @@ export const updateUser = async (req: Request, res: Response) => {
             user.email = req.body.email || user.email;
             user.role = req.body.role || user.role;
             user.permissions = req.body.permissions || user.permissions;
+            if (req.body.receivePartnerNotifications !== undefined) {
+                user.receivePartnerNotifications = req.body.receivePartnerNotifications;
+            }
 
             if (req.body.password) {
                 user.password = req.body.password;
@@ -74,6 +78,7 @@ export const updateUser = async (req: Request, res: Response) => {
                 email: updatedUser.email,
                 role: updatedUser.role,
                 permissions: updatedUser.permissions,
+                receivePartnerNotifications: updatedUser.receivePartnerNotifications
             });
         } else {
             res.status(404).json({ message: "User not found" });

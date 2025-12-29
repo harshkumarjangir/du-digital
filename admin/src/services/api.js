@@ -135,6 +135,11 @@ export const getPartnerStats = async () => {
     return response.data;
 };
 
+export const updatePartnerStatus = async (id, data) => {
+    const response = await axios.put(`${API_URL_PARTNER}/${id}`, data);
+    return response.data;
+};
+
 // --- Gallery ---
 
 export const getImages = async () => {

@@ -17,7 +17,8 @@ const UserManager = () => {
         email: "",
         password: "",
         role: "user",
-        permissions: []
+        permissions: [],
+        receivePartnerNotifications: false
     });
 
     const [error, setError] = useState("");
@@ -47,7 +48,7 @@ const UserManager = () => {
 
     const handleCreate = () => {
         setEditingUser(null);
-        setFormData({ name: "", email: "", password: "", role: "user", permissions: [] });
+        setFormData({ name: "", email: "", password: "", role: "user", permissions: [], receivePartnerNotifications: false });
         setShowModal(true);
         setError("");
     };
@@ -59,7 +60,9 @@ const UserManager = () => {
             email: user.email,
             password: "", // User can leave blank if not changing
             role: user.role,
-            permissions: user.permissions || []
+            role: user.role,
+            permissions: user.permissions || [],
+            receivePartnerNotifications: user.receivePartnerNotifications || false
         });
         setShowModal(true);
         setError("");
@@ -137,6 +140,7 @@ const UserManager = () => {
                                     <th>User</th>
                                     <th>Role</th>
                                     <th>Permissions</th>
+                                    <th>Notified</th>
                                     <th style={{width: '120px'}}>Actions</th>
                                 </tr>
                             </thead>
@@ -164,6 +168,9 @@ const UserManager = () => {
                                                 <span className="text-muted"><Shield size={14} className="me-1"/>Full Access</span> : 
                                                 <span className="small text-muted">{u.permissions?.length || 0} permissions</span>
                                             }
+                                        </td>
+                                        <td className="text-center">
+                                            {u.receivePartnerNotifications && <span title="Receives Partner Emails"><Check size={16} className="text-success" /></span>}
                                         </td>
                                         <td>
                                             <div className="d-flex gap-2">
@@ -271,6 +278,19 @@ const UserManager = () => {
                                         </div>
                                     </div>
                                 )}
+
+                                <div className="mt-3 form-check">
+                                    <input 
+                                        type="checkbox" 
+                                        className="form-check-input"
+                                        id="notifyCheck"
+                                        checked={formData.receivePartnerNotifications}
+                                        onChange={e => setFormData({...formData, receivePartnerNotifications: e.target.checked})}
+                                    />
+                                    <label className="form-check-label" htmlFor="notifyCheck">
+                                        Receive Partner Inquiry Notifications
+                                    </label>
+                                </div>
 
                                 <div className="d-flex justify-content-end gap-2 mt-4">
                                     <Button variant="secondary" onClick={() => setShowModal(false)} type="button">

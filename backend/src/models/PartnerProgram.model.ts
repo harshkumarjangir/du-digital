@@ -20,7 +20,17 @@ const partnerProgramSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-  
+    businessName: {
+        type: String,
+        required: false,
+        trim: true
+    },
+    status: {
+        type: String,
+        enum: ["Pending", "On Process", "Complete", "Rejected"],
+        default: "Pending"
+    },
+
     city: {
         type: String,
         trim: true

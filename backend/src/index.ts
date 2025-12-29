@@ -12,13 +12,13 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // Enable CORS
 import cors from 'cors';
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174'],
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
   credentials: true
 }));
 
 // Static folder
 import path from 'path';
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+app.use('/api/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // DB Connection
 import { ConnectDB } from './db';
@@ -42,7 +42,8 @@ import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
 
 app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes); app.use('/api/investor', investorRoutes);
+app.use('/api/users', userRoutes); 
+app.use('/api/investor', investorRoutes);
 app.use('/api/office', officeRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/partner', partnerRoutes);

@@ -1,9 +1,12 @@
 import { Request, Response } from "express";
 import PartnerProgram from "../models/PartnerProgram.model";
+import Partner from "../models/Partner.model";
+import User from "../models/User.model";
+import { sendEmail } from "../utils/emailService";
 
 export const createPartnerRequest = async (req: Request, res: Response) => {
     try {
-        const { fullName, email, phone, lookingFor, city, isMsg } = req.body;
+        const { fullName, email, phone, lookingFor, city, isMsg, businessName } = req.body;
 
         const newRequest = new PartnerProgram({
             fullName,
@@ -11,10 +14,34 @@ export const createPartnerRequest = async (req: Request, res: Response) => {
             phone,
             lookingFor,
             city,
-            isMsg
+            isMsg,
+            businessName,
+            status: "Pending" // Default status
         });
 
         await newRequest.save();
+
+        // Find users who should receive notifications
+        const recipients = await User.find({ receivePartnerNotifications: true }).select('email');
+        const recipientEmails = recipients.map(user => user.email);
+
+        if (recipientEmails.length > 0) {
+            const emailSubject = `New Partner Program Inquiry: ${fullName}`;
+            const emailBody = `
+                <h2>New Partner Inquiry</h2>
+                <p><strong>Name:</strong> ${fullName}</p>
+                <p><strong>Business Name:</strong> ${businessName || 'N/A'}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
+                <p><strong>Looking For:</strong> ${lookingFor || 'N/A'}</p>
+                <p><strong>City:</strong> ${city || 'N/A'}</p>
+                <p><strong>Message:</strong> ${isMsg ? 'Yes' : 'No'}</p>
+                <br />
+                <p>Please check the admin panel for more details.</p>
+            `;
+            await sendEmail(recipientEmails, emailSubject, emailBody);
+        }
+
         res.status(201).json({ message: "Partner request submitted successfully", request: newRequest });
     } catch (error) {
         console.error("Create Partner Request Error", error);
@@ -24,10 +51,93 @@ export const createPartnerRequest = async (req: Request, res: Response) => {
 
 export const getPartnerRequests = async (req: Request, res: Response) => {
     try {
-        const requests = await PartnerProgram.find().sort({ createdAt: -1 });
+        const { status } = req.query;
+        let query: any = {};
+
+        if (status) {
+            // Handle multiple statuses if comma separated or just single
+            // But based on request "reject and pending", likely just one filter at a time or simple "status" match
+            query.status = status;
+        }
+
+        const requests = await PartnerProgram.find(query).sort({ createdAt: -1 });
         res.status(200).json(requests);
     } catch (error) {
         console.error("Get Partner Requests Error", error);
+        res.status(500).json({ message: "Server Error" });
+    }
+};
+
+export const updatePartnerStatus = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const { status } = req.body;
+
+        if (!["Pending", "On Process", "Complete", "Rejected"].includes(status)) {
+            return res.status(400).json({ message: "Invalid status" });
+        }
+
+        const updatedRequest = await PartnerProgram.findByIdAndUpdate(
+            id,
+            { status },
+            { new: true }
+        );
+
+        if (!updatedRequest) {
+            return res.status(404).json({ message: "Request not found" });
+        }
+
+        // If status is "Complete", automatically add to Partners table
+        if (status === "Complete") {
+            const files = (req as any).files;
+            let logoUrl = "https://via.placeholder.com/150";
+            let userImageUrl = "https://via.placeholder.com/150";
+
+            if (files) {
+                if (files.logo && files.logo[0]) {
+                    logoUrl = `/uploads/${files.logo[0].filename}`;
+                }
+                if (files.userImage && files.userImage[0]) {
+                    userImageUrl = `/uploads/${files.userImage[0].filename}`;
+                }
+            }
+
+            const existingPartner = await Partner.findOne({ name: updatedRequest.fullName });
+            if (!existingPartner) {
+                await Partner.create({
+                    name: updatedRequest.fullName,
+                    BussnessName: updatedRequest.businessName || "Pending Business Name",
+                    logo: logoUrl,
+                    userImage: userImageUrl,
+                    description: updatedRequest.lookingFor,
+                    isOfficial: false, // Default to false until verified manually
+                    isActive: true
+                });
+            }
+
+            // Send Welcome Email to the Partner
+            try {
+                const emailSubject = "Welcome to the DuDigital Partner Program!";
+                const emailBody = `
+                    <h2>Congratulations, ${updatedRequest.fullName}!</h2>
+                    <p>We are thrilled to welcome you to the DuDigital Partner Program.</p>
+                    <p>Your application has been approved and you are now an official partner.</p>
+                    <p><strong>Business Name:</strong> ${updatedRequest.businessName || 'N/A'}</p>
+                    <br />
+                    <p>We look forward to a successful partnership.</p>
+                    <p>Best Regards,</p>
+                    <p>The DuDigital Team</p>
+                `;
+                await sendEmail(updatedRequest.email, emailSubject, emailBody);
+            } catch (emailError) {
+                console.error("Error sending welcome email to partner:", emailError);
+                // Don't fail the request if email fails, just log it
+            }
+        }
+
+        res.status(200).json(updatedRequest);
+    } catch (error) {
+        console.error("Update Partner Status Error", error);
         res.status(500).json({ message: "Server Error" });
     }
 };
@@ -42,9 +152,19 @@ export const getPartnerStats = async (req: Request, res: Response) => {
             createdAt: { $gte: today }
         });
 
+        // Maybe add stats by status too?
+        const pending = await PartnerProgram.countDocuments({ status: "Pending" });
+        const onProcess = await PartnerProgram.countDocuments({ status: "On Process" });
+        const complete = await PartnerProgram.countDocuments({ status: "Complete" });
+        const rejected = await PartnerProgram.countDocuments({ status: "Rejected" });
+
         res.status(200).json({
             total: totalRequests,
-            today: todayRequests
+            today: todayRequests,
+            pending,
+            onProcess,
+            complete,
+            rejected
         });
     } catch (error) {
         console.error("Partner Stats Error", error);
