@@ -11,28 +11,6 @@
         "form": {
             "buttonText": "Become a Partner",
             "consentText": "By submitting my details, I override my NDNC registration and authorize Du Digital Global Limited and its representatives to contact me through call / RCS / SMS / WhatsApp / E-mail.",
-            "countries": [
-                {
-                    "code": "+91",
-                    "label": "India",
-                    "flag": "🇮🇳"
-                },
-                {
-                    "code": "+1",
-                    "label": "USA",
-                    "flag": "🇺🇸"
-                },
-                {
-                    "code": "+44",
-                    "label": "UK",
-                    "flag": "🇬🇧"
-                },
-                {
-                    "code": "+971",
-                    "label": "UAE",
-                    "flag": "🇦🇪"
-                }
-            ],
             "fields": [
                 {
                     "type": "text",

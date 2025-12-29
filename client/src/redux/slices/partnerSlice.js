@@ -2,12 +2,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000'
 
-// Async thunk to submit contact form
-export const submitContactForm = createAsyncThunk(
-    'contact/submitForm',
+// Async thunk to submit partner form
+export const submitPartnerForm = createAsyncThunk(
+    'partner/submitForm',
     async (formData, { rejectWithValue }) => {
         try {
-            const response = await fetch(`${BackendURL}/api/contact/`, {
+            const response = await fetch(`${BackendURL}/api/partner/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ export const submitContactForm = createAsyncThunk(
 
             if (!response.ok) {
                 const errorData = await response.json().catch(() => ({}));
-                throw new Error(errorData.message || 'Failed to submit contact form');
+                throw new Error(errorData.message || 'Failed to submit partner form');
             }
 
             const data = await response.json();
@@ -35,11 +35,11 @@ const initialState = {
     submittedData: null
 }
 
-const contactSlice = createSlice({
-    name: 'contact',
+const partnerSlice = createSlice({
+    name: 'partner',
     initialState,
     reducers: {
-        clearContactState: (state) => {
+        clearPartnerState: (state) => {
             state.error = null;
             state.success = false;
             state.submittedData = null;
@@ -47,18 +47,18 @@ const contactSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(submitContactForm.pending, (state) => {
+            .addCase(submitPartnerForm.pending, (state) => {
                 state.loading = true;
                 state.error = null;
                 state.success = false;
             })
-            .addCase(submitContactForm.fulfilled, (state, action) => {
+            .addCase(submitPartnerForm.fulfilled, (state, action) => {
                 state.loading = false;
                 state.success = true;
                 state.submittedData = action.payload;
                 state.error = null;
             })
-            .addCase(submitContactForm.rejected, (state, action) => {
+            .addCase(submitPartnerForm.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
                 state.success = false;
@@ -66,5 +66,6 @@ const contactSlice = createSlice({
     }
 })
 
-export const { clearContactState } = contactSlice.actions;
-export default contactSlice.reducer;
+export const { clearPartnerState } = partnerSlice.actions;
+export default partnerSlice.reducer;
+

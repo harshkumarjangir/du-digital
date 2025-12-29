@@ -1,0 +1,252 @@
+import axios from 'axios';
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+
+const API_URL_INVESTOR = `${API_BASE_URL}/investor`;
+const API_URL_OFFICE = `${API_BASE_URL}/office`;
+const API_URL_CONTACT = `${API_BASE_URL}/contact`;
+const API_URL_PARTNER = `${API_BASE_URL}/partner`;
+const API_URL_GALLERY = `${API_BASE_URL}/gallery`;
+
+const API_URL_AUTH = `${API_BASE_URL}/auth`;
+
+// Add auth token to requests
+axios.interceptors.request.use((config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+});
+
+// --- Auth ---
+export const login = async (email, password) => {
+    const response = await axios.post(`${API_URL_AUTH}/login`, { email, password });
+    return response.data;
+};
+
+
+// --- User Management ---
+const API_URL_USERS = `${API_BASE_URL}/users`;
+
+export const getUsers = async () => {
+    const response = await axios.get(API_URL_USERS);
+    return response.data;
+};
+
+export const createUser = async (userData) => {
+    const response = await axios.post(API_URL_USERS, userData);
+    return response.data;
+};
+
+export const updateUser = async (id, userData) => {
+    const response = await axios.put(`${API_URL_USERS}/${id}`, userData);
+    return response.data;
+};
+
+export const deleteUser = async (id) => {
+    const response = await axios.delete(`${API_URL_USERS}/${id}`);
+    return response.data;
+};
+
+// --- Investor Relations ---
+export const getStats = async () => {
+    const response = await axios.get(`${API_URL_INVESTOR}/stats`);
+    return response.data;
+};
+
+export const getCategories = async () => {
+    const response = await axios.get(`${API_URL_INVESTOR}/categories`);
+    return response.data;
+};
+
+export const createReport = async (formData) => {
+    const response = await axios.post(`${API_URL_INVESTOR}/report`, formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    });
+    return response.data;
+};
+
+export const getReportsByCategory = async (slug, isAdmin = true) => {
+    const response = await axios.get(`${API_URL_INVESTOR}/category/${slug}?isAdmin=${isAdmin}`);
+    return response.data;
+};
+
+export const deleteReport = async (id) => {
+    const response = await axios.delete(`${API_URL_INVESTOR}/report/${id}`);
+    return response.data;
+};
+
+// --- Office Locations ---
+
+export const getOfficeTypes = async () => {
+    const response = await axios.get(`${API_URL_OFFICE}/types`);
+    return response.data;
+};
+
+export const createOfficeType = async (data) => {
+    const response = await axios.post(`${API_URL_OFFICE}/types`, data);
+    return response.data;
+};
+
+export const deleteOfficeType = async (id) => {
+    const response = await axios.delete(`${API_URL_OFFICE}/types/${id}`);
+    return response.data;
+};
+
+export const getLocations = async (typeId = '') => {
+    const response = await axios.get(`${API_URL_OFFICE}/locations${typeId ? `?typeId=${typeId}` : ''}`);
+    return response.data;
+};
+
+export const createLocation = async (data) => {
+    const response = await axios.post(`${API_URL_OFFICE}/locations`, data);
+    return response.data;
+};
+
+export const deleteLocation = async (id) => {
+    const response = await axios.delete(`${API_URL_OFFICE}/locations/${id}`);
+    return response.data;
+};
+
+// --- Contact Inquiries ---
+
+export const getInquiries = async () => {
+    const response = await axios.get(`${API_URL_CONTACT}`);
+    return response.data;
+};
+
+export const getContactStats = async () => {
+    const response = await axios.get(`${API_URL_CONTACT}/stats`);
+    return response.data;
+};
+
+// --- Partner Program ---
+
+export const getPartnerRequests = async () => {
+    const response = await axios.get(`${API_URL_PARTNER}`);
+    return response.data;
+};
+
+export const getPartnerStats = async () => {
+    const response = await axios.get(`${API_URL_PARTNER}/stats`);
+    return response.data;
+};
+
+// --- Gallery ---
+
+export const getImages = async () => {
+    const response = await axios.get(`${API_URL_GALLERY}`);
+    return response.data;
+};
+
+export const uploadImage = async (formData) => {
+    const response = await axios.post(`${API_URL_GALLERY}`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    return response.data;
+};
+
+export const deleteImage = async (id) => {
+    const response = await axios.delete(`${API_URL_GALLERY}/${id}`);
+    return response.data;
+};
+
+// --- Sales Experts ---
+const API_URL_SALES_EXPERTS = `${API_BASE_URL}/sales-experts`;
+
+export const getSalesExperts = async () => {
+    const response = await axios.get(API_URL_SALES_EXPERTS);
+    return response.data;
+};
+
+export const addSalesExpert = async (data) => {
+    const response = await axios.post(API_URL_SALES_EXPERTS, data);
+    return response.data;
+};
+
+export const updateSalesExpert = async (id, data) => {
+    const response = await axios.put(`${API_URL_SALES_EXPERTS}/${id}`, data);
+    return response.data;
+};
+
+export const deleteSalesExpert = async (id) => {
+    const response = await axios.delete(`${API_URL_SALES_EXPERTS}/${id}`);
+    return response.data;
+};
+
+// --- Videos ---
+const API_URL_VIDEOS = `${API_BASE_URL}/videos`;
+
+export const getVideos = async () => {
+    const response = await axios.get(API_URL_VIDEOS);
+    return response.data;
+};
+
+export const createVideo = async (data) => {
+    const response = await axios.post(API_URL_VIDEOS, data);
+    return response.data;
+};
+
+export const updateVideo = async (id, data) => {
+    const response = await axios.put(`${API_URL_VIDEOS}/${id}`, data);
+    return response.data;
+};
+
+export const deleteVideo = async (id) => {
+    const response = await axios.delete(`${API_URL_VIDEOS}/${id}`);
+    return response.data;
+};
+
+// --- Blogs ---
+const API_URL_BLOGS = `${API_BASE_URL}/blogs`;
+
+export const getBlogs = async (page = 1, limit = 10) => {
+    const response = await axios.get(`${API_URL_BLOGS}?page=${page}&limit=${limit}`);
+    return response.data;
+};
+
+export const getBlog = async (id) => {
+    const response = await axios.get(`${API_URL_BLOGS}/${id}`);
+    return response.data;
+};
+
+export const createBlog = async (data) => {
+    const response = await axios.post(API_URL_BLOGS, data);
+    return response.data;
+};
+
+export const updateBlog = async (id, data) => {
+    const response = await axios.put(`${API_URL_BLOGS}/${id}`, data);
+    return response.data;
+};
+
+export const deleteBlog = async (id) => {
+    const response = await axios.delete(`${API_URL_BLOGS}/${id}`);
+    return response.data;
+};
+
+// --- Team Members ---
+const API_URL_TEAM = `${API_BASE_URL}/team-members`;
+
+export const getTeamMembers = async (groupBy = '') => {
+    const response = await axios.get(`${API_URL_TEAM}${groupBy ? `?groupBy=${groupBy}` : ''}`);
+    return response.data;
+};
+
+export const createTeamMember = async (data) => {
+    const response = await axios.post(API_URL_TEAM, data);
+    return response.data;
+};
+
+export const updateTeamMember = async (id, data) => {
+    const response = await axios.put(`${API_URL_TEAM}/${id}`, data);
+    return response.data;
+};
+
+export const deleteTeamMember = async (id) => {
+    const response = await axios.delete(`${API_URL_TEAM}/${id}`);
+    return response.data;
+};
