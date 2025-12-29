@@ -107,7 +107,8 @@ const GalleryModal = ({ images, startIndex, onClose }) => {
             <SwiperSlide key={img._id || i}>
               <div className="flex flex-col items-center gap-3">
                 <img
-                  src={img.imageSrc}
+                  // src={img.imageSrc}
+                  src={`${import.meta.env.VITE_BACKEND_URL}${img.imageSrc}`}
                   alt={img.imageName}
                   style={{ transform: `scale(${zoom})` }}
                   className="max-h-[80vh] transition-transform duration-300 rounded-lg"
