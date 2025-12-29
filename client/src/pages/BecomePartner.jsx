@@ -13,7 +13,7 @@ const BecomePartner = () => {
             <WhyDuGlobal data={data.whyUs} />
             <PartnerFAQ data={data.faq} />
             <OurFootprints data={data.footprints} />
-            <Gallery images={data.gallery} />
+            <Gallery />
             <ContactExperts data={data.contactExpertsSection} />
         </>
     );

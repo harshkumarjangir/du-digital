@@ -104,7 +104,7 @@ const GalleryModal = ({ images, startIndex, onClose }) => {
           }}
         >
           {images.map((img, i) => (
-            <SwiperSlide key={i}>
+            <SwiperSlide key={img._id || i}>
               <div className="flex flex-col items-center gap-3">
                 <img
                   src={img.imageSrc}

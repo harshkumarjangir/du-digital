@@ -30,7 +30,10 @@ const TeamGrid = ({ title, data }) => {
                             <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col">
                                 <div className="p-4 text-left text-white text-sm overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600">
                                     <ul className="list-disc pl-5 space-y-2">
-                                        {member.description?.map((point, idx) => (
+                                        {/* {member.description?.map((point, idx) => (
+                                            <li key={idx}>{point}</li>
+                                        ))} */}
+                                        {member.description.split('\n')?.map((point, idx) => (
                                             <li key={idx}>{point}</li>
                                         ))}
                                     </ul>

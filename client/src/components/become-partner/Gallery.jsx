@@ -1,14 +1,55 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import GalleryModal from "./GalleryModal";
+import { fetchGallery } from "../../redux/slices/gallerySlice";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-const Gallery = ({ images }) => {
+const Gallery = () => {
+  const dispatch = useDispatch();
+  const { images, loading, error } = useSelector((state) => state.gallery);
   const [activeIndex, setActiveIndex] = useState(null);
+
+  useEffect(() => {
+    dispatch(fetchGallery());
+  }, [dispatch]);
+
+  if (loading) {
+    return (
+      <section className="py-16 bg-white">
+        <h2 className="text-3xl font-bold text-center mb-10">GALLERY</h2>
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <p>Loading gallery...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="py-16 bg-white">
+        <h2 className="text-3xl font-bold text-center mb-10">GALLERY</h2>
+        <div className="max-w-7xl mx-auto px-6 text-center text-red-500">
+          <p>Error loading gallery: {error}</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (!images || images.length === 0) {
+    return (
+      <section className="py-16 bg-white">
+        <h2 className="text-3xl font-bold text-center mb-10">GALLERY</h2>
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <p>No gallery images available.</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-16 bg-white">
@@ -34,7 +75,7 @@ const Gallery = ({ images }) => {
           className="pb-10"   // 👈 important
         >
           {images.map((img, i) => (
-            <SwiperSlide key={i}>
+            <SwiperSlide key={img._id || i}>
               <img
                 src={img.imageSrc}
                 alt={img.imageName}

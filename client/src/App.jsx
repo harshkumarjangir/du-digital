@@ -10,6 +10,7 @@ import Copyright from './components/common/Copyright'
 import BecomePartner from './pages/BecomePartner'
 import InvestorRelation from './pages/InvestorRelation'
 import AboutUs from './pages/AboutUs'
+import VideoGallery from './pages/VideoGallery'
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path='/contact-us' element={<ContactUs />} />
         <Route path='/investor-relation' element={<InvestorRelation />} />
         <Route path='/:slug' element={<InvestorRelation />} />
+        <Route path='/video-gallery' element={<VideoGallery />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
