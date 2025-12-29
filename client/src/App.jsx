@@ -9,6 +9,7 @@ import OurOffices from './components/common/OurOffices';
 import Copyright from './components/common/Copyright'
 import BecomePartner from './pages/BecomePartner'
 import InvestorRelation from './pages/InvestorRelation'
+import AboutUs from './pages/AboutUs'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/b2b-partner-program' element={<BecomePartner />} />
+        <Route path='/about-us' element={<AboutUs />} />
         <Route path='/contact-us' element={<ContactUs />} />
         <Route path='/investor-relation' element={<InvestorRelation />} />
         <Route path='/:slug' element={<InvestorRelation />} />

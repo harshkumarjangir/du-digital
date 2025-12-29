@@ -1,0 +1,89 @@
+{
+    "hero": {
+        "title": "About Us",
+        "subtitle": "DU Global Ltd is a company listed on the National Stock Exchange (NSE) of India. It operates in the digital services and technology sector, specializing in services such as document verification, visa facilitation, and other innovative solutions catering to both government and private sectors.",
+        "backgroundImage": "/assets/about-us/hero/about-hero.jpg"
+    },
+    "whoWeAre": {
+        "title": "DU GLOBAL",
+        "heading": "Who We Are?",
+        "content": [
+            "DU Global Limited, founded in 2015, stands as a testament to India’s prowess in the global technology and outsourcing landscape. Emerging from the vibrant ecosystem of Indian innovation and entrepreneurship, our company has rapidly grown to become a key player in providing specialized.",
+            "Solutions to governments and diplomatic missions worldwide. With a strong emphasis on leveraging technology and a deep understanding of client needs, we have earned a reputation for excellence in managing non-administrative and non-judgemental tasks related to visa processing and consular services of governments.",
+            "Our journey reflects the spirit of India’s tech industry, characterized by innovation, adaptability, and a commitment to delivering world-class solutions. As a homegrown company, we take pride in our Indian roots while embracing a global outlook. Our ability to combine indigenous expertise with international standards has enabled us to consistently meet and exceed the expectations of our diverse clientele. In an ever evolving global landscape, DU Global remains dedicated to driving innovation and excellence, showcasing the immense potential of Indian businesses on the global stage."
+        ]
+    },
+    "timeline": {
+        "year": "2023",
+        "title": "Partnership with Government of Thailand",
+        "subtitle": "Designated Service Provider for Thailand Visa Application Centers",
+        "flag": "/assets/flags/thailand.png"
+    },
+    "boardOfDirectors": [
+        {
+            "name": "Mr. Rajinder Pal",
+            "designation": "Chairman",
+            "image": "/assets/team/board1.jpg"
+        },
+        {
+            "name": "Ms. Madhubala Jain",
+            "designation": "Independent Director",
+            "image": "/assets/team/board2.jpg"
+        }
+    ],
+    "managementTeam": [
+        {
+            "name": "Mr. Manoj",
+            "designation": "Director",
+            "image": "/assets/team/manager1.jpg"
+        }
+    ],
+    "leadership": [
+        {
+            "name": "Mr. Ankit Lamba",
+            "designation": "Vice President",
+            "image": "/assets/team/leader1.jpg"
+        }
+    ],
+    "visionMission": {
+        "vision": "To be a global leader in secure, smart, and innovative service delivery.",
+        "mission": "To transform the global mobility ecosystem through technology-driven excellence."
+    },
+    "strengths": [
+        {
+            "title": "Streamlined Visa Processing",
+            "description": "Digitized workflows ensuring faster and error-free processing."
+        },
+        {
+            "title": "Exceptional Customer Experience",
+            "description": "High-touch service model for superior satisfaction."
+        }
+    ],
+    "footprints": {
+        "description": [
+            "Over 35 centres operating in 6 countries...",
+            "Supporting governmental and business partners globally."
+        ],
+        "stats": [
+            {
+                "value": "35",
+                "suffix": "+",
+                "label": "Office Locations"
+            },
+            {
+                "value": "17 Lac",
+                "suffix": "+",
+                "subValue": "(1.7 Million+)",
+                "label": "Visa Applications"
+            },
+            {
+                "value": "200",
+                "suffix": "+",
+                "label": "Employees"
+            }
+        ],
+        "video": {
+            "youtubeId": "https://www.youtube.com/embed/uoKM7PFNlRg?si=gH_xFRBDkdbtKrap"
+        }
+    }
+}
