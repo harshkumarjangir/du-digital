@@ -1,11 +1,14 @@
 import { getEmbedUrl } from "../../utils/youtube";
 
 const VideoCard = ({ video }) => {
+    // Convert YouTube URL to embed format if needed
+    const embedUrl = getEmbedUrl(video.videoUrl);
+
     return (
         <div className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden p-4">
             <div className="aspect-video">
                 <iframe
-                    src={getEmbedUrl(video.videoUrl)}
+                    src={embedUrl}
                     title={video.title}
                     className="w-full h-full"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
