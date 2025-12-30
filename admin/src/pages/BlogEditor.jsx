@@ -40,7 +40,7 @@ const BlogEditor = () => {
         content: data.content,
         featuredImage: data.featuredImage || "",
         category: data.category || "",
-        tags: data.tags ? data.tags.join(", ") : "",
+        tags: data.tags ? data.tags : "",
         authorName: data.author?.name || "DU Digital Global",
       });
     } catch (error) {
@@ -61,16 +61,14 @@ const BlogEditor = () => {
     submitData.append("content", formData.content);
     submitData.append("category", formData.category);
     submitData.append("author[name]", formData.authorName);
-    
-    // Handle tags
-    const tagsArray = formData.tags.split(",").map((tag) => tag.trim()).filter((tag) => tag);
-    tagsArray.forEach(tag => submitData.append("tags[]", tag));
+
+    submitData.append("tags", formData.tags);
 
     // Handle Image
     if (featuredImageFile) {
-        submitData.append("featuredImage", featuredImageFile);
+      submitData.append("featuredImage", featuredImageFile);
     } else {
-        submitData.append("featuredImage", formData.featuredImage);
+      submitData.append("featuredImage", formData.featuredImage);
     }
 
     try {
@@ -208,14 +206,13 @@ const BlogEditor = () => {
                 />
               </FormGroup>
 
-              <FormGroup label="Tags (comma separated)">
+              <FormGroup label="Short Tital">
                 <Input
                   type="text"
                   value={formData.tags}
                   onChange={(e) =>
                     setFormData({ ...formData, tags: e.target.value })
                   }
-                  placeholder="e.g. Visa, UK, Travel, Immigration"
                 />
               </FormGroup>
             </div>
@@ -239,22 +236,24 @@ const BlogEditor = () => {
                   placeholder="https://example.com/image.jpg"
                 />
                 <div className="mt-2">
-                    <label className="form-label small text-muted">Or Upload Image</label>
-                    <input 
-                        type="file" 
-                        className="form-control" 
-                        accept="image/*"
-                        onChange={(e) => {
-                            if (e.target.files[0]) {
-                                setFeaturedImageFile(e.target.files[0]);
-                                // Optional: Create object URL for preview
-                                setFormData({
-                                    ...formData,
-                                    featuredImage: URL.createObjectURL(e.target.files[0])
-                                });
-                            }
-                        }}
-                    />
+                  <label className="form-label small text-muted">
+                    Or Upload Image
+                  </label>
+                  <input
+                    type="file"
+                    className="form-control"
+                    accept="image/*"
+                    onChange={(e) => {
+                      if (e.target.files[0]) {
+                        setFeaturedImageFile(e.target.files[0]);
+                        // Optional: Create object URL for preview
+                        setFormData({
+                          ...formData,
+                          featuredImage: URL.createObjectURL(e.target.files[0]),
+                        });
+                      }
+                    }}
+                  />
                 </div>
                 {formData.featuredImage && (
                   <div className="mt-2">

@@ -6,12 +6,17 @@ export const getBlogs = async (req: Request, res: Response) => {
     try {
         const page = parseInt(req.query.page as string) || 1;
         const limit = parseInt(req.query.limit as string) || 10;
+        let IsUser = Boolean(req.query.IsUsers as string) || false;
+
         const skip = (page - 1) * limit;
 
-        const blogs = await Blog.find()
+        const blogs = IsUser ? await Blog.find()
             .sort({ publishedAt: -1 })
             .skip(skip)
-            .limit(limit);
+            .limit(limit).select("title featuredImage tags") : await Blog.find()
+                .sort({ publishedAt: -1 })
+                .skip(skip)
+                .limit(limit)
 
         const total = await Blog.countDocuments();
 
@@ -48,6 +53,11 @@ export const createBlog = async (req: Request, res: Response) => {
     try {
         const { title, content, featuredImage, author, category, tags } = req.body;
 
+        let processedTags = tags;
+        if (Array.isArray(tags)) {
+            processedTags = tags.join(",");
+        }
+
         if (!title || !content) {
             return res.status(400).json({ message: "Title and Content are required" });
         }
@@ -63,7 +73,7 @@ export const createBlog = async (req: Request, res: Response) => {
             featuredImage: featuredImageUrl,
             author, // Expecting { name: string } or can use default
             category,
-            tags // Expecting array of strings
+            tags: processedTags
         });
 
         const savedBlog = await newBlog.save();
