@@ -4,6 +4,8 @@ import VisaServices from "../components/home/VisaServices";
 import HomeAboutSection from "../components/home/HomeAboutSection";
 import OurFootprints from "../components/home/OurFootprints";
 import Testimonials from "../components/home/Testimonials";
+import IsoCertificates from "../components/home/IsoCertificates";
+import WhyUsSection from "../components/home/WhyUsSection";
 
 const Home = () => {
     return (
@@ -21,6 +23,8 @@ const Home = () => {
 
             <OurFootprints data={homeData.ourFootprintsSection} />
             <Testimonials data={homeData.testimonials} />
+            <IsoCertificates data={homeData.certificationsSection} />
+            <WhyUsSection data={homeData.whyUsSection} />
 
         </div>
     );

@@ -116,5 +116,67 @@
                 "designation": "Firestorm Advisory Services"
             }
         ]
+    },
+    "certificationsSection": {
+        "label": "OUR CERTIFICATIONS",
+        "title": "ISO Certificates",
+        "certificates": [
+            {
+                "image": "/assets/home/certifications/iso-one.png",
+                "title": "ISO/IEC 27701:2019",
+                "description": "Privacy Information Management System"
+            },
+            {
+                "image": "/assets/home/certifications/iso-two.png",
+                "title": "ISO/IEC 27001-2022",
+                "description": "Information Security Management System"
+            },
+            {
+                "image": "/assets/home/certifications/iso-three.png",
+                "title": "ISO/IEC 23026:2015",
+                "description": "Certified Systems and Software Engineering"
+            },
+            {
+                "image": "/assets/home/certifications/iso-four.png",
+                "title": "ISO 14001:2015",
+                "description": "Certified Environmental Management System"
+            },
+            {
+                "image": "/assets/home/certifications/iso-five.png",
+                "title": "ISO 9001:2015",
+                "description": "Certified Quality Management System"
+            }
+        ]
+    },
+    "whyUsSection": {
+        "title": "Why DU Global is your trusted partner",
+        "description": "Experience unmatched expertise, reliable support, and tailored solutions with DU Global. We simplify complex processes and deliver results you can trust, making us the preferred choice for thousands worldwide.",
+        "cta": {
+            "text": "About Us",
+            "link": "/about-us"
+        },
+        "backgroundImage": "/assets/home/why-us/why-us.jpg",
+        "features": [
+            {
+                "icon": "/assets/icons/quality.svg",
+                "title": "Quality and Value",
+                "text": "Quality beyond compromise, value that is unmatched."
+            },
+            {
+                "icon": "/assets/icons/services.svg",
+                "title": "Services",
+                "text": "Service that exceeds expectations."
+            },
+            {
+                "icon": "/assets/icons/security.svg",
+                "title": "Security",
+                "text": "The utmost security of our clients' data is paramount for us."
+            },
+            {
+                "icon": "/assets/icons/technology.svg",
+                "title": "Technology",
+                "text": "Optimum use of evolving technology to strengthen our portfolio."
+            }
+        ]
     }
 }
