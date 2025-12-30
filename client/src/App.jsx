@@ -11,6 +11,9 @@ import BecomePartner from './pages/BecomePartner'
 import InvestorRelation from './pages/InvestorRelation'
 import AboutUs from './pages/AboutUs'
 import VideoGallery from './pages/VideoGallery'
+import Careers from './pages/Careers'
+import Events from './pages/Events'
+import NewsAndMedia from './pages/NewsAndMedia'
 
 const App = () => {
   return (
@@ -23,6 +26,9 @@ const App = () => {
         <Route path='/contact-us' element={<ContactUs />} />
         <Route path='/investor-relation' element={<InvestorRelation />} />
         <Route path='/:slug' element={<InvestorRelation />} />
+        <Route path='/news-and-media/event' element={<Events />} />
+        <Route path='/news-and-media' element={<NewsAndMedia />} />
+        <Route path='/careers' element={<Careers />} />
         <Route path='/video-gallery' element={<VideoGallery />} />
         <Route path='*' element={<NotFound />} />
       </Routes>

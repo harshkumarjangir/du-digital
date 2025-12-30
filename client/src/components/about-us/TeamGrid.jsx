@@ -9,10 +9,10 @@ const TeamGrid = ({ title, data }) => {
                 {data.map((member, i) => (
                     <div
                         key={member._id || i}
-                        className="group relative bg-white rounded-lg overflow-hidden shadow hover:shadow-lg transition"
+                        className="group relative bg-gradient-to-b from-[#F9E9E9] to-[#F9E9E9]/50 rounded-lg overflow-hidden shadow hover:shadow-lg transition"
                     >
                         {/* RED TOP BAR */}
-                        <div className="h-1 bg-red-600"></div>
+                        {/* <div className="h-1 bg-red-600"></div> */}
 
                         {/* IMAGE */}
                         <div className="relative">
@@ -23,26 +23,28 @@ const TeamGrid = ({ title, data }) => {
                                     "https://dudigitalglobal.com/wp-content/uploads/2024/11/Aditya-Sanghi-1.png"
                                 }
                                 alt={member.name}
-                                className="w-full h-[280px] object-cover transition-opacity duration-300 group-hover:opacity-30"
+                                className="w-full h-[280px] object-cover transition duration-300 group-hover:scale-105"
                             />
 
-                            {/* HOVER OVERLAY */}
-                            <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col">
-                                <div className="p-4 text-left text-white text-sm overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600">
+                            {/* SLIDE-UP OVERLAY */}
+                            <div
+                                className="absolute inset-0 bg-[#FFFFFF] translate-y-full group-hover:translate-y-10 z-0 transition-all duration-500 ease-out flex flex-col
+                "
+                            >
+                                <div className="p-4 text-black text-sm overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600">
                                     <ul className="list-disc pl-5 space-y-2">
-                                        {/* {member.description?.map((point, idx) => (
-                                            <li key={idx}>{point}</li>
-                                        ))} */}
-                                        {member.description.split('\n')?.map((point, idx) => (
-                                            <li key={idx}>{point}</li>
-                                        ))}
+                                        {member.description
+                                            ?.split("\n")
+                                            .map((point, idx) => (
+                                                <li key={idx}>{point}</li>
+                                            ))}
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
                         {/* NAME & DESIGNATION */}
-                        <div className="p-4 text-center bg-white">
+                        <div className="p-4 text-center bg-white border-t-4 border-red-600 w-[80%] mx-auto relative z-10">
                             <h4 className="font-semibold text-gray-900">
                                 {member.name}
                             </h4>
@@ -58,6 +60,7 @@ const TeamGrid = ({ title, data }) => {
 };
 
 export default TeamGrid;
+
 
 
 
