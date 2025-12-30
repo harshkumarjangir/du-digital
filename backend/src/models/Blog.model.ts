@@ -24,7 +24,7 @@ const blogSchema = new mongoose.Schema(
                 trim: true,
                 default: "DU Digital Global"
             },
-          
+
         },
 
         category: {
@@ -32,19 +32,19 @@ const blogSchema = new mongoose.Schema(
             trim: true
         },
 
-        tags: [
-            {
-                type: String,
-                trim: true
-            }
-        ],
+        tags:
+        {
+            type: String,
+            trim: true
+        },
+
 
         publishedAt: {
             type: Date,
             default: Date.now
         },
 
-          },
+    },
     { timestamps: true }
 );
 
