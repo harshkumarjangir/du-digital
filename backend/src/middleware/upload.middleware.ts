@@ -34,9 +34,9 @@ function checkFileType(file: Express.Multer.File, cb: multer.FileFilterCallback)
 
 const upload = multer({
     storage,
-    fileFilter: function (req, file, cb) {
-        checkFileType(file, cb);
-    },
+    // fileFilter: function (req, file, cb) {
+    //     checkFileType(file, cb);
+    // },
 });
 
 export default upload;

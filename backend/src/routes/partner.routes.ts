@@ -6,9 +6,9 @@ import upload from "../middleware/upload.middleware";
 
 const router = express.Router();
 
-router.use(protect);
 
 router.post("/", createPartnerRequest);
+router.use(protect);
 router.get("/", getPartnerRequests);
 router.put("/:id", hasPermission("manage_partners"), upload.fields([{ name: 'logo', maxCount: 1 }, { name: 'userImage', maxCount: 1 }]), updatePartnerStatus);
 router.get("/stats", getPartnerStats);

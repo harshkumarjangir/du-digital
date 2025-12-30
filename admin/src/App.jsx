@@ -21,10 +21,20 @@ import "./App.css";
 
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import Login from "./pages/Login";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserProfile } from "./features/auth/authSlice";
+import { useEffect } from "react";
 
 const RequireAuth = ({ children }) => {
   const { user, loading } = useAuth();
+  const dispatch = useDispatch();
   
+  useEffect(() => {
+    if (user) {
+      dispatch(fetchUserProfile());
+    }
+  }, [user, dispatch]);
+
   if (loading) return <div>Loading...</div>;
 
   if (!user) {
@@ -37,14 +47,15 @@ const RequireAuth = ({ children }) => {
 
 const RoleBasedRedirect = ({ children }) => {
     const { user } = useAuth();
+    const permissions = useSelector((state) => state.auth.permissions);
     const location = useLocation();
 
     if (location.pathname === "/" && user && user.role !== 'admin') {
         if (user.role === 'sales') return <Navigate to="/contacts" replace />;
         if (user.role === 'hr') return <Navigate to="/team-members" replace />;
         
-        if (user.permissions?.includes('manage_contacts')) return <Navigate to="/contacts" replace />;
-        if (user.permissions?.includes('manage_team')) return <Navigate to="/team-members" replace />;
+        if (permissions?.includes('manage_contacts')) return <Navigate to="/contacts" replace />;
+        if (permissions?.includes('manage_team')) return <Navigate to="/team-members" replace />;
     }
     return children;
 };

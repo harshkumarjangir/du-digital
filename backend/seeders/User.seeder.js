@@ -6,7 +6,8 @@ const users = [
         email: "admin@dudigital.com",
         password: "adminpassword123", // Will be hashed by pre-save hook
         role: "admin",
-        permissions: [] // Admin has all permissions by default
+        permissions: [],// Admin has all permissions by default
+        receivePartnerNotifications: true
     },
     {
         name: "HR Manager",
