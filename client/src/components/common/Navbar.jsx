@@ -51,16 +51,15 @@ const Navbar = () => {
               {/* Top Level */}
               <NavLink
                 to={item.link || "#"}
-                
+
                 className={`font-semibold text-[15px] text-gray-800 hover:text-red-600 flex items-center gap-1
-                   border-b-2 border-transparent group-hover:border-red-600 pb-1 ${
-                    isNavActive(item)
-                      ? "text-red-600 border-red-600"
-                      : "text-gray-800 border-transparent hover:text-red-600 hover:border-red-600"
+                   border-b-2 border-transparent group-hover:border-red-600 pb-1 ${isNavActive(item)
+                    ? "text-red-600 border-red-600"
+                    : "text-gray-800 border-transparent hover:text-red-600 hover:border-red-600"
                   }`}
               >
                 {item.label}
-                {item.children && <ChevronDown size={20} color="black" />}
+                {/* {item.children && <ChevronDown size={20} color="black" />} */}
               </NavLink>
 
               {/* Mega Menu */}

@@ -32,5 +32,32 @@
                 "image": "/assets/home/slider/company-uae.avif"
             }
         ]
+    },
+    "visaServiceSection": {
+        "title": "Visa Services",
+        "fromLabel": "I’m applying visa from -",
+        "toLabel": "I’m going to -",
+        "fromPlaceholder": "select location",
+        "toPlaceholder": "select location",
+        "buttonText": "Go to Website",
+        "buttonLink": "#",
+        "locations": [
+            "India",
+            "United States",
+            "Canada",
+            "United Kingdom",
+            "Australia",
+            "Germany",
+            "France",
+            "UAE"
+        ]
+    },
+    "aboutSection": {
+        "title": "The World.\nMade Possible.",
+        "description": "DUDigital Global Ltd is a company listed on the National Stock Exchange (NSE) of India. It operates in the digital services and technology sector, specializing in services such as document verification, visa facilitation, and other innovative solutions catering to both government and private sectors.",
+        "video": {
+            "embedUrl": "https://www.youtube.com/embed/VIDEO_ID",
+            "thumbnail": "/assets/home/about-video-thumb.jpg"
+        }
     }
 }
