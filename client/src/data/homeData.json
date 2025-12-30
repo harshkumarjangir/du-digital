@@ -158,22 +158,22 @@
         "backgroundImage": "/assets/home/why-us/why-us.jpg",
         "features": [
             {
-                "icon": "/assets/icons/quality.svg",
+                "icon": "BadgeCheck",
                 "title": "Quality and Value",
                 "text": "Quality beyond compromise, value that is unmatched."
             },
             {
-                "icon": "/assets/icons/services.svg",
+                "icon": "Handshake",
                 "title": "Services",
                 "text": "Service that exceeds expectations."
             },
             {
-                "icon": "/assets/icons/security.svg",
+                "icon": "ShieldCheck",
                 "title": "Security",
                 "text": "The utmost security of our clients' data is paramount for us."
             },
             {
-                "icon": "/assets/icons/technology.svg",
+                "icon": "Cpu",
                 "title": "Technology",
                 "text": "Optimum use of evolving technology to strengthen our portfolio."
             }
