@@ -1,6 +1,9 @@
 import homeData from "../data/homedata.json";
 import HomeSlider from "../components/home/HomeSlider";
 import VisaServices from "../components/home/VisaServices";
+import HomeAboutSection from "../components/home/HomeAboutSection";
+import OurFootprints from "../components/home/OurFootprints";
+import Testimonials from "../components/home/Testimonials";
 
 const Home = () => {
     return (
@@ -13,6 +16,11 @@ const Home = () => {
             <div className="-mt-32 relative z-20">
                 <VisaServices data={homeData.visaServiceSection} />
             </div>
+
+            <HomeAboutSection data={homeData.aboutSection} />
+
+            <OurFootprints data={homeData.ourFootprintsSection} />
+            <Testimonials data={homeData.testimonials} />
 
         </div>
     );
