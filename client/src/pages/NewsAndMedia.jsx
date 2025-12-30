@@ -1,13 +1,16 @@
-const NewsAndMediaHero = ({ data }) => (
-    <section
-        className="h-[420px] flex items-center justify-center bg-cover bg-center relative"
-        style={{ backgroundImage: `url(${data.background})` }}
-    >
-        <div className="absolute inset-0 bg-red-900/40" />
-        <h1 className="relative text-4xl md:text-5xl font-bold text-white">
-            {data.title}
-        </h1>
-    </section>
-);
+import NewsCoverage from "../components/news-and-events/NewsCoverage"
+import NewsAndMediaHero from "../components/news-and-events/NewsHero"
+import PageTabs from "../components/news-and-events/PageTabs"
+import newsData from '../data/newsPage.json'
 
-export default NewsAndMediaHero;
+const NewsAndMedia = () => {
+    return (
+        <div>
+            <NewsAndMediaHero data={newsData.hero} />
+            <PageTabs />
+            <NewsCoverage data={newsData.news} />
+        </div>
+    )
+}
+
+export default NewsAndMedia
