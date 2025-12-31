@@ -13,6 +13,7 @@ import AboutUs from './pages/AboutUs'
 import VideoGallery from './pages/VideoGallery'
 import Careers from './pages/Careers'
 import Events from './pages/Events'
+import EventDetail from './pages/EventDetail'
 import NewsAndMedia from './pages/NewsAndMedia'
 import Blogs from './pages/blogs'
 import SingleBlog from './pages/SingleBlog'
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/investor-relation" element={<InvestorRelation />} />
         <Route path="/:slug" element={<InvestorRelation />} />
         <Route path="/news-and-media/event" element={<Events />} />
+        <Route path="/events/:id" element={<EventDetail />} />
         <Route path="/news-and-media" element={<NewsAndMedia />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/video-gallery" element={<VideoGallery />} />

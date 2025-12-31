@@ -8,6 +8,8 @@ import videoReducer from "./slices/videoSlice";
 import officeReducer from "./slices/officeSlice";
 import BlogReducer from "./slices/BlogsSlice";
 import careersReducer from "./slices/careersSlice";
+import newsReducer from "./slices/newsSlice";
+import eventsReducer from "./slices/eventsSlice";
 
 const store = configureStore({
   reducer: {
@@ -20,6 +22,8 @@ const store = configureStore({
     office: officeReducer,
     blog: BlogReducer,
     careers: careersReducer,
+    news: newsReducer,
+    events: eventsReducer,
   },
 });
 

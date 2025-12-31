@@ -35,7 +35,10 @@ const NewsCoverage = ({ data }) => {
                                     className="flex gap-6 group"
                                 >
                                     <img
-                                        src={item.imageUrl}
+                                        // src={import.meta.env.VITE_BACKEND_URL + item.imageUrl}
+                                        src={`${import.meta.env.VITE_BACKEND_IMAGES_URL}${item.imageUrl}`}
+
+                                        // src={item.imageUrl}
                                         alt={item.title}
                                         className="w-32 h-20 object-cover rounded"
                                     />
