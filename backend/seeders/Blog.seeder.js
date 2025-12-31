@@ -34,7 +34,7 @@ and end-to-end support to improve your visa approval chances.
             "https://dudigitalglobal.com/wp-content/uploads/2025/01/uk-visitor-visa.jpg",
         author: { name: "DU Digital Global" },
         category: "Visa",
-        tags: ["UK Visa", "Visitor Visa", "Travel"]
+        tags: "UK Visa, Visitor Visa, Travel"
     },
 
     {
@@ -61,7 +61,7 @@ A professionally drafted sponsorship letter by
             "https://dudigitalglobal.com/wp-content/uploads/2025/01/sponsorship-letter-uk.jpg",
         author: { name: "DU Digital Global" },
         category: "Visa Guide",
-        tags: ["Sponsorship Letter", "UK Visa", "Visa Documents"]
+        tags: "Sponsorship Letter, UK Visa, Visa Documents"
     },
 
     {
@@ -86,7 +86,7 @@ licensing, bank account opening, and compliance support.
             "https://dudigitalglobal.com/wp-content/uploads/2025/01/company-formation-uae.jpg",
         author: { name: "DU Digital Global" },
         category: "Business",
-        tags: ["UAE Business", "Company Formation", "Dubai"]
+        tags: "UAE Business, Company Formation, Dubai"
     },
 
     {
@@ -109,7 +109,7 @@ Your visa journey becomes smooth and stress-free with us.
             "https://dudigitalglobal.com/wp-content/uploads/2025/01/du-digital-global-services.jpg",
         author: { name: "DU Digital Global" },
         category: "Company",
-        tags: ["Visa Services", "DU Digital Global", "Immigration"]
+        tags: "Visa Services, DU Digital Global, Immigration"
     },
 
     {
@@ -134,7 +134,7 @@ to ensure a hassle-free travel experience.
             "https://dudigitalglobal.com/wp-content/uploads/2025/01/travel-updates.jpg",
         author: { name: "DU Digital Global" },
         category: "Travel Updates",
-        tags: ["Travel News", "Visa Updates", "Flights"]
+        tags: "Travel News, Visa Updates, Flights"
     }
 ];
 
