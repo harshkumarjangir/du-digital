@@ -17,6 +17,7 @@ import EventDetail from './pages/EventDetail'
 import NewsAndMedia from './pages/NewsAndMedia'
 import Blogs from './pages/blogs'
 import SingleBlog from './pages/SingleBlog'
+import { Swifttravels } from './pages/Swifttravels'
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
         <Route path="/video-gallery" element={<VideoGallery />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blog/:id" element={<SingleBlog />} />
+        <Route path="/swifttravels" element={<Swifttravels />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
