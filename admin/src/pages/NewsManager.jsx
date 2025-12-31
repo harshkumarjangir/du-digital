@@ -230,7 +230,7 @@ const NewsManager = () => {
                   <div className="flex-shrink-0">
                     {item.imageUrl ? (
                       <img
-                        src={`http://localhost:5000${item.imageUrl}`}
+                        src={`http://localhost:5000/api${item.imageUrl}`}
                         alt={item.title}
                         style={{
                           width: "120px",

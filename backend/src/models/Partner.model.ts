@@ -7,7 +7,10 @@ const partnerSchema = new mongoose.Schema(
             required: true,
             trim: true
         },
-
+        year: {
+            type: String,
+            default: () => new Date().getFullYear().toString()
+        },
         logo: {
             type: String,
             required: true

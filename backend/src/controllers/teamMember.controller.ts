@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import TeamMember from "../models/TeamMember.model";
+import fs from "fs";
+import path from "path";
 
 // Get all team members (optional grouping)
 export const getAllTeamMembers = async (req: Request, res: Response) => {
@@ -29,11 +31,22 @@ export const getAllTeamMembers = async (req: Request, res: Response) => {
 // Create a new team member
 export const createTeamMember = async (req: Request, res: Response) => {
     try {
-        const { name, designation, profileImage, description, category } = req.body;
+        const { name, designation, description, category } = req.body;
+        const file = req.file;
 
         if (!name || !designation) {
             return res.status(400).json({ message: "Name and Designation are required" });
         }
+
+        let profileImage = "";
+        if (file) {
+            profileImage = `/uploads/${file.filename}`;
+        }
+        // Fallback to URL if provided in body (though form data usually strings it)
+        else if (req.body.profileImage) {
+            profileImage = req.body.profileImage;
+        }
+
 
         const newMember = new TeamMember({
             name,
@@ -46,6 +59,7 @@ export const createTeamMember = async (req: Request, res: Response) => {
         const savedMember = await newMember.save();
         res.status(201).json(savedMember);
     } catch (error) {
+        console.error("Create Team Member Error", error);
         res.status(500).json({ message: "Error creating team member", error });
     }
 };
@@ -54,14 +68,37 @@ export const createTeamMember = async (req: Request, res: Response) => {
 export const updateTeamMember = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-        const updatedMember = await TeamMember.findByIdAndUpdate(id, req.body, { new: true });
+        const { name, designation, description, category } = req.body;
+        const file = req.file;
 
-        if (!updatedMember) {
+        const member = await TeamMember.findById(id);
+        if (!member) {
             return res.status(404).json({ message: "Team member not found" });
         }
 
+        member.name = name || member.name;
+        member.designation = designation || member.designation;
+        member.description = description || member.description;
+        member.category = category || member.category;
+
+        if (file) {
+            // Delete old image if it was a local file
+            if (member.profileImage && member.profileImage.startsWith('/uploads/')) {
+                const oldImagePath = path.join(__dirname, "../../", member.profileImage);
+                if (fs.existsSync(oldImagePath)) {
+                    fs.unlinkSync(oldImagePath);
+                }
+            }
+            member.profileImage = `/uploads/${file.filename}`;
+        } else if (req.body.profileImage) {
+            // Allow updating to a URL string if explicitly sent (optional feature support)
+            member.profileImage = req.body.profileImage;
+        }
+
+        const updatedMember = await member.save();
         res.status(200).json(updatedMember);
     } catch (error) {
+        console.error("Update Team Member Error", error);
         res.status(500).json({ message: "Error updating team member", error });
     }
 };
@@ -70,14 +107,25 @@ export const updateTeamMember = async (req: Request, res: Response) => {
 export const deleteTeamMember = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-        const deletedMember = await TeamMember.findByIdAndDelete(id);
+        const member = await TeamMember.findById(id);
 
-        if (!deletedMember) {
+        if (!member) {
             return res.status(404).json({ message: "Team member not found" });
         }
 
+        // Delete image if local
+        if (member.profileImage && member.profileImage.startsWith('/uploads/')) {
+            const imagePath = path.join(__dirname, "../../", member.profileImage);
+            if (fs.existsSync(imagePath)) {
+                fs.unlinkSync(imagePath);
+            }
+        }
+
+        await TeamMember.findByIdAndDelete(id);
+
         res.status(200).json({ message: "Team member deleted successfully" });
     } catch (error) {
+        console.error("Delete Team Member Error", error);
         res.status(500).json({ message: "Error deleting team member", error });
     }
 };
