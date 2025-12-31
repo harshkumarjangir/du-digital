@@ -1,7 +1,33 @@
 {
     "hero": {
         "title": "News and Media",
-        "background": "/assets/news-events/news.webp"
+        "background": "/assets/news-events/news.webp",
+        "slider": {
+            "autoplay": true,
+            "interval": 5000,
+            "slides": [
+                {
+                    "image": "/assets/news-events/news.webp",
+                    "alt": "slide-image-1"
+                },
+                {
+                    "image": "/assets/news-events/events.webp",
+                    "alt": "slide-image-2"
+                },
+                {
+                    "image": "/assets/news-events/careers.jpg",
+                    "alt": "slide-image-3"
+                },
+                {
+                    "image": "/assets/news-events/news.webp",
+                    "alt": "slide-image-4"
+                },
+                {
+                    "image": "/assets/news-events/events.webp",
+                    "alt": "slide-image-5"
+                }
+            ]
+        }
     },
     "news": [
         {
