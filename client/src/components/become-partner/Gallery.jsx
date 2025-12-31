@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import GalleryModal from "./GalleryModal";
+import ImageGalleryModal from "../reusable/ImageGalleryModal";
 import { fetchGallery } from "../../redux/slices/gallerySlice";
 
 import "swiper/css";
@@ -89,10 +89,11 @@ const Gallery = () => {
       </div>
 
       {activeIndex !== null && (
-        <GalleryModal
+        <ImageGalleryModal
           images={images}
           startIndex={activeIndex}
           onClose={() => setActiveIndex(null)}
+          baseUrl={import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api'}
         />
       )}
     </section>

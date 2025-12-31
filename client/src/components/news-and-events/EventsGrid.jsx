@@ -1,9 +1,29 @@
-import { useNavigate } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const EventsGrid = ({ data }) => {
     const navigate = useNavigate();
     const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
     const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
+
+    const COLORS = [
+        "bg-yellow-400",
+        "bg-green-500",
+        "bg-red-500",
+        "bg-blue-500",
+        "bg-emerald-500",
+        "bg-pink-500",
+    ];
+
+    // Stable color based on blog id
+    const getColorFromId = (id) => {
+        let hash = 0;
+        for (let i = 0; i < id.length; i++) {
+            hash += id.charCodeAt(i);
+        }
+        return COLORS[hash % COLORS.length];
+    };
+
 
     // Category color mapping
     const categoryColors = {
@@ -25,7 +45,7 @@ const EventsGrid = ({ data }) => {
                 <div
                     key={event._id}
                     className="relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer"
-                    onClick={() => navigate(`/events/${event._id}`)}
+                // onClick={() => navigate(`/events/${event._id}`)}
                 >
                     {/* IMAGE */}
                     <div className="h-[420px] relative">
@@ -41,25 +61,85 @@ const EventsGrid = ({ data }) => {
                         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition" />
                     </div>
 
+                    {/* TOP RIGHT ARROW BUTTON */}
+                    {/* <button
+                        onClick={() => navigate(`/events/${event._id}`)}
+                        className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition"
+                    >
+                        <span className="text-xl font-bold text-red-500">↗</span>
+                    </button> */}
+
+                    <Link to={`/events/${event._id}`} className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition z-10">
+                        <ArrowUpRight size={24} className="text-red-600 " />
+                    </Link>
+
                     {/* CONTENT */}
-                    <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
+                    <div className="absolute inset-0 flex flex-col justify-end p-6 text-white z-0">
                         {/* Category Badge */}
                         <span className={`${getCategoryColor(event.category)} text-white text-xs px-3 py-1 rounded-full w-max mb-3 font-medium`}>
                             {event.category}
                         </span>
 
-                        <h3 className="font-semibold text-lg leading-snug mb-4">
+                        <Link to={`/events/${event._id}`} className={` text-white px-6 py-2 mb-4 rounded-full w-max font-semibold border border-white/10 hover:border hover:bg-white/10 transition cursor-pointer ${getColorFromId(event._id)}`}>
+                            View More
+                        </Link>
+
+                        <h3 className="font-semibold text-lg leading-snug mb-0">
                             {event.title}
                         </h3>
-
-                        <button className="bg-white text-black px-6 py-2 rounded-full w-max font-semibold hover:bg-gray-100 transition">
-                            View More
-                        </button>
                     </div>
                 </div>
+
+
             ))}
         </div>
     );
 };
 
 export default EventsGrid;
+
+
+
+
+// {/* <div
+//     key={event._id}
+//     className="relative h-[460px] rounded-[32px] overflow-hidden group shadow-xl cursor-pointer"
+// >
+//     {/* IMAGE */}
+//     {event.imageUrl ? (
+//         <img
+//             src={`${BackendImagesURL}${event.imageUrl}`}
+//             alt={event.title}
+//             className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+//         />
+//     ) : (
+//         <div className="absolute inset-0 bg-gray-300" />
+//     )}
+
+//     {/* GRADIENT OVERLAY */}
+//     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+//     {/* TOP LEFT BADGE */}
+//     <span
+//         className={`absolute top-5 left-5 px-4 py-1.5 text-sm font-semibold text-white rounded-full ${getCategoryColor(
+//             event.category
+//         )}`}
+//     >
+//         {event.category}
+//     </span>
+
+//     {/* TOP RIGHT ARROW BUTTON */}
+//     <button
+//         onClick={() => navigate(`/events/${event._id}`)}
+//         className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition"
+//     >
+//         <span className="text-xl font-bold text-red-500">↗</span>
+//     </button>
+
+//     {/* BOTTOM CONTENT */}
+//     <div className="absolute bottom-0 p-6 text-white">
+//         <h3 className="text-2xl font-bold leading-snug max-w-[90%]">
+//             {event.title}
+//         </h3>
+//     </div>
+// </div> */}

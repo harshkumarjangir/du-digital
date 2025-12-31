@@ -2,10 +2,10 @@ import { NavLink } from "react-router-dom";
 
 const PageTabs = () => {
     const base =
-        "px-10 py-3 rounded-full font-semibold transition shadow";
+        "md:px-10 px-6 md:py-3 py-2 rounded-full font-semibold transition shadow";
 
     return (
-        <div className="flex justify-center gap-6 my-12">
+        <div className="flex justify-center gap-6 my-12 md:my-16">
             <NavLink
                 to="/news-and-media"
                 className={({ isActive }) =>
