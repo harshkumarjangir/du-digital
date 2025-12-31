@@ -1,5 +1,7 @@
 import { useState } from "react";
 import CountryPhoneInput from "../become-partner/CountryPhoneInput";
+import { SubmitCv } from "../../redux/slices/careersSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const ApplyModal = ({ open, job, onClose }) => {
     const [formData, setFormData] = useState({
@@ -8,20 +10,24 @@ const ApplyModal = ({ open, job, onClose }) => {
         phone: null,
         resume: null,
     });
-
+const dispatch=useDispatch()
     if (!open) return null;
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log("FORM DATA 👉", {
+       const data = {
             jobId: job?._id,
             jobTitle: job?.title,
             name: formData.name,
             email: formData.email,
             phone: formData.phone,
             resume: formData.resume,
-        });
+        }
+        console.log("data",data);
+        
+        dispatch(SubmitCv(data));
+
     };
 
     return (

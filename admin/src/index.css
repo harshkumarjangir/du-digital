@@ -1629,3 +1629,283 @@ tates CSS */
     transform: scale(1);
   }
 }
+
+/ * Applicant Manager Specific Styles */ .applicant-avatar {
+  transition: all 0.2s ease;
+}
+
+.applicant-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.applicant-row {
+  transition: all 0.2s ease;
+}
+
+.applicant-row:hover {
+  background: var(--gray-50);
+  transform: translateX(2px);
+}
+
+.contact-info {
+  transition: color 0.2s ease;
+}
+
+.contact-info:hover {
+  color: var(--primary-600);
+}
+
+.resume-indicator {
+  transition: all 0.2s ease;
+}
+
+.resume-indicator:hover {
+  transform: scale(1.05);
+}
+
+.stats-grid {
+  animation: slideUp 0.4s ease-out;
+}
+
+.filter-section {
+  animation: slideUp 0.3s ease-out;
+  animation-delay: 0.1s;
+  animation-fill-mode: both;
+}
+
+.applicants-table {
+  animation: slideUp 0.3s ease-out;
+  animation-delay: 0.2s;
+  animation-fill-mode: both;
+}
+
+/* Enhanced modal animations */
+.modal-overlay {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Search input enhancements */
+.search-input-container {
+  position: relative;
+}
+
+.search-input-container input:focus+.search-icon {
+  color: var(--primary-500);
+}
+
+/* Badge hover effects */
+.badge {
+  transition: all 0.2s ease;
+}
+
+.badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Action buttons enhanced */
+.action-buttons {
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.applicant-row:hover .action-buttons {
+  opacity: 1;
+}
+
+/* Phone number formatting */
+.phone-number {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.875rem;
+}
+
+/* Resume status indicators */
+.resume-available {
+  position: relative;
+}
+
+.resume-available::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  background: var(--success-500);
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+/* Enhanced table responsiveness */
+@media (max-width: 768px) {
+  .table-enhanced {
+    font-size: 0.875rem;
+  }
+
+  .applicant-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 0.75rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Loading state improvements */
+.applicant-skeleton {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Enhanced focus states for accessibility */
+.action-btn:focus {
+  outline: 2px solid var(--primary-500);
+  outline-offset: 2px;
+}
+
+.modal-close:focus {
+  outline: 2px solid var(--primary-500);
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for all interactive elements */
+.card,
+.btn,
+.form-control,
+.badge,
+.action-btn {
+  transition: all 0.2s ease;
+}
+
+/* Applican
+t Card Layout Styles */
+.applicant-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.applicant-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--primary-500);
+  transform: scaleY(0);
+  transition: transform 0.2s ease;
+}
+
+.applicant-card:hover::before {
+  transform: scaleY(1);
+}
+
+.applicant-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments for applicant cards */
+@media (max-width: 768px) {
+  .applicant-card {
+    padding: 1rem !important;
+  }
+
+  .applicant-card .d-flex {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 1rem;
+  }
+
+  .applicant-card .d-flex.align-items-center.gap-6 {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 0.5rem;
+  }
+
+  .applicant-card .d-flex.align-items-center.gap-4:last-child {
+    align-self: flex-end;
+    flex-direction: row;
+  }
+}
+
+/* Enhanced hover states for better UX */
+.applicant-card .action-btn {
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.applicant-card:hover .action-btn {
+  opacity: 1;
+}
+
+/* Better visual hierarchy */
+.applicant-card h4 {
+  transition: color 0.2s ease;
+}
+
+.applicant-card:hover h4 {
+  color: var(--primary-600) !important;
+}
+
+/* Smooth badge animations */
+.applicant-card .badge {
+  transition: all 0.2s ease;
+}
+
+.applicant-card:hover .badge {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Resume status enhancements */
+.resume-status {
+  transition: all 0.2s ease;
+}
+
+.applicant-card:hover .resume-status {
+  transform: scale(1.02);
+}
+
+/* Contact info hover effects */
+.contact-info-item {
+  transition: color 0.2s ease;
+}
+
+.applicant-card:hover .contact-info-item {
+  color: var(--primary-600) !important;
+}

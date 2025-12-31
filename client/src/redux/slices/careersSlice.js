@@ -21,6 +21,35 @@ export const fetchCareers = createAsyncThunk(
         }
     }
 );
+export const SubmitCv = createAsyncThunk(
+    'careers/submitCv',
+    async (data, { rejectWithValue }) => {
+        try {
+            const formData = new FormData();
+            formData.append('careerId', data.jobId);
+            formData.append('jobTitle', data.jobTitle);
+            formData.append('fullName', data.name);
+            formData.append('email', data.email);
+            formData.append('phone', JSON.stringify(data.phone));
+            formData.append('cv', data.resume);
+
+            const response = await fetch(`${BackendURL}/api/employees`, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.message || 'Failed to submit CV');
+            }
+
+            const responseData = await response.json();
+            return responseData;
+        } catch (error) {
+            return rejectWithValue(error.message || 'An error occurred while submitting CV');
+        }
+    }
+);
 
 const initialState = {
     jobs: [],
@@ -52,6 +81,20 @@ const careersSlice = createSlice({
                 state.error = null;
             })
             .addCase(fetchCareers.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+                state.success = false;
+            }).addCase(SubmitCv.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+                state.success = false;
+            })
+            .addCase(SubmitCv.fulfilled, (state, action) => {
+                state.loading = false;
+                state.success = true;
+                state.error = null;
+            })
+            .addCase(SubmitCv.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
                 state.success = false;

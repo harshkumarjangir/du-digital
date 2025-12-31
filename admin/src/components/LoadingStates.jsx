@@ -1,12 +1,4 @@
-import {
-  Loader2,
-  FileText,
-  Calendar,
-  MapPin,
-  Users,
-  Briefcase,
-  Image,
-} from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 // Skeleton loader for cards
 export const SkeletonCard = ({ height = "120px" }) => (

@@ -7,8 +7,8 @@ import nodemailer from "nodemailer";
 const transporter = nodemailer.createTransport({
     service: "gmail", // Example: 'gmail', 'office365', or host/port
     auth: {
-        user: process.env.EMAIL_USER || "your-email@gmail.com",
-        pass: process.env.EMAIL_PASS || "your-password"
+        user: process.env.SMT_USER || "your-email@gmail.com",
+        pass: process.env.SMT_PASS || "your-password"
     }
 });
 
@@ -16,6 +16,8 @@ const transporter = nodemailer.createTransport({
 export const createEmployee = async (req: Request, res: Response) => {
     try {
         const { fullName, email, phone, careerId } = req.body;
+        // console.log("body",req.body);
+
         const file = req.file;
 
         if (!fullName || !email) {
@@ -40,7 +42,7 @@ export const createEmployee = async (req: Request, res: Response) => {
         // Send Confirmation Email
         if (email) {
             const mailOptions = {
-                from: process.env.EMAIL_USER || "no-reply@dudigital.com",
+                from: process.env.SMT_USER || "no-reply@dudigital.com",
                 to: email,
                 subject: "Application Received - DU Digital",
                 text: `Dear ${fullName},\n\nThank you for applying. We have received your application and will review it shortly.\n\nBest Regards,\nHR Team`
