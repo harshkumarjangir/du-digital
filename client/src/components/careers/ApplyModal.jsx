@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CountryPhoneInput from "../become-partner/CountryPhoneInput";
 
-const ApplyModal = ({ open, onClose }) => {
+const ApplyModal = ({ open, job, onClose }) => {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -15,6 +15,8 @@ const ApplyModal = ({ open, onClose }) => {
         e.preventDefault();
 
         console.log("FORM DATA 👉", {
+            jobId: job?._id,
+            jobTitle: job?.title,
             name: formData.name,
             email: formData.email,
             phone: formData.phone,
@@ -35,9 +37,19 @@ const ApplyModal = ({ open, onClose }) => {
                 </button>
 
                 {/* Heading */}
-                <h3 className="text-xl font-semibold text-gray-900 mb-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
                     Apply Now
                 </h3>
+
+                {/* Job Info */}
+                {job && (
+                    <div className="mb-6 p-3 bg-gray-50 rounded-lg">
+                        <p className="text-sm font-medium text-gray-900">{job.title}</p>
+                        <p className="text-xs text-gray-600 mt-1">
+                            {job.location} · {job.jobType}
+                        </p>
+                    </div>
+                )}
 
                 <form onSubmit={handleSubmit} className="space-y-4">
 

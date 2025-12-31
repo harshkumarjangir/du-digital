@@ -89,14 +89,14 @@ const VideoGallery = () => {
                 className="h-[320px] bg-cover bg-center relative flex items-center justify-center"
                 style={{ backgroundImage: `url(${'/assets/video-gallery/video-gallery-bg.jpg'})` }}
             >
-                <div className="absolute inset-0 bg-black/60" />
+                {/* <div className="absolute inset-0 bg-black/60" /> */}
                 <h1 className="relative z-10 text-white text-4xl font-semibold">
                     Video Gallery
                 </h1>
             </section>
 
             {/* ===== CONTENT ===== */}
-            <div className="max-w-7xl mx-auto px-4 py-12 space-y-16">
+            <div className="max-w-7xl mx-auto px-4 md:px-20 py-12 space-y-16">
                 {Object.entries(groupedVideos).map(([category, items]) => (
                     <div key={category}>
                         <h2 className="text-2xl font-semibold text-center mb-8">

@@ -5,7 +5,7 @@ const VideoCard = ({ video }) => {
     const embedUrl = getEmbedUrl(video.videoUrl);
 
     return (
-        <div className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden p-4">
+        <div className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden p-0">
             <div className="aspect-video">
                 <iframe
                     src={embedUrl}
@@ -17,7 +17,7 @@ const VideoCard = ({ video }) => {
             </div>
 
             <div className="p-4">
-                <h4 className="text-sm font-semibold text-red-600 leading-snug">
+                <h4 className="text-sm md:text-base font-medium text-black leading-snug">
                     {video.title}
                 </h4>
             </div>
