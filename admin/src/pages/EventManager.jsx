@@ -95,16 +95,29 @@ const EventManager = () => {
     }
 
     try {
-      await axios.post("http://localhost:5000/api/events", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      showSuccess("Event created successfully");
+      if (selectedEvent) {
+        // Edit mode
+        await axios.put(
+          `http://localhost:5000/api/events/${selectedEvent._id}`,
+          data,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+          }
+        );
+        showSuccess("Event updated successfully");
+      } else {
+        // Create mode
+        await axios.post("http://localhost:5000/api/events", data, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        showSuccess("Event created successfully");
+      }
       fetchEvents();
       resetForm();
       setIsEventModalOpen(false);
     } catch (error) {
-      console.error("Error creating event:", error);
-      showError("Failed to create event");
+      console.error("Error saving event:", error);
+      showError(`Failed to ${selectedEvent ? "update" : "create"} event`);
     } finally {
       setSaving(false);
     }
@@ -133,6 +146,24 @@ const EventManager = () => {
       image: null,
     });
     setImagePreview(null);
+    setSelectedEvent(null);
+  };
+
+  const handleEdit = (event) => {
+    setSelectedEvent(event);
+    setFormData({
+      title: event.title,
+      date: event.date ? event.date.split("T")[0] : "",
+      location: event.location || "",
+      description: event.description || "",
+      image: null,
+    });
+    if (event.imageUrl) {
+      setImagePreview(`http://localhost:5000/api${event.imageUrl}`);
+    } else {
+      setImagePreview(null);
+    }
+    setIsEventModalOpen(true);
   };
 
   const openGalleryManager = async (event) => {
@@ -248,7 +279,7 @@ const EventManager = () => {
                 {event.imageUrl && (
                   <div className="image-upload-preview has-image mb-3">
                     <img
-                      src={`http://localhost:5000${event.imageUrl}`}
+                      src={`http://localhost:5000/api${event.imageUrl}`}
                       alt={event.title}
                       style={{
                         width: "100%",
@@ -308,7 +339,10 @@ const EventManager = () => {
                   </Button>
 
                   <div className="action-buttons">
-                    <button className="action-btn btn-edit" title="Edit event">
+                    <button
+                      className="action-btn btn-edit"
+                      title="Edit event"
+                      onClick={() => handleEdit(event)}>
                       <Edit3 size={14} />
                     </button>
                     <button
@@ -330,7 +364,7 @@ const EventManager = () => {
         <div className="modal-overlay">
           <div className="modal-content" style={{ maxWidth: "600px" }}>
             <div className="modal-header">
-              <h2>Add New Event</h2>
+              <h2>{selectedEvent ? "Edit Event" : "Add New Event"}</h2>
               <button
                 className="modal-close"
                 onClick={() => setIsEventModalOpen(false)}>
@@ -421,7 +455,7 @@ const EventManager = () => {
                   type="submit"
                   loading={saving}
                   disabled={!formData.title || !formData.date}>
-                  Create Event
+                  {selectedEvent ? "Update Event" : "Create Event"}
                 </Button>
               </div>
             </form>
@@ -476,7 +510,7 @@ const EventManager = () => {
                     <div key={img._id} className="card card-hover">
                       <div className="card-body p-2">
                         <img
-                          src={`http://localhost:5000${img.fileUrl}`}
+                          src={`http://localhost:5000/api${img.fileUrl}`}
                           alt="Gallery"
                           style={{
                             width: "100%",

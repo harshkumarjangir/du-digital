@@ -1,0 +1,10 @@
+{
+    "hero":{
+         
+                "title": "Welcome to Swifttravel International",
+                "description": "Your Gateway to Unforgettable Holiday Experiences",
+              
+                "image": "/assets/swifttravels/Swift-Travels.jpg"
+            
+    }
+}

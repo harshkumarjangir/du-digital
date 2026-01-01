@@ -1,7 +1,7 @@
 import express from "express";
 import multer from "multer";
 import path from "path";
-import { createEvent, getEvents, addEventImages, getEventImages } from "../controllers/event.controller";
+import { createEvent, getEvents, addEventImages, getEventImages, updateEvent, deleteEvent } from "../controllers/event.controller";
 
 const router = express.Router();
 
@@ -19,6 +19,8 @@ const upload = multer({ storage });
 
 router.post("/", upload.single("image"), createEvent);
 router.get("/", getEvents);
+router.put("/:id", upload.single("image"), updateEvent);
+router.delete("/:id", deleteEvent);
 
 // Multi-upload route
 router.post("/:id/images", upload.array("images", 10), addEventImages);

@@ -18,6 +18,7 @@ import {
   LogOut,
   Settings,
   Bell,
+  Plane,
 } from "lucide-react";
 
 import { useAuth } from "../context/AuthContext";
@@ -38,6 +39,8 @@ const Layout = () => {
     { name: "Events", href: "/events", icon: Calendar, requiredPermission: "manage_events" },
     { name: "Gallery", href: "/gallery", icon: Images, requiredPermission: "manage_gallery" },
     { name: "Videos", href: "/videos", icon: Play, requiredPermission: "manage_videos" },
+    { name: "Travel Packages", href: "/travel-packages", icon: Plane, requiredPermission: "manage_travel" },
+    { name: "Travel Inquiries", href: "/travel-inquiries", icon: MessageSquare, requiredPermission: "manage_travel" },
     { name: "Business Management", type: "section" },
     { name: "Investor Relations", href: "/investor-relations", icon: FileText, requiredPermission: "manage_investors" },
     { name: "Offices", href: "/offices", icon: Building2, requiredPermission: "manage_offices" },

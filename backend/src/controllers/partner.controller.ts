@@ -111,7 +111,8 @@ export const updatePartnerStatus = async (req: Request, res: Response) => {
                     userImage: userImageUrl,
                     description: updatedRequest.lookingFor,
                     isOfficial: false, // Default to false until verified manually
-                    isActive: true
+                    isActive: true,
+                    year: new Date().getFullYear().toString()
                 });
             }
 
@@ -168,6 +169,19 @@ export const getPartnerStats = async (req: Request, res: Response) => {
         });
     } catch (error) {
         console.error("Partner Stats Error", error);
+        res.status(500).json({ message: "Server Error" });
+    }
+};
+
+export const getOfficialPartners = async (req: Request, res: Response) => {
+    try {
+        const partners = await Partner.find({ isActive: true })
+            .select('year logo description')
+            .sort({ year: -1 });
+
+        res.status(200).json(partners);
+    } catch (error) {
+        console.error("Get Official Partners Error", error);
         res.status(500).json({ message: "Server Error" });
     }
 };

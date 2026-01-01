@@ -10,6 +10,7 @@ import BlogReducer from "./slices/BlogsSlice";
 import careersReducer from "./slices/careersSlice";
 import newsReducer from "./slices/newsSlice";
 import eventsReducer from "./slices/eventsSlice";
+import TravelPackageReducer from "./slices/travelPackagesSlice";
 
 const store = configureStore({
   reducer: {
@@ -24,6 +25,7 @@ const store = configureStore({
     careers: careersReducer,
     news: newsReducer,
     events: eventsReducer,
+    travelPackages: TravelPackageReducer,
   },
 });
 

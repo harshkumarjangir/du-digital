@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getStats, getContactStats, getPartnerStats } from "../services/api";
+import { getStats, getContactStats, getPartnerStats, getTravelInquiryStats } from "../services/api";
 import {
   FileText,
   Folder,
@@ -11,6 +11,7 @@ import {
   Activity,
   Clock,
   ArrowRight,
+  Plane,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -21,10 +22,11 @@ const Dashboard = () => {
   useEffect(() => {
     async function fetchStats() {
       try {
-        const [mainStats, contactStats, partnerStats] = await Promise.all([
+        const [mainStats, contactStats, partnerStats, travelInquiryStats] = await Promise.all([
           getStats(),
           getContactStats(),
           getPartnerStats(),
+          getTravelInquiryStats(),
         ]);
 
         // Merge stats
@@ -32,6 +34,7 @@ const Dashboard = () => {
           ...mainStats,
           contacts: contactStats,
           partners: partnerStats,
+          travelInquiries: travelInquiryStats,
         });
       } catch (error) {
         console.error("Error fetching stats", error);
@@ -86,6 +89,14 @@ const Dashboard = () => {
       color: "#10b981",
       trend: "+15%",
       description: "Partnership applications",
+    },
+    {
+      title: "Today's Travel Inquiries",
+      count: stats.travelInquiries?.today || 0,
+      icon: <Plane size={24} />,
+      color: "#6366f1",
+      trend: "+10%",
+      description: "Travel package inquiries today",
     },
     {
       title: "Investor Reports",

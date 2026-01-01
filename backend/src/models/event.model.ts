@@ -1,6 +1,17 @@
-import mongoose from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
 
-const eventSchema = new mongoose.Schema({
+export interface IEvent extends Document {
+    title: string;
+    date?: Date;
+    location?: string;
+    description?: string;
+    imageUrl?: string;
+    isGallery: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+const eventSchema: Schema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -9,16 +20,22 @@ const eventSchema = new mongoose.Schema({
     date: {
         type: Date
     },
- 
+    location: {
+        type: String,
+        trim: true
+    },
+    description: {
+        type: String,
+        trim: true
+    },
     imageUrl: {
         type: String,
         trim: true
     },
-  
     isGallery: {
         type: Boolean,
         default: false
     }
 }, { timestamps: true });
 
-export default mongoose.model("Event", eventSchema);
+export default mongoose.model<IEvent>("Event", eventSchema);
