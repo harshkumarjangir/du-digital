@@ -13,12 +13,92 @@
             "Our journey reflects the spirit of India’s tech industry, characterized by innovation, adaptability, and a commitment to delivering world-class solutions. As a homegrown company, we take pride in our Indian roots while embracing a global outlook. Our ability to combine indigenous expertise with international standards has enabled us to consistently meet and exceed the expectations of our diverse clientele. In an ever evolving global landscape, DU Global remains dedicated to driving innovation and excellence, showcasing the immense potential of Indian businesses on the global stage."
         ]
     },
-    "timeline": {
-        "year": "2023",
-        "title": "Partnership with Government of Thailand",
-        "subtitle": "Designated Service Provider for Thailand Visa Application Centers",
-        "flag": "/assets/flags/thailand.png"
-    },
+    "timeline": [
+        {
+            "year": "2018",
+            "title": "Company Founded",
+            "subtitle": "Established operations in India",
+            "flags": [
+                "/assets/about-us/timeline/india-flag.jpg"
+            ]
+        },
+        {
+            "year": "2019",
+            "title": "Expansion to Middle East",
+            "subtitle": "Opened first international office",
+            "flags": [
+                "/assets/about-us/timeline/logo-300x83.png"
+            ]
+        },
+        {
+            "year": "2021",
+            "title": "Global Partnerships",
+            "subtitle": "Incorporated DU Global LLC in Sharjah, UAE",
+            "flags": [
+                "/assets/about-us/timeline/Georgia.png",
+                "/assets/about-us/timeline/logo-300x83.png",
+                "/assets/about-us/timeline/Georgia.png"
+            ]
+        },
+        {
+            "year": "2022",
+            "title": "Visa Operations Scale-up",
+            "subtitle": "Multiple government contracts secured",
+            "flags": [
+                "/assets/about-us/timeline/Greece.png"
+            ]
+        },
+        {
+            "year": "2023",
+            "title": "Partnership with Government of Thailand",
+            "subtitle": "Designated Service Provider for Thailand Visa Application Centers",
+            "flags": [
+                "/assets/about-us/timeline/Flag-Malaysia.png"
+            ]
+        },
+        {
+            "year": "2018",
+            "title": "Company Founded",
+            "subtitle": "Established operations in India",
+            "flags": [
+                "/assets/about-us/timeline/india-flag.jpg"
+            ]
+        },
+        {
+            "year": "2019",
+            "title": "Expansion to Middle East",
+            "subtitle": "Opened first international office",
+            "flags": [
+                "/assets/about-us/timeline/logo-300x83.png"
+            ]
+        },
+        {
+            "year": "2021",
+            "title": "Global Partnerships",
+            "subtitle": "Incorporated DU Global LLC in Sharjah, UAE",
+            "flags": [
+                "/assets/about-us/timeline/Georgia.png",
+                "/assets/about-us/timeline/logo-300x83.png",
+                "/assets/about-us/timeline/Georgia.png"
+            ]
+        },
+        {
+            "year": "2022",
+            "title": "Visa Operations Scale-up",
+            "subtitle": "Multiple government contracts secured",
+            "flags": [
+                "/assets/about-us/timeline/Greece.png"
+            ]
+        },
+        {
+            "year": "2023",
+            "title": "Partnership with Government of Thailand",
+            "subtitle": "Designated Service Provider for Thailand Visa Application Centers",
+            "flags": [
+                "/assets/about-us/timeline/Flag-Malaysia.png"
+            ]
+        }
+    ],
     "boardOfDirectors": [
         {
             "name": "Mr. Rajinder Pal",
@@ -84,6 +164,14 @@
                 "icon": "trust"
             }
         ]
+    },
+    "aboutSection": {
+        "title": "Our Footprints",
+        "description": "Over our 35 centres operating in 6 countries and with an additional 1300 centres available globally with our partner offices, we have the ability to fulfill a wide range of dynamic requirements for our Governmental clients and business partners alike.",
+        "video": {
+            "embedUrl": "https://www.youtube.com/embed/uoKM7PFNlRg?si=IS1oLd8GU_dnHqxE",
+            "thumbnail": "/assets/home/about-video-thumb.jpg"
+        }
     },
     "footprints": {
         "description": [

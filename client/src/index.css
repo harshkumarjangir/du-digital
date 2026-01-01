@@ -7,6 +7,23 @@ body {
 }
 
 
+/* Swiper Navigation Arrows */
+.timeline-swiper .swiper-button-prev,
+.timeline-swiper .swiper-button-next {
+    top: 8px;
+    transform: translateY(0);
+    color: #dc2626;
+    /* red */
+}
+
+.timeline-swiper .swiper-button-prev::after,
+.timeline-swiper .swiper-button-next::after {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+
+
 /* Move swiper dots below slider */
 .swiper-pagination {
     position: relative !important;
@@ -65,6 +82,7 @@ body {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
 .blog-container {
     max-width: 850px;
     margin: 40px auto;

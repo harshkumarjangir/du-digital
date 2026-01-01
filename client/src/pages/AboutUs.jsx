@@ -10,15 +10,6 @@ import WhoWeAre from "../components/about-us/WhoWeAre";
 import { fetchTeamMembers } from "../redux/slices/teamSlice";
 import data from "../data/aboutPage.json";
 
-// import AboutHero from "./AboutHero";
-// import WhoWeAre from "./WhoWeAre";
-// import Timeline from "./Timeline";
-// import BoardOfDirectors from "./BoardOfDirectors";
-// import ManagementTeam from "./ManagementTeam";
-// import Leadership from "./Leadership";
-// import VisionMission from "./VisionMission";
-// import OurStrengths from "./OurStrengths";
-// import OurFootprints from "./OurFootprints";
 
 const AboutUs = () => {
   const dispatch = useDispatch();
@@ -27,6 +18,34 @@ const AboutUs = () => {
   useEffect(() => {
     dispatch(fetchTeamMembers());
   }, [dispatch]);
+
+  // Define the order in which categories should be displayed
+  const categoryOrder = ["Leadership", "Board of Directors", "Management"];
+
+  // Function to get display title for category
+  const getCategoryTitle = (category) => {
+    const titleMap = {
+      "Management": "Management Team",
+      "Board of Directors": "Board of Directors",
+      "Leadership": "Leadership"
+    };
+    return titleMap[category] || category;
+  };
+
+  // Sort categories based on the defined order
+  const sortedCategories = Object.keys(teamMembersByCategory || {}).sort((a, b) => {
+    const indexA = categoryOrder.indexOf(a);
+    const indexB = categoryOrder.indexOf(b);
+
+    // If both are in the order array, sort by their position
+    if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+    // If only a is in the order array, it comes first
+    if (indexA !== -1) return -1;
+    // If only b is in the order array, it comes first
+    if (indexB !== -1) return 1;
+    // If neither is in the order array, sort alphabetically
+    return a.localeCompare(b);
+  });
 
   return (
     <>
@@ -37,29 +56,20 @@ const AboutUs = () => {
       {error && <div className="text-center py-8 text-red-500">Error loading team members: {error}</div>}
       {!loading && !error && (
         <>
-          {teamMembersByCategory["Board of Directors"] && (
-            <TeamGrid 
-              title="Board of Directors" 
-              data={teamMembersByCategory["Board of Directors"]} 
-            />
-          )}
-          {teamMembersByCategory["Management"] && (
-            <TeamGrid 
-              title="Management Team" 
-              data={teamMembersByCategory["Management"]} 
-            />
-          )}
-          {teamMembersByCategory["Leadership"] && (
-            <TeamGrid 
-              title="Leadership" 
-              data={teamMembersByCategory["Leadership"]} 
-            />
-          )}
+          {sortedCategories.map((category) => (
+            teamMembersByCategory[category] && teamMembersByCategory[category].length > 0 && (
+              <TeamGrid
+                key={category}
+                title={getCategoryTitle(category)}
+                data={teamMembersByCategory[category]}
+              />
+            )
+          ))}
         </>
       )}
       <VisionMission data={data.visionMission} />
       <OurStrengths data={data.strengths} />
-      <OurFootprints data={data.footprints} />
+      <OurFootprints aboutSection={data.aboutSection} data={data.footprints} />
     </>
   );
 };
