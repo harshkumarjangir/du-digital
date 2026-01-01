@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchSalesExperts } from "../../redux/slices/salesSlice";
+import { LoadingState, ErrorState } from "../reusable";
 
 const ContactExperts = ({ data }) => {
     const dispatch = useDispatch();
@@ -13,23 +14,17 @@ const ContactExperts = ({ data }) => {
 
     // Show loading state
     if (loading) {
-        return (
-            <section className="bg-black py-20">
-                <div className="max-w-6xl mx-auto px-6 text-center">
-                    <p className="text-white text-xl">Loading sales experts...</p>
-                </div>
-            </section>
-        );
+        return <LoadingState message="Loading sales experts..." />;
     }
 
     // Show error state
     if (error) {
         return (
-            <section className="bg-black py-20">
-                <div className="max-w-6xl mx-auto px-6 text-center">
-                    <p className="text-red-500 text-xl">Error: {error}</p>
-                </div>
-            </section>
+            <ErrorState
+                error={error}
+                title="Failed to load sales experts"
+                onRetry={() => dispatch(fetchSalesExperts())}
+            />
         );
     }
 

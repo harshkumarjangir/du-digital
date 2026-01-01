@@ -2,8 +2,8 @@ import data from "../../data/footerCopyright.json";
 
 const Copyright = () => {
     return (
-        <div className="bg-gradient-to-r from-[#8b0000] to-[#b30000] text-white px-8">
-            <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-4 md:flex-row">
+        <div className="bg-[#AC0826] text-white px-8">
+            <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:px-10 py-4 md:flex-row">
 
                 {/* Left */}
                 <p className="text-sm">
