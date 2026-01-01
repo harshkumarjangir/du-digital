@@ -19,7 +19,7 @@ const PageTabs = () => {
             </NavLink>
 
             <NavLink
-                to="/news-and-media/event"
+                to="/events"
                 className={({ isActive }) =>
                     `${base} ${isActive
                         ? "bg-red-600 text-white"

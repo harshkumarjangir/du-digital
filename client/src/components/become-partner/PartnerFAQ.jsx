@@ -1,61 +1,62 @@
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 const PartnerFAQ = ({ data }) => {
-    const [openIndex, setOpenIndex] = useState(0);
+    const [open, setOpen] = useState(null);
 
     return (
-        <section className="bg-white py-24">
-            <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+        <section className="py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
 
-                {/* LEFT CONTENT */}
-                <div>
-                    <h2 className="text-4xl font-bold leading-tight mb-6">
-                        Any questions? <br />
-                        We got you.
+                {/* LEFT TITLE CARD */}
+                <div className="bg-[#F4FBF8] border border-[#DDEFE8] rounded-xl p-10">
+                    <h2 className="text-3xl font-serif text-gray-900">
+                        Our Expertise
                     </h2>
-
-                    <p className="text-gray-500 max-w-md mb-6">
-                        Yet bed any for assistance indulgence unpleasing. Not thoughts all
-                        exercise blessing. Indulgence way everything joy alteration
-                        boisterous the attachment.
-                    </p>
-
-                    <a
-                        href="#"
-                        className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
-                    >
-                        More FAQs →
-                    </a>
                 </div>
 
-                {/* RIGHT FAQ LIST */}
-                <div className="divide-y">
-                    {data.map((item, index) => (
-                        <div key={index} className="py-6">
-                            <button
-                                onClick={() =>
-                                    setOpenIndex(openIndex === index ? null : index)
-                                }
-                                className="w-full flex justify-between items-center text-left"
+                {/* RIGHT ACCORDION */}
+                <div className="lg:col-span-2 bg-[#F7FCFA] border border-[#E3F1EB] rounded-xl overflow-hidden">
+
+                    {data.map((item, index) => {
+                        const isOpen = open === index;
+
+                        return (
+                            <div
+                                key={index}
+                                className="border-b border-[#E3F1EB] last:border-b-0"
                             >
-                                <span className="text-lg font-semibold text-gray-900">
-                                    {item.question}
-                                </span>
+                                {/* HEADER */}
+                                <button
+                                    onClick={() => setOpen(isOpen ? null : index)}
+                                    className="w-full flex items-center justify-between px-6 py-5 text-left group"
+                                >
+                                    <div className="flex items-center gap-6">
+                                        <span className="text-sm text-gray-400 font-mono">
+                                            {String(index + 1).padStart(2, "0")}
+                                        </span>
 
-                                <span className="text-2xl text-gray-500">
-                                    {openIndex === index ? "−" : "+"}
-                                </span>
-                            </button>
+                                        <span className="text-gray-900 font-medium">
+                                            {item.question}
+                                        </span>
+                                    </div>
 
-                            {openIndex === index && (
-                                <p className="mt-4 text-gray-500 max-w-xl">
-                                    {item.answer}
-                                </p>
-                            )}
-                        </div>
-                    ))}
+                                    <ChevronDown
+                                        className={`w-5 h-5 text-gray-500 transition-transform ${isOpen ? "rotate-180" : ""
+                                            }`}
+                                    />
+                                </button>
+
+                                {/* CONTENT */}
+                                {isOpen && (
+                                    <div className="px-16 pb-5 text-gray-600 text-sm leading-relaxed">
+                                        {item.answer}
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
                 </div>
-
             </div>
         </section>
     );
@@ -65,6 +66,82 @@ export default PartnerFAQ;
 
 
 
+
+
+
+
+
+
+// *** ----------------- FAQ for Mr. Shivam ----------------- ***
+
+
+// import { useState } from "react";
+
+// const PartnerFAQ = ({ data }) => {
+//     const [openIndex, setOpenIndex] = useState(0);
+
+//     return (
+//         <section className="bg-white py-24">
+//             <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+
+//                 {/* LEFT CONTENT */}
+//                 <div>
+//                     <h2 className="text-4xl font-bold leading-tight mb-6">
+//                         Any questions? <br />
+//                         We got you.
+//                     </h2>
+
+//                     <p className="text-gray-500 max-w-md mb-6">
+//                         Yet bed any for assistance indulgence unpleasing. Not thoughts all
+//                         exercise blessing. Indulgence way everything joy alteration
+//                         boisterous the attachment.
+//                     </p>
+
+//                     <a
+//                         href="#"
+//                         className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
+//                     >
+//                         More FAQs →
+//                     </a>
+//                 </div>
+
+//                 {/* RIGHT FAQ LIST */}
+//                 <div className="divide-y">
+//                     {data.map((item, index) => (
+//                         <div key={index} className="py-6">
+//                             <button
+//                                 onClick={() =>
+//                                     setOpenIndex(openIndex === index ? null : index)
+//                                 }
+//                                 className="w-full flex justify-between items-center text-left"
+//                             >
+//                                 <span className="text-lg font-semibold text-gray-900">
+//                                     {item.question}
+//                                 </span>
+
+//                                 <span className="text-2xl text-gray-500">
+//                                     {openIndex === index ? "−" : "+"}
+//                                 </span>
+//                             </button>
+
+//                             {openIndex === index && (
+//                                 <p className="mt-4 text-gray-500 max-w-xl">
+//                                     {item.answer}
+//                                 </p>
+//                             )}
+//                         </div>
+//                     ))}
+//                 </div>
+
+//             </div>
+//         </section>
+//     );
+// };
+
+// export default PartnerFAQ;
+
+
+// *** ----------------- FAQ for Mr. Shivam ----------------- ***
 
 
 

@@ -39,7 +39,7 @@ const EventDetail = () => {
                 <div className="text-center">
                     <p className="text-red-600 mb-4">Error: {error}</p>
                     <button
-                        onClick={() => navigate('/news-and-media/event')}
+                        onClick={() => navigate('/events')}
                         className="text-blue-600 hover:underline"
                     >
                         Back to Events
@@ -60,24 +60,24 @@ const EventDetail = () => {
     return (
         <div className="min-h-screen bg-white">
             {/* Hero Section */}
-            <div className="relative h-[400px] bg-gradient-to-br from-green-600 to-green-800">
-                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0gNDAgMCBMIDAgMCAwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-20" />
+            <div className="relative h-[400px]">
+                <img src={`${BackendImagesURL}${selectedEvent.imageUrl}`} alt="" className="w-full h-full object-cover object-center absolute inset-0 " />
 
-                <div className="relative max-w-7xl mx-auto px-6 h-full flex flex-col justify-center text-white">
+                <div className="relative max-w-7xl mx-auto px-6 md:px-20 h-full flex flex-col justify-center text-white z-20">
                     <button
-                        onClick={() => navigate('/news-and-media/event')}
-                        className="flex items-center gap-2 mb-6 hover:opacity-80 transition"
+                        onClick={() => navigate('/events')}
+                        className="flex items-center gap-2 mb-6 hover:opacity-80 transition hover:underline cursor-pointer"
                     >
                         <ArrowLeft size={20} />
                         <span>Back to Events</span>
                     </button>
 
-                    <h1 className="text-4xl md:text-5xl font-bold mb-4 max-w-4xl">
+                    <h1 className="text-3xl md:text-5xl font-semibold text-center mb-4 max-w-4xl mx-auto">
                         {selectedEvent.title}
                     </h1>
 
                     {selectedEvent.description && (
-                        <p className="text-lg opacity-90 max-w-3xl">
+                        <p className="text-lg opacity-90 max-w-3xl mx-auto">
                             {selectedEvent.description}
                         </p>
                     )}
