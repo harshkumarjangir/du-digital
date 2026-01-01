@@ -295,3 +295,147 @@ export const getTravelInquiryStats = async () => {
     const response = await axios.get(`${API_URL_TRAVEL_INQUIRY}/stats`);
     return response.data;
 };
+
+// --- Forms ---
+const API_URL_FORMS = `${API_BASE_URL}/forms`;
+
+export const getForms = async () => {
+    const response = await axios.get(API_URL_FORMS);
+    return response.data;
+};
+
+export const getFormById = async (id) => {
+    const response = await axios.get(`${API_URL_FORMS}/${id}`);
+    return response.data;
+};
+
+export const createForm = async (data) => {
+    const response = await axios.post(API_URL_FORMS, data);
+    return response.data;
+};
+
+export const updateForm = async (id, data) => {
+    const response = await axios.put(`${API_URL_FORMS}/${id}`, data);
+    return response.data;
+};
+
+export const deleteForm = async (id) => {
+    const response = await axios.delete(`${API_URL_FORMS}/${id}`);
+    return response.data;
+};
+
+// --- Documents ---
+const API_URL_DOCUMENTS = `${API_BASE_URL}/documents`;
+
+export const getDocuments = async (formId = '') => {
+    const response = await axios.get(`${API_URL_DOCUMENTS}${formId ? `?formId=${formId}` : ''}`);
+    return response.data;
+};
+
+export const getDocumentById = async (id) => {
+    const response = await axios.get(`${API_URL_DOCUMENTS}/${id}`);
+    return response.data;
+};
+
+export const createDocument = async (data) => {
+    const response = await axios.post(API_URL_DOCUMENTS, data);
+    return response.data;
+};
+
+export const updateDocument = async (id, data) => {
+    const response = await axios.put(`${API_URL_DOCUMENTS}/${id}`, data);
+    return response.data;
+};
+
+export const deleteDocument = async (id) => {
+    const response = await axios.delete(`${API_URL_DOCUMENTS}/${id}`);
+    return response.data;
+};
+
+// --- FAQs ---
+const API_URL_FAQS = `${API_BASE_URL}/faqs`;
+
+export const getFAQs = async (formId = '') => {
+    const response = await axios.get(`${API_URL_FAQS}${formId ? `?formId=${formId}` : ''}`);
+    return response.data;
+};
+
+export const getFAQById = async (id) => {
+    const response = await axios.get(`${API_URL_FAQS}/${id}`);
+    return response.data;
+};
+
+export const createFAQ = async (data) => {
+    const response = await axios.post(API_URL_FAQS, data);
+    return response.data;
+};
+
+export const updateFAQ = async (id, data) => {
+    const response = await axios.put(`${API_URL_FAQS}/${id}`, data);
+    return response.data;
+};
+
+export const deleteFAQ = async (id) => {
+    const response = await axios.delete(`${API_URL_FAQS}/${id}`);
+    return response.data;
+};
+
+// --- Content Sections ---
+const API_URL_CONTENT_SECTIONS = `${API_BASE_URL}/content-sections`;
+
+export const getContentSections = async (formId = '') => {
+    const response = await axios.get(`${API_URL_CONTENT_SECTIONS}${formId ? `?formId=${formId}` : ''}`);
+    return response.data;
+};
+
+export const getContentSectionById = async (id) => {
+    const response = await axios.get(`${API_URL_CONTENT_SECTIONS}/${id}`);
+    return response.data;
+};
+
+export const createContentSection = async (formData) => {
+    const response = await axios.post(API_URL_CONTENT_SECTIONS, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    return response.data;
+};
+
+export const updateContentSection = async (id, formData) => {
+    const response = await axios.put(`${API_URL_CONTENT_SECTIONS}/${id}`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    return response.data;
+};
+
+export const deleteContentSection = async (id) => {
+    const response = await axios.delete(`${API_URL_CONTENT_SECTIONS}/${id}`);
+    return response.data;
+};
+
+// --- Pricing Plans ---
+const API_URL_PRICING_PLANS = `${API_BASE_URL}/pricing-plans`;
+
+export const getPricingPlans = async (formId = '') => {
+    const response = await axios.get(`${API_URL_PRICING_PLANS}${formId ? `?formId=${formId}` : ''}`);
+    return response.data;
+};
+
+export const getPricingPlanById = async (id) => {
+    const response = await axios.get(`${API_URL_PRICING_PLANS}/${id}`);
+    return response.data;
+};
+
+export const createPricingPlan = async (data) => {
+    const response = await axios.post(API_URL_PRICING_PLANS, data);
+    return response.data;
+};
+
+export const updatePricingPlan = async (id, data) => {
+    const response = await axios.put(`${API_URL_PRICING_PLANS}/${id}`, data);
+    return response.data;
+};
+
+export const deletePricingPlan = async (id) => {
+    const response = await axios.delete(`${API_URL_PRICING_PLANS}/${id}`);
+    return response.data;
+};

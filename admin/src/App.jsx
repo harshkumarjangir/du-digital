@@ -17,6 +17,11 @@ import TeamMemberManager from "./pages/TeamMemberManager";
 import UserManager from "./pages/UserManager";
 import TravelPackageManager from "./pages/TravelPackageManager";
 import TravelInquiryManager from "./pages/TravelInquiryManager";
+import FormManager from "./pages/FormManager";
+import DocumentManager from "./pages/DocumentManager";
+import FAQManager from "./pages/FAQManager";
+import ContentSectionManager from "./pages/ContentSectionManager";
+import PricingPlanManager from "./pages/PricingPlanManager";
 import Dashboard from "./pages/Dashboard";
 import "./components/Layout.css";
 import "./App.css";
@@ -95,6 +100,11 @@ function App() {
           <Route path="users" element={<UserManager />} />
           <Route path="travel-packages" element={<TravelPackageManager />} />
           <Route path="travel-inquiries" element={<TravelInquiryManager />} />
+          <Route path="forms" element={<FormManager />} />
+          <Route path="documents" element={<DocumentManager />} />
+          <Route path="faqs" element={<FAQManager />} />
+          <Route path="content-sections" element={<ContentSectionManager />} />
+          <Route path="pricing-plans" element={<PricingPlanManager />} />
         </Route>
       </Routes>
     </Router>

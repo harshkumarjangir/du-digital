@@ -42,6 +42,11 @@ import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
 import travelPackageRoutes from './routes/travelPackage.routes';
 import travelInquiryRoutes from './routes/travelInquiry.routes';
+import formRoutes from './routes/form.routes';
+import documentRoutes from './routes/document.routes';
+import faqRoutes from './routes/faq.routes';
+import contentSectionRoutes from './routes/contentSection.routes';
+import pricingPlanRoutes from './routes/pricingPlan.routes';
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
@@ -60,6 +65,11 @@ app.use('/api/blogs', blogRoutes);
 app.use('/api/team-members', teamMemberRoutes);
 app.use('/api/travel-packages', travelPackageRoutes);
 app.use('/api/travel-inquiries', travelInquiryRoutes);
+app.use('/api/forms', formRoutes);
+app.use('/api/documents', documentRoutes);
+app.use('/api/faqs', faqRoutes);
+app.use('/api/content-sections', contentSectionRoutes);
+app.use('/api/pricing-plans', pricingPlanRoutes);
 
 
 
