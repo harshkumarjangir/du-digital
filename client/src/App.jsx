@@ -19,6 +19,7 @@ import Blogs from './pages/blogs'
 import SingleBlog from './pages/SingleBlog'
 import { Swifttravels } from './pages/Swifttravels'
 import TermsAndConditions from './pages/TermsAndConditions'
+import TenantVerification from './pages/TenantVerification'
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/investor-relation" element={<InvestorRelation />} />
+        <Route path="/tenant-and-domestic-help-verification" element={<TenantVerification />} />
         <Route path="/:slug" element={<InvestorRelation />} />
         <Route path="/news-and-media" element={<NewsAndMedia />} />
         <Route path="/events" element={<Events />} />
