@@ -127,6 +127,7 @@
     ],
     "visionMission": {
         "heading": "Vision & Mission Overview",
+        "image": "/assets/about-us/hero/about-hero.jpg",
         "vision": "To be a global leader in secure, smart, and innovative service delivery.",
         "mission": "To transform the global mobility ecosystem through technology-driven excellence."
     },
