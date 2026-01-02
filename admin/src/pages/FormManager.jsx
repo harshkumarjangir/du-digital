@@ -18,9 +18,12 @@ const FormManager = () => {
         name: '',
         slug: '',
         description: '',
+        image: '',
         isActive: true,
         fields: []
     });
+    const [imageFile, setImageFile] = useState(null);
+    const [imagePreview, setImagePreview] = useState('');
     const [editingId, setEditingId] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -43,11 +46,23 @@ const FormManager = () => {
         e.preventDefault();
         setLoading(true);
         try {
+            // Create FormData for multipart upload
+            const submitData = new FormData();
+            submitData.append('name', formData.name);
+            submitData.append('slug', formData.slug);
+            submitData.append('description', formData.description);
+            submitData.append('isActive', formData.isActive);
+            submitData.append('fields', JSON.stringify(formData.fields));
+            
+            if (imageFile) {
+                submitData.append('image', imageFile);
+            }
+
             if (editingId) {
-                await updateForm(editingId, formData);
+                await updateForm(editingId, submitData);
                 alert('Form updated successfully');
             } else {
-                await createForm(formData);
+                await createForm(submitData);
                 alert('Form created successfully');
             }
             fetchForms();
@@ -79,9 +94,12 @@ const FormManager = () => {
                 name: data.name,
                 slug: data.slug || '',
                 description: data.description || '',
+                image: data.image || '',
                 isActive: data.isActive,
                 fields: data.fields || []
             });
+            setImagePreview(data.image ? `${import.meta.env.VITE_API_BASE_URL?.replace('/api', '') || 'http://localhost:5000'}${data.image}` : '');
+            setImageFile(null);
             setEditingId(formId);
             setShowModal(true);
         } catch (error) {
@@ -95,11 +113,22 @@ const FormManager = () => {
             name: '',
             slug: '',
             description: '',
+            image: '',
             isActive: true,
             fields: []
         });
+        setImageFile(null);
+        setImagePreview('');
         setEditingId(null);
         setShowModal(false);
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImageFile(file);
+            setImagePreview(URL.createObjectURL(file));
+        }
     };
 
     // Field management functions
@@ -208,6 +237,7 @@ const FormManager = () => {
                 <table style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: 'white', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
                     <thead>
                         <tr style={{ backgroundColor: '#f8f9fa' }}>
+                            <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6' }}>Image</th>
                             <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6' }}>Name</th>
                             <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6' }}>Slug</th>
                             <th style={{ padding: '1rem', textAlign: 'center', borderBottom: '2px solid #dee2e6' }}>Fields</th>
@@ -218,6 +248,35 @@ const FormManager = () => {
                     <tbody>
                         {forms.map((form) => (
                             <tr key={form._id} style={{ borderBottom: '1px solid #dee2e6' }}>
+                                <td style={{ padding: '1rem' }}>
+                                    {form.image ? (
+                                        <img 
+                                            src={`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api'}${form.image}`}
+                                            alt={form.name}
+                                            style={{ 
+                                                width: '50px', 
+                                                height: '50px', 
+                                                objectFit: 'cover', 
+                                                borderRadius: '4px',
+                                                border: '1px solid #ddd'
+                                            }}
+                                        />
+                                    ) : (
+                                        <div style={{ 
+                                            width: '50px', 
+                                            height: '50px', 
+                                            backgroundColor: '#e9ecef', 
+                                            borderRadius: '4px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            color: '#666',
+                                            fontSize: '0.75rem'
+                                        }}>
+                                            No img
+                                        </div>
+                                    )}
+                                </td>
                                 <td style={{ padding: '1rem' }}>{form.name}</td>
                                 <td style={{ padding: '1rem', color: '#666' }}>{form.slug}</td>
                                 <td style={{ padding: '1rem', textAlign: 'center' }}>
@@ -259,7 +318,7 @@ const FormManager = () => {
                         ))}
                         {forms.length === 0 && (
                             <tr>
-                                <td colSpan="5" style={{ padding: '2rem', textAlign: 'center', color: '#666' }}>
+                                <td colSpan="6" style={{ padding: '2rem', textAlign: 'center', color: '#666' }}>
                                     No forms found. Click "Create New Form" to get started.
                                 </td>
                             </tr>
@@ -328,6 +387,37 @@ const FormManager = () => {
                                         style={{ ...inputStyle, minHeight: '60px' }}
                                         placeholder="Optional description for this form"
                                     />
+                                </div>
+                                <div style={{ gridColumn: '1 / -1' }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Form Image</label>
+                                    <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                                        <div style={{ flex: 1 }}>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={handleImageChange}
+                                                style={{ ...inputStyle, padding: '0.35rem' }}
+                                            />
+                                            <p style={{ margin: '0.5rem 0 0', fontSize: '0.8rem', color: '#666' }}>
+                                                Upload an image for this form (optional)
+                                            </p>
+                                        </div>
+                                        {imagePreview && (
+                                            <div style={{ 
+                                                width: '100px', 
+                                                height: '100px', 
+                                                borderRadius: '8px', 
+                                                overflow: 'hidden',
+                                                border: '1px solid #ddd'
+                                            }}>
+                                                <img 
+                                                    src={imagePreview} 
+                                                    alt="Preview" 
+                                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                                 <div>
                                     <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>

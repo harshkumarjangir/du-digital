@@ -309,13 +309,17 @@ export const getFormById = async (id) => {
     return response.data;
 };
 
-export const createForm = async (data) => {
-    const response = await axios.post(API_URL_FORMS, data);
+export const createForm = async (formData) => {
+    const response = await axios.post(API_URL_FORMS, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    });
     return response.data;
 };
 
-export const updateForm = async (id, data) => {
-    const response = await axios.put(`${API_URL_FORMS}/${id}`, data);
+export const updateForm = async (id, formData) => {
+    const response = await axios.put(`${API_URL_FORMS}/${id}`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    });
     return response.data;
 };
 

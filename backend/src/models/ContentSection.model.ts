@@ -26,8 +26,7 @@ const contentSectionSchema = new mongoose.Schema(
         },
 
         image: {
-            type: String,
-            required: true
+            type: String
         },
 
         badge: {

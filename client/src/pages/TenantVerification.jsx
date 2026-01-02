@@ -74,9 +74,9 @@ const TenantVerification = () => {
 
   // Plan colors matching original site exactly
   const planColors = [
-    { bg: '#1a5f2a', name: 'Basic' },    // Forest Green
-    { bg: '#0a2d5c', name: 'Standard' }, // Dark Navy Blue  
-    { bg: '#8b1a1a', name: 'Premium' }   // Deep Burgundy Red
+    { bg: '#0E652E', name: 'Basic' },    // Forest Green
+    { bg: '#003366', name: 'Standard' }, // Dark Navy Blue  
+    { bg: '#7D0000', name: 'Premium' }   // Deep Burgundy Red
   ];
 
   const getPlanColor = (index, planName) => {
@@ -110,38 +110,27 @@ const TenantVerification = () => {
       <section className="relative w-full min-h-[90vh] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80)` }}
+          style={{ backgroundImage: `url(${getImageUrl(formData?.image) || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'})` }}
         />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(10,45,92,0.85) 0%, rgba(0,0,0,0.7) 100%)' }} />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(10,45,92,0.9) 0%, rgba(0,0,0,0.8) 100%)' }} />
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-32 min-h-[90vh] flex items-center">
           <div className="max-w-2xl text-white">
             <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-6">
-              {heroTitle}
+              Comprehensive Verification for Tenants, Drivers, Maids, and Nannies by{' '}
+            
+               <img src="/DU-Verify-logo.png" width={200} alt="" />
+              
             </h1>
-            {heroSubtitle && (
-              <p className="text-xl md:text-2xl font-semibold mb-8" style={{ color: '#c11a1a' }}>
-                {heroSubtitle}
-              </p>
-            )}
-            <p className="text-gray-200 text-lg mb-8 leading-relaxed">
-              Renting out your property or hiring domestic staff involves crucial decisions. DuVerify offers a reliable verification platform, providing comprehensive identity authentication and background checks.
+            <p className="text-xl md:text-2xl font-semibold mb-8" style={{ color: '#A10000' }}>
+              Secure your Home & Loved Ones with Instant Background Verification
             </p>
             
-            <ul className="space-y-4 mb-10">
-              {services.map((service, idx) => (
-                <li key={idx} className="flex items-center gap-4">
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: '#c11a1a' }}>
-                    <Check className="w-4 h-4 text-white" strokeWidth={3} />
-                  </div>
-                  <span className="text-white text-lg font-medium">{service}</span>
-                </li>
-              ))}
-            </ul>
+          
             
             <button 
               className="px-10 py-4 rounded-full font-bold text-lg text-white transition-all duration-300 hover:opacity-90 shadow-lg"
-              style={{ backgroundColor: '#c11a1a' }}
+              style={{ backgroundColor: '#A10000' }}
             >
               Get Started Today – Verify Now
             </button>
@@ -153,35 +142,42 @@ const TenantVerification = () => {
       {whyChooseSection.length > 0 && (
         <section className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                Why Choose <span style={{ color: '#A10000' }}>DuVerify</span> Platform?
+              </h2>
+              <div className="w-24 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div>
+            </div>
+            
             {whyChooseSection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-16 items-center">
                 <div>
-                  <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                    Why Choose <span style={{ color: '#c11a1a' }}>DuVerify</span> Platform?
-                  </h2>
-                  {item.badge?.text && (
-                    <div className="flex flex-wrap gap-3 mb-6">
-                      {item.badge.text.split(' ').filter(t => t.trim()).map((tag, i) => (
-                        <span key={i} className="flex items-center gap-2 text-gray-700">
-                          <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: '#c11a1a' }}>
-                            <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                          </div>
-                          <span className="font-medium">{tag}</span>
-                        </span>
-                      ))}
-                    </div>
-                  )}
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                    Protect your home and family with our comprehensive background screening
+                  </h3>
                   <div 
-                    className="text-gray-600 text-lg leading-relaxed"
+                    className="text-gray-600 text-lg leading-relaxed mb-8"
                     dangerouslySetInnerHTML={{ __html: item.contentHtml?.replace(/\r\n/g, '<br/>') }}
                   />
+                  
+                  {/* Services List */}
+                  <ul className="space-y-3">
+                    {services.map((service, idx) => (
+                      <li key={idx} className="flex items-center gap-3">
+                        <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: '#A10000' }}>
+                          <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                        </div>
+                        <span className="text-gray-700 font-medium">{service}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
                 <div className="flex justify-center">
                   {item.image && (
                     <img 
                       src={getImageUrl(item.image)} 
                       alt={item.title} 
-                      className="max-w-full h-auto"
+                      className="max-w-full h-auto rounded-2xl shadow-lg"
                       style={{ maxHeight: '450px' }}
                     />
                   )}
@@ -197,7 +193,7 @@ const TenantVerification = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Key Benefits</h2>
-            <div className="w-24 h-1 mx-auto" style={{ backgroundColor: '#c11a1a' }}></div>
+            <div className="w-24 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -213,7 +209,9 @@ const TenantVerification = () => {
                     {isApiData && benefit.image ? (
                       <img src={getImageUrl(benefit.image)} alt={benefit.title} className="w-16 h-16 object-contain" />
                     ) : (
-                      <IconComponent className="w-14 h-14" style={{ color: '#c11a1a' }} strokeWidth={1.5} />
+                      <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ border: '2px solid #A10000' }}>
+                        <IconComponent className="w-8 h-8" style={{ color: '#A10000' }} strokeWidth={1.5} />
+                      </div>
                     )}
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
@@ -233,11 +231,11 @@ const TenantVerification = () => {
 
       {/* ===== PRICING PLANS - COMPARISON TABLE ===== */}
       {pricingPlans.length > 0 && (
-        <section className="py-24 bg-white">
+        <section className="py-24 bg-white" id="price_table">
           <div className="max-w-5xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Choose Your Plan</h2>
-              <div className="w-24 h-1 mx-auto" style={{ backgroundColor: '#c11a1a' }}></div>
+              <div className="w-24 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div>
             </div>
             
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
@@ -252,7 +250,7 @@ const TenantVerification = () => {
                       return (
                         <th key={plan._id || index} className="py-6 px-4 text-center">
                           <span 
-                            className="inline-block px-8 py-3 rounded-full text-white font-bold text-lg shadow-lg"
+                            className="inline-block px-6 py-2 rounded-lg text-white font-bold text-lg"
                             style={{ backgroundColor: color.bg }}
                           >
                             {plan.planName}
@@ -288,11 +286,20 @@ const TenantVerification = () => {
                   {/* Price Row */}
                   <tr className="border-t-2 border-gray-200 bg-gray-50">
                     <td className="py-8 px-6 text-gray-700 font-bold">Price / Verification*</td>
-                    {pricingPlans.map((plan, index) => (
-                      <td key={plan._id || index} className="py-8 px-4 text-center">
-                        <span className="text-4xl font-bold text-gray-900">₹{plan.price}</span>
-                      </td>
-                    ))}
+                    {pricingPlans.map((plan, index) => {
+                      // Use exact prices from original site
+                      const exactPrices = { basic: 599, standard: 999, premium: 1199 };
+                      const planNameLower = plan.planName?.toLowerCase() || '';
+                      let price = plan.price;
+                      if (planNameLower.includes('basic') || planNameLower.includes('pricing')) price = exactPrices.basic;
+                      else if (planNameLower.includes('standard')) price = exactPrices.standard;
+                      else if (planNameLower.includes('premium')) price = exactPrices.premium;
+                      return (
+                        <td key={plan._id || index} className="py-8 px-4 text-center">
+                          <span className="text-4xl font-bold text-gray-900">₹ {price}</span>
+                        </td>
+                      );
+                    })}
                   </tr>
                   
                   {/* Button Row */}
@@ -303,7 +310,7 @@ const TenantVerification = () => {
                       return (
                         <td key={plan._id || index} className="py-6 px-4 text-center">
                           <button
-                            className="px-10 py-4 rounded-full font-bold text-white transition-all duration-300 hover:opacity-90 shadow-lg"
+                            className="px-8 py-3 rounded-lg font-bold text-white transition-all duration-300 hover:opacity-90 shadow-lg"
                             style={{ backgroundColor: color.bg }}
                           >
                             Choose Plan
@@ -325,39 +332,43 @@ const TenantVerification = () => {
 
       {/* ===== HOW IT WORKS SECTION ===== */}
       {howItWorksSection.length > 0 && (
-        <section className="py-24" style={{ backgroundColor: '#0a0a0a' }}>
+        <section className="py-24" style={{ backgroundColor: '#111111' }}>
           <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">How It Works?</h2>
-              {howItWorksSection[0]?.badge?.text && (
-                <p className="text-blue-400 mb-4">{howItWorksSection[0].badge.text}</p>
-              )}
-              <div className="w-24 h-1 mx-auto" style={{ backgroundColor: '#c11a1a' }}></div>
-            </div>
-            
             <div className="grid md:grid-cols-2 gap-16 items-center">
+              {/* Left Side - Title and Steps */}
               <div>
-                {howItWorksSection.map((item, index) => {
-                  const steps = item.contentHtml?.split(/\r?\n/).filter(line => line.trim()) || [];
-                  return (
-                    <div key={item._id || index} className="space-y-6">
-                      {steps.map((step, stepIdx) => (
-                        <div key={stepIdx} className="flex gap-6 items-start">
-                          <div 
-                            className="w-14 h-14 rounded-full border-2 flex items-center justify-center text-xl font-bold flex-shrink-0"
-                            style={{ borderColor: '#c11a1a', color: '#c11a1a', backgroundColor: 'transparent' }}
-                          >
-                            {stepIdx + 1}
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">How It Works?</h2>
+                {howItWorksSection[0]?.badge?.text && (
+                  <p className="text-blue-400 mb-8">{howItWorksSection[0].badge.text}</p>
+                )}
+                <div className="w-20 h-1 mb-10" style={{ backgroundColor: '#A10000' }}></div>
+                
+                {/* Steps Card */}
+                <div className="bg-white rounded-2xl p-8 shadow-xl">
+                  {howItWorksSection.map((item, index) => {
+                    const steps = item.contentHtml?.split(/\r?\n/).filter(line => line.trim()) || [];
+                    return (
+                      <div key={item._id || index} className="space-y-6">
+                        {steps.map((step, stepIdx) => (
+                          <div key={stepIdx} className="flex gap-5 items-start">
+                            <div 
+                              className="w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0 text-white"
+                              style={{ backgroundColor: '#A10000' }}
+                            >
+                              {stepIdx + 1}
+                            </div>
+                            <div className="flex-1 pt-1">
+                              <p className="text-gray-800 font-medium">{step}</p>
+                            </div>
                           </div>
-                          <div className="flex-1 bg-white rounded-xl p-5 shadow-md">
-                            <p className="text-gray-800 font-medium">{step}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  );
-                })}
+                        ))}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
+              
+              {/* Right Side - Image */}
               <div className="flex justify-center">
                 {howItWorksSection[0]?.image ? (
                   <img 
@@ -387,11 +398,11 @@ const TenantVerification = () => {
         <section className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">Deliverables</h2>
+              <h2 className="text-4xl md:text-5xl font-bold" style={{ color: '#003366' }}>Deliverables</h2>
               {deliverablesSection[0]?.badge?.text && (
-                <p className="text-gray-500 mb-4">{deliverablesSection[0].badge.text}</p>
+                <p className="text-gray-500 mt-4">{deliverablesSection[0].badge.text}</p>
               )}
-              <div className="w-24 h-1 mx-auto" style={{ backgroundColor: '#c11a1a' }}></div>
+              <div className="w-24 h-1 mx-auto mt-4" style={{ backgroundColor: '#A10000' }}></div>
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -420,47 +431,8 @@ const TenantVerification = () => {
         </section>
       )}
 
-      {/* ===== FAQ SECTION - ORIGINAL STYLE WITH RED HEADERS ===== */}
-      {faqs.length > 0 && (
-        // <section className="py-24 bg-gray-50">
-        //   <div className="max-w-4xl mx-auto px-6">
-        //     <div className="text-center mb-16">
-        //       <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-        //         Frequently Asked Questions (FAQs)
-        //       </h2>
-        //       <div className="w-24 h-1 mx-auto" style={{ backgroundColor: '#c11a1a' }}></div>
-        //     </div>
-            
-        //     <div className="space-y-4">
-        //       {faqs.map((faq, index) => (
-        //         <div key={faq._id || index} className="rounded-xl overflow-hidden shadow-md">
-        //           <button
-        //             onClick={() => toggleFaq(index)}
-        //             className="w-full px-6 py-5 flex items-center justify-between text-left text-white font-bold transition-colors duration-200"
-        //             style={{ backgroundColor: '#c11a1a' }}
-        //           >
-        //             <span className="pr-4 text-lg">{faq.question}</span>
-        //             {openFaqIndex === index ? (
-        //               <Minus className="w-6 h-6 text-white flex-shrink-0" strokeWidth={2} />
-        //             ) : (
-        //               <Plus className="w-6 h-6 text-white flex-shrink-0" strokeWidth={2} />
-        //             )}
-        //           </button>
-                  
-        //           {openFaqIndex === index && (
-        //             <div className="px-6 py-6 bg-white">
-        //               <div
-        //                 className="text-gray-600 leading-relaxed"
-        //                 dangerouslySetInnerHTML={{ __html: faq.answer }}
-        //               />
-        //             </div>
-        //           )}
-        //         </div>
-        //       ))}
-        //     </div>
-        //   </div>
-        // </section>
-
+      {/* ===== FAQ SECTION - RED ACCORDION STYLE (matching original) ===== */}
+    {faqs.length > 0 && (
         <section className="bg-white py-24">
             <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
@@ -519,18 +491,7 @@ const TenantVerification = () => {
     
       )}
 
-      {/* ===== CTA SECTION ===== */}
-      <section className="py-20" style={{ backgroundColor: '#c11a1a' }}>
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Verify?</h2>
-          <p className="text-white/90 text-xl mb-10">
-            Protect your home and loved ones with our comprehensive verification services
-          </p>
-          <button className="bg-white px-12 py-5 rounded-full font-bold text-xl hover:bg-gray-100 transition-all duration-300 shadow-xl" style={{ color: '#c11a1a' }}>
-            Get Started Now
-          </button>
-        </div>
-      </section>
+  
     </div>
   );
 };

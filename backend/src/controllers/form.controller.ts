@@ -97,6 +97,7 @@ export const getFormById = async (req: Request, res: Response) => {
 export const createForm = async (req: Request, res: Response) => {
     try {
         const { name, slug, description, isActive, fields } = req.body;
+        const file = (req as any).file;
 
         if (!name) {
             return res.status(400).json({ message: "Form name is required" });
@@ -105,11 +106,18 @@ export const createForm = async (req: Request, res: Response) => {
         // Generate slug if not provided
         const formSlug = slug || name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 
+        // Handle image upload
+        let image = "";
+        if (file) {
+            image = `/uploads/${file.filename}`;
+        }
+
         // Create the form
         const newForm = new Form({
             name,
             slug: formSlug,
             description,
+            image,
             isActive: isActive !== undefined ? isActive : true
         });
 
@@ -149,11 +157,20 @@ export const updateForm = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
         const { name, slug, description, isActive, fields } = req.body;
+        const file = (req as any).file;
+
+        // Prepare update data
+        const updateData: any = { name, slug, description, isActive };
+
+        // Handle image upload
+        if (file) {
+            updateData.image = `/uploads/${file.filename}`;
+        }
 
         // Update form
         const updatedForm = await Form.findByIdAndUpdate(
             id,
-            { name, slug, description, isActive },
+            updateData,
             { new: true }
         );
 

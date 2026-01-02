@@ -20,6 +20,8 @@ import SingleBlog from './pages/SingleBlog'
 import { Swifttravels } from './pages/Swifttravels'
 import TermsAndConditions from './pages/TermsAndConditions'
 import TenantVerification from './pages/TenantVerification'
+import IndianEvisa from './pages/IndianEvisa'
+// import Edata from './pages/Edata'
 
 const App = () => {
   return (
@@ -32,6 +34,7 @@ const App = () => {
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/investor-relation" element={<InvestorRelation />} />
         <Route path="/tenant-and-domestic-help-verification" element={<TenantVerification />} />
+        <Route path="/india-evisa" element={<IndianEvisa />} />
         <Route path="/:slug" element={<InvestorRelation />} />
         <Route path="/investor-relation/:slug" element={<InvestorRelation />} />
         <Route path="/news-and-media" element={<NewsAndMedia />} />
@@ -43,6 +46,7 @@ const App = () => {
         <Route path="/blog/:id" element={<SingleBlog />} />
         <Route path="/swifttravels" element={<Swifttravels />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        {/* <Route path="/edata" element={<Edata />} /> */}
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
