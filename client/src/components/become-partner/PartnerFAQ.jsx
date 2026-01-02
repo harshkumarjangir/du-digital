@@ -9,14 +9,14 @@ const PartnerFAQ = ({ data }) => {
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
 
                 {/* LEFT TITLE CARD */}
-                <div className="bg-[#F4FBF8] border border-[#DDEFE8] rounded-xl p-10">
+                <div className="bg-[#FFE7EA] border border-[#FF1033]/10 rounded-xl p-10">
                     <h2 className="text-3xl font-serif text-gray-900">
                         Our Expertise
                     </h2>
                 </div>
 
                 {/* RIGHT ACCORDION */}
-                <div className="lg:col-span-2 bg-[#F7FCFA] border border-[#E3F1EB] rounded-xl overflow-hidden">
+                <div className="lg:col-span-2 bg-[#FFE7EA] border border-[#FF1033]/10 rounded-xl overflow-hidden">
 
                     {data.map((item, index) => {
                         const isOpen = open === index;

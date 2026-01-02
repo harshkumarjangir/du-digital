@@ -21,22 +21,27 @@ const getColorFromId = (id) => {
   return COLORS[hash % COLORS.length];
 };
 
-export const Blog = () => {
+export const Blog = ({ data: propData, className }) => {
   const dispatch = useDispatch();
 
 
   const [searchParams] = useSearchParams();
- const page = Number(searchParams.get("page")) || 1;
+  const page = Number(searchParams.get("page")) || 1;
 
- useEffect(() => {
-   dispatch(fetchBlogs(page));
- }, [dispatch, page]);
+  useEffect(() => {
+    if (!propData) {
+      dispatch(fetchBlogs(page));
+    }
+  }, [dispatch, page, propData]);
 
-  const { Blogs:data,loading,error,totalPages } = useSelector((state) => state.blog);
+  const { Blogs: reduxData, loading, error, totalPages } = useSelector((state) => state.blog);
+
+  // Use propData if available, otherwise use reduxData
+  const data = propData || reduxData;
 
   return (
     <div className="max-w-7xl mx-auto my-5 px-4 mt-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-items-center">
+      <div className={`grid grid-cols-1 sm:grid-cols-2 ${className || 'md:grid-cols-4'} gap-6 justify-items-center`}>
         {loading ? <div>Loading...</div> : error && <div>error</div>}
         {data.length === 0 ? (
           <div>No Blog Found</div>
@@ -77,23 +82,22 @@ export const Blog = () => {
         )}
       </div>
       {
-      totalPages>1&&<div className="flex justify-center mt-6 space-x-2">
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-          <Link
-            to={`?page=${page}`}
-            className={`px-4 py-2 rounded-md ${
-              searchParams.get("page") == page
-                ? "bg-red-500 text-white"
-                : "bg-gray-200 text-gray-700"
-            }`}
-          >
-            {page}
-          </Link>
-        ))}
+        !propData && totalPages > 1 && <div className="flex justify-center mt-6 space-x-2">
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <Link
+              to={`?page=${page}`}
+              className={`px-4 py-2 rounded-md ${searchParams.get("page") == page
+                  ? "bg-red-500 text-white"
+                  : "bg-gray-200 text-gray-700"
+                }`}
+            >
+              {page}
+            </Link>
+          ))}
 
-      
-      </div>
-}
+
+        </div>
+      }
     </div>
   );
 };

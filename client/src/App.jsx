@@ -20,6 +20,10 @@ import SingleBlog from './pages/SingleBlog'
 import { Swifttravels } from './pages/Swifttravels'
 import TermsAndConditions from './pages/TermsAndConditions'
 import TenantVerification from './pages/TenantVerification'
+import OurCapabilities from './pages/OurCapabilities'
+import Magazine from './pages/Magazine'
+import CookiePolicy from './pages/CookiePolicy'
+import FloatingChatCTA from './components/common/FloatingChatCTA'
 
 const App = () => {
   return (
@@ -30,9 +34,9 @@ const App = () => {
         <Route path="/b2b-partner-program" element={<BecomePartner />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/investor-relation" element={<InvestorRelation />} />
         <Route path="/tenant-and-domestic-help-verification" element={<TenantVerification />} />
-        <Route path="/:slug" element={<InvestorRelation />} />
+        <Route path="/investor-relation" element={<InvestorRelation />} />
+        {/* <Route path="/:slug" element={<InvestorRelation />} /> */}
         <Route path="/investor-relation/:slug" element={<InvestorRelation />} />
         <Route path="/news-and-media" element={<NewsAndMedia />} />
         <Route path="/events" element={<Events />} />
@@ -43,11 +47,15 @@ const App = () => {
         <Route path="/blog/:id" element={<SingleBlog />} />
         <Route path="/swifttravels" element={<Swifttravels />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/our-capabilities" element={<OurCapabilities />} />
+        <Route path="/tnh-magazine" element={<Magazine />} />
+        <Route path="/cookie-policy" element={<CookiePolicy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
       <OurOffices />
       <Copyright />
+      <FloatingChatCTA />
     </div>
   );
 }
