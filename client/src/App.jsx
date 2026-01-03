@@ -21,6 +21,7 @@ import { Swifttravels } from './pages/Swifttravels'
 import TermsAndConditions from './pages/TermsAndConditions'
 import TenantVerification from './pages/TenantVerification'
 import IndianEvisa from './pages/IndianEvisa'
+import Globalrecruitmentservices from './pages/Globalrecruitmentservices'
 // import Edata from './pages/Edata'
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/investor-relation" element={<InvestorRelation />} />
         <Route path="/tenant-and-domestic-help-verification" element={<TenantVerification />} />
         <Route path="/india-evisa" element={<IndianEvisa />} />
+        <Route path="/global-recruitment-services" element={<Globalrecruitmentservices />} />
         <Route path="/:slug" element={<InvestorRelation />} />
         <Route path="/investor-relation/:slug" element={<InvestorRelation />} />
         <Route path="/news-and-media" element={<NewsAndMedia />} />
