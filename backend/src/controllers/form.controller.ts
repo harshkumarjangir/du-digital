@@ -123,6 +123,7 @@ export const createForm = async (req: Request, res: Response) => {
 
         const savedForm = await newForm.save();
 
+
         // Create fields if provided
         if (fields && Array.isArray(fields) && fields.length > 0) {
             const formFields = fields.map((field: any, index: number) => ({
@@ -177,9 +178,18 @@ export const updateForm = async (req: Request, res: Response) => {
         if (!updatedForm) {
             return res.status(404).json({ message: "Form not found" });
         }
-
         // Update fields if provided
-        if (fields && Array.isArray(fields)) {
+        // Parse fields if sent as JSON string (from form-data)
+        let parsedFields = fields;
+        if (typeof fields === 'string') {
+            try {
+                parsedFields = JSON.parse(fields);
+            } catch (e) {
+                parsedFields = [];
+            }
+        }
+
+        if (parsedFields && Array.isArray(parsedFields) && parsedFields.length > 0) {
             // Get existing field IDs
             const existingFields = await FormField.find({ formId: id });
             const existingFieldIds = existingFields.map(f => f._id.toString());
@@ -187,8 +197,8 @@ export const updateForm = async (req: Request, res: Response) => {
             // Track which fields are in the update
             const updatedFieldIds: string[] = [];
 
-            for (let i = 0; i < fields.length; i++) {
-                const field = fields[i];
+            for (let i = 0; i < parsedFields.length; i++) {
+                const field = parsedFields[i];
                 const fieldData = {
                     formId: id,
                     label: field.label,
