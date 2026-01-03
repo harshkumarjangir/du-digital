@@ -58,10 +58,10 @@ const TravelInquiryManager = () => {
                     Travel Inquiries
                 </h2>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    <span style={{ 
-                        backgroundColor: '#e3f2fd', 
-                        color: '#1976d2', 
-                        padding: '0.5rem 1rem', 
+                    <span style={{
+                        backgroundColor: '#e3f2fd',
+                        color: '#1976d2',
+                        padding: '0.5rem 1rem',
                         borderRadius: '20px',
                         fontWeight: '600'
                     }}>
@@ -89,9 +89,9 @@ const TravelInquiryManager = () => {
             </div>
 
             {/* Table */}
-            <div style={{ 
-                backgroundColor: 'white', 
-                borderRadius: '12px', 
+            <div style={{
+                backgroundColor: 'white',
+                borderRadius: '12px',
                 boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                 overflow: 'hidden'
             }}>
@@ -124,10 +124,10 @@ const TravelInquiryManager = () => {
                                         </div>
                                     </td>
                                     <td style={tdStyle}>
-                                        <div style={{ 
-                                            backgroundColor: '#e8f5e9', 
-                                            color: '#2e7d32', 
-                                            padding: '0.25rem 0.75rem', 
+                                        <div style={{
+                                            backgroundColor: '#e8f5e9',
+                                            color: '#2e7d32',
+                                            padding: '0.25rem 0.75rem',
                                             borderRadius: '20px',
                                             display: 'inline-block',
                                             fontWeight: '500',

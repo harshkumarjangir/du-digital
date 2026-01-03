@@ -135,10 +135,10 @@ const TravelPackageManager = () => {
             {/* Grid View */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem' }}>
                 {packages.map((pkg) => (
-                    <div key={pkg._id} style={{ 
-                        border: '1px solid #eee', 
-                        borderRadius: '12px', 
-                        overflow: 'hidden', 
+                    <div key={pkg._id} style={{
+                        border: '1px solid #eee',
+                        borderRadius: '12px',
+                        overflow: 'hidden',
                         boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
                         background: 'white'
                     }}>
@@ -150,11 +150,11 @@ const TravelPackageManager = () => {
                                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                 />
                             ) : (
-                                <div style={{ 
-                                    width: '100%', 
-                                    height: '100%', 
-                                    display: 'flex', 
-                                    alignItems: 'center', 
+                                <div style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    display: 'flex',
+                                    alignItems: 'center',
                                     justifyContent: 'center',
                                     color: '#999'
                                 }}>
@@ -183,8 +183,10 @@ const TravelPackageManager = () => {
                                 </p>
                             )}
                             {pkg.description && (
-                                <p style={{ color: '#666', fontSize: '0.9rem', margin: '0 0 1rem', 
-                                    display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                                <p style={{
+                                    color: '#666', fontSize: '0.9rem', margin: '0 0 1rem',
+                                    display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden'
+                                }}>
                                     {pkg.description.split('\n').join('<br/>')}
                                 </p>
                             )}
@@ -264,9 +266,9 @@ const TravelPackageManager = () => {
                                 />
                                 {imagePreview && (
                                     <div style={{ marginBottom: '1rem' }}>
-                                        <img 
-                                            src={imagePreview} 
-                                            alt="Preview" 
+                                        <img
+                                            src={imagePreview}
+                                            alt="Preview"
                                             style={{ maxWidth: '100%', maxHeight: '200px', borderRadius: '8px', objectFit: 'cover' }}
                                         />
                                     </div>
