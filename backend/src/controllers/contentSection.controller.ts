@@ -57,7 +57,7 @@ export const createContentSection = async (req: Request, res: Response) => {
         // Handle image upload
         let imageUrl = req.body.image || '';
         if (req.file) {
-            imageUrl = `${req.protocol}://${req.get("host")}/api/uploads/${req.file.filename}`;
+            imageUrl = `/api/uploads/${req.file.filename}`;
         }
 
         // Get max order for this form

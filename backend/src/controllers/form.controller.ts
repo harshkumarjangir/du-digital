@@ -191,6 +191,8 @@ export const updateForm = async (req: Request, res: Response) => {
 
         if (parsedFields && Array.isArray(parsedFields) && parsedFields.length > 0) {
             // Get existing field IDs
+            console.log("reach here");
+            
             const existingFields = await FormField.find({ formId: id });
             const existingFieldIds = existingFields.map(f => f._id.toString());
 

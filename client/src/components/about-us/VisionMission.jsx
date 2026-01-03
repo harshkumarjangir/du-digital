@@ -4,7 +4,7 @@ const VisionMission = ({ data }) => {
             <div className="max-w-7xl mx-auto px-3 md:px-6">
 
                 {/* OUTER CARD */}
-                <div className="border rounded-2xl p-3 md:p-10 shadow-sm">
+                <div className="rounded-2xl p-3 md:p-10">
 
                     {/* HEADING */}
                     <h2 className="text-2xl md:text-4xl font-bold text-center mb-10">
@@ -53,7 +53,7 @@ const VisionMission = ({ data }) => {
                         <div className="space-y-6">
 
                             {/* MISSION */}
-                            <div className="bg-gray-50 rounded-xl p-6">
+                            <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
                                 <h4 className="text-lg font-semibold mb-2">
                                     Mission
                                 </h4>
@@ -63,7 +63,7 @@ const VisionMission = ({ data }) => {
                             </div>
 
                             {/* VISION */}
-                            <div className="bg-[#FF1033]/10 rounded-xl p-6 border border-[#FF1033]/20">
+                            <div className="bg-[#FF1033]/10 rounded-xl p-6 border border-[#FF1033]/10">
                                 <h4 className="text-lg font-semibold mb-2">
                                     Vision
                                 </h4>
