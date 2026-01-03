@@ -53,7 +53,7 @@ const FormManager = () => {
             submitData.append('description', formData.description);
             submitData.append('isActive', formData.isActive);
             submitData.append('fields', JSON.stringify(formData.fields));
-            
+
             if (imageFile) {
                 submitData.append('image', imageFile);
             }
@@ -149,12 +149,12 @@ const FormManager = () => {
     const updateField = (index, key, value) => {
         const updatedFields = [...formData.fields];
         updatedFields[index] = { ...updatedFields[index], [key]: value };
-        
+
         // Auto-generate field name from label
         if (key === 'label') {
             updatedFields[index].name = value.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
         }
-        
+
         setFormData({ ...formData, fields: updatedFields });
     };
 
@@ -168,7 +168,7 @@ const FormManager = () => {
     const moveField = (index, direction) => {
         const newIndex = index + direction;
         if (newIndex < 0 || newIndex >= formData.fields.length) return;
-        
+
         const updatedFields = [...formData.fields];
         [updatedFields[index], updatedFields[newIndex]] = [updatedFields[newIndex], updatedFields[index]];
         updatedFields.forEach((field, i) => field.order = i);
@@ -188,12 +188,12 @@ const FormManager = () => {
     const updateOption = (fieldIndex, optionIndex, key, value) => {
         const updatedFields = [...formData.fields];
         updatedFields[fieldIndex].options[optionIndex][key] = value;
-        
+
         // Auto-generate value from label
         if (key === 'label') {
             updatedFields[fieldIndex].options[optionIndex].value = value.toLowerCase().replace(/\s+/g, '_');
         }
-        
+
         setFormData({ ...formData, fields: updatedFields });
     };
 
@@ -250,22 +250,22 @@ const FormManager = () => {
                             <tr key={form._id} style={{ borderBottom: '1px solid #dee2e6' }}>
                                 <td style={{ padding: '1rem' }}>
                                     {form.image ? (
-                                        <img 
+                                        <img
                                             src={`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api'}${form.image}`}
                                             alt={form.name}
-                                            style={{ 
-                                                width: '50px', 
-                                                height: '50px', 
-                                                objectFit: 'cover', 
+                                            style={{
+                                                width: '50px',
+                                                height: '50px',
+                                                objectFit: 'cover',
                                                 borderRadius: '4px',
                                                 border: '1px solid #ddd'
                                             }}
                                         />
                                     ) : (
-                                        <div style={{ 
-                                            width: '50px', 
-                                            height: '50px', 
-                                            backgroundColor: '#e9ecef', 
+                                        <div style={{
+                                            width: '50px',
+                                            height: '50px',
+                                            backgroundColor: '#e9ecef',
                                             borderRadius: '4px',
                                             display: 'flex',
                                             alignItems: 'center',
@@ -280,9 +280,9 @@ const FormManager = () => {
                                 <td style={{ padding: '1rem' }}>{form.name}</td>
                                 <td style={{ padding: '1rem', color: '#666' }}>{form.slug}</td>
                                 <td style={{ padding: '1rem', textAlign: 'center' }}>
-                                    <span style={{ 
-                                        backgroundColor: '#e9ecef', 
-                                        padding: '0.25rem 0.75rem', 
+                                    <span style={{
+                                        backgroundColor: '#e9ecef',
+                                        padding: '0.25rem 0.75rem',
                                         borderRadius: '12px',
                                         fontSize: '0.85rem'
                                     }}>
@@ -290,10 +290,10 @@ const FormManager = () => {
                                     </span>
                                 </td>
                                 <td style={{ padding: '1rem', textAlign: 'center' }}>
-                                    <span style={{ 
+                                    <span style={{
                                         backgroundColor: form.isActive ? '#d4edda' : '#f8d7da',
                                         color: form.isActive ? '#155724' : '#721c24',
-                                        padding: '0.25rem 0.75rem', 
+                                        padding: '0.25rem 0.75rem',
                                         borderRadius: '12px',
                                         fontSize: '0.85rem'
                                     }}>
@@ -333,21 +333,21 @@ const FormManager = () => {
                     position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
                     backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
                 }}>
-                    <div style={{ 
-                        backgroundColor: 'white', 
-                        padding: '2rem', 
-                        borderRadius: '8px', 
-                        width: '90%', 
-                        maxWidth: '900px', 
-                        maxHeight: '90vh', 
-                        overflowY: 'auto' 
+                    <div style={{
+                        backgroundColor: 'white',
+                        padding: '2rem',
+                        borderRadius: '8px',
+                        width: '90%',
+                        maxWidth: '900px',
+                        maxHeight: '90vh',
+                        overflowY: 'auto'
                     }}>
                         <h3 style={{ marginBottom: '1.5rem' }}>{editingId ? 'Edit Form' : 'Create New Form'}</h3>
                         <form onSubmit={handleSubmit}>
                             {/* Form Details */}
-                            <div style={{ 
-                                display: 'grid', 
-                                gridTemplateColumns: 'repeat(2, 1fr)', 
+                            <div style={{
+                                display: 'grid',
+                                gridTemplateColumns: 'repeat(2, 1fr)',
                                 gap: '1rem',
                                 marginBottom: '1.5rem',
                                 padding: '1rem',
@@ -359,8 +359,8 @@ const FormManager = () => {
                                     <input
                                         type="text"
                                         value={formData.name}
-                                        onChange={(e) => setFormData({ 
-                                            ...formData, 
+                                        onChange={(e) => setFormData({
+                                            ...formData,
                                             name: e.target.value,
                                             slug: e.target.value.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
                                         })}
@@ -403,17 +403,17 @@ const FormManager = () => {
                                             </p>
                                         </div>
                                         {imagePreview && (
-                                            <div style={{ 
-                                                width: '100px', 
-                                                height: '100px', 
-                                                borderRadius: '8px', 
+                                            <div style={{
+                                                width: '100px',
+                                                height: '100px',
+                                                borderRadius: '8px',
                                                 overflow: 'hidden',
                                                 border: '1px solid #ddd'
                                             }}>
-                                                <img 
-                                                    src={imagePreview} 
-                                                    alt="Preview" 
-                                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                                                <img
+                                                    src={imagePreview}
+                                                    alt="Preview"
+                                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                                 />
                                             </div>
                                         )}
@@ -445,10 +445,10 @@ const FormManager = () => {
                                 </div>
 
                                 {formData.fields.length === 0 ? (
-                                    <div style={{ 
-                                        padding: '2rem', 
-                                        textAlign: 'center', 
-                                        backgroundColor: '#f8f9fa', 
+                                    <div style={{
+                                        padding: '2rem',
+                                        textAlign: 'center',
+                                        backgroundColor: '#f8f9fa',
                                         borderRadius: '8px',
                                         color: '#666'
                                     }}>
@@ -457,9 +457,9 @@ const FormManager = () => {
                                 ) : (
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                         {formData.fields.map((field, index) => (
-                                            <div key={index} style={{ 
-                                                border: '1px solid #ddd', 
-                                                borderRadius: '8px', 
+                                            <div key={index} style={{
+                                                border: '1px solid #ddd',
+                                                borderRadius: '8px',
                                                 padding: '1rem',
                                                 backgroundColor: '#fff'
                                             }}>
@@ -491,7 +491,7 @@ const FormManager = () => {
                                                         </button>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
                                                     <div>
                                                         <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.85rem' }}>Label *</label>
