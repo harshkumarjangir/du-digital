@@ -49,33 +49,6 @@ const Testimonials = ({ data }) => {
                             transition={{ duration: 0.4 }}
                             className="grid grid-cols-1 md:grid-cols-2 gap-8"
                         >
-                            {/* {[0, 1].map((offset) => {
-                                const item =
-                                    data.testimonials[(index + offset) % total];
-
-                                return (
-                                    <div
-                                        key={offset}
-                                        className="bg-[#FFFCF6] rounded-2xl p-8 text-left shadow-sm"
-                                    >
-                                        <p className="text-gray-700 leading-relaxed">
-                                            {item.message}
-                                        </p>
-
-                                        <div className="flex items-center gap-4 mt-8">
-                                            <div className="w-12 h-12 rounded-full bg-black" />
-                                            <div>
-                                                <p className="font-semibold text-gray-900">
-                                                    {item.name}
-                                                </p>
-                                                <p className="text-sm text-gray-600">
-                                                    {item.designation}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                );
-                            })} */}
                             {[0, 1].map((offset) => {
                                 const item = data.testimonials[(index + offset) % total];
 
@@ -90,7 +63,8 @@ const Testimonials = ({ data }) => {
                                         </p>
 
                                         <div className="flex items-center gap-4 mt-8">
-                                            <div className="w-12 h-12 rounded-full bg-black" />
+                                            {/* <div className="w-12 h-12 rounded-full bg-black" /> */}
+                                            <img src={item.image} alt={item.name} className="w-12 h-12 rounded-full bg-black" />
                                             <div>
                                                 <p className="font-semibold text-gray-900">
                                                     {item.name}

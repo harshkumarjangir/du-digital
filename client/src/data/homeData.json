@@ -52,6 +52,66 @@
             "UAE"
         ]
     },
+    "ourBusinessesSection": {
+        "title": "Our Businesses",
+        "subtitle": "Official Visa Application Partners to the Embassies of",
+        "countries": [
+            {
+                "name": "India",
+                "flag": "/assets/home/flags/india-logo.png"
+            },
+            {
+                "name": "UAE eVisa",
+                "flag": "/assets/home/flags/UAE-Flag.png"
+            },
+            {
+                "name": "Bangladesh",
+                "flag": "/assets/home/flags/bangladesh-flag.png"
+            },
+            {
+                "name": "Thailand",
+                "flag": "/assets/home/flags/Thailand-flag.png"
+            },
+            {
+                "name": "South Korea",
+                "flag": "/assets/home/flags/South-Korea-Logo.webp"
+            },
+            {
+                "name": "Morocco",
+                "flag": "/assets/home/flags/Marcho.png"
+            }
+        ],
+        "cta": {
+            "text": "Other Countries",
+            "link": "/countries"
+        },
+        "cards": [
+            {
+                "title": "Global Company Formation",
+                "description": "Business Setup in UAE",
+                "image": "/assets/home/bussinesses/Business-Setup-in-dubai-1-e1758531203300.jpg",
+                "link": "/company-formation"
+            },
+            {
+                "title": "Global Recruitment",
+                "description": "Manpower & Immigration Services",
+                "image": "/assets/home/bussinesses/Immigration-Services.jpg",
+                "link": "/recruitment"
+            },
+            {
+                "title": "DuVerify",
+                "description": "Document Verification for Visa Processes",
+                "image": "/assets/home/bussinesses/DuVerify-–-Document-Verification-for-Visa-Processes-e1758531139227.jpg",
+                "link": "/duverify"
+            },
+            {
+                "title": "India eVisa",
+                "description": "Streamlined and Effortless Visa Processing",
+                "image": "/assets/home/bussinesses/explore-india.jpg",
+                "link": "/india-evisa"
+            }
+        ]
+    },
     "aboutSection": {
         "title": "The World.\nMade Possible.",
         "description": "DUDigital Global Ltd is a company listed on the National Stock Exchange (NSE) of India. It operates in the digital services and technology sector, specializing in services such as document verification, visa facilitation, and other innovative solutions catering to both government and private sectors.",
@@ -88,32 +148,38 @@
             {
                 "message": "DU Global provided outstanding guidance and demonstrated thorough understanding of our business requirements. Their expertise in the matter and their professional approach are highly commendable. They collaborate closely and offer tailored advice that perfectly suits our needs. Thanks to their direction as we have optimized operations, boosted productivity and attained growth.",
                 "name": "Gaurav Abrol",
-                "designation": "Pronounce sports and event management"
+                "designation": "Pronounce sports and event management",
+                "image": "/assets/home/testimonials/gaurav.png"
             },
             {
                 "message": "We wanted to set up a company in Dubai. We took services from DU Global, and I must tell you and appreciate what DU Global did. It was a seamless process from initiation to completion and setting up my company. It was flawless. Their support was immense, and they were able to complete my process in less than a month.",
                 "name": "Piyush Patodia",
-                "designation": "Firestorm Advisory Services"
+                "designation": "Firestorm Advisory Services",
+                "image": "/assets/home/testimonials/piyush.png"
             },
             {
                 "message": "DU Global provided outstanding guidance and demonstrated thorough understanding of our business requirements. Their expertise in the matter and their professional approach are highly commendable. They collaborate closely and offer tailored advice that perfectly suits our needs. Thanks to their direction as we have optimized operations, boosted productivity and attained growth.",
                 "name": "Gaurav Abrol",
-                "designation": "Pronounce sports and event management"
+                "designation": "Pronounce sports and event management",
+                "image": "/assets/home/testimonials/gaurav.png"
             },
             {
                 "message": "We wanted to set up a company in Dubai. We took services from DU Global, and I must tell you and appreciate what DU Global did. It was a seamless process from initiation to completion and setting up my company. It was flawless. Their support was immense, and they were able to complete my process in less than a month.",
                 "name": "Piyush Patodia",
-                "designation": "Firestorm Advisory Services"
+                "designation": "Firestorm Advisory Services",
+                "image": "/assets/home/testimonials/piyush.png"
             },
             {
                 "message": "DU Global provided outstanding guidance and demonstrated thorough understanding of our business requirements. Their expertise in the matter and their professional approach are highly commendable. They collaborate closely and offer tailored advice that perfectly suits our needs. Thanks to their direction as we have optimized operations, boosted productivity and attained growth.",
                 "name": "Gaurav Abrol",
-                "designation": "Pronounce sports and event management"
+                "designation": "Pronounce sports and event management",
+                "image": "/assets/home/testimonials/gaurav.png"
             },
             {
                 "message": "We wanted to set up a company in Dubai. We took services from DU Global, and I must tell you and appreciate what DU Global did. It was a seamless process from initiation to completion and setting up my company. It was flawless. Their support was immense, and they were able to complete my process in less than a month.",
                 "name": "Piyush Patodia",
-                "designation": "Firestorm Advisory Services"
+                "designation": "Firestorm Advisory Services",
+                "image": "/assets/home/testimonials/piyush.png"
             }
         ]
     },
