@@ -178,9 +178,13 @@ export const updateForm = async (req: Request, res: Response) => {
             return res.status(404).json({ message: "Form not found" });
         }
 
-        // Update fields if provided
+        // Update fields if provided'
+        console.log("updatedForm",  Array.isArray(fields));
+        
         if (fields && Array.isArray(fields)) {
             // Get existing field IDs
+            console.log("reach here");
+            
             const existingFields = await FormField.find({ formId: id });
             const existingFieldIds = existingFields.map(f => f._id.toString());
 
