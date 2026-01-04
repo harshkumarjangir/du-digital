@@ -13,7 +13,7 @@ import HomeAboutSection from "../components/home/HomeAboutSection";
 import OurFootprints from "../components/home/OurFootprints";
 import Testimonials from "../components/home/Testimonials";
 import IsoCertificates from "../components/home/IsoCertificates";
-import WhyUsSection from "../components/home/WhyUsSection";
+import WhyUsSection from "../components/reusable/WhyUsSection";
 import { Link } from "react-router-dom";
 import OurBusinesses from "../components/home/OurBusinesses";
 

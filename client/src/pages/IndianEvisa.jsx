@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { 
-  Check, 
+import {
+  Check,
   ChevronDown,
   ChevronUp,
-  FileText, 
-  CreditCard, 
-  Mail, 
+  FileText,
+  CreditCard,
+  Mail,
   Plane,
   Shield,
   Globe,
@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
+import whyUsSectionData from "../data/whyUsSection.json";
+import WhyUsSection from "../components/reusable/WhyUsSection";
 
 const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
@@ -39,7 +41,7 @@ const IndianEvisa = () => {
       if (!response.ok) throw new Error("Failed to fetch form data");
       const data = await response.json();
       setFormData(data);
-      
+
       // Initialize form values
       const initialValues = {};
       data.fields?.forEach(field => {
@@ -80,11 +82,11 @@ const IndianEvisa = () => {
   if (loading) return <LoadingState message="Loading eVisa information..." fullScreen />;
   if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
 
-  const { 
-    name, 
-    description, 
-    fields = [], 
-    faqs = [], 
+  const {
+    name,
+    description,
+    fields = [],
+    faqs = [],
     documents = [],
     contentSections = {},
   } = formData || {};
@@ -111,182 +113,183 @@ const IndianEvisa = () => {
 
   // Quick support countries
   const supportCountries = [
-    { name: "South Korea", code: "+82" },
-    { name: "Thailand", code: "+66" },
-    { name: "India", code: "+91" }
+    { name: "South Korea", code: "+82", phone: "tel:+827052342395" },
+    { name: "Thailand", code: "+66", phone: "tel:+6620261185" },
+    { name: "India", code: "+91", phone: "tel:+917289000071" }
   ];
 
   return (
     <div className="bg-white font-sans">
-      
+
+
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full min-h-[85vh] overflow-hidden">
-        {/* Dark textured background */}
-        <div 
-          className="absolute inset-0"
-          style={{ 
-        
+      <section className="relative w-full min-h-[90vh] overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
             backgroundImage: `url(${BackendImagesURL}${formData?.image})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            opacity: 3
           }}
         />
-        
+
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/55" />
+
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-16">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            
-            {/* Left Content */}
-            <div className="text-white pt-8">
+          <div className="grid lg:grid-cols-2 gap-14 items-center">
+
+            {/* ===== LEFT CONTENT ===== */}
+            <div className="text-white">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                Apply eVisa<br />for <span style={{ color: '#e63938' }}>India</span>
+                Apply eVisa <br />
+                for <span className="text-[#e63938]">India</span>
               </h1>
-              <p className="text-gray-300 text-lg mb-8 max-w-lg">
-                Simplified Travel to India for Global Travelers. Get your eVisa quickly and easily with our streamlined process.
+
+              <p className="text-gray-200 text-lg mb-8 max-w-lg">
+                Simplified Travel to India for Global Travelers. Get your eVisa
+                quickly and easily with our streamlined process.
               </p>
-              
-              {/* Quick Support Section */}
-              <div className="mb-8">
-                <div className="flex items-center gap-2 mb-4">
-                  <Phone className="w-5 h-5" style={{ color: '#e63938' }} />
-                  <span className="text-white font-semibold">Call Us For Quick Support</span>
-                </div>
-                <div className="flex flex-wrap gap-3">
-                  {supportCountries.map((country, idx) => (
-                    <button 
-                      key={idx}
-                      className="px-6 py-3 rounded-lg font-semibold text-white transition-all hover:opacity-90"
-                      style={{ backgroundColor: '#e63938' }}
+
+              {/* Highlights */}
+              {/* Need bg gradient fro left to right */}
+              <div className="bg-gradient-to-r from-[#e63938]/80 to-[#e63938]/10 inline-block px-6 py-4 rounded-xl mb-8">
+                <ul className="space-y-2 text-sm font-medium">
+                  <li>
+                    <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-white mr-2">
+                      <Check className="w-3 h-3 text-[#e63938]" strokeWidth={3} />
+                    </span>
+                    Partner of MEA, Government of India
+                  </li>
+                  <li>
+                    <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-white mr-2">
+                      <Check className="w-3 h-3 text-[#e63938]" strokeWidth={3} />
+                    </span>
+                    1.7M+ applications processed
+                  </li>
+                  <li>
+                    <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-white mr-2">
+                      <Check className="w-3 h-3 text-[#e63938]" strokeWidth={3} />
+                    </span>
+                    Operating in 6 countries
+                  </li>
+                </ul>
+              </div>
+
+              {/* Support Buttons */}
+              <div>
+                <p className="flex items-center gap-2 mb-4 font-semibold">
+                  <Phone className="w-5 h-5 text-[#e63938]" />
+                  Call Us For Quick Support
+                </p>
+
+                <div className="flex gap-4 flex-wrap">
+                  {supportCountries.map((c, i) => (
+                    <a
+                      key={i}
+                      href={`tel:${c.phone}`}
+                      className="px-6 py-3 rounded-full bg-[#e63938] text-white font-semibold hover:bg-red-700 transition"
                     >
-                      {country.name}
-                    </button>
+                      {c.name}
+                    </a>
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* Right Form Card - Dark Semi-transparent */}
-            <div 
-              className="rounded-[20px] p-8 lg:p-10"
-              style={{ backgroundColor: 'rgba(0, 0, 0, 0.67)' }}
-            >
-              <h2 className="text-2xl font-bold text-white mb-6">Apply for India E-visa</h2>
-              
+            {/* ===== RIGHT FORM CARD ===== */}
+            <div className="bg-black/75 backdrop-blur-md rounded-2xl p-8 lg:p-10 shadow-2xl">
+              <h2 className="text-2xl font-bold text-white mb-6">
+                Apply for India E-Visa
+              </h2>
+
               <form onSubmit={handleSubmit}>
-                {/* Two Column Grid for Form Fields */}
+                {/* Inputs */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
-                  {fields.filter(f => f.isActive).sort((a, b) => a.order - b.order).map((field) => (
-                    <div key={field._id}>
-                      {field.type === 'select' ? (
-                        <select
-                          name={field.name}
-                          value={formValues[field.name] || ''}
-                          onChange={handleInputChange}
-                          required={field.required}
-                          className="w-full h-[46px] px-4 text-xs bg-white rounded-[7px] focus:ring-2 focus:ring-red-500 focus:outline-none transition-colors"
-                          style={{ border: '0.8px solid #dadbdd' }}
-                        >
-                          <option value="">{field.placeholder || `Select ${field.label}`}</option>
-                          {field.options?.map((opt) => (
-                            <option key={opt._id || opt.value} value={opt.value}>
-                              {opt.label}
-                            </option>
-                          ))}
-                        </select>
-                      ) : (
-                        <input
-                          type={field.type}
-                          name={field.name}
-                          value={formValues[field.name] || ''}
-                          onChange={handleInputChange}
-                          placeholder={field.placeholder}
-                          required={field.required}
-                          className="w-full h-[46px] px-4 text-xs bg-white rounded-[7px] focus:ring-2 focus:ring-red-500 focus:outline-none transition-colors placeholder:text-[#606266]"
-                          style={{ border: '0.8px solid #dadbdd' }}
-                        />
-                      )}
-                    </div>
-                  ))}
+                  {fields
+                    .filter(f => f.isActive)
+                    .sort((a, b) => a.order - b.order)
+                    .map(field => (
+                      <input
+                        key={field._id}
+                        type={field.type}
+                        name={field.name}
+                        placeholder={field.placeholder}
+                        required={field.required}
+                        value={formValues[field.name] || ""}
+                        onChange={handleInputChange}
+                        className="h-[46px] px-4 rounded-lg text-sm bg-white focus:ring-2 focus:ring-red-500 outline-none"
+                      />
+                    ))}
                 </div>
 
-                {/* Visa Type Radio Buttons */}
-                <div className="mb-5">
-                  <label className="block text-white text-sm font-medium mb-3">
+                {/* Visa Type */}
+                <div className="mb-6">
+                  <p className="text-white font-medium mb-3">
                     Visa Type <span className="text-red-500">*</span>
-                  </label>
+                  </p>
+
                   <div className="flex gap-6">
-                    <label className="flex items-center gap-2 cursor-pointer group">
-                      <div 
-                        className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
-                          visaType === 'tourist' ? 'border-red-600 bg-red-600' : 'border-gray-400 bg-transparent'
-                        }`}
-                        onClick={() => setVisaType('tourist')}
-                      >
-                        {visaType === 'tourist' && (
-                          <div className="w-2 h-2 rounded-full bg-white"></div>
-                        )}
-                      </div>
-                      <span className="text-white text-sm">Tourist e-Visa</span>
-                    </label>
-                    <label className="flex items-center gap-2 cursor-pointer group">
-                      <div 
-                        className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
-                          visaType === 'business' ? 'border-red-600 bg-red-600' : 'border-gray-400 bg-transparent'
-                        }`}
-                        onClick={() => setVisaType('business')}
-                      >
-                        {visaType === 'business' && (
-                          <div className="w-2 h-2 rounded-full bg-white"></div>
-                        )}
-                      </div>
-                      <span className="text-white text-sm">Business e-Visa</span>
-                    </label>
+                    {["tourist", "business"].map(type => (
+                      <label key={type} className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="radio"
+                          checked={visaType === type}
+                          onChange={() => setVisaType(type)}
+                          className="hidden"
+                        />
+                        <span
+                          className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${visaType === type
+                            ? "border-red-600 bg-red-600"
+                            : "border-gray-400"
+                            }`}
+                        >
+                          {visaType === type && (
+                            <span className="w-2 h-2 bg-white rounded-full" />
+                          )}
+                        </span>
+                        <span className="text-white text-sm capitalize">
+                          {type} e-Visa
+                        </span>
+                      </label>
+                    ))}
                   </div>
                 </div>
 
-                {/* Agreement Checkbox */}
-                <div className="mb-6">
-                  <label className="flex items-start gap-3 cursor-pointer">
-                    <div 
-                      className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5"
-                      style={{ backgroundColor: '#c62625' }}
-                    >
-                      <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                    </div>
-                    <span className="text-white text-xs leading-relaxed">
-                      I agree to receive communication regarding my visa application and promotional offers from DU Global
-                    </span>
-                  </label>
-                </div>
-                
+                {/* Consent */}
+                <label className="flex gap-3 text-xs text-gray-200 mb-6">
+                  <input type="checkbox" checked readOnly className="accent-red-600 mt-1" />
+                  I agree to receive communication regarding my visa application
+                  and promotional offers from DU Global.
+                </label>
+
+                {/* Submit */}
                 <button
                   type="submit"
-                  className="px-8 py-3 rounded-[7px] font-semibold text-white text-base transition-all duration-300 hover:opacity-90"
-                  style={{ 
-                    backgroundColor: '#c62625',
-                    border: '0.8px solid #bd2727'
-                  }}
+                  className="bg-[#e63938] text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition"
                 >
                   Submit Form
                 </button>
               </form>
             </div>
+
           </div>
         </div>
       </section>
 
+
+
       {/* ===== EXPLORE WONDERS SECTION ===== */}
       {heroSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             {heroSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-16 items-center">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#e63938' }}></div>
-                  <div 
+                  <div className="w-20 h-0.75 mb-6" style={{ backgroundColor: '#e63938' }}></div>
+                  <div
                     className="text-gray-600 leading-relaxed text-lg"
                     dangerouslySetInnerHTML={{ __html: item.contentHtml }}
                   />
@@ -294,15 +297,15 @@ const IndianEvisa = () => {
                 <div className="relative">
                   {item.image && (
                     <div className="relative">
-                      <img 
-                        src={getImageUrl(item.image)} 
-                        alt={item.title} 
+                      <img
+                        src={getImageUrl(item.image)}
+                        alt={item.title}
                         className="rounded-2xl shadow-xl w-full object-cover"
                         style={{ maxHeight: '450px' }}
                       />
                       {/* Badge overlay */}
                       {item.badge?.text && (
-                        <div 
+                        <div
                           className="absolute -top-14 -right-4 w-28 h-28 flex flex-col items-center justify-center text-white text-center shadow-lg"
                           style={{ backgroundColor: item.badge.background || '#e63938' }}
                         >
@@ -322,28 +325,27 @@ const IndianEvisa = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
               Eligibility for India eVisa
             </h2>
-            <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#e63938' }}></div>
+            <div className="w-32 h-0.75 mx-auto" style={{ backgroundColor: '#e63938' }}></div>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-10">
+          <div className="rounded-2xl p-8 md:p-10">
             <div className="space-y-4">
               {[
-                "Nationals of countries listed are eligible to apply for e-Visa Services.",
-                "Foreigners whose sole objective for visiting India is Recreation and sightseeing.",
-                "Casual visit to meet friends and relatives.",
-                "Attending short term yoga programme or short term courses on local languages, music, dance, arts & crafts, cooking, medicine etc.",
-                "Courses not exceeding 6 months duration and not issuing a qualifying certificate/diploma etc. to the participants.",
-                "Voluntary work of short duration (for a maximum period of one month).",
-                "Medical treatment, including treatment under Indian systems of medicine.",
-                "Business purpose or attending a conference/seminar/workshop."
+                "International travellers whose sole objective for visiting India is recreation, sightseeing, casual visit to meet friends and relatives, attending a short term yoga programme, Short term courses on local languages, music, dance, arts & crafts, cooking, medicine etc. which should not be a formal or structured course/programme (courses not exceeding 6 months duration and not issued with a qualifying certificate/ diploma etc),Voluntary work of short duration (for a maximum period of one month, which do not involve any monetary payment or consideration of any kind in return), medical treatment including treatment under Indian systems of medicine, business purpose, as attendant to e-Medical visa holder, attending a conference/ seminar/ workshop organized by a Ministry or Department of the Government of India, State Governments or UT Administrations etc. & their subordinate/ attached organizations & PSUs and private conferences organized by private persons/companies/organizations.",
+                "Applicant's passport should have at least six months validity at the time of making application for grant of e-Visa.",
+                "International Travellers should have return ticket or onward journey ticket, with sufficient money to spend during his/her stay in India.",
+                "International Travellers having Pakistani Passport or Pakistani origin may please apply for regular Visa at Indian Mission.",
+                "Not available to Diplomatic/Official Passport Holders or Laissez-passer travel document holders.",
+                "Not available to individuals endorsed on Parent's/Spouse's Passport i.e. each individual should have a separate passport.",
+                "Not available to International Travel Document Holders other than Passport."
               ].map((item, idx) => (
                 <div key={idx} className="flex items-start gap-4">
-                  <div 
+                  <div
                     className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                    style={{ backgroundColor: '#e63938' }}
+                    style={{ backgroundColor: '#FF1F3D' }}
                   >
                     <Check className="w-4 h-4 text-white" strokeWidth={3} />
                   </div>
@@ -356,141 +358,105 @@ const IndianEvisa = () => {
       </section>
 
       {/* ===== WHY DU GLOBAL SECTION ===== */}
-      <section className="py-20 relative overflow-hidden" style={{ backgroundColor: '#111111' }}>
-        {/* Decorative curved lines on left */}
-        <div className="absolute left-0 top-0 h-full w-1/3 opacity-20 pointer-events-none">
-          <svg viewBox="0 0 400 800" className="h-full" preserveAspectRatio="xMinYMid slice">
-            <path d="M-100,0 Q200,200 100,400 T-100,800" stroke="#444" strokeWidth="1" fill="none"/>
-            <path d="M-50,0 Q250,200 150,400 T-50,800" stroke="#444" strokeWidth="1" fill="none"/>
-            <path d="M0,0 Q300,200 200,400 T0,800" stroke="#444" strokeWidth="1" fill="none"/>
-            <path d="M50,0 Q350,200 250,400 T50,800" stroke="#444" strokeWidth="1" fill="none"/>
-            <path d="M100,0 Q400,200 300,400 T100,800" stroke="#444" strokeWidth="1" fill="none"/>
-          </svg>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            
-            {/* Left Side - Heading & Description */}
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-                Why DU GLOBAL is your trusted partner
-              </h2>
-              <div className="w-10 h-1 mb-6" style={{ backgroundColor: '#A10000' }}></div>
-              <p className="text-gray-400 mb-8 leading-relaxed">
-                Experience unmatched expertise, reliable support, and tailored solutions with DU Global. We simplify complex processes and deliver results you can trust, making us the preferred choice for thousands worldwide.
-              </p>
-              <button 
-                className="px-8 py-3 rounded-full font-semibold text-white transition-all hover:opacity-90"
-                style={{ backgroundColor: '#A10000' }}
-              >
-                About Us
-              </button>
-            </div>
+      <WhyUsSection data={whyUsSectionData.whyUsSection} />
 
-            {/* Right Side - 2x2 Card Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {[
-                { icon: Shield, title: "Quality and Value", desc: "Quality Beyond Compromise, Value That Is Unmatched." },
-                { icon: Users, title: "Services", desc: "Service that exceeds expectations." },
-                { icon: Globe, title: "Security", desc: "The utmost security of our clients data is paramount for us." },
-                { icon: Clock, title: "Technology", desc: "Optimum use of evolving technology to strengthen our portfolio and service mechanism." }
-              ].map((feature, index) => {
-                const IconComponent = feature.icon;
-                return (
-                  <div 
-                    key={index}
-                    className="flex items-start gap-4"
-                  >
-                    {/* Red Square Icon Box */}
-                    <div 
-                      className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{ backgroundColor: '#A10000' }}
-                    >
-                      <IconComponent className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-white mb-1">{feature.title}</h3>
-                      <p className="text-gray-400 text-sm leading-relaxed">{feature.desc}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ===== E-VISA APPLICATION PROCESS ===== */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-[#F7F7F7]">
         <div className="max-w-7xl mx-auto px-6">
+
+          {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#333333] tracking-wide">
               E-VISA APPLICATION PROCESS
             </h2>
-            <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#e63938' }}></div>
+            <div className="w-24 h-[3px] mx-auto mt-4 bg-[#FF1F3D]"></div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {(applicationProcessSection.length > 0 
-              ? applicationProcessSection.sort((a, b) => a.order - b.order).map((step, idx) => ({
-                  icon: processSteps[idx]?.icon || FileText,
-                  title: step.title,
-                  desc: step.contentHtml
-                }))
+          {/* ================= DESKTOP VIEW ================= */}
+          <div className="hidden lg:grid grid-cols-4 gap-10 items-center">
+            {(applicationProcessSection.length > 0
+              ? applicationProcessSection.sort((a, b) => a.order - b.order)
               : processSteps
-            ).map((step, index) => {
-              const IconComponent = step.icon;
-              return (
-                <div key={index} className="relative">
-                  {/* Dashed connector line */}
-                  {index < 3 && (
-                    <div 
-                      className="hidden lg:block absolute top-10 left-[60%] w-[80%] border-t-2 border-dashed"
-                      style={{ borderColor: '#e63938' }}
-                    />
-                  )}
-                  
-                  <div className="bg-gray-50 rounded-xl p-6 text-center relative shadow-md hover:shadow-lg transition-shadow">
-                    {/* Step number badge */}
-                    <div 
-                      className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-lg"
-                      style={{ backgroundColor: '#e63938' }}
-                    >
+            ).map((step, index) => (
+              <div key={index} className="relative flex items-center">
+
+                {/* Card */}
+                <div className="bg-white rounded-2xl px-8 py-8 text-center shadow-lg w-full min-h-[250px]">
+                  <div className="flex justify-center mb-6">
+                    <div className="w-14 h-14 rounded-full border-4 border-[#FF1F3D] flex items-center justify-center text-[#FF1F3D] text-xl font-bold">
                       {index + 1}
                     </div>
-                    
-                    <div className="pt-6">
-                      <div 
-                        className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-red-50"
-                      >
-                        <IconComponent className="w-8 h-8" style={{ color: '#e63938' }} />
-                      </div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
-                      <p className="text-gray-500 text-sm">{step.desc}</p>
-                    </div>
                   </div>
+
+                  <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                    {step.title}
+                  </h3>
+
+                  <p className="text-gray-500 text-sm leading-relaxed">
+                    {step.contentHtml || step.desc}
+                  </p>
                 </div>
-              );
-            })}
+
+                {/* Arrow */}
+                {index < 3 && (
+                  <div className="absolute -right-8 top-1/2 -translate-y-1/2 text-red-600 text-3xl font-bold">
+                    →
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
+
+          {/* ================= MOBILE VIEW ================= */}
+          <div className="lg:hidden space-y-10">
+            {(applicationProcessSection.length > 0
+              ? applicationProcessSection.sort((a, b) => a.order - b.order)
+              : processSteps
+            ).map((step, index) => (
+              <div key={index} className="relative pl-10">
+
+                {/* Vertical Line */}
+                {index < 3 && (
+                  <div className="absolute left-[22px] top-14 h-full w-[2px] bg-red-200"></div>
+                )}
+
+                {/* Step Circle */}
+                <div className="absolute left-0 top-0 w-11 h-11 rounded-full border-4 border-red-600 text-red-600 flex items-center justify-center font-bold text-lg bg-white">
+                  {index + 1}
+                </div>
+
+                {/* Content Card */}
+                <div className="bg-white rounded-xl p-6 shadow-md">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">
+                    {step.contentHtml || step.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
         </div>
       </section>
+
 
       {/* ===== DOCUMENTS REQUIRED ===== */}
       {documents.length > 0 && (
-        <section className="py-20 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-6">
+        <section className="py-20 bg-[#F7F7F7]">
+          <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
                 Documents Required
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#e63938' }}></div>
+              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1F3D' }}></div>
             </div>
 
             <div className="space-y-4">
               {documents.filter(d => d.isActive).sort((a, b) => a.order - b.order).map((doc, index) => (
-                <div 
+                <div
                   key={doc._id || index}
                   className="rounded-xl overflow-hidden shadow-md"
                 >
@@ -506,19 +472,19 @@ const IndianEvisa = () => {
                       <ChevronDown className="w-6 h-6 text-white flex-shrink-0" />
                     )}
                   </button>
-                  
+
                   {openDocIndex === index && (
                     <div className="px-6 py-6 bg-white">
                       <div className="space-y-3">
                         {doc.description?.split('\n').filter(line => line.trim()).map((line, idx) => (
-                          <div key={idx} className="flex items-start gap-3">
-                            <div 
+                          <div key={idx} className="flex items-center gap-3">
+                            <div
                               className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
                               style={{ backgroundColor: '#e63938' }}
                             >
-                              <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                              <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />
                             </div>
-                            <p className="text-gray-600">{line.trim()}</p>
+                            <p className="text-black text-base md:text-lg">{line.trim()}</p>
                           </div>
                         ))}
                       </div>
@@ -565,7 +531,7 @@ const IndianEvisa = () => {
         //               <ChevronDown className="w-6 h-6 text-white flex-shrink-0" />
         //             )}
         //           </button>
-                  
+
         //           {openFaqIndex === index && (
         //             <div className="px-6 py-6 bg-white">
         //               <div className="text-gray-600 leading-relaxed whitespace-pre-line">
@@ -578,60 +544,60 @@ const IndianEvisa = () => {
         //     </div>
         //   </div>
         // </section>
-            <section className="bg-white py-24">
-            <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+        <section className="bg-white py-24">
+          <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
-                {/* LEFT CONTENT */}
-                <div>
-                    <h2 className="text-4xl font-bold leading-tight mb-6">
-                        Any questions? <br />
-                        We got you.
-                    </h2>
+            {/* LEFT CONTENT */}
+            <div>
+              <h2 className="text-4xl font-bold leading-tight mb-6">
+                Any questions? <br />
+                We got you.
+              </h2>
 
-                    <p className="text-gray-500 max-w-md mb-6">
-                        Yet bed any for assistance indulgence unpleasing. Not thoughts all
-                        exercise blessing. Indulgence way everything joy alteration
-                        boisterous the attachment.
-                    </p>
+              <p className="text-gray-500 max-w-md mb-6">
+                Yet bed any for assistance indulgence unpleasing. Not thoughts all
+                exercise blessing. Indulgence way everything joy alteration
+                boisterous the attachment.
+              </p>
 
-                    <a
-                        href="#"
-                        className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
-                    >
-                        More FAQs →
-                    </a>
-                </div>
-
-                {/* RIGHT FAQ LIST */}
-                <div className="divide-y">
-                    {faqs.filter(f => f.isActive).map((item, index) => (
-                        <div key={index} className="py-6">
-                            <button
-                            
-                                                        onClick={() => toggleFaq(index)}
-
-                                
-                                className="w-full flex justify-between items-center text-left"
-                            >
-                                <span className="text-lg font-semibold text-gray-900">
-                                    {item.question}
-                                </span>
-
-                                <span className="text-2xl text-gray-500">
-                                    {openFaqIndex === index ? "−" : "+"}
-                                </span>
-                            </button>
-
-                            {openFaqIndex === index && (
-                                <p className="mt-4 text-gray-500 max-w-xl">
-                                    {item.answer}
-                                </p>
-                            )}
-                        </div>
-                    ))}
-                </div>
-
+              <a
+                href="#"
+                className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
+              >
+                More FAQs →
+              </a>
             </div>
+
+            {/* RIGHT FAQ LIST */}
+            <div className="divide-y">
+              {faqs.filter(f => f.isActive).map((item, index) => (
+                <div key={index} className="py-6">
+                  <button
+
+                    onClick={() => toggleFaq(index)}
+
+
+                    className="w-full flex justify-between items-center text-left"
+                  >
+                    <span className="text-lg font-semibold text-gray-900">
+                      {item.question}
+                    </span>
+
+                    <span className="text-2xl text-gray-500">
+                      {openFaqIndex === index ? "−" : "+"}
+                    </span>
+                  </button>
+
+                  {openFaqIndex === index && (
+                    <p className="mt-4 text-gray-500 max-w-xl">
+                      {item.answer}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+
+          </div>
         </section>
       )}
 
