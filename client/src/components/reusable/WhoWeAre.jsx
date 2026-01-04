@@ -11,7 +11,7 @@ const WhoWeAre = ({ data }) => {
             <div className="relative max-w-7xl mx-auto px-6 md:px-20">
                 {/* Top Label */}
                 <p className="text-center text-red-600 font-semibold tracking-widest mb-2">
-                    {data.title}
+                    {/* {data.title} */}
                 </p>
 
                 {/* Main Heading */}

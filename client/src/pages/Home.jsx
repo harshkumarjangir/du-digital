@@ -5,7 +5,7 @@ import { fetchEvents } from '../redux/slices/eventsSlice';
 import { fetchNews } from '../redux/slices/newsSlice';
 import { fetchBlogs } from '../redux/slices/BlogsSlice';
 import EventsGrid from '../components/news-and-events/EventsGrid';
-import NewsHome from '../components/home/NewsHome';
+import NewsHome from '../components/reusable/NewsHome';
 import { Blog } from '../components/BlogsComponents/Blog';
 import HomeSlider from "../components/home/HomeSlider";
 import VisaServices from "../components/home/VisaServices";

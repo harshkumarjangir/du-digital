@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000'
+const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000'
 
 // Async thunk to submit partner form
 export const submitPartnerForm = createAsyncThunk(
@@ -28,11 +28,34 @@ export const submitPartnerForm = createAsyncThunk(
     }
 );
 
+// Async thunk to fetch official partners
+export const fetchOfficialPartners = createAsyncThunk(
+    'partner/fetchOfficialPartners',
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await fetch(`${BackendURL}/api/partner/official`);
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.message || 'Failed to fetch official partners');
+            }
+
+            const data = await response.json();
+            console.log("data", data)
+            return data;
+        } catch (error) {
+            return rejectWithValue(error.message || 'An error occurred while fetching official partners');
+        }
+    }
+);
+
 const initialState = {
     loading: false,
     error: null,
     success: false,
-    submittedData: null
+    submittedData: null,
+    officialPartners: [],
+    loadingOfficialPartners: false
 }
 
 const partnerSlice = createSlice({
@@ -62,6 +85,19 @@ const partnerSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload;
                 state.success = false;
+            })
+            // Fetch Official Partners
+            .addCase(fetchOfficialPartners.pending, (state) => {
+                state.loadingOfficialPartners = true;
+                state.error = null;
+            })
+            .addCase(fetchOfficialPartners.fulfilled, (state, action) => {
+                state.loadingOfficialPartners = false;
+                state.officialPartners = action.payload;
+            })
+            .addCase(fetchOfficialPartners.rejected, (state, action) => {
+                state.loadingOfficialPartners = false;
+                state.error = action.payload;
             });
     }
 })

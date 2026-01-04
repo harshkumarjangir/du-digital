@@ -27,6 +27,7 @@ import OurCapabilities from './pages/OurCapabilities'
 import Magazine from './pages/Magazine'
 import CookiePolicy from './pages/CookiePolicy'
 import FloatingChatCTA from './components/common/FloatingChatCTA'
+import ForGovernmentEmbassies from './pages/ForGovernmentEmbassies'
 
 const App = () => {
         return (
@@ -37,6 +38,7 @@ const App = () => {
                                 <Route path="/b2b-partner-program" element={<BecomePartner />} />
                                 <Route path="/about-us" element={<AboutUs />} />
                                 <Route path="/contact-us" element={<ContactUs />} />
+                                <Route path="/embassy-government-partners" element={<ForGovernmentEmbassies />} />
                                 <Route path="/tenant-and-domestic-help-verification" element={<TenantVerification />} />
                                 <Route path="/india-evisa" element={<IndianEvisa />} />
                                 <Route path="/global-recruitment-services" element={<Globalrecruitmentservices />} />

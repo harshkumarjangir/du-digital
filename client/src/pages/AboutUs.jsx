@@ -1,23 +1,37 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AboutHero from "../components/about-us/AboutHero";
-import OurFootprints from "../components/about-us/OurFootprints";
-import OurStrengths from "../components/about-us/OurStrengths";
+import OurFootprints from "../components/reusable/OurFootprints";
+import OurStrengths from "../components/reusable/OurStrengths";
 import TeamGrid from "../components/about-us/TeamGrid";
-import Timeline from "../components/about-us/Timeline";
+import Timeline from "../components/reusable/Timeline";
 import VisionMission from "../components/about-us/VisionMission";
-import WhoWeAre from "../components/about-us/WhoWeAre";
+import WhoWeAre from "../components/reusable/WhoWeAre";
 import { fetchTeamMembers } from "../redux/slices/teamSlice";
+import { fetchOfficialPartners } from "../redux/slices/partnerSlice";
 import data from "../data/aboutPage.json";
 
 
 const AboutUs = () => {
   const dispatch = useDispatch();
   const { teamMembersByCategory, loading, error } = useSelector((state) => state.team);
+  const { officialPartners, loadingOfficialPartners } = useSelector((state) => state.partner);
+
+
+  // useEffect(() => {
+  //   dispatch(fetchTeamMembers());
+  //   dispatch(fetchOfficialPartners());
+  // }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchTeamMembers());
-  }, [dispatch]);
+
+    if (!officialPartners.length) {
+      dispatch(fetchOfficialPartners());
+    }
+  }, [dispatch, officialPartners.length]);
+
+
 
   // Define the order in which categories should be displayed
   const categoryOrder = ["Leadership", "Board of Directors", "Management"];
@@ -31,6 +45,11 @@ const AboutUs = () => {
     };
     return titleMap[category] || category;
   };
+
+  //Sort partners
+  const sortedPartners = [...officialPartners].sort(
+    (a, b) => Number(a.year) - Number(b.year)
+  );
 
   // Sort categories based on the defined order
   const sortedCategories = Object.keys(teamMembersByCategory || {}).sort((a, b) => {
@@ -47,11 +66,12 @@ const AboutUs = () => {
     return a.localeCompare(b);
   });
 
+
   return (
     <>
       <AboutHero data={data.hero} />
       <WhoWeAre data={data.whoWeAre} />
-      <Timeline data={data.timeline} />
+      <Timeline data={sortedPartners} />
       {loading && <div className="text-center py-8">Loading team members...</div>}
       {error && <div className="text-center py-8 text-red-500">Error loading team members: {error}</div>}
       {!loading && !error && (
