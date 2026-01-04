@@ -13,7 +13,7 @@ const benefitIcons = [Target, CheckCircle, Phone, Share2];
 // Pricing features for comparison table (from original site)
 const pricingFeatures = [
   "Identity verification",
-  "Criminal Record Check", 
+  "Criminal Record Check",
   "Bank Statement / Income Verification",
   "ITR Check",
   "Interpol Match"
@@ -105,35 +105,52 @@ const TenantVerification = () => {
 
   return (
     <div className="bg-white font-sans">
-      
+
       {/* ===== HERO SECTION ===== */}
       <section className="relative w-full min-h-[90vh] overflow-hidden">
+        {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${getImageUrl(formData?.image) || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'})` }}
+          style={{
+            backgroundImage: `url(${getImageUrl(formData?.image) ||
+              'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1920&q=80'
+              })`,
+          }}
         />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(10,45,92,0.9) 0%, rgba(0,0,0,0.8) 100%)' }} />
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-32 min-h-[90vh] flex items-center">
-          <div className="max-w-2xl text-white">
-            <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-6">
-              Comprehensive Verification for Tenants, Drivers, Maids, and Nannies by{' '}
-            
-               <img src="/DU-Verify-logo.png" width={200} alt="" />
-              
+
+        {/* Dark Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-black/20" />
+
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 min-h-[90vh] flex items-center">
+          <div className="max-w-3xl text-white">
+
+            {/* Heading */}
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
+              Comprehensive Verification for <br />
+              Tenants, Drivers, Maids, and <br />
+              Nannies by{' '}
+              <span className="inline-flex items-center align-middle ml-2">
+                <img
+                  src="/DU-Verify-logo.png"
+                  alt="DU Verify"
+                  className="h-10 md:h-12 lg:h-16 object-contain"
+                />
+              </span>
             </h1>
-            <p className="text-xl md:text-2xl font-semibold mb-8" style={{ color: '#A10000' }}>
+
+            {/* Subheading */}
+            <p className="text-lg md:text-xl font-semibold mb-10 text-white">
               Secure your Home & Loved Ones with Instant Background Verification
             </p>
-            
-          
-            
-            <button 
-              className="px-10 py-4 rounded-full font-bold text-lg text-white transition-all duration-300 hover:opacity-90 shadow-lg"
-              style={{ backgroundColor: '#A10000' }}
+
+            {/* CTA */}
+            <button
+              className="px-8 py-3 rounded-full bg-[#FF1033] hover:bg-[#511313] font-semibold text-white text-base md:text-lg transition-all duration-300 hover:opacity-90 shadow-xl cursor-pointer"
             >
               Get Started Today – Verify Now
             </button>
+
           </div>
         </div>
       </section>
@@ -141,45 +158,55 @@ const TenantVerification = () => {
       {/* ===== WHY CHOOSE DUVERIFY SECTION ===== */}
       {whyChooseSection.length > 0 && (
         <section className="py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Why Choose <span style={{ color: '#A10000' }}>DuVerify</span> Platform?
-              </h2>
-              <div className="w-24 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div>
-            </div>
-            
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             {whyChooseSection.map((item, index) => (
-              <div key={item._id || index} className="grid md:grid-cols-2 gap-16 items-center">
+              <div
+                key={item._id || index}
+                className="grid lg:grid-cols-2 gap-16 items-center"
+              >
+                {/* LEFT CONTENT */}
                 <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                    Protect your home and family with our comprehensive background screening
-                  </h3>
-                  <div 
-                    className="text-gray-600 text-lg leading-relaxed mb-8"
-                    dangerouslySetInnerHTML={{ __html: item.contentHtml?.replace(/\r\n/g, '<br/>') }}
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
+                    Why Choose{' '}
+                    <span className="text-[#A10000]">DuVerify</span> Platform?
+                  </h2>
+
+                  <p className="text-xl font-semibold md:font-bold text-gray-800 mb-6">
+                    Protect your home and family with our tenant, maid, nanny and
+                    driver background screening
+                  </p>
+
+                  <div
+                    className="text-gray-800 text-base leading-relaxed max-w-xl mb-0 md:text-lg"
+                    dangerouslySetInnerHTML={{
+                      __html: item.contentHtml?.replace(/\r\n/g, '<br/>'),
+                    }}
                   />
-                  
-                  {/* Services List */}
-                  <ul className="space-y-3">
+
+                  {/* SERVICES LIST */}
+                  <div className="flex flex-wrap gap-x-4 gap-y-3 mt-0">
                     {services.map((service, idx) => (
-                      <li key={idx} className="flex items-center gap-3">
-                        <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: '#A10000' }}>
-                          <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                        </div>
-                        <span className="text-gray-700 font-medium">{service}</span>
-                      </li>
+                      <div key={idx} className="flex items-center gap-2 border-r border-[#A10000] pr-5 last:border-r-0">
+                        <span className="text-[#A10000] text-lg font-bold">✓</span>
+                        <span className="text-gray-800 font-semibold">
+                          {service}
+                        </span>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
+
+                {/* RIGHT IMAGE */}
                 <div className="flex justify-center">
                   {item.image && (
-                    <img 
-                      src={getImageUrl(item.image)} 
-                      alt={item.title} 
-                      className="max-w-full h-auto rounded-2xl shadow-lg"
-                      style={{ maxHeight: '450px' }}
-                    />
+                    <div className="bg-[#FFF9EF] rounded-3xl p-6">
+                      <img
+                        src={getImageUrl(item.image)}
+                        alt="Why Choose DuVerify"
+                        className="max-w-full h-auto"
+                        style={{ maxHeight: '420px' }}
+                      />
+                    </div>
                   )}
                 </div>
               </div>
@@ -188,69 +215,103 @@ const TenantVerification = () => {
         </section>
       )}
 
+
       {/* ===== KEY BENEFITS SECTION ===== */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Key Benefits</h2>
-            <div className="w-24 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div>
+      <section className="py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+
+          {/* Heading */}
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Key Benefits
+            </h2>
+            <div className="w-20 h-[2px] mx-auto bg-[#A10000]" />
           </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {(benefitsSection.length > 0 ? benefitsSection : staticBenefits).map((benefit, index) => {
-              const IconComponent = benefitIcons[index % benefitIcons.length];
-              const isApiData = !!benefit._id;
-              return (
-                <div
-                  key={benefit._id || index}
-                  className="bg-white rounded-2xl p-8 text-center shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
-                >
-                  <div className="flex justify-center mb-6">
-                    {isApiData && benefit.image ? (
-                      <img src={getImageUrl(benefit.image)} alt={benefit.title} className="w-16 h-16 object-contain" />
-                    ) : (
-                      <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ border: '2px solid #A10000' }}>
-                        <IconComponent className="w-8 h-8" style={{ color: '#A10000' }} strokeWidth={1.5} />
-                      </div>
-                    )}
+
+          {/* Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            {(benefitsSection.length > 0 ? benefitsSection : staticBenefits).map(
+              (benefit, index) => {
+                const IconComponent = benefitIcons[index % benefitIcons.length];
+                const isApiData = !!benefit._id;
+
+                return (
+                  <div
+                    key={benefit._id || index}
+                    className="bg-white rounded-3xl p-10 shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] transition-all duration-300"
+                  >
+                    {/* Icon */}
+                    <div className="mb-8 flex justify-center">
+                      {isApiData && benefit.image ? (
+                        <img
+                          src={getImageUrl(benefit.image)}
+                          alt={benefit.title}
+                          className="w-14 h-14 object-contain"
+                        />
+                      ) : (
+                        <IconComponent
+                          className="w-14 h-14 text-[#C81E1E]"
+                          strokeWidth={1.5}
+                        />
+                      )}
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                      {benefit.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-gray-600 leading-relaxed text-base">
+                      {isApiData ? (
+                        <span
+                          dangerouslySetInnerHTML={{
+                            __html: benefit.contentHtml,
+                          }}
+                        />
+                      ) : (
+                        benefit.desc
+                      )}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    {isApiData ? benefit.title : benefit.title}
-                  </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">
-                    {isApiData ? (
-                      <span dangerouslySetInnerHTML={{ __html: benefit.contentHtml }} />
-                    ) : benefit.desc}
-                  </p>
-                </div>
-              );
-            })}
+                );
+              }
+            )}
           </div>
         </div>
       </section>
 
+
       {/* ===== PRICING PLANS - COMPARISON TABLE ===== */}
       {pricingPlans.length > 0 && (
-        <section className="py-24 bg-white" id="price_table">
-          <div className="max-w-5xl mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Choose Your Plan</h2>
-              <div className="w-24 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div>
+        <section className="py-28 bg-white" id="price_table">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+
+            {/* Heading */}
+            <div className="text-center mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+                Pricing Plans
+              </h2>
+              <div className="w-20 h-[2px] bg-[#A10000] mx-auto mt-4 mb-6" />
+              <p className="text-lg text-gray-700 font-medium">
+                Flexible pricing for hassle-free Tenant, Maid, Nanny & Driver verification
+              </p>
             </div>
-            
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
-              <table className="w-full">
+
+            {/* Table Wrapper */}
+            <div className="hidden md:block bg-white rounded-3xl shadow-[0_15px_40px_rgba(0,0,0,0.08)] border border-gray-200 overflow-hidden mt-16">
+
+              <table className="w-full border-collapse">
+                {/* Header */}
                 <thead>
-                  <tr className="bg-gray-50">
-                    <th className="py-6 px-6 text-left text-gray-500 font-medium text-sm uppercase tracking-wider" style={{ width: '40%' }}>
-                      Features
-                    </th>
+                  <tr>
+                    <th className="w-[36%]"></th>
                     {pricingPlans.map((plan, index) => {
                       const color = getPlanColor(index, plan.planName);
                       return (
-                        <th key={plan._id || index} className="py-6 px-4 text-center">
-                          <span 
-                            className="inline-block px-6 py-2 rounded-lg text-white font-bold text-lg"
+                        <th key={plan._id || index} className="py-6 text-center">
+                          <span
+                            className="inline-block px-10 py-3 rounded-xl text-white font-bold text-xl"
                             style={{ backgroundColor: color.bg }}
                           >
                             {plan.planName}
@@ -260,57 +321,85 @@ const TenantVerification = () => {
                     })}
                   </tr>
                 </thead>
+
+                {/* Body */}
                 <tbody>
                   {pricingFeatures.map((feature, fIndex) => (
-                    <tr key={fIndex} className="border-t border-gray-100 hover:bg-gray-50 transition-colors">
-                      <td className="py-5 px-6 text-gray-700 font-medium">{feature}</td>
+                    <tr
+                      key={fIndex}
+                      className="border-t border-gray-200"
+                    >
+                      <td className="py-5 px-8 text-gray-800 font-medium">
+                        {feature}
+                      </td>
+
                       {pricingPlans.map((plan, pIndex) => {
-                        const isAvailable = getFeatureAvailability(plan.planName, fIndex);
+                        const isAvailable = getFeatureAvailability(
+                          plan.planName,
+                          fIndex
+                        );
+
                         return (
-                          <td key={plan._id || pIndex} className="py-5 px-4 text-center">
+                          <td
+                            key={plan._id || pIndex}
+                            className="py-5 text-center"
+                          >
                             {isAvailable ? (
-                              <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center mx-auto shadow-sm">
-                                <Check className="w-5 h-5 text-white" strokeWidth={3} />
-                              </div>
+                              <Check className="w-7 h-7 text-green-500 mx-auto" strokeWidth={3} />
                             ) : (
-                              <div className="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center mx-auto shadow-sm">
-                                <X className="w-5 h-5 text-white" strokeWidth={3} />
-                              </div>
+                              <X className="w-7 h-7 text-red-500 mx-auto" strokeWidth={3} />
                             )}
                           </td>
                         );
                       })}
                     </tr>
                   ))}
-                  
+
                   {/* Price Row */}
-                  <tr className="border-t-2 border-gray-200 bg-gray-50">
-                    <td className="py-8 px-6 text-gray-700 font-bold">Price / Verification*</td>
+                  <tr className="border-t-2 border-gray-300 bg-gray-50">
+                    <td className="py-8 px-8 font-bold text-gray-800">
+                      Price / Verification*
+                    </td>
+
                     {pricingPlans.map((plan, index) => {
-                      // Use exact prices from original site
-                      const exactPrices = { basic: 599, standard: 999, premium: 1199 };
-                      const planNameLower = plan.planName?.toLowerCase() || '';
+                      const exactPrices = {
+                        basic: 599,
+                        standard: 999,
+                        premium: 1199,
+                      };
+
+                      const planName = plan.planName.toLowerCase();
                       let price = plan.price;
-                      if (planNameLower.includes('basic') || planNameLower.includes('pricing')) price = exactPrices.basic;
-                      else if (planNameLower.includes('standard')) price = exactPrices.standard;
-                      else if (planNameLower.includes('premium')) price = exactPrices.premium;
+
+                      if (planName.includes('basic')) price = exactPrices.basic;
+                      if (planName.includes('standard')) price = exactPrices.standard;
+                      if (planName.includes('premium')) price = exactPrices.premium;
+
                       return (
-                        <td key={plan._id || index} className="py-8 px-4 text-center">
-                          <span className="text-4xl font-bold text-gray-900">₹ {price}</span>
+                        <td
+                          key={plan._id || index}
+                          className="py-8 text-center"
+                        >
+                          <span className="text-3xl font-extrabold text-gray-900">
+                            ₹ {price}
+                          </span>
+                          <span className="text-lg font-semibold text-gray-700">
+                            {' '} / Verification*
+                          </span>
                         </td>
                       );
                     })}
                   </tr>
-                  
+
                   {/* Button Row */}
                   <tr className="bg-gray-50">
-                    <td className="py-6 px-6"></td>
+                    <td></td>
                     {pricingPlans.map((plan, index) => {
                       const color = getPlanColor(index, plan.planName);
                       return (
-                        <td key={plan._id || index} className="py-6 px-4 text-center">
+                        <td key={plan._id || index} className="py-8 text-center">
                           <button
-                            className="px-8 py-3 rounded-lg font-bold text-white transition-all duration-300 hover:opacity-90 shadow-lg"
+                            className="w-[80%] py-4 rounded-full font-bold text-white text-lg shadow-lg hover:opacity-90 transition"
                             style={{ backgroundColor: color.bg }}
                           >
                             Choose Plan
@@ -322,43 +411,129 @@ const TenantVerification = () => {
                 </tbody>
               </table>
             </div>
-            
-            <p className="text-center text-gray-400 mt-8 text-sm">
+            {/* ===== MOBILE PRICING CARDS ===== */}
+            <div className="block md:hidden space-y-8 mt-16">
+              {pricingPlans.map((plan, index) => {
+                const color = getPlanColor(index, plan.planName);
+
+                // Exact pricing fallback
+                const exactPrices = {
+                  basic: 599,
+                  standard: 999,
+                  premium: 1199,
+                };
+
+                const planName = plan.planName.toLowerCase();
+                let price = plan.price;
+                if (planName.includes('basic')) price = exactPrices.basic;
+                if (planName.includes('standard')) price = exactPrices.standard;
+                if (planName.includes('premium')) price = exactPrices.premium;
+
+                return (
+                  <div
+                    key={plan._id || index}
+                    className="bg-white rounded-3xl shadow-xl border border-gray-200 overflow-hidden"
+                  >
+                    {/* Header */}
+                    <div
+                      className="py-6 text-center text-white font-extrabold text-2xl"
+                      style={{ backgroundColor: color.bg }}
+                    >
+                      {plan.planName}
+                    </div>
+
+                    {/* Price */}
+                    <div className="text-center py-6">
+                      <span className="text-4xl font-extrabold text-gray-900">
+                        ₹ {price}
+                      </span>
+                      <span className="text-lg font-semibold text-gray-700">
+                        {' '} / Verification*
+                      </span>
+                    </div>
+
+                    {/* Features */}
+                    <div className="px-6 pb-6 space-y-4">
+                      {pricingFeatures.map((feature, fIndex) => {
+                        const isAvailable = getFeatureAvailability(
+                          plan.planName,
+                          fIndex
+                        );
+
+                        return (
+                          <div
+                            key={fIndex}
+                            className="flex items-center justify-between border-b border-gray-100 pb-3"
+                          >
+                            <span className="text-gray-700 font-medium text-sm">
+                              {feature}
+                            </span>
+                            {isAvailable ? (
+                              <Check className="w-6 h-6 text-green-500" strokeWidth={3} />
+                            ) : (
+                              <X className="w-6 h-6 text-red-500" strokeWidth={3} />
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Button */}
+                    <div className="px-6 pb-8">
+                      <button
+                        className="w-full py-4 rounded-full text-white font-bold text-lg shadow-lg transition hover:opacity-90"
+                        style={{ backgroundColor: color.bg }}
+                      >
+                        Choose Plan
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+
+            {/* Footer Note */}
+            <p className="text-center text-gray-400 text-sm mt-8">
               *Government Fee: Additional charges may apply. T&C Apply
             </p>
           </div>
         </section>
       )}
 
+
       {/* ===== HOW IT WORKS SECTION ===== */}
       {howItWorksSection.length > 0 && (
         <section className="py-24" style={{ backgroundColor: '#111111' }}>
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            {/* Heading */}
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+                How It Works?
+              </h2>
+              <div className="w-20 h-[2px] bg-[#A10000] mx-auto my-4" />
+              {howItWorksSection[0]?.badge?.text && (
+                <p className="text-lg md:text-xl lg:text-2xl text-gray-100 font-medium">{howItWorksSection[0].badge.text}</p>
+              )}
+            </div>
             <div className="grid md:grid-cols-2 gap-16 items-center">
               {/* Left Side - Title and Steps */}
               <div>
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">How It Works?</h2>
-                {howItWorksSection[0]?.badge?.text && (
-                  <p className="text-blue-400 mb-8">{howItWorksSection[0].badge.text}</p>
-                )}
-                <div className="w-20 h-1 mb-10" style={{ backgroundColor: '#A10000' }}></div>
-                
                 {/* Steps Card */}
-                <div className="bg-white rounded-2xl p-8 shadow-xl">
+                <div className="bg-white rounded-2xl p-8 shadow-xl overflow-y-auto no-scrollbar h-[400px]">
                   {howItWorksSection.map((item, index) => {
                     const steps = item.contentHtml?.split(/\r?\n/).filter(line => line.trim()) || [];
                     return (
                       <div key={item._id || index} className="space-y-6">
                         {steps.map((step, stepIdx) => (
-                          <div key={stepIdx} className="flex gap-5 items-start">
-                            <div 
-                              className="w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0 text-white"
-                              style={{ backgroundColor: '#A10000' }}
+                          <div key={stepIdx} className="flex gap-5 items-center">
+                            <div
+                              className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0 text-[#A10000] border-2 border-[#A10000]"
                             >
                               {stepIdx + 1}
                             </div>
                             <div className="flex-1 pt-1">
-                              <p className="text-gray-800 font-medium">{step}</p>
+                              <p className="text-[#333333] text-lg font-bold">{step}</p>
                             </div>
                           </div>
                         ))}
@@ -367,13 +542,13 @@ const TenantVerification = () => {
                   })}
                 </div>
               </div>
-              
+
               {/* Right Side - Image */}
               <div className="flex justify-center">
                 {howItWorksSection[0]?.image ? (
-                  <img 
-                    src={getImageUrl(howItWorksSection[0].image)} 
-                    alt="Verification Process" 
+                  <img
+                    src={getImageUrl(howItWorksSection[0].image)}
+                    alt="Verification Process"
                     className="max-w-full h-auto rounded-2xl shadow-2xl"
                     style={{ maxHeight: '500px' }}
                   />
@@ -393,38 +568,73 @@ const TenantVerification = () => {
         </section>
       )}
 
+
+
       {/* ===== DELIVERABLES SECTION ===== */}
       {deliverablesSection.length > 0 && (
         <section className="py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold" style={{ color: '#003366' }}>Deliverables</h2>
-              {deliverablesSection[0]?.badge?.text && (
-                <p className="text-gray-500 mt-4">{deliverablesSection[0].badge.text}</p>
-              )}
+              <h2 className="text-4xl md:text-5xl font-bold text-black">Deliverables</h2>
               <div className="w-24 h-1 mx-auto mt-4" style={{ backgroundColor: '#A10000' }}></div>
+              {deliverablesSection[0]?.badge?.text && (
+                <p className="text-[#333333] text-lg font-bold mt-4">{deliverablesSection[0].badge.text}</p>
+              )}
             </div>
-            
+
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {deliverablesSection.map((item, index) => (
+                // <div
+                //   key={item._id || index}
+                //   className="relative h-64 rounded-xl overflow-hidden group cursor-pointer"
+                // >
+                //   {item.image ? (
+                //     <div
+                //       className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                //       style={{ backgroundImage: `url(${getImageUrl(item.image)})` }}
+                //     />
+                //   ) : (
+                //     <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900" />
+                //   )}
+                //   <div className="absolute inset-0 bg-black/60 group-hover:bg-black/70 transition-colors" />
+                //   <div className="relative h-full flex flex-col items-center justify-center text-white p-6 text-center">
+                //     <h3 className="text-xl font-bold uppercase tracking-wider mb-3">{item.title}</h3>
+                //     <p className="text-gray-200 text-sm" dangerouslySetInnerHTML={{ __html: item.contentHtml }} />
+                //   </div>
+                // </div>
                 <div
                   key={item._id || index}
-                  className="relative h-64 rounded-xl overflow-hidden group cursor-pointer"
+                  className="relative h-64 rounded-2xl overflow-hidden group cursor-pointer"
                 >
+                  {/* Background Image */}
                   {item.image ? (
-                    <div 
-                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
                       style={{ backgroundImage: `url(${getImageUrl(item.image)})` }}
                     />
                   ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900" />
+                    <div className="absolute inset-0 bg-gray-800" />
                   )}
-                  <div className="absolute inset-0 bg-black/60 group-hover:bg-black/70 transition-colors" />
-                  <div className="relative h-full flex flex-col items-center justify-center text-white p-6 text-center">
-                    <h3 className="text-xl font-bold uppercase tracking-wider mb-3">{item.title}</h3>
-                    <p className="text-gray-200 text-sm" dangerouslySetInnerHTML={{ __html: item.contentHtml }} />
+
+                  {/* Dark Overlay (default) */}
+                  <div className="absolute inset-0 bg-black/40 transition-opacity duration-500 group-hover:opacity-0" />
+
+                  {/* Red Overlay (hover) */}
+                  <div className="absolute inset-0 bg-[#A10000]/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                  {/* Content */}
+                  <div className="relative h-full flex flex-col items-center justify-center text-white px-6 text-center z-10">
+                    <h3 className="text-2xl font-bold uppercase tracking-wide mb-3 transition-transform duration-500 group-hover:-translate-y-1">
+                      {item.title}
+                    </h3>
+
+                    <p
+                      className="text-white text-base leading-relaxed opacity-90 max-w-xs"
+                      dangerouslySetInnerHTML={{ __html: item.contentHtml }}
+                    />
                   </div>
                 </div>
+
               ))}
             </div>
           </div>
@@ -432,68 +642,168 @@ const TenantVerification = () => {
       )}
 
       {/* ===== FAQ SECTION - RED ACCORDION STYLE (matching original) ===== */}
-    {faqs.length > 0 && (
+      {faqs.length > 0 && (
         <section className="bg-white py-24">
-            <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+          <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
-                {/* LEFT CONTENT */}
-                <div>
-                    <h2 className="text-4xl font-bold leading-tight mb-6">
-                        Any questions? <br />
-                        We got you.
-                    </h2>
+            {/* LEFT CONTENT */}
+            <div>
+              <h2 className="text-4xl font-bold leading-tight mb-6">
+                Any questions? <br />
+                We got you.
+              </h2>
 
-                    <p className="text-gray-500 max-w-md mb-6">
-                        Yet bed any for assistance indulgence unpleasing. Not thoughts all
-                        exercise blessing. Indulgence way everything joy alteration
-                        boisterous the attachment.
-                    </p>
+              <p className="text-gray-500 max-w-md mb-6">
+                Yet bed any for assistance indulgence unpleasing. Not thoughts all
+                exercise blessing. Indulgence way everything joy alteration
+                boisterous the attachment.
+              </p>
 
-                    <a
-                        href="#"
-                        className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
-                    >
-                        More FAQs →
-                    </a>
-                </div>
-
-                {/* RIGHT FAQ LIST */}
-                <div className="divide-y">
-                    {faqs.map((item, index) => (
-                        <div key={index} className="py-6">
-                            <button
-                            
-                                                        onClick={() => toggleFaq(index)}
-
-                                
-                                className="w-full flex justify-between items-center text-left"
-                            >
-                                <span className="text-lg font-semibold text-gray-900">
-                                    {item.question}
-                                </span>
-
-                                <span className="text-2xl text-gray-500">
-                                    {openFaqIndex === index ? "−" : "+"}
-                                </span>
-                            </button>
-
-                            {openFaqIndex === index && (
-                                <p className="mt-4 text-gray-500 max-w-xl">
-                                    {item.answer}
-                                </p>
-                            )}
-                        </div>
-                    ))}
-                </div>
-
+              <a
+                href="#"
+                className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
+              >
+                More FAQs →
+              </a>
             </div>
+
+            {/* RIGHT FAQ LIST */}
+            <div className="divide-y">
+              {faqs.map((item, index) => (
+                <div key={index} className="py-6">
+                  <button
+
+                    onClick={() => toggleFaq(index)}
+
+
+                    className="w-full flex justify-between items-center text-left"
+                  >
+                    <span className="text-lg font-semibold text-gray-900">
+                      {item.question}
+                    </span>
+
+                    <span className="text-2xl text-gray-500">
+                      {openFaqIndex === index ? "−" : "+"}
+                    </span>
+                  </button>
+
+                  {openFaqIndex === index && (
+                    <p className="mt-4 text-gray-500 max-w-xl">
+                      {item.answer}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+
+          </div>
         </section>
-    
+
       )}
 
-  
+
     </div>
   );
 };
 
 export default TenantVerification;
+
+
+
+
+
+
+{/* ===== HOW IT WORKS SECTION  With HARD CODED DATA===== */ }
+// {howItWorksSection.length > 0 && (
+//   <section className="py-28 bg-black">
+//     <div className="max-w-7xl mx-auto px-6">
+
+//       {/* Heading */}
+//       <div className="text-center mb-16">
+//         <h2 className="text-4xl md:text-5xl font-extrabold text-white">
+//           How It Works?
+//         </h2>
+//         <div className="w-20 h-[2px] bg-[#A10000] mx-auto my-4" />
+//         <p className="text-lg text-gray-300 font-medium">
+//           4 streamlined verification steps
+//         </p>
+//       </div>
+
+//       {/* Content */}
+//       <div className="grid md:grid-cols-2 gap-14 items-center">
+
+//         {/* LEFT – STEPS */}
+//         <div className="bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] overflow-hidden">
+
+//           {[
+//             {
+//               title: 'Choose your preferred package and complete the payment.',
+//             },
+//             {
+//               title:
+//                 'Submit the details and documents via our secure portal.',
+//             },
+//             {
+//               title:
+//                 'Our system conducts a comprehensive background check, including:',
+//               list: [
+//                 'Identity Verification',
+//                 'Criminal Records Check',
+//                 'Bank Statement / Income Verification',
+//                 'ITR Check',
+//                 'Interpol Reference Checks',
+//               ],
+//             },
+//             {
+//               title:
+//                 'Receive a detailed report with a verification score and recommendation.',
+//             },
+//           ].map((step, index) => (
+//             <div
+//               key={index}
+//               className={`flex gap-6 px-8 py-6 ${index !== 3 ? 'border-b border-gray-200' : ''
+//                 }`}
+//             >
+//               {/* Step Number */}
+//               <div className="flex-shrink-0">
+//                 <div className="w-12 h-12 rounded-full border-2 border-[#A10000] flex items-center justify-center text-[#A10000] text-xl font-bold">
+//                   {index + 1}
+//                 </div>
+//               </div>
+
+//               {/* Step Content */}
+//               <div>
+//                 <p className="text-gray-900 font-semibold text-lg mb-2">
+//                   {step.title}
+//                 </p>
+
+//                 {step.list && (
+//                   <ul className="list-disc pl-5 space-y-1 text-gray-700 text-sm">
+//                     {step.list.map((item, i) => (
+//                       <li key={i}>{item}</li>
+//                     ))}
+//                   </ul>
+//                 )}
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+
+//         {/* RIGHT – IMAGE */}
+//         <div className="flex justify-center">
+//           <div className="rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
+//             <img
+//               src={
+//                 howItWorksSection[0]?.image
+//                   ? getImageUrl(howItWorksSection[0].image)
+//                   : 'https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0'
+//               }
+//               alt="Verification Process"
+//               className="w-full max-w-lg object-cover"
+//             />
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   </section>
+// )}

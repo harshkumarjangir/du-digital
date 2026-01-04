@@ -187,7 +187,7 @@ const IndianEvisa = () => {
                     <a
                       key={i}
                       href={`tel:${c.phone}`}
-                      className="px-6 py-3 rounded-full bg-[#e63938] text-white font-semibold hover:bg-red-700 transition"
+                      className="px-6 py-3 rounded-full text-white font-semibold  bg-[#FF1033] hover:bg-[#511313] transition"
                     >
                       {c.name}
                     </a>
@@ -265,7 +265,7 @@ const IndianEvisa = () => {
                 {/* Submit */}
                 <button
                   type="submit"
-                  className="bg-[#e63938] text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition"
+                  className="text-white px-8 py-3 rounded-lg font-semibold  bg-[#FF1033] hover:bg-[#511313] transition cursor-pointer"
                 >
                   Submit Form
                 </button>
