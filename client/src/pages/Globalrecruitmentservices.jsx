@@ -1,41 +1,44 @@
 import { useState, useEffect } from "react";
-import { 
-  CheckCircle, 
-  Clock, 
-  Shield, 
-  Users, 
-  Globe, 
-  Target, 
-  FileCheck, 
-  Award, 
-  Briefcase, 
-  Building, 
-  Cpu, 
-  Heart, 
-  HardHat, 
-  Factory, 
+import {
+  CheckCircle,
+  Clock,
+  Shield,
+  Users,
+  Globe,
+  Award,
+  Briefcase,
+  Layers,
+  Wrench,
+  Cpu,
+  Heart,
+  HardHat,
+  Factory,
   UtensilsCrossed,
-  ChevronDown,
-  ChevronUp,
+  Zap,
+  CheckCheck,
+  TrendingUp,
+  ArrowRight,
   Mail,
   Phone,
-  MapPin,
-  ArrowRight,
-  Zap,
-  TrendingUp,
-  CheckCheck,
-  Wrench,
-  Settings,
-  Layers
+  Check
 } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
+import connectData from "../data/globalRecruitment.json";
+import ConnectWithUs from "../components/reusable/ConnectWithUs";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
 
+
 // Default icons for content sections
-const defaultIcons = [Globe, Shield, Settings, FileCheck, Clock, Users, Award, Briefcase, Layers, Wrench];
+const defaultIcons = [Globe, Shield, Layers, Users, Clock, Award, Briefcase, Wrench];
 
 // Industry icons mapping
 const industryIconMap = {
@@ -67,15 +70,10 @@ const Globalrecruitmentservices = () => {
   const [formData, setFormData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [openFaqIndex, setOpenFaqIndex] = useState(0);
-  
-  // Contact form state
-  const [contactForm, setContactForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: ""
-  });
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
+
+  // Dynamic form state
+  const [formValues, setFormValues] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
@@ -90,6 +88,14 @@ const Globalrecruitmentservices = () => {
       if (!response.ok) throw new Error("Failed to fetch form data");
       const data = await response.json();
       setFormData(data);
+
+      // Initialize form values from fields
+      const initialValues = {};
+      data.fields?.forEach(field => {
+        initialValues[field.name] = '';
+      });
+      setFormValues(initialValues);
+
     } catch (err) {
       setError(err.message);
     } finally {
@@ -107,23 +113,36 @@ const Globalrecruitmentservices = () => {
     return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues(prev => ({ ...prev, [name]: value }));
+  };
+
   const handleContactSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    
+
     try {
+      // Sending to contact endpoint - mapping fields if necessary or sending raw
       const response = await fetch(`${BackendURL}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...contactForm,
-          source: 'Global Recruitment Services'
+          ...formValues,
+          source: 'Global Recruitment Services',
+          formId: formData?._id
         })
       });
-      
+
       if (response.ok) {
         setSubmitSuccess(true);
-        setContactForm({ name: "", email: "", phone: "", message: "" });
+        // Reset form
+        const resetValues = {};
+        formData.fields?.forEach(field => {
+          resetValues[field.name] = '';
+        });
+        setFormValues(resetValues);
+
         setTimeout(() => setSubmitSuccess(false), 5000);
       }
     } catch (err) {
@@ -145,7 +164,7 @@ const Globalrecruitmentservices = () => {
   if (loading) return <LoadingState message="Loading recruitment services..." fullScreen />;
   if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
 
-  const { name, description, faqs = [], contentSections = {} } = formData || {};
+  const { name, description, faqs = [], contentSections = {}, fields = [] } = formData || {};
 
   // Get dynamic sections from API
   const whyChooseSection = contentSections['Why Choose DU Global?'] || [];
@@ -155,274 +174,112 @@ const Globalrecruitmentservices = () => {
   const readyToBuildSection = contentSections['Ready to Build Your Team?'] || [];
 
   return (
-    <div className="global-recruitment-page" style={{ fontFamily: "'Poppins', sans-serif" }}>
-      
+    <div className="font-sans antialiased text-gray-900">
+
+
       {/* ===== HERO SECTION ===== */}
-      <section style={{
-        position: 'relative',
-        minHeight: '100vh',
-        backgroundImage: formData?.image ? `url(${BackendImagesURL}${formData.image})` : 'none',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}>
-        {/* Overlay */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.73) 0%, rgba(245, 245, 245, 0.56) 100%)'
-        }} />
-        
-        <div style={{
-          maxWidth: '1400px',
-          margin: '0 auto',
-          padding: '120px 24px 80px',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: '60px',
-          alignItems: 'center',
-          position: 'relative',
-          zIndex: 1
-        }}>
-          {/* Left Content */}
-          <div>
-            <h1 style={{
-              fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-              fontWeight: 700,
-              color: '#1a1a1a',
-              lineHeight: 1.2,
-              marginBottom: '24px'
-            }}>
-              Global Recruitment Services
+      <section className="relative min-h-[70vh] flex items-center overflow-hidden md:px-12">
+
+        {/* Background Image */}
+        {formData?.image && (
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${getImageUrl(formData.image)})` }}
+          />
+        )}
+
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/65" />
+
+        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+          {/* LEFT CONTENT */}
+          <div className="text-white">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-5">
+              Global Recruitment Services – Apply Now!
             </h1>
-            <h2 style={{
-              fontSize: '1.5rem',
-              fontWeight: 600,
-              color: '#c60505',
-              marginBottom: '24px'
-            }}>
+
+            <h2 className="text-xl md:text-2xl font-semibold text-gray-200 mb-5">
               Connecting Skilled Talents from India to Abroad
             </h2>
-            <p style={{
-              fontSize: '1.1rem',
-              color: '#555',
-              lineHeight: 1.8,
-              marginBottom: '32px'
-            }}>
-              {description || "DU Global is a global recruitment agency that specializes in connecting employers worldwide with highly skilled Indian professionals across various sectors."}
+
+            <p className="text-base md:text-lg text-gray-100 leading-relaxed max-w-2xl mb-10">
+              {description ||
+                "DU Global is a global recruitment agency that specializes in connecting employers worldwide with highly skilled Indian professionals across various sectors."}
             </p>
-            
-            <button style={{
-              backgroundColor: '#c60505',
-              color: '#fff',
-              padding: '16px 40px',
-              borderRadius: '8px',
-              border: 'none',
-              fontSize: '1.1rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '10px',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 4px 15px rgba(198, 5, 5, 0.3)'
-            }}
-            onMouseOver={(e) => e.target.style.transform = 'translateY(-2px)'}
-            onMouseOut={(e) => e.target.style.transform = 'translateY(0)'}
-            >
+
+            {/* <button className="inline-flex items-center gap-3 bg-[#c60505] hover:bg-[#a00000] text-white px-10 py-4 rounded-lg font-bold text-lg transition shadow-lg">
               Get Started Now <ArrowRight size={20} />
-            </button>
+            </button> */}
           </div>
-          
-          {/* Right Form - Dark Semi-transparent (matching original) */}
-          <div style={{
-            backgroundColor: 'rgba(0, 0, 0, 0.75)',
-            borderRadius: '20px',
-            padding: '40px',
-            boxShadow: '0 20px 60px rgba(0,0,0,0.3)'
-          }}>
-            <h3 style={{
-              fontSize: '1.5rem',
-              fontWeight: 700,
-              color: '#fff',
-              marginBottom: '24px'
-            }}>
-              Apply for Global Recruitment
+
+          {/* RIGHT FORM CARD */}
+          <div className="bg-white rounded-2xl p-6 md:p-6 shadow-2xl w-full max-w-md ml-auto">
+
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              Global Workforce Recruitment
             </h3>
-            
+
             {submitSuccess && (
-              <div style={{
-                backgroundColor: 'rgba(46, 125, 50, 0.2)',
-                color: '#4caf50',
-                padding: '12px 16px',
-                borderRadius: '8px',
-                marginBottom: '16px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                border: '1px solid rgba(76, 175, 80, 0.3)'
-              }}>
+              <div className="bg-green-50 text-green-700 px-4 py-3 rounded-lg mb-5 flex items-center gap-3 border border-green-200">
                 <CheckCircle size={20} />
                 Thank you! We'll contact you soon.
               </div>
             )}
-            
-            <form onSubmit={handleContactSubmit}>
-              {/* Two Column Grid for Form Fields */}
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(2, 1fr)',
-                gap: '12px',
-                marginBottom: '12px'
-              }}>
-                <input
-                  type="text"
-                  placeholder="Full Name *"
-                  value={contactForm.name}
-                  onChange={(e) => setContactForm({...contactForm, name: e.target.value})}
-                  required
-                  style={{
-                    width: '100%',
-                    padding: '14px 16px',
-                    backgroundColor: '#fff',
-                    border: '1px solid #dadbdd',
-                    borderRadius: '7px',
-                    fontSize: '0.9rem',
-                    outline: 'none',
-                    transition: 'border-color 0.3s'
-                  }}
-                />
-                <input
-                  type="email"
-                  placeholder="Email Address *"
-                  value={contactForm.email}
-                  onChange={(e) => setContactForm({...contactForm, email: e.target.value})}
-                  required
-                  style={{
-                    width: '100%',
-                    padding: '14px 16px',
-                    backgroundColor: '#fff',
-                    border: '1px solid #dadbdd',
-                    borderRadius: '7px',
-                    fontSize: '0.9rem',
-                    outline: 'none',
-                    transition: 'border-color 0.3s'
-                  }}
-                />
+
+            <form onSubmit={handleContactSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {fields
+                  .filter(f => f.isActive)
+                  .sort((a, b) => a.order - b.order)
+                  .map((field) => (
+                    <div
+                      key={field._id}
+                      className={
+                        field.type === 'select'
+                          ? 'md:col-span-2'
+                          : 'col-span-1'
+                      }
+                    >
+                      {field.type === 'select' ? (
+                        <select
+                          name={field.name}
+                          value={formValues[field.name] || ''}
+                          onChange={handleInputChange}
+                          required={field.required}
+                          className="w-full h-12 px-4 rounded-lg border border-gray-300 focus:border-[#c60505] focus:ring-1 focus:ring-[#c60505] outline-none text-gray-700 text-sm"
+                        >
+                          <option value="">
+                            {field.placeholder || `Select ${field.label}`}
+                          </option>
+                          {field.options?.map(opt => (
+                            <option key={opt._id || opt.value} value={opt.value}>
+                              {opt.label}
+                            </option>
+                          ))}
+                        </select>
+                      ) : (
+                        <input
+                          type={field.type}
+                          name={field.name}
+                          value={formValues[field.name] || ''}
+                          onChange={handleInputChange}
+                          placeholder={field.placeholder || field.label}
+                          required={field.required}
+                          className="w-full h-12 px-4 rounded-lg border border-gray-300 focus:border-[#c60505] focus:ring-1 focus:ring-[#c60505] outline-none text-gray-900 text-sm"
+                        />
+                      )}
+                    </div>
+                  ))}
               </div>
-              
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(2, 1fr)',
-                gap: '12px',
-                marginBottom: '12px'
-              }}>
-                <input
-                  type="tel"
-                  placeholder="Phone Number *"
-                  value={contactForm.phone}
-                  onChange={(e) => setContactForm({...contactForm, phone: e.target.value})}
-                  required
-                  style={{
-                    width: '100%',
-                    padding: '14px 16px',
-                    backgroundColor: '#fff',
-                    border: '1px solid #dadbdd',
-                    borderRadius: '7px',
-                    fontSize: '0.9rem',
-                    outline: 'none',
-                    transition: 'border-color 0.3s'
-                  }}
-                />
-                <select
-                  style={{
-                    width: '100%',
-                    padding: '14px 16px',
-                    backgroundColor: '#fff',
-                    border: '1px solid #dadbdd',
-                    borderRadius: '7px',
-                    fontSize: '0.9rem',
-                    outline: 'none',
-                    color: '#606266'
-                  }}
-                >
-                  <option value="">Select Industry</option>
-                  <option value="oil-gas">Oil, Gas & Energy</option>
-                  <option value="it">IT & Digital</option>
-                  <option value="healthcare">Healthcare</option>
-                  <option value="construction">Construction & Engineering</option>
-                  <option value="manufacturing">Manufacturing</option>
-                  <option value="hospitality">Hospitality & Services</option>
-                </select>
-              </div>
-              
-              <div style={{ marginBottom: '16px' }}>
-                <textarea
-                  placeholder="Your Message"
-                  value={contactForm.message}
-                  onChange={(e) => setContactForm({...contactForm, message: e.target.value})}
-                  rows={3}
-                  style={{
-                    width: '100%',
-                    padding: '14px 16px',
-                    backgroundColor: '#fff',
-                    border: '1px solid #dadbdd',
-                    borderRadius: '7px',
-                    fontSize: '0.9rem',
-                    resize: 'vertical',
-                    outline: 'none'
-                  }}
-                />
-              </div>
-              
-              {/* Agreement Checkbox */}
-              <div style={{ marginBottom: '20px' }}>
-                <label style={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: '12px',
-                  cursor: 'pointer'
-                }}>
-                  <div style={{
-                    width: '20px',
-                    height: '20px',
-                    borderRadius: '50%',
-                    backgroundColor: '#c60505',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                    marginTop: '2px'
-                  }}>
-                    <CheckCircle size={12} color="#fff" />
-                  </div>
-                  <span style={{
-                    color: '#fff',
-                    fontSize: '0.85rem',
-                    lineHeight: 1.5
-                  }}>
-                    I agree to receive communication regarding my application and promotional offers from DU Global
-                  </span>
-                </label>
-              </div>
-              
+
               <button
                 type="submit"
                 disabled={submitting}
-                style={{
-                  backgroundColor: '#c60505',
-                  color: '#fff',
-                  padding: '16px 32px',
-                  borderRadius: '7px',
-                  border: '1px solid #bd2727',
-                  fontSize: '1rem',
-                  fontWeight: 600,
-                  cursor: submitting ? 'not-allowed' : 'pointer',
-                  opacity: submitting ? 0.7 : 1,
-                  transition: 'all 0.3s ease'
-                }}
+                className={`w-full bg-[#c60505] text-white py-4 rounded-lg font-bold text-lg transition ${submitting
+                  ? 'opacity-60 cursor-not-allowed'
+                  : 'hover:bg-[#a00000]'
+                  }`}
               >
                 {submitting ? 'Sending...' : 'Get Started Now'}
               </button>
@@ -431,97 +288,43 @@ const Globalrecruitmentservices = () => {
         </div>
       </section>
 
-      {/* ===== WHY CHOOSE DU GLOBAL SECTION (Dynamic from API) ===== */}
+
+
+      {/* ===== WHY CHOOSE DU GLOBAL SECTION (Dynamic) ===== */}
       {whyChooseSection.length > 0 && (
-        <section style={{
-          backgroundColor: '#fff',
-          padding: '100px 24px'
-        }}>
-          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-              <h2 style={{
-                fontSize: 'clamp(2rem, 4vw, 2.75rem)',
-                fontWeight: 700,
-                color: '#1a1a1a',
-                marginBottom: '16px'
-              }}>
-                Why Choose <span style={{ color: '#c60505' }}>DU Global?</span>
+        <section className="py-20 bg-white relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold text-[#333333] mb-4">
+                Why Choose DU Global?
+                {/* <span className="text-[#c60505]">DU Global?</span> */}
               </h2>
-              <div style={{
-                width: '80px',
-                height: '4px',
-                backgroundColor: '#c60505',
-                margin: '0 auto'
-              }} />
+              {/* <div className="w-20 h-1 bg-[#c60505] mx-auto" /> */}
             </div>
-            
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '30px'
-            }}>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {whyChooseSection.map((item, index) => {
                 const IconComponent = defaultIcons[index % defaultIcons.length];
                 return (
                   <div
                     key={item._id || index}
-                    style={{
-                      backgroundColor: '#fff',
-                      borderRadius: '12px',
-                      padding: '32px',
-                      boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-                      border: '1px solid #f0f0f0',
-                      position: 'relative',
-                      overflow: 'hidden',
-                      transition: 'all 0.3s ease'
-                    }}
-                    onMouseOver={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-5px)';
-                      e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,0,0,0.12)';
-                    }}
-                    onMouseOut={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
-                    }}
+                    className="bg-white rounded-xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-gray-100 relative overflow-hidden group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
                   >
                     {/* Red Triangle Accent */}
-                    <div style={{
-                      position: 'absolute',
-                      top: 0,
-                      right: 0,
-                      width: 0,
-                      height: 0,
-                      borderTop: '50px solid #c60505',
-                      borderLeft: '50px solid transparent'
-                    }} />
-                    
-                    <div style={{
-                      width: '60px',
-                      height: '60px',
-                      borderRadius: '50%',
-                      border: '2px solid #c60505',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginBottom: '20px'
-                    }}>
-                      <IconComponent size={28} color="#c60505" strokeWidth={1.5} />
+                    <div className="absolute top-0 right-0 w-0 h-0 border-t-[50px] border-t-[#c60505] border-l-[50px] border-l-transparent" />
+
+                    <div className="w-16 h-16 rounded-full border-2 border-[#c60505] flex items-center justify-center mb-6 group-hover:bg-[#c60505] group-hover:text-white transition-colors duration-300">
+                      <IconComponent size={30} className="text-[#c60505] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
                     </div>
-                    
-                    <h3 style={{
-                      fontSize: '1.25rem',
-                      fontWeight: 700,
-                      color: '#1a1a1a',
-                      marginBottom: '12px'
-                    }}>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">
                       {item.title}
                     </h3>
-                    
-                    <p style={{
-                      color: '#666',
-                      lineHeight: 1.7,
-                      fontSize: '0.95rem'
-                    }} dangerouslySetInnerHTML={{ __html: item.contentHtml?.replace(/\r\n/g, ' ') }} />
+
+                    <div
+                      className="text-gray-900 leading-relaxed text-sm md:text-base"
+                      dangerouslySetInnerHTML={{ __html: item.contentHtml?.replace(/\r\n/g, ' ') }}
+                    />
                   </div>
                 );
               })}
@@ -530,83 +333,52 @@ const Globalrecruitmentservices = () => {
         </section>
       )}
 
-      {/* ===== OUR SERVICES SECTION (Dynamic from API) ===== */}
+
+      {/* ===== OUR SERVICES SECTION (IMAGE MATCHED UI) ===== */}
       {ourServicesSection.length > 0 && (
-        <section style={{
-          backgroundColor: '#333',
-          padding: '100px 24px'
-        }}>
-          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-              <h2 style={{
-                fontSize: 'clamp(2rem, 4vw, 2.75rem)',
-                fontWeight: 700,
-                color: '#fff',
-                marginBottom: '16px'
-              }}>
+        <section className="py-20 bg-[#3a3a3a]">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            {/* Heading */}
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                 Our Services
               </h2>
-              <div style={{
-                width: '80px',
-                height: '4px',
-                backgroundColor: '#c60505',
-                margin: '0 auto'
-              }} />
             </div>
-            
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '24px'
-            }}>
+
+            {/* Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {ourServicesSection.map((item, index) => {
                 const IconComponent = defaultIcons[index % defaultIcons.length];
+
                 return (
                   <div
                     key={item._id || index}
-                    style={{
-                      backgroundColor: '#444',
-                      borderRadius: '12px',
-                      padding: '28px',
-                      position: 'relative',
-                      overflow: 'hidden',
-                      borderLeft: '4px solid #c60505',
-                      transition: 'all 0.3s ease'
-                    }}
-                    onMouseOver={(e) => {
-                      e.currentTarget.style.backgroundColor = '#4a4a4a';
-                    }}
-                    onMouseOut={(e) => {
-                      e.currentTarget.style.backgroundColor = '#444';
-                    }}
+                    className="relative bg-white rounded-2xl shadow-xl p-6 overflow-hidden"
                   >
-                    <div style={{
-                      width: '50px',
-                      height: '50px',
-                      borderRadius: '50%',
-                      backgroundColor: 'rgba(198, 5, 5, 0.2)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginBottom: '16px'
-                    }}>
-                      <IconComponent size={24} color="#c60505" strokeWidth={1.5} />
+                    {/* Red corner ribbon */}
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-[#c60505] rotate-45 translate-x-12 -translate-y-12" />
+
+                    {/* Icon */}
+                    <div className="mb-6">
+                      <IconComponent
+                        size={34}
+                        className="text-[#c60505]"
+                        strokeWidth={1.5}
+                      />
                     </div>
-                    
-                    <h3 style={{
-                      fontSize: '1.15rem',
-                      fontWeight: 700,
-                      color: '#fff',
-                      marginBottom: '12px'
-                    }}>
+
+                    {/* Title */}
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">
                       {item.title}
                     </h3>
-                    
-                    <p style={{
-                      color: '#bbb',
-                      lineHeight: 1.7,
-                      fontSize: '0.9rem'
-                    }} dangerouslySetInnerHTML={{ __html: item.contentHtml?.replace(/\r\n/g, ' ') }} />
+
+                    {/* Content */}
+                    <div
+                      className="text-gray-900 text-sm md:text-base lg:text-lg leading-relaxed"
+                      dangerouslySetInnerHTML={{
+                        __html: item.contentHtml?.replace(/\r\n/g, " "),
+                      }}
+                    />
                   </div>
                 );
               })}
@@ -615,238 +387,131 @@ const Globalrecruitmentservices = () => {
         </section>
       )}
 
-      {/* ===== INDUSTRIES WE SERVE SECTION (Dynamic Cards from API) ===== */}
+
+
+      {/* ===== INDUSTRIES WE SERVE (SLIDER) ===== */}
       {industriesSection.length > 0 && (
-        <section style={{
-          backgroundColor: '#f8f9fa',
-          padding: '100px 24px'
-        }}>
-          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-              <h2 style={{
-                fontSize: 'clamp(2rem, 4vw, 2.75rem)',
-                fontWeight: 700,
-                color: '#1a1a1a',
-                marginBottom: '16px'
-              }}>
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-6 md:px-12">
+
+            {/* Heading */}
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                 Industries We Serve
               </h2>
-              <div style={{
-                width: '80px',
-                height: '4px',
-                backgroundColor: '#c60505',
-                margin: '0 auto'
-              }} />
             </div>
-            
-            {/* Industry Cards Grid */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-              gap: '24px'
-            }}>
-              {industriesSection.map((industry, index) => {
-                const IconComponent = getIndustryIcon(industry.title);
-                const roles = parseRoles(industry.contentHtml);
-                
-                return (
-                  <div
-                    key={industry._id || index}
-                    style={{
-                      backgroundColor: '#fff',
-                      borderRadius: '16px',
-                      overflow: 'hidden',
-                      boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-                      transition: 'all 0.3s ease',
-                      border: '1px solid #eee'
-                    }}
-                    onMouseOver={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-5px)';
-                      e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,0,0,0.15)';
-                    }}
-                    onMouseOut={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
-                    }}
-                  >
-                    {/* Card Header */}
-                    <div style={{
-                      backgroundColor: '#333',
-                      padding: '24px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '16px'
-                    }}>
-                      <div style={{
-                        width: '50px',
-                        height: '50px',
-                        borderRadius: '50%',
-                        backgroundColor: '#c60505',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0
-                      }}>
-                        <IconComponent size={24} color="#fff" />
+
+            {/* Slider */}
+            <div className="relative">
+              <Swiper
+                modules={[Navigation, Pagination]}
+                spaceBetween={32}
+                slidesPerView={1}
+                navigation={{
+                  nextEl: ".industry-next",
+                  prevEl: ".industry-prev",
+                }}
+                pagination={{
+                  el: ".industry-dots",
+                  clickable: true,
+                }}
+                breakpoints={{
+                  768: { slidesPerView: 2 },
+                  1024: { slidesPerView: 3 },
+                }}
+              >
+                {industriesSection.map((industry, index) => {
+                  const IconComponent = getIndustryIcon(industry.title);
+                  const roles = parseRoles(industry.contentHtml);
+
+                  return (
+                    <SwiperSlide key={industry._id || index}>
+                      <div className="bg-white rounded-2xl shadow-xl p-8 h-full transition hover:shadow-2xl">
+
+                        {/* Icon */}
+                        <div className="mb-6">
+                          <IconComponent size={40} className="text-[#c60505]" />
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="text-xl font-semibold text-[#333333] mb-6">
+                          {industry.title}
+                        </h3>
+
+                        {/* Roles */}
+                        <ul className="space-y-3">
+                          {roles.map((role, i) => (
+                            <li key={i} className="flex items-start gap-3">
+                              <span className="w-5 h-5 flex items-center justify-center bg-[#c60505] text-white text-xs rounded-sm mt-1">
+                                ✓
+                              </span>
+                              <span className="text-[#333333] text-sm leading-relaxed">
+                                {role}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                      <h3 style={{
-                        color: '#fff',
-                        fontSize: '1.25rem',
-                        fontWeight: 700,
-                        margin: 0
-                      }}>
-                        {industry.title}
-                      </h3>
-                    </div>
-                    
-                    {/* Card Body - Roles List */}
-                    <div style={{
-                      padding: '24px'
-                    }}>
-                      <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(2, 1fr)',
-                        gap: '10px'
-                      }}>
-                        {roles.map((role, roleIndex) => (
-                          <div
-                            key={roleIndex}
-                            style={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: '8px',
-                              padding: '6px 0'
-                            }}
-                          >
-                            <div style={{
-                              width: '18px',
-                              height: '18px',
-                              backgroundColor: '#c60505',
-                              borderRadius: '4px',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              flexShrink: 0
-                            }}>
-                              <CheckCheck size={12} color="#fff" />
-                            </div>
-                            <span style={{
-                              color: '#444',
-                              fontSize: '0.9rem'
-                            }}>
-                              {role}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+
+              {/* Navigation Arrows */}
+              <button className="industry-prev absolute left-[-40px] top-1/2 -translate-y-1/2 text-5xl text-black">
+                ‹
+              </button>
+              <button className="industry-next absolute right-[-40px] top-1/2 -translate-y-1/2 text-5xl text-black">
+                ›
+              </button>
             </div>
+
+            {/* Dots */}
+            <div className="industry-dots flex justify-center gap-2 mt-8" />
           </div>
         </section>
       )}
 
-      {/* ===== OUR TRACK RECORD SECTION (Dynamic from API) ===== */}
+      {/* ===== OUR TRACK RECORD SECTION (Dynamic) ===== */}
       {trackRecordSection.length > 0 && (
-        <section style={{
-          backgroundColor: '#fff',
-          padding: '100px 24px'
-        }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
-              gap: '60px',
-              alignItems: 'center'
-            }}>
+        <section className="py-20 bg-black">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               {/* Left Side - Stats */}
               <div>
-                <h2 style={{
-                  fontSize: 'clamp(2rem, 4vw, 2.75rem)',
-                  fontWeight: 700,
-                  color: '#1a1a1a',
-                  marginBottom: '32px'
-                }}>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                   Our Track Record
                 </h2>
-                <div style={{
-                  width: '80px',
-                  height: '4px',
-                  backgroundColor: '#c60505',
-                  marginBottom: '40px'
-                }} />
-                
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+
+                <div className="space-y-1">
                   {parseRoles(trackRecordSection[0]?.contentHtml).map((stat, index) => (
                     <div
                       key={index}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                        gap: '16px',
-                        padding: '16px',
-                        backgroundColor: '#f8f9fa',
-                        borderRadius: '12px',
-                        borderLeft: '4px solid #c60505'
-                      }}
+                      className="flex items-center gap-0"
                     >
-                      <div style={{
-                        width: '40px',
-                        height: '40px',
-                        backgroundColor: '#c60505',
-                        borderRadius: '50%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0
-                      }}>
-                        <CheckCheck size={20} color="#fff" />
+                      <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                        <Check size={20} className="text-white" />
                       </div>
-                      <p style={{
-                        color: '#333',
-                        fontSize: '1rem',
-                        lineHeight: 1.6,
-                        margin: 0
-                      }}>
+                      <p className="text-white text-base leading-relaxed">
                         {stat}
                       </p>
                     </div>
                   ))}
                 </div>
               </div>
-              
+
               {/* Right Side - Image */}
-              <div style={{
-                display: 'flex',
-                justifyContent: 'center'
-              }}>
+              <div className="flex justify-center">
                 {trackRecordSection[0]?.image ? (
-                  <img 
-                    src={getImageUrl(trackRecordSection[0].image)} 
-                    alt="Our Track Record" 
-                    style={{
-                      maxWidth: '100%',
-                      height: 'auto',
-                      borderRadius: '16px',
-                      boxShadow: '0 10px 40px rgba(0,0,0,0.1)'
-                    }}
+                  <img
+                    src={getImageUrl(trackRecordSection[0].image)}
+                    alt="Our Track Record"
+                    className="w-full h-auto rounded-3xl shadow-xl"
                   />
                 ) : (
-                  <div style={{
-                    backgroundColor: '#f8f9fa',
-                    borderRadius: '16px',
-                    padding: '60px',
-                    textAlign: 'center'
-                  }}>
-                    <TrendingUp size={80} color="#c60505" strokeWidth={1} />
-                    <h3 style={{
-                      fontSize: '1.5rem',
-                      fontWeight: 700,
-                      color: '#1a1a1a',
-                      marginTop: '24px'
-                    }}>
+                  <div className="bg-gray-50 rounded-3xl p-16 text-center">
+                    <TrendingUp size={80} className="text-[#c60505] mx-auto mb-6" strokeWidth={1} />
+                    <h3 className="text-2xl font-bold text-gray-900">
                       Proven Results
                     </h3>
                   </div>
@@ -857,68 +522,41 @@ const Globalrecruitmentservices = () => {
         </section>
       )}
 
-      {/* ===== READY TO BUILD YOUR TEAM CTA (Dynamic from API) ===== */}
+
+      {/* ===== READY TO BUILD YOUR TEAM CTA ===== */}
       {readyToBuildSection.length > 0 && (
-        <section style={{
-          backgroundColor: '#1a1a1a',
-          padding: '100px 24px'
-        }}>
-          <div style={{
-            maxWidth: '1200px',
-            margin: '0 auto',
-            display: 'grid',
-            gridTemplateColumns: readyToBuildSection[0]?.image ? 'repeat(2, 1fr)' : '1fr',
-            gap: '60px',
-            alignItems: 'center'
-          }}>
-            <div style={{ textAlign: readyToBuildSection[0]?.image ? 'left' : 'center' }}>
-              <h2 style={{
-                fontSize: 'clamp(2rem, 4vw, 2.75rem)',
-                fontWeight: 700,
-                color: '#fff',
-                marginBottom: '24px'
-              }}>
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+
+            {/* LEFT CONTENT */}
+            <div className="text-left">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
                 {readyToBuildSection[0]?.title || "Ready to Build Your Team?"}
               </h2>
-              <p style={{
-                color: '#aaa',
-                fontSize: '1.1rem',
-                lineHeight: 1.8,
-                marginBottom: '32px'
-              }} dangerouslySetInnerHTML={{ __html: readyToBuildSection[0]?.contentHtml?.replace(/\r\n/g, '<br/>') }} />
-              
-              <button style={{
-                backgroundColor: '#c60505',
-                color: '#fff',
-                padding: '18px 48px',
-                borderRadius: '8px',
-                border: 'none',
-                fontSize: '1.1rem',
-                fontWeight: 600,
-                cursor: 'pointer',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '10px',
-                transition: 'all 0.3s ease'
-              }}>
-                Contact Us Today <ArrowRight size={20} />
-              </button>
+
+              <div
+                className="text-gray-700 text-lg leading-relaxed space-y-3"
+                dangerouslySetInnerHTML={{
+                  __html: readyToBuildSection[0]?.contentHtml
+                    ?.replace(/\r\n\r\n/g, '</p><p>')
+                    ?.replace(/\r\n/g, '<br/>')
+                    ?.replace(/^/, '<p>')
+                    ?.concat('</p>')
+                }}
+              />
+
+              {/* <p className="mt-0 font-semibold text-gray-900 text-lg">
+                Contact us today for a personalized recruitment plan that works for you.
+              </p> */}
             </div>
-            
+
+            {/* RIGHT IMAGE */}
             {readyToBuildSection[0]?.image && (
-              <div style={{
-                display: 'flex',
-                justifyContent: 'center'
-              }}>
-                <img 
-                  src={getImageUrl(readyToBuildSection[0].image)} 
-                  alt="Ready to Build Your Team" 
-                  style={{
-                    maxWidth: '100%',
-                    height: 'auto',
-                    borderRadius: '16px',
-                    boxShadow: '0 10px 40px rgba(0,0,0,0.3)'
-                  }}
+              <div className="flex justify-center lg:justify-end">
+                <img
+                  src={getImageUrl(readyToBuildSection[0].image)}
+                  alt="Ready to Build Your Team"
+                  className="w-full max-w-[520px] rounded-[28px] shadow-xl object-cover"
                 />
               </div>
             )}
@@ -926,292 +564,9 @@ const Globalrecruitmentservices = () => {
         </section>
       )}
 
-      {/* ===== CONNECT WITH EXPERT SECTION ===== */}
-      <section style={{
-        backgroundColor: '#fff',
-        padding: '100px 24px'
-      }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-            <h2 style={{
-              fontSize: 'clamp(2rem, 4vw, 2.75rem)',
-              fontWeight: 700,
-              color: '#1a1a1a',
-              marginBottom: '16px'
-            }}>
-              Connect with us
-            </h2>
-            <div style={{
-              width: '80px',
-              height: '4px',
-              backgroundColor: '#c60505',
-              margin: '0 auto'
-            }} />
-          </div>
-          
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '60px',
-            alignItems: 'center'
-          }}>
-            {/* Expert Card */}
-            <div style={{
-              backgroundColor: '#f8f9fa',
-              borderRadius: '16px',
-              padding: '40px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '24px'
-            }}>
-              <div style={{
-                width: '100px',
-                height: '100px',
-                borderRadius: '50%',
-                backgroundColor: '#ddd',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0
-              }}>
-                <Users size={40} color="#666" />
-              </div>
-              <div>
-                <h3 style={{
-                  fontSize: '1.5rem',
-                  fontWeight: 700,
-                  color: '#1a1a1a',
-                  marginBottom: '4px'
-                }}>
-                  Karan Khurana
-                </h3>
-                <p style={{
-                  color: '#666',
-                  fontSize: '0.95rem',
-                  marginBottom: '16px'
-                }}>
-                  Deputy General Manager - Global Access
-                </p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  <a
-                    href="mailto:karan@dudigitalglobal.com"
-                    style={{
-                      color: '#c60505',
-                      textDecoration: 'none',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      fontSize: '0.95rem'
-                    }}
-                  >
-                    <Mail size={16} />
-                    karan@dudigitalglobal.com
-                  </a>
-                  <a
-                    href="tel:+919910987275"
-                    style={{
-                      color: '#c60505',
-                      textDecoration: 'none',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      fontSize: '0.95rem'
-                    }}
-                  >
-                    <Phone size={16} />
-                    +91-9910987275
-                  </a>
-                </div>
-              </div>
-            </div>
-            
-            {/* Newsletter */}
-            <div>
-              <h3 style={{
-                fontSize: '1.25rem',
-                fontWeight: 700,
-                color: '#1a1a1a',
-                marginBottom: '16px'
-              }}>
-                Subscribe to our newsletter
-              </h3>
-              <p style={{
-                color: '#666',
-                marginBottom: '24px'
-              }}>
-                Stay in touch with the latest updates on global recruitment trends and opportunities.
-              </p>
-              <form style={{
-                display: 'flex',
-                gap: '12px'
-              }}>
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  style={{
-                    flex: 1,
-                    padding: '14px 16px',
-                    border: '1px solid #e0e0e0',
-                    borderRadius: '8px',
-                    fontSize: '1rem',
-                    outline: 'none'
-                  }}
-                />
-                <button
-                  type="submit"
-                  style={{
-                    backgroundColor: '#c60505',
-                    color: '#fff',
-                    padding: '14px 28px',
-                    borderRadius: '8px',
-                    border: 'none',
-                    fontSize: '1rem',
-                    fontWeight: 600,
-                    cursor: 'pointer'
-                  }}
-                >
-                  Subscribe
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* ===== FAQ SECTION ===== */}
-      {faqs && faqs.length > 0 && (
-        <section style={{
-          backgroundColor: '#f8f9fa',
-          padding: '100px 24px'
-        }}>
-          <div style={{
-            maxWidth: '1200px',
-            margin: '0 auto',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '60px',
-            alignItems: 'start'
-          }}>
-            {/* Left Content */}
-            <div>
-              <h2 style={{
-                fontSize: 'clamp(2rem, 4vw, 2.75rem)',
-                fontWeight: 700,
-                color: '#1a1a1a',
-                marginBottom: '24px',
-                lineHeight: 1.2
-              }}>
-                Any questions?<br />We got you.
-              </h2>
-              <p style={{
-                color: '#666',
-                lineHeight: 1.8,
-                marginBottom: '24px'
-              }}>
-                Have questions about our global recruitment services? Browse through our frequently 
-                asked questions or contact us directly for personalized assistance.
-              </p>
-              <a
-                href="#"
-                style={{
-                  color: '#c60505',
-                  fontWeight: 600,
-                  textDecoration: 'none',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px'
-                }}
-              >
-                More FAQs <ArrowRight size={18} />
-              </a>
-            </div>
-            
-            {/* Right FAQ List */}
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column'
-            }}>
-              {faqs.map((faq, index) => (
-                <div
-                  key={faq._id || index}
-                  style={{
-                    borderBottom: '1px solid #e0e0e0',
-                    padding: '24px 0'
-                  }}
-                >
-                  <button
-                    onClick={() => toggleFaq(index)}
-                    style={{
-                      width: '100%',
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      background: 'none',
-                      border: 'none',
-                      cursor: 'pointer',
-                      textAlign: 'left',
-                      padding: 0
-                    }}
-                  >
-                    <span style={{
-                      fontSize: '1.1rem',
-                      fontWeight: 600,
-                      color: '#1a1a1a',
-                      paddingRight: '16px'
-                    }}>
-                      {faq.question}
-                    </span>
-                    <span style={{
-                      color: '#666',
-                      fontSize: '1.5rem',
-                      fontWeight: 300
-                    }}>
-                      {openFaqIndex === index ? '−' : '+'}
-                    </span>
-                  </button>
-                  
-                  {openFaqIndex === index && (
-                    <p style={{
-                      color: '#666',
-                      lineHeight: 1.7,
-                      marginTop: '16px',
-                      fontSize: '0.95rem'
-                    }}>
-                      {faq.answer}
-                    </p>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
-      {/* Responsive Styles */}
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-        
-        @media (max-width: 1024px) {
-          .global-recruitment-page section > div {
-            padding-left: 20px !important;
-            padding-right: 20px !important;
-          }
-          
-          .global-recruitment-page section > div > div[style*="grid-template-columns: repeat(2"] {
-            grid-template-columns: 1fr !important;
-          }
-        }
-        
-        @media (max-width: 768px) {
-          .global-recruitment-page section > div > div[style*="grid-template-columns: repeat(3"] {
-            grid-template-columns: 1fr !important;
-          }
-          
-          .global-recruitment-page section {
-            padding: 60px 16px !important;
-          }
-        }
-      `}</style>
+      <ConnectWithUs data={connectData.connect} />
     </div>
   );
 };

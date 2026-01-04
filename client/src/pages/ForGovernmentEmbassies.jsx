@@ -10,7 +10,7 @@ import NewsHome from '../components/reusable/NewsHome';
 import { Link } from 'react-router-dom';
 import OurStrengths from '../components/reusable/OurStrengths';
 import OurFootprints from '../components/reusable/OurFootprints';
-import ConnectWithUs from '../components/government-embassies/ConnectWithUs';
+import ConnectWithUs from '../components/reusable/ConnectWithUs';
 
 const ForGovernmentEmbassies = () => {
     const dispatch = useDispatch();
