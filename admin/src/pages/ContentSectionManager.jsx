@@ -233,89 +233,110 @@ const ContentSectionManager = () => {
                 }}>
                     <thead>
                         <tr style={{ backgroundColor: '#f8f9fa' }}>
-                            <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6', width: '60px' }}>#</th>
-                            <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6' }}>Form</th>
-                            <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6' }}>Section Key</th>
+                            <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6', width: '50px' }}>#</th>
+                            <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6', width: '120px' }}>Form</th>
+                            <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6', width: '140px' }}>Section Key</th>
                             <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6' }}>Title</th>
                             <th style={{ padding: '1rem', textAlign: 'center', borderBottom: '2px solid #dee2e6', width: '80px' }}>Media</th>
-                            <th style={{ padding: '1rem', textAlign: 'center', borderBottom: '2px solid #dee2e6', width: '80px' }}>Status</th>
-                            <th style={{ padding: '1rem', textAlign: 'center', borderBottom: '2px solid #dee2e6', width: '150px' }}>Actions</th>
+                            <th style={{ padding: '1rem', textAlign: 'center', borderBottom: '2px solid #dee2e6', width: '70px' }}>Status</th>
+                            <th style={{ padding: '1rem', textAlign: 'center', borderBottom: '2px solid #dee2e6', width: '140px' }}>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {sections.map((section, index) => (
                             <tr key={section._id} style={{ borderBottom: '1px solid #dee2e6' }}>
-                                <td style={{ padding: '0.875rem 1rem', color: '#666' }}>{index + 1}</td>
-                                <td style={{ padding: '0.875rem 1rem' }}>
+                                <td style={{ padding: '0.75rem 1rem', color: '#666', verticalAlign: 'middle' }}>{index + 1}</td>
+                                <td style={{ padding: '0.75rem 1rem', verticalAlign: 'middle' }}>
                                     <span style={{ 
                                         backgroundColor: '#e9ecef', 
-                                        padding: '0.25rem 0.5rem', 
+                                        padding: '0.2rem 0.4rem', 
                                         borderRadius: '4px',
-                                        fontSize: '0.85rem'
+                                        fontSize: '0.8rem',
+                                        display: 'inline-block',
+                                        maxWidth: '100px',
+                                        overflow: 'hidden',
+                                        textOverflow: 'ellipsis',
+                                        whiteSpace: 'nowrap'
                                     }}>
                                         {section.formId?.name || 'N/A'}
                                     </span>
                                 </td>
-                                <td style={{ padding: '0.875rem 1rem' }}>
+                                <td style={{ padding: '0.75rem 1rem', verticalAlign: 'middle' }}>
                                     <code style={{ 
                                         backgroundColor: '#f8f9fa', 
-                                        padding: '0.2rem 0.5rem', 
+                                        padding: '0.2rem 0.4rem', 
                                         borderRadius: '4px',
-                                        fontSize: '0.85rem'
+                                        fontSize: '0.8rem',
+                                        display: 'inline-block',
+                                        maxWidth: '120px',
+                                        overflow: 'hidden',
+                                        textOverflow: 'ellipsis',
+                                        whiteSpace: 'nowrap'
                                     }}>
                                         {section.sectionKey}
                                     </code>
                                 </td>
-                                <td style={{ padding: '0.875rem 1rem', fontWeight: '500' }}>
+                                <td style={{ 
+                                    padding: '0.75rem 1rem', 
+                                    fontWeight: '500', 
+                                    verticalAlign: 'middle',
+                                    maxWidth: '200px',
+                                    overflow: 'hidden',
+                                    textOverflow: 'ellipsis',
+                                    whiteSpace: 'nowrap'
+                                }}>
                                     {section.title}
                                     {section.badge?.text && (
                                         <span style={{
                                             marginLeft: '0.5rem',
                                             backgroundColor: section.badge.background || '#007bff',
                                             color: 'white',
-                                            padding: '0.15rem 0.4rem',
+                                            padding: '0.1rem 0.3rem',
                                             borderRadius: '3px',
-                                            fontSize: '0.7rem',
+                                            fontSize: '0.65rem',
                                             fontWeight: 'bold'
                                         }}>
                                             {section.badge.text}
                                         </span>
                                     )}
                                 </td>
-                                <td style={{ padding: '0.875rem 1rem', textAlign: 'center' }}>
-                                    <div style={{ display: 'flex', gap: '0.25rem', justifyContent: 'center' }}>
+                                <td style={{ padding: '0.75rem 1rem', textAlign: 'center', verticalAlign: 'middle' }}>
+                                    <div style={{ display: 'flex', gap: '0.15rem', justifyContent: 'center' }}>
                                         {section.images && section.images.length > 0 && (
-                                            <span title={`${section.images.length} image(s)`} style={{ fontSize: '1rem' }}>🖼️</span>
+                                            <span title={`${section.images.length} image(s)`} style={{ fontSize: '0.9rem' }}>🖼️</span>
                                         )}
                                         {section.youtubeUrl && (
-                                            <span title="Has YouTube video" style={{ fontSize: '1rem' }}>▶️</span>
+                                            <span title="Has YouTube video" style={{ fontSize: '0.9rem' }}>▶️</span>
                                         )}
-                                        {(!section.images || section.images.length === 0) && !section.youtubeUrl && (
-                                            <span style={{ color: '#999', fontSize: '0.8rem' }}>-</span>
+                                        {section.tableData?.headers?.length > 0 && (
+                                            <span title="Has table data" style={{ fontSize: '0.9rem' }}>📊</span>
+                                        )}
+                                        {(!section.images || section.images.length === 0) && !section.youtubeUrl && !section.tableData?.headers?.length && (
+                                            <span style={{ color: '#999', fontSize: '0.75rem' }}>-</span>
                                         )}
                                     </div>
                                 </td>
-                                <td style={{ padding: '0.875rem 1rem', textAlign: 'center' }}>
+                                <td style={{ padding: '0.75rem 1rem', textAlign: 'center', verticalAlign: 'middle' }}>
                                     <span style={{ 
                                         backgroundColor: section.isActive ? '#d4edda' : '#f8d7da',
                                         color: section.isActive ? '#155724' : '#721c24',
-                                        padding: '0.25rem 0.5rem', 
-                                        borderRadius: '12px',
-                                        fontSize: '0.8rem'
+                                        padding: '0.2rem 0.4rem', 
+                                        borderRadius: '10px',
+                                        fontSize: '0.75rem'
                                     }}>
                                         {section.isActive ? 'Active' : 'Inactive'}
                                     </span>
                                 </td>
-                                <td style={{ padding: '0.875rem 1rem', textAlign: 'center' }}>
+                                <td style={{ padding: '0.75rem 1rem', textAlign: 'center', verticalAlign: 'middle' }}>
                                     <button
                                         onClick={() => navigate(`/content-sections/edit/${section._id}`)}
-                                        style={{ ...buttonStyle, backgroundColor: '#ffc107', color: '#000', padding: '0.35rem 0.75rem' }}
+                                        style={{ ...buttonStyle, backgroundColor: '#ffc107', color: '#000', padding: '0.3rem 0.6rem', fontSize: '0.8rem' }}
                                     >
                                         Edit
                                     </button>
                                     <button
                                         onClick={() => handleDelete(section._id)}
-                                        style={{ ...buttonStyle, backgroundColor: '#dc3545', color: 'white', padding: '0.35rem 0.75rem', marginRight: 0 }}
+                                        style={{ ...buttonStyle, backgroundColor: '#dc3545', color: 'white', padding: '0.3rem 0.6rem', fontSize: '0.8rem', marginRight: 0 }}
                                     >
                                         Delete
                                     </button>
