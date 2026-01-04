@@ -124,6 +124,45 @@ const Digitalarrivalcards = () => {
         </div>
       </section>
 
+  {/* ===== TRAVEL READY SECTION - Fixed Background Parallax ===== */}
+      <section 
+        className="relative py-24 bg-fixed bg-cover bg-center m-[100px] rounded-[30px] overflow-hidden"
+        style={{ 
+          backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
+          backgroundAttachment: 'fixed'
+        }}
+      >
+        {/* Dark overlay with red geometric lines decoration */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(135deg, rgba(15,15,30,0.95) 0%, rgba(30,15,20,0.95) 100%)'
+          }}
+        />
+        
+        {/* Red geometric line decoration on right */}
+        <div 
+          className="absolute right-0 top-0 w-1/2 h-full opacity-30 pointer-events-none"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cpath d='M400 0 L800 300 L400 600 M500 100 L800 350 L500 500' fill='none' stroke='%23C00C02' stroke-width='1'/%3E%3Ccircle cx='600' cy='200' r='2' fill='%23C00C02'/%3E%3Ccircle cx='700' cy='400' r='2' fill='%23C00C02'/%3E%3Ccircle cx='500' cy='350' r='1.5' fill='%23C00C02'/%3E%3C/svg%3E")`,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'right center',
+            backgroundSize: 'cover'
+          }}
+        />
+        
+        {/* Content */}
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 italic">
+            Travel Ready with DU Global
+          </h2>
+          <p className="text-gray-300 text-lg md:text-xl leading-relaxed">
+            Apply your Digital Arrival Card today and fly worry-free to{' '}
+            <span className="text-white font-medium">Thailand, Malaysia, Indonesia, Singapore, South Korea, or Taiwan</span>
+          </p>
+        </div>
+      </section>
+
       {/* ===== MULTI-STEP FORM SECTION ===== */}
       <section id="apply-form" className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-6">
@@ -230,38 +269,7 @@ const Digitalarrivalcards = () => {
         </div>
       </section>
 
-      {/* ===== TRAVEL READY SECTION ===== */}
-      {travelReadySection.length > 0 && (
-        <section className="py-20 relative overflow-hidden" style={{ backgroundColor: '#C00C02' }}>
-          {/* Large watermark text */}
-          <div className="absolute top-1/2 left-0 transform -translate-y-1/2 text-white/10 text-[80px] md:text-[120px] font-bold whitespace-nowrap pointer-events-none">
-            TRAVEL READY
-          </div>
-          
-          <div className="relative z-10 max-w-7xl mx-auto px-6">
-            {travelReadySection.map((item, index) => (
-              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
-                <div className="flex justify-center">
-                  <img 
-                    src={item.image ? getImageUrl(item.image) : STATIC_IMAGES.travelReady} 
-                    alt={item.title} 
-                    className="max-w-full h-auto rounded-2xl shadow-2xl"
-                    style={{ maxHeight: '400px' }}
-                  />
-                </div>
-                <div className="text-white">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                    {item.title}
-                  </h2>
-                  <p className="text-white/90 text-lg leading-relaxed">
-                    {item.contentHtml?.replace(/\r?\n/g, ' ').trim()}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+    
 
       {/* ===== DOCUMENTS REQUIRED SECTION ===== */}
       {documents.length > 0 && (
@@ -306,9 +314,7 @@ const Digitalarrivalcards = () => {
       {whyChooseSection.length > 0 && (
         <section className="py-20 relative overflow-hidden" style={{ backgroundColor: '#C00C02' }}>
           {/* Large watermark text */}
-          <div className="absolute top-1/2 right-0 transform -translate-y-1/2 text-white/10 text-[80px] md:text-[120px] font-bold whitespace-nowrap pointer-events-none">
-            WHY CHOOSE
-          </div>
+        
           
           <div className="relative z-10 max-w-7xl mx-auto px-6">
             {whyChooseSection.map((item, index) => (
