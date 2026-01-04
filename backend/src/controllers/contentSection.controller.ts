@@ -56,17 +56,14 @@ export const createContentSection = async (req: Request, res: Response) => {
 
         // Handle multiple image uploads (up to 4)
         let imageUrls: string[] = [];
-        console.log('CREATE - req.files:', req.files);
-        console.log('CREATE - req.files is array:', Array.isArray(req.files));
 
         if (req.files && Array.isArray(req.files)) {
             // Accept both 'image' and 'images' fieldnames
             const uploadedFiles = (req.files as Express.Multer.File[]).filter(f => f.fieldname === 'images' || f.fieldname === 'image');
-            console.log('CREATE - Uploaded files with fieldname "images":', uploadedFiles.length);
+            // console.log('CREATE - Uploaded files with fieldname "images":', uploadedFiles.length);
             imageUrls = uploadedFiles.map(
                 (file) => `/api/uploads/${file.filename}`
             );
-            console.log('CREATE - Image URLs:', imageUrls);
         }
         // Also support existing image URLs passed in body
         if (req.body.existingImages) {
@@ -76,7 +73,6 @@ export const createContentSection = async (req: Request, res: Response) => {
             imageUrls = [...imageUrls, ...existingImages];
         }
 
-        console.log('CREATE - Final imageUrls:', imageUrls);
 
         // Get max order for this form
         const maxOrder = await ContentSection.findOne({ formId })
@@ -96,7 +92,6 @@ export const createContentSection = async (req: Request, res: Response) => {
             isActive: isActive !== undefined ? isActive : true
         });
 
-        console.log('CREATE - New section images field:', newSection.images);
 
         const savedSection = await newSection.save();
         const populated = await savedSection.populate('formId', 'name slug');
@@ -134,12 +129,9 @@ export const updateContentSection = async (req: Request, res: Response) => {
                 : [updateData.existingImages];
             imageUrls = [...existing];
             delete updateData.existingImages;
-            console.log('UPDATE - Existing images:', existing);
         }
 
         // Add newly uploaded images
-        console.log('UPDATE - req.files:', req.files);
-        console.log('UPDATE - req.files type:', typeof req.files);
         if (req.files) {
             if (Array.isArray(req.files)) {
                 console.log('UPDATE - All files:', req.files.map((f: any) => ({ fieldname: f.fieldname, filename: f.filename })));

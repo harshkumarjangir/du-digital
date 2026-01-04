@@ -122,11 +122,17 @@ export const createForm = async (req: Request, res: Response) => {
         });
 
         const savedForm = await newForm.save();
+        let parsedFields = fields;
+        if (typeof fields === 'string') {
+            try {
+                parsedFields = JSON.parse(fields);
+            } catch (e) {
+                parsedFields = [];
+            }
+        }
 
-
-        // Create fields if provided
-        if (fields && Array.isArray(fields) && fields.length > 0) {
-            const formFields = fields.map((field: any, index: number) => ({
+        if (parsedFields && Array.isArray(parsedFields) && parsedFields.length > 0) {
+            const formFields = parsedFields.map((field: any, index: number) => ({
                 formId: savedForm._id,
                 label: field.label,
                 name: field.name,

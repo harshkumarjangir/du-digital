@@ -37,6 +37,7 @@ import Southkoreavisaforindians from './pages/Southkoreavisaforindians'
 import Malaysiavisaforndians from './pages/Malaysiavisaforndians'
 import Moroccovisa from './pages/Moroccovisa'
 import Serbiaworkpermitvisa from './pages/Serbiaworkpermitvisa'
+import Australiatouristvisa from './pages/Australiatouristvisa'
 
 const App = () => {
         return (
@@ -70,6 +71,7 @@ const App = () => {
                                 <Route path="/south-korea-visa-for-indians" element={<Southkoreavisaforindians />} />
                                 <Route path="/morocco-visa" element={<Moroccovisa />} />
                                 <Route path="/serbia-work-permit-visa" element={<Serbiaworkpermitvisa />} />
+                                <Route path="/australia-tourist-visa" element={<Australiatouristvisa />} />
                                 <Route path="/malaysia-visa-for-indians" element={<Malaysiavisaforndians />} />
                                 <Route path="/company-setup-in-the-uae" element={<Companysetup />} />
                                 <Route path="/tnh-magazine" element={<Magazine />} />
