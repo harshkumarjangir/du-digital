@@ -27,6 +27,15 @@ import OurCapabilities from './pages/OurCapabilities'
 import Magazine from './pages/Magazine'
 import CookiePolicy from './pages/CookiePolicy'
 import FloatingChatCTA from './components/common/FloatingChatCTA'
+import Duverify from './pages/Duverify'
+import Companysetup from './pages/Companysetup'
+import GreeceWorkVisa from './pages/Greeceworkvisa'
+import Digitalarrivalcards from './pages/Digitalarrivalcards'
+import Dubai5yeartouristvisa from './pages/Dubai5yeartouristvisa'
+import Southkoreavisaforindians from './pages/Southkoreavisaforindians'
+import Malaysiavisaforndians from './pages/Malaysiavisaforndians'
+import Moroccovisa from './pages/Moroccovisa'
+import Serbiaworkpermitvisa from './pages/Serbiaworkpermitvisa'
 
 const App = () => {
         return (
@@ -51,8 +60,16 @@ const App = () => {
                                 <Route path="/blog/:id" element={<SingleBlog />} />
                                 <Route path="/swifttravels" element={<Swifttravels />} />
                                 <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-                                {/* <Route path="/edata" element={<Edata />} /> */}
+                                <Route path="/duverify" element={<Duverify />} />
                                 <Route path="/our-capabilities" element={<OurCapabilities />} />
+                                <Route path="/greece-work-visa" element={<GreeceWorkVisa />} />
+                                <Route path="/digital-arrival-cards" element={<Digitalarrivalcards />} />
+                                <Route path="/dubai-5year-tourist-visa" element={<Dubai5yeartouristvisa />} />
+                                <Route path="/south-korea-visa-for-indians" element={<Southkoreavisaforindians />} />
+                                <Route path="/morocco-visa" element={<Moroccovisa />} />
+                                <Route path="/serbia-work-permit-visa" element={<Serbiaworkpermitvisa />} />
+                                <Route path="/malaysia-visa-for-indians" element={<Malaysiavisaforndians />} />
+                                <Route path="/company-setup-in-the-uae" element={<Companysetup />} />
                                 <Route path="/tnh-magazine" element={<Magazine />} />
                                 <Route path="/cookie-policy" element={<CookiePolicy />} />
                                 <Route path="*" element={<NotFound />} />
