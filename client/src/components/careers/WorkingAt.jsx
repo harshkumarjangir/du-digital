@@ -4,7 +4,7 @@ const WorkingAt = ({ data }) => (
          */}
         <div className="absolute inset-0 bg-cover bg-center">
             <div className="bg-red-900/40"></div>
-            <img src={data.background} alt="" className="w-full h-full object-cover" />
+            <img src={data.background} alt="" className="w-full h-full object-fill" />
         </div>
         <div className="max-w-6xl mx-auto relative z-10">
             <h2 className="text-2xl md:text-3xl font-semibold text-red-600 text-center mb-4">

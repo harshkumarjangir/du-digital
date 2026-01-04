@@ -7,7 +7,7 @@ const GovernmentEmbHero = ({ data }) => (
         <div className="relative z-10 max-w-4xl mr-auto px-8 md:px-20 text-white">
             <h1 className="text-4xl md:text-5xl font-bold">{data.title}</h1>
             <p className="mt-4 max-w-xl">{data.subtitle}</p>
-            <a href={data.button.link} className="mt-8 inline-flex items-center px-6 py-2.5 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors duration-300 cursor-pointer">
+            <a href={data.button.link} className="mt-8 inline-flex items-center px-6 py-2.5 text-white bg-[#FF1033] hover:bg-[#511313] rounded-full transition-colors duration-300 cursor-pointer">
                 {data.button.text}
             </a>
         </div>

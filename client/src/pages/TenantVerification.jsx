@@ -243,10 +243,14 @@ const TenantVerification = () => {
                     {/* Icon */}
                     <div className="mb-8 flex justify-center">
                       {isApiData && benefit.image ? (
-                        <img
-                          src={getImageUrl(benefit.image)}
-                          alt={benefit.title}
-                          className="w-14 h-14 object-contain"
+                        // <img
+                        //   src={getImageUrl(benefit.image)}
+                        //   alt={benefit.title}
+                        //   className="w-14 h-14 object-contain"
+                        // />
+                        <IconComponent
+                          className="w-14 h-14 text-[#C81E1E]"
+                          strokeWidth={1.5}
                         />
                       ) : (
                         <IconComponent
