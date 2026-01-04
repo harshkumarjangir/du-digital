@@ -199,49 +199,57 @@ export const updateForm = async (req: Request, res: Response) => {
             try {
                 parsedFields = JSON.parse(fields);
             } catch (e) {
-                parsedFields = [];
+                parsedFields = undefined; // Keep undefined to skip field processing if parse fails
             }
         }
 
-        if (parsedFields && Array.isArray(parsedFields) && parsedFields.length > 0) {
+        // Only process fields if parsedFields is a valid array (including empty array)
+        if (parsedFields !== undefined && Array.isArray(parsedFields)) {
             // Get existing field IDs
-            console.log("reach here");
-
             const existingFields = await FormField.find({ formId: id });
             const existingFieldIds = existingFields.map(f => f._id.toString());
 
-            // Track which fields are in the update
-            const updatedFieldIds: string[] = [];
-
-            for (let i = 0; i < parsedFields.length; i++) {
-                const field = parsedFields[i];
-                const fieldData = {
-                    formId: id,
-                    label: field.label,
-                    name: field.name,
-                    type: field.type,
-                    placeholder: field.placeholder,
-                    options: field.options || [],
-                    required: field.required || false,
-                    order: field.order !== undefined ? field.order : i,
-                    isActive: field.isActive !== undefined ? field.isActive : true
-                };
-
-                if (field._id) {
-                    // Update existing field
-                    await FormField.findByIdAndUpdate(field._id, fieldData);
-                    updatedFieldIds.push(field._id);
-                } else {
-                    // Create new field
-                    const newField = await FormField.create(fieldData);
-                    updatedFieldIds.push(newField._id.toString());
+            // If parsedFields is empty, delete all existing fields
+            if (parsedFields.length === 0) {
+                if (existingFieldIds.length > 0) {
+                    await FormField.deleteMany({ formId: id });
+                    console.log("Deleted all fields for form:", id);
                 }
-            }
+            } else {
+                // Track which fields are in the update
+                const updatedFieldIds: string[] = [];
 
-            // Delete fields that are no longer in the update
-            const fieldsToDelete = existingFieldIds.filter(id => !updatedFieldIds.includes(id));
-            if (fieldsToDelete.length > 0) {
-                await FormField.deleteMany({ _id: { $in: fieldsToDelete } });
+                for (let i = 0; i < parsedFields.length; i++) {
+                    const field = parsedFields[i];
+                    const fieldData = {
+                        formId: id,
+                        label: field.label,
+                        name: field.name,
+                        type: field.type,
+                        placeholder: field.placeholder,
+                        options: field.options || [],
+                        required: field.required || false,
+                        order: field.order !== undefined ? field.order : i,
+                        isActive: field.isActive !== undefined ? field.isActive : true
+                    };
+
+                    if (field._id) {
+                        // Update existing field
+                        await FormField.findByIdAndUpdate(field._id, fieldData);
+                        updatedFieldIds.push(field._id);
+                    } else {
+                        // Create new field
+                        const newField = await FormField.create(fieldData);
+                        updatedFieldIds.push(newField._id.toString());
+                    }
+                }
+
+                // Delete fields that are no longer in the update
+                const fieldsToDelete = existingFieldIds.filter(fieldId => !updatedFieldIds.includes(fieldId));
+                if (fieldsToDelete.length > 0) {
+                    await FormField.deleteMany({ _id: { $in: fieldsToDelete } });
+                    console.log("Deleted fields:", fieldsToDelete);
+                }
             }
         }
 
