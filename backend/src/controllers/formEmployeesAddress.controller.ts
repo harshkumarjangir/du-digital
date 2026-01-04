@@ -75,7 +75,7 @@ export const getFormEmployeesAddressesBySlug = async (req: Request, res: Respons
 // Create a new form employees address
 export const createFormEmployeesAddress = async (req: Request, res: Response) => {
     try {
-        const { FormSlug, Location, email, phone, Address, color } = req.body;
+        const { FormSlug, Location, email, phone, officeName, Open, Close, Address, color } = req.body;
 
         if (!FormSlug || !Location || !email || !Address || !color) {
             return res.status(400).json({
@@ -94,6 +94,9 @@ export const createFormEmployeesAddress = async (req: Request, res: Response) =>
             Location,
             email,
             phone,
+            officeName: officeName || 'Main Office',
+            Open: Open || 'Monday',
+            Close: Close || 'Friday',
             Address,
             color
         });

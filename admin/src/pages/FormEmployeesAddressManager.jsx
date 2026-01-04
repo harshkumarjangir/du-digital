@@ -10,6 +10,9 @@ const FormEmployeesAddressManager = () => {
         Location: '',
         email: '',
         phone: '',
+        officeName: 'Main Office',
+        Open: 'Monday',
+        Close: 'Friday',
         Address: '',
         color: '#007bff'
     });
@@ -92,6 +95,9 @@ const FormEmployeesAddressManager = () => {
             Location: item.Location,
             email: item.email,
             phone: item.phone || '',
+            officeName: item.officeName || 'Main Office',
+            Open: item.Open || 'Monday',
+            Close: item.Close || 'Friday',
             Address: item.Address,
             color: item.color || '#007bff'
         });
@@ -105,6 +111,9 @@ const FormEmployeesAddressManager = () => {
             Location: '',
             email: '',
             phone: '',
+            officeName: 'Main Office',
+            Open: 'Monday',
+            Close: 'Friday',
             Address: '',
             color: '#007bff'
         });
@@ -232,6 +241,14 @@ const FormEmployeesAddressManager = () => {
                             </div>
 
                             <div style={{ marginBottom: '0.5rem' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+                                    <span style={{ fontSize: '0.85rem', color: '#666' }}>🏢</span>
+                                    <span style={{ fontSize: '0.9rem', color: '#333', fontWeight: '500' }}>{item.officeName || 'Main Office'}</span>
+                                </div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+                                    <span style={{ fontSize: '0.85rem', color: '#666' }}>🕐</span>
+                                    <span style={{ fontSize: '0.85rem', color: '#555' }}>{item.Open || 'Monday'} - {item.Close || 'Friday'}</span>
+                                </div>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
                                     <span style={{ fontSize: '0.85rem', color: '#666' }}>📧</span>
                                     <span style={{ fontSize: '0.9rem', color: '#333' }}>{item.email}</span>
@@ -361,6 +378,40 @@ const FormEmployeesAddressManager = () => {
                                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                                         style={inputStyle}
                                         placeholder="+91 9876543210"
+                                    />
+                                </div>
+                            </div>
+
+                            <div style={{ marginBottom: '1rem' }}>
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Office Name</label>
+                                <input
+                                    type="text"
+                                    value={formData.officeName}
+                                    onChange={(e) => setFormData({ ...formData, officeName: e.target.value })}
+                                    style={inputStyle}
+                                    placeholder="Main Office"
+                                />
+                            </div>
+
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
+                                <div>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Open (Day)</label>
+                                    <input
+                                        type="text"
+                                        value={formData.Open}
+                                        onChange={(e) => setFormData({ ...formData, Open: e.target.value })}
+                                        style={inputStyle}
+                                        placeholder="Monday"
+                                    />
+                                </div>
+                                <div>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Close (Day)</label>
+                                    <input
+                                        type="text"
+                                        value={formData.Close}
+                                        onChange={(e) => setFormData({ ...formData, Close: e.target.value })}
+                                        style={inputStyle}
+                                        placeholder="Friday"
                                     />
                                 </div>
                             </div>

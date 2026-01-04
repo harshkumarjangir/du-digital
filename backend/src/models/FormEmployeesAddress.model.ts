@@ -21,7 +21,22 @@ const formEmployeesAddressSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-
+    officeName: {
+        type: String,
+        required: true,
+        default: "Main Office",
+        trim: true
+    },
+    Open: {
+        type: String,
+        default: "Monday",
+        trim: true
+    },
+    Close: {
+        type: String,
+        default: "Friday",
+        trim: true
+    },
 
     Address: {
         type: String,
