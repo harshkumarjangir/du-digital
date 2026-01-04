@@ -47,6 +47,7 @@ import documentRoutes from './routes/document.routes';
 import faqRoutes from './routes/faq.routes';
 import contentSectionRoutes from './routes/contentSection.routes';
 import pricingPlanRoutes from './routes/pricingPlan.routes';
+import formImageRoutes from './routes/formImage.routes';
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
@@ -70,6 +71,10 @@ app.use('/api/documents', documentRoutes);
 app.use('/api/faqs', faqRoutes);
 app.use('/api/content-sections', contentSectionRoutes);
 app.use('/api/pricing-plans', pricingPlanRoutes);
+app.use('/api/form-images', formImageRoutes);
+
+import formEmployeesAddressRoutes from './routes/formEmployeesAddress.routes';
+app.use('/api/form-employees-addresses', formEmployeesAddressRoutes);
 
 
 

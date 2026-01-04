@@ -38,6 +38,7 @@ import Malaysiavisaforndians from './pages/Malaysiavisaforndians'
 import Moroccovisa from './pages/Moroccovisa'
 import Serbiaworkpermitvisa from './pages/Serbiaworkpermitvisa'
 import Australiatouristvisa from './pages/Australiatouristvisa'
+import BangladeshVac from './pages/Bangladeshvac'
 
 const App = () => {
         return (
@@ -75,6 +76,7 @@ const App = () => {
                                 <Route path="/malaysia-visa-for-indians" element={<Malaysiavisaforndians />} />
                                 <Route path="/company-setup-in-the-uae" element={<Companysetup />} />
                                 <Route path="/tnh-magazine" element={<Magazine />} />
+                                <Route path="/bangladesh-vac" element={<BangladeshVac />} />
                                 <Route path="/cookie-policy" element={<CookiePolicy />} />
                                 <Route path="*" element={<NotFound />} />
                         </Routes>

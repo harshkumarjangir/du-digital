@@ -22,6 +22,8 @@ import DocumentManager from "./pages/DocumentManager";
 import FAQManager from "./pages/FAQManager";
 import ContentSectionManager from "./pages/ContentSectionManager";
 import PricingPlanManager from "./pages/PricingPlanManager";
+import FormImageManager from "./pages/FormImageManager";
+import FormEmployeesAddressManager from "./pages/FormEmployeesAddressManager";
 import Dashboard from "./pages/Dashboard";
 import "./components/Layout.css";
 import "./App.css";
@@ -105,6 +107,8 @@ function App() {
           <Route path="faqs" element={<FAQManager />} />
           <Route path="content-sections" element={<ContentSectionManager />} />
           <Route path="pricing-plans" element={<PricingPlanManager />} />
+          <Route path="form-images" element={<FormImageManager />} />
+          <Route path="form-employees-addresses" element={<FormEmployeesAddressManager />} />
         </Route>
       </Routes>
     </Router>

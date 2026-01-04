@@ -5,6 +5,8 @@ import DocumentRequirement from "../models/Documents.model";
 import FAQ from "../models/FAQ.model";
 import ContentSection from "../models/ContentSection.model";
 import PricingPlan from "../models/PricingPlan.model";
+import FormImage from "../models/FormImages.model";
+import FormEmployeesAddress from "../models/FormEmployeesAddress.model";
 
 // Get form by slug with all related data
 export const getFormBySlug = async (req: Request, res: Response) => {
@@ -20,12 +22,16 @@ export const getFormBySlug = async (req: Request, res: Response) => {
         const formId = form._id;
 
         // Fetch all related data in parallel
-        const [fields, documents, faqs, contentSections, pricingPlans] = await Promise.all([
+        // Note: FormImage and FormEmployeesAddress use slug (FormSlug/formId field stores slug)
+        // while other models use ObjectId formId
+        const [fields, documents, faqs, contentSections, pricingPlans, formImages, formEmployeesAddresses] = await Promise.all([
             FormField.find({ formId }).sort({ order: 1 }),
             DocumentRequirement.find({ formId, isActive: true }).sort({ order: 1 }),
             FAQ.find({ formId, isActive: true }).sort({ order: 1 }),
             ContentSection.find({ formId, isActive: true }).sort({ order: 1 }),
-            PricingPlan.find({ formId, isActive: true }).sort({ order: 1 })
+            PricingPlan.find({ formId, isActive: true }).sort({ order: 1 }),
+            FormImage.find({ formId: slug, isActive: true }).sort({ createdAt: -1 }),
+            FormEmployeesAddress.find({ FormSlug: slug }).sort({ createdAt: -1 })
         ]);
 
         // Group content sections by sectionKey
@@ -44,7 +50,9 @@ export const getFormBySlug = async (req: Request, res: Response) => {
             documents,
             faqs,
             contentSections: groupedContentSections,
-            pricingPlans
+            pricingPlans,
+            formImages,
+            formEmployeesAddresses
         });
     } catch (error) {
         res.status(500).json({ message: "Error fetching form data", error });
@@ -198,7 +206,7 @@ export const updateForm = async (req: Request, res: Response) => {
         if (parsedFields && Array.isArray(parsedFields) && parsedFields.length > 0) {
             // Get existing field IDs
             console.log("reach here");
-            
+
             const existingFields = await FormField.find({ formId: id });
             const existingFieldIds = existingFields.map(f => f._id.toString());
 

@@ -443,3 +443,73 @@ export const deletePricingPlan = async (id) => {
     const response = await axios.delete(`${API_URL_PRICING_PLANS}/${id}`);
     return response.data;
 };
+
+// --- Form Images ---
+const API_URL_FORM_IMAGES = `${API_BASE_URL}/form-images`;
+
+export const getFormImages = async (formId = '') => {
+    const response = await axios.get(`${API_URL_FORM_IMAGES}${formId ? `?formId=${formId}` : ''}`);
+    return response.data;
+};
+
+export const getFormImageById = async (id) => {
+    const response = await axios.get(`${API_URL_FORM_IMAGES}/${id}`);
+    return response.data;
+};
+
+export const getFormImagesBySlug = async (slug) => {
+    const response = await axios.get(`${API_URL_FORM_IMAGES}/by-slug/${slug}`);
+    return response.data;
+};
+
+export const createFormImage = async (formData) => {
+    const response = await axios.post(API_URL_FORM_IMAGES, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    return response.data;
+};
+
+export const updateFormImage = async (id, formData) => {
+    const response = await axios.put(`${API_URL_FORM_IMAGES}/${id}`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    return response.data;
+};
+
+export const deleteFormImage = async (id) => {
+    const response = await axios.delete(`${API_URL_FORM_IMAGES}/${id}`);
+    return response.data;
+};
+
+// --- Form Employees Addresses ---
+const API_URL_FORM_EMPLOYEES_ADDRESSES = `${API_BASE_URL}/form-employees-addresses`;
+
+export const getFormEmployeesAddresses = async (FormSlug = '') => {
+    const response = await axios.get(`${API_URL_FORM_EMPLOYEES_ADDRESSES}${FormSlug ? `?FormSlug=${FormSlug}` : ''}`);
+    return response.data;
+};
+
+export const getFormEmployeesAddressById = async (id) => {
+    const response = await axios.get(`${API_URL_FORM_EMPLOYEES_ADDRESSES}/${id}`);
+    return response.data;
+};
+
+export const getFormEmployeesAddressesBySlug = async (slug) => {
+    const response = await axios.get(`${API_URL_FORM_EMPLOYEES_ADDRESSES}/by-slug/${slug}`);
+    return response.data;
+};
+
+export const createFormEmployeesAddress = async (data) => {
+    const response = await axios.post(API_URL_FORM_EMPLOYEES_ADDRESSES, data);
+    return response.data;
+};
+
+export const updateFormEmployeesAddress = async (id, data) => {
+    const response = await axios.put(`${API_URL_FORM_EMPLOYEES_ADDRESSES}/${id}`, data);
+    return response.data;
+};
+
+export const deleteFormEmployeesAddress = async (id) => {
+    const response = await axios.delete(`${API_URL_FORM_EMPLOYEES_ADDRESSES}/${id}`);
+    return response.data;
+};

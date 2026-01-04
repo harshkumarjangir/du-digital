@@ -59,6 +59,8 @@ const Layout = () => {
     { name: "FAQs", href: "/faqs", icon: MessageSquare, requiredPermission: "manage_faqs" },
     { name: "Content Sections", href: "/content-sections", icon: FileText, requiredPermission: "manage_content" },
     { name: "Pricing Plans", href: "/pricing-plans", icon: FileText, requiredPermission: "manage_pricing" },
+    { name: "Form Images", href: "/form-images", icon: Images, requiredPermission: "manage_forms" },
+    { name: "Form Employees", href: "/form-employees-addresses", icon: Users, requiredPermission: "manage_forms" },
   ];
 
   const hasAccess = (item) => {
