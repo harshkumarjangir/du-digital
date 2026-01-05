@@ -48,9 +48,9 @@ const Applyforanyvisa = () => {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormValues(prev => ({ 
-      ...prev, 
-      [name]: type === 'checkbox' ? checked : value 
+    setFormValues(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
     }));
   };
 
@@ -59,7 +59,7 @@ const Applyforanyvisa = () => {
     setSubmitLoading(true);
     setSubmitStatus(null);
     setSubmitMessage('');
-    
+
     try {
       const response = await fetch(`${BackendURL}/api/form-submissions/slug/apply-for-any-visa`, {
         method: 'POST',
@@ -67,7 +67,7 @@ const Applyforanyvisa = () => {
         body: JSON.stringify(formValues),
       });
       const res = await response.json();
-      
+
       if (response.ok) {
         setSubmitStatus('success');
         setSubmitMessage('Thank you! Your application has been submitted successfully. Our team will contact you shortly.');
@@ -88,11 +88,11 @@ const Applyforanyvisa = () => {
   if (loading) return <LoadingState message="Loading..." fullScreen />;
   if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
 
-  const { 
-    description, 
-    fields = [], 
-    faqs = [], 
-    documents = [], 
+  const {
+    description,
+    fields = [],
+    faqs = [],
+    documents = [],
     contentSections = {}
   } = formData || {};
 
@@ -112,17 +112,17 @@ const Applyforanyvisa = () => {
 
   return (
     <div className="bg-white font-sans">
-      
+
       {/* ===== HERO SECTION (Text Only) ===== */}
-      <section 
-        className="relative w-full py-32 bg-cover bg-center min-h-[800px] flex items-center"
-        style={{ 
+      <section
+        className="relative w-full py-32 bg-cover bg-center h-[800px] flex items-center"
+        style={{
           backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
         }}
       >
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
-        
+
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="text-white max-w-xl">
             <p className="text-lg mb-2 text-gray-300">Welcome to</p>
@@ -132,7 +132,7 @@ const Applyforanyvisa = () => {
             <p className="text-gray-300 text-lg mb-8">
               Your trusted partner for visa services worldwide
             </p>
-            <a 
+            <a
               href="#apply-form"
               className="inline-block px-8 py-4 rounded-full font-bold text-white text-lg transition-all duration-300 hover:opacity-90"
               style={{ backgroundColor: '#E31E24' }}
@@ -145,30 +145,30 @@ const Applyforanyvisa = () => {
 
       {/* ===== FORM SECTION (Separate with BG Image) ===== */}
       {fields.length > 0 && (
-        <section 
+        <section
           id="apply-form"
           className="relative py-16 bg-cover bg-center"
-          style={{ 
-            backgroundImage: globalExpertsSection[0]?.images?.[0] 
-              ? `url(${getImageUrl(globalExpertsSection[0].images[0])})` 
+          style={{
+            backgroundImage: globalExpertsSection[0]?.images?.[0]
+              ? `url(${getImageUrl(globalExpertsSection[0].images[0])})`
               : 'linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%)'
           }}
         >
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-black/70" />
-          
+
           <div className="relative z-10 max-w-4xl mx-auto px-6">
             <div className="text-center mb-8">
               <p className="text-sm font-semibold mb-2" style={{ color: '#E31E24' }}>VISA APPLICATION</p>
               <h2 className="text-3xl md:text-4xl font-bold text-white">Apply for Any Visa</h2>
             </div>
-            
+
             <form className="bg-white rounded-xl p-8 shadow-2xl" onSubmit={handleSubmit}>
               {(() => {
                 const textFields = fields.filter(f => ['text', 'email', 'number'].includes(f.type));
                 const selectFields = fields.filter(f => f.type === 'select' || f.type === 'dropdown');
                 const checkboxFields = fields.filter(f => f.type === 'checkbox');
-                
+
                 return (
                   <>
                     {/* All text fields in one row */}
@@ -188,7 +188,7 @@ const Applyforanyvisa = () => {
                         ))}
                       </div>
                     )}
-                    
+
                     {/* Select fields - Country & State in one row, others full width */}
                     {selectFields.length > 0 && (
                       <>
@@ -218,7 +218,7 @@ const Applyforanyvisa = () => {
                             </select>
                           ))}
                         </div>
-                        
+
                         {/* Remaining selects (like "I am going to") */}
                         {selectFields.slice(2).map((field, index) => (
                           <select
@@ -246,7 +246,7 @@ const Applyforanyvisa = () => {
                         ))}
                       </>
                     )}
-                    
+
                     {/* Checkbox fields */}
                     {checkboxFields.map((field, index) => (
                       <label key={field._id || `checkbox-${index}`} className="flex items-start gap-3 text-gray-600 cursor-pointer mb-4">
@@ -260,7 +260,7 @@ const Applyforanyvisa = () => {
                         <span className="text-xs leading-relaxed">{field.label}</span>
                       </label>
                     ))}
-                    
+
                     {/* Submit Status Message */}
                     {submitStatus && (
                       <div className={`flex items-center gap-3 p-4 rounded-lg mb-4 ${submitStatus === 'success' ? 'bg-green-100 border border-green-300' : 'bg-red-100 border border-red-300'}`}>
@@ -268,7 +268,7 @@ const Applyforanyvisa = () => {
                         <p className={`text-sm ${submitStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>{submitMessage}</p>
                       </div>
                     )}
-                    
+
                     <button
                       type="submit"
                       disabled={submitLoading}
@@ -299,9 +299,9 @@ const Applyforanyvisa = () => {
                 const videoId = (match && match[2].length === 11) ? match[2] : null;
                 return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
               };
-              
+
               const embedUrl = getYouTubeEmbedUrl(item.youtubeUrl);
-              
+
               return (
                 <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                   <div>
@@ -335,18 +335,18 @@ const Applyforanyvisa = () => {
       )}
 
       {/* ===== WHY DU GLOBAL SECTION ===== */}
-      <section 
+      <section
         className="py-20 relative bg-cover bg-center"
-        style={{ 
+        style={{
           backgroundColor: '#1a1a1a',
-          backgroundImage: whyDuGlobalSection[0]?.images?.[0] 
-            ? `url(${getImageUrl(whyDuGlobalSection[0].images[0])})` 
+          backgroundImage: whyDuGlobalSection[0]?.images?.[0]
+            ? `url(${getImageUrl(whyDuGlobalSection[0].images[0])})`
             : 'none'
         }}
       >
         {/* Dark overlay for background image */}
         <div className="absolute inset-0 bg-black/80" />
-        
+
         <div className="relative z-10 max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Left - Title */}
@@ -361,12 +361,12 @@ const Applyforanyvisa = () => {
                 </p>
               )}
             </div>
-            
+
             {/* Right - Cards Grid */}
             <div className="grid sm:grid-cols-2 gap-6">
               {whyDuGlobalItems.map((item, index) => (
                 <div key={index} className="p-6">
-                  <div 
+                  <div
                     className="w-14 h-14 rounded-full flex items-center justify-center mb-4"
                     style={{ backgroundColor: 'rgba(227,30,36,0.2)' }}
                   >
@@ -385,7 +385,7 @@ const Applyforanyvisa = () => {
       {footprintsSection.length > 0 && (
         <section className="py-20 bg-gray-50 relative overflow-hidden">
           {/* Faint world map background */}
-          <div 
+          <div
             className="absolute inset-0 opacity-5"
             style={{
               backgroundImage: 'url("https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg")',
@@ -393,19 +393,19 @@ const Applyforanyvisa = () => {
               backgroundPosition: 'center'
             }}
           />
-          
+
           <div className="relative z-10 max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Footprints</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             {footprintsSection.map((item, index) => (
               <div key={item._id || index}>
                 <p className="text-gray-600 text-center max-w-3xl mx-auto mb-12">
                   {item.title}
                 </p>
-                
+
                 {/* Stats Grid */}
                 <div className="grid md:grid-cols-3 gap-8 text-center">
                   <div className="p-6">
@@ -415,7 +415,7 @@ const Applyforanyvisa = () => {
                     </div>
                     <p className="text-gray-600 font-medium">Locations</p>
                   </div>
-                  
+
                   <div className="p-6">
                     <div className="flex items-center justify-center gap-2 mb-2">
                       <FileCheck className="w-8 h-8" style={{ color: '#E31E24' }} />
@@ -423,7 +423,7 @@ const Applyforanyvisa = () => {
                     </div>
                     <p className="text-gray-600 font-medium">Applications Processed</p>
                   </div>
-                  
+
                   <div className="p-6">
                     <div className="flex items-center justify-center gap-2 mb-2">
                       <Users className="w-8 h-8" style={{ color: '#E31E24' }} />
@@ -446,13 +446,13 @@ const Applyforanyvisa = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Certifications</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {isoCertificatesSection.map((cert, index) => (
                 <div key={cert._id || index} className="text-center p-6 bg-gray-50 rounded-xl">
                   {cert.images?.[0] && (
-                    <img 
-                      src={getImageUrl(cert.images[0])} 
+                    <img
+                      src={getImageUrl(cert.images[0])}
                       alt={cert.title}
                       className="w-24 h-24 mx-auto mb-4 object-contain"
                     />
@@ -474,7 +474,7 @@ const Applyforanyvisa = () => {
               <h2 className="text-3xl font-bold text-gray-900 mb-3">Documents Required</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             <div className="space-y-6">
               {documents.map((doc, index) => (
                 <div key={doc._id || index} className="bg-white rounded-xl p-6 shadow-sm">
@@ -505,7 +505,7 @@ const Applyforanyvisa = () => {
               <h2 className="text-3xl font-bold text-gray-900 mb-3">Frequently Asked Questions</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             <div className="space-y-4">
               {faqs.map((faq, index) => (
                 <div
@@ -517,11 +517,11 @@ const Applyforanyvisa = () => {
                     className="w-full px-6 py-4 flex items-center justify-between text-left bg-white"
                   >
                     <span className="font-semibold text-gray-900">{faq.question}</span>
-                    <ChevronDown 
+                    <ChevronDown
                       className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`}
                     />
                   </button>
-                  
+
                   {openFaq === index && (
                     <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
                       <p className="text-gray-600 leading-relaxed">{faq.answer}</p>

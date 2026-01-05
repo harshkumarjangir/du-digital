@@ -49,9 +49,9 @@ const BangladeshVac = () => {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormValues(prev => ({ 
-      ...prev, 
-      [name]: type === 'checkbox' ? checked : value 
+    setFormValues(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
     }));
   };
 
@@ -60,7 +60,7 @@ const BangladeshVac = () => {
     setSubmitLoading(true);
     setSubmitStatus(null);
     setSubmitMessage('');
-    
+
     try {
       const response = await fetch(`${BackendURL}/api/form-submissions/slug/bangladesh-vac`, {
         method: 'POST',
@@ -68,7 +68,7 @@ const BangladeshVac = () => {
         body: JSON.stringify(formValues),
       });
       const res = await response.json();
-      
+
       if (response.ok) {
         setSubmitStatus('success');
         setSubmitMessage('Thank you! Your application has been submitted successfully. Our team will contact you shortly.');
@@ -89,12 +89,12 @@ const BangladeshVac = () => {
   if (loading) return <LoadingState message="Loading Bangladesh VAC..." fullScreen />;
   if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
 
-  const { 
-    description, 
-    fields = [], 
-    faqs = [], 
-    documents = [], 
-    contentSections = {}, 
+  const {
+    description,
+    fields = [],
+    faqs = [],
+    documents = [],
+    contentSections = {},
     formImages = [],
     formEmployeesAddresses = []
   } = formData || {};
@@ -105,17 +105,17 @@ const BangladeshVac = () => {
 
   return (
     <div className="bg-white font-sans">
-      
+
       {/* ===== HERO BANNER ===== */}
-      <section 
-        className="relative w-full py-20 bg-cover bg-center min-h-[800px] flex items-center"
-        style={{ 
+      <section
+        className="relative w-full py-20 bg-cover bg-center h-[800px] flex items-center"
+        style={{
           backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
         }}
       >
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/60" />
-        
+
         <div className="relative z-10 max-w-7xl mx-auto px-6 flex items-center justify-center w-full">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center">
             Bangladesh VAC
@@ -146,7 +146,7 @@ const BangladeshVac = () => {
               <h2 className="text-3xl font-bold text-gray-900 mb-3">Apply Now</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             <div className="bg-white rounded-xl p-8 shadow-lg">
               <form className="space-y-4" onSubmit={handleSubmit}>
                 {(() => {
@@ -154,12 +154,12 @@ const BangladeshVac = () => {
                   const dateFields = fields.filter(f => f.type === 'date');
                   const selectFields = fields.filter(f => f.type === 'select' || f.type === 'dropdown');
                   const checkboxFields = fields.filter(f => f.type === 'checkbox');
-                  
+
                   const textFieldPairs = [];
                   for (let i = 0; i < textFields.length; i += 2) {
                     textFieldPairs.push(textFields.slice(i, i + 2));
                   }
-                  
+
                   return (
                     <>
                       {textFieldPairs.map((pair, pairIndex) => (
@@ -178,7 +178,7 @@ const BangladeshVac = () => {
                           ))}
                         </div>
                       ))}
-                      
+
                       {selectFields.length > 0 && (
                         <div className={`grid gap-4 ${selectFields.length >= 2 ? 'md:grid-cols-2' : 'grid-cols-1'}`}>
                           {selectFields.map((field, index) => (
@@ -200,7 +200,7 @@ const BangladeshVac = () => {
                           ))}
                         </div>
                       )}
-                      
+
                       {dateFields.map((field, index) => (
                         <input
                           key={field._id || `date-${index}`}
@@ -212,7 +212,7 @@ const BangladeshVac = () => {
                           required={field.required}
                         />
                       ))}
-                      
+
                       {checkboxFields.map((field, index) => (
                         <label key={field._id || `checkbox-${index}`} className="flex items-start gap-3 text-gray-700 cursor-pointer">
                           <input
@@ -228,7 +228,7 @@ const BangladeshVac = () => {
                     </>
                   );
                 })()}
-                
+
                 {/* Submit Status Message */}
                 {submitStatus && (
                   <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-100' : 'bg-red-100'}`}>
@@ -236,7 +236,7 @@ const BangladeshVac = () => {
                     <p className={`text-sm ${submitStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>{submitMessage}</p>
                   </div>
                 )}
-                
+
                 <button
                   type="submit"
                   disabled={submitLoading}
@@ -271,8 +271,8 @@ const BangladeshVac = () => {
       )}
 
       {/* ===== IMAGE GALLERY SECTION ===== */}
-     
-        {formImages.length > 0 && (
+
+      {formImages.length > 0 && (
         <section className="py-16 bg-white">
           <div className="max-w-6xl mx-auto px-6">
 
@@ -280,33 +280,33 @@ const BangladeshVac = () => {
               <div key={gallery._id || galleryIndex} className="mb-12 last:mb-0">
 
                 {/* Title at top */}
-                  <div 
-                    
-                      className="overflow-hidden w-[60%] mx-auto rounded-lg shadow-md group cursor-pointer"
-                    >
-                      <img 
-                        src={getImageUrl(gallery.images[0])} 
-                        alt={`${gallery.title} -1`}
-                        className="w-full h-[50vh] object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                    </div>
+                <div
+
+                  className="overflow-hidden w-[60%] mx-auto rounded-lg shadow-md group cursor-pointer"
+                >
+                  <img
+                    src={getImageUrl(gallery.images[0])}
+                    alt={`${gallery.title} -1`}
+                    className="w-full h-[50vh] object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
                 <h2 className="text-xl md:text-2xl font-bold text-blue-800 mb-4 text-center">
                   {gallery.title}
                 </h2>
-                
+
                 {/* Red underline */}
                 <div className="w-20 h-1 mx-auto mb-8" style={{ backgroundColor: '#E31E24' }}></div>
-                
+
                 {/* Image Grid - 3 columns with hover effect */}
                 <div className="grid md:grid-cols-3 gap-4">
                   {gallery.images.slice(1)?.map((img, imgIndex) => (
-                    <div 
-                      key={imgIndex} 
+                    <div
+                      key={imgIndex}
                       className="overflow-hidden rounded-lg shadow-md group cursor-pointer"
                     >
-                      <img 
-                        src={getImageUrl(img)} 
-                        alt={`${gallery.title} - ${imgIndex +2}`}
+                      <img
+                        src={getImageUrl(img)}
+                        alt={`${gallery.title} - ${imgIndex + 2}`}
                         className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
                       />
                     </div>
@@ -317,7 +317,7 @@ const BangladeshVac = () => {
           </div>
         </section>
       )}
-    
+
 
       {/* ===== LOCATION CARDS SECTION ===== */}
       {formEmployeesAddresses.length > 0 && (
@@ -327,11 +327,11 @@ const BangladeshVac = () => {
               <h2 className="text-3xl font-bold text-gray-900 mb-3">Our VAC Locations</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {formEmployeesAddresses.map((location, index) => (
-                <div 
-                  key={location._id || index} 
+                <div
+                  key={location._id || index}
                   className="rounded-xl p-6 text-white shadow-lg"
                   style={{ backgroundColor: location.color || '#447d1a' }}
                 >
@@ -339,19 +339,19 @@ const BangladeshVac = () => {
                     <MapPin className="w-6 h-6" />
                     {location.Location}
                   </h3>
-                  
+
                   <div className="space-y-3 text-white/90">
                     <p className="whitespace-pre-line text-sm leading-relaxed">
                       {location.Address}
                     </p>
-                    
+
                     <div className="flex items-center gap-2">
                       <Mail className="w-4 h-4 flex-shrink-0" />
                       <a href={`mailto:${location.email}`} className="hover:underline text-sm">
                         {location.email}
                       </a>
                     </div>
-                    
+
                     <div className="flex items-center gap-2">
                       <Phone className="w-4 h-4 flex-shrink-0" />
                       <a href={`tel:${location.phone}`} className="hover:underline text-sm">
@@ -374,12 +374,12 @@ const BangladeshVac = () => {
               <h2 className="text-3xl font-bold text-gray-900 mb-3">Documents Required</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             <div className="space-y-6">
               {documents.map((doc, index) => (
                 <div key={doc._id || index} className="bg-gray-50 rounded-xl p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <div 
+                    <div
                       className="w-6 h-6 rounded flex items-center justify-center"
                       style={{ backgroundColor: '#E31E24' }}
                     >
@@ -410,7 +410,7 @@ const BangladeshVac = () => {
               <h2 className="text-3xl font-bold text-gray-900 mb-3">Frequently Asked Questions</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             <div className="space-y-4">
               {faqs.map((faq, index) => (
                 <div
@@ -422,11 +422,11 @@ const BangladeshVac = () => {
                     className="w-full px-6 py-4 flex items-center justify-between text-left"
                   >
                     <span className="font-semibold text-gray-900">{faq.question}</span>
-                    <ChevronDown 
+                    <ChevronDown
                       className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`}
                     />
                   </button>
-                  
+
                   {openFaq === index && (
                     <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
                       <p className="text-gray-600 leading-relaxed">{faq.answer}</p>

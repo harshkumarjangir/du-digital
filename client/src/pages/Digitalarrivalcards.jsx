@@ -70,7 +70,7 @@ const Digitalarrivalcards = () => {
     setSubmitLoading(true);
     setSubmitStatus(null);
     setSubmitMessage('');
-    
+
     try {
       const response = await fetch(`${BackendURL}/api/form-submissions/slug/digital-arrival-cards`, {
         method: 'POST',
@@ -78,7 +78,7 @@ const Digitalarrivalcards = () => {
         body: JSON.stringify({ country: selectedCountry, phoneNumber }),
       });
       const res = await response.json();
-      
+
       if (response.ok) {
         setSubmitStatus('success');
         setSubmitMessage('Thank you! Your application has been submitted successfully. Our team will contact you shortly.');
@@ -130,16 +130,16 @@ const Digitalarrivalcards = () => {
 
   return (
     <div className="bg-white font-sans">
-      
+
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full min-h-[800px] overflow-hidden">
+      <section className="relative w-full h-[800px] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${getImageUrl(formData?.image) || STATIC_IMAGES.hero})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/60" />
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 min-h-[800px] flex items-center">
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 h-[800px] flex items-center">
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
               One Platform for All Your Mandatory Digital Arrival Cards
@@ -161,24 +161,24 @@ const Digitalarrivalcards = () => {
         </div>
       </section>
 
-  {/* ===== TRAVEL READY SECTION - Fixed Background Parallax ===== */}
-      <section 
+      {/* ===== TRAVEL READY SECTION - Fixed Background Parallax ===== */}
+      <section
         className="relative py-24 bg-fixed bg-cover bg-center m-[100px] rounded-[30px] overflow-hidden"
-        style={{ 
+        style={{
           backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
           backgroundAttachment: 'fixed'
         }}
       >
         {/* Dark overlay with red geometric lines decoration */}
-        <div 
+        <div
           className="absolute inset-0"
           style={{
             background: 'linear-gradient(135deg, rgba(15,15,30,0.95) 0%, rgba(30,15,20,0.95) 100%)'
           }}
         />
-        
+
         {/* Red geometric line decoration on right */}
-        <div 
+        <div
           className="absolute right-0 top-0 w-1/2 h-full opacity-30 pointer-events-none"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cpath d='M400 0 L800 300 L400 600 M500 100 L800 350 L500 500' fill='none' stroke='%23C00C02' stroke-width='1'/%3E%3Ccircle cx='600' cy='200' r='2' fill='%23C00C02'/%3E%3Ccircle cx='700' cy='400' r='2' fill='%23C00C02'/%3E%3Ccircle cx='500' cy='350' r='1.5' fill='%23C00C02'/%3E%3C/svg%3E")`,
@@ -187,7 +187,7 @@ const Digitalarrivalcards = () => {
             backgroundSize: 'cover'
           }}
         />
-        
+
         {/* Content */}
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 italic">
@@ -203,7 +203,7 @@ const Digitalarrivalcards = () => {
       {/* ===== MULTI-STEP FORM SECTION ===== */}
       <section id="apply-form" className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-6">
-          <div 
+          <div
             className="bg-white rounded-2xl p-8 shadow-lg"
             style={{ border: '3px solid #C00C02' }}
           >
@@ -212,34 +212,32 @@ const Digitalarrivalcards = () => {
               {formSteps.map((step, index) => (
                 <div key={step.number} className="flex items-center flex-1">
                   <div className="flex flex-col items-center">
-                    <div 
-                      className={`w-8 h-8 rounded flex items-center justify-center font-bold text-sm ${
-                        currentStep === step.number 
-                          ? 'text-white' 
-                          : currentStep > step.number 
+                    <div
+                      className={`w-8 h-8 rounded flex items-center justify-center font-bold text-sm ${currentStep === step.number
+                          ? 'text-white'
+                          : currentStep > step.number
                             ? 'text-white'
                             : 'text-gray-600 border-2 border-gray-300'
-                      }`}
-                      style={{ 
-                        backgroundColor: currentStep >= step.number ? '#C00C02' : 'transparent' 
+                        }`}
+                      style={{
+                        backgroundColor: currentStep >= step.number ? '#C00C02' : 'transparent'
                       }}
                     >
                       {step.number}
                     </div>
-                    <span 
-                      className={`text-xs mt-2 text-center whitespace-nowrap ${
-                        currentStep === step.number ? 'font-semibold' : ''
-                      }`}
+                    <span
+                      className={`text-xs mt-2 text-center whitespace-nowrap ${currentStep === step.number ? 'font-semibold' : ''
+                        }`}
                       style={{ color: currentStep === step.number ? '#C00C02' : '#6b7280' }}
                     >
                       {step.label}
                     </span>
                   </div>
                   {index < formSteps.length - 1 && (
-                    <div 
+                    <div
                       className="flex-1 h-0.5 mx-2 mt-[-20px]"
-                      style={{ 
-                        backgroundColor: currentStep > step.number ? '#C00C02' : '#d1d5db' 
+                      style={{
+                        backgroundColor: currentStep > step.number ? '#C00C02' : '#d1d5db'
                       }}
                     />
                   )}
@@ -296,7 +294,7 @@ const Digitalarrivalcards = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Submit Status Message */}
                 {submitStatus && (
                   <div className={`flex items-center gap-3 p-3 rounded mt-6 ${submitStatus === 'success' ? 'bg-green-100' : 'bg-red-100'}`}>
@@ -304,7 +302,7 @@ const Digitalarrivalcards = () => {
                     <p className={`text-sm ${submitStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>{submitMessage}</p>
                   </div>
                 )}
-                
+
                 {/* Navigation Button */}
                 <div className="flex justify-end mt-8">
                   <button
@@ -322,7 +320,7 @@ const Digitalarrivalcards = () => {
         </div>
       </section>
 
-    
+
 
       {/* ===== DOCUMENTS REQUIRED SECTION ===== */}
       {documents.length > 0 && (
@@ -334,7 +332,7 @@ const Digitalarrivalcards = () => {
               </h2>
               <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#C00C02' }}></div>
             </div>
-            
+
             {/* Document Cards */}
             <div className="grid md:grid-cols-3 gap-6">
               {documents.map((doc, index) => {
@@ -346,7 +344,7 @@ const Digitalarrivalcards = () => {
                     style={{ border: '2px solid #C00C02' }}
                   >
                     {/* Large number */}
-                    <div 
+                    <div
                       className="text-5xl font-bold mb-4"
                       style={{ color: '#C00C02' }}
                     >
@@ -367,8 +365,8 @@ const Digitalarrivalcards = () => {
       {whyChooseSection.length > 0 && (
         <section className="py-20 relative overflow-hidden" style={{ backgroundColor: '#C00C02' }}>
           {/* Large watermark text */}
-        
-          
+
+
           <div className="relative z-10 max-w-7xl mx-auto px-6">
             {whyChooseSection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
@@ -379,7 +377,7 @@ const Digitalarrivalcards = () => {
                   <ul className="space-y-4">
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((benefit, idx) => (
                       <li key={idx} className="flex items-start gap-4">
-                        <div 
+                        <div
                           className="w-6 h-6 rounded bg-white flex items-center justify-center flex-shrink-0 mt-0.5"
                         >
                           <Check className="w-4 h-4" style={{ color: '#C00C02' }} strokeWidth={3} />
@@ -390,9 +388,9 @@ const Digitalarrivalcards = () => {
                   </ul>
                 </div>
                 <div className="flex justify-center">
-                  <img 
-                    src={item.image ? getImageUrl(item.image) : STATIC_IMAGES.whyChoose} 
-                    alt={item.title} 
+                  <img
+                    src={item.image ? getImageUrl(item.image) : STATIC_IMAGES.whyChoose}
+                    alt={item.title}
                     className="max-w-full h-auto rounded-2xl shadow-2xl"
                     style={{ maxHeight: '400px' }}
                   />
@@ -404,62 +402,62 @@ const Digitalarrivalcards = () => {
       )}
 
       {/* ===== SUPPORTED COUNTRIES SECTION ===== */}
- 
+
 
       {/* ===== FAQ SECTION ===== */}
       {faqs.length > 0 && (
-       
-          <section className="bg-white py-24">
-            <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
-                {/* LEFT CONTENT */}
-                <div>
-                    <h2 className="text-4xl font-bold leading-tight mb-6">
-                        Any questions? <br />
-                        We got you.
-                    </h2>
+        <section className="bg-white py-24">
+          <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
-                    <p className="text-gray-500 max-w-md mb-6">
-                        Yet bed any for assistance indulgence unpleasing. Not thoughts all
-                        exercise blessing. Indulgence way everything joy alteration
-                        boisterous the attachment.
-                    </p>
+            {/* LEFT CONTENT */}
+            <div>
+              <h2 className="text-4xl font-bold leading-tight mb-6">
+                Any questions? <br />
+                We got you.
+              </h2>
 
-                    <a
-                        href="#"
-                        className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
-                    >
-                        More FAQs →
-                    </a>
-                </div>
+              <p className="text-gray-500 max-w-md mb-6">
+                Yet bed any for assistance indulgence unpleasing. Not thoughts all
+                exercise blessing. Indulgence way everything joy alteration
+                boisterous the attachment.
+              </p>
 
-                {/* RIGHT FAQ LIST */}
-                <div className="divide-y">
+              <a
+                href="#"
+                className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
+              >
+                More FAQs →
+              </a>
+            </div>
+
+            {/* RIGHT FAQ LIST */}
+            <div className="divide-y">
               {faqs.map((faq, index) => (
-            
-                   <div key={index} className="py-6">
-                            <button
-                            
-                                                        onClick={() => setOpenFaq(index)}
 
-                                
-                                className="w-full flex justify-between items-center text-left"
-                            >
-                                <span className="text-lg font-semibold text-gray-900">
-                                    {faq.question}
-                                </span>
+                <div key={index} className="py-6">
+                  <button
 
-                                <span className="text-2xl text-gray-500">
-                                    {openFaq === index ? "−" : "+"}
-                                </span>
-                            </button>
+                    onClick={() => setOpenFaq(index)}
 
-                            {openFaq === index && (
-                                <p className="mt-4 text-gray-500 max-w-xl">
-                                    {faq.answer}
-                                </p>
-                            )}
-                        </div>
+
+                    className="w-full flex justify-between items-center text-left"
+                  >
+                    <span className="text-lg font-semibold text-gray-900">
+                      {faq.question}
+                    </span>
+
+                    <span className="text-2xl text-gray-500">
+                      {openFaq === index ? "−" : "+"}
+                    </span>
+                  </button>
+
+                  {openFaq === index && (
+                    <p className="mt-4 text-gray-500 max-w-xl">
+                      {faq.answer}
+                    </p>
+                  )}
+                </div>
               ))}
             </div>
           </div>

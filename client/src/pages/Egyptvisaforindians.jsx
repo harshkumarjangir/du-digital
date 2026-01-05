@@ -48,20 +48,20 @@ const Egyptvisaforindians = () => {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormValues(prev => ({ 
-      ...prev, 
-      [name]: type === 'checkbox' ? checked : value 
+    setFormValues(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
     }));
   };
 
   if (loading) return <LoadingState message="Loading Egypt Visa..." fullScreen />;
   if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
 
-  const { 
-    description, 
-    fields = [], 
-    faqs = [], 
-    documents = [], 
+  const {
+    description,
+    fields = [],
+    faqs = [],
+    documents = [],
     contentSections = {},
     formImages = []
   } = formData || {};
@@ -81,7 +81,7 @@ const Egyptvisaforindians = () => {
     const lines = contentHtml.split('\n').filter(l => l.trim());
     const details = { single: {}, multiple: {} };
     let currentType = 'single';
-    
+
     lines.forEach(line => {
       if (line.toLowerCase().includes('multiple entry')) currentType = 'multiple';
       if (line.toLowerCase().includes('single entry')) currentType = 'single';
@@ -99,7 +99,7 @@ const Egyptvisaforindians = () => {
     setSubmitLoading(true);
     setSubmitStatus(null);
     setSubmitMessage('');
-    
+
     try {
       const response = await fetch(`${BackendURL}/api/form-submissions/slug/egypt-visa-for-indians`, {
         method: 'POST',
@@ -108,9 +108,9 @@ const Egyptvisaforindians = () => {
         },
         body: JSON.stringify(formValues),
       });
-      
+
       const res = await response.json();
-      
+
       if (response.ok) {
         setSubmitStatus('success');
         setSubmitMessage('Thank you! Your application has been submitted successfully. Our team will contact you shortly.');
@@ -135,18 +135,18 @@ const Egyptvisaforindians = () => {
 
   return (
     <div className="bg-white font-sans">
-      
+
       {/* ===== HERO SECTION ===== */}
-      <section 
-        className="relative w-full min-h-[800px] bg-cover bg-center"
-        style={{ 
+      <section
+        className="relative w-full h-[800px] bg-cover bg-center"
+        style={{
           backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
         }}
       >
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 min-h-[800px] flex items-center">
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[800px] flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -158,19 +158,19 @@ const Egyptvisaforindians = () => {
                 Experience the wonders of Egypt with our hassle-free visa service
               </p>
             </div>
-            
+
             {/* Right - Application Form */}
             {fields.length > 0 && (
-              <div 
+              <div
                 className="rounded-xl p-6 md:p-8"
                 style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)', backdropFilter: 'blur(4px)' }}
               >
-                <form className="space-y-4" onSubmit={(e)=>handleSubmit(e)}>
+                <form className="space-y-4" onSubmit={(e) => handleSubmit(e)}>
                   {(() => {
                     const textFields = fields.filter(f => ['text', 'email', 'number'].includes(f.type));
                     const selectFields = fields.filter(f => f.type === 'select' || f.type === 'dropdown');
                     const checkboxFields = fields.filter(f => f.type === 'checkbox');
-                    
+
                     return (
                       <>
                         {/* Text fields */}
@@ -187,7 +187,7 @@ const Egyptvisaforindians = () => {
                             style={{ height: '45px' }}
                           />
                         ))}
-                        
+
                         {/* Select fields */}
                         {selectFields.map((field, index) => (
                           <select
@@ -214,7 +214,7 @@ const Egyptvisaforindians = () => {
                             ))}
                           </select>
                         ))}
-                        
+
                         {/* Checkboxes */}
                         {checkboxFields.map((field, index) => (
                           <label key={field._id || `checkbox-${index}`} className="flex items-start gap-3 text-white cursor-pointer">
@@ -231,15 +231,14 @@ const Egyptvisaforindians = () => {
                       </>
                     );
                   })()}
-                  
+
                   {/* Submit Status Message */}
                   {submitStatus && (
-                    <div 
-                      className={`flex items-center gap-3 p-4 rounded-lg ${
-                        submitStatus === 'success' 
-                          ? 'bg-green-500/20 border border-green-500/50' 
+                    <div
+                      className={`flex items-center gap-3 p-4 rounded-lg ${submitStatus === 'success'
+                          ? 'bg-green-500/20 border border-green-500/50'
                           : 'bg-red-500/20 border border-red-500/50'
-                      }`}
+                        }`}
                     >
                       {submitStatus === 'success' ? (
                         <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
@@ -251,7 +250,7 @@ const Egyptvisaforindians = () => {
                       </p>
                     </div>
                   )}
-                  
+
                   <button
                     type="submit"
                     disabled={submitLoading}
@@ -291,13 +290,13 @@ const Egyptvisaforindians = () => {
                 </div>
                 {item.images?.[0] && (
                   <div className="relative">
-                    <img 
-                      src={getImageUrl(item.images[0])} 
+                    <img
+                      src={getImageUrl(item.images[0])}
                       alt={item.title}
                       className="rounded-xl shadow-lg w-full"
                     />
                     {item.badge?.text && (
-                      <div 
+                      <div
                         className="absolute -bottom-4 -right-4 px-4 py-2 rounded-lg text-white font-bold shadow-lg"
                         style={{ backgroundColor: item.badge.background || '#E31E24' }}
                       >
@@ -324,7 +323,7 @@ const Egyptvisaforindians = () => {
             </div>
             <div className="flex flex-wrap justify-center gap-4">
               {centersSection[0]?.contentHtml?.split('\n').filter(c => c.trim()).map((city, idx) => (
-                <div 
+                <div
                   key={idx}
                   className="flex items-center gap-2 px-6 py-3 bg-white rounded-full shadow-sm border border-gray-200"
                 >
@@ -366,31 +365,31 @@ const Egyptvisaforindians = () => {
         <section className="py-16 bg-gray-50">
           <div className=" mx-auto px-6">
             {destinationsSection.map((item, index) => (
-             <>
-              <div key={item._id || index} className=" gap-12 items-center">
-                <div className="order-2 lg:order-1">
-                  <h2 className="text-2xl md:text-3xl text-center font-bold text-gray-900 mb-4">
-                    {item.title}
-                  </h2>
-                  <div className="w-20 h-1 mb-6 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
-                 
+              <>
+                <div key={item._id || index} className=" gap-12 items-center">
+                  <div className="order-2 lg:order-1">
+                    <h2 className="text-2xl md:text-3xl text-center font-bold text-gray-900 mb-4">
+                      {item.title}
+                    </h2>
+                    <div className="w-20 h-1 mb-6 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+
+                  </div>
+
                 </div>
-              
-              </div>
                 {item.images?.[0] && (
                   <div className="order-1 lg:order-2">
-                    <img 
-                      src={getImageUrl(item.images[0])} 
+                    <img
+                      src={getImageUrl(item.images[0])}
                       alt={item.title}
                       className="rounded-xl shadow-lg w-full"
                     />
                   </div>
-                  
+
                 )}
-                 <p className="text-gray-600 leading-relaxed whitespace-pre-line">
-                    {item.contentHtml}
-                  </p>
-             </>
+                <p className="text-gray-600 leading-relaxed whitespace-pre-line">
+                  {item.contentHtml}
+                </p>
+              </>
             ))}
           </div>
         </section>
@@ -413,8 +412,8 @@ const Egyptvisaforindians = () => {
                 </div>
                 {item.images?.[0] && (
                   <div>
-                    <img 
-                      src={getImageUrl(item.images[0])} 
+                    <img
+                      src={getImageUrl(item.images[0])}
                       alt={item.title}
                       className="rounded-xl shadow-lg w-full"
                     />
@@ -434,8 +433,8 @@ const Egyptvisaforindians = () => {
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                 {item.images?.[0] && (
                   <div>
-                    <img 
-                      src={getImageUrl(item.images[0])} 
+                    <img
+                      src={getImageUrl(item.images[0])}
                       alt={item.title}
                       className="rounded-xl shadow-lg w-full"
                     />
@@ -466,7 +465,7 @@ const Egyptvisaforindians = () => {
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {visaOverviewSection.map((visa, index) => {
                 const details = parseVisaDetails(visa.contentHtml);
@@ -479,7 +478,7 @@ const Egyptvisaforindians = () => {
                       <p className="text-sm text-gray-500 mb-4">
                         Processing: <span className="font-semibold text-gray-800">{details.processingTime || '7-9 working days'}</span>
                       </p>
-                      
+
                       {/* Single Entry */}
                       <div className="mb-4 pb-4 border-b border-gray-200">
                         <p className="font-bold text-gray-800 mb-2">Single Entry</p>
@@ -498,7 +497,7 @@ const Egyptvisaforindians = () => {
                           </p>
                         </div>
                       </div>
-                      
+
                       {/* Multiple Entry */}
                       <div>
                         <p className="font-bold text-gray-800 mb-2">Multiple Entry</p>
@@ -534,7 +533,7 @@ const Egyptvisaforindians = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Documents Required</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             <div className="space-y-8">
               {documents.map((doc, docIndex) => (
                 <div key={doc._id || docIndex} className="bg-gray-50 rounded-xl p-8">
@@ -562,7 +561,7 @@ const Egyptvisaforindians = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             <div className="space-y-4">
               {faqs.map((faq, index) => (
                 <div
@@ -575,11 +574,11 @@ const Egyptvisaforindians = () => {
                     style={{ backgroundColor: '#E31E24' }}
                   >
                     <span className="font-semibold">{faq.question}</span>
-                    <ChevronDown 
+                    <ChevronDown
                       className={`w-5 h-5 transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`}
                     />
                   </button>
-                  
+
                   {openFaq === index && (
                     <div className="px-6 py-4 bg-white border border-gray-200">
                       <p className="text-gray-600 leading-relaxed">{faq.answer}</p>

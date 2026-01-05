@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import {Shield, Clock, Award, CheckCircle, XCircle, Loader2 } from "lucide-react";
+import { Shield, Clock, Award, CheckCircle, XCircle, Loader2 } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
 
@@ -48,9 +48,9 @@ const Serbiaworkpermitvisa = () => {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormValues(prev => ({ 
-      ...prev, 
-      [name]: type === 'checkbox' ? checked : value 
+    setFormValues(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
     }));
   };
 
@@ -59,7 +59,7 @@ const Serbiaworkpermitvisa = () => {
     setSubmitLoading(true);
     setSubmitStatus(null);
     setSubmitMessage('');
-    
+
     try {
       const response = await fetch(`${BackendURL}/api/form-submissions/slug/serbia-work-permit-visa`, {
         method: 'POST',
@@ -67,7 +67,7 @@ const Serbiaworkpermitvisa = () => {
         body: JSON.stringify(formValues),
       });
       const res = await response.json();
-      
+
       if (response.ok) {
         setSubmitStatus('success');
         setSubmitMessage('Thank you! Your application has been submitted successfully. Our team will contact you shortly.');
@@ -104,23 +104,23 @@ const Serbiaworkpermitvisa = () => {
 
   return (
     <div className="bg-white font-sans">
-      
+
       {/* ===== HERO SECTION ===== */}
-      <section 
-        className="relative w-full min-h-[800px] overflow-hidden bg-cover bg-center"
-        style={{ 
+      <section
+        className="relative w-full h-[800px] overflow-hidden bg-cover bg-center"
+        style={{
           backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
         }}
       >
         {/* Dark overlay */}
-        <div 
+        <div
           className="absolute inset-0"
-          style={{ 
+          style={{
             background: 'linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%)'
           }}
         />
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 min-h-[800px] flex items-center">
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[800px] flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -134,17 +134,17 @@ const Serbiaworkpermitvisa = () => {
                 </p>
               ))}
             </div>
-            
+
             {/* Right - Contact Form with dark transparent bg */}
             {fields.length > 0 && (
-              <div 
+              <div
                 className="rounded-xl p-6"
                 style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}
               >
                 <form className="flex flex-col w-full gap-3" onSubmit={handleSubmit}>
                   {fields.filter(f => f.type !== 'checkbox').map((field, index) => {
                     const fieldType = field.type || field.fieldType;
-                    
+
                     if (fieldType === 'select' || fieldType === 'dropdown') {
                       return (
                         <select
@@ -185,7 +185,7 @@ const Serbiaworkpermitvisa = () => {
                       );
                     }
                   })}
-                  
+
                   {/* Checkbox fields */}
                   {fields.filter(f => f.type === 'checkbox').map((field, index) => (
                     <label key={field._id || index} className="flex items-start gap-3 text-white text-xs cursor-pointer">
@@ -199,7 +199,7 @@ const Serbiaworkpermitvisa = () => {
                       <span className="text-gray-300">{field.label}</span>
                     </label>
                   ))}
-                  
+
                   {/* Submit Status Message */}
                   {submitStatus && (
                     <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
@@ -207,7 +207,7 @@ const Serbiaworkpermitvisa = () => {
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                     </div>
                   )}
-                  
+
                   <button
                     type="submit"
                     disabled={submitLoading}
@@ -240,9 +240,9 @@ const Serbiaworkpermitvisa = () => {
                 </div>
                 <div className="flex justify-center">
                   {item.image && (
-                    <img 
-                      src={getImageUrl(item.image)} 
-                      alt={item.title} 
+                    <img
+                      src={getImageUrl(item.image)}
+                      alt={item.title}
                       className="max-w-full h-auto rounded-2xl shadow-xl"
                       style={{ maxHeight: '400px' }}
                     />
@@ -261,7 +261,7 @@ const Serbiaworkpermitvisa = () => {
             {whoCanApplySection.map((item, index) => {
               // Check if this is a table-like content (has tabs)
               const isTable = item.contentHtml?.includes('\t');
-              
+
               return (
                 <div key={item._id || index} className="mb-16 last:mb-0">
                   <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -270,7 +270,7 @@ const Serbiaworkpermitvisa = () => {
                         {item.title}
                       </h2>
                       <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div>
-                      
+
                       {isTable ? (
                         // Render as table
                         <div className="bg-white rounded-xl shadow-md overflow-hidden">
@@ -305,12 +305,12 @@ const Serbiaworkpermitvisa = () => {
                         </p>
                       )}
                     </div>
-                    
+
                     {item.image && (
                       <div className="flex justify-center">
-                        <img 
-                          src={getImageUrl(item.image)} 
-                          alt={item.title} 
+                        <img
+                          src={getImageUrl(item.image)}
+                          alt={item.title}
                           className="max-w-full h-auto rounded-2xl shadow-xl"
                           style={{ maxHeight: '350px' }}
                         />
@@ -334,13 +334,13 @@ const Serbiaworkpermitvisa = () => {
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             <div className="grid md:grid-cols-3 gap-8">
               {whyChooseSection.map((item, index) => {
                 const IconComponent = whyChooseIcons[index % whyChooseIcons.length];
                 return (
                   <div key={item._id || index} className="text-center">
-                    <div 
+                    <div
                       className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
                       style={{ backgroundColor: '#E31E24' }}
                     >
@@ -379,9 +379,9 @@ const Serbiaworkpermitvisa = () => {
                 </div>
                 <div className="flex justify-center">
                   {item.image && (
-                    <img 
-                      src={getImageUrl(item.image)} 
-                      alt={item.title} 
+                    <img
+                      src={getImageUrl(item.image)}
+                      alt={item.title}
                       className="max-w-full h-auto rounded-2xl shadow-xl"
                       style={{ maxHeight: '400px' }}
                     />

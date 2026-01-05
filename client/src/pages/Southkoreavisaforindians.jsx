@@ -61,7 +61,7 @@ const Southkoreavisaforindians = () => {
     setSubmitLoading(true);
     setSubmitStatus(null);
     setSubmitMessage('');
-    
+
     try {
       const response = await fetch(`${BackendURL}/api/form-submissions/slug/south-korea-visa-for-indians`, {
         method: 'POST',
@@ -69,7 +69,7 @@ const Southkoreavisaforindians = () => {
         body: JSON.stringify(formValues),
       });
       const res = await response.json();
-      
+
       if (response.ok) {
         setSubmitStatus('success');
         setSubmitMessage('Thank you! Your application has been submitted successfully. Our team will contact you shortly.');
@@ -109,30 +109,30 @@ const Southkoreavisaforindians = () => {
 
   return (
     <div className="bg-white font-sans">
-      
+
       {/* ===== HERO SECTION ===== */}
-      <section 
-        className="relative w-full min-h-[800px] overflow-hidden bg-cover bg-center"
-        style={{ 
+      <section
+        className="relative w-full h-[800px] overflow-hidden bg-cover bg-center"
+        style={{
           backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
         }}
       >
         {/* Dark overlay with red glow */}
-        <div 
+        <div
           className="absolute inset-0"
-          style={{ 
+          style={{
             background: 'linear-gradient(135deg, rgba(10,10,10,0.9) 0%, rgba(26,26,26,0.85) 50%, rgba(10,10,10,0.9) 100%)'
           }}
         />
         {/* Red glow effect on right */}
-        <div 
+        <div
           className="absolute right-0 top-0 w-1/2 h-full opacity-30"
           style={{
             background: 'radial-gradient(ellipse at right center, #E31E24 0%, transparent 70%)'
           }}
         />
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 min-h-[800px] flex items-center">
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[800px] flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -143,12 +143,12 @@ const Southkoreavisaforindians = () => {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
                 South Korea Visa For Indians – <span style={{ color: '#E31E24' }}>Apply Now!</span>
               </h1>
-              
+
               {/* Key points */}
               <ul className="space-y-3 mb-8">
                 {descriptionLines.slice(1).map((line, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <div 
+                    <div
                       className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
                       style={{ backgroundColor: '#E31E24' }}
                     >
@@ -159,12 +159,12 @@ const Southkoreavisaforindians = () => {
                 ))}
               </ul>
             </div>
-            
+
             {/* Right - Contact Form */}
             {fields.length > 0 && (
-              <div 
+              <div
                 className="rounded-2xl p-8 shadow-2xl"
-                style={{ 
+                style={{
                   backgroundColor: 'rgba(0,0,0,0.9)',
                   border: '1px solid rgba(255,255,255,0.1)'
                 }}
@@ -185,7 +185,7 @@ const Southkoreavisaforindians = () => {
                       />
                     ))}
                   </div>
-                  
+
                   {/* Submit Status Message */}
                   {submitStatus && (
                     <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
@@ -193,7 +193,7 @@ const Southkoreavisaforindians = () => {
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                     </div>
                   )}
-                  
+
                   <button
                     type="submit"
                     disabled={submitLoading}
@@ -220,17 +220,17 @@ const Southkoreavisaforindians = () => {
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             {visaTypesSection.map((item, index) => (
               <div key={item._id || index} className="bg-white rounded-2xl shadow-lg overflow-hidden max-w-md mx-auto">
                 {/* Red header banner */}
-                <div 
+                <div
                   className="py-4 px-6 text-center"
                   style={{ backgroundColor: '#E31E24' }}
                 >
                   <h3 className="text-xl font-bold text-white">{item.title}</h3>
                 </div>
-                
+
                 {/* Table-style content */}
                 <div className="p-6 space-y-4">
                   <div className="flex justify-between items-center py-2 border-b border-gray-100">
@@ -277,9 +277,9 @@ const Southkoreavisaforindians = () => {
                 </div>
                 <div className="flex justify-center">
                   {item.image && (
-                    <img 
-                      src={getImageUrl(item.image)} 
-                      alt={item.title} 
+                    <img
+                      src={getImageUrl(item.image)}
+                      alt={item.title}
                       className="max-w-full h-auto rounded-2xl shadow-xl"
                       style={{ maxHeight: '400px' }}
                     />
@@ -299,9 +299,9 @@ const Southkoreavisaforindians = () => {
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                 <div className="flex justify-center order-2 lg:order-1">
                   {item.image && (
-                    <img 
-                      src={getImageUrl(item.image)} 
-                      alt={item.title} 
+                    <img
+                      src={getImageUrl(item.image)}
+                      alt={item.title}
                       className="max-w-full h-auto rounded-2xl shadow-xl"
                       style={{ maxHeight: '400px' }}
                     />
@@ -329,7 +329,7 @@ const Southkoreavisaforindians = () => {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-100 text-[100px] font-bold opacity-50 pointer-events-none whitespace-nowrap">
             DOCUMENTS
           </div>
-          
+
           <div className="relative z-10 max-w-4xl mx-auto px-6">
             {documents.map((doc, index) => (
               <div key={doc._id || index}>
@@ -339,12 +339,12 @@ const Southkoreavisaforindians = () => {
                   </h2>
                   <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
                 </div>
-                
+
                 <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
                   <ul className="space-y-4">
                     {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
                       <li key={idx} className="flex items-start gap-4">
-                        <div 
+                        <div
                           className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
                           style={{ backgroundColor: '#E31E24' }}
                         >
@@ -371,16 +371,16 @@ const Southkoreavisaforindians = () => {
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-6">
               {/* For Employed People */}
               {additionalReqSection.map((item, index) => (
-                <div 
+                <div
                   key={item._id || index}
                   className="bg-white rounded-xl p-6 shadow-md relative overflow-hidden border border-gray-100"
                 >
                   {/* Large number */}
-                  <div 
+                  <div
                     className="text-5xl font-bold mb-4"
                     style={{ color: '#E31E24' }}
                   >
@@ -390,7 +390,7 @@ const Southkoreavisaforindians = () => {
                   <ul className="space-y-2">
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((line, idx) => (
                       <li key={idx} className="flex items-start gap-2 text-gray-600 text-sm">
-                        <div 
+                        <div
                           className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
                           style={{ backgroundColor: '#E31E24' }}
                         >
@@ -401,7 +401,7 @@ const Southkoreavisaforindians = () => {
                     ))}
                   </ul>
                   {/* Red triangle accent */}
-                  <div 
+                  <div
                     className="absolute bottom-0 right-0 w-16 h-16"
                     style={{
                       background: 'linear-gradient(135deg, transparent 50%, rgba(227,30,36,0.2) 50%)'
@@ -409,14 +409,14 @@ const Southkoreavisaforindians = () => {
                   />
                 </div>
               ))}
-              
+
               {/* For Self-Employed */}
               {employedSection.map((item, index) => (
-                <div 
+                <div
                   key={item._id || index}
                   className="bg-white rounded-xl p-6 shadow-md relative overflow-hidden border border-gray-100"
                 >
-                  <div 
+                  <div
                     className="text-5xl font-bold mb-4"
                     style={{ color: '#E31E24' }}
                   >
@@ -426,7 +426,7 @@ const Southkoreavisaforindians = () => {
                   <ul className="space-y-2">
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((line, idx) => (
                       <li key={idx} className="flex items-start gap-2 text-gray-600 text-sm">
-                        <div 
+                        <div
                           className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
                           style={{ backgroundColor: '#E31E24' }}
                         >
@@ -436,7 +436,7 @@ const Southkoreavisaforindians = () => {
                       </li>
                     ))}
                   </ul>
-                  <div 
+                  <div
                     className="absolute bottom-0 right-0 w-16 h-16"
                     style={{
                       background: 'linear-gradient(135deg, transparent 50%, rgba(227,30,36,0.2) 50%)'
@@ -452,8 +452,8 @@ const Southkoreavisaforindians = () => {
       {/* ===== HOW TO APPLY ===== */}
       {howToApplySection.length > 0 && (
         <section className="py-20 relative overflow-hidden" style={{ backgroundColor: '#0f0f1a' }}>
-          
-          
+
+
           <div className="relative z-10 max-w-5xl mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
@@ -461,14 +461,14 @@ const Southkoreavisaforindians = () => {
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-6">
               {howToApplySection.map((item, index) => (
-                <div 
+                <div
                   key={item._id || index}
                   className="bg-white/5 backdrop-blur-sm rounded-xl p-6 relative overflow-hidden border border-white/10"
                 >
-                  <div 
+                  <div
                     className="w-12 h-12 rounded-lg flex items-center justify-center mb-4"
                     style={{ backgroundColor: '#E31E24' }}
                   >
@@ -479,7 +479,7 @@ const Southkoreavisaforindians = () => {
                     {item.contentHtml?.replace(/\r?\n/g, ' ').trim()}
                   </p>
                   {/* Large faded number */}
-                  <div 
+                  <div
                     className="absolute bottom-2 right-4 text-6xl font-bold pointer-events-none"
                     style={{ color: 'rgba(227,30,36,0.15)' }}
                   >
@@ -499,7 +499,7 @@ const Southkoreavisaforindians = () => {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white/5 text-[120px] font-bold pointer-events-none whitespace-nowrap">
             SOUTH KOREA
           </div>
-          
+
           <div className="relative z-10 max-w-6xl mx-auto px-6">
             {/* Section Header */}
             <div className="text-center mb-6">
@@ -508,24 +508,24 @@ const Southkoreavisaforindians = () => {
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             {/* Subtitle */}
             <p className="text-gray-400 text-center max-w-3xl mx-auto mb-12">
               We offer expert help and guidance to people throughout their visa journey. And that's the reason why many choose us for their visa application. And this is why people choose us.
             </p>
-            
+
             {/* Feature Cards with Background Images - Dynamic from API */}
             <div className="grid md:grid-cols-3 gap-6">
               {whyChooseSection.map((item, index) => {
                 // Get image from images array or single image field
-                const bgImage = item.images?.[0] 
+                const bgImage = item.images?.[0]
                   ? getImageUrl(item.images[0])
-                  : item.image 
+                  : item.image
                     ? getImageUrl(item.image)
                     : 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80';
-                
+
                 return (
-                  <div 
+                  <div
                     key={item._id || index}
                     className="relative rounded-xl overflow-hidden min-h-[280px] group"
                     style={{
@@ -555,57 +555,57 @@ const Southkoreavisaforindians = () => {
 
       {/* ===== FAQ SECTION ===== */}
       {faqs.length > 0 && (
-      <section className="bg-white py-24">
-            <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+        <section className="bg-white py-24">
+          <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
-                {/* LEFT CONTENT */}
-                <div>
-                    <h2 className="text-4xl font-bold leading-tight mb-6">
-                        Any questions? <br />
-                        We got you.
-                    </h2>
+            {/* LEFT CONTENT */}
+            <div>
+              <h2 className="text-4xl font-bold leading-tight mb-6">
+                Any questions? <br />
+                We got you.
+              </h2>
 
-                    <p className="text-gray-500 max-w-md mb-6">
-                        Yet bed any for assistance indulgence unpleasing. Not thoughts all
-                        exercise blessing. Indulgence way everything joy alteration
-                        boisterous the attachment.
-                    </p>
+              <p className="text-gray-500 max-w-md mb-6">
+                Yet bed any for assistance indulgence unpleasing. Not thoughts all
+                exercise blessing. Indulgence way everything joy alteration
+                boisterous the attachment.
+              </p>
 
-                    <a
-                        href="#"
-                        className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
-                    >
-                        More FAQs →
-                    </a>
-                </div>
+              <a
+                href="#"
+                className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
+              >
+                More FAQs →
+              </a>
+            </div>
 
-                {/* RIGHT FAQ LIST */}
-                <div className="divide-y">
+            {/* RIGHT FAQ LIST */}
+            <div className="divide-y">
               {faqs.map((faq, index) => (
-            
-                   <div key={index} className="py-6">
-                            <button
-                            
-                                                        onClick={() => setOpenFaq(index)}
 
-                                
-                                className="w-full flex justify-between items-center text-left"
-                            >
-                                <span className="text-lg font-semibold text-gray-900">
-                                    {faq.question}
-                                </span>
+                <div key={index} className="py-6">
+                  <button
 
-                                <span className="text-2xl text-gray-500">
-                                    {openFaq === index ? "−" : "+"}
-                                </span>
-                            </button>
+                    onClick={() => setOpenFaq(index)}
 
-                            {openFaq === index && (
-                                <p className="mt-4 text-gray-500 max-w-xl">
-                                    {faq.answer}
-                                </p>
-                            )}
-                        </div>
+
+                    className="w-full flex justify-between items-center text-left"
+                  >
+                    <span className="text-lg font-semibold text-gray-900">
+                      {faq.question}
+                    </span>
+
+                    <span className="text-2xl text-gray-500">
+                      {openFaq === index ? "−" : "+"}
+                    </span>
+                  </button>
+
+                  {openFaq === index && (
+                    <p className="mt-4 text-gray-500 max-w-xl">
+                      {faq.answer}
+                    </p>
+                  )}
+                </div>
               ))}
             </div>
           </div>

@@ -48,9 +48,9 @@ const Japantouristvisaforindians = () => {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormValues(prev => ({ 
-      ...prev, 
-      [name]: type === 'checkbox' ? checked : value 
+    setFormValues(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
     }));
   };
 
@@ -59,7 +59,7 @@ const Japantouristvisaforindians = () => {
     setSubmitLoading(true);
     setSubmitStatus(null);
     setSubmitMessage('');
-    
+
     try {
       const response = await fetch(`${BackendURL}/api/form-submissions/slug/japan-tourist-visa-for-indians`, {
         method: 'POST',
@@ -67,7 +67,7 @@ const Japantouristvisaforindians = () => {
         body: JSON.stringify(formValues),
       });
       const res = await response.json();
-      
+
       if (response.ok) {
         setSubmitStatus('success');
         setSubmitMessage('Thank you! Your application has been submitted successfully. Our team will contact you shortly.');
@@ -88,11 +88,11 @@ const Japantouristvisaforindians = () => {
   if (loading) return <LoadingState message="Loading Japan Tourist Visa..." fullScreen />;
   if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
 
-  const { 
-    description, 
-    fields = [], 
-    faqs = [], 
-    documents = [], 
+  const {
+    description,
+    fields = [],
+    faqs = [],
+    documents = [],
     contentSections = {},
     formImages = []
   } = formData || {};
@@ -120,18 +120,18 @@ const Japantouristvisaforindians = () => {
 
   return (
     <div className="bg-white font-sans">
-      
+
       {/* ===== HERO SECTION ===== */}
-      <section 
-        className="relative w-full min-h-[800px] bg-cover bg-center"
-        style={{ 
+      <section
+        className="relative w-full h-[800px] bg-cover bg-center"
+        style={{
           backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
         }}
       >
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 min-h-[800px] flex items-center">
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[800px] flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -143,20 +143,20 @@ const Japantouristvisaforindians = () => {
                 {description}
               </p>
             </div>
-            
+
             {/* Right - Application Form */}
             {fields.length > 0 && (
               <div className="bg-gray-900/70 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
                 <h2 className="text-white text-xl font-semibold mb-6 text-center">
                   Let our expert guide you through the Japan Visa process
                 </h2>
-                
+
                 <form className="space-y-4" onSubmit={handleSubmit}>
                   {(() => {
                     const textFields = fields.filter(f => ['text', 'email', 'number'].includes(f.type));
                     const selectFields = fields.filter(f => f.type === 'select' || f.type === 'dropdown');
                     const checkboxFields = fields.filter(f => f.type === 'checkbox');
-                    
+
                     return (
                       <>
                         {/* Text fields */}
@@ -172,7 +172,7 @@ const Japantouristvisaforindians = () => {
                             required={field.required}
                           />
                         ))}
-                        
+
                         {/* Select fields - 2 columns */}
                         {selectFields.length > 0 && (
                           <div className="grid md:grid-cols-2 gap-4">
@@ -202,7 +202,7 @@ const Japantouristvisaforindians = () => {
                             ))}
                           </div>
                         )}
-                        
+
                         {/* Remaining select (Interest) */}
                         {selectFields.slice(2).map((field, index) => (
                           <select
@@ -228,7 +228,7 @@ const Japantouristvisaforindians = () => {
                             ))}
                           </select>
                         ))}
-                        
+
                         {/* Checkboxes */}
                         {checkboxFields.map((field, index) => (
                           <label key={field._id || `checkbox-${index}`} className="flex items-start gap-3 text-gray-300 cursor-pointer">
@@ -245,7 +245,7 @@ const Japantouristvisaforindians = () => {
                       </>
                     );
                   })()}
-                  
+
                   {/* Submit Status Message */}
                   {submitStatus && (
                     <div className={`flex items-center gap-3 p-4 rounded-lg ${submitStatus === 'success' ? 'bg-green-500/20 border border-green-500/50' : 'bg-red-500/20 border border-red-500/50'}`}>
@@ -253,7 +253,7 @@ const Japantouristvisaforindians = () => {
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                     </div>
                   )}
-                  
+
                   <button
                     type="submit"
                     disabled={submitLoading}
@@ -286,13 +286,13 @@ const Japantouristvisaforindians = () => {
                 </div>
                 {item.images?.[0] && (
                   <div className="relative">
-                    <img 
-                      src={getImageUrl(item.images[0])} 
+                    <img
+                      src={getImageUrl(item.images[0])}
                       alt={item.title}
                       className="rounded-xl shadow-lg w-full"
                     />
                     {item.badge?.text && (
-                      <div 
+                      <div
                         className="absolute -bottom-4 -right-4 px-4 py-2 rounded-lg text-white font-bold shadow-lg"
                         style={{ backgroundColor: item.badge.background || '#E31E24' }}
                       >
@@ -354,14 +354,14 @@ const Japantouristvisaforindians = () => {
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             {/* Image Gallery from formImages */}
             {formImages.length > 0 && (
               <div className={`grid ${formImages.length === 1 ? 'grid-cols-1' : formImages.length === 2 ? 'grid-cols-2' : 'md:grid-cols-3'} gap-4 mb-10`}>
                 {formImages[0]?.images?.map((img, imgIdx) => (
                   <div key={imgIdx} className="overflow-hidden rounded-xl shadow-lg">
-                    <img 
-                      src={getImageUrl(img)} 
+                    <img
+                      src={getImageUrl(img)}
                       alt={`Destination ${imgIdx + 1}`}
                       className="w-full h-48 object-cover hover:scale-110 transition-transform duration-500"
                     />
@@ -369,7 +369,7 @@ const Japantouristvisaforindians = () => {
                 ))}
               </div>
             )}
-            
+
             {/* Destination descriptions */}
             {destinationsSection[0]?.contentHtml && (
               <div className="space-y-6">
@@ -399,8 +399,8 @@ const Japantouristvisaforindians = () => {
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                 {item.images?.[0] && (
                   <div className="order-2 lg:order-1">
-                    <img 
-                      src={getImageUrl(item.images[0])} 
+                    <img
+                      src={getImageUrl(item.images[0])}
                       alt={item.title}
                       className="rounded-xl shadow-lg w-full"
                     />
@@ -442,7 +442,7 @@ const Japantouristvisaforindians = () => {
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             {visaFeesSection.map((item, index) => {
               const details = parseVisaFees(item.contentHtml);
               return (
@@ -495,7 +495,7 @@ const Japantouristvisaforindians = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Documents Required</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             {documents.map((doc, docIndex) => (
               <div key={doc._id || docIndex} className="bg-gray-50 rounded-xl p-8">
                 <h3 className="text-xl font-bold text-gray-900 mb-6">{doc.title}</h3>
@@ -515,57 +515,57 @@ const Japantouristvisaforindians = () => {
 
       {/* ===== FAQ SECTION ===== */}
       {faqs.length > 0 && (
-       <section className="bg-white py-24">
-            <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+        <section className="bg-white py-24">
+          <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
-                {/* LEFT CONTENT */}
-                <div>
-                    <h2 className="text-4xl font-bold leading-tight mb-6">
-                        Any questions? <br />
-                        We got you.
-                    </h2>
+            {/* LEFT CONTENT */}
+            <div>
+              <h2 className="text-4xl font-bold leading-tight mb-6">
+                Any questions? <br />
+                We got you.
+              </h2>
 
-                    <p className="text-gray-500 max-w-md mb-6">
-                        Yet bed any for assistance indulgence unpleasing. Not thoughts all
-                        exercise blessing. Indulgence way everything joy alteration
-                        boisterous the attachment.
-                    </p>
+              <p className="text-gray-500 max-w-md mb-6">
+                Yet bed any for assistance indulgence unpleasing. Not thoughts all
+                exercise blessing. Indulgence way everything joy alteration
+                boisterous the attachment.
+              </p>
 
-                    <a
-                        href="#"
-                        className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
-                    >
-                        More FAQs →
-                    </a>
-                </div>
+              <a
+                href="#"
+                className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
+              >
+                More FAQs →
+              </a>
+            </div>
 
-                {/* RIGHT FAQ LIST */}
-                <div className="divide-y">
+            {/* RIGHT FAQ LIST */}
+            <div className="divide-y">
               {faqs.map((faq, index) => (
-            
-                   <div key={index} className="py-6">
-                            <button
-                            
-                                                        onClick={() => setOpenFaq(index)}
 
-                                
-                                className="w-full flex justify-between items-center text-left"
-                            >
-                                <span className="text-lg font-semibold text-gray-900">
-                                    {faq.question}
-                                </span>
+                <div key={index} className="py-6">
+                  <button
 
-                                <span className="text-2xl text-gray-500">
-                                    {openFaq === index ? "−" : "+"}
-                                </span>
-                            </button>
+                    onClick={() => setOpenFaq(index)}
 
-                            {openFaq === index && (
-                                <p className="mt-4 text-gray-500 max-w-xl">
-                                    {faq.answer}
-                                </p>
-                            )}
-                        </div>
+
+                    className="w-full flex justify-between items-center text-left"
+                  >
+                    <span className="text-lg font-semibold text-gray-900">
+                      {faq.question}
+                    </span>
+
+                    <span className="text-2xl text-gray-500">
+                      {openFaq === index ? "−" : "+"}
+                    </span>
+                  </button>
+
+                  {openFaq === index && (
+                    <p className="mt-4 text-gray-500 max-w-xl">
+                      {faq.answer}
+                    </p>
+                  )}
+                </div>
               ))}
             </div>
           </div>

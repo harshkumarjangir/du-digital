@@ -57,7 +57,7 @@ const Malaysiavisaforndians = () => {
     setSubmitLoading(true);
     setSubmitStatus(null);
     setSubmitMessage('');
-    
+
     try {
       const response = await fetch(`${BackendURL}/api/form-submissions/slug/malaysia-visa-for-indians`, {
         method: 'POST',
@@ -65,7 +65,7 @@ const Malaysiavisaforndians = () => {
         body: JSON.stringify(formValues),
       });
       const res = await response.json();
-      
+
       if (response.ok) {
         setSubmitStatus('success');
         setSubmitMessage('Thank you! Your application has been submitted successfully. Our team will contact you shortly.');
@@ -94,23 +94,23 @@ const Malaysiavisaforndians = () => {
 
   return (
     <div className="bg-white font-sans">
-      
+
       {/* ===== HERO SECTION ===== */}
-      <section 
-        className="relative w-full min-h-[800px] overflow-hidden bg-cover bg-center"
-        style={{ 
+      <section
+        className="relative w-full h-[800px] overflow-hidden bg-cover bg-center"
+        style={{
           backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
         }}
       >
         {/* Dark overlay */}
-        <div 
+        <div
           className="absolute inset-0"
-          style={{ 
+          style={{
             background: 'linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%)'
           }}
         />
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 min-h-[800px] flex items-center">
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[800px] flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -122,10 +122,10 @@ const Malaysiavisaforndians = () => {
                 {description}
               </p>
             </div>
-            
+
             {/* Bottom - Contact Form with transparent black bg */}
             {fields.length > 0 && (
-              <div 
+              <div
                 className="rounded-xl p-6"
                 style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}
               >
@@ -133,7 +133,7 @@ const Malaysiavisaforndians = () => {
                   {/* All fields in single row */}
                   {fields.map((field, index) => {
                     const fieldType = field.type || field.fieldType;
-                    
+
                     if (fieldType === 'select' || fieldType === 'dropdown') {
                       return (
                         <select
@@ -174,7 +174,7 @@ const Malaysiavisaforndians = () => {
                       );
                     }
                   })}
-                  
+
                   {/* Submit Status Message */}
                   {submitStatus && (
                     <div className={`w-full flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
@@ -182,7 +182,7 @@ const Malaysiavisaforndians = () => {
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                     </div>
                   )}
-                  
+
                   <button
                     type="submit"
                     disabled={submitLoading}
@@ -209,25 +209,25 @@ const Malaysiavisaforndians = () => {
                     {item.title}
                   </h2>
                   <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div>
-                  
+
                   {/* Badge if exists */}
-                
-                  
+
+
                   <p className="text-gray-600 leading-relaxed text-lg whitespace-pre-line">
                     {item.contentHtml}
                   </p>
                 </div>
                 <div className="flex justify-center relative">
                   {item.image && (
-                    <img 
-                      src={getImageUrl(item.image)} 
-                      alt={item.title} 
+                    <img
+                      src={getImageUrl(item.image)}
+                      alt={item.title}
                       className="max-w-full h-auto rounded-2xl shadow-xl"
                       style={{ maxHeight: '450px' }}
                     />
                   )}
-                    {item.badge?.text && (
-                    <div 
+                  {item.badge?.text && (
+                    <div
                       className="inline-flex absolute -top-5 right-10 items-center px-4 py-2 rounded-full text-white text-sm font-semibold mb-4"
                       style={{ backgroundColor: item.badge.background || '#E31E24' }}
                     >
@@ -251,31 +251,30 @@ const Malaysiavisaforndians = () => {
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             {/* Horizontal Tab buttons */}
             <div className="flex justify-center border-b border-gray-200 mb-0">
               {visaTypesSection.map((item, index) => (
                 <button
                   key={item._id || index}
                   onClick={() => setActiveVisaTab(index)}
-                  className={`px-8 py-4 font-semibold transition-all duration-300 border-b-4 ${
-                    activeVisaTab === index
+                  className={`px-8 py-4 font-semibold transition-all duration-300 border-b-4 ${activeVisaTab === index
                       ? 'border-red-500 text-red-500 bg-white'
                       : 'border-transparent text-gray-500 hover:text-gray-700 bg-gray-100'
-                  }`}
+                    }`}
                 >
                   {item.title}
                 </button>
               ))}
             </div>
-            
+
             {/* Tab content - Light gray bordered box */}
             <div className="bg-white border border-gray-200 p-8">
               <p className="text-gray-600 leading-relaxed whitespace-pre-line">
                 {visaTypesSection[activeVisaTab]?.contentHtml}
               </p>
             </div>
-            
+
             {/* Apply Now button centered below */}
             <div className="mt-8 text-center">
               <button
@@ -299,13 +298,13 @@ const Malaysiavisaforndians = () => {
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             <div className="space-y-8">
               {documents.map((doc, index) => (
                 <div key={doc._id || index} className="bg-gray-50 rounded-2xl p-8">
                   {/* Document category header */}
                   <div className="flex items-start gap-4 mb-6">
-                    <div 
+                    <div
                       className="w-6 h-6 rounded flex items-center justify-center flex-shrink-0 mt-0.5"
                       style={{ backgroundColor: '#E31E24' }}
                     >
@@ -313,7 +312,7 @@ const Malaysiavisaforndians = () => {
                     </div>
                     <h3 className="text-xl font-bold text-gray-900">{doc.title}</h3>
                   </div>
-                  
+
                   {/* Document items list */}
                   <ul className="space-y-3 ml-10">
                     {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
@@ -332,57 +331,57 @@ const Malaysiavisaforndians = () => {
 
       {/* ===== FAQ SECTION ===== */}
       {faqs.length > 0 && (
-            <section className="bg-white py-24">
-            <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+        <section className="bg-white py-24">
+          <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
-                {/* LEFT CONTENT */}
-                <div>
-                    <h2 className="text-4xl font-bold leading-tight mb-6">
-                        Any questions? <br />
-                        We got you.
-                    </h2>
+            {/* LEFT CONTENT */}
+            <div>
+              <h2 className="text-4xl font-bold leading-tight mb-6">
+                Any questions? <br />
+                We got you.
+              </h2>
 
-                    <p className="text-gray-500 max-w-md mb-6">
-                        Yet bed any for assistance indulgence unpleasing. Not thoughts all
-                        exercise blessing. Indulgence way everything joy alteration
-                        boisterous the attachment.
-                    </p>
+              <p className="text-gray-500 max-w-md mb-6">
+                Yet bed any for assistance indulgence unpleasing. Not thoughts all
+                exercise blessing. Indulgence way everything joy alteration
+                boisterous the attachment.
+              </p>
 
-                    <a
-                        href="#"
-                        className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
-                    >
-                        More FAQs →
-                    </a>
-                </div>
+              <a
+                href="#"
+                className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
+              >
+                More FAQs →
+              </a>
+            </div>
 
-                {/* RIGHT FAQ LIST */}
-                <div className="divide-y">
+            {/* RIGHT FAQ LIST */}
+            <div className="divide-y">
               {faqs.map((faq, index) => (
-            
-                   <div key={index} className="py-6">
-                            <button
-                            
-                                                        onClick={() => setOpenFaq(index)}
 
-                                
-                                className="w-full flex justify-between items-center text-left"
-                            >
-                                <span className="text-lg font-semibold text-gray-900">
-                                    {faq.question}
-                                </span>
+                <div key={index} className="py-6">
+                  <button
 
-                                <span className="text-2xl text-gray-500">
-                                    {openFaq === index ? "−" : "+"}
-                                </span>
-                            </button>
+                    onClick={() => setOpenFaq(index)}
 
-                            {openFaq === index && (
-                                <p className="mt-4 text-gray-500 max-w-xl">
-                                    {faq.answer}
-                                </p>
-                            )}
-                        </div>
+
+                    className="w-full flex justify-between items-center text-left"
+                  >
+                    <span className="text-lg font-semibold text-gray-900">
+                      {faq.question}
+                    </span>
+
+                    <span className="text-2xl text-gray-500">
+                      {openFaq === index ? "−" : "+"}
+                    </span>
+                  </button>
+
+                  {openFaq === index && (
+                    <p className="mt-4 text-gray-500 max-w-xl">
+                      {faq.answer}
+                    </p>
+                  )}
+                </div>
               ))}
             </div>
           </div>

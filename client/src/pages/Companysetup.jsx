@@ -49,9 +49,9 @@ const Companysetup = () => {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormValues(prev => ({ 
-      ...prev, 
-      [name]: type === 'checkbox' ? checked : value 
+    setFormValues(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
     }));
   };
 
@@ -60,7 +60,7 @@ const Companysetup = () => {
     setSubmitLoading(true);
     setSubmitStatus(null);
     setSubmitMessage('');
-    
+
     try {
       const response = await fetch(`${BackendURL}/api/form-submissions/slug/company-setup-in-the-uae`, {
         method: 'POST',
@@ -68,7 +68,7 @@ const Companysetup = () => {
         body: JSON.stringify(formValues),
       });
       const res = await response.json();
-      
+
       if (response.ok) {
         setSubmitStatus('success');
         setSubmitMessage('Thank you! Your enquiry has been submitted successfully. Our team will contact you shortly.');
@@ -106,23 +106,23 @@ const Companysetup = () => {
 
   return (
     <div className="bg-white font-sans">
-      
+
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full min-h-[800px] overflow-hidden">
+      <section className="relative w-full h-[800px] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${getImageUrl(formData?.image) || 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'})` }}
         />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%)' }} />
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-32 min-h-[800px] flex items-center">
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-32 h-[800px] flex items-center">
           <div className={`${fields.length > 0 ? 'grid md:grid-cols-2 gap-12 items-center' : ''} w-full`}>
             {/* Left - Hero Text */}
             <div className="text-white">
               <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
                 {name || 'Company Formation in Dubai UAE'}
               </h1>
-              
+
               {/* Badges */}
               <div className="flex flex-wrap gap-4 mb-8">
                 {heroBadges.map((badge, index) => (
@@ -131,8 +131,8 @@ const Companysetup = () => {
                   </span>
                 ))}
               </div>
-              
-              <a 
+
+              <a
                 href="#consultation"
                 className="inline-block px-8 py-4 rounded-lg font-bold text-lg text-white transition-all duration-300 hover:opacity-90 shadow-lg"
                 style={{ backgroundColor: '#A10000' }}
@@ -140,7 +140,7 @@ const Companysetup = () => {
                 Book A Free Consultation
               </a>
             </div>
-            
+
             {/* Right - Contact Form (only show if fields exist) */}
             {fields.length > 0 && (
               <div className="bg-white rounded-2xl p-8 shadow-2xl">
@@ -149,7 +149,7 @@ const Companysetup = () => {
                   {fields.map((field, index) => {
                     // Get field type from either 'type' or 'fieldType' property
                     const fieldType = field.type || field.fieldType;
-                    
+
                     // Render different input types based on field type
                     if (fieldType === 'select' || fieldType === 'dropdown') {
                       return (
@@ -191,10 +191,10 @@ const Companysetup = () => {
                       );
                     } else {
                       // Default text/email/tel input
-                      const inputType = fieldType === 'email' ? 'email' 
-                        : fieldType === 'phone' ? 'tel' 
-                        : fieldType === 'number' ? 'number'
-                        : 'text';
+                      const inputType = fieldType === 'email' ? 'email'
+                        : fieldType === 'phone' ? 'tel'
+                          : fieldType === 'number' ? 'number'
+                            : 'text';
                       return (
                         <input
                           key={field._id || index}
@@ -209,7 +209,7 @@ const Companysetup = () => {
                       );
                     }
                   })}
-                  
+
                   {/* Submit Status Message */}
                   {submitStatus && (
                     <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-100' : 'bg-red-100'}`}>
@@ -217,7 +217,7 @@ const Companysetup = () => {
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>{submitMessage}</p>
                     </div>
                   )}
-                  
+
                   <button
                     type="submit"
                     disabled={submitLoading}
@@ -251,9 +251,9 @@ const Companysetup = () => {
                 </div>
                 <div className="flex justify-center">
                   {item.image && (
-                    <img 
-                      src={getImageUrl(item.image)} 
-                      alt={item.title} 
+                    <img
+                      src={getImageUrl(item.image)}
+                      alt={item.title}
                       className="max-w-full h-auto rounded-xl shadow-lg"
                       style={{ maxHeight: '400px' }}
                     />
@@ -267,19 +267,19 @@ const Companysetup = () => {
 
       {/* ===== COMPANY FORMATION IN MAINLAND SECTION - Background Image ===== */}
       {mainlandSection.length > 0 && mainlandSection.map((item, index) => (
-        <section 
+        <section
           key={item._id || index}
           className="py-20 relative min-h-[500px]"
         >
           {/* Background Image */}
           {item.image && (
-            <div 
+            <div
               className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: `url(${getImageUrl(item.image)})` }}
             />
           )}
           <div className="absolute inset-0 bg-black/80" />
-          
+
           <div className="relative z-10 max-w-4xl mx-auto px-6 text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
               Company <span style={{ color: '#A10000' }}>Formation</span> in the Mainland
@@ -301,9 +301,9 @@ const Companysetup = () => {
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="order-2 md:order-1 flex justify-center">
                   {item.image && (
-                    <img 
-                      src={getImageUrl(item.image)} 
-                      alt={item.title} 
+                    <img
+                      src={getImageUrl(item.image)}
+                      alt={item.title}
                       className="max-w-full h-auto rounded-xl shadow-lg"
                       style={{ maxHeight: '400px' }}
                     />
@@ -335,14 +335,14 @@ const Companysetup = () => {
               </h2>
               <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div>
             </div>
-            
+
             <div className="grid md:grid-cols-3 gap-6">
               {strengthSection.map((item, index) => (
                 <div
                   key={item._id || index}
                   className="bg-white rounded-xl p-8 shadow-md hover:shadow-lg transition-shadow text-center"
                 >
-                  <div 
+                  <div
                     className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
                     style={{ backgroundColor: 'rgba(161, 0, 0, 0.1)' }}
                   >
@@ -384,9 +384,9 @@ const Companysetup = () => {
                 </div>
                 <div className="flex justify-center">
                   {item.image && (
-                    <img 
-                      src={getImageUrl(item.image)} 
-                      alt={item.title} 
+                    <img
+                      src={getImageUrl(item.image)}
+                      alt={item.title}
                       className="max-w-full h-auto rounded-xl shadow-lg"
                       style={{ maxHeight: '400px' }}
                     />
@@ -408,7 +408,7 @@ const Companysetup = () => {
               </h2>
               <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div>
             </div>
-            
+
             {/* License Cards with Numbers */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {licenseTypesSection.map((item, index) => {
@@ -419,7 +419,7 @@ const Companysetup = () => {
                     className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow relative"
                   >
                     <div className="p-6 pb-16">
-                      <div 
+                      <div
                         className="text-5xl font-bold mb-4"
                         style={{ color: '#A10000' }}
                       >
@@ -432,11 +432,11 @@ const Companysetup = () => {
                         {item.contentHtml?.replace(/\r?\n/g, ' ').trim()}
                       </p>
                     </div>
-                    
+
                     {/* Bottom red gradient decoration */}
-                    <div 
+                    <div
                       className="absolute bottom-0 left-0 right-0 h-12"
-                      style={{ 
+                      style={{
                         background: 'linear-gradient(to top, rgba(161,0,0,0.15) 0%, transparent 100%)'
                       }}
                     />
@@ -478,7 +478,7 @@ const Companysetup = () => {
               </h2>
               <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div>
             </div>
-            
+
             {/* Steps Grid - Horizontal scroll on mobile */}
             <div className="grid md:grid-cols-3 gap-6">
               {stepsSection.map((step, index) => (
@@ -489,8 +489,8 @@ const Companysetup = () => {
                   {/* Image */}
                   <div className="h-48 overflow-hidden">
                     {step.image ? (
-                      <img 
-                        src={getImageUrl(step.image)} 
+                      <img
+                        src={getImageUrl(step.image)}
                         alt={step.title}
                         className="w-full h-full object-cover"
                       />
@@ -500,10 +500,10 @@ const Companysetup = () => {
                       </div>
                     )}
                   </div>
-                  
+
                   {/* Content */}
                   <div className="p-6">
-                    <div 
+                    <div
                       className="text-4xl font-bold mb-3"
                       style={{ color: '#A10000' }}
                     >
@@ -552,44 +552,44 @@ const Companysetup = () => {
 
       {/* ===== CONTACT / SPEAK TO EXPERTS SECTION ===== */}
       <section id="consultation" className="py-20 bg-gray-900 flex flex-wrap justify-center gap-8 items-center">
-        
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-              Speak to our Experts
-            </h2>
+
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+            Speak to our Experts
+          </h2>
+        </div>
+
+        {/* India Office */}
+        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20 flex-1 min-w-[300px] max-w-[500px]">
+          <h3 className="text-xl font-bold text-white mb-6">India Office</h3>
+          <div className="space-y-4">
+            <a href="tel:+911onal" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors">
+              <Phone className="w-6 h-6" style={{ color: '#A10000' }} />
+              <span>+91-11-4777-2727</span>
+            </a>
+            <div className="flex items-start gap-4 text-gray-300">
+              <MapPin className="w-6 h-6 flex-shrink-0" style={{ color: '#A10000' }} />
+              <span>New Delhi, India</span>
+            </div>
           </div>
-          
-            {/* India Office */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20 flex-1 min-w-[300px] max-w-[500px]">
-              <h3 className="text-xl font-bold text-white mb-6">India Office</h3>
-              <div className="space-y-4">
-                <a href="tel:+911onal" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors">
-                  <Phone className="w-6 h-6" style={{ color: '#A10000' }} />
-                  <span>+91-11-4777-2727</span>
-                </a>
-                <div className="flex items-start gap-4 text-gray-300">
-                  <MapPin className="w-6 h-6 flex-shrink-0" style={{ color: '#A10000' }} />
-                  <span>New Delhi, India</span>
-                </div>
-              </div>
+        </div>
+
+        {/* UAE Office */}
+        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20 flex-1 min-w-[300px] max-w-[500px]">
+          <h3 className="text-xl font-bold text-white mb-6">UAE Office</h3>
+          <div className="space-y-4">
+            <a href="tel:+97144505999" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors">
+              <Phone className="w-6 h-6" style={{ color: '#A10000' }} />
+              <span>+971 4 450 5999</span>
+            </a>
+            <div className="flex items-start gap-4 text-gray-300">
+              <MapPin className="w-6 h-6 flex-shrink-0" style={{ color: '#A10000' }} />
+              <span>Dubai, UAE</span>
             </div>
-            
-            {/* UAE Office */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20 flex-1 min-w-[300px] max-w-[500px]">
-              <h3 className="text-xl font-bold text-white mb-6">UAE Office</h3>
-              <div className="space-y-4">
-                <a href="tel:+97144505999" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors">
-                  <Phone className="w-6 h-6" style={{ color: '#A10000' }} />
-                  <span>+971 4 450 5999</span>
-                </a>
-                <div className="flex items-start gap-4 text-gray-300">
-                  <MapPin className="w-6 h-6 flex-shrink-0" style={{ color: '#A10000' }} />
-                  <span>Dubai, UAE</span>
-                </div>
-              </div>
-            </div>
-     
-    
+          </div>
+        </div>
+
+
       </section>
     </div>
   );

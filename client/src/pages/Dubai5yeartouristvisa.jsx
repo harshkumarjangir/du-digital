@@ -65,7 +65,7 @@ const Dubai5yeartouristvisa = () => {
     setSubmitLoading(true);
     setSubmitStatus(null);
     setSubmitMessage('');
-    
+
     try {
       const response = await fetch(`${BackendURL}/api/form-submissions/slug/dubai-5year-tourist-visa`, {
         method: 'POST',
@@ -73,7 +73,7 @@ const Dubai5yeartouristvisa = () => {
         body: JSON.stringify(formValues),
       });
       const res = await response.json();
-      
+
       if (response.ok) {
         setSubmitStatus('success');
         setSubmitMessage('Thank you! Your application has been submitted successfully. Our team will contact you shortly.');
@@ -113,20 +113,20 @@ const Dubai5yeartouristvisa = () => {
 
   return (
     <div className="bg-white font-sans">
-      
+
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full min-h-[800px] overflow-hidden">
+      <section className="relative w-full h-[800px] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${getImageUrl(formData?.image) || STATIC_IMAGES.hero})` }}
         />
         {/* Dark teal/blue overlay */}
-        <div 
+        <div
           className="absolute inset-0"
           style={{ background: 'linear-gradient(135deg, rgba(0,30,50,0.85) 0%, rgba(0,50,70,0.75) 100%)' }}
         />
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 min-h-[800px] flex items-center">
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 h-[800px] flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -134,12 +134,12 @@ const Dubai5yeartouristvisa = () => {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
                 <span style={{ color: '#E31E24' }}>UAE/Dubai</span> Tourist Visa
               </h1>
-              
+
               {/* Key points */}
               <ul className="space-y-3 mb-8">
                 {descriptionLines.slice(2).map((line, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <div 
+                    <div
                       className="w-5 h-5 rounded flex items-center justify-center flex-shrink-0 mt-0.5"
                       style={{ backgroundColor: '#E31E24' }}
                     >
@@ -150,10 +150,10 @@ const Dubai5yeartouristvisa = () => {
                 ))}
               </ul>
             </div>
-            
+
             {/* Right - Contact Form */}
             {fields.length > 0 && (
-              <div 
+              <div
                 className="rounded-2xl p-8 shadow-2xl backdrop-blur-md"
                 style={{ backgroundColor: 'rgba(0,0,0,0.7)' }}
               >
@@ -161,7 +161,7 @@ const Dubai5yeartouristvisa = () => {
                 <form className="space-y-4" onSubmit={handleSubmit}>
                   {fields.filter(f => f.type !== 'checkbox' && f.type !== 'radio').map((field, index) => {
                     const fieldType = field.type || field.fieldType;
-                    
+
                     if (fieldType === 'select' || fieldType === 'dropdown') {
                       return (
                         <select
@@ -202,7 +202,7 @@ const Dubai5yeartouristvisa = () => {
                       );
                     }
                   })}
-                  
+
                   {/* Radio buttons */}
                   {fields.filter(f => f.type === 'radio').map((field, index) => (
                     <div key={field._id || index} className="space-y-2">
@@ -223,7 +223,7 @@ const Dubai5yeartouristvisa = () => {
                       </div>
                     </div>
                   ))}
-                  
+
                   {/* Checkbox */}
                   {fields.filter(f => f.type === 'checkbox').map((field, index) => (
                     <label key={field._id || index} className="flex items-start gap-3 text-gray-300 text-xs cursor-pointer">
@@ -237,7 +237,7 @@ const Dubai5yeartouristvisa = () => {
                       <span>{field.label}</span>
                     </label>
                   ))}
-                  
+
                   {/* Submit Status Message */}
                   {submitStatus && (
                     <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
@@ -245,7 +245,7 @@ const Dubai5yeartouristvisa = () => {
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                     </div>
                   )}
-                  
+
                   <button
                     type="submit"
                     disabled={submitLoading}
@@ -271,11 +271,11 @@ const Dubai5yeartouristvisa = () => {
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
-            
+
             {feesSection.map((item, index) => (
               <div key={item._id || index} className="bg-white rounded-2xl shadow-lg p-8 text-center">
                 <h3 className="text-2xl font-bold text-gray-900 mb-8">{item.title}</h3>
-                
+
                 {/* Visa details grid */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
                   <div className="p-4">
@@ -295,7 +295,7 @@ const Dubai5yeartouristvisa = () => {
                     <p className="text-xl font-bold text-gray-900">Multiple</p>
                   </div>
                 </div>
-                
+
                 <button
                   className="px-10 py-4 rounded-lg font-bold text-white text-lg transition-all duration-300 hover:opacity-90"
                   style={{ backgroundColor: '#E31E24' }}
@@ -322,7 +322,7 @@ const Dubai5yeartouristvisa = () => {
                   <p className="text-gray-600 leading-relaxed text-lg mb-6">
                     {item.contentHtml}
                   </p>
-                  
+
                   {/* Trust badge */}
                   <div className="flex items-center gap-3 bg-gray-50 rounded-lg p-4 inline-flex">
                     <Star className="w-6 h-6" style={{ color: '#E31E24' }} fill="#E31E24" />
@@ -331,9 +331,9 @@ const Dubai5yeartouristvisa = () => {
                 </div>
                 <div className="flex justify-center">
                   {item.image && (
-                    <img 
-                      src={getImageUrl(item.image)} 
-                      alt={item.title} 
+                    <img
+                      src={getImageUrl(item.image)}
+                      alt={item.title}
                       className="max-w-full h-auto rounded-2xl shadow-xl"
                       style={{ maxHeight: '450px' }}
                     />
@@ -357,12 +357,12 @@ const Dubai5yeartouristvisa = () => {
                   </h2>
                   <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
                 </div>
-                
+
                 <div className="bg-white rounded-2xl shadow-lg p-8">
                   <ul className="space-y-4">
                     {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
                       <li key={idx} className="flex items-start gap-4">
-                        <div 
+                        <div
                           className="w-6 h-6 rounded flex items-center justify-center flex-shrink-0 mt-0.5"
                           style={{ backgroundColor: '#E31E24' }}
                         >
@@ -382,7 +382,7 @@ const Dubai5yeartouristvisa = () => {
       {/* ===== WHY CHOOSE US SECTION ===== */}
       <section className="py-16 bg-black relative overflow-hidden">
         {/* Decorative curved lines on left */}
-        <div 
+        <div
           className="absolute left-0 top-0 w-1/3 h-full opacity-20 pointer-events-none"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cpath d='M0 100 Q100 200 0 300' fill='none' stroke='white' stroke-width='0.5'/%3E%3Cpath d='M20 80 Q120 200 20 320' fill='none' stroke='white' stroke-width='0.5'/%3E%3Cpath d='M40 60 Q140 200 40 340' fill='none' stroke='white' stroke-width='0.5'/%3E%3Cpath d='M60 40 Q160 200 60 360' fill='none' stroke='white' stroke-width='0.5'/%3E%3C/svg%3E")`,
@@ -391,7 +391,7 @@ const Dubai5yeartouristvisa = () => {
             backgroundSize: 'contain'
           }}
         />
-        
+
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-3 gap-12 items-start">
             {/* Left - Title */}
@@ -406,12 +406,12 @@ const Dubai5yeartouristvisa = () => {
                 <div className="w-10 h-0.5 bg-gray-600"></div>
               </div>
             </div>
-            
+
             {/* Right - Features Grid 2x2 */}
             <div className="lg:col-span-2 grid md:grid-cols-2 gap-8">
               {/* Quality and Value */}
               <div className="flex items-start gap-4">
-                <div 
+                <div
                   className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: '#E31E24' }}
                 >
@@ -422,10 +422,10 @@ const Dubai5yeartouristvisa = () => {
                   <p className="text-gray-400 text-sm">Quality Beyond Compromise, Value That Is Unmatched.</p>
                 </div>
               </div>
-              
+
               {/* Services */}
               <div className="flex items-start gap-4">
-                <div 
+                <div
                   className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: '#E31E24' }}
                 >
@@ -436,10 +436,10 @@ const Dubai5yeartouristvisa = () => {
                   <p className="text-gray-400 text-sm">Service that exceeds expectations</p>
                 </div>
               </div>
-              
+
               {/* Security */}
               <div className="flex items-start gap-4">
-                <div 
+                <div
                   className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: '#E31E24' }}
                 >
@@ -450,10 +450,10 @@ const Dubai5yeartouristvisa = () => {
                   <p className="text-gray-400 text-sm">The utmost security of our clients data is paramount for us</p>
                 </div>
               </div>
-              
+
               {/* Technology */}
               <div className="flex items-start gap-4">
-                <div 
+                <div
                   className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: '#E31E24' }}
                 >
@@ -471,57 +471,57 @@ const Dubai5yeartouristvisa = () => {
 
       {/* ===== FAQ SECTION ===== */}
       {faqs.length > 0 && (
-         <section className="bg-white py-24">
-            <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+        <section className="bg-white py-24">
+          <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
-                {/* LEFT CONTENT */}
-                <div>
-                    <h2 className="text-4xl font-bold leading-tight mb-6">
-                        Any questions? <br />
-                        We got you.
-                    </h2>
+            {/* LEFT CONTENT */}
+            <div>
+              <h2 className="text-4xl font-bold leading-tight mb-6">
+                Any questions? <br />
+                We got you.
+              </h2>
 
-                    <p className="text-gray-500 max-w-md mb-6">
-                        Yet bed any for assistance indulgence unpleasing. Not thoughts all
-                        exercise blessing. Indulgence way everything joy alteration
-                        boisterous the attachment.
-                    </p>
+              <p className="text-gray-500 max-w-md mb-6">
+                Yet bed any for assistance indulgence unpleasing. Not thoughts all
+                exercise blessing. Indulgence way everything joy alteration
+                boisterous the attachment.
+              </p>
 
-                    <a
-                        href="#"
-                        className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
-                    >
-                        More FAQs →
-                    </a>
-                </div>
+              <a
+                href="#"
+                className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
+              >
+                More FAQs →
+              </a>
+            </div>
 
-                {/* RIGHT FAQ LIST */}
-                <div className="divide-y">
+            {/* RIGHT FAQ LIST */}
+            <div className="divide-y">
               {faqs.map((faq, index) => (
-            
-                   <div key={index} className="py-6">
-                            <button
-                            
-                                                        onClick={() => setOpenFaq(index)}
 
-                                
-                                className="w-full flex justify-between items-center text-left"
-                            >
-                                <span className="text-lg font-semibold text-gray-900">
-                                    {faq.question}
-                                </span>
+                <div key={index} className="py-6">
+                  <button
 
-                                <span className="text-2xl text-gray-500">
-                                    {openFaq === index ? "−" : "+"}
-                                </span>
-                            </button>
+                    onClick={() => setOpenFaq(index)}
 
-                            {openFaq === index && (
-                                <p className="mt-4 text-gray-500 max-w-xl">
-                                    {faq.answer}
-                                </p>
-                            )}
-                        </div>
+
+                    className="w-full flex justify-between items-center text-left"
+                  >
+                    <span className="text-lg font-semibold text-gray-900">
+                      {faq.question}
+                    </span>
+
+                    <span className="text-2xl text-gray-500">
+                      {openFaq === index ? "−" : "+"}
+                    </span>
+                  </button>
+
+                  {openFaq === index && (
+                    <p className="mt-4 text-gray-500 max-w-xl">
+                      {faq.answer}
+                    </p>
+                  )}
+                </div>
               ))}
             </div>
           </div>
