@@ -41,6 +41,7 @@ import Australiatouristvisa from './pages/Australiatouristvisa'
 import BangladeshVac from './pages/Bangladeshvac'
 import Applyforanyvisa from './pages/Applyforanyvisa'
 import Japantouristvisaforindians from './pages/Japantouristvisaforindians'
+import Egyptvisaforindians from './pages/Egyptvisaforindians'
 
 const App = () => {
         return (
@@ -79,6 +80,7 @@ const App = () => {
                                 <Route path="/company-setup-in-the-uae" element={<Companysetup />} />
                                 <Route path="/apply-for-any-visa" element={<Applyforanyvisa />} />
                                 <Route path="/japan-tourist-visa-for-indians" element={<Japantouristvisaforindians />} />
+                                <Route path="/egypt-visa-for-indians" element={<Egyptvisaforindians />} />
                                 <Route path="/tnh-magazine" element={<Magazine />} />
                                 <Route path="/bangladesh-vac" element={<BangladeshVac />} />
                                 <Route path="/cookie-policy" element={<CookiePolicy />} />
