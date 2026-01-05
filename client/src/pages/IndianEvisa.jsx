@@ -11,7 +11,10 @@ import {
   Globe,
   Clock,
   Users,
-  Phone
+  Phone,
+  CheckCircle,
+  XCircle,
+  Loader2
 } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
@@ -27,6 +30,9 @@ const IndianEvisa = () => {
   const [openDocIndex, setOpenDocIndex] = useState(0);
   const [formValues, setFormValues] = useState({});
   const [visaType, setVisaType] = useState('tourist');
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
   useEffect(() => {
     fetchFormData();
@@ -72,9 +78,38 @@ const IndianEvisa = () => {
     setFormValues(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', { ...formValues, visaType });
+    setSubmitLoading(true);
+    setSubmitStatus(null);
+    setSubmitMessage('');
+    
+    try {
+      const response = await fetch(`${BackendURL}/api/form-submissions/slug/india-evisa`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formValues, visaType }),
+      });
+      const res = await response.json();
+      
+      if (response.ok) {
+        setSubmitStatus('success');
+        setSubmitMessage('Thank you! Your eVisa application has been submitted successfully. Our team will contact you shortly.');
+        // Reset form
+        const resetValues = {};
+        formData?.fields?.forEach(field => { resetValues[field.name] = ''; });
+        setFormValues(resetValues);
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setSubmitStatus('error');
+      setSubmitMessage('Failed to submit. Please check your connection and try again.');
+    } finally {
+      setSubmitLoading(false);
+      setTimeout(() => { setSubmitStatus(null); setSubmitMessage(''); }, 5000);
+    }
   };
 
   if (loading) return <LoadingState message="Loading eVisa information..." fullScreen />;
@@ -120,7 +155,7 @@ const IndianEvisa = () => {
     <div className="bg-white font-sans">
       
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full min-h-[85vh] overflow-hidden">
+      <section className="relative w-full min-h-[800px] overflow-hidden">
         {/* Dark textured background */}
         <div 
           className="absolute inset-0"
@@ -259,15 +294,24 @@ const IndianEvisa = () => {
                   </label>
                 </div>
                 
+                {/* Submit Status Message */}
+                {submitStatus && (
+                  <div className={`flex items-center gap-3 p-3 rounded mb-4 ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
+                    {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
+                    <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
+                  </div>
+                )}
+                
                 <button
                   type="submit"
-                  className="px-8 py-3 rounded-[7px] font-semibold text-white text-base transition-all duration-300 hover:opacity-90"
+                  disabled={submitLoading}
+                  className="px-8 py-3 rounded-full font-semibold text-base transition-all duration-300 hover:opacity-90 disabled:opacity-70 flex items-center justify-center gap-2"
                   style={{ 
-                    backgroundColor: '#c62625',
-                    border: '0.8px solid #bd2727'
+                    backgroundColor: '#2D1F1F',
+                    color: '#E31E24'
                   }}
                 >
-                  Submit Form
+                  {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Submit Form'}
                 </button>
               </form>
             </div>

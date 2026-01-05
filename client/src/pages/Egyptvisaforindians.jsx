@@ -138,7 +138,7 @@ const Egyptvisaforindians = () => {
       
       {/* ===== HERO SECTION ===== */}
       <section 
-        className="relative w-full min-h-[90vh] bg-cover bg-center"
+        className="relative w-full min-h-[800px] bg-cover bg-center"
         style={{ 
           backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
         }}
@@ -146,7 +146,7 @@ const Egyptvisaforindians = () => {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
         
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 min-h-[90vh] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 min-h-[800px] flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -255,8 +255,8 @@ const Egyptvisaforindians = () => {
                   <button
                     type="submit"
                     disabled={submitLoading}
-                    className="w-full py-3 rounded font-medium text-white text-base transition-all duration-300 hover:opacity-90 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                    style={{ backgroundColor: '#c62625' }}
+                    className="w-full py-3 rounded-full font-medium text-base transition-all duration-300 hover:opacity-90 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    style={{ backgroundColor: '#2D1F1F', color: '#E31E24' }}
                   >
                     {submitLoading ? (
                       <>

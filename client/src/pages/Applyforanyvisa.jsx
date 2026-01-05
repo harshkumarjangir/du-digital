@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Check, ChevronDown, Award, Clock, Shield, Globe, MapPin, Users, FileCheck } from "lucide-react";
+import { Check, ChevronDown, Award, Clock, Shield, Globe, MapPin, Users, FileCheck, CheckCircle, XCircle, Loader2 } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
 
@@ -12,6 +12,9 @@ const Applyforanyvisa = () => {
   const [error, setError] = useState(null);
   const [openFaq, setOpenFaq] = useState(null);
   const [formValues, setFormValues] = useState({});
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
   useEffect(() => {
     fetchFormData();
@@ -51,6 +54,37 @@ const Applyforanyvisa = () => {
     }));
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitLoading(true);
+    setSubmitStatus(null);
+    setSubmitMessage('');
+    
+    try {
+      const response = await fetch(`${BackendURL}/api/form-submissions/slug/apply-for-any-visa`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formValues),
+      });
+      const res = await response.json();
+      
+      if (response.ok) {
+        setSubmitStatus('success');
+        setSubmitMessage('Thank you! Your application has been submitted successfully. Our team will contact you shortly.');
+        setFormValues({});
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setSubmitStatus('error');
+      setSubmitMessage('Failed to submit. Please check your connection and try again.');
+    } finally {
+      setSubmitLoading(false);
+      setTimeout(() => { setSubmitStatus(null); setSubmitMessage(''); }, 5000);
+    }
+  };
+
   if (loading) return <LoadingState message="Loading..." fullScreen />;
   if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
 
@@ -81,7 +115,7 @@ const Applyforanyvisa = () => {
       
       {/* ===== HERO SECTION (Text Only) ===== */}
       <section 
-        className="relative w-full py-32 bg-cover bg-center"
+        className="relative w-full py-32 bg-cover bg-center min-h-[800px] flex items-center"
         style={{ 
           backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
         }}
@@ -129,7 +163,7 @@ const Applyforanyvisa = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-white">Apply for Any Visa</h2>
             </div>
             
-            <form className="bg-white rounded-xl p-8 shadow-2xl">
+            <form className="bg-white rounded-xl p-8 shadow-2xl" onSubmit={handleSubmit}>
               {(() => {
                 const textFields = fields.filter(f => ['text', 'email', 'number'].includes(f.type));
                 const selectFields = fields.filter(f => f.type === 'select' || f.type === 'dropdown');
@@ -227,12 +261,21 @@ const Applyforanyvisa = () => {
                       </label>
                     ))}
                     
+                    {/* Submit Status Message */}
+                    {submitStatus && (
+                      <div className={`flex items-center gap-3 p-4 rounded-lg mb-4 ${submitStatus === 'success' ? 'bg-green-100 border border-green-300' : 'bg-red-100 border border-red-300'}`}>
+                        {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" /> : <XCircle className="w-5 h-5 text-red-600 flex-shrink-0" />}
+                        <p className={`text-sm ${submitStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>{submitMessage}</p>
+                      </div>
+                    )}
+                    
                     <button
                       type="submit"
-                      className="w-full py-4 rounded-lg font-bold text-white text-base transition-all duration-300 hover:opacity-90 uppercase"
-                      style={{ backgroundColor: '#E31E24' }}
+                      disabled={submitLoading}
+                      className="w-full py-4 rounded-full font-bold text-base transition-all duration-300 hover:opacity-90 uppercase disabled:opacity-70 flex items-center justify-center gap-2"
+                      style={{ backgroundColor: '#2D1F1F', color: '#E31E24' }}
                     >
-                      Submit Application
+                      {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Submit Application'}
                     </button>
                   </>
                 );

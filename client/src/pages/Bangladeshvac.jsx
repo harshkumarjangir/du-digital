@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Check, ChevronDown, MapPin, Phone, Mail } from "lucide-react";
+import { Check, ChevronDown, MapPin, Phone, Mail, CheckCircle, XCircle, Loader2 } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
 
@@ -13,6 +13,9 @@ const BangladeshVac = () => {
   const [openFaq, setOpenFaq] = useState(null);
   const [formValues, setFormValues] = useState({});
   const [activeImage, setActiveImage] = useState(0);
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
   useEffect(() => {
     fetchFormData();
@@ -52,6 +55,37 @@ const BangladeshVac = () => {
     }));
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitLoading(true);
+    setSubmitStatus(null);
+    setSubmitMessage('');
+    
+    try {
+      const response = await fetch(`${BackendURL}/api/form-submissions/slug/bangladesh-vac`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formValues),
+      });
+      const res = await response.json();
+      
+      if (response.ok) {
+        setSubmitStatus('success');
+        setSubmitMessage('Thank you! Your application has been submitted successfully. Our team will contact you shortly.');
+        setFormValues({});
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setSubmitStatus('error');
+      setSubmitMessage('Failed to submit. Please check your connection and try again.');
+    } finally {
+      setSubmitLoading(false);
+      setTimeout(() => { setSubmitStatus(null); setSubmitMessage(''); }, 5000);
+    }
+  };
+
   if (loading) return <LoadingState message="Loading Bangladesh VAC..." fullScreen />;
   if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
 
@@ -74,16 +108,15 @@ const BangladeshVac = () => {
       
       {/* ===== HERO BANNER ===== */}
       <section 
-        className="relative w-full py-20 bg-cover bg-center"
+        className="relative w-full py-20 bg-cover bg-center min-h-[800px] flex items-center"
         style={{ 
-          backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none',
-          minHeight: '400px'
+          backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
         }}
       >
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/60" />
         
-        <div className="relative z-10 max-w-7xl mx-auto px-6 flex items-center justify-center min-h-[300px]">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 flex items-center justify-center w-full">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center">
             Bangladesh VAC
           </h1>
@@ -115,7 +148,7 @@ const BangladeshVac = () => {
             </div>
             
             <div className="bg-white rounded-xl p-8 shadow-lg">
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 {(() => {
                   const textFields = fields.filter(f => ['text', 'email', 'number'].includes(f.type));
                   const dateFields = fields.filter(f => f.type === 'date');
@@ -196,12 +229,21 @@ const BangladeshVac = () => {
                   );
                 })()}
                 
+                {/* Submit Status Message */}
+                {submitStatus && (
+                  <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-100' : 'bg-red-100'}`}>
+                    {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-600" /> : <XCircle className="w-5 h-5 text-red-600" />}
+                    <p className={`text-sm ${submitStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>{submitMessage}</p>
+                  </div>
+                )}
+                
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-lg font-bold text-white text-base transition-all duration-300 hover:opacity-90 uppercase"
-                  style={{ backgroundColor: '#E31E24' }}
+                  disabled={submitLoading}
+                  className="w-full py-3 rounded-full font-bold text-base transition-all duration-300 hover:opacity-90 uppercase disabled:opacity-70 flex items-center justify-center gap-2"
+                  style={{ backgroundColor: '#2D1F1F', color: '#E31E24' }}
                 >
-                  Submit Application
+                  {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Submit Application'}
                 </button>
               </form>
             </div>

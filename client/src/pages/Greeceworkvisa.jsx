@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { CheckCircle, ChevronDown, ChevronUp, Check } from "lucide-react";
+import { CheckCircle, ChevronDown, ChevronUp, Check, XCircle, Loader2 } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
 
@@ -11,6 +11,10 @@ const GreeceWorkVisa = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [openFaq, setOpenFaq] = useState(null);
+  const [formValues, setFormValues] = useState({});
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
   useEffect(() => {
     fetchFormData();
@@ -42,6 +46,42 @@ const GreeceWorkVisa = () => {
     return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
   };
 
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormValues(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitLoading(true);
+    setSubmitStatus(null);
+    setSubmitMessage('');
+    
+    try {
+      const response = await fetch(`${BackendURL}/api/form-submissions/slug/greece-work-visa`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formValues),
+      });
+      const res = await response.json();
+      
+      if (response.ok) {
+        setSubmitStatus('success');
+        setSubmitMessage('Thank you! Your application has been submitted successfully. Our team will contact you shortly.');
+        setFormValues({});
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setSubmitStatus('error');
+      setSubmitMessage('Failed to submit. Please check your connection and try again.');
+    } finally {
+      setSubmitLoading(false);
+      setTimeout(() => { setSubmitStatus(null); setSubmitMessage(''); }, 5000);
+    }
+  };
+
   if (loading) return <LoadingState message="Loading Greece Work Visa..." fullScreen />;
   if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
 
@@ -53,7 +93,7 @@ const GreeceWorkVisa = () => {
   const documentSection = contentSections['Document Checklist'] || [];
   const eligibilitySection = contentSections['Eligibility Criteria'] || [];
   const salarySection = contentSections['Salary & Benefits'] || [];
-  const heroSection = contentSections['What is a Greece National Visa (Type D) for Employment?'] || [];
+  const heroSection = contentSections['What is a Greece National Visa (Type D) for Employment?'] || [];
 
   // Parse description for hero points
   const heroPoints = description?.split('\r\n').filter(line => line.trim()) || [];
@@ -62,7 +102,7 @@ const GreeceWorkVisa = () => {
     <div className="bg-white font-sans">
       
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full min-h-[90vh] overflow-hidden">
+      <section className="relative w-full min-h-[800px] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${getImageUrl(formData?.image) || 'https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'})` }}
@@ -72,7 +112,7 @@ const GreeceWorkVisa = () => {
           background: 'linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 50%, rgba(161,0,0,0.3) 100%)' 
         }} />
         
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-24 min-h-[90vh] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-24 min-h-[800px] flex items-center">
           <div className="grid md:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -103,7 +143,7 @@ const GreeceWorkVisa = () => {
             {fields.length > 0 && (
               <div className="bg-black rounded-2xl p-8 shadow-2xl">
                 <h3 className="text-2xl font-bold text-white mb-6 text-center">Speak to our Experts</h3>
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleSubmit}>
                   {/* Form fields in grid for first 4 fields */}
                   <div className="grid grid-cols-2 gap-4">
                     {fields.slice(0, 4).map((field, index) => {
@@ -113,9 +153,11 @@ const GreeceWorkVisa = () => {
                         return (
                           <select
                             key={field._id || index}
+                            name={field.name}
+                            value={formValues[field.name] || ''}
+                            onChange={handleInputChange}
                             className="w-full px-4 py-3 bg-white border-0 rounded-lg text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none appearance-none cursor-pointer"
                             required={field.required || field.isRequired}
-                            defaultValue=""
                             style={{
                               backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
                               backgroundPosition: 'right 0.75rem center',
@@ -139,6 +181,9 @@ const GreeceWorkVisa = () => {
                         return (
                           <input
                             key={field._id || index}
+                            name={field.name}
+                            value={formValues[field.name] || ''}
+                            onChange={handleInputChange}
                             type={inputType}
                             placeholder={field.placeholder || field.label}
                             className="w-full px-4 py-3 bg-white border-0 rounded-lg text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none"
@@ -154,6 +199,9 @@ const GreeceWorkVisa = () => {
                     <label key={field._id || index} className="flex items-start gap-3 text-gray-300 text-xs cursor-pointer">
                       <input
                         type="checkbox"
+                        name={field.name}
+                        checked={formValues[field.name] || false}
+                        onChange={handleInputChange}
                         className="mt-1 w-4 h-4 accent-red-600 rounded"
                         required={field.required || field.isRequired}
                       />
@@ -161,12 +209,21 @@ const GreeceWorkVisa = () => {
                     </label>
                   ))}
                   
+                  {/* Submit Status Message */}
+                  {submitStatus && (
+                    <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
+                      {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
+                      <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
+                    </div>
+                  )}
+                  
                   <button
                     type="submit"
-                    className="w-full py-4 rounded-full font-bold text-white text-lg transition-all duration-300 hover:opacity-90"
-                    style={{ backgroundColor: '#C5202F' }}
+                    disabled={submitLoading}
+                    className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 hover:opacity-90 disabled:opacity-70 flex items-center justify-center gap-2"
+                    style={{ backgroundColor: '#2D1F1F', color: '#E31E24' }}
                   >
-                    Get Started
+                    {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Get Started'}
                   </button>
                 </form>
               </div>
