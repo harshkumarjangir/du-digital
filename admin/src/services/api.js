@@ -513,3 +513,16 @@ export const deleteFormEmployeesAddress = async (id) => {
     const response = await axios.delete(`${API_URL_FORM_EMPLOYEES_ADDRESSES}/${id}`);
     return response.data;
 };
+
+// --- Form Submissions ---
+const API_URL_FORM_SUBMISSIONS = `${API_BASE_URL}/form-submissions`;
+
+export const getFormSubmissionStats = async () => {
+    const response = await axios.get(`${API_URL_FORM_SUBMISSIONS}/stats`);
+    return response.data;
+};
+
+export const getTodayFormSubmissions = async () => {
+    const response = await axios.get(`${API_URL_FORM_SUBMISSIONS}/today`);
+    return response.data;
+};

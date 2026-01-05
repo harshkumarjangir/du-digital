@@ -104,7 +104,7 @@ export const getFormById = async (req: Request, res: Response) => {
 // Create a new form with fields
 export const createForm = async (req: Request, res: Response) => {
     try {
-        const { name, slug, description, isActive, fields } = req.body;
+        const { name, slug, description, isActive, fields, adminNotificationEmail } = req.body;
         const file = (req as any).file;
 
         if (!name) {
@@ -126,6 +126,7 @@ export const createForm = async (req: Request, res: Response) => {
             slug: formSlug,
             description,
             image,
+            adminNotificationEmail,
             isActive: isActive !== undefined ? isActive : true
         });
 
@@ -171,11 +172,11 @@ export const createForm = async (req: Request, res: Response) => {
 export const updateForm = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-        const { name, slug, description, isActive, fields } = req.body;
+        const { name, slug, description, isActive, fields, adminNotificationEmail } = req.body;
         const file = (req as any).file;
 
         // Prepare update data
-        const updateData: any = { name, slug, description, isActive };
+        const updateData: any = { name, slug, description, isActive, adminNotificationEmail };
 
         // Handle image upload
         if (file) {

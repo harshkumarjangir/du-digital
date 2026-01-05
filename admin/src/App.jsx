@@ -25,6 +25,7 @@ import ContentSectionEditor from "./pages/ContentSectionEditor";
 import PricingPlanManager from "./pages/PricingPlanManager";
 import FormImageManager from "./pages/FormImageManager";
 import FormEmployeesAddressManager from "./pages/FormEmployeesAddressManager";
+import FormSubmissionManager from "./pages/FormSubmissionManager";
 import Dashboard from "./pages/Dashboard";
 import "./components/Layout.css";
 import "./App.css";
@@ -112,6 +113,7 @@ function App() {
           <Route path="pricing-plans" element={<PricingPlanManager />} />
           <Route path="form-images" element={<FormImageManager />} />
           <Route path="form-employees-addresses" element={<FormEmployeesAddressManager />} />
+          <Route path="form-submissions" element={<FormSubmissionManager />} />
         </Route>
       </Routes>
     </Router>

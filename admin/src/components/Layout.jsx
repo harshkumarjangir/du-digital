@@ -50,6 +50,7 @@ const Layout = () => {
     { name: "Team Members", href: "/team-members", icon: UserCheck, requiredPermission: "manage_team" },
     { name: "Sales Experts", href: "/sales-experts", icon: Users, requiredPermission: "manage_sales" },
     { name: "Communication", type: "section" },
+    { name: "Form Submissions", href: "/form-submissions", icon: MessageSquare, requiredPermission: "manage_forms" },
     { name: "Inquiries", href: "/contacts", icon: MessageSquare, requiredPermission: "manage_contacts" },
     { name: "Applicants", href: "/applicants", icon: UserCheck, requiredPermission: "manage_applicants" },
     { name: "System", type: "section" },

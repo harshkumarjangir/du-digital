@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getStats, getContactStats, getPartnerStats, getTravelInquiryStats } from "../services/api";
+import { getStats, getContactStats, getPartnerStats, getTravelInquiryStats, getFormSubmissionStats, getTodayFormSubmissions } from "../services/api";
 import {
   FileText,
   Folder,
@@ -22,11 +22,13 @@ const Dashboard = () => {
   useEffect(() => {
     async function fetchStats() {
       try {
-        const [mainStats, contactStats, partnerStats, travelInquiryStats] = await Promise.all([
+        const [mainStats, contactStats, partnerStats, travelInquiryStats, formSubmissionStats, todayFormSubmissions] = await Promise.all([
           getStats(),
           getContactStats(),
           getPartnerStats(),
           getTravelInquiryStats(),
+          getFormSubmissionStats(),
+          getTodayFormSubmissions(),
         ]);
 
         // Merge stats
@@ -35,6 +37,8 @@ const Dashboard = () => {
           contacts: contactStats,
           partners: partnerStats,
           travelInquiries: travelInquiryStats,
+          formSubmissions: formSubmissionStats,
+          todayFormSubmissions: todayFormSubmissions,
         });
       } catch (error) {
         console.error("Error fetching stats", error);
@@ -97,6 +101,22 @@ const Dashboard = () => {
       color: "#6366f1",
       trend: "+10%",
       description: "Travel package inquiries today",
+    },
+    {
+      title: "Today's Form Submissions",
+      count: stats.formSubmissions?.today || 0,
+      icon: <FileText size={24} />,
+      color: "#ec4899",
+      trend: "+5%",
+      description: "Form submissions received today",
+    },
+    {
+      title: "New Form Submissions",
+      count: stats.formSubmissions?.byStatus?.new || 0,
+      icon: <MessageSquare size={24} />,
+      color: "#f59e0b",
+      trend: "+3%",
+      description: "Unread form submissions",
     },
     {
       title: "Investor Reports",

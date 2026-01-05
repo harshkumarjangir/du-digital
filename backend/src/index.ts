@@ -74,7 +74,9 @@ app.use('/api/pricing-plans', pricingPlanRoutes);
 app.use('/api/form-images', formImageRoutes);
 
 import formEmployeesAddressRoutes from './routes/formEmployeesAddress.routes';
+import formSubmissionRoutes from './routes/formSubmission.routes';
 app.use('/api/form-employees-addresses', formEmployeesAddressRoutes);
+app.use('/api/form-submissions', formSubmissionRoutes);
 
 
 
