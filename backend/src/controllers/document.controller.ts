@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import DocumentRequirement from "../models/Documents.model";
-import Form from "../models/Form.model";
+import Form from "../models/Pages.model";
 
 // Get all document requirements
 export const getDocuments = async (req: Request, res: Response) => {

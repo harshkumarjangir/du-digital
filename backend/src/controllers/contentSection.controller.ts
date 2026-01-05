@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import ContentSection from "../models/ContentSection.model";
-import Form from "../models/Form.model";
+import Form from "../models/Pages.model";
 
 // Get all content sections
 export const getContentSections = async (req: Request, res: Response) => {

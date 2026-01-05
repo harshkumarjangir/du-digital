@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import FormEmployeesAddress from "../models/FormEmployeesAddress.model";
-import Form from "../models/Form.model";
+import Form from "../models/Pages.model";
 
 // Get all form employees addresses
 export const getFormEmployeesAddresses = async (req: Request, res: Response) => {

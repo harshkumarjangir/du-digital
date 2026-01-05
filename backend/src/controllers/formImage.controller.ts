@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import FormImage from "../models/FormImages.model";
-import Form from "../models/Form.model";
+import Form from "../models/Pages.model";
 
 // Get all form images
 export const getFormImages = async (req: Request, res: Response) => {
