@@ -109,7 +109,7 @@ const GreeceWorkVisa = () => {
         />
         {/* Dark overlay with red glow on right */}
         <div className="absolute inset-0" style={{
-          background: 'linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 50%, rgba(161,0,0,0.3) 100%)'
+          background: 'linear-gradient(to right, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 50%, rgba(161,0,0,0.3) 100%)'
         }} />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-24 h-[800px] flex items-center">
@@ -119,21 +119,21 @@ const GreeceWorkVisa = () => {
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-2">
                 Work in Greece: Secure Your National D-Type
               </h1>
-              <h2 className="text-2xl md:text-3xl font-bold mb-8" style={{ color: '#C5202F' }}>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8" style={{ color: '#EE3A39' }}>
                 – Visa with DU Global LLC
               </h2>
 
               {/* Hero Points with square checkmarks */}
               <ul className="space-y-4 mb-8">
                 {heroPoints.slice(2).map((point, index) => (
-                  <li key={index} className="flex items-start gap-4">
+                  <li key={index} className="flex items-center gap-4">
                     <div
-                      className="w-6 h-6 rounded flex items-center justify-center shrink-0 mt-0.5"
-                      style={{ backgroundColor: '#C5202F' }}
+                      className="w-5 h-5 rounded flex items-center justify-center shrink-0 mt-0.5"
+                      style={{ backgroundColor: '#ffffff' }}
                     >
-                      <Check className="w-4 h-4 text-white" strokeWidth={3} />
+                      <Check className="w-4 h-4 text-black" strokeWidth={3} />
                     </div>
-                    <span className="text-gray-200 text-lg">{point}</span>
+                    <span className="text-gray-100 text-lg">{point}</span>
                   </li>
                 ))}
               </ul>
@@ -268,6 +268,62 @@ const GreeceWorkVisa = () => {
           </div>
         </section>
       )}
+
+
+      {/* ===== What is a Greece National Visa (Type D) for Employment? ===== */}
+      <section className="py-24 bg-white">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+
+            {/* LEFT CONTENT */}
+            <div>
+              <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-8">
+                What is a Greece <br />
+                National Visa (Type D) <br />
+                for Employment?
+              </h2>
+
+              <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
+                The Greece National Visa (Type D) is issued to non-EU/EEA
+                nationals who have secured employment in Greece and intend
+                to stay longer than 90 days. Once you arrive, you must apply
+                for a Residence Permit with the Right to Work, under Greek
+                law (Law 4251/2014). This visa is the entry route for
+                long-term employment in the hospitality and support sectors.
+              </p>
+            </div>
+
+            {/* RIGHT IMAGE GRID */}
+            <div className="grid grid-cols-2 gap-6">
+              <img
+                src="/assets/greece/job-1.jpg"
+                alt="Hospitality Work"
+                className="w-full h-full object-cover rounded-2xl"
+              />
+              <img
+                src="/assets/greece/job-2.jpg"
+                alt="Cleaning Job"
+                className="w-full h-full object-cover rounded-2xl"
+              />
+              <img
+                src="/assets/greece/job-3.jpg"
+                alt="Kitchen Staff"
+                className="w-full h-full object-cover rounded-2xl"
+              />
+              <img
+                src="/assets/greece/job-4.jpg"
+                alt="Gardening Work"
+                className="w-full h-full object-cover rounded-2xl"
+              />
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+
+
       {/* ===== SALARY & BENEFITS SECTION ===== */}
       {salarySection.length > 0 && (
         <section className="py-20 bg-gray-900 relative overflow-hidden">

@@ -154,12 +154,12 @@ const Companysetup = () => {
                 ))}
               </div>
 
-              <a
-                href="#consultation"
+              <Link
+                to="#consultation"
                 className="inline-block px-8 py-4 rounded-full font-bold text-lg text-[#FFFDF5] transition-all duration-300 bg-[#FF1033] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
               >
                 Book A Free Consultation
-              </a>
+              </Link>
             </div>
 
             {/* Right - Contact Form (only show if fields exist) */}
@@ -571,12 +571,12 @@ const Companysetup = () => {
       {/* ===== STEPS TO SET UP SECTION ===== */}
       {stepsSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
                 Steps to Set Up a <span style={{ color: '#A10000' }}>Business</span> in the UAE Free Zones
               </h2>
-              <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div>
+              {/* <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div> */}
             </div>
 
             {/* Steps Grid - Horizontal scroll on mobile */}
@@ -587,12 +587,12 @@ const Companysetup = () => {
                   className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-md hover:shadow-lg transition-shadow"
                 >
                   {/* Image */}
-                  <div className="h-48 overflow-hidden rounded-xl">
+                  <div className="h-48 md:h-60 overflow-hidden rounded-xl p-3">
                     {step.image ? (
                       <img
                         src={getImageUrl(step.image)}
                         alt={step.title}
-                        className="w-full h-full object-cover p-3 rounded-xl"
+                        className="w-full h-full object-cover p-0 rounded-xl"
                       />
                     ) : (
                       <div className="w-full h-full bg-gray-200 flex items-center justify-center">
@@ -602,26 +602,29 @@ const Companysetup = () => {
                   </div>
 
                   {/* Content */}
-                  <div className="p-6">
+                  <div className="px-6">
                     <div
                       className="text-4xl font-bold mb-3"
                       style={{ color: '#A10000' }}
                     >
                       {/* {String(index + 1).padStart(2, '0')} */}
                     </div>
-                    <h3 className="text-lg font-bold text-[#FF1F3D] mb-2">
+                    <h3 className="text-lg font-bold text-[#A10000] mb-2">
                       {step.title}
                     </h3>
-                    <p className="text-gray-600 text-base leading-relaxed">
+                    <p className="text-[#333333] text-base leading-relaxed">
                       {step.contentHtml?.replace(/\r?\n/g, ' ').trim()}
                     </p>
                   </div>
 
-                  {/* CTA */}
-                  <div className="p-6">
-                    <button className="bg-[#FF1F3D] text-white px-6 py-2 rounded-full hover:bg-[#FF1F3D]/90 transition-colors">
+                  <div className="flex justify-start ml-6 py-5">
+                    {/* CTA Button */}
+                    <Link
+                      to="#"
+                      className="inline-block px-5 py-2 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+                    >
                       Book A Free Consultation
-                    </button>
+                    </Link>
                   </div>
                 </div>
               ))}
@@ -632,24 +635,40 @@ const Companysetup = () => {
 
       {/* ===== DOCUMENTS REQUIRED SECTION ===== */}
       {documents.length > 0 && (
-        <section className="py-20" style={{ backgroundColor: '#f5f5f5' }}>
-          <div className="max-w-4xl mx-auto px-6">
+        <section className="py-20 md:px-12" style={{ backgroundColor: '#FFF2F2' }}>
+          <div className="max-w-7xl mx-auto px-6">
             {documents.map((doc, index) => (
               <div key={doc._id || index}>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+                {/* <h2 className="text-3xl md:text-4xl lg:text-[43px] font-bold text-gray-900 mb-8 text-left">
                   {doc.title}
+                </h2> */}
+                <h2 className="text-3xl md:text-4xl lg:text-[43px] font-bold text-gray-900 mb-6">
+                  {doc.title.split("Company Setup")[0]}
+                  <span className="text-red-600 font-bold">Company Setup</span>
+                  {doc.title.split("Company Setup")[1]}
                 </h2>
-                <div className="bg-white rounded-xl p-8 shadow-md">
+
+                <div className="">
                   <ul className="space-y-4">
                     {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
                       <li key={idx} className="flex items-start gap-4">
                         <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: '#A10000' }}>
-                          <CheckCircle className="w-4 h-4 text-white" strokeWidth={3} />
+                          <Check className="w-4 h-4 text-white" strokeWidth={3} />
                         </div>
-                        <span className="text-gray-700">{item}</span>
+                        <span className="text-black text-base">{item}</span>
                       </li>
                     ))}
                   </ul>
+                </div>
+
+                <div className="flex justify-start ml-0 pt-6">
+                  {/* CTA Button */}
+                  <Link
+                    to="#"
+                    className="inline-block px-5 py-2 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+                  >
+                    Book A Free Consultation
+                  </Link>
                 </div>
               </div>
             ))}
@@ -657,47 +676,78 @@ const Companysetup = () => {
         </section>
       )}
 
-      {/* ===== CONTACT / SPEAK TO EXPERTS SECTION ===== */}
-      <section id="consultation" className="py-20 bg-gray-900 flex flex-wrap justify-center gap-8 items-center">
 
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-            Speak to our Experts
-          </h2>
-        </div>
+      {/* ===== SPEAK TO OUR EXPERTS ===== */}
+      <section
+        id="consultation"
+        className="py-24 bg-black"
+      >
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
 
-        {/* India Office */}
-        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20 flex-1 min-w-[300px] max-w-[500px]">
-          <h3 className="text-xl font-bold text-white mb-6">India Office</h3>
-          <div className="space-y-4">
-            <a href="tel:+911onal" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors">
-              <Phone className="w-6 h-6" style={{ color: '#A10000' }} />
-              <span>+91-11-4777-2727</span>
-            </a>
-            <div className="flex items-start gap-4 text-gray-300">
-              <MapPin className="w-6 h-6 shrink-0" style={{ color: '#A10000' }} />
-              <span>New Delhi, India</span>
+            {/* LEFT PANEL */}
+            <div className="flex flex-col justify-center bg-black text-white px-10 py-14 rounded-2xl">
+              <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold leading-tight mb-10">
+                Speak to our <br /> experts
+              </h2>
+
+              <Link
+                to="#connectwithus"
+                className="inline-flex items-center justify-center w-fit px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+              >
+                Contact Now
+              </Link>
             </div>
+
+            {/* PHONE CARD */}
+            <div className="bg-white rounded-2xl p-5 shadow-xl">
+              <div className="w-12 h-12 rounded-full bg-[#A10000] flex items-center justify-center mb-6">
+                <Phone className="w-6 h-6 text-white" />
+              </div>
+
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                Phone
+              </h3>
+
+              <a
+                href="tel:+917969269997"
+                className="block text-lg text-[#A10000] mb-3 hover:text-[#333366]"
+              >
+                * INDIA: +91-7969269997
+              </a>
+
+              <a
+                href="tel:+971585955766"
+                className="block text-lg text-[#A10000] hover:text-[#333366]"
+              >
+                * UAE: +971-585955766
+              </a>
+            </div>
+
+
+            {/* LOCATION CARD */}
+            <div className="bg-white rounded-2xl p-5 shadow-xl">
+              <div className="w-12 h-12 rounded-full bg-[#A10000] flex items-center justify-center mb-6">
+                <MapPin className="w-6 h-6 text-white" />
+              </div>
+
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                Location
+              </h3>
+
+              <p className="text-lg text-[#A10000] mb-6">
+                INDIA: 3rd Floor, B-86, Defence Colony, New Delhi – 110024
+              </p>
+
+              <p className="text-lg text-[#A10000]">
+                DUBAI: Office #4001, 40th Floor, Aspin Commercials Tower, Sheikh Zayed Road, Dubai, UAE
+              </p>
+            </div>
+
           </div>
         </div>
-
-        {/* UAE Office */}
-        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20 flex-1 min-w-[300px] max-w-[500px]">
-          <h3 className="text-xl font-bold text-white mb-6">UAE Office</h3>
-          <div className="space-y-4">
-            <a href="tel:+97144505999" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors">
-              <Phone className="w-6 h-6" style={{ color: '#A10000' }} />
-              <span>+971 4 450 5999</span>
-            </a>
-            <div className="flex items-start gap-4 text-gray-300">
-              <MapPin className="w-6 h-6 shrink-0" style={{ color: '#A10000' }} />
-              <span>Dubai, UAE</span>
-            </div>
-          </div>
-        </div>
-
-
       </section>
+
     </div>
   );
 };
