@@ -64,7 +64,7 @@ export const createBlog = async (req: Request, res: Response) => {
 
         let featuredImageUrl = featuredImage;
         if (req.file) {
-            featuredImageUrl = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
+            featuredImageUrl = `/uploads/${req.file.filename}`;
         }
 
         const newBlog = new Blog({
@@ -90,7 +90,7 @@ export const updateBlog = async (req: Request, res: Response) => {
         let updateData = { ...req.body };
 
         if (req.file) {
-            updateData.featuredImage = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
+            updateData.featuredImage = `/uploads/${req.file.filename}`;
         }
 
         const updatedBlog = await Blog.findByIdAndUpdate(id, updateData, { new: true });

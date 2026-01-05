@@ -61,7 +61,7 @@ export const createContentSection = async (req: Request, res: Response) => {
             // Accept both 'image' and 'images' fieldnames
             const uploadedFiles = (req.files as Express.Multer.File[]).filter(f => f.fieldname === 'images' || f.fieldname === 'image');
             imageUrls = uploadedFiles.map(
-                (file) => `/api/uploads/${file.filename}`
+                (file) => `/uploads/${file.filename}`
             );
         }
         // Also support existing image URLs passed in body
@@ -155,7 +155,7 @@ export const updateContentSection = async (req: Request, res: Response) => {
                 // Accept both 'image' and 'images' fieldnames
                 const uploadedFiles = (req.files as Express.Multer.File[]).filter(f => f.fieldname === 'images' || f.fieldname === 'image');
                 const newImageUrls = uploadedFiles.map(
-                    (file) => `/api/uploads/${file.filename}`
+                    (file) => `/uploads/${file.filename}`
                 );
                 imageUrls = [...imageUrls, ...newImageUrls];
             }
