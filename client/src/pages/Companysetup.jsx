@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { CheckCircle, Phone, MapPin, Mail, XCircle, Loader2 } from "lucide-react";
+import { CheckCircle, Phone, MapPin, Mail, XCircle, Loader2, Check } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
+import { Link } from "react-router-dom";
 
 const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
@@ -104,6 +105,27 @@ const Companysetup = () => {
   // Parse hero description for badges
   const heroBadges = description?.split('\r\n').filter(line => line.trim()) || [];
 
+  // Static partners data
+  const partners = [
+    {
+      name: "Meydan FZ",
+      logo: "assets/company-setup/meydan.png",
+    },
+    {
+      name: "RAKEZ",
+      logo: "assets/company-setup/rakez.png",
+    },
+    {
+      name: "IFZA",
+      logo: "assets/company-setup/ifza.png",
+    },
+    {
+      name: "SPC Free Zone",
+      logo: "assets/company-setup/spc.png",
+    },
+  ];
+
+
   return (
     <div className="bg-white font-sans">
 
@@ -126,7 +148,7 @@ const Companysetup = () => {
               {/* Badges */}
               <div className="flex flex-wrap gap-4 mb-8">
                 {heroBadges.map((badge, index) => (
-                  <span key={index} className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm border border-white/20">
+                  <span key={index} className="pl-0 pr-4 py-1  text-lg font-semibold text-white border-r border-white last:border-r-0">
                     {badge}
                   </span>
                 ))}
@@ -234,14 +256,20 @@ const Companysetup = () => {
       {/* ===== TAKE THE FIRST STEP SECTION ===== */}
       {heroSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-16">
             {heroSection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                  {/* <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                     {item.title}
+                  </h2> */}
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                    {item.title.split("Company Setup")[0]}
+                    <span className="text-red-600 font-bold">Company Setup</span>
+                    {item.title.split("Company Setup")[1]}
                   </h2>
-                  <div className="text-gray-600 leading-relaxed space-y-4">
+
+                  <div className="text-gray-800 text-base md:text-lg leading-relaxed space-y-4">
                     {item.contentHtml?.split('\r\n\r\n').map((para, idx) => (
                       <p key={idx}>{para}</p>
                     ))}
@@ -267,18 +295,18 @@ const Companysetup = () => {
       {mainlandSection.length > 0 && mainlandSection.map((item, index) => (
         <section
           key={item._id || index}
-          className="py-20 relative min-h-[500px]"
+          className="py-20 relative min-h-[500px] max-w-6xl mx-auto rounded-lg overflow-hidden"
         >
           {/* Background Image */}
           {item.image && (
             <div
-              className="absolute inset-0 bg-cover bg-center"
+              className="absolute inset-0 bg-cover bg-center rounded-md"
               style={{ backgroundImage: `url(${getImageUrl(item.image)})` }}
             />
           )}
-          <div className="absolute inset-0 bg-black/80" />
+          <div className="absolute inset-0 bg-black/80 rounded-md" />
 
-          <div className="relative z-10 max-w-4xl mx-auto px-6 text-white">
+          <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 text-white rounded-md">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
               Company <span style={{ color: '#A10000' }}>Formation</span> in the Mainland
             </h2>
@@ -294,24 +322,24 @@ const Companysetup = () => {
       {/* ===== COMPANY FORMATION IN FREEZONE SECTION ===== */}
       {freezoneSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-16">
             {freezoneSection.map((item, index) => (
-              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
-                <div className="order-2 md:order-1 flex justify-center">
+              <div key={item._id || index} className="grid md:grid-cols-2 gap-6 items-center">
+                <div className="order-2 md:order-2 flex justify-center">
                   {item.image && (
                     <img
                       src={getImageUrl(item.image)}
                       alt={item.title}
                       className="max-w-full h-auto rounded-xl shadow-lg"
-                      style={{ maxHeight: '400px' }}
+                      style={{ maxHeight: '500px' }}
                     />
                   )}
                 </div>
-                <div className="order-1 md:order-2">
+                <div className="order-1 md:order-1">
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                     Company Formation in <span style={{ color: '#A10000' }}>Freezone</span>
                   </h2>
-                  <div className="text-gray-600 leading-relaxed space-y-4">
+                  <div className="text-gray-800 text-base md:text-[17px] leading-relaxed space-y-4">
                     {item.contentHtml?.split('\r\n\r\n').filter(p => p.trim()).map((para, idx) => (
                       <p key={idx}>{para}</p>
                     ))}
@@ -323,72 +351,145 @@ const Companysetup = () => {
         </section>
       )}
 
+
+      {/* ===== OUR PARTNERS SECTION ===== */}
+      <section className="py-16 bg-black">
+        <div className="max-w-[1400px] mx-auto px-6">
+
+          {/* Heading */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+              Our <span className="text-red-600">Partners</span>
+            </h2>
+          </div>
+
+          {/* Logos */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+            {partners.map((partner, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-xl flex items-center justify-center 
+                     w-full md:w-[160px] h-[100px]
+                     hover:scale-105 transition-transform duration-300"
+              >
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="max-h-[80px] max-w-[160px] object-contain"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
       {/* ===== OUR STRENGTH SECTION ===== */}
       {strengthSection.length > 0 && (
-        <section className="py-20" style={{ backgroundColor: '#f5f5f5' }}>
+        <section className="py-20" style={{ backgroundColor: '#FFF5F4' }}>
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
                 Our <span style={{ color: '#A10000' }}>Strength</span>
               </h2>
-              <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div>
+              {/* <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div> */}
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
               {strengthSection.map((item, index) => (
                 <div
                   key={item._id || index}
-                  className="bg-white rounded-xl p-8 shadow-md hover:shadow-lg transition-shadow text-center"
+                  className="group bg-white rounded-xl p-8 shadow-md hover:shadow-lg transition-shadow text-center"
                 >
                   <div
-                    className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
-                    style={{ backgroundColor: 'rgba(161, 0, 0, 0.1)' }}
+                    className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-6 bg-red-600 group-hover:bg-black"
+                  // style={{ backgroundColor: 'rgba(161, 0, 0, 0.1)' }}
                   >
-                    <CheckCircle className="w-8 h-8" style={{ color: '#A10000' }} />
+                    <Check className="w-8 h-8 text-white font-semibold\" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  <h3 className="text-xl font-bold text-[#333333] mb-3">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-[#333333] text-sm md:text-[17px] leading-relaxed">
                     {item.contentHtml?.replace(/\r?\n/g, ' ').trim()}
                   </p>
                 </div>
               ))}
+
+
             </div>
+
+          </div>
+
+          <div className="flex justify-center mt-8">
+            <Link
+              to="#"
+              className="inline-block px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+            >
+              Book A Free Consultation
+            </Link>
           </div>
         </section>
       )}
 
+
       {/* ===== BENEFITS SECTION ===== */}
       {benefitsSection.length > 0 && (
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
+        <section className="py-24 bg-white">
+          <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+
+            {/* Heading */}
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+                Benefits of Establishing a{" "}
+                <span className="text-[#A10000]">Business</span> in the UAE
+              </h2>
+            </div>
+
             {benefitsSection.map((item, index) => (
-              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                    Benefits of Establishing a <span style={{ color: '#A10000' }}>Business</span> in the UAE
-                  </h2>
-                  <ul className="space-y-3">
-                    {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((benefit, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: '#A10000' }}>
-                          <CheckCircle className="w-3 h-3 text-white" strokeWidth={3} />
-                        </div>
-                        <span className="text-gray-700">{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div
+                key={item._id || index}
+                className="grid md:grid-cols-2 gap attaching-center items-center"
+              >
+                {/* Image */}
                 <div className="flex justify-center">
                   {item.image && (
                     <img
                       src={getImageUrl(item.image)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-xl shadow-lg"
-                      style={{ maxHeight: '400px' }}
+                      className="w-full max-w-[520px] h-auto rounded-3xl shadow-xl"
                     />
                   )}
+                </div>
+
+                {/* Content */}
+                <div>
+                  <ul className="space-y-2 max-md:mt-4 mb-10">
+                    {item.contentHtml
+                      ?.split("\r\n")
+                      .filter((line) => line.trim())
+                      .map((benefit, idx) => (
+                        <li key={idx} className="flex items-start gap-4">
+                          <div className="w-6 h-6 rounded-full bg-[#A10000] flex items-center justify-center shrink-0 mt-1">
+                            <Check
+                              className="w-4 h-4 text-white"
+                              strokeWidth={3}
+                            />
+                          </div>
+                          <span className="text-base md:text-[17px] text-gray-800 leading-relaxed">
+                            {benefit}
+                          </span>
+                        </li>
+                      ))}
+                  </ul>
+
+                  {/* CTA Button */}
+                  <Link
+                    to="#"
+                    className="inline-block px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+                  >
+                    Book A Free Consultation
+                  </Link>
                 </div>
               </div>
             ))}
@@ -396,15 +497,16 @@ const Companysetup = () => {
         </section>
       )}
 
+
       {/* ===== TYPES OF BUSINESS LICENSE SECTION ===== */}
       {licenseTypesSection.length > 0 && (
         <section className="py-20" style={{ backgroundColor: '#f5f5f5' }}>
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
                 Types of Business <span style={{ color: '#A10000' }}>License</span> in the UAE
               </h2>
-              <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div>
+              {/* <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div> */}
             </div>
 
             {/* License Cards with Numbers */}
@@ -426,7 +528,7 @@ const Companysetup = () => {
                       <h3 className="text-xl font-bold text-gray-900 mb-3">
                         {item.title}
                       </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">
+                      <p className="text-gray-600 text-base leading-relaxed">
                         {item.contentHtml?.replace(/\r?\n/g, ' ').trim()}
                       </p>
                     </div>
@@ -448,11 +550,11 @@ const Companysetup = () => {
 
       {/* ===== ENTITY OPTIONS SECTION ===== */}
       {entityOptionsSection.length > 0 && (
-        <section className="py-20 bg-gray-900 text-white">
-          <div className="max-w-4xl mx-auto px-6 text-center">
+        <section className="py-20 bg-black text-white">
+          <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
             {entityOptionsSection.map((item, index) => (
               <div key={item._id || index}>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
                   Entity Options for <span style={{ color: '#A10000' }}>Free Zone</span> Company Setup
                 </h2>
                 <div className="text-gray-300 leading-relaxed">
@@ -485,12 +587,12 @@ const Companysetup = () => {
                   className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-md hover:shadow-lg transition-shadow"
                 >
                   {/* Image */}
-                  <div className="h-48 overflow-hidden">
+                  <div className="h-48 overflow-hidden rounded-xl">
                     {step.image ? (
                       <img
                         src={getImageUrl(step.image)}
                         alt={step.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover p-3 rounded-xl"
                       />
                     ) : (
                       <div className="w-full h-full bg-gray-200 flex items-center justify-center">
@@ -505,14 +607,21 @@ const Companysetup = () => {
                       className="text-4xl font-bold mb-3"
                       style={{ color: '#A10000' }}
                     >
-                      {String(index + 1).padStart(2, '0')}
+                      {/* {String(index + 1).padStart(2, '0')} */}
                     </div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    <h3 className="text-lg font-bold text-[#FF1F3D] mb-2">
                       {step.title}
                     </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
+                    <p className="text-gray-600 text-base leading-relaxed">
                       {step.contentHtml?.replace(/\r?\n/g, ' ').trim()}
                     </p>
+                  </div>
+
+                  {/* CTA */}
+                  <div className="p-6">
+                    <button className="bg-[#FF1F3D] text-white px-6 py-2 rounded-full hover:bg-[#FF1F3D]/90 transition-colors">
+                      Book A Free Consultation
+                    </button>
                   </div>
                 </div>
               ))}
