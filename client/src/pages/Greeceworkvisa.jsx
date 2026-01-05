@@ -109,7 +109,7 @@ const GreeceWorkVisa = () => {
         />
         {/* Dark overlay with red glow on right */}
         <div className="absolute inset-0" style={{
-          background: 'linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 50%, rgba(161,0,0,0.3) 100%)'
+          background: 'linear-gradient(to right, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 50%, rgba(161,0,0,0.3) 100%)'
         }} />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-24 h-[800px] flex items-center">
@@ -119,21 +119,21 @@ const GreeceWorkVisa = () => {
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-2">
                 Work in Greece: Secure Your National D-Type
               </h1>
-              <h2 className="text-2xl md:text-3xl font-bold mb-8" style={{ color: '#C5202F' }}>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8" style={{ color: '#EE3A39' }}>
                 – Visa with DU Global LLC
               </h2>
 
               {/* Hero Points with square checkmarks */}
               <ul className="space-y-4 mb-8">
                 {heroPoints.slice(2).map((point, index) => (
-                  <li key={index} className="flex items-start gap-4">
+                  <li key={index} className="flex items-center gap-4">
                     <div
-                      className="w-6 h-6 rounded flex items-center justify-center shrink-0 mt-0.5"
-                      style={{ backgroundColor: '#C5202F' }}
+                      className="w-5 h-5 rounded flex items-center justify-center shrink-0 mt-0.5"
+                      style={{ backgroundColor: '#ffffff' }}
                     >
-                      <Check className="w-4 h-4 text-white" strokeWidth={3} />
+                      <Check className="w-4 h-4 text-black" strokeWidth={3} />
                     </div>
-                    <span className="text-gray-200 text-lg">{point}</span>
+                    <span className="text-gray-100 text-lg">{point}</span>
                   </li>
                 ))}
               </ul>
@@ -268,6 +268,9 @@ const GreeceWorkVisa = () => {
           </div>
         </section>
       )}
+
+
+
       {/* ===== SALARY & BENEFITS SECTION ===== */}
       {salarySection.length > 0 && (
         <section className="py-20 bg-gray-900 relative overflow-hidden">
