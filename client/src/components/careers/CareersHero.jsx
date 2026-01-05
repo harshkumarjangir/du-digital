@@ -1,6 +1,6 @@
 const CareersHero = ({ data }) => (
     <section
-        className="h-[420px] flex items-center justify-center bg-cover bg-center relative"
+        className="h-[800px] flex items-center justify-center bg-cover bg-center relative"
         style={{ backgroundImage: `url(${data.background})` }}
     >
         {/* <div className="absolute inset-0 bg-red-900/40" /> */}

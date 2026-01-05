@@ -60,7 +60,7 @@ const EventDetail = () => {
     return (
         <div className="min-h-screen bg-white">
             {/* Hero Section */}
-            <div className="relative h-[400px]">
+            <div className="relative h-[800px]">
                 <img src={`${BackendImagesURL}${selectedEvent.imageUrl}`} alt="" className="w-full h-full object-cover object-center absolute inset-0 " />
 
                 <div className="relative max-w-7xl mx-auto px-6 md:px-20 h-full flex flex-col justify-center text-white z-20">

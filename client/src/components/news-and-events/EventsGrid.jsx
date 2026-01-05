@@ -80,7 +80,7 @@ const EventsGrid = ({ data }) => {
                             {event.category}
                         </span>
 
-                        <Link to={`/events/${event._id}`} className={` text-white px-6 py-2 mb-4 rounded-full w-max font-semibold border border-white/10 hover:border hover:bg-white/10 transition cursor-pointer ${getColorFromId(event._id)}`}>
+                        <Link to={`/events/${event._id}`} className="bg-[#FF1033] text-[#FFFDF5] px-6 py-2 mb-4 rounded-full w-max font-bold hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300 cursor-pointer">
                             View More
                         </Link>
 

@@ -140,7 +140,7 @@ const Dubai5yeartouristvisa = () => {
                 {descriptionLines.slice(2).map((line, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <div
-                      className="w-5 h-5 rounded flex items-center justify-center flex-shrink-0 mt-0.5"
+                      className="w-5 h-5 rounded flex items-center justify-center shrink-0 mt-0.5"
                       style={{ backgroundColor: '#E31E24' }}
                     >
                       <Check className="w-3 h-3 text-white" strokeWidth={3} />
@@ -249,8 +249,7 @@ const Dubai5yeartouristvisa = () => {
                   <button
                     type="submit"
                     disabled={submitLoading}
-                    className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 hover:opacity-90 disabled:opacity-70 flex items-center justify-center gap-2"
-                    style={{ backgroundColor: '#2D1F1F', color: '#E31E24' }}
+                    className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-2"
                   >
                     {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Get Started'}
                   </button>
@@ -297,8 +296,7 @@ const Dubai5yeartouristvisa = () => {
                 </div>
 
                 <button
-                  className="px-10 py-4 rounded-lg font-bold text-white text-lg transition-all duration-300 hover:opacity-90"
-                  style={{ backgroundColor: '#E31E24' }}
+                  className="px-10 py-4 rounded-lg font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]"
                 >
                   Enquire Now
                 </button>
@@ -324,7 +322,7 @@ const Dubai5yeartouristvisa = () => {
                   </p>
 
                   {/* Trust badge */}
-                  <div className="flex items-center gap-3 bg-gray-50 rounded-lg p-4 inline-flex">
+                  <div className="flex items-center gap-3 bg-gray-50 rounded-lg p-4 flex">
                     <Star className="w-6 h-6" style={{ color: '#E31E24' }} fill="#E31E24" />
                     <span className="text-gray-700 font-semibold">17 Lac+ Happy Customers</span>
                   </div>
@@ -363,7 +361,7 @@ const Dubai5yeartouristvisa = () => {
                     {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
                       <li key={idx} className="flex items-start gap-4">
                         <div
-                          className="w-6 h-6 rounded flex items-center justify-center flex-shrink-0 mt-0.5"
+                          className="w-6 h-6 rounded flex items-center justify-center shrink-0 mt-0.5"
                           style={{ backgroundColor: '#E31E24' }}
                         >
                           <Check className="w-4 h-4 text-white" strokeWidth={3} />
@@ -412,7 +410,7 @@ const Dubai5yeartouristvisa = () => {
               {/* Quality and Value */}
               <div className="flex items-start gap-4">
                 <div
-                  className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                  className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0"
                   style={{ backgroundColor: '#E31E24' }}
                 >
                   <Users className="w-6 h-6 text-white" />
@@ -426,7 +424,7 @@ const Dubai5yeartouristvisa = () => {
               {/* Services */}
               <div className="flex items-start gap-4">
                 <div
-                  className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                  className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0"
                   style={{ backgroundColor: '#E31E24' }}
                 >
                   <Users className="w-6 h-6 text-white" />
@@ -440,7 +438,7 @@ const Dubai5yeartouristvisa = () => {
               {/* Security */}
               <div className="flex items-start gap-4">
                 <div
-                  className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                  className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0"
                   style={{ backgroundColor: '#E31E24' }}
                 >
                   <Shield className="w-6 h-6 text-white" />
@@ -454,7 +452,7 @@ const Dubai5yeartouristvisa = () => {
               {/* Technology */}
               <div className="flex items-start gap-4">
                 <div
-                  className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                  className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0"
                   style={{ backgroundColor: '#E31E24' }}
                 >
                   <Globe className="w-6 h-6 text-white" />
@@ -489,7 +487,7 @@ const Dubai5yeartouristvisa = () => {
 
               <a
                 href="#"
-                className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
+                className="flex items-center text-[#FF1033] font-medium hover:underline"
               >
                 More FAQs →
               </a>

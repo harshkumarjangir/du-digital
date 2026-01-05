@@ -27,7 +27,7 @@ const VideoGallery = () => {
         return (
             <div className="w-full">
                 <section
-                    className="h-[320px] bg-cover bg-center relative flex items-center justify-center"
+                    className="h-[800px] bg-cover bg-center relative flex items-center justify-center"
                     style={{ backgroundImage: `url(${'/assets/video-gallery/video-gallery-bg.jpg'})` }}
                 >
                     <div className="absolute inset-0 bg-black/60" />
@@ -46,7 +46,7 @@ const VideoGallery = () => {
         return (
             <div className="w-full">
                 <section
-                    className="h-[320px] bg-cover bg-center relative flex items-center justify-center"
+                    className="h-[800px] bg-cover bg-center relative flex items-center justify-center"
                     style={{ backgroundImage: `url(${'/assets/video-gallery/video-gallery-bg.jpg'})` }}
                 >
                     <div className="absolute inset-0 bg-black/60" />
@@ -65,7 +65,7 @@ const VideoGallery = () => {
         return (
             <div className="w-full">
                 <section
-                    className="h-[320px] bg-cover bg-center relative flex items-center justify-center"
+                    className="h-[800px] bg-cover bg-center relative flex items-center justify-center"
                     style={{ backgroundImage: `url(${'/assets/video-gallery/video-gallery-bg.jpg'})` }}
                 >
                     <div className="absolute inset-0 bg-black/60" />
@@ -86,7 +86,7 @@ const VideoGallery = () => {
         <div className="w-full">
             {/* ===== Hero ===== */}
             <section
-                className="h-[320px] bg-cover bg-center relative flex items-center justify-center"
+                className="h-[800px] bg-cover bg-center relative flex items-center justify-center"
                 style={{ backgroundImage: `url(${'/assets/video-gallery/video-gallery-bg.jpg'})` }}
             >
                 {/* <div className="absolute inset-0 bg-black/60" /> */}
@@ -116,7 +116,7 @@ const VideoGallery = () => {
                     <div className="text-center">
                         <button
                             onClick={() => setVisibleCount((p) => p + 6)}
-                            className="mt-6 px-6 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
+                            className="mt-6 px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
                         >
                             Load More
                         </button>

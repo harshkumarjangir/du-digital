@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Testimonials = ({ data }) => {
     const [index, setIndex] = useState(0);
@@ -33,9 +34,9 @@ const Testimonials = ({ data }) => {
                 </p>
 
                 <div className="mt-8">
-                    <button className="bg-red-600 text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-red-700 transition">
+                    <Link to={data.buttonLink} className="bg-[#FF1033] text-[#FFFDF5] px-6 py-3 rounded-full font-bold text-lg hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300">
                         {data.buttonText}
-                    </button>
+                    </Link>
                 </div>
 
                 {/* Slider */}

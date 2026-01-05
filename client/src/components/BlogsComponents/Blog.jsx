@@ -61,7 +61,7 @@ export const Blog = ({ data: propData, className }) => {
                 />
 
                 {/* Content */}
-                <div className="p-4 space-y-2 flex-grow">
+                <div className="p-4 space-y-2 grow">
                   <h3 className="text-lg font-semibold leading-snug line-clamp-2">
                     {blog.title}
                   </h3>
@@ -73,7 +73,7 @@ export const Blog = ({ data: propData, className }) => {
                 {/* Button */}
                 <Link
                   to={`/blog/${blog._id}`}
-                  className={`w-full py-3 px-2 text-white font-medium ${color}`}>
+                  className="w-full py-3 px-2 text-[#FFFDF5] font-bold bg-[#FF1033] hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300 text-center">
                   Read More
                 </Link>
               </div>
@@ -87,8 +87,8 @@ export const Blog = ({ data: propData, className }) => {
             <Link
               to={`?page=${page}`}
               className={`px-4 py-2 rounded-md ${searchParams.get("page") == page
-                  ? "bg-red-500 text-white"
-                  : "bg-gray-200 text-gray-700"
+                ? "bg-[#FF1033] text-[#FFFDF5]"
+                : "bg-gray-200 text-gray-700"
                 }`}
             >
               {page}

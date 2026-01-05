@@ -178,7 +178,7 @@ const Globalrecruitmentservices = () => {
 
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative min-h-[70vh] flex items-center overflow-hidden md:px-12">
+      <section className="relative h-[800px] flex items-center overflow-hidden md:px-12">
 
         {/* Background Image */}
         {formData?.image && (
@@ -276,9 +276,9 @@ const Globalrecruitmentservices = () => {
               <button
                 type="submit"
                 disabled={submitting}
-                className={`w-full bg-[#c60505] text-white py-4 rounded-lg font-bold text-lg transition ${submitting
+                className={`w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] ${submitting
                   ? 'opacity-60 cursor-not-allowed'
-                  : 'hover:bg-[#a00000]'
+                  : ''
                   }`}
               >
                 {submitting ? 'Sending...' : 'Get Started Now'}
@@ -311,7 +311,7 @@ const Globalrecruitmentservices = () => {
                     className="bg-white rounded-xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-gray-100 relative overflow-hidden group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
                   >
                     {/* Red Triangle Accent */}
-                    <div className="absolute top-0 right-0 w-0 h-0 border-t-[50px] border-t-[#c60505] border-l-[50px] border-l-transparent" />
+                    <div className="absolute top-0 right-0 w-0 h-0 border-t-50 border-t-[#c60505] border-l-50 border-l-transparent" />
 
                     <div className="w-16 h-16 rounded-full border-2 border-[#c60505] flex items-center justify-center mb-6 group-hover:bg-[#c60505] group-hover:text-white transition-colors duration-300">
                       <IconComponent size={30} className="text-[#c60505] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
@@ -489,7 +489,7 @@ const Globalrecruitmentservices = () => {
                       key={index}
                       className="flex items-center gap-0"
                     >
-                      <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0">
                         <Check size={20} className="text-white" />
                       </div>
                       <p className="text-white text-base leading-relaxed">

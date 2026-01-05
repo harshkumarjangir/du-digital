@@ -45,21 +45,21 @@ const Lebanon = () => {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormValues(prev => ({ 
-      ...prev, 
-      [name]: type === 'checkbox' ? checked : value 
+    setFormValues(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
     }));
   };
 
   if (loading) return <LoadingState message="Loading Lebanon..." fullScreen />;
   if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
 
-  const { 
+  const {
     name,
-    description, 
-    fields = [], 
-    faqs = [], 
-    documents = [], 
+    description,
+    fields = [],
+    faqs = [],
+    documents = [],
     contentSections = {},
     formEmployeesAddresses = []
   } = formData || {};
@@ -71,7 +71,7 @@ const Lebanon = () => {
   // Parse table data from content sections
   const renderTable = (tableData) => {
     if (!tableData || !tableData.headers || !tableData.rows) return null;
-    
+
     return (
       <div className="overflow-x-auto mb-8">
         <table className="w-full border-collapse">
@@ -112,17 +112,17 @@ const Lebanon = () => {
 
   return (
     <div className="bg-white font-sans">
-      
+
       {/* ===== HERO SECTION (1920x800) ===== */}
-      <section 
+      <section
         className="relative w-full h-[800px] bg-cover bg-center flex items-center justify-center"
-        style={{ 
+        style={{
           backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
         }}
       >
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/40" />
-        
+
         <div className="relative z-10 text-center">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white">
             Lebanon
@@ -133,7 +133,7 @@ const Lebanon = () => {
       {/* ===== CONTENT SECTIONS WITH TABLES ===== */}
       {heroBottomSection.length > 0 && heroBottomSection.map((section, index) => {
         const { before, after } = parseContentHtml(section.contentHtml);
-        
+
         return (
           <section key={index} className="py-16 bg-white">
             <div className="max-w-6xl mx-auto px-6">
@@ -149,7 +149,7 @@ const Lebanon = () => {
                   ))}
                 </div>
               )}
-              
+
               {/* Visa Fee Table */}
               {section.tableData && (
                 <>
@@ -157,7 +157,7 @@ const Lebanon = () => {
                   {renderTable(section.tableData)}
                 </>
               )}
-              
+
               {/* Content after table (Important Notes) */}
               {after && (
                 <div className="prose max-w-none mt-8">
@@ -192,7 +192,7 @@ const Lebanon = () => {
         <section key={index} className="py-12 bg-gray-50">
           <div className="max-w-6xl mx-auto px-6">
             <h3 className="text-xl font-bold text-gray-800 mb-4">{section.title}</h3>
-            
+
             {section.contentHtml && (
               <div className="prose max-w-none mb-6">
                 {section.contentHtml.split('\r\n\r\n').filter(p => p.trim()).map((paragraph, pIdx) => (
@@ -202,7 +202,7 @@ const Lebanon = () => {
                 ))}
               </div>
             )}
-            
+
             {section.tableData && renderTable(section.tableData)}
           </div>
         </section>
@@ -249,8 +249,7 @@ const Lebanon = () => {
               })}
               <button
                 type="submit"
-                className="w-full py-4 rounded-full font-bold text-base transition-all duration-300 hover:opacity-90"
-                style={{ backgroundColor: '#2D1F1F', color: '#E31E24' }}
+                className="w-full py-4 rounded-full font-bold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]"
               >
                 Submit Application
               </button>
@@ -268,7 +267,7 @@ const Lebanon = () => {
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {documents.map((doc, index) => (
-                <div 
+                <div
                   key={doc._id || index}
                   className="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-500"
                 >
@@ -296,7 +295,7 @@ const Lebanon = () => {
               </h2>
 
               <p className="text-gray-500 max-w-md mb-6">
-                Find answers to common questions about Lebanon visa applications, 
+                Find answers to common questions about Lebanon visa applications,
                 processing times, and required documents.
               </p>
 
@@ -344,37 +343,37 @@ const Lebanon = () => {
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
               Contact Details
             </h2>
-            
+
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {formEmployeesAddresses.map((office, index) => (
-                <div 
+                <div
                   key={office._id || index}
                   className="bg-white rounded-lg shadow-md overflow-hidden"
                 >
                   {/* Red top bar */}
-                  <div 
-                    className="h-2" 
+                  <div
+                    className="h-2"
                     style={{ backgroundColor: office.color || '#E31E24' }}
                   />
-                  
+
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-gray-900 mb-4">
                       {office.Location}
                     </h3>
-                    
+
                     {office.officeName && (
                       <p className="text-gray-700 font-medium mb-3">
                         {office.officeName}
                       </p>
                     )}
-                    
+
                     {office.Address && (
                       <div className="flex items-start gap-3 mb-3">
-                        <MapPin className="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
+                        <MapPin className="w-5 h-5 text-gray-400 shrink-0 mt-0.5" />
                         <p className="text-gray-600 text-sm">{office.Address}</p>
                       </div>
                     )}
-                    
+
                     {office.phone && (
                       <div className="flex items-center gap-3 mb-3">
                         <Phone className="w-5 h-5 text-gray-400" />
@@ -383,7 +382,7 @@ const Lebanon = () => {
                         </a>
                       </div>
                     )}
-                    
+
                     {office.email && (
                       <div className="flex items-center gap-3 mb-3">
                         <Mail className="w-5 h-5 text-gray-400" />
@@ -392,7 +391,7 @@ const Lebanon = () => {
                         </a>
                       </div>
                     )}
-                    
+
                     {(office.Open || office.Close) && (
                       <p className="text-gray-500 text-sm mt-4">
                         <span className="font-medium">Working Days:</span> {office.Open} - {office.Close}

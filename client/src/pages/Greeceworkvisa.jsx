@@ -128,7 +128,7 @@ const GreeceWorkVisa = () => {
                 {heroPoints.slice(2).map((point, index) => (
                   <li key={index} className="flex items-start gap-4">
                     <div
-                      className="w-6 h-6 rounded flex items-center justify-center flex-shrink-0 mt-0.5"
+                      className="w-6 h-6 rounded flex items-center justify-center shrink-0 mt-0.5"
                       style={{ backgroundColor: '#C5202F' }}
                     >
                       <Check className="w-4 h-4 text-white" strokeWidth={3} />
@@ -220,8 +220,7 @@ const GreeceWorkVisa = () => {
                   <button
                     type="submit"
                     disabled={submitLoading}
-                    className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 hover:opacity-90 disabled:opacity-70 flex items-center justify-center gap-2"
-                    style={{ backgroundColor: '#2D1F1F', color: '#E31E24' }}
+                    className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-2"
                   >
                     {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Get Started'}
                   </button>
@@ -294,7 +293,7 @@ const GreeceWorkVisa = () => {
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((benefit, idx) => (
                       <li key={idx} className="flex items-start gap-4">
                         <div
-                          className="w-6 h-6 rounded flex items-center justify-center flex-shrink-0 mt-0.5"
+                          className="w-6 h-6 rounded flex items-center justify-center shrink-0 mt-0.5"
                           style={{ backgroundColor: '#C5202F' }}
                         >
                           <Check className="w-4 h-4 text-white" strokeWidth={3} />
@@ -350,7 +349,7 @@ const GreeceWorkVisa = () => {
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((criteria, idx) => (
                       <li key={idx} className="flex items-start gap-4">
                         <div
-                          className="w-6 h-6 rounded flex items-center justify-center flex-shrink-0 mt-0.5"
+                          className="w-6 h-6 rounded flex items-center justify-center shrink-0 mt-0.5"
                           style={{ backgroundColor: '#C5202F' }}
                         >
                           <Check className="w-4 h-4 text-white" strokeWidth={3} />
@@ -396,7 +395,7 @@ const GreeceWorkVisa = () => {
                   <ul className="space-y-4">
                     {doc.contentHtml?.split('\r\n').filter(line => line.trim()).map((item, idx) => (
                       <li key={idx} className="flex items-start gap-4">
-                        <Check className="w-5 h-5 text-white flex-shrink-0 mt-0.5" strokeWidth={3} />
+                        <Check className="w-5 h-5 text-white shrink-0 mt-0.5" strokeWidth={3} />
                         <span className="text-white/95">{item}</span>
                       </li>
                     ))}
@@ -490,7 +489,7 @@ const GreeceWorkVisa = () => {
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((benefit, idx) => (
                       <li key={idx} className="flex items-start gap-4">
                         <div
-                          className="w-6 h-6 rounded flex items-center justify-center flex-shrink-0 mt-0.5"
+                          className="w-6 h-6 rounded flex items-center justify-center shrink-0 mt-0.5"
                           style={{ backgroundColor: '#C5202F' }}
                         >
                           <Check className="w-4 h-4 text-white" strokeWidth={3} />

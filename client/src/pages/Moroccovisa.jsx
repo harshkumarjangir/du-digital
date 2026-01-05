@@ -194,8 +194,7 @@ const Moroccovisa = () => {
                   <button
                     type="submit"
                     disabled={submitLoading}
-                    className="w-full py-3 rounded-full font-bold text-base transition-all duration-300 hover:opacity-90 uppercase disabled:opacity-70 flex items-center justify-center gap-2"
-                    style={{ backgroundColor: '#2D1F1F', color: '#E31E24' }}
+                    className="w-full py-3 rounded-full font-bold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] uppercase disabled:opacity-70 flex items-center justify-center gap-2"
                   >
                     {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Apply Now'}
                   </button>
@@ -317,7 +316,7 @@ const Moroccovisa = () => {
             {whyChooseFeatures.map((feature, index) => (
               <div key={index} className="flex items-start gap-4">
                 <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0"
+                  className="w-14 h-14 rounded-full flex items-center justify-center shrink-0"
                   style={{ backgroundColor: '#E31E24' }}
                 >
                   <feature.icon className="w-7 h-7 text-white" />
@@ -354,7 +353,7 @@ const Moroccovisa = () => {
                     {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
                       <li key={idx} className="flex items-start gap-3">
                         <div
-                          className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                          className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5"
                           style={{ backgroundColor: '#E31E24' }}
                         >
                           <Check className="w-4 h-4 text-white" strokeWidth={3} />

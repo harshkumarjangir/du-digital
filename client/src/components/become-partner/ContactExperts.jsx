@@ -38,7 +38,7 @@ const ContactExperts = ({ data }) => {
                         {data.title}
                     </h2>
 
-                    <Link to={data.ctaLink} className="mt-6 md:mt-0 bg-red-600 hover:bg-red-700 transition px-8 py-3 font-semibold text-white rounded">
+                    <Link to={data.ctaLink} className="mt-6 md:mt-0 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300 px-8 py-3 font-bold text-lg rounded-full">
                         {data.ctaText}
                     </Link>
                 </div>

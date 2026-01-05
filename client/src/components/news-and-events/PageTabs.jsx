@@ -10,7 +10,7 @@ const PageTabs = () => {
                 to="/news-and-media"
                 className={({ isActive }) =>
                     `${base} ${isActive
-                        ? "bg-red-600 text-white"
+                        ? "bg-[#FF1033] text-[#FFFDF5]"
                         : "bg-white text-black"
                     }`
                 }
@@ -22,7 +22,7 @@ const PageTabs = () => {
                 to="/events"
                 className={({ isActive }) =>
                     `${base} ${isActive
-                        ? "bg-red-600 text-white"
+                        ? "bg-[#FF1033] text-[#FFFDF5]"
                         : "bg-white text-black"
                     }`
                 }

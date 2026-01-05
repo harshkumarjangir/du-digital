@@ -58,7 +58,7 @@ const CareerOpportunities = ({ jobs, onApply, onView }) => {
 
                                 <button
                                     onClick={() => onApply(job)}
-                                    className="ml-auto text-sm font-semibold bg-black text-white px-5 py-2 rounded-full hover:bg-gray-800"
+                                    className="ml-auto text-sm font-bold bg-[#FF1033] text-[#FFFDF5] px-5 py-2 rounded-full hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300"
                                 >
                                     Apply
                                 </button>

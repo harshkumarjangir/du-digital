@@ -107,7 +107,7 @@ const TenantVerification = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full min-h-[90vh] overflow-hidden">
+      <section className="relative w-full h-[800px] overflow-hidden">
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -119,7 +119,7 @@ const TenantVerification = () => {
         />
 
         {/* Dark Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-black/20" />
+        <div className="absolute inset-0 bg-linear-to-r from-black/50 via-black/30 to-black/20" />
 
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 min-h-[90vh] flex items-center">
@@ -146,7 +146,7 @@ const TenantVerification = () => {
 
             {/* CTA */}
             <button
-              className="px-8 py-3 rounded-full bg-[#FF1033] hover:bg-[#511313] font-semibold text-white text-base md:text-lg transition-all duration-300 hover:opacity-90 shadow-xl cursor-pointer"
+              className="px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-xl cursor-pointer"
             >
               Get Started Today – Verify Now
             </button>
@@ -532,7 +532,7 @@ const TenantVerification = () => {
                         {steps.map((step, stepIdx) => (
                           <div key={stepIdx} className="flex gap-5 items-center">
                             <div
-                              className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0 text-[#A10000] border-2 border-[#A10000]"
+                              className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold shrink-0 text-[#A10000] border-2 border-[#A10000]"
                             >
                               {stepIdx + 1}
                             </div>

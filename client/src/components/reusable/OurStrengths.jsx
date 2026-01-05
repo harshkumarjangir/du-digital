@@ -43,9 +43,9 @@ const OurStrengths = ({ data }) => {
                             </p>
                         </div>
 
-                        <button className="mt-8 inline-flex items-center gap-2 text-sm font-semibold bg-[#FF1033] px-5 py-3 rounded-full w-max hover:opacity-90 transition">
+                        {/* <button className="mt-8 inline-flex items-center gap-2 text-lg font-bold bg-[#FF1033] text-[#FFFDF5] px-6 py-3 rounded-full w-max hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300">
                             Explore Services →
-                        </button>
+                        </button> */}
                     </div>
 
                     {/* RIGHT GRID */}

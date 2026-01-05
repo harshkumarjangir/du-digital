@@ -82,7 +82,7 @@ const JobDescriptionModal = ({ job, onApply, onClose }) => {
                         <div className="pt-4">
                             <button
                                 onClick={() => onApply(job)}
-                                className="bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition"
+                                className="bg-[#FF1033] text-[#FFFDF5] px-8 py-3 rounded-full font-bold hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300"
                             >
                                 Apply Now
                             </button>

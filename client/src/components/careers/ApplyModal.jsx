@@ -10,13 +10,13 @@ const ApplyModal = ({ open, job, onClose }) => {
         phone: null,
         resume: null,
     });
-const dispatch=useDispatch()
+    const dispatch = useDispatch()
     if (!open) return null;
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-       const data = {
+        const data = {
             jobId: job?._id,
             jobTitle: job?.title,
             name: formData.name,
@@ -24,8 +24,8 @@ const dispatch=useDispatch()
             phone: formData.phone,
             resume: formData.resume,
         }
-        console.log("data",data);
-        
+        console.log("data", data);
+
         dispatch(SubmitCv(data));
 
     };
@@ -132,7 +132,7 @@ const dispatch=useDispatch()
                     {/* Submit */}
                     <button
                         type="submit"
-                        className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg text-sm font-semibold transition"
+                        className="w-full bg-[#FF1033] hover:bg-[#511313] hover:text-[#FF1033] text-[#FFFDF5] py-3 rounded-full text-sm font-bold transition-all duration-300"
                     >
                         Submit
                     </button>

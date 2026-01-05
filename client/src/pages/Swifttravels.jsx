@@ -3,7 +3,7 @@ import data from "../data/swifttravels.json";
 export const Swifttravels = () => {
   return (
     <>
-      <section className="relative w-full h-[70vh] overflow-hidden">
+      <section className="relative w-full h-[800px] overflow-hidden">
         {/* IMAGE (Right → Left) */}
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -40,7 +40,7 @@ export const Swifttravels = () => {
         <div className="border-2 border-red-800 w-20"></div>
       </div>
 
-        <CardData />
+      <CardData />
     </>
   );
 };

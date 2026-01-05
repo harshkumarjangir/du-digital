@@ -223,7 +223,7 @@ const Egyptvisaforindians = () => {
                               name={field.name}
                               checked={formValues[field.name] || false}
                               onChange={handleInputChange}
-                              className="mt-1 w-4 h-4 accent-red-600 rounded flex-shrink-0"
+                              className="mt-1 w-4 h-4 accent-red-600 rounded shrink-0"
                             />
                             <span className="text-sm leading-relaxed">{field.label}</span>
                           </label>
@@ -236,14 +236,14 @@ const Egyptvisaforindians = () => {
                   {submitStatus && (
                     <div
                       className={`flex items-center gap-3 p-4 rounded-lg ${submitStatus === 'success'
-                          ? 'bg-green-500/20 border border-green-500/50'
-                          : 'bg-red-500/20 border border-red-500/50'
+                        ? 'bg-green-500/20 border border-green-500/50'
+                        : 'bg-red-500/20 border border-red-500/50'
                         }`}
                     >
                       {submitStatus === 'success' ? (
-                        <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
+                        <CheckCircle className="w-5 h-5 text-green-400 shrink-0" />
                       ) : (
-                        <XCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
+                        <XCircle className="w-5 h-5 text-red-400 shrink-0" />
                       )}
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>
                         {submitMessage}
@@ -254,8 +254,7 @@ const Egyptvisaforindians = () => {
                   <button
                     type="submit"
                     disabled={submitLoading}
-                    className="w-full py-3 rounded-full font-medium text-base transition-all duration-300 hover:opacity-90 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                    style={{ backgroundColor: '#2D1F1F', color: '#E31E24' }}
+                    className="w-full py-3 rounded-full font-medium text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {submitLoading ? (
                       <>
@@ -349,7 +348,7 @@ const Egyptvisaforindians = () => {
             <div className="space-y-6">
               {travelTipsSection[0]?.contentHtml?.split('\n\n').filter(p => p.trim()).map((paragraph, pIdx) => (
                 <div key={pIdx} className="flex gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(227,30,36,0.1)' }}>
+                  <div className="shrink-0 w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(227,30,36,0.1)' }}>
                     <Check className="w-5 h-5" style={{ color: '#E31E24' }} />
                   </div>
                   <p className="text-gray-600 leading-relaxed">{paragraph.trim()}</p>
@@ -541,7 +540,7 @@ const Egyptvisaforindians = () => {
                   <ul className="space-y-3">
                     {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
                       <li key={idx} className="flex items-start gap-3">
-                        <Check className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#E31E24' }} />
+                        <Check className="w-5 h-5 mt-0.5 shrink-0" style={{ color: '#E31E24' }} />
                         <span className="text-gray-700">{item.trim()}</span>
                       </li>
                     ))}
@@ -570,8 +569,7 @@ const Egyptvisaforindians = () => {
                 >
                   <button
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    className="w-full px-6 py-4 flex items-center justify-between text-left text-white"
-                    style={{ backgroundColor: '#E31E24' }}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]"
                   >
                     <span className="font-semibold">{faq.question}</span>
                     <ChevronDown

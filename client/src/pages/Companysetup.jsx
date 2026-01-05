@@ -134,8 +134,7 @@ const Companysetup = () => {
 
               <a
                 href="#consultation"
-                className="inline-block px-8 py-4 rounded-lg font-bold text-lg text-white transition-all duration-300 hover:opacity-90 shadow-lg"
-                style={{ backgroundColor: '#A10000' }}
+                className="inline-block px-8 py-4 rounded-full font-bold text-lg text-[#FFFDF5] transition-all duration-300 bg-[#FF1033] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
               >
                 Book A Free Consultation
               </a>
@@ -221,8 +220,7 @@ const Companysetup = () => {
                   <button
                     type="submit"
                     disabled={submitLoading}
-                    className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 hover:opacity-90 disabled:opacity-70 flex items-center justify-center gap-2"
-                    style={{ backgroundColor: '#2D1F1F', color: '#E31E24' }}
+                    className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-2"
                   >
                     {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Submit Enquiry'}
                   </button>
@@ -374,7 +372,7 @@ const Companysetup = () => {
                   <ul className="space-y-3">
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((benefit, idx) => (
                       <li key={idx} className="flex items-start gap-3">
-                        <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: '#A10000' }}>
+                        <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: '#A10000' }}>
                           <CheckCircle className="w-3 h-3 text-white" strokeWidth={3} />
                         </div>
                         <span className="text-gray-700">{benefit}</span>
@@ -536,7 +534,7 @@ const Companysetup = () => {
                   <ul className="space-y-4">
                     {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
                       <li key={idx} className="flex items-start gap-4">
-                        <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: '#A10000' }}>
+                        <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: '#A10000' }}>
                           <CheckCircle className="w-4 h-4 text-white" strokeWidth={3} />
                         </div>
                         <span className="text-gray-700">{item}</span>
@@ -568,7 +566,7 @@ const Companysetup = () => {
               <span>+91-11-4777-2727</span>
             </a>
             <div className="flex items-start gap-4 text-gray-300">
-              <MapPin className="w-6 h-6 flex-shrink-0" style={{ color: '#A10000' }} />
+              <MapPin className="w-6 h-6 shrink-0" style={{ color: '#A10000' }} />
               <span>New Delhi, India</span>
             </div>
           </div>
@@ -583,7 +581,7 @@ const Companysetup = () => {
               <span>+971 4 450 5999</span>
             </a>
             <div className="flex items-start gap-4 text-gray-300">
-              <MapPin className="w-6 h-6 flex-shrink-0" style={{ color: '#A10000' }} />
+              <MapPin className="w-6 h-6 shrink-0" style={{ color: '#A10000' }} />
               <span>Dubai, UAE</span>
             </div>
           </div>

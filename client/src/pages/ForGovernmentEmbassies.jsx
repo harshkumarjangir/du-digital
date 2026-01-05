@@ -47,7 +47,7 @@ const ForGovernmentEmbassies = () => {
                 </div>
                 <NewsHome data={news.slice(0, 3)} />
                 <Link to="/news-and-media" className="block text-center pt-8">
-                    <button className="bg-[#FF1033] text-white px-6 py-3 rounded-full hover:bg-[#511313] transition-colors cursor-pointer">
+                    <button className="px-6 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] cursor-pointer">
                         View All News
                     </button>
                 </Link>

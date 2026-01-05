@@ -36,7 +36,7 @@ const OurBusinesses = ({ data }) => {
                 <div className="text-center mb-20">
                     <a
                         href={data.cta.link}
-                        className="inline-block bg-red-600 text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-red-700 transition cursor-pointer"
+                        className="inline-block bg-[#FF1033] text-[#FFFDF5] px-8 py-3 rounded-full font-bold text-lg hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300 cursor-pointer"
                     >
                         {data.cta.text}
                     </a>

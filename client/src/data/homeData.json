@@ -83,20 +83,20 @@
         ],
         "cta": {
             "text": "Other Countries",
-            "link": "/countries"
+            "link": "/apply-for-any-visa"
         },
         "cards": [
             {
                 "title": "Global Company Formation",
                 "description": "Business Setup in UAE",
                 "image": "/assets/home/bussinesses/Business-Setup-in-dubai-1-e1758531203300.jpg",
-                "link": "/company-formation"
+                "link": "/company-setup-in-the-uae"
             },
             {
                 "title": "Global Recruitment",
                 "description": "Manpower & Immigration Services",
                 "image": "/assets/home/bussinesses/Immigration-Services.jpg",
-                "link": "/recruitment"
+                "link": "/global-recruitment-services"
             },
             {
                 "title": "DuVerify",
@@ -144,6 +144,7 @@
         "title": "What our clients are saying?",
         "subtitle": "Discover what our clients say about our seamless services and expert support. Their success is our pride.",
         "buttonText": "Reviews us on G",
+        "buttonLink": "https://search.google.com/local/writereview?placeid=ChIJodMavDbjDDkR1TtffPiCv1s",
         "testimonials": [
             {
                 "message": "DU Global provided outstanding guidance and demonstrated thorough understanding of our business requirements. Their expertise in the matter and their professional approach are highly commendable. They collaborate closely and offer tailored advice that perfectly suits our needs. Thanks to their direction as we have optimized operations, boosted productivity and attained growth.",

@@ -119,7 +119,7 @@ const ContactForm = ({ form }) => {
                 <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-[#FF1033] text-white py-3 rounded-lg font-semibold hover:bg-[#511313] transition disabled:opacity-50"
+                    className="w-full py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-50"
                 >
                     {loading ? "Submitting..." : "Get in Touch"}
                 </button>

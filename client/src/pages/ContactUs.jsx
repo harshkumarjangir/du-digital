@@ -9,15 +9,15 @@ const ContactUs = () => {
         <div className="w-full">
 
             {/* Hero */}
-            <section
-                className="h-[300px] bg-cover bg-center relative flex items-center justify-center"
-            // style={{ backgroundImage: `url(${hero.backgroundImage})` }}
+            {/* <section
+                className="h-[400px] bg-cover bg-center relative flex items-center justify-center"
+                style={{ backgroundImage: `url(${hero.backgroundImage})` }}
             >
                 <div className="absolute inset-0 bg-black/60" />
                 <h1 className="relative z-10 text-white text-4xl font-semibold">
-                    {/* {hero.title} */}
+                    {hero.title}
                 </h1>
-            </section>
+            </section> */}
 
             {/* Offices */}
             <Offices />

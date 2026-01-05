@@ -52,7 +52,7 @@ const Duverify = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full min-h-[85vh] overflow-hidden">
+      <section className="relative w-full h-[800px] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${getImageUrl(formData?.image) || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'})` }}
@@ -82,7 +82,7 @@ const Duverify = () => {
 
             <a
               href="#connectwithus"
-              className="inline-block px-10 py-4 rounded-full font-bold text-lg text-white bg-[#FF1033] hover:bg-[#511313] transition-all duration-300 hover:opacity-90 shadow-lg"
+              className="inline-block px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
             >
               Connect with Us
             </a>
@@ -113,7 +113,7 @@ const Duverify = () => {
                   <ul className="space-y-3">
                     {item.contentHtml?.split(/\r?\n/).filter(line => line.trim()).map((benefit, idx) => (
                       <li key={idx} className="flex items-center gap-3">
-                        <div className="w-5 h-5 rounded-none flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: '#A10000' }}>
+                        <div className="w-5 h-5 rounded-none flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: '#A10000' }}>
                           <Check className="w-4 h-4 text-white" strokeWidth={3} />
                           {/* <CheckCircle className="w-3 h-3 text-white" strokeWidth={3} /> */}
                         </div>

@@ -186,8 +186,7 @@ const Malaysiavisaforndians = () => {
                   <button
                     type="submit"
                     disabled={submitLoading}
-                    className="px-8 py-3 rounded-full font-bold text-base transition-all duration-300 hover:opacity-90 whitespace-nowrap disabled:opacity-70 flex items-center justify-center gap-2"
-                    style={{ backgroundColor: '#2D1F1F', color: '#E31E24' }}
+                    className="px-8 py-3 rounded-full font-bold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] whitespace-nowrap disabled:opacity-70 flex items-center justify-center gap-2"
                   >
                     {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Apply Now'}
                   </button>
@@ -259,8 +258,8 @@ const Malaysiavisaforndians = () => {
                   key={item._id || index}
                   onClick={() => setActiveVisaTab(index)}
                   className={`px-8 py-4 font-semibold transition-all duration-300 border-b-4 ${activeVisaTab === index
-                      ? 'border-red-500 text-red-500 bg-white'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 bg-gray-100'
+                    ? 'border-red-500 text-red-500 bg-white'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 bg-gray-100'
                     }`}
                 >
                   {item.title}
@@ -278,8 +277,7 @@ const Malaysiavisaforndians = () => {
             {/* Apply Now button centered below */}
             <div className="mt-8 text-center">
               <button
-                className="px-12 py-4 rounded font-bold text-white text-lg transition-all duration-300 hover:opacity-90 uppercase tracking-wide"
-                style={{ backgroundColor: '#E31E24' }}
+                className="px-12 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] uppercase tracking-wide"
               >
                 Apply Now
               </button>
@@ -305,7 +303,7 @@ const Malaysiavisaforndians = () => {
                   {/* Document category header */}
                   <div className="flex items-start gap-4 mb-6">
                     <div
-                      className="w-6 h-6 rounded flex items-center justify-center flex-shrink-0 mt-0.5"
+                      className="w-6 h-6 rounded flex items-center justify-center shrink-0 mt-0.5"
                       style={{ backgroundColor: '#E31E24' }}
                     >
                       <Check className="w-4 h-4 text-white" strokeWidth={3} />
@@ -317,7 +315,7 @@ const Malaysiavisaforndians = () => {
                   <ul className="space-y-3 ml-10">
                     {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
                       <li key={idx} className="flex items-start gap-3">
-                        <div className="w-2 h-2 rounded-full bg-gray-400 flex-shrink-0 mt-2"></div>
+                        <div className="w-2 h-2 rounded-full bg-gray-400 shrink-0 mt-2"></div>
                         <span className="text-gray-600">{item.trim()}</span>
                       </li>
                     ))}

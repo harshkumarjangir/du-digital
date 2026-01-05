@@ -93,15 +93,15 @@ const Digitalarrivalcards = () => {
 
   return (
     <div className="bg-white font-sans">
-      
+
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full min-h-[70vh] overflow-hidden">
+      <section className="relative w-full h-[800px] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${getImageUrl(formData?.image) || STATIC_IMAGES.hero})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/60" />
-        
+        <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/70 to-black/60" />
+
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 min-h-[70vh] flex items-center">
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
@@ -115,8 +115,7 @@ const Digitalarrivalcards = () => {
             </p>
             <a
               href="#apply-form"
-              className="inline-block px-8 py-4 rounded-lg font-bold text-lg text-white transition-all duration-300 hover:opacity-90 shadow-lg"
-              style={{ backgroundColor: '#C00C02' }}
+              className="inline-block px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
             >
               Start Your Application
             </a>
@@ -127,7 +126,7 @@ const Digitalarrivalcards = () => {
       {/* ===== MULTI-STEP FORM SECTION ===== */}
       <section id="apply-form" className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-6">
-          <div 
+          <div
             className="bg-white rounded-2xl p-8 shadow-lg"
             style={{ border: '3px solid #C00C02' }}
           >
@@ -136,34 +135,32 @@ const Digitalarrivalcards = () => {
               {formSteps.map((step, index) => (
                 <div key={step.number} className="flex items-center flex-1">
                   <div className="flex flex-col items-center">
-                    <div 
-                      className={`w-8 h-8 rounded flex items-center justify-center font-bold text-sm ${
-                        currentStep === step.number 
-                          ? 'text-white' 
-                          : currentStep > step.number 
-                            ? 'text-white'
-                            : 'text-gray-600 border-2 border-gray-300'
-                      }`}
-                      style={{ 
-                        backgroundColor: currentStep >= step.number ? '#C00C02' : 'transparent' 
+                    <div
+                      className={`w-8 h-8 rounded flex items-center justify-center font-bold text-sm ${currentStep === step.number
+                        ? 'text-white'
+                        : currentStep > step.number
+                          ? 'text-white'
+                          : 'text-gray-600 border-2 border-gray-300'
+                        }`}
+                      style={{
+                        backgroundColor: currentStep >= step.number ? '#C00C02' : 'transparent'
                       }}
                     >
                       {step.number}
                     </div>
-                    <span 
-                      className={`text-xs mt-2 text-center whitespace-nowrap ${
-                        currentStep === step.number ? 'font-semibold' : ''
-                      }`}
+                    <span
+                      className={`text-xs mt-2 text-center whitespace-nowrap ${currentStep === step.number ? 'font-semibold' : ''
+                        }`}
                       style={{ color: currentStep === step.number ? '#C00C02' : '#6b7280' }}
                     >
                       {step.label}
                     </span>
                   </div>
                   {index < formSteps.length - 1 && (
-                    <div 
+                    <div
                       className="flex-1 h-0.5 mx-2 mt-[-20px]"
-                      style={{ 
-                        backgroundColor: currentStep > step.number ? '#C00C02' : '#d1d5db' 
+                      style={{
+                        backgroundColor: currentStep > step.number ? '#C00C02' : '#d1d5db'
                       }}
                     />
                   )}
@@ -237,14 +234,14 @@ const Digitalarrivalcards = () => {
           <div className="absolute top-1/2 left-0 transform -translate-y-1/2 text-white/10 text-[80px] md:text-[120px] font-bold whitespace-nowrap pointer-events-none">
             TRAVEL READY
           </div>
-          
+
           <div className="relative z-10 max-w-7xl mx-auto px-6">
             {travelReadySection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="flex justify-center">
-                  <img 
-                    src={item.image ? getImageUrl(item.image) : STATIC_IMAGES.travelReady} 
-                    alt={item.title} 
+                  <img
+                    src={item.image ? getImageUrl(item.image) : STATIC_IMAGES.travelReady}
+                    alt={item.title}
                     className="max-w-full h-auto rounded-2xl shadow-2xl"
                     style={{ maxHeight: '400px' }}
                   />
@@ -273,7 +270,7 @@ const Digitalarrivalcards = () => {
               </h2>
               <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#C00C02' }}></div>
             </div>
-            
+
             {/* Document Cards */}
             <div className="grid md:grid-cols-3 gap-6">
               {documents.map((doc, index) => {
@@ -285,7 +282,7 @@ const Digitalarrivalcards = () => {
                     style={{ border: '2px solid #C00C02' }}
                   >
                     {/* Large number */}
-                    <div 
+                    <div
                       className="text-5xl font-bold mb-4"
                       style={{ color: '#C00C02' }}
                     >
@@ -309,7 +306,7 @@ const Digitalarrivalcards = () => {
           <div className="absolute top-1/2 right-0 transform -translate-y-1/2 text-white/10 text-[80px] md:text-[120px] font-bold whitespace-nowrap pointer-events-none">
             WHY CHOOSE
           </div>
-          
+
           <div className="relative z-10 max-w-7xl mx-auto px-6">
             {whyChooseSection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
@@ -320,8 +317,8 @@ const Digitalarrivalcards = () => {
                   <ul className="space-y-4">
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((benefit, idx) => (
                       <li key={idx} className="flex items-start gap-4">
-                        <div 
-                          className="w-6 h-6 rounded bg-white flex items-center justify-center flex-shrink-0 mt-0.5"
+                        <div
+                          className="w-6 h-6 rounded bg-white flex items-center justify-center shrink-0 mt-0.5"
                         >
                           <Check className="w-4 h-4" style={{ color: '#C00C02' }} strokeWidth={3} />
                         </div>
@@ -331,9 +328,9 @@ const Digitalarrivalcards = () => {
                   </ul>
                 </div>
                 <div className="flex justify-center">
-                  <img 
-                    src={item.image ? getImageUrl(item.image) : STATIC_IMAGES.whyChoose} 
-                    alt={item.title} 
+                  <img
+                    src={item.image ? getImageUrl(item.image) : STATIC_IMAGES.whyChoose}
+                    alt={item.title}
                     className="max-w-full h-auto rounded-2xl shadow-2xl"
                     style={{ maxHeight: '400px' }}
                   />
@@ -345,62 +342,62 @@ const Digitalarrivalcards = () => {
       )}
 
       {/* ===== SUPPORTED COUNTRIES SECTION ===== */}
- 
+
 
       {/* ===== FAQ SECTION ===== */}
       {faqs.length > 0 && (
-       
-          <section className="bg-white py-24">
-            <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
-                {/* LEFT CONTENT */}
-                <div>
-                    <h2 className="text-4xl font-bold leading-tight mb-6">
-                        Any questions? <br />
-                        We got you.
-                    </h2>
+        <section className="bg-white py-24">
+          <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
-                    <p className="text-gray-500 max-w-md mb-6">
-                        Yet bed any for assistance indulgence unpleasing. Not thoughts all
-                        exercise blessing. Indulgence way everything joy alteration
-                        boisterous the attachment.
-                    </p>
+            {/* LEFT CONTENT */}
+            <div>
+              <h2 className="text-4xl font-bold leading-tight mb-6">
+                Any questions? <br />
+                We got you.
+              </h2>
 
-                    <a
-                        href="#"
-                        className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
-                    >
-                        More FAQs →
-                    </a>
-                </div>
+              <p className="text-gray-500 max-w-md mb-6">
+                Yet bed any for assistance indulgence unpleasing. Not thoughts all
+                exercise blessing. Indulgence way everything joy alteration
+                boisterous the attachment.
+              </p>
 
-                {/* RIGHT FAQ LIST */}
-                <div className="divide-y">
+              <a
+                href="#"
+                className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
+              >
+                More FAQs →
+              </a>
+            </div>
+
+            {/* RIGHT FAQ LIST */}
+            <div className="divide-y">
               {faqs.map((faq, index) => (
-            
-                   <div key={index} className="py-6">
-                            <button
-                            
-                                                        onClick={() => setOpenFaq(index)}
 
-                                
-                                className="w-full flex justify-between items-center text-left"
-                            >
-                                <span className="text-lg font-semibold text-gray-900">
-                                    {faq.question}
-                                </span>
+                <div key={index} className="py-6">
+                  <button
 
-                                <span className="text-2xl text-gray-500">
-                                    {openFaq === index ? "−" : "+"}
-                                </span>
-                            </button>
+                    onClick={() => setOpenFaq(index)}
 
-                            {openFaq === index && (
-                                <p className="mt-4 text-gray-500 max-w-xl">
-                                    {faq.answer}
-                                </p>
-                            )}
-                        </div>
+
+                    className="w-full flex justify-between items-center text-left"
+                  >
+                    <span className="text-lg font-semibold text-gray-900">
+                      {faq.question}
+                    </span>
+
+                    <span className="text-2xl text-gray-500">
+                      {openFaq === index ? "−" : "+"}
+                    </span>
+                  </button>
+
+                  {openFaq === index && (
+                    <p className="mt-4 text-gray-500 max-w-xl">
+                      {faq.answer}
+                    </p>
+                  )}
+                </div>
               ))}
             </div>
           </div>

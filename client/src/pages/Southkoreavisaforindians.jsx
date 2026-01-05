@@ -149,7 +149,7 @@ const Southkoreavisaforindians = () => {
                 {descriptionLines.slice(1).map((line, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <div
-                      className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                      className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5"
                       style={{ backgroundColor: '#E31E24' }}
                     >
                       <Check className="w-3 h-3 text-white" strokeWidth={3} />
@@ -197,8 +197,7 @@ const Southkoreavisaforindians = () => {
                   <button
                     type="submit"
                     disabled={submitLoading}
-                    className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 hover:opacity-90 disabled:opacity-70 flex items-center justify-center gap-2"
-                    style={{ backgroundColor: '#2D1F1F', color: '#E31E24' }}
+                    className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-2"
                   >
                     {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Apply Now'}
                   </button>
@@ -345,7 +344,7 @@ const Southkoreavisaforindians = () => {
                     {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
                       <li key={idx} className="flex items-start gap-4">
                         <div
-                          className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                          className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5"
                           style={{ backgroundColor: '#E31E24' }}
                         >
                           <Check className="w-4 h-4 text-white" strokeWidth={3} />
@@ -391,7 +390,7 @@ const Southkoreavisaforindians = () => {
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((line, idx) => (
                       <li key={idx} className="flex items-start gap-2 text-gray-600 text-sm">
                         <div
-                          className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                          className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5"
                           style={{ backgroundColor: '#E31E24' }}
                         >
                           <Check className="w-2.5 h-2.5 text-white" strokeWidth={3} />
@@ -427,7 +426,7 @@ const Southkoreavisaforindians = () => {
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((line, idx) => (
                       <li key={idx} className="flex items-start gap-2 text-gray-600 text-sm">
                         <div
-                          className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                          className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5"
                           style={{ backgroundColor: '#E31E24' }}
                         >
                           <Check className="w-2.5 h-2.5 text-white" strokeWidth={3} />

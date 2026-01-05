@@ -137,7 +137,7 @@ const Digitalarrivalcards = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${getImageUrl(formData?.image) || STATIC_IMAGES.hero})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/60" />
+        <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/70 to-black/60" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 h-[800px] flex items-center">
           <div className="max-w-3xl">
@@ -214,10 +214,10 @@ const Digitalarrivalcards = () => {
                   <div className="flex flex-col items-center">
                     <div
                       className={`w-8 h-8 rounded flex items-center justify-center font-bold text-sm ${currentStep === step.number
+                        ? 'text-white'
+                        : currentStep > step.number
                           ? 'text-white'
-                          : currentStep > step.number
-                            ? 'text-white'
-                            : 'text-gray-600 border-2 border-gray-300'
+                          : 'text-gray-600 border-2 border-gray-300'
                         }`}
                       style={{
                         backgroundColor: currentStep >= step.number ? '#C00C02' : 'transparent'
@@ -308,8 +308,7 @@ const Digitalarrivalcards = () => {
                   <button
                     type="submit"
                     disabled={submitLoading}
-                    className="px-8 py-3 font-semibold rounded-full transition-colors disabled:opacity-70 flex items-center gap-2"
-                    style={{ backgroundColor: '#2D1F1F', color: '#E31E24' }}
+                    className="px-8 py-3 font-semibold rounded-full bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] transition-colors disabled:opacity-70 flex items-center gap-2"
                   >
                     {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Save and Continue'}
                   </button>
@@ -378,7 +377,7 @@ const Digitalarrivalcards = () => {
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((benefit, idx) => (
                       <li key={idx} className="flex items-start gap-4">
                         <div
-                          className="w-6 h-6 rounded bg-white flex items-center justify-center flex-shrink-0 mt-0.5"
+                          className="w-6 h-6 rounded bg-white flex items-center justify-center shrink-0 mt-0.5"
                         >
                           <Check className="w-4 h-4" style={{ color: '#C00C02' }} strokeWidth={3} />
                         </div>

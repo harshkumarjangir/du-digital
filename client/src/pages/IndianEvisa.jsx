@@ -188,7 +188,7 @@ const IndianEvisa = () => {
 
               {/* Highlights */}
               {/* Need bg gradient fro left to right */}
-              <div className="bg-gradient-to-r from-[#e63938]/80 to-[#e63938]/10 inline-block px-6 py-4 rounded-xl mb-8">
+              <div className="bg-linear-to-r from-[#e63938]/80 to-[#e63938]/10 inline-block px-6 py-4 rounded-xl mb-8">
                 <ul className="space-y-2 text-sm font-medium">
                   <li>
                     <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-white mr-2">
@@ -317,11 +317,7 @@ const IndianEvisa = () => {
                 <button
                   type="submit"
                   disabled={submitLoading}
-                  className="px-8 py-3 rounded-full font-semibold text-base transition-all duration-300 hover:opacity-90 disabled:opacity-70 flex items-center justify-center gap-2"
-                  style={{
-                    backgroundColor: '#2D1F1F',
-                    color: '#E31E24'
-                  }}
+                  className="px-8 py-3 rounded-full font-semibold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-2"
                 >
                   {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Submit Form'}
                 </button>

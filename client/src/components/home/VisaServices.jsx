@@ -67,7 +67,7 @@ const VisaServices = ({ data }) => {
                         {/* Button */}
                         <a
                             href={data.buttonLink}
-                            className="bg-red-600 hover:bg-red-700 transition text-white rounded-full px-8 py-3 text-center font-medium flex items-center justify-center gap-2"
+                            className="bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300 rounded-full px-8 py-3 text-center font-bold text-lg flex items-center justify-center gap-2"
                         >
                             {data.buttonText}
                             <span>→</span>

@@ -194,7 +194,7 @@ const Serbiaworkpermitvisa = () => {
                         name={field.name}
                         checked={formValues[field.name] || false}
                         onChange={handleInputChange}
-                        className="mt-1 w-4 h-4 accent-red-600 rounded flex-shrink-0"
+                        className="mt-1 w-4 h-4 accent-red-600 rounded shrink-0"
                       />
                       <span className="text-gray-300">{field.label}</span>
                     </label>
@@ -211,8 +211,7 @@ const Serbiaworkpermitvisa = () => {
                   <button
                     type="submit"
                     disabled={submitLoading}
-                    className="w-full py-3 rounded-full font-bold text-base transition-all duration-300 hover:opacity-90 uppercase mt-2 disabled:opacity-70 flex items-center justify-center gap-2"
-                    style={{ backgroundColor: '#2D1F1F', color: '#E31E24' }}
+                    className="w-full py-3 rounded-full font-bold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] uppercase mt-2 disabled:opacity-70 flex items-center justify-center gap-2"
                   >
                     {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Apply Now'}
                   </button>
@@ -371,8 +370,7 @@ const Serbiaworkpermitvisa = () => {
                     {item.contentHtml}
                   </p>
                   <button
-                    className="mt-6 px-8 py-3 rounded font-bold text-white transition-all duration-300 hover:opacity-90 uppercase"
-                    style={{ backgroundColor: '#E31E24' }}
+                    className="mt-6 px-8 py-3 rounded-full font-bold transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] uppercase"
                   >
                     Get Started
                   </button>

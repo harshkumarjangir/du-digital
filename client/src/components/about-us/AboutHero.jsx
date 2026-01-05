@@ -1,6 +1,6 @@
 const AboutHero = ({ data }) => (
     <section
-        className="h-screen md:h-[70vh] bg-cover bg-center relative flex items-center"
+        className="h-[800px] bg-cover bg-center relative flex items-center"
         style={{ backgroundImage: `url(${data.backgroundImage})` }}
     >
         {/* <div className="absolute inset-0 bg-gradient-to-r from-red-900/10 to-transparent" /> */}

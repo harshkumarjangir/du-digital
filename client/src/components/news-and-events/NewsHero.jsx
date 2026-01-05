@@ -41,7 +41,7 @@ const NewsAndMediaHero = ({ data }) => {
     };
 
     return (
-        <section className="relative w-full h-[70vh] overflow-hidden">
+        <section className="relative w-full h-[800px] overflow-hidden">
 
             <AnimatePresence mode="wait">
                 <motion.div

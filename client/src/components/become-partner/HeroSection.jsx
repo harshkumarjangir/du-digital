@@ -107,7 +107,7 @@ const HeroSection = ({ data }) => {
 
   return (
     <section
-      className="relative min-h-screen bg-cover bg-center"
+      className="relative h-[800px] bg-cover bg-center"
       style={{ backgroundImage: `url(${data.backgroundImage})` }}
     >
       {/* <div className="absolute inset-0 bg-white/80" /> */}
@@ -235,7 +235,7 @@ const HeroSection = ({ data }) => {
             <button
               type="submit"
               disabled={loading}
-              className={`bg-red-600 text-white px-6 py-3 rounded-md w-full ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-red-700"
+              className={`w-full py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] ${loading ? "opacity-50 cursor-not-allowed" : ""
                 }`}
             >
               {loading ? "Submitting..." : data.form.buttonText}

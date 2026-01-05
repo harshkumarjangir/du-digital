@@ -240,8 +240,7 @@ const BangladeshVac = () => {
                 <button
                   type="submit"
                   disabled={submitLoading}
-                  className="w-full py-3 rounded-full font-bold text-base transition-all duration-300 hover:opacity-90 uppercase disabled:opacity-70 flex items-center justify-center gap-2"
-                  style={{ backgroundColor: '#2D1F1F', color: '#E31E24' }}
+                  className="w-full py-3 rounded-full font-bold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] uppercase disabled:opacity-70 flex items-center justify-center gap-2"
                 >
                   {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Submit Application'}
                 </button>
@@ -346,14 +345,14 @@ const BangladeshVac = () => {
                     </p>
 
                     <div className="flex items-center gap-2">
-                      <Mail className="w-4 h-4 flex-shrink-0" />
+                      <Mail className="w-4 h-4 shrink-0" />
                       <a href={`mailto:${location.email}`} className="hover:underline text-sm">
                         {location.email}
                       </a>
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <Phone className="w-4 h-4 flex-shrink-0" />
+                      <Phone className="w-4 h-4 shrink-0" />
                       <a href={`tel:${location.phone}`} className="hover:underline text-sm">
                         {location.phone}
                       </a>
