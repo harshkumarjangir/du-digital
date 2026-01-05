@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Form from "../models/Form.model";
+import Form from "../models/Pages.model";
 import FormField from "../models/FormField.model";
 import DocumentRequirement from "../models/Documents.model";
 import FAQ from "../models/FAQ.model";

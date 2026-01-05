@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import FAQ from "../models/FAQ.model";
-import Form from "../models/Form.model";
+import Form from "../models/Pages.model";
 
 // Get all FAQs
 export const getFAQs = async (req: Request, res: Response) => {

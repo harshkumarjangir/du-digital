@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Form from "../models/Form.model";
+import Form from "../models/Pages.model";
 import FormField from "../models/FormField.model";
 import FormSubmission from "../models/FormSubmission.model";
 import { sendEmail } from "../utils/emailService";
@@ -145,7 +145,7 @@ export const submitFormBySlug = async (req: Request, res: Response) => {
     try {
         const { slug } = req.params;
         const submissionData = req.body;
-console.log("slug",slug);
+        console.log("slug", slug);
 
         // Find form by slug
         const form = await Form.findOne({ slug, isActive: true });

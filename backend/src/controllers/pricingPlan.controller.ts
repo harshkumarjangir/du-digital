@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import PricingPlan from "../models/PricingPlan.model";
-import Form from "../models/Form.model";
+import Form from "../models/Pages.model";
 
 // Get all pricing plans
 export const getPricingPlans = async (req: Request, res: Response) => {
