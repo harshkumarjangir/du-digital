@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Check, ChevronDown, ChevronUp, MapPin, Phone, Mail } from "lucide-react";
+import { Check, ChevronDown, ChevronUp, MapPin, Phone, Mail, CheckCircle, XCircle, Loader2 } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
 
@@ -30,6 +30,10 @@ const Digitalarrivalcards = () => {
   const [openFaq, setOpenFaq] = useState(null);
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedCountry, setSelectedCountry] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
   useEffect(() => {
     fetchFormData();
@@ -59,6 +63,39 @@ const Digitalarrivalcards = () => {
       return `${BackendURL}/api${imagePath}`;
     }
     return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitLoading(true);
+    setSubmitStatus(null);
+    setSubmitMessage('');
+    
+    try {
+      const response = await fetch(`${BackendURL}/api/form-submissions/slug/digital-arrival-cards`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ country: selectedCountry, phoneNumber }),
+      });
+      const res = await response.json();
+      
+      if (response.ok) {
+        setSubmitStatus('success');
+        setSubmitMessage('Thank you! Your application has been submitted successfully. Our team will contact you shortly.');
+        setSelectedCountry("");
+        setPhoneNumber("");
+        setCurrentStep(1);
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setSubmitStatus('error');
+      setSubmitMessage('Failed to submit. Please check your connection and try again.');
+    } finally {
+      setSubmitLoading(false);
+      setTimeout(() => { setSubmitStatus(null); setSubmitMessage(''); }, 5000);
+    }
   };
 
   if (loading) return <LoadingState message="Loading Digital Arrival Cards..." fullScreen />;
@@ -95,14 +132,14 @@ const Digitalarrivalcards = () => {
     <div className="bg-white font-sans">
       
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full min-h-[70vh] overflow-hidden">
+      <section className="relative w-full min-h-[800px] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${getImageUrl(formData?.image) || STATIC_IMAGES.hero})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/60" />
         
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 min-h-[70vh] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 min-h-[800px] flex items-center">
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
               One Platform for All Your Mandatory Digital Arrival Cards
@@ -212,59 +249,75 @@ const Digitalarrivalcards = () => {
 
             {/* Form Content - Step 1 */}
             {currentStep === 1 && (
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-gray-700 font-medium mb-2">
-                    Where are you going? <span className="text-red-500">*</span>
-                  </label>
-                  <select
-                    value={selectedCountry}
-                    onChange={(e) => setSelectedCountry(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none appearance-none cursor-pointer"
-                    style={{
-                      backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-                      backgroundPosition: 'right 0.75rem center',
-                      backgroundRepeat: 'no-repeat',
-                      backgroundSize: '1.5em 1.5em',
-                      paddingRight: '2.5rem'
-                    }}
-                  >
-                    <option value="">Select Country</option>
-                    {countries.map(country => (
-                      <option key={country.value} value={country.value}>
-                        {country.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-medium mb-2">
-                    Phone Number <span className="text-red-500">*</span>
-                  </label>
-                  <div className="flex">
-                    <div className="flex items-center gap-2 px-3 py-3 border border-gray-300 border-r-0 rounded-l-lg bg-gray-50">
-                      <img src="https://flagcdn.com/w20/in.png" alt="IN" className="w-5 h-4 object-cover" />
-                      <ChevronDown className="w-4 h-4 text-gray-500" />
+              <form onSubmit={handleSubmit}>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-gray-700 font-medium mb-2">
+                      Where are you going? <span className="text-red-500">*</span>
+                    </label>
+                    <select
+                      value={selectedCountry}
+                      onChange={(e) => setSelectedCountry(e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none appearance-none cursor-pointer"
+                      required
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                        backgroundPosition: 'right 0.75rem center',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: '1.5em 1.5em',
+                        paddingRight: '2.5rem'
+                      }}
+                    >
+                      <option value="">Select Country</option>
+                      {countries.map(country => (
+                        <option key={country.value} value={country.value}>
+                          {country.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-gray-700 font-medium mb-2">
+                      Phone Number <span className="text-red-500">*</span>
+                    </label>
+                    <div className="flex">
+                      <div className="flex items-center gap-2 px-3 py-3 border border-gray-300 border-r-0 rounded-l-lg bg-gray-50">
+                        <img src="https://flagcdn.com/w20/in.png" alt="IN" className="w-5 h-4 object-cover" />
+                        <ChevronDown className="w-4 h-4 text-gray-500" />
+                      </div>
+                      <input
+                        type="tel"
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        placeholder="Phone Number"
+                        required
+                        className="flex-1 px-4 py-3 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none"
+                      />
                     </div>
-                    <input
-                      type="tel"
-                      placeholder="Phone Number"
-                      className="flex-1 px-4 py-3 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none"
-                    />
                   </div>
                 </div>
-              </div>
+                
+                {/* Submit Status Message */}
+                {submitStatus && (
+                  <div className={`flex items-center gap-3 p-3 rounded mt-6 ${submitStatus === 'success' ? 'bg-green-100' : 'bg-red-100'}`}>
+                    {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-600" /> : <XCircle className="w-5 h-5 text-red-600" />}
+                    <p className={`text-sm ${submitStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>{submitMessage}</p>
+                  </div>
+                )}
+                
+                {/* Navigation Button */}
+                <div className="flex justify-end mt-8">
+                  <button
+                    type="submit"
+                    disabled={submitLoading}
+                    className="px-8 py-3 font-semibold rounded-full transition-colors disabled:opacity-70 flex items-center gap-2"
+                    style={{ backgroundColor: '#2D1F1F', color: '#E31E24' }}
+                  >
+                    {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Save and Continue'}
+                  </button>
+                </div>
+              </form>
             )}
-
-            {/* Navigation Button */}
-            <div className="flex justify-end mt-8">
-              <button
-                onClick={() => setCurrentStep(Math.min(currentStep + 1, 4))}
-                className="px-8 py-3 bg-black text-white font-semibold rounded-full hover:bg-gray-800 transition-colors"
-              >
-                Save and Continue
-              </button>
-            </div>
           </div>
         </div>
       </section>

@@ -22,7 +22,20 @@ const contentSectionSchema = new mongoose.Schema(
 
         contentHtml: {
             type: String,
-            required: true
+            default: ""
+            // Made optional - can be empty if using YouTube video
+        },
+
+        youtubeUrl: {
+            type: String,
+            default: ""
+            // YouTube video URL (full URL or video ID)
+        },
+
+        tableData: {
+            headers: [String],
+            rows: [[String]]
+            // Dynamic table data with headers and rows
         },
 
         images: {
@@ -55,3 +68,4 @@ const contentSectionSchema = new mongoose.Schema(
 );
 
 export default mongoose.model("ContentSection", contentSectionSchema);
+

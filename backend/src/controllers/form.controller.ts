@@ -5,6 +5,8 @@ import DocumentRequirement from "../models/Documents.model";
 import FAQ from "../models/FAQ.model";
 import ContentSection from "../models/ContentSection.model";
 import PricingPlan from "../models/PricingPlan.model";
+import FormImage from "../models/FormImages.model";
+import FormEmployeesAddress from "../models/FormEmployeesAddress.model";
 
 // Get form by slug with all related data
 export const getFormBySlug = async (req: Request, res: Response) => {
@@ -20,12 +22,16 @@ export const getFormBySlug = async (req: Request, res: Response) => {
         const formId = form._id;
 
         // Fetch all related data in parallel
-        const [fields, documents, faqs, contentSections, pricingPlans] = await Promise.all([
+        // Note: FormImage and FormEmployeesAddress use slug (FormSlug/formId field stores slug)
+        // while other models use ObjectId formId
+        const [fields, documents, faqs, contentSections, pricingPlans, formImages, formEmployeesAddresses] = await Promise.all([
             FormField.find({ formId }).sort({ order: 1 }),
             DocumentRequirement.find({ formId, isActive: true }).sort({ order: 1 }),
             FAQ.find({ formId, isActive: true }).sort({ order: 1 }),
             ContentSection.find({ formId, isActive: true }).sort({ order: 1 }),
-            PricingPlan.find({ formId, isActive: true }).sort({ order: 1 })
+            PricingPlan.find({ formId, isActive: true }).sort({ order: 1 }),
+            FormImage.find({ formId: slug, isActive: true }).sort({ createdAt: -1 }),
+            FormEmployeesAddress.find({ FormSlug: slug }).sort({ createdAt: -1 })
         ]);
 
         // Group content sections by sectionKey
@@ -44,7 +50,9 @@ export const getFormBySlug = async (req: Request, res: Response) => {
             documents,
             faqs,
             contentSections: groupedContentSections,
-            pricingPlans
+            pricingPlans,
+            formImages,
+            formEmployeesAddresses
         });
     } catch (error) {
         res.status(500).json({ message: "Error fetching form data", error });
@@ -96,7 +104,7 @@ export const getFormById = async (req: Request, res: Response) => {
 // Create a new form with fields
 export const createForm = async (req: Request, res: Response) => {
     try {
-        const { name, slug, description, isActive, fields } = req.body;
+        const { name, slug, description, isActive, fields, adminNotificationEmail } = req.body;
         const file = (req as any).file;
 
         if (!name) {
@@ -118,15 +126,22 @@ export const createForm = async (req: Request, res: Response) => {
             slug: formSlug,
             description,
             image,
+            adminNotificationEmail,
             isActive: isActive !== undefined ? isActive : true
         });
 
         const savedForm = await newForm.save();
+        let parsedFields = fields;
+        if (typeof fields === 'string') {
+            try {
+                parsedFields = JSON.parse(fields);
+            } catch (e) {
+                parsedFields = [];
+            }
+        }
 
-
-        // Create fields if provided
-        if (fields && Array.isArray(fields) && fields.length > 0) {
-            const formFields = fields.map((field: any, index: number) => ({
+        if (parsedFields && Array.isArray(parsedFields) && parsedFields.length > 0) {
+            const formFields = parsedFields.map((field: any, index: number) => ({
                 formId: savedForm._id,
                 label: field.label,
                 name: field.name,
@@ -157,11 +172,11 @@ export const createForm = async (req: Request, res: Response) => {
 export const updateForm = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-        const { name, slug, description, isActive, fields } = req.body;
+        const { name, slug, description, isActive, fields, adminNotificationEmail } = req.body;
         const file = (req as any).file;
 
         // Prepare update data
-        const updateData: any = { name, slug, description, isActive };
+        const updateData: any = { name, slug, description, isActive, adminNotificationEmail };
 
         // Handle image upload
         if (file) {
@@ -185,49 +200,57 @@ export const updateForm = async (req: Request, res: Response) => {
             try {
                 parsedFields = JSON.parse(fields);
             } catch (e) {
-                parsedFields = [];
+                parsedFields = undefined; // Keep undefined to skip field processing if parse fails
             }
         }
 
-        if (parsedFields && Array.isArray(parsedFields) && parsedFields.length > 0) {
+        // Only process fields if parsedFields is a valid array (including empty array)
+        if (parsedFields !== undefined && Array.isArray(parsedFields)) {
             // Get existing field IDs
-            console.log("reach here");
-            
             const existingFields = await FormField.find({ formId: id });
             const existingFieldIds = existingFields.map(f => f._id.toString());
 
-            // Track which fields are in the update
-            const updatedFieldIds: string[] = [];
-
-            for (let i = 0; i < parsedFields.length; i++) {
-                const field = parsedFields[i];
-                const fieldData = {
-                    formId: id,
-                    label: field.label,
-                    name: field.name,
-                    type: field.type,
-                    placeholder: field.placeholder,
-                    options: field.options || [],
-                    required: field.required || false,
-                    order: field.order !== undefined ? field.order : i,
-                    isActive: field.isActive !== undefined ? field.isActive : true
-                };
-
-                if (field._id) {
-                    // Update existing field
-                    await FormField.findByIdAndUpdate(field._id, fieldData);
-                    updatedFieldIds.push(field._id);
-                } else {
-                    // Create new field
-                    const newField = await FormField.create(fieldData);
-                    updatedFieldIds.push(newField._id.toString());
+            // If parsedFields is empty, delete all existing fields
+            if (parsedFields.length === 0) {
+                if (existingFieldIds.length > 0) {
+                    await FormField.deleteMany({ formId: id });
+                    console.log("Deleted all fields for form:", id);
                 }
-            }
+            } else {
+                // Track which fields are in the update
+                const updatedFieldIds: string[] = [];
 
-            // Delete fields that are no longer in the update
-            const fieldsToDelete = existingFieldIds.filter(id => !updatedFieldIds.includes(id));
-            if (fieldsToDelete.length > 0) {
-                await FormField.deleteMany({ _id: { $in: fieldsToDelete } });
+                for (let i = 0; i < parsedFields.length; i++) {
+                    const field = parsedFields[i];
+                    const fieldData = {
+                        formId: id,
+                        label: field.label,
+                        name: field.name,
+                        type: field.type,
+                        placeholder: field.placeholder,
+                        options: field.options || [],
+                        required: field.required || false,
+                        order: field.order !== undefined ? field.order : i,
+                        isActive: field.isActive !== undefined ? field.isActive : true
+                    };
+
+                    if (field._id) {
+                        // Update existing field
+                        await FormField.findByIdAndUpdate(field._id, fieldData);
+                        updatedFieldIds.push(field._id);
+                    } else {
+                        // Create new field
+                        const newField = await FormField.create(fieldData);
+                        updatedFieldIds.push(newField._id.toString());
+                    }
+                }
+
+                // Delete fields that are no longer in the update
+                const fieldsToDelete = existingFieldIds.filter(fieldId => !updatedFieldIds.includes(fieldId));
+                if (fieldsToDelete.length > 0) {
+                    await FormField.deleteMany({ _id: { $in: fieldsToDelete } });
+                    console.log("Deleted fields:", fieldsToDelete);
+                }
             }
         }
 

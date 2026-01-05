@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { CheckCircle, Phone, MapPin, Mail } from "lucide-react";
+import { CheckCircle, Phone, MapPin, Mail, XCircle, Loader2 } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
 
@@ -10,6 +10,10 @@ const Companysetup = () => {
   const [formData, setFormData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [formValues, setFormValues] = useState({});
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
   useEffect(() => {
     fetchFormData();
@@ -43,6 +47,45 @@ const Companysetup = () => {
     return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
   };
 
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormValues(prev => ({ 
+      ...prev, 
+      [name]: type === 'checkbox' ? checked : value 
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitLoading(true);
+    setSubmitStatus(null);
+    setSubmitMessage('');
+    
+    try {
+      const response = await fetch(`${BackendURL}/api/form-submissions/slug/company-setup-in-the-uae`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formValues),
+      });
+      const res = await response.json();
+      
+      if (response.ok) {
+        setSubmitStatus('success');
+        setSubmitMessage('Thank you! Your enquiry has been submitted successfully. Our team will contact you shortly.');
+        setFormValues({});
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setSubmitStatus('error');
+      setSubmitMessage('Failed to submit. Please check your connection and try again.');
+    } finally {
+      setSubmitLoading(false);
+      setTimeout(() => { setSubmitStatus(null); setSubmitMessage(''); }, 5000);
+    }
+  };
+
   if (loading) return <LoadingState message="Loading Company Setup..." fullScreen />;
   if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
 
@@ -65,14 +108,14 @@ const Companysetup = () => {
     <div className="bg-white font-sans">
       
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full min-h-[85vh] overflow-hidden">
+      <section className="relative w-full min-h-[800px] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${getImageUrl(formData?.image) || 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'})` }}
         />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%)' }} />
         
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-32 min-h-[85vh] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-32 min-h-[800px] flex items-center">
           <div className={`${fields.length > 0 ? 'grid md:grid-cols-2 gap-12 items-center' : ''} w-full`}>
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -102,7 +145,7 @@ const Companysetup = () => {
             {fields.length > 0 && (
               <div className="bg-white rounded-2xl p-8 shadow-2xl">
                 <h3 className="text-xl font-bold text-gray-900 mb-6">Get Your Free Consultation</h3>
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleSubmit}>
                   {fields.map((field, index) => {
                     // Get field type from either 'type' or 'fieldType' property
                     const fieldType = field.type || field.fieldType;
@@ -112,9 +155,11 @@ const Companysetup = () => {
                       return (
                         <select
                           key={field._id || index}
+                          name={field.name}
+                          value={formValues[field.name] || ''}
+                          onChange={handleInputChange}
                           className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none bg-white text-gray-700 appearance-none cursor-pointer"
                           required={field.required || field.isRequired}
-                          defaultValue=""
                           style={{
                             backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
                             backgroundPosition: 'right 0.75rem center',
@@ -135,6 +180,9 @@ const Companysetup = () => {
                       return (
                         <textarea
                           key={field._id || index}
+                          name={field.name}
+                          value={formValues[field.name] || ''}
+                          onChange={handleInputChange}
                           placeholder={field.placeholder || field.label}
                           rows={3}
                           className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none resize-none"
@@ -150,6 +198,9 @@ const Companysetup = () => {
                       return (
                         <input
                           key={field._id || index}
+                          name={field.name}
+                          value={formValues[field.name] || ''}
+                          onChange={handleInputChange}
                           type={inputType}
                           placeholder={field.placeholder || field.label}
                           className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none"
@@ -158,12 +209,22 @@ const Companysetup = () => {
                       );
                     }
                   })}
+                  
+                  {/* Submit Status Message */}
+                  {submitStatus && (
+                    <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-100' : 'bg-red-100'}`}>
+                      {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-600" /> : <XCircle className="w-5 h-5 text-red-600" />}
+                      <p className={`text-sm ${submitStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>{submitMessage}</p>
+                    </div>
+                  )}
+                  
                   <button
                     type="submit"
-                    className="w-full py-4 rounded-lg font-bold text-white text-lg transition-all duration-300 hover:opacity-90"
-                    style={{ backgroundColor: '#A10000' }}
+                    disabled={submitLoading}
+                    className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 hover:opacity-90 disabled:opacity-70 flex items-center justify-center gap-2"
+                    style={{ backgroundColor: '#2D1F1F', color: '#E31E24' }}
                   >
-                    Submit Enquiry
+                    {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Submit Enquiry'}
                   </button>
                 </form>
               </div>

@@ -1,30 +1,21 @@
 import { useState, useEffect } from 'react';
-import { getContentSections, createContentSection, updateContentSection, deleteContentSection, getForms } from '../services/api';
-
-const LAYOUT_OPTIONS = [
-    { value: 'LEFT_TEXT_RIGHT_IMAGE', label: 'Text Left, Image Right' },
-    { value: 'RIGHT_TEXT_LEFT_IMAGE', label: 'Image Left, Text Right' }
-];
+import { useNavigate } from 'react-router-dom';
+import { getContentSections, createContentSection, deleteContentSection, getForms } from '../services/api';
 
 const ContentSectionManager = () => {
+    const navigate = useNavigate();
     const [sections, setSections] = useState([]);
     const [forms, setForms] = useState([]);
     const [selectedFormId, setSelectedFormId] = useState('');
-    const [formData, setFormData] = useState({
+    const [loading, setLoading] = useState(false);
+    
+    // Quick add form state
+    const [showQuickAdd, setShowQuickAdd] = useState(false);
+    const [quickAddData, setQuickAddData] = useState({
         formId: '',
         sectionKey: '',
-        title: '',
-        contentHtml: '',
-        image: null,
-        badgeText: '',
-        badgeBackground: '#007bff',
-        layout: 'LEFT_TEXT_RIGHT_IMAGE',
-        isActive: true
+        title: ''
     });
-    const [imagePreview, setImagePreview] = useState('');
-    const [editingId, setEditingId] = useState(null);
-    const [showModal, setShowModal] = useState(false);
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         fetchForms();
@@ -54,45 +45,30 @@ const ContentSectionManager = () => {
         }
     };
 
-    const handleSubmit = async (e) => {
+    const handleQuickAdd = async (e) => {
         e.preventDefault();
-        if (!formData.formId) {
-            alert('Please select a form');
+        if (!quickAddData.formId || !quickAddData.sectionKey || !quickAddData.title) {
+            alert('Please fill in all required fields');
             return;
         }
         setLoading(true);
         try {
             const data = new FormData();
-            data.append('formId', formData.formId);
-            data.append('sectionKey', formData.sectionKey);
-            data.append('title', formData.title);
-            data.append('contentHtml', formData.contentHtml);
-            data.append('layout', formData.layout);
-            data.append('isActive', formData.isActive);
-            
-            if (formData.badgeText) {
-                data.append('badge[text]', formData.badgeText);
-                data.append('badge[background]', formData.badgeBackground);
-            }
-            
-            if (formData.image instanceof File) {
-                data.append('image', formData.image);
-            } else if (typeof formData.image === 'string' && formData.image) {
-                data.append('image', formData.image);
-            }
+            data.append('formId', quickAddData.formId);
+            data.append('sectionKey', quickAddData.sectionKey);
+            data.append('title', quickAddData.title);
+            data.append('contentHtml', '');
+            data.append('layout', 'LEFT_TEXT_RIGHT_IMAGE');
+            data.append('isActive', 'true');
 
-            if (editingId) {
-                await updateContentSection(editingId, data);
-                alert('Content section updated successfully');
-            } else {
-                await createContentSection(data);
-                alert('Content section created successfully');
-            }
+            await createContentSection(data);
+            alert('Content section created! You can now edit it to add more details.');
             fetchSections();
-            resetForm();
+            setQuickAddData({ formId: selectedFormId || '', sectionKey: '', title: '' });
+            setShowQuickAdd(false);
         } catch (error) {
-            console.error('Error saving section:', error);
-            alert('Failed to save content section');
+            console.error('Error creating section:', error);
+            alert('Failed to create content section');
         } finally {
             setLoading(false);
         }
@@ -110,52 +86,9 @@ const ContentSectionManager = () => {
         }
     };
 
-    const handleEdit = (section) => {
-        setFormData({
-            formId: section.formId?._id || section.formId,
-            sectionKey: section.sectionKey,
-            title: section.title,
-            contentHtml: section.contentHtml,
-            image: section.image,
-            badgeText: section.badge?.text || '',
-            badgeBackground: section.badge?.background || '#007bff',
-            layout: section.layout,
-            isActive: section.isActive
-        });
-        setImagePreview(section.image);
-        setEditingId(section._id);
-        setShowModal(true);
-    };
-
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setFormData({ ...formData, image: file });
-            setImagePreview(URL.createObjectURL(file));
-        }
-    };
-
-    const resetForm = () => {
-        setFormData({
-            formId: selectedFormId || '',
-            sectionKey: '',
-            title: '',
-            contentHtml: '',
-            image: null,
-            badgeText: '',
-            badgeBackground: '#007bff',
-            layout: 'LEFT_TEXT_RIGHT_IMAGE',
-            isActive: true
-        });
-        setImagePreview('');
-        setEditingId(null);
-        setShowModal(false);
-    };
-
-    const openCreateModal = () => {
-        resetForm();
-        setFormData(prev => ({ ...prev, formId: selectedFormId || '' }));
-        setShowModal(true);
+    const openQuickAdd = () => {
+        setQuickAddData({ formId: selectedFormId || '', sectionKey: '', title: '' });
+        setShowQuickAdd(true);
     };
 
     const inputStyle = {
@@ -179,13 +112,99 @@ const ContentSectionManager = () => {
         <div style={{ padding: '2rem', maxWidth: '1400px', margin: '0 auto' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
                 <h2 style={{ fontSize: '1.8rem', color: '#333' }}>Content Sections</h2>
-                <button
-                    onClick={openCreateModal}
-                    style={{ ...buttonStyle, backgroundColor: '#007bff', color: 'white' }}
-                >
-                    + Add Section
-                </button>
+                <div style={{ display: 'flex', gap: '0.75rem' }}>
+                    <button
+                        onClick={openQuickAdd}
+                        style={{ ...buttonStyle, backgroundColor: '#17a2b8', color: 'white' }}
+                    >
+                        ⚡ Quick Add
+                    </button>
+                    <button
+                        onClick={() => navigate('/content-sections/new')}
+                        style={{ ...buttonStyle, backgroundColor: '#007bff', color: 'white' }}
+                    >
+                        + Add Section
+                    </button>
+                </div>
             </div>
+
+            {/* Quick Add Inline Form */}
+            {showQuickAdd && (
+                <div style={{ 
+                    marginBottom: '1.5rem', 
+                    padding: '1.25rem', 
+                    backgroundColor: '#e3f2fd', 
+                    borderRadius: '8px',
+                    border: '1px solid #90caf9'
+                }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                        <h4 style={{ margin: 0, color: '#1565c0' }}>⚡ Quick Add Section</h4>
+                        <button
+                            type="button"
+                            onClick={() => setShowQuickAdd(false)}
+                            style={{ 
+                                background: 'none', 
+                                border: 'none', 
+                                fontSize: '1.5rem', 
+                                cursor: 'pointer',
+                                color: '#666'
+                            }}
+                        >
+                            ×
+                        </button>
+                    </div>
+                    <form onSubmit={handleQuickAdd}>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 2fr auto', gap: '1rem', alignItems: 'end' }}>
+                            <div>
+                                <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.85rem', fontWeight: 'bold' }}>Form *</label>
+                                <select
+                                    value={quickAddData.formId}
+                                    onChange={(e) => setQuickAddData({ ...quickAddData, formId: e.target.value })}
+                                    style={inputStyle}
+                                    required
+                                >
+                                    <option value="">Select Form</option>
+                                    {forms.map((form) => (
+                                        <option key={form._id} value={form._id}>{form.name}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div>
+                                <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.85rem', fontWeight: 'bold' }}>Section Key *</label>
+                                <input
+                                    type="text"
+                                    value={quickAddData.sectionKey}
+                                    onChange={(e) => setQuickAddData({ ...quickAddData, sectionKey: e.target.value })}
+                                    style={inputStyle}
+                                    required
+                                    placeholder="e.g., hero-section"
+                                />
+                            </div>
+                            <div>
+                                <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.85rem', fontWeight: 'bold' }}>Title *</label>
+                                <input
+                                    type="text"
+                                    value={quickAddData.title}
+                                    onChange={(e) => setQuickAddData({ ...quickAddData, title: e.target.value })}
+                                    style={inputStyle}
+                                    required
+                                    placeholder="Section title"
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                style={{ ...buttonStyle, backgroundColor: '#28a745', color: 'white', marginRight: 0 }}
+                            >
+                                {loading ? 'Adding...' : 'Add'}
+                            </button>
+                        </div>
+                        <p style={{ margin: '0.75rem 0 0', fontSize: '0.8rem', color: '#666' }}>
+                            Creates a section with just title and key. Edit it later to add content, images, and YouTube videos.
+                        </p>
+                    </form>
+                </div>
+            )}
 
             {/* Filter by Form */}
             <div style={{ marginBottom: '1.5rem', padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '8px' }}>
@@ -202,286 +221,155 @@ const ContentSectionManager = () => {
                 </select>
             </div>
 
-            {/* Sections Grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))', gap: '1.5rem' }}>
-                {sections.map((section) => (
-                    <div key={section._id} style={{ 
-                        border: '1px solid #dee2e6', 
-                        borderRadius: '12px', 
-                        backgroundColor: 'white',
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                        overflow: 'hidden'
-                    }}>
-                        {/* Image Preview */}
-                        <div style={{ position: 'relative', height: '180px', backgroundColor: '#f0f0f0' }}>
-                            {section.image ? (
-                                <img 
-                                    src={section.image} 
-                                    alt={section.title}
-                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                />
-                            ) : (
-                                <div style={{ 
-                                    width: '100%', height: '100%', 
-                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                    color: '#999'
+            {/* Sections Table */}
+            <div style={{ overflowX: 'auto' }}>
+                <table style={{ 
+                    width: '100%', 
+                    borderCollapse: 'collapse', 
+                    backgroundColor: 'white', 
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                    borderRadius: '8px',
+                    overflow: 'hidden'
+                }}>
+                    <thead>
+                        <tr style={{ backgroundColor: '#f8f9fa' }}>
+                            <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6', width: '50px' }}>#</th>
+                            <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6', width: '120px' }}>Form</th>
+                            <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6', width: '140px' }}>Section Key</th>
+                            <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6' }}>Title</th>
+                            <th style={{ padding: '1rem', textAlign: 'center', borderBottom: '2px solid #dee2e6', width: '80px' }}>Media</th>
+                            <th style={{ padding: '1rem', textAlign: 'center', borderBottom: '2px solid #dee2e6', width: '70px' }}>Status</th>
+                            <th style={{ padding: '1rem', textAlign: 'center', borderBottom: '2px solid #dee2e6', width: '140px' }}>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {sections.map((section, index) => (
+                            <tr key={section._id} style={{ borderBottom: '1px solid #dee2e6' }}>
+                                <td style={{ padding: '0.75rem 1rem', color: '#666', verticalAlign: 'middle' }}>{index + 1}</td>
+                                <td style={{ padding: '0.75rem 1rem', verticalAlign: 'middle' }}>
+                                    <span style={{ 
+                                        backgroundColor: '#e9ecef', 
+                                        padding: '0.2rem 0.4rem', 
+                                        borderRadius: '4px',
+                                        fontSize: '0.8rem',
+                                        display: 'inline-block',
+                                        maxWidth: '100px',
+                                        overflow: 'hidden',
+                                        textOverflow: 'ellipsis',
+                                        whiteSpace: 'nowrap'
+                                    }}>
+                                        {section.formId?.name || 'N/A'}
+                                    </span>
+                                </td>
+                                <td style={{ padding: '0.75rem 1rem', verticalAlign: 'middle' }}>
+                                    <code style={{ 
+                                        backgroundColor: '#f8f9fa', 
+                                        padding: '0.2rem 0.4rem', 
+                                        borderRadius: '4px',
+                                        fontSize: '0.8rem',
+                                        display: 'inline-block',
+                                        maxWidth: '120px',
+                                        overflow: 'hidden',
+                                        textOverflow: 'ellipsis',
+                                        whiteSpace: 'nowrap'
+                                    }}>
+                                        {section.sectionKey}
+                                    </code>
+                                </td>
+                                <td style={{ 
+                                    padding: '0.75rem 1rem', 
+                                    fontWeight: '500', 
+                                    verticalAlign: 'middle',
+                                    maxWidth: '200px',
+                                    overflow: 'hidden',
+                                    textOverflow: 'ellipsis',
+                                    whiteSpace: 'nowrap'
                                 }}>
-                                    No Image
-                                </div>
-                            )}
-                            {section.badge?.text && (
-                                <span style={{
-                                    position: 'absolute',
-                                    top: '10px',
-                                    left: '10px',
-                                    backgroundColor: section.badge.background || '#007bff',
-                                    color: 'white',
-                                    padding: '0.25rem 0.75rem',
-                                    borderRadius: '4px',
-                                    fontSize: '0.8rem',
-                                    fontWeight: 'bold'
-                                }}>
-                                    {section.badge.text}
-                                </span>
-                            )}
-                            <span style={{
-                                position: 'absolute',
-                                top: '10px',
-                                right: '10px',
-                                backgroundColor: section.isActive ? '#28a745' : '#dc3545',
-                                color: 'white',
-                                padding: '0.15rem 0.5rem',
-                                borderRadius: '10px',
-                                fontSize: '0.75rem'
-                            }}>
-                                {section.isActive ? 'Active' : 'Inactive'}
-                            </span>
-                        </div>
-                        
-                        {/* Content */}
-                        <div style={{ padding: '1rem' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
-                                <span style={{ 
-                                    backgroundColor: '#e9ecef', 
-                                    padding: '0.15rem 0.5rem', 
-                                    borderRadius: '4px',
-                                    fontSize: '0.75rem',
-                                    color: '#666'
-                                }}>
-                                    {section.sectionKey}
-                                </span>
-                                <span style={{ fontSize: '0.8rem', color: '#666' }}>
-                                    {section.formId?.name || 'N/A'}
-                                </span>
-                            </div>
-                            <h4 style={{ margin: '0 0 0.5rem', fontSize: '1.1rem', color: '#333' }}>
-                                {section.title}
-                            </h4>
-                            <p style={{ 
-                                margin: '0 0 0.75rem', 
-                                color: '#666', 
-                                fontSize: '0.85rem', 
-                                lineHeight: '1.4',
-                                maxHeight: '60px',
-                                overflow: 'hidden'
-                            }}>
-                                {section.contentHtml.replace(/<[^>]*>/g, '').substring(0, 100)}...
-                            </p>
-                            <div style={{ 
-                                display: 'flex', 
-                                justifyContent: 'space-between', 
-                                alignItems: 'center',
-                                borderTop: '1px solid #eee',
-                                paddingTop: '0.75rem',
-                                marginTop: '0.5rem'
-                            }}>
-                                <span style={{ fontSize: '0.8rem', color: '#888' }}>
-                                    Layout: {section.layout === 'LEFT_TEXT_RIGHT_IMAGE' ? '← Text | Image →' : '← Image | Text →'}
-                                </span>
-                                <div>
+                                    {section.title}
+                                    {section.badge?.text && (
+                                        <span style={{
+                                            marginLeft: '0.5rem',
+                                            backgroundColor: section.badge.background || '#007bff',
+                                            color: 'white',
+                                            padding: '0.1rem 0.3rem',
+                                            borderRadius: '3px',
+                                            fontSize: '0.65rem',
+                                            fontWeight: 'bold'
+                                        }}>
+                                            {section.badge.text}
+                                        </span>
+                                    )}
+                                </td>
+                                <td style={{ padding: '0.75rem 1rem', textAlign: 'center', verticalAlign: 'middle' }}>
+                                    <div style={{ display: 'flex', gap: '0.15rem', justifyContent: 'center' }}>
+                                        {section.images && section.images.length > 0 && (
+                                            <span title={`${section.images.length} image(s)`} style={{ fontSize: '0.9rem' }}>🖼️</span>
+                                        )}
+                                        {section.youtubeUrl && (
+                                            <span title="Has YouTube video" style={{ fontSize: '0.9rem' }}>▶️</span>
+                                        )}
+                                        {section.tableData?.headers?.length > 0 && (
+                                            <span title="Has table data" style={{ fontSize: '0.9rem' }}>📊</span>
+                                        )}
+                                        {(!section.images || section.images.length === 0) && !section.youtubeUrl && !section.tableData?.headers?.length && (
+                                            <span style={{ color: '#999', fontSize: '0.75rem' }}>-</span>
+                                        )}
+                                    </div>
+                                </td>
+                                <td style={{ padding: '0.75rem 1rem', textAlign: 'center', verticalAlign: 'middle' }}>
+                                    <span style={{ 
+                                        backgroundColor: section.isActive ? '#d4edda' : '#f8d7da',
+                                        color: section.isActive ? '#155724' : '#721c24',
+                                        padding: '0.2rem 0.4rem', 
+                                        borderRadius: '10px',
+                                        fontSize: '0.75rem'
+                                    }}>
+                                        {section.isActive ? 'Active' : 'Inactive'}
+                                    </span>
+                                </td>
+                                <td style={{ padding: '0.75rem 1rem', textAlign: 'center', verticalAlign: 'middle' }}>
                                     <button
-                                        onClick={() => handleEdit(section)}
-                                        style={{ ...buttonStyle, backgroundColor: '#ffc107', color: '#000', padding: '0.35rem 0.75rem' }}
+                                        onClick={() => navigate(`/content-sections/edit/${section._id}`)}
+                                        style={{ ...buttonStyle, backgroundColor: '#ffc107', color: '#000', padding: '0.3rem 0.6rem', fontSize: '0.8rem' }}
                                     >
                                         Edit
                                     </button>
                                     <button
                                         onClick={() => handleDelete(section._id)}
-                                        style={{ ...buttonStyle, backgroundColor: '#dc3545', color: 'white', padding: '0.35rem 0.75rem', marginRight: 0 }}
+                                        style={{ ...buttonStyle, backgroundColor: '#dc3545', color: 'white', padding: '0.3rem 0.6rem', fontSize: '0.8rem', marginRight: 0 }}
                                     >
                                         Delete
                                     </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-                {sections.length === 0 && (
-                    <div style={{ 
-                        gridColumn: '1 / -1',
-                        padding: '3rem', 
-                        textAlign: 'center', 
-                        color: '#666',
-                        backgroundColor: '#f8f9fa',
-                        borderRadius: '8px'
-                    }}>
-                        No content sections found. Click "Add Section" to create one.
-                    </div>
-                )}
+                                </td>
+                            </tr>
+                        ))}
+                        {sections.length === 0 && (
+                            <tr>
+                                <td colSpan="7" style={{ padding: '3rem', textAlign: 'center', color: '#666' }}>
+                                    No content sections found. Use "Quick Add" or "Add Section" to create one.
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
             </div>
 
-            {/* Modal */}
-            {showModal && (
-                <div style={{
-                    position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-                    backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
-                }}>
-                    <div style={{ 
-                        backgroundColor: 'white', 
-                        padding: '2rem', 
-                        borderRadius: '8px', 
-                        width: '90%', 
-                        maxWidth: '800px', 
-                        maxHeight: '90vh', 
-                        overflowY: 'auto' 
-                    }}>
-                        <h3 style={{ marginBottom: '1.5rem' }}>{editingId ? 'Edit Content Section' : 'Add Content Section'}</h3>
-                        <form onSubmit={handleSubmit}>
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
-                                <div>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Form *</label>
-                                    <select
-                                        value={formData.formId}
-                                        onChange={(e) => setFormData({ ...formData, formId: e.target.value })}
-                                        style={inputStyle}
-                                        required
-                                    >
-                                        <option value="">Select a Form</option>
-                                        {forms.map((form) => (
-                                            <option key={form._id} value={form._id}>{form.name}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                                <div>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Section Key *</label>
-                                    <input
-                                        type="text"
-                                        value={formData.sectionKey}
-                                        onChange={(e) => setFormData({ ...formData, sectionKey: e.target.value })}
-                                        style={inputStyle}
-                                        required
-                                        placeholder="e.g., explore-india"
-                                    />
-                                </div>
-                            </div>
-
-                            <div style={{ marginBottom: '1rem' }}>
-                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Title *</label>
-                                <input
-                                    type="text"
-                                    value={formData.title}
-                                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                                    style={inputStyle}
-                                    required
-                                    placeholder="Section title"
-                                />
-                            </div>
-
-                            <div style={{ marginBottom: '1rem' }}>
-                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Content (HTML) *</label>
-                                <textarea
-                                    value={formData.contentHtml}
-                                    onChange={(e) => setFormData({ ...formData, contentHtml: e.target.value })}
-                                    style={{ ...inputStyle, minHeight: '150px', fontFamily: 'monospace' }}
-                                    required
-                                    placeholder="<p>Your content here...</p>"
-                                />
-                            </div>
-
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
-                                <div>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Image *</label>
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        onChange={handleImageChange}
-                                        style={inputStyle}
-                                    />
-                                    {imagePreview && (
-                                        <img 
-                                            src={imagePreview} 
-                                            alt="Preview" 
-                                            style={{ marginTop: '0.5rem', maxWidth: '100%', maxHeight: '120px', borderRadius: '4px' }}
-                                        />
-                                    )}
-                                </div>
-                                <div>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Layout</label>
-                                    <select
-                                        value={formData.layout}
-                                        onChange={(e) => setFormData({ ...formData, layout: e.target.value })}
-                                        style={inputStyle}
-                                    >
-                                        {LAYOUT_OPTIONS.map(opt => (
-                                            <option key={opt.value} value={opt.value}>{opt.label}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
-                                <div>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Badge Text</label>
-                                    <input
-                                        type="text"
-                                        value={formData.badgeText}
-                                        onChange={(e) => setFormData({ ...formData, badgeText: e.target.value })}
-                                        style={inputStyle}
-                                        placeholder="Optional badge text"
-                                    />
-                                </div>
-                                <div>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Badge Color</label>
-                                    <input
-                                        type="color"
-                                        value={formData.badgeBackground}
-                                        onChange={(e) => setFormData({ ...formData, badgeBackground: e.target.value })}
-                                        style={{ ...inputStyle, height: '38px', padding: '2px' }}
-                                    />
-                                </div>
-                            </div>
-
-                            <div style={{ marginBottom: '1.5rem' }}>
-                                <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
-                                    <input
-                                        type="checkbox"
-                                        checked={formData.isActive}
-                                        onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
-                                    />
-                                    <span style={{ fontWeight: 'bold' }}>Active</span>
-                                </label>
-                            </div>
-
-                            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem', borderTop: '1px solid #eee', paddingTop: '1rem' }}>
-                                <button
-                                    type="button"
-                                    onClick={resetForm}
-                                    style={{ ...buttonStyle, backgroundColor: '#6c757d', color: 'white' }}
-                                >
-                                    Cancel
-                                </button>
-                                <button
-                                    type="submit"
-                                    disabled={loading}
-                                    style={{ ...buttonStyle, backgroundColor: '#28a745', color: 'white' }}
-                                >
-                                    {loading ? 'Saving...' : (editingId ? 'Update Section' : 'Create Section')}
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            )}
+            {/* Stats */}
+            <div style={{ 
+                marginTop: '1.5rem', 
+                padding: '1rem', 
+                backgroundColor: '#f8f9fa', 
+                borderRadius: '8px',
+                display: 'flex',
+                gap: '2rem',
+                fontSize: '0.9rem',
+                color: '#666'
+            }}>
+                <span>Total Sections: <strong>{sections.length}</strong></span>
+                <span>Active: <strong>{sections.filter(s => s.isActive).length}</strong></span>
+                <span>With Images: <strong>{sections.filter(s => s.images && s.images.length > 0).length}</strong></span>
+                <span>With YouTube: <strong>{sections.filter(s => s.youtubeUrl).length}</strong></span>
+            </div>
         </div>
     );
 };

@@ -21,7 +21,11 @@ import FormManager from "./pages/FormManager";
 import DocumentManager from "./pages/DocumentManager";
 import FAQManager from "./pages/FAQManager";
 import ContentSectionManager from "./pages/ContentSectionManager";
+import ContentSectionEditor from "./pages/ContentSectionEditor";
 import PricingPlanManager from "./pages/PricingPlanManager";
+import FormImageManager from "./pages/FormImageManager";
+import FormEmployeesAddressManager from "./pages/FormEmployeesAddressManager";
+import FormSubmissionManager from "./pages/FormSubmissionManager";
 import Dashboard from "./pages/Dashboard";
 import "./components/Layout.css";
 import "./App.css";
@@ -104,7 +108,12 @@ function App() {
           <Route path="documents" element={<DocumentManager />} />
           <Route path="faqs" element={<FAQManager />} />
           <Route path="content-sections" element={<ContentSectionManager />} />
+          <Route path="content-sections/new" element={<ContentSectionEditor />} />
+          <Route path="content-sections/edit/:id" element={<ContentSectionEditor />} />
           <Route path="pricing-plans" element={<PricingPlanManager />} />
+          <Route path="form-images" element={<FormImageManager />} />
+          <Route path="form-employees-addresses" element={<FormEmployeesAddressManager />} />
+          <Route path="form-submissions" element={<FormSubmissionManager />} />
         </Route>
       </Routes>
     </Router>

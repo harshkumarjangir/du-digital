@@ -11,7 +11,10 @@ import {
   Globe,
   Clock,
   Users,
-  Phone
+  Phone,
+  CheckCircle,
+  XCircle,
+  Loader2
 } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
@@ -29,6 +32,9 @@ const IndianEvisa = () => {
   const [openDocIndex, setOpenDocIndex] = useState(0);
   const [formValues, setFormValues] = useState({});
   const [visaType, setVisaType] = useState('tourist');
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
   useEffect(() => {
     fetchFormData();
@@ -74,9 +80,38 @@ const IndianEvisa = () => {
     setFormValues(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', { ...formValues, visaType });
+    setSubmitLoading(true);
+    setSubmitStatus(null);
+    setSubmitMessage('');
+
+    try {
+      const response = await fetch(`${BackendURL}/api/form-submissions/slug/india-evisa`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formValues, visaType }),
+      });
+      const res = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setSubmitMessage('Thank you! Your eVisa application has been submitted successfully. Our team will contact you shortly.');
+        // Reset form
+        const resetValues = {};
+        formData?.fields?.forEach(field => { resetValues[field.name] = ''; });
+        setFormValues(resetValues);
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setSubmitStatus('error');
+      setSubmitMessage('Failed to submit. Please check your connection and try again.');
+    } finally {
+      setSubmitLoading(false);
+      setTimeout(() => { setSubmitStatus(null); setSubmitMessage(''); }, 5000);
+    }
   };
 
   if (loading) return <LoadingState message="Loading eVisa information..." fullScreen />;
@@ -123,11 +158,12 @@ const IndianEvisa = () => {
 
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full min-h-[90vh] overflow-hidden">
-        {/* Background Image */}
+      <section className="relative w-full h-[800px] overflow-hidden">
+        {/* Dark textured background */}
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0"
           style={{
+
             backgroundImage: `url(${BackendImagesURL}${formData?.image})`,
           }}
         />
@@ -255,71 +291,93 @@ const IndianEvisa = () => {
                   </div>
                 </div>
 
-                {/* Consent */}
-                <label className="flex gap-3 text-xs text-gray-200 mb-6">
-                  <input type="checkbox" checked readOnly className="accent-red-600 mt-1" />
-                  I agree to receive communication regarding my visa application
-                  and promotional offers from DU Global.
-                </label>
+                {/* Agreement Checkbox */}
+                <div className="mb-6">
+                  <label className="flex items-start gap-3 cursor-pointer">
+                    <div
+                      className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5"
+                      style={{ backgroundColor: '#c62625' }}
+                    >
+                      <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                    </div>
+                    <span className="text-white text-xs leading-relaxed">
+                      I agree to receive communication regarding my visa application and promotional offers from DU Global
+                    </span>
+                  </label>
+                </div>
 
-                {/* Submit */}
+                {/* Submit Status Message */}
+                {submitStatus && (
+                  <div className={`flex items-center gap-3 p-3 rounded mb-4 ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
+                    {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
+                    <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="text-white px-8 py-3 rounded-lg font-semibold  bg-[#FF1033] hover:bg-[#511313] transition cursor-pointer"
+                  disabled={submitLoading}
+                  className="px-8 py-3 rounded-full font-semibold text-base transition-all duration-300 hover:opacity-90 disabled:opacity-70 flex items-center justify-center gap-2"
+                  style={{
+                    backgroundColor: '#2D1F1F',
+                    color: '#E31E24'
+                  }}
                 >
-                  Submit Form
+                  {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Submit Form'}
                 </button>
-              </form>
-            </div>
+              </form >
+            </div >
 
-          </div>
-        </div>
-      </section>
+          </div >
+        </div >
+      </section >
 
 
 
       {/* ===== EXPLORE WONDERS SECTION ===== */}
-      {heroSection.length > 0 && (
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
-            {heroSection.map((item, index) => (
-              <div key={item._id || index} className="grid lg:grid-cols-2 gap-16 items-center">
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
-                    {item.title}
-                  </h2>
-                  <div className="w-20 h-0.75 mb-6" style={{ backgroundColor: '#e63938' }}></div>
-                  <div
-                    className="text-gray-600 leading-relaxed text-lg"
-                    dangerouslySetInnerHTML={{ __html: item.contentHtml }}
-                  />
+      {
+        heroSection.length > 0 && (
+          <section className="py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-6 md:px-12">
+              {heroSection.map((item, index) => (
+                <div key={item._id || index} className="grid lg:grid-cols-2 gap-16 items-center">
+                  <div>
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
+                      {item.title}
+                    </h2>
+                    <div className="w-20 h-0.75 mb-6" style={{ backgroundColor: '#e63938' }}></div>
+                    <div
+                      className="text-gray-600 leading-relaxed text-lg"
+                      dangerouslySetInnerHTML={{ __html: item.contentHtml }}
+                    />
+                  </div>
+                  <div className="relative">
+                    {item.image && (
+                      <div className="relative">
+                        <img
+                          src={getImageUrl(item.image)}
+                          alt={item.title}
+                          className="rounded-2xl shadow-xl w-full object-cover"
+                          style={{ maxHeight: '450px' }}
+                        />
+                        {/* Badge overlay */}
+                        {item.badge?.text && (
+                          <div
+                            className="absolute -top-14 -right-4 w-28 h-28 flex flex-col items-center justify-center text-white text-center shadow-lg"
+                            style={{ backgroundColor: item.badge.background || '#e63938' }}
+                          >
+                            <span className="text-xs font-medium leading-tight px-2">{item.badge.text}</span>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div className="relative">
-                  {item.image && (
-                    <div className="relative">
-                      <img
-                        src={getImageUrl(item.image)}
-                        alt={item.title}
-                        className="rounded-2xl shadow-xl w-full object-cover"
-                        style={{ maxHeight: '450px' }}
-                      />
-                      {/* Badge overlay */}
-                      {item.badge?.text && (
-                        <div
-                          className="absolute -top-14 -right-4 w-28 h-28 flex flex-col items-center justify-center text-white text-center shadow-lg"
-                          style={{ backgroundColor: item.badge.background || '#e63938' }}
-                        >
-                          <span className="text-xs font-medium leading-tight px-2">{item.badge.text}</span>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+              ))}
+            </div>
+          </section>
+        )
+      }
 
       {/* ===== ELIGIBILITY SECTION ===== */}
       <section className="py-20 bg-gray-50">
@@ -444,165 +502,169 @@ const IndianEvisa = () => {
 
 
       {/* ===== DOCUMENTS REQUIRED ===== */}
-      {documents.length > 0 && (
-        <section className="py-20 bg-[#F7F7F7]">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
-                Documents Required
-              </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1F3D' }}></div>
-            </div>
+      {
+        documents.length > 0 && (
+          <section className="py-20 bg-[#F7F7F7]">
+            <div className="max-w-6xl mx-auto px-6">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
+                  Documents Required
+                </h2>
+                <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1F3D' }}></div>
+              </div>
 
-            <div className="space-y-4">
-              {documents.filter(d => d.isActive).sort((a, b) => a.order - b.order).map((doc, index) => (
-                <div
-                  key={doc._id || index}
-                  className="rounded-xl overflow-hidden shadow-md"
-                >
-                  <button
-                    onClick={() => toggleDoc(index)}
-                    className="w-full px-6 py-5 flex items-center justify-between text-left text-white font-bold transition-colors duration-200"
-                    style={{ backgroundColor: '#e63938' }}
+              <div className="space-y-4">
+                {documents.filter(d => d.isActive).sort((a, b) => a.order - b.order).map((doc, index) => (
+                  <div
+                    key={doc._id || index}
+                    className="rounded-xl overflow-hidden shadow-md"
                   >
-                    <span className="text-lg">{doc.title}</span>
-                    {openDocIndex === index ? (
-                      <ChevronUp className="w-6 h-6 text-white flex-shrink-0" />
-                    ) : (
-                      <ChevronDown className="w-6 h-6 text-white flex-shrink-0" />
-                    )}
-                  </button>
-
-                  {openDocIndex === index && (
-                    <div className="px-6 py-6 bg-white">
-                      <div className="space-y-3">
-                        {doc.description?.split('\n').filter(line => line.trim()).map((line, idx) => (
-                          <div key={idx} className="flex items-center gap-3">
-                            <div
-                              className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                              style={{ backgroundColor: '#e63938' }}
-                            >
-                              <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />
-                            </div>
-                            <p className="text-black text-base md:text-lg">{line.trim()}</p>
-                          </div>
-                        ))}
-                      </div>
-                      {doc.isMandatory && (
-                        <div className="mt-4 pt-4 border-t border-gray-100">
-                          <span className="text-sm text-red-600 font-medium">* Mandatory Documents</span>
-                        </div>
+                    <button
+                      onClick={() => toggleDoc(index)}
+                      className="w-full px-6 py-5 flex items-center justify-between text-left text-white font-bold transition-colors duration-200"
+                      style={{ backgroundColor: '#e63938' }}
+                    >
+                      <span className="text-lg">{doc.title}</span>
+                      {openDocIndex === index ? (
+                        <ChevronUp className="w-6 h-6 text-white flex-shrink-0" />
+                      ) : (
+                        <ChevronDown className="w-6 h-6 text-white flex-shrink-0" />
                       )}
-                    </div>
-                  )}
-                </div>
-              ))}
+                    </button>
+
+                    {openDocIndex === index && (
+                      <div className="px-6 py-6 bg-white">
+                        <div className="space-y-3">
+                          {doc.description?.split('\n').filter(line => line.trim()).map((line, idx) => (
+                            <div key={idx} className="flex items-center gap-3">
+                              <div
+                                className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                                style={{ backgroundColor: '#e63938' }}
+                              >
+                                <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />
+                              </div>
+                              <p className="text-black text-base md:text-lg">{line.trim()}</p>
+                            </div>
+                          ))}
+                        </div>
+                        {doc.isMandatory && (
+                          <div className="mt-4 pt-4 border-t border-gray-100">
+                            <span className="text-sm text-red-600 font-medium">* Mandatory Documents</span>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
-      )}
+          </section>
+        )
+      }
 
       {/* ===== FAQ SECTION ===== */}
-      {faqs.length > 0 && (
-        // <section className="py-20 bg-white">
-        //   <div className="max-w-4xl mx-auto px-6">
-        //     <div className="text-center mb-12">
-        //       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-        //         Frequently Asked Questions
-        //       </h2>
-        //       <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#e63938' }}></div>
-        //     </div>
+      {
+        faqs.length > 0 && (
+          // <section className="py-20 bg-white">
+          //   <div className="max-w-4xl mx-auto px-6">
+          //     <div className="text-center mb-12">
+          //       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+          //         Frequently Asked Questions
+          //       </h2>
+          //       <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#e63938' }}></div>
+          //     </div>
 
-        //     <div className="space-y-4">
-        //       {faqs.filter(f => f.isActive).map((faq, index) => (
-        //         <div 
-        //           key={faq._id || index}
-        //           className="rounded-xl overflow-hidden shadow-md"
-        //         >
-        //           <button
-        //             onClick={() => toggleFaq(index)}
-        //             className="w-full px-6 py-5 flex items-center justify-between text-left text-white font-bold transition-colors duration-200"
-        //             style={{ backgroundColor: '#e63938' }}
-        //           >
-        //             <span className="pr-4">{faq.question}</span>
-        //             {openFaqIndex === index ? (
-        //               <ChevronUp className="w-6 h-6 text-white flex-shrink-0" />
-        //             ) : (
-        //               <ChevronDown className="w-6 h-6 text-white flex-shrink-0" />
-        //             )}
-        //           </button>
+          //     <div className="space-y-4">
+          //       {faqs.filter(f => f.isActive).map((faq, index) => (
+          //         <div 
+          //           key={faq._id || index}
+          //           className="rounded-xl overflow-hidden shadow-md"
+          //         >
+          //           <button
+          //             onClick={() => toggleFaq(index)}
+          //             className="w-full px-6 py-5 flex items-center justify-between text-left text-white font-bold transition-colors duration-200"
+          //             style={{ backgroundColor: '#e63938' }}
+          //           >
+          //             <span className="pr-4">{faq.question}</span>
+          //             {openFaqIndex === index ? (
+          //               <ChevronUp className="w-6 h-6 text-white flex-shrink-0" />
+          //             ) : (
+          //               <ChevronDown className="w-6 h-6 text-white flex-shrink-0" />
+          //             )}
+          //           </button>
 
-        //           {openFaqIndex === index && (
-        //             <div className="px-6 py-6 bg-white">
-        //               <div className="text-gray-600 leading-relaxed whitespace-pre-line">
-        //                 {faq.answer}
-        //               </div>
-        //             </div>
-        //           )}
-        //         </div>
-        //       ))}
-        //     </div>
-        //   </div>
-        // </section>
-        <section className="bg-white py-24">
-          <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+          //           {openFaqIndex === index && (
+          //             <div className="px-6 py-6 bg-white">
+          //               <div className="text-gray-600 leading-relaxed whitespace-pre-line">
+          //                 {faq.answer}
+          //               </div>
+          //             </div>
+          //           )}
+          //         </div>
+          //       ))}
+          //     </div>
+          //   </div>
+          // </section>
+          <section className="bg-white py-24">
+            <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
-            {/* LEFT CONTENT */}
-            <div>
-              <h2 className="text-4xl font-bold leading-tight mb-6">
-                Any questions? <br />
-                We got you.
-              </h2>
+              {/* LEFT CONTENT */}
+              <div>
+                <h2 className="text-4xl font-bold leading-tight mb-6">
+                  Any questions? <br />
+                  We got you.
+                </h2>
 
-              <p className="text-gray-500 max-w-md mb-6">
-                Yet bed any for assistance indulgence unpleasing. Not thoughts all
-                exercise blessing. Indulgence way everything joy alteration
-                boisterous the attachment.
-              </p>
+                <p className="text-gray-500 max-w-md mb-6">
+                  Yet bed any for assistance indulgence unpleasing. Not thoughts all
+                  exercise blessing. Indulgence way everything joy alteration
+                  boisterous the attachment.
+                </p>
 
-              <a
-                href="#"
-                className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
-              >
-                More FAQs →
-              </a>
+                <a
+                  href="#"
+                  className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
+                >
+                  More FAQs →
+                </a>
+              </div>
+
+              {/* RIGHT FAQ LIST */}
+              <div className="divide-y">
+                {faqs.filter(f => f.isActive).map((item, index) => (
+                  <div key={index} className="py-6">
+                    <button
+
+                      onClick={() => toggleFaq(index)}
+
+
+                      className="w-full flex justify-between items-center text-left"
+                    >
+                      <span className="text-lg font-semibold text-gray-900">
+                        {item.question}
+                      </span>
+
+                      <span className="text-2xl text-gray-500">
+                        {openFaqIndex === index ? "−" : "+"}
+                      </span>
+                    </button>
+
+                    {openFaqIndex === index && (
+                      <p className="mt-4 text-gray-500 max-w-xl">
+                        {item.answer}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+
             </div>
-
-            {/* RIGHT FAQ LIST */}
-            <div className="divide-y">
-              {faqs.filter(f => f.isActive).map((item, index) => (
-                <div key={index} className="py-6">
-                  <button
-
-                    onClick={() => toggleFaq(index)}
+          </section>
+        )
+      }
 
 
-                    className="w-full flex justify-between items-center text-left"
-                  >
-                    <span className="text-lg font-semibold text-gray-900">
-                      {item.question}
-                    </span>
-
-                    <span className="text-2xl text-gray-500">
-                      {openFaqIndex === index ? "−" : "+"}
-                    </span>
-                  </button>
-
-                  {openFaqIndex === index && (
-                    <p className="mt-4 text-gray-500 max-w-xl">
-                      {item.answer}
-                    </p>
-                  )}
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </section>
-      )}
-
-
-    </div>
+    </div >
   );
 };
 

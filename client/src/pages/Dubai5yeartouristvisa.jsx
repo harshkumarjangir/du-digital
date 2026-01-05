@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Check, ChevronDown, ChevronUp, Star, Shield, Clock, Users, Globe } from "lucide-react";
+import { Check, ChevronDown, ChevronUp, Star, Shield, Clock, Users, Globe, CheckCircle, XCircle, Loader2 } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
 
@@ -18,6 +18,9 @@ const Dubai5yeartouristvisa = () => {
   const [error, setError] = useState(null);
   const [openFaq, setOpenFaq] = useState(null);
   const [formValues, setFormValues] = useState({});
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
   useEffect(() => {
     fetchFormData();
@@ -57,6 +60,37 @@ const Dubai5yeartouristvisa = () => {
     }));
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitLoading(true);
+    setSubmitStatus(null);
+    setSubmitMessage('');
+    
+    try {
+      const response = await fetch(`${BackendURL}/api/form-submissions/slug/dubai-5year-tourist-visa`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formValues),
+      });
+      const res = await response.json();
+      
+      if (response.ok) {
+        setSubmitStatus('success');
+        setSubmitMessage('Thank you! Your application has been submitted successfully. Our team will contact you shortly.');
+        setFormValues({});
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setSubmitStatus('error');
+      setSubmitMessage('Failed to submit. Please check your connection and try again.');
+    } finally {
+      setSubmitLoading(false);
+      setTimeout(() => { setSubmitStatus(null); setSubmitMessage(''); }, 5000);
+    }
+  };
+
   if (loading) return <LoadingState message="Loading Dubai 5-Year Tourist Visa..." fullScreen />;
   if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
 
@@ -81,7 +115,7 @@ const Dubai5yeartouristvisa = () => {
     <div className="bg-white font-sans">
       
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full min-h-[90vh] overflow-hidden">
+      <section className="relative w-full min-h-[800px] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${getImageUrl(formData?.image) || STATIC_IMAGES.hero})` }}
@@ -92,7 +126,7 @@ const Dubai5yeartouristvisa = () => {
           style={{ background: 'linear-gradient(135deg, rgba(0,30,50,0.85) 0%, rgba(0,50,70,0.75) 100%)' }}
         />
         
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 min-h-[90vh] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 min-h-[800px] flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -124,7 +158,7 @@ const Dubai5yeartouristvisa = () => {
                 style={{ backgroundColor: 'rgba(0,0,0,0.7)' }}
               >
                 <h3 className="text-2xl font-bold text-white mb-6">Apply Now</h3>
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleSubmit}>
                   {fields.filter(f => f.type !== 'checkbox' && f.type !== 'radio').map((field, index) => {
                     const fieldType = field.type || field.fieldType;
                     
@@ -204,12 +238,21 @@ const Dubai5yeartouristvisa = () => {
                     </label>
                   ))}
                   
+                  {/* Submit Status Message */}
+                  {submitStatus && (
+                    <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
+                      {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
+                      <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
+                    </div>
+                  )}
+                  
                   <button
                     type="submit"
-                    className="w-full py-4 rounded-lg font-bold text-white text-lg transition-all duration-300 hover:opacity-90"
-                    style={{ backgroundColor: '#E31E24' }}
+                    disabled={submitLoading}
+                    className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 hover:opacity-90 disabled:opacity-70 flex items-center justify-center gap-2"
+                    style={{ backgroundColor: '#2D1F1F', color: '#E31E24' }}
                   >
-                    Get Started
+                    {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Get Started'}
                   </button>
                 </form>
               </div>
