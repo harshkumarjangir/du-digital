@@ -270,59 +270,6 @@ const GreeceWorkVisa = () => {
       )}
 
 
-      {/* ===== What is a Greece National Visa (Type D) for Employment? ===== */}
-      <section className="py-24 bg-white">
-        <div className="max-w-[1400px] mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
-
-            {/* LEFT CONTENT */}
-            <div>
-              <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-8">
-                What is a Greece <br />
-                National Visa (Type D) <br />
-                for Employment?
-              </h2>
-
-              <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
-                The Greece National Visa (Type D) is issued to non-EU/EEA
-                nationals who have secured employment in Greece and intend
-                to stay longer than 90 days. Once you arrive, you must apply
-                for a Residence Permit with the Right to Work, under Greek
-                law (Law 4251/2014). This visa is the entry route for
-                long-term employment in the hospitality and support sectors.
-              </p>
-            </div>
-
-            {/* RIGHT IMAGE GRID */}
-            <div className="grid grid-cols-2 gap-6">
-              <img
-                src="/assets/greece/job-1.jpg"
-                alt="Hospitality Work"
-                className="w-full h-full object-cover rounded-2xl"
-              />
-              <img
-                src="/assets/greece/job-2.jpg"
-                alt="Cleaning Job"
-                className="w-full h-full object-cover rounded-2xl"
-              />
-              <img
-                src="/assets/greece/job-3.jpg"
-                alt="Kitchen Staff"
-                className="w-full h-full object-cover rounded-2xl"
-              />
-              <img
-                src="/assets/greece/job-4.jpg"
-                alt="Gardening Work"
-                className="w-full h-full object-cover rounded-2xl"
-              />
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-
-
 
       {/* ===== SALARY & BENEFITS SECTION ===== */}
       {salarySection.length > 0 && (
