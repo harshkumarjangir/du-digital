@@ -43,6 +43,7 @@ import Applyforanyvisa from './pages/Applyforanyvisa'
 import Japantouristvisaforindians from './pages/Japantouristvisaforindians'
 import Egyptvisaforindians from './pages/Egyptvisaforindians'
 import Lebanon from './pages/Lebanon'
+import BangladeshVisasForUaeSingapore from './pages/Bangladeshvisasforuaesingapore'
 
 const App = () => {
         return (
@@ -84,6 +85,7 @@ const App = () => {
                                 <Route path="/egypt-visa-for-indians" element={<Egyptvisaforindians />} />
                                 <Route path="/tnh-magazine" element={<Magazine />} />
                                 <Route path="/bangladesh-vac" element={<BangladeshVac />} />
+                                <Route path="/bangladesh-visas-for-uae-singapore" element={<BangladeshVisasForUaeSingapore />} />
                                 <Route path="/lebanon" element={<Lebanon />} />
                                 <Route path="/cookie-policy" element={<CookiePolicy />} />
                                 <Route path="*" element={<NotFound />} />
