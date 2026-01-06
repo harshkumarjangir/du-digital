@@ -35,7 +35,7 @@ const FloatingChatCTA = () => {
             </div>
 
             {/* ===== Bottom CTA ===== */}
-            <div className="flex items-center gap-3">
+            {/* <div className="flex items-center gap-3">
                 {showBottomText && (
                     <div className="relative bg-[#FF1F3D] max-md:hidden text-white px-8 py-4 rounded-full font-semibold shadow-lg pr-10">
                         Chat with us!
@@ -58,7 +58,7 @@ const FloatingChatCTA = () => {
                         className="w-7 h-7"
                     />
                 </a>
-            </div>
+            </div> */}
         </div>
     );
 };

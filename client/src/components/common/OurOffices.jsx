@@ -3,72 +3,55 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchGroupedOffices } from "../../redux/slices/officeSlice";
 import { LoadingState, ErrorState } from "../reusable";
 
-// Helper to format office display name
-const formatOfficeName = (office) => {
-  if (office.officeName) return office.officeName;
-  if (office.address?.city && office.address?.country) {
-    return `${office.address.city}, ${office.address.country}`;
+// Helper to format address lines
+const formatLocation = (office) => {
+  if (!office) return { name: '', lines: [] };
+
+  const name = office.officeName || `${office.address?.city}, ${office.address?.country}`;
+
+  const lines = [];
+
+  if (office.address) {
+    const { line1, line2, city, state, country, pincode } = office.address;
+
+    // Combine line1 and line2 if both exist, or just use what's available
+    let addressText = [line1, line2].filter(Boolean).join(", ");
+    if (addressText) lines.push(addressText);
+
+    // Combine city, state, country - checking for duplicates if already in address text
+    const locationParts = [city, state, country].filter(Boolean);
+    // Add pincode to the last part if exists
+    if (pincode && locationParts.length > 0) {
+      locationParts[locationParts.length - 1] += ` – ${pincode}`;
+    }
+
+    if (locationParts.length > 0) {
+      // Only add if it's not substantially the same as line 2 (simple heuristic)
+      lines.push(locationParts.join(", "));
+    }
   }
-  return office.address?.city || "Office";
+
+  // Add phone/email if they exist
+  if (office.contact?.phone) lines.push(`Phone – ${office.contact.phone}`);
+  if (office.contact?.email) lines.push(`Email – ${office.contact.email}`);
+
+  return { name, lines };
 };
 
-// Helper to build full address string
-const formatFullAddress = (office) => {
-  const parts = [];
-  if (office.address?.line1) parts.push(office.address.line1);
-  if (office.address?.line2) parts.push(office.address.line2);
-  
-  const cityParts = [];
-  if (office.address?.city) cityParts.push(office.address.city);
-  if (office.address?.state) cityParts.push(office.address.state);
-  if (office.address?.country) cityParts.push(office.address.country);
-  if (cityParts.length > 0) parts.push(cityParts.join(", "));
-  
-  if (office.address?.pincode) parts.push(office.address.pincode);
-  
-  return parts.join(", ");
-};
+const OfficeCard = ({ office, titleColor = "text-[#b10e2a]", textColor = "text-[#333333]" }) => {
+  const { name, lines } = formatLocation(office);
 
-// Featured office card with full details
-const FeaturedOffice = ({ office }) => {
-  const displayName = formatOfficeName(office);
-  const fullAddress = formatFullAddress(office);
-  
   return (
-    <div>
-      <h4 className="font-semibold mb-4">{displayName}</h4>
-      <p className="text-sm leading-relaxed">{fullAddress}</p>
-      
-      {(office.contact?.phone || office.contact?.email) && (
-        <p className="mt-4 text-sm leading-relaxed">
-          {office.contact?.phone && (
-            <>
-              P: <a href={`tel:${office.contact.phone}`} className="hover:underline">{office.contact.phone}</a>
-              <br />
-            </>
-          )}
-          {office.contact?.email && (
-            <>
-              E: <a href={`mailto:${office.contact.email}`} className="hover:underline">{office.contact.email}</a>
-            </>
-          )}
-        </p>
-      )}
+    <div className="mb-0">
+      <h4 className={`font-bold text-lg mb-0 ${titleColor}`}>{name}</h4>
+      <div className={`text-sm md:text-[15px] leading-relaxed space-y-0.5 ${textColor}`}>
+        {lines.map((line, idx) => (
+          <p key={idx}>{line}</p>
+        ))}
+      </div>
     </div>
   );
 };
-
-// Office list column
-const OfficeColumn = ({ title, offices }) => (
-  <div>
-    <h4 className="text-[#b10e2a] font-semibold mb-4">{title}</h4>
-    <ul className="space-y-1 text-sm">
-      {offices.map((office, i) => (
-        <li key={office._id || i}>{formatOfficeName(office)}</li>
-      ))}
-    </ul>
-  </div>
-);
 
 export default function OurOffices() {
   const dispatch = useDispatch();
@@ -78,260 +61,104 @@ export default function OurOffices() {
     dispatch(fetchGroupedOffices());
   }, [dispatch]);
 
-  // Show loading state
-  if (loading) {
-    return (
-      <LoadingState 
-        message="Loading office locations..." 
-        bgColor="bg-[#fffaf2]"
-        textColor="text-[#b10e2a]"
-      />
-    );
-  }
+  if (loading) return <LoadingState message="Loading offices..." />;
+  if (error) return <ErrorState error={error} />;
 
-  // Show error state
-  if (error) {
-    return (
-      <ErrorState 
-        error={error}
-        title="Failed to load office locations"
-        bgColor="bg-[#fffaf2]"
-        textColor="text-[#b10e2a]"
-        errorColor="text-red-600"
-        onRetry={() => dispatch(fetchGroupedOffices())}
-      />
-    );
-  }
+  // 1. Identify Featured Offices (Delhi & Dubai)
+  const newDelhiOffice = india.find(o =>
+    o.officeName?.toLowerCase().includes("new delhi") ||
+    o.address?.city?.toLowerCase() === "new delhi"
+  );
 
-  // Find featured offices (Delhi and Dubai) or use first two
-  const delhiOffice = india.find(o => 
-    o.officeName?.toLowerCase().includes('delhi') || 
-    o.address?.city?.toLowerCase().includes('delhi')
-  ) || india[0];
-  
-  const dubaiOffice = international.find(o => 
-    o.officeName?.toLowerCase().includes('dubai') || 
-    o.address?.city?.toLowerCase().includes('dubai')
-  ) || international[0];
+  const dubaiOffice = international.find(o =>
+    o.officeName?.toLowerCase().includes("dubai") ||
+    o.address?.city?.toLowerCase() === "dubai"
+  );
 
-  // Get remaining offices (exclude featured ones)
-  const otherIndiaOffices = india.filter(o => o._id !== delhiOffice?._id);
+  // 2. Filter remaining offices
+  const otherIndiaOffices = india.filter(o => o._id !== newDelhiOffice?._id);
   const otherInternationalOffices = international.filter(o => o._id !== dubaiOffice?._id);
 
   return (
-    <section className="bg-[#fffaf2] py-16">
-      <div className="max-w-7xl mx-auto px-10 grid grid-cols-1 md:grid-cols-4 gap-12 text-[#b10e2a]">
+    <div className="w-full font-sans">
 
-        {/* FEATURED OFFICE 1 (Delhi or first India office) */}
-        {delhiOffice && <FeaturedOffice office={delhiOffice} />}
+      {/* SECTION 1: Featured Header (Yellow/Orange) */}
+      <section className="bg-[#FFD071] py-16 px-6 md:px-12">
+        <div className="max-w-[1400px] mx-auto grid md:grid-cols-3 gap-8">
 
-        {/* FEATURED OFFICE 2 (Dubai or first International office) */}
-        {dubaiOffice && <FeaturedOffice office={dubaiOffice} />}
+          {/* New Delhi (Left) */}
+          <div className="md:col-span-1">
+            {newDelhiOffice && (
+              <div>
+                <h3 className="text-2xl md:text-3xl font-bold text-[#AC0826] mb-6">
+                  New Delhi, India
+                </h3>
+                <div className="text-[#AC0826] text-lg leading-relaxed">
+                  <p>{newDelhiOffice.address?.line1}, {newDelhiOffice.address?.line2}</p>
+                  <p>{newDelhiOffice.address?.city} – {newDelhiOffice.address?.pincode}</p>
+                </div>
+              </div>
+            )}
+          </div>
 
-        {/* OTHER INDIA OFFICES */}
-        {otherIndiaOffices.length > 0 && (
-          <OfficeColumn
-            title="India Offices"
-            offices={otherIndiaOffices}
-          />
-        )}
+          {/* Corporate Office (Center - Hardcoded based on image if not in data) */}
+          <div className="md:col-span-1 flex items-end pb-1">
+            <div className="text-[#AC0826] text-lg leading-relaxed">
+              <p>Corporate Office: B-86, 2nd Floor, Defence</p>
+              <p>Colony, Delhi-110024</p>
+            </div>
+          </div>
 
-        {/* OTHER GLOBAL OFFICES */}
-        {otherInternationalOffices.length > 0 && (
-          <OfficeColumn
-            title="Global Offices"
-            offices={otherInternationalOffices}
-          />
-        )}
+          {/* Dubai (Right) */}
+          <div className="md:col-span-1">
+            {dubaiOffice && (
+              <div>
+                <h3 className="text-2xl md:text-3xl font-bold text-[#AC0826] mb-6">
+                  Dubai, UAE
+                </h3>
+                <div className="text-[#AC0826] text-lg leading-relaxed">
+                  <p>{dubaiOffice.address?.line1}</p>
+                  <p>{dubaiOffice.address?.line2}</p>
+                  <p>Phone – {dubaiOffice.contact?.phone}</p>
+                </div>
+              </div>
+            )}
+          </div>
 
-      </div>
-    </section>
+        </div>
+      </section>
+
+
+      {/* SECTION 2: India Offices (Off-White/Beige) */}
+      <section className="bg-[#FFFDF5] py-20 px-6 md:px-12">
+        <div className="max-w-[1400px] mx-auto">
+          <h3 className="text-3xl font-bold text-[#AC0826] mb-12">
+            India Offices
+          </h3>
+
+          <div className="grid md:grid-cols-3 gap-x-12 gap-y-8">
+            {otherIndiaOffices.map((office, idx) => (
+              <OfficeCard key={office._id || idx} office={office} titleColor="text-[#AC0826]" textColor="text-[#AC0826]" />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3: Global Offices (Light Blue) */}
+      <section className="bg-[#C7E6F9] py-20 px-6 md:px-12">
+        <div className="max-w-[1400px] mx-auto">
+          <h3 className="text-3xl font-bold text-[#162B56] mb-12">
+            Global Offices
+          </h3>
+
+          <div className="grid md:grid-cols-3 gap-x-12 gap-y-4">
+            {otherInternationalOffices.map((office, idx) => (
+              <OfficeCard key={office._id || idx} office={office} titleColor="text-[#162B56]" textColor="text-[#162B56]" />
+            ))}
+          </div>
+        </div>
+      </section>
+
+    </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { fetchGroupedOffices } from "../../redux/slices/officeSlice";
-// import offices from "../../data/offices.json";
-
-// // Helper function to transform API office data to component format
-// const transformOffice = (office) => {
-//     const addressLines = [];
-    
-//     // Build address array from address object
-//     if (office.address) {
-//         if (office.address.line1) addressLines.push(office.address.line1);
-//         if (office.address.line2) addressLines.push(office.address.line2);
-        
-//         // Build city, state, country line
-//         const cityParts = [];
-//         if (office.address.city) cityParts.push(office.address.city);
-//         if (office.address.state) cityParts.push(office.address.state);
-//         if (office.address.country) cityParts.push(office.address.country);
-//         if (cityParts.length > 0) {
-//             addressLines.push(cityParts.join(", "));
-//         }
-        
-//         if (office.address.pincode) {
-//             addressLines.push(office.address.pincode);
-//         }
-//     }
-    
-//     // Use officeName as city, or construct from address
-//     const city = office.officeName || 
-//                  (office.address?.city && office.address?.country 
-//                     ? `${office.address.city}, ${office.address.country}` 
-//                     : office.address?.city || "Office");
-    
-//     return {
-//         id: office._id || office.id,
-//         city,
-//         address: addressLines.length > 0 ? addressLines : ["Address not available"],
-//         email: office.contact?.email || null,
-//         phone: office.contact?.phone || null
-//     };
-// };
-
-// const OfficeCard = ({ city, address, email, phone }) => {
-//     return (
-//         <div className=" text-sm leading-relaxed text-gray-200">
-//             <p className="font-semibold text-white">{city}</p>
-
-//             {address.map((line, i) => (
-//                 <p key={i}>{line}</p>
-//             ))}
-
-//             {email && (
-//                 <p>
-//                     <span className="font-semibold">Email:</span>{" "}
-//                     <a href={`mailto:${email}`} className="text-red-400">
-//                         {email}
-//                     </a>
-//                 </p>
-//             )}
-
-//             {phone && (
-//                 <p>
-//                     <span className="font-semibold">Phone:</span>{" "}
-//                     <a href={`tel:${phone}`} className="text-red-400">
-//                         {phone}
-//                     </a>
-//                 </p>
-//             )}
-//         </div>
-//     );
-// };
-
-
-// const OurOffices = () => {
-//     const dispatch = useDispatch();
-//     const { india, international, loading, error } = useSelector((state) => state.office);
-
-//     useEffect(() => {
-//         dispatch(fetchGroupedOffices());
-//     }, [dispatch]);
-
-//     // Transform API data to component format
-//     const transformedIndia = india.map(transformOffice);
-//     const transformedInternational = international.map(transformOffice);
-
-//     return (
-//         <section className="relative overflow-hidden bg-gradient-to-br from-[#2a0000] to-[#120000] py-16 text-white"
-//         style={{
-//             backgroundImage: "linear-gradient(180deg, #161111 0%, #360A0A 100%)"
-//           }}
-          
-//             >
-
-//             {/* Background Image */}
-//             <img
-//                 src={offices.bgImage}
-//                 alt="Background"
-//                 className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-20"
-//             />
-
-//             {/* Content */}
-//             <div className="relative container mx-auto max-w-6xl px-4">
-//                 <h2 className="mb-10 text-3xl font-semibold">Our Offices</h2>
-
-//                 {loading && (
-//                     <div className="text-center py-8">
-//                         <p className="text-gray-300">Loading offices...</p>
-//                     </div>
-//                 )}
-
-//                 {error && (
-//                     <div className="text-center py-8">
-//                         <p className="text-red-400">Error loading offices: {error}</p>
-//                     </div>
-//                 )}
-
-//                 {!loading && !error && (
-//                     <>
-//                         {/* India Offices */}
-//                         {transformedIndia.length > 0 && (
-//                             <div className="mb-14">
-//                                 <h3 className="mb-6 text-lg font-semibold text-red-500">
-//                                     India Offices
-//                                 </h3>
-
-//                                 <div className="grid gap-8 md:grid-cols-3 border-2 border-white p-3">
-//                                     <div className=" grid gap-y-5">
-//                                         {transformedIndia.map((office, index) => {
-//                                             const { id, ...officeProps } = office;
-//                                             return [0,3,6].includes(index) && <OfficeCard key={id || index} {...officeProps} />;
-//                                         })}
-//                                     </div>
-//                                     <div className=" grid gap-y-1">
-//                                         {transformedIndia.map((office, index) => {
-//                                             const { id, ...officeProps } = office;
-//                                             return [1,4].includes(index) && <OfficeCard key={id || index} {...officeProps} />;
-//                                         })}
-//                                     </div>
-//                                     <div className="grid gap-y-0.5">
-//                                         {transformedIndia.map((office, index) => {
-//                                             const { id, ...officeProps } = office;
-//                                             return [2,5].includes(index) && <OfficeCard key={id || index} {...officeProps} />;
-//                                         })}
-//                                     </div>
-//                                 </div>
-//                             </div>
-//                         )}
-
-//                         {/* Global Offices */}
-//                         {transformedInternational.length > 0 && (
-//                             <div>
-//                                 <h3 className="mb-6 text-lg font-semibold text-red-500">
-//                                     Global Offices
-//                                 </h3>
-
-//                                 <div className="grid gap-8 md:grid-cols-3 border-2 border-white p-3">
-//                                     {transformedInternational.map((office, index) => {
-//                                         const { id, ...officeProps } = office;
-//                                         return <OfficeCard key={id || index} {...officeProps} />;
-//                                     })}
-//                                 </div>
-//                             </div>
-//                         )}
-//                     </>
-//                 )}
-//             </div>
-//         </section>
-//     );
-// };
-
-// export default OurOffices;
