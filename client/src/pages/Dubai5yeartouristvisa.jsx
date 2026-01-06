@@ -202,6 +202,25 @@ const Dubai5yeartouristvisa = () => {
                       );
                     }
                   })}
+                  {
+                    fields.filter(f=>f.type=="textarea").map((field,index)=>    
+                <>
+                    {field.label && (
+                        <label className={`${labelClass} block mb-2`}>
+                            {field.label} {field.required && <span className="text-red-500">*</span>}
+                        </label>
+                    )}
+                    <textarea
+                        name={field.name}
+                        value={formValues[field.name] || ''}
+                        onChange={handleInputChange}
+                        placeholder={field.placeholder || field.label}
+                        className={`${baseInputClass} min-h-[100px]`}
+                        required={field.required}
+                    />
+                </>
+                )
+                  }
 
                   {/* Radio buttons */}
                   {fields.filter(f => f.type === 'radio').map((field, index) => (

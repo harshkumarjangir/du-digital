@@ -170,7 +170,43 @@ const Serbiaworkpermitvisa = () => {
                           ))}
                         </select>
                       );
-                    } else {
+                      } else if(fieldType === 'textarea') {
+                      return (
+                        <textarea
+                          key={field._id || index}
+                          name={field.name}
+                          value={formValues[field.name] || ''}
+                          onChange={handleInputChange}
+                          placeholder={field.placeholder || field.label}
+                          className="flex-1 w-full px-4 py-3 bg-white border-0 rounded text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none text-sm"
+                          required={field.required}
+                        />
+                      );
+                    }else if(fieldType=="redio"){
+      <div  className="space-y-2">
+                        <label className="text-white text-sm font-medium block mb-2">
+                            {field.label} {field.required && <span className="text-red-500">*</span>}
+                        </label>
+                        <div className="flex flex-wrap gap-4">
+                            {field.options?.map((opt, i) => (
+                                <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name={field.name}
+                                        value={opt.value || opt.label || opt}
+                                        checked={formValues[field.name] === (opt.value || opt.label || opt)}
+                                        onChange={handleInputChange}
+                                        className="w-4 h-4"
+                                        required={field.required}
+                                    />
+                                    <span className="text-sm">{opt.label || opt}</span>
+                                </label>
+                            ))}
+                        </div>
+                    </div>
+  
+
+                    }  else {
                       return (
                         <input
                           key={field._id || index}

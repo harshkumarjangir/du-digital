@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { MapPin, Phone, Mail, ChevronDown } from "lucide-react";
+import { MapPin, Phone, Mail, ChevronDown, Loader2 } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
+import DynamicFormField from "../components/reusable/DynamicFormField";
 
 const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
@@ -109,6 +110,39 @@ const Lebanon = () => {
       after: parts[1]?.trim() || ''
     };
   };
+ const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+    const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitLoading(true);
+    setSubmitStatus(null);
+    setSubmitMessage('');
+
+    try {
+      const response = await fetch(`${BackendURL}/api/form-submissions/slug/bangladesh-visas-for-uae-singapore`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formValues),
+      });
+      const res = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setSubmitMessage('Thank you! Your request has been submitted.');
+        setFormValues({});
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(res.message || 'Something went wrong.');
+      }
+    } catch (err) {
+      setSubmitStatus('error');
+      setSubmitMessage('Failed to submit. Please try again.');
+    } finally {
+      setSubmitLoading(false);
+      setTimeout(() => { setSubmitStatus(null); setSubmitMessage(''); }, 5000);
+    }
+  };
 
   return (
     <div className="bg-white font-sans">
@@ -209,54 +243,36 @@ const Lebanon = () => {
       ))}
 
       {/* ===== FORM SECTION (if fields exist) ===== */}
-      {fields.length > 0 && (
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-6">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Apply Now</h2>
-            <form className="space-y-4">
-              {fields.map((field, index) => {
-                if (field.type === 'select' || field.type === 'dropdown') {
-                  return (
-                    <select
-                      key={field._id || index}
-                      name={field.name}
-                      value={formValues[field.name] || ''}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none"
-                      required={field.required}
-                    >
-                      <option value="">{field.placeholder || field.label}</option>
-                      {field.options?.map((opt, optIdx) => (
-                        <option key={opt._id || optIdx} value={opt.value || opt}>
-                          {opt.label || opt}
-                        </option>
-                      ))}
-                    </select>
-                  );
-                }
-                return (
-                  <input
-                    key={field._id || index}
-                    type={field.type || 'text'}
-                    name={field.name}
-                    value={formValues[field.name] || ''}
-                    onChange={handleInputChange}
-                    placeholder={field.placeholder || field.label}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none"
-                    required={field.required}
+    {fields && fields.length > 0 && (
+            <div id="callback-form" className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full ml-auto">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Request a Callback</h3>
+              
+              {submitStatus && (
+                <div className={`p-3 mb-4 text-sm rounded ${submitStatus === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                  {submitMessage}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {fields.map((field, index) => (
+                  <DynamicFormField
+                    key={index}
+                    field={field}
+                    formValues={formValues}
+                    handleInputChange={handleInputChange}
+                    theme="light"
                   />
-                );
-              })}
-              <button
-                type="submit"
-                className="w-full py-4 rounded-full font-bold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]"
-              >
-                Submit Application
-              </button>
-            </form>
-          </div>
-        </section>
-      )}
+                ))}
+                <button
+                  type="submit"
+                  disabled={submitLoading}
+                  className="w-full py-4 bg-[#E31E24] text-white hover:bg-[#2D1F1F] hover:text-[#E31E24] rounded-full font-bold transition-opacity flex justify-center items-center gap-2"
+                >
+                  {submitLoading ? <Loader2 className="animate-spin w-5 h-5"/> : 'Submit Request'}
+                </button>
+              </form>
+            </div>
+          )}
 
       {/* ===== DOCUMENTS SECTION (if documents exist) ===== */}
       {documents.length > 0 && (

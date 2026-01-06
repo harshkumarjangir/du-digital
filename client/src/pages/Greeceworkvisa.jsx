@@ -171,7 +171,7 @@ const GreeceWorkVisa = () => {
                 <form className="space-y-4" onSubmit={handleSubmit}>
                   {/* Form fields in grid for first 4 fields */}
                   <div className="grid grid-cols-2 gap-4">
-                    {fields.slice(0, 4).map((field, index) => {
+                    {fields.map((field, index) => {
                       const fieldType = field.type || field.fieldType;
 
                       if (fieldType === 'select' || fieldType === 'dropdown') {
@@ -199,6 +199,30 @@ const GreeceWorkVisa = () => {
                             ))}
                           </select>
                         );
+                      } else if(fieldType === 'radio') {
+                                <div  className="space-y-2">
+                        <label className="text-white text-sm font-medium block mb-2">
+                            {field.label} {field.required && <span className="text-red-500">*</span>}
+                        </label>
+                        <div className="flex flex-wrap gap-4">
+                            {field.options?.map((opt, i) => (
+                                <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        name={field.name}
+                                        value={opt.value || opt.label || opt}
+                                        checked={formValues[field.name] === (opt.value || opt.label || opt)}
+                                        onChange={handleInputChange}
+                                        className="w-4 h-4"
+                                        required={field.required}
+                                    />
+                                    <span className="text-sm">{opt.label || opt}</span>
+                                </label>
+                            ))}
+                        </div>
+                    </div>
+                      }else if(fieldType=="checkbox"){
+                        
                       } else {
                         const inputType = fieldType === 'email' ? 'email'
                           : fieldType === 'phone' || fieldType === 'number' ? 'tel'

@@ -170,21 +170,100 @@ const Southkoreavisaforindians = () => {
                 }}
               >
                 <h3 className="text-2xl font-bold text-white mb-6">Apply Now</h3>
-                <form className="space-y-4" onSubmit={handleSubmit}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {fields.map((field, index) => (
+                   <form className="flex flex-col w-full gap-3" onSubmit={handleSubmit}>
+                  {fields.filter(f => f.type !== 'checkbox').map((field, index) => {
+                    const fieldType = field.type || field.fieldType;
+
+                    if (fieldType === 'select' || fieldType === 'dropdown') {
+                      return (
+                        <select
+                          key={field._id || index}
+                          name={field.name}
+                          value={formValues[field.name] || ''}
+                          onChange={handleInputChange}
+                          className="w-full px-4 py-3 bg-white border-0 rounded text-gray-700 focus:ring-2 focus:ring-red-500 transition-all outline-none appearance-none cursor-pointer text-sm"
+                          required={field.required}
+                          style={{
+                            backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                            backgroundPosition: 'right 0.5rem center',
+                            backgroundRepeat: 'no-repeat',
+                            backgroundSize: '1.25em 1.25em',
+                            paddingRight: '2rem'
+                          }}
+                        >
+                          <option value="">{field.placeholder || field.label}</option>
+                          {field.options?.map((opt, optIdx) => (
+                            <option key={opt._id || optIdx} value={opt.value || opt}>
+                              {opt.label || opt}
+                            </option>
+                          ))}
+                        </select>
+                      );
+                      } else if(fieldType === 'textarea') {
+                      return (
+                        <textarea
+                          key={field._id || index}
+                          name={field.name}
+                          value={formValues[field.name] || ''}
+                          onChange={handleInputChange}
+                          placeholder={field.placeholder || field.label}
+                          className="flex-1 w-full px-4 py-3 bg-white border-0 rounded text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none text-sm"
+                          required={field.required}
+                        />
+                      );
+                    }else if(fieldType=="redio"){
+      <div  className="space-y-2">
+                        <label className="text-white text-sm font-medium block mb-2">
+                            {field.label} {field.required && <span className="text-red-500">*</span>}
+                        </label>
+                        <div className="flex flex-wrap gap-4">
+                            {field.options?.map((opt, i) => (
+                                <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name={field.name}
+                                        value={opt.value || opt.label || opt}
+                                        checked={formValues[field.name] === (opt.value || opt.label || opt)}
+                                        onChange={handleInputChange}
+                                        className="w-4 h-4"
+                                        required={field.required}
+                                    />
+                                    <span className="text-sm">{opt.label || opt}</span>
+                                </label>
+                            ))}
+                        </div>
+                    </div>
+  
+
+                    }  else {
+                      return (
+                        <input
+                          key={field._id || index}
+                          type={fieldType === 'number' ? 'tel' : fieldType}
+                          name={field.name}
+                          value={formValues[field.name] || ''}
+                          onChange={handleInputChange}
+                          placeholder={field.placeholder || field.label}
+                          className="w-full px-4 py-3 bg-white border-0 rounded text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none text-sm"
+                          required={field.required}
+                        />
+                      );
+                    }
+                  })}
+
+                  {/* Checkbox fields */}
+                  {fields.filter(f => f.type === 'checkbox').map((field, index) => (
+                    <label key={field._id || index} className="flex items-start gap-3 text-white text-xs cursor-pointer">
                       <input
-                        key={field._id || index}
-                        type={field.type === 'number' ? 'tel' : field.type}
+                        type="checkbox"
                         name={field.name}
-                        value={formValues[field.name] || ''}
+                        checked={formValues[field.name] || false}
                         onChange={handleInputChange}
-                        placeholder={field.placeholder || field.label}
-                        className="w-full px-4 py-3 bg-white border-0 rounded-lg text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none"
-                        required={field.required}
+                        className="mt-1 w-4 h-4 accent-red-600 rounded shrink-0"
                       />
-                    ))}
-                  </div>
+                      <span className="text-gray-300">{field.label}</span>
+                    </label>
+                  ))}
 
                   {/* Submit Status Message */}
                   {submitStatus && (
@@ -197,7 +276,7 @@ const Southkoreavisaforindians = () => {
                   <button
                     type="submit"
                     disabled={submitLoading}
-                    className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-2"
+                    className="w-full py-3 rounded-full font-bold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] uppercase mt-2 disabled:opacity-70 flex items-center justify-center gap-2"
                   >
                     {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Apply Now'}
                   </button>

@@ -146,6 +146,7 @@ export const submitFormBySlug = async (req: Request, res: Response) => {
         const { slug } = req.params;
         const submissionData = req.body;
         console.log("slug", slug);
+       
 
         // Find form by slug
         const form = await Form.findOne({ slug, isActive: true });

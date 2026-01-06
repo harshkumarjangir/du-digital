@@ -156,6 +156,8 @@ const Japantouristvisaforindians = () => {
                     const textFields = fields.filter(f => ['text', 'email', 'number'].includes(f.type));
                     const selectFields = fields.filter(f => f.type === 'select' || f.type === 'dropdown');
                     const checkboxFields = fields.filter(f => f.type === 'checkbox');
+                    const radioFields = fields.filter(f => f.type === 'radio');
+                    const textarea=fields.filter(f=>f.type==="textarea")
 
                     return (
                       <>
@@ -176,7 +178,7 @@ const Japantouristvisaforindians = () => {
                         {/* Select fields - 2 columns */}
                         {selectFields.length > 0 && (
                           <div className="grid md:grid-cols-2 gap-4">
-                            {selectFields.slice(0, 2).map((field, index) => (
+                            {selectFields.map((field, index) => (
                               <select
                                 key={field._id || `select-${index}`}
                                 name={field.name}
@@ -204,7 +206,7 @@ const Japantouristvisaforindians = () => {
                         )}
 
                         {/* Remaining select (Interest) */}
-                        {selectFields.slice(2).map((field, index) => (
+                        {selectFields.map((field, index) => (
                           <select
                             key={field._id || `select-extra-${index}`}
                             name={field.name}
@@ -228,6 +230,46 @@ const Japantouristvisaforindians = () => {
                             ))}
                           </select>
                         ))}
+                              {
+                      textarea.map((field,index)=>   <div key={index}>
+                    {field.label && (
+                        <label className={`${labelClass} block mb-2`}>
+                            {field.label} {field.required && <span className="text-red-500">*</span>}
+                        </label>
+                    )}
+                    <textarea
+                        name={field.name}
+                        value={formValues[field.name] || ''}
+                        onChange={handleInputChange}
+                        placeholder={field.placeholder || field.label}
+                        className={`${baseInputClass} min-h-[100px]`}
+                        required={field.required}
+                    />
+                </div>)
+                  }
+                            {radioFields.map((index,field)=>   <div key={index} className="space-y-2">
+                        <label className="text-white text-sm font-medium block mb-2">
+                            {field.label} {field.required && <span className="text-red-500">*</span>}
+                        </label>
+                        <div className="flex flex-wrap gap-4">
+                            {field.options?.map((opt, i) => (
+                                <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name={field.name}
+                                        value={opt.value || opt.label || opt}
+                                        checked={formValues[field.name] === (opt.value || opt.label || opt)}
+                                        onChange={handleInputChange}
+                                        className="w-4 h-4"
+                                        required={field.required}
+                                    />
+                                    <span className="text-sm">{opt.label || opt}</span>
+                                </label>
+                            ))}
+                        </div>
+                    </div>)
+  
+}
 
                         {/* Checkboxes */}
                         {checkboxFields.map((field, index) => (

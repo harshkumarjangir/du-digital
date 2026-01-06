@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Check, CheckCircle, Mail, Phone } from "lucide-react";
+import { Check, CheckCircle, Loader2, Mail, Phone } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
+import DynamicFormField from "../components/reusable/DynamicFormField";
 
 const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
@@ -38,8 +39,51 @@ const Duverify = () => {
 
   if (loading) return <LoadingState message="Loading DuVerify..." fullScreen />;
   if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
+   const [submitStatus, setSubmitStatus] = useState(null);
+    const [submitLoading, setSubmitLoading] = useState(false);
+    const [submitMessage, setSubmitMessage] = useState('');
+    
+  const [formValues, setFormValues] = useState({});
+   const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormValues(prev => ({ 
+      ...prev, 
+      [name]: type === 'checkbox' ? checked : value 
+    }));
+  };
 
-  const { name, description, contentSections = {} } = formData || {};
+      const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitLoading(true);
+    setSubmitStatus(null);
+    setSubmitMessage('');
+
+    try {
+      const response = await fetch(`${BackendURL}/api/form-submissions/slug/bangladesh-visas-for-uae-singapore`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formValues),
+      });
+      const res = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setSubmitMessage('Thank you! Your request has been submitted.');
+        setFormValues({});
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(res.message || 'Something went wrong.');
+      }
+    } catch (err) {
+      setSubmitStatus('error');
+      setSubmitMessage('Failed to submit. Please try again.');
+    } finally {
+      setSubmitLoading(false);
+      setTimeout(() => { setSubmitStatus(null); setSubmitMessage(''); }, 5000);
+    }
+  };
+
+  const { name, description, contentSections = {}, fields={}} = formData || {};
 
   // Get sections by API keys
   const aboutSection = contentSections['About DuVerify'] || [];
@@ -89,6 +133,36 @@ const Duverify = () => {
           </div>
         </div>
       </section>
+        {fields && fields.length > 0 && (
+                  <div id="callback-form" className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full ml-auto">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Request a Callback</h3>
+                    
+                    {submitStatus && (
+                      <div className={`p-3 mb-4 text-sm rounded ${submitStatus === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                        {submitMessage}
+                      </div>
+                    )}
+      
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      {fields.map((field, index) => (
+                        <DynamicFormField
+                          key={index}
+                          field={field}
+                          formValues={formValues}
+                          handleInputChange={handleInputChange}
+                          theme="light"
+                        />
+                      ))}
+                      <button
+                        type="submit"
+                        disabled={submitLoading}
+                        className="w-full py-4 bg-[#E31E24] text-white hover:bg-[#2D1F1F] hover:text-[#E31E24] rounded-full font-bold transition-opacity flex justify-center items-center gap-2"
+                      >
+                        {submitLoading ? <Loader2 className="animate-spin w-5 h-5"/> : 'Submit Request'}
+                      </button>
+                    </form>
+                  </div>
+                )}
 
       {/* ===== ABOUT DUVERIFY SECTION ===== */}
       {aboutSection.length > 0 && (
