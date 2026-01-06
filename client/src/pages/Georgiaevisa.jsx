@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
-import { Loader2, Check, ChevronDown } from "lucide-react";
+import { Loader2, Check, ChevronDown, FileText } from "lucide-react";
 
 const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
@@ -14,7 +14,7 @@ const Georgiaevisa = () => {
     const [submitStatus, setSubmitStatus] = useState(null);
     const [submitLoading, setSubmitLoading] = useState(false);
     const [submitMessage, setSubmitMessage] = useState('');
-    const [openAccordion, setOpenAccordion] = useState('india');
+    const [openFaq, setOpenFaq] = useState(null);
 
     useEffect(() => {
         fetchFormData();
@@ -81,12 +81,134 @@ const Georgiaevisa = () => {
         }
     };
 
+    // Dynamic field renderer - handles all field types
+    const renderField = (field, index) => {
+        switch (field.type) {
+            case 'select':
+            case 'dropdown':
+                return (
+                    <select
+                        key={index}
+                        name={field.name}
+                        value={formValues[field.name] || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:border-[#E31E24] outline-none"
+                        required={field.required}
+                    >
+                        <option value="">{field.label}</option>
+                        {field.options?.map((opt, i) => (
+                            <option key={i} value={opt.value || opt.label || opt}>{opt.label || opt}</option>
+                        ))}
+                    </select>
+                );
+
+            case 'checkbox':
+                return (
+                    <div key={index} className="flex items-center gap-3">
+                        <input
+                            type="checkbox"
+                            name={field.name}
+                            checked={formValues[field.name] || false}
+                            onChange={handleInputChange}
+                            className="w-5 h-5"
+                            required={field.required}
+                        />
+                        <label className="text-white text-sm">
+                            {field.label} {field.required && <span className="text-red-500">*</span>}
+                        </label>
+                    </div>
+                );
+
+            case 'radio':
+                return (
+                    <div key={index} className="space-y-2">
+                        <label className="text-white text-sm font-medium block mb-2">
+                            {field.label} {field.required && <span className="text-red-500">*</span>}
+                        </label>
+                        <div className="flex flex-wrap gap-4">
+                            {field.options?.map((opt, i) => (
+                                <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name={field.name}
+                                        value={opt.value || opt.label || opt}
+                                        checked={formValues[field.name] === (opt.value || opt.label || opt)}
+                                        onChange={handleInputChange}
+                                        className="w-4 h-4"
+                                        required={field.required}
+                                    />
+                                    <span className="text-sm">{opt.label || opt}</span>
+                                </label>
+                            ))}
+                        </div>
+                    </div>
+                );
+
+            case 'textarea':
+                return (
+                    <textarea
+                        key={index}
+                        name={field.name}
+                        value={formValues[field.name] || ''}
+                        onChange={handleInputChange}
+                        placeholder={field.placeholder || field.label}
+                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:border-[#E31E24] outline-none min-h-[100px]"
+                        required={field.required}
+                    />
+                );
+
+            case 'date':
+                return (
+                    <input
+                        key={index}
+                        type="date"
+                        name={field.name}
+                        value={formValues[field.name] || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:border-[#E31E24] outline-none"
+                        required={field.required}
+                    />
+                );
+
+            case 'file':
+                return (
+                    <div key={index}>
+                        <label className="text-white text-sm block mb-2">
+                            {field.label} {field.required && <span className="text-red-500">*</span>}
+                        </label>
+                        <input
+                            type="file"
+                            name={field.name}
+                            onChange={(e) => setFormValues(prev => ({ ...prev, [field.name]: e.target.files[0] }))}
+                            className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg"
+                            required={field.required}
+                        />
+                    </div>
+                );
+
+            default:
+                // text, email, number, tel, etc.
+                return (
+                    <input
+                        key={index}
+                        type={field.type || 'text'}
+                        name={field.name}
+                        value={formValues[field.name] || ''}
+                        onChange={handleInputChange}
+                        placeholder={field.placeholder || field.label}
+                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:border-[#E31E24] outline-none"
+                        required={field.required}
+                    />
+                );
+        }
+    };
+
     if (loading) return <LoadingState message="Loading Content..." fullScreen />;
     if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
 
-    const { fields = [], contentSections = {}, documents = [], image } = formData || {};
+    const { fields = [], contentSections = {}, documents = [], faqs = [], image } = formData || {};
 
-    // Get content sections
+    // Get content sections dynamically
     const bottomHeroSection = contentSections['bottomhero'] || [];
     const revisedProcessSection = contentSections['Revised process to apply Georgia Visa-'] || [];
     const duVerifySection = contentSections['What is DuVerify'] || [];
@@ -112,8 +234,8 @@ const Georgiaevisa = () => {
                         </h1>
                     </div>
 
-                    {/* Right - Form */}
-                    {fields.length > 0 && (
+                    {/* Right - Form (Only if fields exist) */}
+                    {fields && fields.length > 0 && (
                         <div className="bg-black/70 backdrop-blur-sm rounded-xl p-8 max-w-md w-full ml-auto">
                             <h3 className="text-2xl font-bold text-white mb-6 text-center">Apply Now</h3>
                             
@@ -124,56 +246,7 @@ const Georgiaevisa = () => {
                             )}
 
                             <form onSubmit={handleSubmit} className="space-y-4">
-                                {fields.map((field, index) => {
-                                    if (field.type === 'select' || field.type === 'dropdown') {
-                                        return (
-                                            <select
-                                                key={index}
-                                                name={field.name}
-                                                value={formValues[field.name] || ''}
-                                                onChange={handleInputChange}
-                                                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:border-[#E31E24] outline-none"
-                                                required={field.required}
-                                            >
-                                                <option value="">{field.label}</option>
-                                                {field.options?.map((opt, i) => (
-                                                    <option key={i} value={opt.value || opt.label || opt}>{opt.label || opt}</option>
-                                                ))}
-                                            </select>
-                                        );
-                                    }
-                                    
-                                    if (field.type === 'checkbox') {
-                                        return (
-                                            <div key={index} className="flex items-center gap-3">
-                                                <input
-                                                    type="checkbox"
-                                                    name={field.name}
-                                                    checked={formValues[field.name] || false}
-                                                    onChange={handleInputChange}
-                                                    className="w-5 h-5"
-                                                    required={field.required}
-                                                />
-                                                <label className="text-white text-sm">
-                                                    {field.label}
-                                                </label>
-                                            </div>
-                                        );
-                                    }
-
-                                    return (
-                                        <input
-                                            key={index}
-                                            type={field.type}
-                                            name={field.name}
-                                            value={formValues[field.name] || ''}
-                                            onChange={handleInputChange}
-                                            placeholder={field.placeholder || field.label}
-                                            className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:border-[#E31E24] outline-none"
-                                            required={field.required}
-                                        />
-                                    );
-                                })}
+                                {fields.map((field, index) => renderField(field, index))}
                                 <button
                                     type="submit"
                                     disabled={submitLoading}
@@ -188,43 +261,43 @@ const Georgiaevisa = () => {
             </section>
 
             {/* ===== INTRO TEXT + VIDEO SECTION ===== */}
-            <section className="py-16 bg-white">
-                <div className="max-w-4xl mx-auto px-6 text-center">
-                    {/* Intro Paragraph */}
-                    {bottomHeroSection.length > 0 && (
-                        <p className="text-lg text-gray-700 leading-relaxed mb-12">
-                            {bottomHeroSection[0]?.contentHtml}
-                        </p>
-                    )}
-
-                    {/* Red Heading */}
-                    {revisedProcessSection.length > 0 && (
-                        <>
-                            <h2 className="text-3xl md:text-4xl font-bold text-[#E31E24] mb-8">
-                                {revisedProcessSection[0]?.title}
-                            </h2>
-
-                            {/* Video */}
-                            {revisedProcessSection[0]?.youtubeUrl && (
-                                <div className="aspect-video w-full max-w-3xl mx-auto rounded-xl overflow-hidden shadow-xl mb-12">
-                                    <video 
-                                        src={revisedProcessSection[0].youtubeUrl} 
-                                        controls
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-                            )}
-
-                            {/* Description Text */}
-                            <p className="text-lg text-gray-700 leading-relaxed text-left whitespace-pre-line">
-                                {revisedProcessSection[0]?.contentHtml}
+            {(bottomHeroSection.length > 0 || revisedProcessSection.length > 0) && (
+                <section className="py-16 bg-white">
+                    <div className="max-w-4xl mx-auto px-6 text-center">
+                        {/* Intro Paragraph */}
+                        {bottomHeroSection.length > 0 && (
+                            <p className="text-lg text-gray-700 leading-relaxed mb-12">
+                                {bottomHeroSection[0]?.contentHtml}
                             </p>
-                        </>
-                    )}
-                </div>
-            </section>
+                        )}
 
-            {/* ===== WHAT IS DUVERIFY SECTION ===== */}
+                        {/* Video Section */}
+                        {revisedProcessSection.length > 0 && (
+                            <>
+                                <h2 className="text-3xl md:text-4xl font-bold text-[#E31E24] mb-8">
+                                    {revisedProcessSection[0]?.title}
+                                </h2>
+
+                                {revisedProcessSection[0]?.youtubeUrl && (
+                                    <div className="aspect-video w-full max-w-3xl mx-auto rounded-xl overflow-hidden shadow-xl mb-12">
+                                        <video 
+                                            src={revisedProcessSection[0].youtubeUrl} 
+                                            controls
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                )}
+
+                                <p className="text-lg text-gray-700 leading-relaxed text-left whitespace-pre-line">
+                                    {revisedProcessSection[0]?.contentHtml}
+                                </p>
+                            </>
+                        )}
+                    </div>
+                </section>
+            )}
+
+            {/* ===== WHAT IS DUVERIFY SECTION (Conditional) ===== */}
             {duVerifySection.length > 0 && (
                 <section className="py-16 bg-gray-50">
                     <div className="max-w-4xl mx-auto px-6 text-center">
@@ -237,28 +310,60 @@ const Georgiaevisa = () => {
                     </div>
                 </section>
             )}
-            {/* ===== CAPABILITIES / SERVICES CHECKLIST ===== */}
-            {documents.length > 0 && (
+
+            {/* ===== DOCUMENTS / CAPABILITIES SECTION (Conditional) ===== */}
+            {documents && documents.length > 0 && (
                 <section className="py-16 bg-white">
-                    <div className="max-w-4xl mx-auto px-6 text-center">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-8">
-                            {documents[0]?.title}
-                        </h3>
-                        <ul className="space-y-4 text-left max-w-xl mx-auto">
-                            {documents[0]?.description?.split('\n').map((line, i) => (
-                                line.trim() && (
-                                    <li key={i} className="flex items-center gap-4">
-                                        <Check className="w-6 h-6 text-green-500 flex-shrink-0" />
-                                        <span className="text-gray-700 text-lg">{line.trim()}</span>
-                                    </li>
-                                )
-                            ))}
-                        </ul>
+                    <div className="max-w-4xl mx-auto px-6">
+                        {documents.map((doc, docIndex) => (
+                            <div key={docIndex} className="mb-12 last:mb-0">
+                                <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+                                    {doc.title}
+                                </h3>
+                                <ul className="space-y-4 text-left max-w-xl mx-auto">
+                                    {doc.description?.split('\n').map((line, i) => (
+                                        line.trim() && (
+                                            <li key={i} className="flex items-center gap-4">
+                                                <Check className="w-6 h-6 text-green-500 flex-shrink-0" />
+                                                <span className="text-gray-700 text-lg">{line.trim()}</span>
+                                            </li>
+                                        )
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
                     </div>
                 </section>
             )}
 
-            
+            {/* ===== FAQ SECTION (Conditional) ===== */}
+            {faqs && faqs.length > 0 && (
+                <section className="py-16 bg-gray-50">
+                    <div className="max-w-4xl mx-auto px-6">
+                        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+                            Frequently Asked Questions
+                        </h2>
+                        <div className="space-y-4">
+                            {faqs.map((faq, index) => (
+                                <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden">
+                                    <button
+                                        onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                                        className="w-full flex justify-between items-center p-4 text-left hover:bg-gray-50 transition-all"
+                                    >
+                                        <span className="text-lg font-semibold text-gray-900">{faq.question}</span>
+                                        <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform ${openFaq === index ? 'rotate-180' : ''}`} />
+                                    </button>
+                                    {openFaq === index && (
+                                        <div className="px-4 pb-4">
+                                            <p className="text-gray-600">{faq.answer}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
         </div>
     );
 };

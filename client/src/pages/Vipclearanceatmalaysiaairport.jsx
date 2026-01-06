@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
+import DynamicFormField from "../components/reusable/DynamicFormField";
 import { Loader2, Check, Users, Plane, ArrowRight, MapPin, FileText } from "lucide-react";
 
 const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
@@ -85,40 +86,35 @@ const Vipclearanceatmalaysiaairport = () => {
 
     const { fields = [], contentSections = {}, documents = [], faqs = [], description, image } = formData || {};
 
-    // Get all service items for card display
     const vipServiceItems = contentSections['VIP clearance service at Malaysian Immigration'] || [];
     const whatWeOfferItems = contentSections['What we offer ?'] || [];
-    const allServiceItems = [...vipServiceItems, ...whatWeOfferItems];
-    
     const visaCentresSection = contentSections['Official Malaysia Visa Application Centres now near you'] || [];
 
-    // Icons for service cards
     const serviceIcons = [Users, Plane, ArrowRight];
 
     return (
         <div className="bg-white font-sans">
-            {/* ===== HERO SECTION (Centered - Only Title & Button) ===== */}
+            {/* ===== HERO SECTION ===== */}
             <section 
-                className="relative w-full  min-h-[800px] flex items-center justify-end text-center bg-gray-900"
+                className="relative w-full min-h-[800px] flex items-center justify-end text-center bg-gray-900"
                 style={{ 
                     backgroundImage: image ? `url(${getImageUrl(image)})` : 'none',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                 }}
             >
-                <div className=" z-10 max-w-4xl  px-6">
-                        <a 
-                  href="https://docs.google.com/forms/d/e/1FAIpQLScB4u2Ovi_PMj_st6lqisz8NqNgeTdr9d2737UzTvaNcOAnaw/viewform"
-                  target="_blank"
-                        className="px-10 py-4  bg-[#E31E24] text-white  hover:bg-[#2D1F1F] hover:text-[#E31E24] rounded-full font-bold text-lg  transition-all duration-300 shadow-xl"
+                <div className="z-10 max-w-4xl px-6">
+                    <a 
+                        href="https://docs.google.com/forms/d/e/1FAIpQLScB4u2Ovi_PMj_st6lqisz8NqNgeTdr9d2737UzTvaNcOAnaw/viewform"
+                        target="_blank"
+                        className="px-10 py-4 bg-[#E31E24] text-white hover:bg-[#2D1F1F] hover:text-[#E31E24] rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
                     >
                         Book Now
                     </a>
-                
                 </div>
             </section>
 
-            {/* ===== VIP SERVICES SECTION (3 Cards) ===== */}
+            {/* ===== VIP SERVICES SECTION ===== */}
             <section id="services-section" className="py-24 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center mb-16">
@@ -129,11 +125,11 @@ const Vipclearanceatmalaysiaairport = () => {
                             Experience hassle-free airport formalities with our premium services
                         </p>
                     </div>
-                      <div className="text-center mb-16  "> 
-                            <h2 className="text-4xl bg-[#E31E24]  mx-auto rounded font-bold text-white mb-4 px-2" style={{width: 'max-content'}}>
-                                What We <span >Offer</span>
-                            </h2>
-                        </div>
+                    <div className="text-center mb-16"> 
+                        <h2 className="text-4xl bg-[#E31E24] mx-auto rounded font-bold text-white mb-4 px-2" style={{width: 'max-content'}}>
+                            What We <span>Offer</span>
+                        </h2>
+                    </div>
 
                     <div className="grid md:grid-cols-2 gap-8">
                         {vipServiceItems.map((item, index) => {
@@ -163,8 +159,6 @@ const Vipclearanceatmalaysiaairport = () => {
             {whatWeOfferItems.length > 0 && (
                 <section className="py-24 bg-white">
                     <div className="max-w-7xl mx-auto px-6">
-                      
-
                         <div className="grid md:grid-cols-1 gap-8 max-w-3xl mx-auto">
                             {whatWeOfferItems.map((item, index) => (
                                 <div 
@@ -215,7 +209,7 @@ const Vipclearanceatmalaysiaairport = () => {
                 </div>
             </section>
 
-            {/* ===== DOCUMENTS REQUIRED ===== */}
+            {/* ===== DOCUMENTS REQUIRED (Conditional) ===== */}
             {documents && documents.length > 0 && (
                 <section className="py-24 bg-gray-50">
                     <div className="max-w-5xl mx-auto px-6">
@@ -235,7 +229,7 @@ const Vipclearanceatmalaysiaairport = () => {
                                         <div>
                                             <h4 className="text-xl font-bold text-gray-900 mb-3">{doc.title}</h4>
                                             <ul className="space-y-3">
-                                                {doc.description.split('\n').map((line, i) => (
+                                                {doc.description?.split('\n').map((line, i) => (
                                                     line.trim() && (
                                                         <li key={i} className="flex items-start gap-3 text-gray-700">
                                                             <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
@@ -253,28 +247,27 @@ const Vipclearanceatmalaysiaairport = () => {
                 </section>
             )}
 
-            {/* ===== VISA CENTRES (Background Image Layout) ===== */}
+            {/* ===== VISA CENTRES (Conditional) ===== */}
             {visaCentresSection.length > 0 && (
                 <section 
                     className="relative py-24 min-h-[500px] flex items-center"
                     style={{
                         backgroundImage: visaCentresSection[0]?.images?.[0] ? `url(${getImageUrl(visaCentresSection[0].images[0])})` : 'none',
-                         backgroundSize: "contain",
-    backgroundRepeat: "no-repeat",
-    backgroundPositionY: "bottom",
+                        backgroundSize: "contain",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPositionY: "bottom",
                     }}
                 >
-                    
                     <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
                         <h2 className="text-4xl font-bold text-white bg-[#E31E24] rounded-3xl p-1 mb-10">
                             {visaCentresSection[0]?.title}
                         </h2>
-                        <div className="flex flex-wrap  justify-center gap-4">
+                        <div className="flex flex-wrap justify-center gap-4">
                             {visaCentresSection[0]?.contentHtml?.split('\n').map((city, idx) => (
                                 city.trim() && (
                                     <div key={idx} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full text-white border border-white/20">
                                         <MapPin className="w-4 h-4 text-[#E31E24] flex-shrink-0" />
-                                        <span className="font-medium text-gray-400 ">{city.trim()}</span>
+                                        <span className="font-medium text-gray-400">{city.trim()}</span>
                                     </div>
                                 )
                             ))}
@@ -283,8 +276,8 @@ const Vipclearanceatmalaysiaairport = () => {
                 </section>
             )}
 
-            {/* ===== FORM SECTION (Bottom CTA) ===== */}
-            {fields.length > 0 && (
+            {/* ===== FORM SECTION (Conditional - Only if fields exist) ===== */}
+            {fields && fields.length > 0 && (
                 <section className="py-24 bg-[#2D1F1F]">
                     <div className="max-w-2xl mx-auto px-6">
                         <div className="text-center mb-12">
@@ -300,40 +293,13 @@ const Vipclearanceatmalaysiaairport = () => {
 
                         <form onSubmit={handleSubmit} className="space-y-6">
                             {fields.map((field, index) => (
-                                <div key={index}>
-                                    {field.type === 'textarea' ? (
-                                        <textarea
-                                            name={field.name}
-                                            value={formValues[field.name] || ''}
-                                            onChange={handleInputChange}
-                                            placeholder={field.placeholder || field.label}
-                                            className="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder:text-gray-400 focus:border-[#E31E24] focus:ring-1 focus:ring-[#E31E24] outline-none transition-all min-h-[120px]"
-                                            required={field.required}
-                                        />
-                                    ) : field.type === 'checkbox' ? (
-                                        <div className="flex items-center gap-3">
-                                            <input
-                                                type="checkbox"
-                                                name={field.name}
-                                                checked={formValues[field.name] || false}
-                                                onChange={handleInputChange}
-                                                className="w-5 h-5"
-                                                required={field.required}
-                                            />
-                                            <label className="text-white">{field.label}</label>
-                                        </div>
-                                    ) : (
-                                        <input
-                                            type={field.type}
-                                            name={field.name}
-                                            value={formValues[field.name] || ''}
-                                            onChange={handleInputChange}
-                                            placeholder={field.placeholder || field.label}
-                                            className="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder:text-gray-400 focus:border-[#E31E24] focus:ring-1 focus:ring-[#E31E24] outline-none transition-all"
-                                            required={field.required}
-                                        />
-                                    )}
-                                </div>
+                                <DynamicFormField
+                                    key={index}
+                                    field={field}
+                                    formValues={formValues}
+                                    handleInputChange={handleInputChange}
+                                    theme="dark"
+                                />
                             ))}
                             <button
                                 type="submit"
@@ -347,7 +313,7 @@ const Vipclearanceatmalaysiaairport = () => {
                 </section>
             )}
 
-            {/* ===== FAQ SECTION ===== */}
+            {/* ===== FAQ SECTION (Conditional) ===== */}
             {faqs && faqs.length > 0 && (
                 <section className="py-24 bg-gray-50">
                     <div className="max-w-4xl mx-auto px-6">

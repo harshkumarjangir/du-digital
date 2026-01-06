@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { Loader2, Check, ArrowRight, MapPin, Phone, Mail } from "lucide-react";
+import { Loader2, Check, ArrowRight } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
 import OurFootprints from "../components/home/OurFootprints";
 import IsoCertificates from "../components/home/IsoCertificates";
 import WhyUsSection from "../components/reusable/WhyUsSection";
+import DynamicFormField from "../components/reusable/DynamicFormField";
 import homeData from "../data/homeData.json";
 import { Link } from "react-router-dom";
 
@@ -20,7 +21,6 @@ const BangladeshVisasForUaeSingapore = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
 
-  // Static partners data
   const partners = [
     { name: "Meydan FZ", logo: "assets/company-setup/meydan.png" },
     { name: "RAKEZ", logo: "assets/company-setup/rakez.png" },
@@ -28,7 +28,6 @@ const BangladeshVisasForUaeSingapore = () => {
     { name: "SPC Free Zone", logo: "assets/company-setup/spc.png" },
   ];
 
-  // Static features for "Global Experts" section if not in API
   const defaultFeatures = [
     "Global Presence with 35+ offices",
     "Expertise in Visa & Consular Services",
@@ -113,7 +112,7 @@ const BangladeshVisasForUaeSingapore = () => {
   return (
     <div className="bg-white font-sans">
       
-      {/* ===== HERO SECTION (Split Layout) ===== */}
+      {/* ===== HERO SECTION ===== */}
       <section 
         className="relative w-full min-h-[800px] flex items-center bg-gray-900"
         style={{ 
@@ -122,24 +121,22 @@ const BangladeshVisasForUaeSingapore = () => {
           backgroundPosition: 'center'
         }}
       >
-        <div className="absolute inset-0 bg-black/60" /> {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/60" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center w-full py-20">
           
-          {/* Left Content */}
           <div className="text-white space-y-6">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
               Bangladesh Visas for <br />
-              <span className="">UAE & Singapore</span>
+              <span>UAE & Singapore</span>
             </h1>
             <p className="text-xl text-gray-200 max-w-lg">
               Simplifying cross-border travel with expert visa solutions.
             </p>
-          
           </div>
 
-          {/* Right Content - Callback Form */}
-          {fields.length > 0 && (
+          {/* Form - Only if fields exist */}
+          {fields && fields.length > 0 && (
             <div id="callback-form" className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full ml-auto">
               <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Request a Callback</h3>
               
@@ -150,61 +147,19 @@ const BangladeshVisasForUaeSingapore = () => {
               )}
 
               <form onSubmit={handleSubmit} className="space-y-4">
-                {fields.map((field, index) => {
-                  if (field.type === 'select' || field.type === 'dropdown') {
-                    return (
-                      <select
-                        key={index}
-                        name={field.name}
-                        value={formValues[field.name] || ''}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:border-[#E31E24] focus:ring-1 focus:ring-[#E31E24] outline-none transition-all"
-                        required={field.required}
-                      >
-                        <option value="">{field.label}</option>
-                        {field.options?.map((opt, i) => (
-                           <option key={i} value={opt.value || opt.label || opt}>{opt.label || opt}</option>
-                        ))}
-                      </select>
-                    );
-                  }
-                  
-                  if (field.type === 'checkbox') {
-                    return (
-                      <div key={index} className="flex items-center gap-3">
-                        <input
-                          type="checkbox"
-                          name={field.name}
-                          checked={formValues[field.name] || false}
-                          onChange={handleInputChange}
-                          className="w-5 h-5 text-[#E31E24] border-gray-300 rounded focus:ring-[#E31E24]"
-                          required={field.required}
-                        />
-                        <label className="text-gray-700 text-sm font-medium">
-                          {field.label} {field.required && <span className="text-red-500">*</span>}
-                        </label>
-                      </div>
-                    );
-                  }
-
-                  return (
-                    <div key={index}>
-                      <input
-                        type={field.type}
-                        name={field.name}
-                        value={formValues[field.name] || ''}
-                        onChange={handleInputChange}
-                        placeholder={field.placeholder || field.label}
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:border-[#E31E24] focus:ring-1 focus:ring-[#E31E24] outline-none transition-all placeholder:text-gray-500"
-                        required={field.required}
-                      />
-                    </div>
-                  );
-                })}
+                {fields.map((field, index) => (
+                  <DynamicFormField
+                    key={index}
+                    field={field}
+                    formValues={formValues}
+                    handleInputChange={handleInputChange}
+                    theme="light"
+                  />
+                ))}
                 <button
                   type="submit"
                   disabled={submitLoading}
-                  className="w-full py-4  bg-[#E31E24] text-white  hover:bg-[#2D1F1F] hover:text-[#E31E24] rounded-full font-bold  transition-opacity flex justify-center items-center gap-2"
+                  className="w-full py-4 bg-[#E31E24] text-white hover:bg-[#2D1F1F] hover:text-[#E31E24] rounded-full font-bold transition-opacity flex justify-center items-center gap-2"
                 >
                   {submitLoading ? <Loader2 className="animate-spin w-5 h-5"/> : 'Submit Request'}
                 </button>
@@ -214,13 +169,12 @@ const BangladeshVisasForUaeSingapore = () => {
         </div>
       </section>
 
-      {/* ===== GLOBAL EXPERTS SECTION (Side-by-Side) ===== */}
+      {/* ===== GLOBAL EXPERTS SECTION ===== */}
       {globalExpertsSection && globalExpertsSection.length > 0 && (
         <section className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             {globalExpertsSection.map((item, index) => (
               <div key={index} className="grid md:grid-cols-2 gap-16 items-center">
-                {/* Left Text */}
                 <div>
                    <h2 className="text-4xl font-bold text-gray-900 mb-6 leading-tight">
                      The Global Experts in <br/>
@@ -245,7 +199,6 @@ const BangladeshVisasForUaeSingapore = () => {
                    </button>
                 </div>
 
-                {/* Right Image/Video */}
                 <div className="relative">
                   <div className="absolute -inset-4 bg-gray-100 rounded-2xl transform rotate-3 -z-10" />
                   {item.youtubeUrl ? (
@@ -271,13 +224,12 @@ const BangladeshVisasForUaeSingapore = () => {
         </section>
       )}
 
-      {/* ===== WE CATER VISAS (Split Layout with Circular Icons) ===== */}
+      {/* ===== WE CATER VISAS ===== */}
       {weCaterSection && weCaterSection.length > 0 && (
         <section className="py-24 bg-white overflow-hidden">
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               
-              {/* Left Side - Main Image */}
               <div className="relative h-full min-h-[400px]">
                  <img 
                    src={getImageUrl(weCaterSection[0]?.images?.[0])} 
@@ -286,7 +238,6 @@ const BangladeshVisasForUaeSingapore = () => {
                  />
               </div>
 
-              {/* Right Side - Content & Icons */}
               <div>
                 <h2 className="text-4xl font-bold text-gray-900 mb-6">
                   {weCaterSection[0]?.title}
@@ -295,7 +246,6 @@ const BangladeshVisasForUaeSingapore = () => {
                   {weCaterSection[0]?.contentHtml}
                 </div>
 
-                {/* Circular Country Icons */}
                 <div className="flex flex-wrap gap-12">
                   {weCaterSection.slice(1).map((item, index) => (
                     <div key={index} className="flex flex-col items-center gap-4 group cursor-pointer">
@@ -319,11 +269,10 @@ const BangladeshVisasForUaeSingapore = () => {
         </section>
       )}
 
-      {/* ===== COMPANY SETUP (Side-by-Side with Partners) ===== */}
+      {/* ===== COMPANY SETUP ===== */}
       {companySetupSection && companySetupSection.map((item, index) => (
         <section key={index} className="py-24 bg-white overflow-hidden">
           <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-            {/* Image Side */}
             <div className="order-2 md:order-2 relative">
                <div className="absolute -inset-4 bg-gray-50 rounded-full opacity-50 -z-10" />
                <img 
@@ -333,7 +282,6 @@ const BangladeshVisasForUaeSingapore = () => {
                />
             </div>
 
-            {/* Text Side with Partners */}
             <div className="order-1 md:order-1">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
                 {item.title}
@@ -342,7 +290,6 @@ const BangladeshVisasForUaeSingapore = () => {
                  {item.contentHtml}
               </div>
               
-              {/* Partners Logos Inline */}
               <div className="flex flex-wrap gap-8 mb-8 items-center">
                 {partners.map((partner, idx) => (
                   <img 
@@ -376,9 +323,7 @@ const BangladeshVisasForUaeSingapore = () => {
          </div>
       </div>
 
-
-
-      {/* ===== DOCUMENTS & FAQ (If Available) ===== */}
+      {/* ===== DOCUMENTS & FAQ (Conditional) ===== */}
       {(documents.length > 0 || faqs.length > 0) && (
         <section className="py-24 bg-gray-50">
           <div className="max-w-4xl mx-auto px-6 space-y-16">
