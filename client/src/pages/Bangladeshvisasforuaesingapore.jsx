@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { Loader2, Check } from "lucide-react";
+import { Loader2, Check, ArrowRight, MapPin, Phone, Mail } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
 import OurFootprints from "../components/home/OurFootprints";
 import IsoCertificates from "../components/home/IsoCertificates";
-import homeData from "../data/homedata.json"; // Ensure filename case matches
+import WhyUsSection from "../components/reusable/WhyUsSection";
+import homeData from "../data/homeData.json";
 import { Link } from "react-router-dom";
 
 const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
@@ -19,12 +20,20 @@ const BangladeshVisasForUaeSingapore = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
 
-  // Static partners data (reused from Completionsetup)
+  // Static partners data
   const partners = [
     { name: "Meydan FZ", logo: "assets/company-setup/meydan.png" },
     { name: "RAKEZ", logo: "assets/company-setup/rakez.png" },
     { name: "IFZA", logo: "assets/company-setup/ifza.png" },
     { name: "SPC Free Zone", logo: "assets/company-setup/spc.png" },
+  ];
+
+  // Static features for "Global Experts" section if not in API
+  const defaultFeatures = [
+    "Global Presence with 35+ offices",
+    "Expertise in Visa & Consular Services",
+    "Dedicated Support Team",
+    "End-to-End Assistance"
   ];
 
   useEffect(() => {
@@ -77,27 +86,26 @@ const BangladeshVisasForUaeSingapore = () => {
 
       if (response.ok) {
         setSubmitStatus('success');
-        setSubmitMessage('Thank you! Your application has been submitted successfully.');
+        setSubmitMessage('Thank you! Your request has been submitted.');
         setFormValues({});
       } else {
         setSubmitStatus('error');
-        setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+        setSubmitMessage(res.message || 'Something went wrong.');
       }
     } catch (err) {
       setSubmitStatus('error');
-      setSubmitMessage('Failed to submit. Please check your connection and try again.');
+      setSubmitMessage('Failed to submit. Please try again.');
     } finally {
       setSubmitLoading(false);
       setTimeout(() => { setSubmitStatus(null); setSubmitMessage(''); }, 5000);
     }
   };
 
-  if (loading) return <LoadingState message="Loading Content..." fullScreen />;
+  if (loading) return <LoadingState message="Loading..." fullScreen />;
   if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
 
   const { fields = [], contentSections = {}, documents = [], faqs = [] } = formData || {};
-
-  // Extract sections
+  
   const globalExpertsSection = contentSections['Global Experts in'] || [];
   const weCaterSection = contentSections['We cater visas for Bangladesh Residents travelling to'] || [];
   const companySetupSection = contentSections['Company Setup in UAE'] || [];
@@ -105,262 +113,302 @@ const BangladeshVisasForUaeSingapore = () => {
   return (
     <div className="bg-white font-sans">
       
-      {/* ===== HERO SECTION ===== */}
+      {/* ===== HERO SECTION (Split Layout) ===== */}
       <section 
-        className="relative w-full h-[800px] bg-cover bg-center flex items-center justify-center"
+        className="relative w-full min-h-[800px] flex items-center bg-gray-900"
         style={{ 
-          backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
+          backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
         }}
       >
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="relative z-10 text-center max-w-5xl px-6">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-            UAE, Ireland & Singapore Visas for <br/> <span className="text-[#E31E24]">Bangladeshi Citizens</span>
-          </h1>
-          <p className="text-xl text-gray-200">
-             Seamless Visa Solutions for Global Travel
-          </p>
-        </div>
-      </section>
-
-      {/* ===== GLOBAL EXPERTS SECTION (Text + Video) ===== */}
-      {globalExpertsSection.length > 0 && (
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
-            {globalExpertsSection.map((item, index) => (
-              <div key={index} className="grid md:grid-cols-2 gap-12 items-center">
-                <div className="order-2 md:order-1">
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                    Global Experts in <span className="text-[#E31E24]">{item.title}</span>
-                  </h2>
-                  <div className="prose max-w-none text-gray-700 leading-relaxed">
-                    {item.contentHtml && item.contentHtml.split('\n').map((p, i) => (
-                      <p key={i} className="mb-4">{p}</p>
-                    ))}
-                  </div>
-                </div>
-                <div className="order-1 md:order-2">
-                   {item.youtubeUrl ? (
-                     <div className="aspect-video w-full rounded-xl overflow-hidden shadow-lg">
-                       <iframe 
-                         src={item.youtubeUrl} 
-                         title="YouTube video player" 
-                         className="w-full h-full"
-                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                         allowFullScreen
-                       ></iframe>
-                     </div>
-                   ) : item.images?.[0] ? (
-                      <img 
-                        src={getImageUrl(item.images[0])} 
-                        alt="Global Experts" 
-                        className="rounded-xl shadow-lg w-full h-auto"
-                      />
-                   ) : null}
-                </div>
-              </div>
-            ))}
+        <div className="absolute inset-0 bg-black/60" /> {/* Dark Overlay */}
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center w-full py-20">
+          
+          {/* Left Content */}
+          <div className="text-white space-y-6">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              Bangladesh Visas for <br />
+              <span className="">UAE & Singapore</span>
+            </h1>
+            <p className="text-xl text-gray-200 max-w-lg">
+              Simplifying cross-border travel with expert visa solutions.
+            </p>
+          
           </div>
-        </section>
-      )}
 
-      {/* ===== WE CATER VISAS SECTION (Grid of Cards/Images) ===== */}
-      {weCaterSection.length > 0 && (
-        <section className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-6">
-             <div className="text-center mb-16">
-               <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
-                 We cater visas for <span className="text-[#E31E24]">Bangladesh Residents</span> travelling to
-               </h2>
-             </div>
-             
-             <div className="grid md:grid-cols-3 gap-8">
-               {weCaterSection.map((item, index) => (
-                 <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                    {item.images?.[0] && (
-                      <div className="h-64 overflow-hidden">
-                        <img 
-                          src={getImageUrl(item.images[0])} 
-                          alt={item.title} 
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
-                    )}
-                    <div className="p-8">
-                      {item.title && !(item.title.includes('We cater')) && (
-                        <h3 className="text-2xl font-bold text-gray-900 mb-4">{item.title}</h3>
-                      )}
-                      {item.contentHtml && (
-                        <p className="text-gray-600 leading-relaxed">{item.contentHtml}</p>
-                      )}
-                    </div>
-                 </div>
-               ))}
-             </div>
-          </div>
-        </section>
-      )}
-
-      {/* ===== FORM SECTION ===== */}
-      {fields.length > 0 && (
-        <section className="py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-6">
-            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-gray-100">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2 text-center">Start Your Application</h2>
-              <p className="text-center text-gray-500 mb-8">Fill in the details below to proceed</p>
+          {/* Right Content - Callback Form */}
+          {fields.length > 0 && (
+            <div id="callback-form" className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full ml-auto">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Request a Callback</h3>
               
               {submitStatus && (
-                <div className={`p-4 mb-6 rounded-lg ${submitStatus === 'success' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
+                <div className={`p-3 mb-4 text-sm rounded ${submitStatus === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                   {submitMessage}
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  {fields.map((field, index) => {
-                    const isFullWidth = field.type === 'textarea' || field.type === 'select' && field.name.length > 20;
-
-                    if (field.type === 'select' || field.type === 'dropdown') {
-                      return (
-                        <div key={field._id || index} className={isFullWidth ? "md:col-span-2" : ""}>
-                          <label className="block text-sm font-medium text-gray-700 mb-2 ml-1">
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
-                          </label>
-                          <select
-                            name={field.name}
-                            value={formValues[field.name] || ''}
-                            onChange={handleInputChange}
-                            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none"
-                            required={field.required}
-                          >
-                            <option value="">Select Option</option>
-                            {field.options?.map((opt, optIdx) => (
-                              <option key={opt._id || optIdx} value={opt.value || opt.label || opt}>
-                                {opt.label || opt}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      );
-                    }
-                    
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {fields.map((field, index) => {
+                  if (field.type === 'select' || field.type === 'dropdown') {
                     return (
-                      <div key={field._id || index} className={isFullWidth ? "md:col-span-2" : ""}>
-                         <label className="block text-sm font-medium text-gray-700 mb-2 ml-1">
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
-                          </label>
+                      <select
+                        key={index}
+                        name={field.name}
+                        value={formValues[field.name] || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:border-[#E31E24] focus:ring-1 focus:ring-[#E31E24] outline-none transition-all"
+                        required={field.required}
+                      >
+                        <option value="">{field.label}</option>
+                        {field.options?.map((opt, i) => (
+                           <option key={i} value={opt.value || opt.label || opt}>{opt.label || opt}</option>
+                        ))}
+                      </select>
+                    );
+                  }
+                  
+                  if (field.type === 'checkbox') {
+                    return (
+                      <div key={index} className="flex items-center gap-3">
                         <input
-                          type={field.type || 'text'}
+                          type="checkbox"
                           name={field.name}
-                          value={formValues[field.name] || ''}
+                          checked={formValues[field.name] || false}
                           onChange={handleInputChange}
-                          placeholder={field.placeholder}
-                          className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none"
+                          className="w-5 h-5 text-[#E31E24] border-gray-300 rounded focus:ring-[#E31E24]"
                           required={field.required}
                         />
+                        <label className="text-gray-700 text-sm font-medium">
+                          {field.label} {field.required && <span className="text-red-500">*</span>}
+                        </label>
                       </div>
                     );
-                  })}
-                </div>
-                
+                  }
+
+                  return (
+                    <div key={index}>
+                      <input
+                        type={field.type}
+                        name={field.name}
+                        value={formValues[field.name] || ''}
+                        onChange={handleInputChange}
+                        placeholder={field.placeholder || field.label}
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:border-[#E31E24] focus:ring-1 focus:ring-[#E31E24] outline-none transition-all placeholder:text-gray-500"
+                        required={field.required}
+                      />
+                    </div>
+                  );
+                })}
                 <button
                   type="submit"
                   disabled={submitLoading}
-                  className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 hover:opacity-90 disabled:opacity-70 flex items-center justify-center gap-2 mt-8 text-white"
-                  style={{ backgroundColor: '#2D1F1F', color: '#E31E24' }} 
+                  className="w-full py-4  bg-[#E31E24] text-white  hover:bg-[#2D1F1F] hover:text-[#E31E24] rounded-full font-bold  transition-opacity flex justify-center items-center gap-2"
                 >
-                  {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Submit Application'}
+                  {submitLoading ? <Loader2 className="animate-spin w-5 h-5"/> : 'Submit Request'}
                 </button>
               </form>
             </div>
-          </div>
-        </section>
-      )}
-
-      {/* ===== OUR PARTNERS SECTION ===== */}
-      <section className="py-20 bg-black">
-        <div className="max-w-[1400px] mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
-              Our <span className="text-[#E31E24]">Partners</span>
-            </h2>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-6">
-            {partners.map((partner, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl flex items-center justify-center w-[160px] h-[100px] hover:scale-105 transition-transform duration-300 p-4"
-              >
-                <img
-                  src={partner.logo}
-                  alt={partner.name}
-                  className="max-h-full max-w-full object-contain"
-                />
-              </div>
-            ))}
-          </div>
+          )}
         </div>
       </section>
 
-      {/* ===== COMPANY SETUP INFO ===== */}
-      {companySetupSection.length > 0 && companySetupSection.map((item, index) => (
-         <section key={index} className="py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                 {item.images?.[0] && (
-                    <img 
-                      src={getImageUrl(item.images[0])} 
-                      alt="Company Setup" 
-                      className="rounded-xl shadow-lg w-full"
-                    />
-                 )}
-              </div>
-              <div>
-                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                    {item.title}
-                 </h2>
-                 <div className="prose max-w-none text-gray-700 leading-relaxed">
-                   {item.contentHtml}
-                 </div>
-              </div>
-            </div>
-         </section>
-      ))}
+      {/* ===== GLOBAL EXPERTS SECTION (Side-by-Side) ===== */}
+      {globalExpertsSection && globalExpertsSection.length > 0 && (
+        <section className="py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+            {globalExpertsSection.map((item, index) => (
+              <div key={index} className="grid md:grid-cols-2 gap-16 items-center">
+                {/* Left Text */}
+                <div>
+                   <h2 className="text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                     The Global Experts in <br/>
+                     <span className="text-[#E31E24]">Visa & Consular Services</span>
+                   </h2>
+                   
+                   <div className="space-y-4 mb-8">
+                     {(item.contentHtml ? item.contentHtml.split('\n') : defaultFeatures).map((feature, i) => (
+                       feature.trim() && (
+                         <div key={i} className="flex items-start gap-3">
+                           <div className="mt-1 w-5 h-5 rounded-full bg-[#E31E24] flex items-center justify-center flex-shrink-0">
+                             <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                           </div>
+                           <p className="text-lg text-gray-700">{feature.trim()}</p>
+                         </div>
+                       )
+                     ))}
+                   </div>
 
-      {/* ===== FOOTPRINTS & ISO ===== */}
-      <OurFootprints data={homeData.ourFootprintsSection} />
-      <IsoCertificates data={homeData.certificationsSection} />
-
-      {/* ===== DOCUMENTS SECTION (if exists) ===== */}
-      {documents.length > 0 && (
-        <section className="py-20 bg-gray-50">
-          <div className="max-w-6xl mx-auto px-6">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Documents Required</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {documents.map((doc, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#E31E24]">
-                  <h3 className="font-semibold text-gray-800 mb-2">{doc.title}</h3>
-                  <p className="text-gray-600 text-sm">{doc.description}</p>
+                   <button className="flex items-center gap-2 text-[#E31E24] font-bold hover:gap-3 transition-all">
+                     Learn More <ArrowRight className="w-5 h-5" />
+                   </button>
                 </div>
-              ))}
+
+                {/* Right Image/Video */}
+                <div className="relative">
+                  <div className="absolute -inset-4 bg-gray-100 rounded-2xl transform rotate-3 -z-10" />
+                  {item.youtubeUrl ? (
+                     <div className="aspect-video w-full rounded-xl overflow-hidden shadow-2xl">
+                       <iframe 
+                         src={item.youtubeUrl} 
+                         className="w-full h-full"
+                         allowFullScreen
+                         title="Video"
+                       />
+                     </div>
+                  ) : (
+                    <img 
+                      src={getImageUrl(item.images?.[0])} 
+                      alt="Global Experts" 
+                      className="rounded-xl shadow-2xl w-full h-auto object-cover"
+                    />
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ===== WE CATER VISAS (Split Layout with Circular Icons) ===== */}
+      {weCaterSection && weCaterSection.length > 0 && (
+        <section className="py-24 bg-white overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              
+              {/* Left Side - Main Image */}
+              <div className="relative h-full min-h-[400px]">
+                 <img 
+                   src={getImageUrl(weCaterSection[0]?.images?.[0])} 
+                   alt="We cater visas" 
+                   className="rounded-2xl shadow-2xl w-full h-full object-cover"
+                 />
+              </div>
+
+              {/* Right Side - Content & Icons */}
+              <div>
+                <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                  {weCaterSection[0]?.title}
+                </h2>
+                <div className="text-lg text-gray-600 mb-12 leading-relaxed">
+                  {weCaterSection[0]?.contentHtml}
+                </div>
+
+                {/* Circular Country Icons */}
+                <div className="flex flex-wrap gap-12">
+                  {weCaterSection.slice(1).map((item, index) => (
+                    <div key={index} className="flex flex-col items-center gap-4 group cursor-pointer">
+                      <div className="w-24 h-24 rounded-full overflow-hidden shadow-lg border-4 border-white group-hover:border-[#E31E24] transition-all duration-300">
+                        <img 
+                          src={getImageUrl(item.images?.[0])} 
+                          alt={item.title} 
+                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform"
+                        />
+                      </div>
+                      <span className="font-bold text-gray-800 group-hover:text-[#E31E24] transition-colors">
+                        {item.title}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
             </div>
           </div>
         </section>
       )}
 
-       {/* ===== FAQ SECTION (if exists) ===== */}
-       {faqs.length > 0 && (
-        <section className="py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-6">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Frequently Asked Questions</h2>
-            <div className="space-y-4">
-              {faqs.map((faq, index) => (
-                <div key={index} className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{faq.question}</h3>
-                  <p className="text-gray-600">{faq.answer}</p>
-                </div>
-              ))}
+      {/* ===== COMPANY SETUP (Side-by-Side with Partners) ===== */}
+      {companySetupSection && companySetupSection.map((item, index) => (
+        <section key={index} className="py-24 bg-white overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            {/* Image Side */}
+            <div className="order-2 md:order-2 relative">
+               <div className="absolute -inset-4 bg-gray-50 rounded-full opacity-50 -z-10" />
+               <img 
+                 src={getImageUrl(item.images?.[0])} 
+                 alt={item.title} 
+                 className="rounded-2xl shadow-xl w-full h-auto"
+               />
             </div>
+
+            {/* Text Side with Partners */}
+            <div className="order-1 md:order-1">
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                {item.title}
+              </h2>
+              <div className="prose prose-lg text-gray-600 mb-8">
+                 {item.contentHtml}
+              </div>
+              
+              {/* Partners Logos Inline */}
+              <div className="flex flex-wrap gap-8 mb-8 items-center">
+                {partners.map((partner, idx) => (
+                  <img 
+                    key={idx}
+                    src={partner.logo} 
+                    alt={partner.name} 
+                    className="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300" 
+                  />
+                ))}
+              </div>
+
+              <Link to="/company-setup-in-the-uae">
+                <button className="px-8 py-3 bg-[#E31E24] text-white rounded-full font-bold hover:bg-[#c41920] transition-colors shadow-lg shadow-red-200">
+                  Explore Company Setup
+                </button>
+              </Link>
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {/* ===== WHY CHOOSE US ===== */}
+      <WhyUsSection data={homeData.whyUsSection} />
+
+      {/* ===== OUR FOOTPRINTS & ISO ===== */}
+      <OurFootprints data={homeData.ourFootprintsSection} />
+      
+      <div className="py-12 bg-white border-t border-gray-100">
+         <div className="max-w-7xl mx-auto px-6">
+            <IsoCertificates data={homeData.certificationsSection} />
+         </div>
+      </div>
+
+
+
+      {/* ===== DOCUMENTS & FAQ (If Available) ===== */}
+      {(documents.length > 0 || faqs.length > 0) && (
+        <section className="py-24 bg-gray-50">
+          <div className="max-w-4xl mx-auto px-6 space-y-16">
+            {documents.length > 0 && (
+               <div>
+                  <h3 className="text-3xl font-bold text-center mb-8">Documents Required</h3>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {documents.map((doc, idx) => (
+                      <div key={idx} className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-[#E31E24]">
+                        <h4 className="font-bold text-lg mb-2">{doc.title}</h4>
+                        <p className="text-gray-600">{doc.description}</p>
+                      </div>
+                    ))}
+                  </div>
+               </div>
+            )}
+            
+            {faqs.length > 0 && (
+              <div>
+                <h3 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h3>
+                 <div className="space-y-4">
+                   {faqs.map((faq, idx) => (
+                     <div key={idx} className="bg-white p-6 rounded-lg shadow-sm">
+                       <h4 className="font-bold text-gray-900 mb-2">{faq.question}</h4>
+                       <p className="text-gray-600">{faq.answer}</p>
+                     </div>
+                   ))}
+                 </div>
+              </div>
+            )}
           </div>
         </section>
       )}
