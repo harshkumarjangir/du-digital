@@ -1,4 +1,5 @@
 import CardData from "../components/swifttravels/CardData";
+import AboutSwifttravelSection from "../components/swifttravels/TravelAboutSection";
 import data from "../data/swifttravels.json";
 export const Swifttravels = () => {
   return (
@@ -41,6 +42,9 @@ export const Swifttravels = () => {
       </div>
 
       <CardData />
+
+
+      <AboutSwifttravelSection data={data.aboutSwifttravelSection} />
     </>
   );
 };
