@@ -127,7 +127,7 @@ const GreeceWorkVisa = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full h-[800px] overflow-hidden">
+      <section id="hero-section" className="relative w-full h-[800px] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${getImageUrl(formData?.image) || 'https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'})` }}
@@ -659,6 +659,96 @@ const GreeceWorkVisa = () => {
           </div>
         </section>
       )}
+
+      <section className="py-20 bg-white">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-20">
+          <div className="grid lg:grid-cols-2 gap-4">
+
+            {/* LEFT CARD – APPLY NOW */}
+            <div
+              className="relative rounded-3xl overflow-hidden min-h-[420px] flex items-center"
+              style={{
+                backgroundImage: "url('/assets/greece-work-visa/eligibility.jpg')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-black/85" />
+
+              {/* Content */}
+              <div className="relative z-10 p-2.5 md:p-5 text-white max-w-xl">
+                <h3 className="text-3xl md:text-4xl font-bold mb-2">
+                  Apply Now
+                </h3>
+                <div className="w-14 h-1 bg-red-600 mb-6" />
+
+                <p className="text-base md:text-lg leading-relaxed mb-6 text-gray-200">
+                  Ready to take your hospitality career to Europe? Complete our
+                  free eligibility form and our team will connect with you to
+                  begin your application process for Greece.
+                </p>
+
+                <p className="text-base md:text-lg font-semibold mb-10">
+                  Submit your details today and let us guide you through your
+                  Greece employment journey!
+                </p>
+
+
+                {/* This button to go to hero section */}
+
+                <button
+                  onClick={() => document.getElementById('hero-section')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  transition font-semibold text-lg shadow-lg"
+                >
+                  Start Your Application
+                </button>
+              </div>
+            </div>
+
+            {/* RIGHT CARD – CONNECT WITH US */}
+            <div
+              className="relative rounded-3xl overflow-hidden min-h-[420px] flex items-center"
+              style={{
+                backgroundImage: "url('/assets/greece-work-visa/banner.webp')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-black/85" />
+
+              {/* Content */}
+              <div className="relative z-10 p-2 md:p-5 text-white max-w-xl">
+                <h3 className="text-3xl md:text-4xl font-bold mb-2">
+                  Connect with us
+                </h3>
+                <div className="w-14 h-1 bg-red-600 mb-8" />
+
+                <h4 className="text-3xl font-bold mb-1">
+                  Karan Khurana
+                </h4>
+                <p className="text-base md:text-lg text-gray-300 mb-8">
+                  Deputy General Manager – Global Access
+                </p>
+
+                <div className="space-y-4 text-base md:text-lg">
+                  <div className="flex items-center gap-3">
+                    <span className="text-xl">📧</span>
+                    <span>Email – <a href="mailto:karan@dudigitalglobal.com">karan@dudigitalglobal.com</a></span>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <span className="text-xl">📞</span>
+                    <span>Mobile – <a href="tel:+919910987275">+91 9910987275</a></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

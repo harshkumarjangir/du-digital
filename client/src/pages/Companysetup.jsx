@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { CheckCircle, Phone, MapPin, Mail, XCircle, Loader2, Check } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
+import ConsultationModal from "../components/reusable/ConsultationModal";
 import { Link } from "react-router-dom";
 
 const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
@@ -15,6 +16,7 @@ const Companysetup = () => {
   const [submitStatus, setSubmitStatus] = useState(null);
   const [submitLoading, setSubmitLoading] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchFormData();
@@ -126,6 +128,8 @@ const Companysetup = () => {
   ];
 
 
+  const heroImage = getImageUrl(formData?.image) || 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80';
+
   return (
     <div className="bg-white font-sans">
 
@@ -133,7 +137,7 @@ const Companysetup = () => {
       <section className="relative w-full h-[800px] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${getImageUrl(formData?.image) || 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'})` }}
+          style={{ backgroundImage: `url(${heroImage})` }}
         />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%)' }} />
 
@@ -154,12 +158,12 @@ const Companysetup = () => {
                 ))}
               </div>
 
-              <Link
-                to="#consultation"
+              <button
+                onClick={() => setIsModalOpen(true)}
                 className="inline-block px-8 py-4 rounded-full font-bold text-lg text-[#FFFDF5] transition-all duration-300 bg-[#FF1033] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
               >
                 Book A Free Consultation
-              </Link>
+              </button>
             </div>
 
             {/* Right - Contact Form (only show if fields exist) */}
@@ -422,12 +426,12 @@ const Companysetup = () => {
           </div>
 
           <div className="flex justify-center mt-8">
-            <Link
-              to="#"
+            <button
+              onClick={() => setIsModalOpen(true)}
               className="inline-block px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
             >
               Book A Free Consultation
-            </Link>
+            </button>
           </div>
         </section>
       )}
@@ -484,12 +488,12 @@ const Companysetup = () => {
                   </ul>
 
                   {/* CTA Button */}
-                  <Link
-                    to="#"
+                  <button
+                    onClick={() => setIsModalOpen(true)}
                     className="inline-block px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
                   >
                     Book A Free Consultation
-                  </Link>
+                  </button>
                 </div>
               </div>
             ))}
@@ -619,12 +623,12 @@ const Companysetup = () => {
 
                   <div className="flex justify-start ml-6 py-5">
                     {/* CTA Button */}
-                    <Link
-                      to="#"
+                    <button
+                      onClick={() => setIsModalOpen(true)}
                       className="inline-block px-5 py-2 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
                     >
                       Book A Free Consultation
-                    </Link>
+                    </button>
                   </div>
                 </div>
               ))}
@@ -663,12 +667,12 @@ const Companysetup = () => {
 
                 <div className="flex justify-start ml-0 pt-6">
                   {/* CTA Button */}
-                  <Link
-                    to="#"
+                  <button
+                    onClick={() => setIsModalOpen(true)}
                     className="inline-block px-5 py-2 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
                   >
                     Book A Free Consultation
-                  </Link>
+                  </button>
                 </div>
               </div>
             ))}
@@ -691,12 +695,12 @@ const Companysetup = () => {
                 Speak to our <br /> experts
               </h2>
 
-              <Link
-                to="#connectwithus"
+              <button
+                onClick={() => setIsModalOpen(true)}
                 className="inline-flex items-center justify-center w-fit px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
               >
                 Contact Now
-              </Link>
+              </button>
             </div>
 
             {/* PHONE CARD */}
@@ -747,6 +751,19 @@ const Companysetup = () => {
           </div>
         </div>
       </section>
+
+      <ConsultationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        fields={fields}
+        formValues={formValues}
+        handleInputChange={handleInputChange}
+        handleSubmit={handleSubmit}
+        submitStatus={submitStatus}
+        submitMessage={submitMessage}
+        submitLoading={submitLoading}
+        image={heroImage}
+      />
 
     </div>
   );
