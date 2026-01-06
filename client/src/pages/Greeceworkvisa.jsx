@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { CheckCircle, ChevronDown, ChevronUp, Check, XCircle, Loader2 } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { CheckCircle, ChevronDown, ChevronUp, Check, XCircle, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
 
@@ -19,6 +19,8 @@ const GreeceWorkVisa = () => {
   useEffect(() => {
     fetchFormData();
   }, []);
+
+  const sliderRef = useRef(null);
 
   const fetchFormData = async () => {
     try {
@@ -99,6 +101,27 @@ const GreeceWorkVisa = () => {
 
   // Parse description for hero points
   const heroPoints = description?.split('\r\n').filter(line => line.trim()) || [];
+
+
+  const positions = [
+    { title: "Housekeeping Staff", icon: "/assets/greece-work-visa/slide-one.png" },
+    { title: "Kitchen Staff", icon: "/assets/greece-work-visa/slide-two.png" },
+    { title: "European Cook A / Asian Cook A / Indian Cook", icon: "/assets/greece-work-visa/slide-three.png" },
+    { title: "Pizzaiolo (Pizza Chef)", icon: "/assets/greece-work-visa/slide-four.png" },
+    { title: "Sushi Makers", icon: "/assets/greece-work-visa/slide-five.png" },
+  ];
+
+
+
+  const scroll = (direction) => {
+    if (!sliderRef.current) return;
+    const width = sliderRef.current.offsetWidth;
+    sliderRef.current.scrollBy({
+      left: direction === "left" ? -width : width,
+      behavior: "smooth",
+    });
+  };
+
 
   return (
     <div className="bg-white font-sans">
@@ -234,14 +257,14 @@ const GreeceWorkVisa = () => {
       </section>
       {heroSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             {heroSection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                  <h2 className="text-3xl md:text-4xl lg:text-[48px] font-bold text-[#333333] mb-6">
                     {item.title}
                   </h2>
-                  <div className="text-gray-600 leading-relaxed space-y-4">
+                  <div className="text-[#333333] text-base md:text-[17px] leading-relaxed space-y-4">
                     {item.contentHtml?.split('\r\n\r\n').map((para, idx) => (
                       <p key={idx}>{para}</p>
                     ))}
@@ -272,6 +295,72 @@ const GreeceWorkVisa = () => {
       )}
 
 
+      {/* ==== Slider Available Position Section */}
+      <section className="py-20 bg-white overflow-hidden">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-20">
+
+          {/* Heading */}
+          <div className="text-center mb-16 relative">
+            {/* <span className="absolute inset-0 flex items-center justify-center text-[120px] font-extrabold text-gray-100 select-none">
+              POSITIONS
+            </span> */}
+            <div className="relative">
+              <p className="text-red-600 font-bold mb-2">DU GLOBAL</p>
+              <h2 className="text-4xl md:text-5xl font-extrabold text-[#333333]">
+                Available Positions
+              </h2>
+              <div className="w-16 h-1 bg-red-600 mx-auto mt-4" />
+            </div>
+          </div>
+
+          {/* Slider */}
+          <div className="relative">
+            {/* Left Arrow */}
+            <button
+              onClick={() => scroll("left")}
+              className="hidden md:flex absolute -left-6 top-1/2 -translate-y-1/2 z-10 text-[#333333] items-center justify-center"
+            >
+              <ChevronLeft size={30} />
+            </button>
+
+            {/* Cards */}
+            <div
+              ref={sliderRef}
+              className="flex gap-8 overflow-x-auto scroll-smooth no-scrollbar px-2"
+            >
+              {positions.map((item, index) => (
+                <div
+                  key={index}
+                  className="w-[200px] md:w-[220px] h-[240px] bg-[#C51E1E] rounded-2xl 
+                           flex flex-col items-center justify-start text-center
+                           text-white px-6 pt-4 shrink-0"
+                >
+                  <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-8">
+                    <img
+                      src={item.icon}
+                      alt={item.title}
+                      className="w-12 h-12"
+                    />
+                  </div>
+
+                  <h3 className="text-xl font-bold leading-snug">
+                    {item.title}
+                  </h3>
+                </div>
+              ))}
+            </div>
+
+            {/* Right Arrow */}
+            <button
+              onClick={() => scroll("right")}
+              className="hidden md:flex absolute -right-6 top-1/2 -translate-y-1/2 z-10 text-[#333333] items-center justify-center"
+            >
+              <ChevronRight size={30} />
+            </button>
+          </div>
+        </div>
+      </section>
+
 
       {/* ===== SALARY & BENEFITS SECTION ===== */}
       {salarySection.length > 0 && (
@@ -286,7 +375,7 @@ const GreeceWorkVisa = () => {
             }}
           />
 
-          <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20">
             {salarySection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
                 <div>
@@ -328,11 +417,11 @@ const GreeceWorkVisa = () => {
       {eligibilitySection.length > 0 && (
         <section className="py-20 bg-white relative overflow-hidden">
           {/* Large watermark text */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-100 text-[120px] font-bold opacity-50 pointer-events-none whitespace-nowrap">
+          {/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-100 text-[120px] font-bold opacity-50 pointer-events-none whitespace-nowrap">
             ELIGIBILITY
-          </div>
+          </div> */}
 
-          <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20">
             {eligibilitySection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="flex justify-center">
@@ -346,7 +435,7 @@ const GreeceWorkVisa = () => {
                   )}
                 </div>
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
                     Eligibility Criteria
                   </h2>
                   <div className="w-16 h-1 mb-8" style={{ backgroundColor: '#C5202F' }}></div>
@@ -372,15 +461,15 @@ const GreeceWorkVisa = () => {
 
       {/* ===== DOCUMENT CHECKLIST SECTION ===== */}
       {documentSection.length > 0 && (
-        <section className="py-20 bg-gray-900 relative overflow-hidden">
+        <section className="py-20 bg-black relative overflow-hidden">
           {/* Large watermark text */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-800 text-[100px] font-bold opacity-30 pointer-events-none whitespace-nowrap">
+          {/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-800 text-[100px] font-bold opacity-30 pointer-events-none whitespace-nowrap">
             DOCUMENT
-          </div>
+          </div> */}
 
-          <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
                 Document Checklist
               </h2>
               <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#C5202F' }}></div>
@@ -400,7 +489,9 @@ const GreeceWorkVisa = () => {
                   <ul className="space-y-4">
                     {doc.contentHtml?.split('\r\n').filter(line => line.trim()).map((item, idx) => (
                       <li key={idx} className="flex items-start gap-4">
-                        <Check className="w-5 h-5 text-white shrink-0 mt-0.5" strokeWidth={3} />
+                        <div className="bg-white rounded-md">
+                          <Check className="w-5 h-5 text-red-500 shrink-0 mt-0.5" strokeWidth={3} />
+                        </div>
                         <span className="text-white/95">{item}</span>
                       </li>
                     ))}
@@ -416,13 +507,13 @@ const GreeceWorkVisa = () => {
       {feesSection.length > 0 && (
         <section className="py-20 bg-white relative overflow-hidden">
           {/* Large watermark text */}
-          <div className="absolute top-1/2 right-0 transform -translate-y-1/2 text-gray-100 text-[100px] font-bold opacity-50 pointer-events-none whitespace-nowrap">
+          {/* <div className="absolute top-1/2 right-0 transform -translate-y-1/2 text-gray-100 text-[100px] font-bold opacity-50 pointer-events-none whitespace-nowrap">
             VALIDITY
-          </div>
+          </div> */}
 
-          <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-3">
                 Fees, Processing Time & Validity
               </h2>
               <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#C5202F' }}></div>
@@ -437,16 +528,16 @@ const GreeceWorkVisa = () => {
                     key={item._id || index}
                     className="bg-white rounded-xl p-6 border border-gray-100 shadow-lg relative overflow-hidden min-h-[180px]"
                   >
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">
+                    <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#333333] mb-3">
                       {item.title}
                     </h3>
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-gray-600 text-sm md:text-base pb-10">
                       {item.contentHtml?.replace(/\r?\n/g, ' ').trim()}
                     </p>
                     {/* Large number at bottom right */}
                     <div
-                      className="absolute bottom-2 right-4 text-6xl font-bold opacity-15"
-                      style={{ color: '#C5202F' }}
+                      className="absolute bottom-2 right-4 text-6xl font-bold opacity-100"
+                      style={{ color: '#C62625' }}
                     >
                       {number}
                     </div>
@@ -461,7 +552,7 @@ const GreeceWorkVisa = () => {
 
       {/* ===== WHY CHOOSE SECTION ===== */}
       {whyChooseSection.length > 0 && (
-        <section className="py-20 bg-gray-900 relative overflow-hidden">
+        <section className="py-20 bg-black relative overflow-hidden">
           {/* Abstract curved lines background */}
           <div
             className="absolute right-0 top-0 w-1/2 h-full opacity-10"
@@ -472,10 +563,10 @@ const GreeceWorkVisa = () => {
             }}
           />
 
-          <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20">
             {whyChooseSection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
-                <div className="order-2 md:order-1 flex justify-center">
+                <div className="order-2 md:order-2 flex justify-center">
                   {item.image && (
                     <img
                       src={getImageUrl(item.image)}
@@ -485,11 +576,11 @@ const GreeceWorkVisa = () => {
                     />
                   )}
                 </div>
-                <div className="order-1 md:order-2">
-                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
+                <div className="order-1 md:order-1">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                     Why Choose Global LLC?
                   </h2>
-                  <div className="w-16 h-1 mb-8" style={{ backgroundColor: '#C5202F' }}></div>
+                  {/* <div className="w-16 h-1 mb-8" style={{ backgroundColor: '#C5202F' }}></div> */}
                   <ul className="space-y-4">
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((benefit, idx) => (
                       <li key={idx} className="flex items-start gap-4">
@@ -497,9 +588,9 @@ const GreeceWorkVisa = () => {
                           className="w-6 h-6 rounded flex items-center justify-center shrink-0 mt-0.5"
                           style={{ backgroundColor: '#C5202F' }}
                         >
-                          <Check className="w-4 h-4 text-white" strokeWidth={3} />
+                          <Check className="w-4 h-4 text-black" strokeWidth={3} />
                         </div>
-                        <span className="text-gray-200">{benefit}</span>
+                        <span className="text-gray-100">{benefit}</span>
                       </li>
                     ))}
                   </ul>
