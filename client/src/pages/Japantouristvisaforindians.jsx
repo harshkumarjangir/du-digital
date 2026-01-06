@@ -206,31 +206,7 @@ const Japantouristvisaforindians = () => {
                         )}
 
                         {/* Remaining select (Interest) */}
-                        {selectFields.map((field, index) => (
-                          <select
-                            key={field._id || `select-extra-${index}`}
-                            name={field.name}
-                            value={formValues[field.name] || ''}
-                            onChange={handleInputChange}
-                            className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none appearance-none cursor-pointer"
-                            required={field.required}
-                            style={{
-                              backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-                              backgroundPosition: 'right 0.75rem center',
-                              backgroundRepeat: 'no-repeat',
-                              backgroundSize: '1.25em 1.25em',
-                              paddingRight: '2.5rem'
-                            }}
-                          >
-                            <option value="">{field.placeholder || field.label}</option>
-                            {field.options?.map((opt, optIdx) => (
-                              <option key={opt._id || optIdx} value={opt.value || opt}>
-                                {opt.label || opt}
-                              </option>
-                            ))}
-                          </select>
-                        ))}
-                              {
+                      {
                       textarea.map((field,index)=>   <div key={index}>
                     {field.label && (
                         <label className={`${labelClass} block mb-2`}>

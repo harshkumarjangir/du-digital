@@ -60,7 +60,6 @@ const UserManager = () => {
             email: user.email,
             password: "", // User can leave blank if not changing
             role: user.role,
-            role: user.role,
             permissions: user.permissions || [],
             receivePartnerNotifications: user.receivePartnerNotifications || false
         });

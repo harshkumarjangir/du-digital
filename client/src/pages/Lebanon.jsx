@@ -13,7 +13,9 @@ const Lebanon = () => {
   const [error, setError] = useState(null);
   const [openFaq, setOpenFaq] = useState(null);
   const [formValues, setFormValues] = useState({});
-
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
   useEffect(() => {
     fetchFormData();
   }, []);
@@ -110,9 +112,7 @@ const Lebanon = () => {
       after: parts[1]?.trim() || ''
     };
   };
- const [submitStatus, setSubmitStatus] = useState(null);
-  const [submitLoading, setSubmitLoading] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState('');
+
     const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitLoading(true);
