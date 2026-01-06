@@ -237,7 +237,6 @@ const Georgiaevisa = () => {
                     </div>
                 </section>
             )}
-
             {/* ===== CAPABILITIES / SERVICES CHECKLIST ===== */}
             {documents.length > 0 && (
                 <section className="py-16 bg-white">
