@@ -2,6 +2,10 @@ import { useState, useEffect } from "react";
 import { Check, ChevronDown, Award, Clock, Shield, Globe, MapPin, Users, FileCheck, CheckCircle, XCircle, Loader2 } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
+import WhyUsSection from "../components/reusable/WhyUsSection";
+import homeData from "../data/homeData.json"
+import IsoCertificates from "../components/home/IsoCertificates";
+import OurFootprints from "../components/home/OurFootprints";
 
 const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
@@ -115,7 +119,7 @@ const Applyforanyvisa = () => {
 
       {/* ===== HERO SECTION (Text Only) ===== */}
       <section
-        className="relative w-full py-32 bg-cover bg-center h-[800px] flex items-center"
+        className="relative w-full py-32 bg-cover bg-center h-[800p]"
         style={{
           backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
         }}
@@ -123,7 +127,7 @@ const Applyforanyvisa = () => {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <div className="relative left-0 z-10 max-w-7xl mx-auto px-6">
           <div className="text-white max-w-xl">
             <p className="text-lg mb-2 text-gray-300">Welcome to</p>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
@@ -333,135 +337,27 @@ const Applyforanyvisa = () => {
       )}
 
       {/* ===== WHY DU GLOBAL SECTION ===== */}
-      <section
-        className="py-20 relative bg-cover bg-center"
-        style={{
-          backgroundColor: '#1a1a1a',
-          backgroundImage: whyDuGlobalSection[0]?.images?.[0]
-            ? `url(${getImageUrl(whyDuGlobalSection[0].images[0])})`
-            : 'none'
-        }}
-      >
-        {/* Dark overlay for background image */}
-        <div className="absolute inset-0 bg-black/80" />
+  
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Left - Title */}
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Why DU GLOBAL is your trusted partner
-              </h2>
-              <div className="w-20 h-1" style={{ backgroundColor: '#E31E24' }}></div>
-              {whyDuGlobalSection[0]?.contentHtml && (
-                <p className="text-gray-300 mt-6 leading-relaxed">
-                  {whyDuGlobalSection[0].contentHtml}
-                </p>
-              )}
-            </div>
-
-            {/* Right - Cards Grid */}
-            <div className="grid sm:grid-cols-2 gap-6">
-              {whyDuGlobalItems.map((item, index) => (
-                <div key={index} className="p-6">
-                  <div
-                    className="w-14 h-14 rounded-full flex items-center justify-center mb-4"
-                    style={{ backgroundColor: 'rgba(227,30,36,0.2)' }}
-                  >
-                    <item.icon className="w-7 h-7" style={{ color: '#E31E24' }} />
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <WhyUsSection data={homeData.whyUsSection} />
       {/* ===== OUR FOOTPRINTS SECTION ===== */}
       {footprintsSection.length > 0 && (
-        <section className="py-20 bg-gray-50 relative overflow-hidden">
-          {/* Faint world map background */}
-          <div
-            className="absolute inset-0 opacity-5"
-            style={{
-              backgroundImage: 'url("https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg")',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center'
-            }}
-          />
 
-          <div className="relative z-10 max-w-6xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Footprints</h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
-            </div>
-
-            {footprintsSection.map((item, index) => (
-              <div key={item._id || index}>
-                <p className="text-gray-600 text-center max-w-3xl mx-auto mb-12">
-                  {item.title}
-                </p>
-
-                {/* Stats Grid */}
-                <div className="grid md:grid-cols-3 gap-8 text-center">
-                  <div className="p-6">
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                      <MapPin className="w-8 h-8" style={{ color: '#E31E24' }} />
-                      <span className="text-5xl font-bold text-gray-900">35<sup>+</sup></span>
-                    </div>
-                    <p className="text-gray-600 font-medium">Locations</p>
-                  </div>
-
-                  <div className="p-6">
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                      <FileCheck className="w-8 h-8" style={{ color: '#E31E24' }} />
-                      <span className="text-5xl font-bold text-gray-900">17<span className="text-2xl">Lac+</span></span>
-                    </div>
-                    <p className="text-gray-600 font-medium">Applications Processed</p>
-                  </div>
-
-                  <div className="p-6">
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                      <Users className="w-8 h-8" style={{ color: '#E31E24' }} />
-                      <span className="text-5xl font-bold text-gray-900">200<sup>+</sup></span>
-                    </div>
-                    <p className="text-gray-600 font-medium">Employees</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+              
+        <OurFootprints data={homeData.ourFootprintsSection} />
+      
+       
       )}
+      
+    
 
       {/* ===== ISO CERTIFICATES SECTION ===== */}
       {isoCertificatesSection.length > 0 && (
-        <section className="py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Certifications</h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {isoCertificatesSection.map((cert, index) => (
-                <div key={cert._id || index} className="text-center p-6 bg-gray-50 rounded-xl">
-                  {cert.images?.[0] && (
-                    <img
-                      src={getImageUrl(cert.images[0])}
-                      alt={cert.title}
-                      className="w-24 h-24 mx-auto mb-4 object-contain"
-                    />
-                  )}
-                  <h3 className="font-bold text-gray-900 mb-2">{cert.title}</h3>
-                  <p className="text-gray-500 text-sm">{cert.contentHtml?.trim()}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+      <div className="py-12 bg-white border-t border-gray-100">
+         <div className="max-w-7xl mx-auto px-6">
+            <IsoCertificates data={homeData.certificationsSection} />
+         </div>
+      </div>
       )}
 
       {/* ===== DOCUMENTS SECTION (only if documents exist) ===== */}

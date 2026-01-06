@@ -95,8 +95,9 @@ const GreeceWorkVisa = () => {
   const documentSection = contentSections['Document Checklist'] || [];
   const eligibilitySection = contentSections['Eligibility Criteria'] || [];
   const salarySection = contentSections['Salary & Benefits'] || [];
-  // const heroSection = contentSections['What is a Greece National Visa (Type D) for Employment?'] || [];
-  const heroSection = contentSections['What is a Greece National Visa (Type D) for Employment?'] || [];
+  const heroSection = contentSections[
+      "What is a Greece National Visa (Type D) for Employment?"
+    ]|| [];
 
   // Parse description for hero points
   const heroPoints = description?.split('\r\n').filter(line => line.trim()) || [];

@@ -554,33 +554,55 @@ const Egyptvisaforindians = () => {
 
       {/* ===== FAQ SECTION ===== */}
       {faqs.length > 0 && (
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-6">
-            <div className="text-center mb-10">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+        <section className="bg-white py-24">
+          <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+
+            {/* LEFT CONTENT */}
+            <div>
+              <h2 className="text-4xl font-bold leading-tight mb-6">
+                Any questions? <br />
+                We got you.
+              </h2>
+
+              <p className="text-gray-500 max-w-md mb-6">
+                Yet bed any for assistance indulgence unpleasing. Not thoughts all
+                exercise blessing. Indulgence way everything joy alteration
+                boisterous the attachment.
+              </p>
+
+              <a
+                href="#"
+                className="flex items-center text-[#FF1033] font-medium hover:underline"
+              >
+                More FAQs →
+              </a>
             </div>
 
-            <div className="space-y-4">
+            {/* RIGHT FAQ LIST */}
+            <div className="divide-y">
               {faqs.map((faq, index) => (
-                <div
-                  key={faq._id || index}
-                  className="rounded-lg overflow-hidden shadow-sm"
-                >
+
+                <div key={index} className="py-6">
                   <button
-                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    className="w-full px-6 py-4 flex items-center justify-between text-left transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]"
+
+                    onClick={() => setOpenFaq(index)}
+
+
+                    className="w-full flex justify-between items-center text-left"
                   >
-                    <span className="font-semibold">{faq.question}</span>
-                    <ChevronDown
-                      className={`w-5 h-5 transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`}
-                    />
+                    <span className="text-lg font-semibold text-gray-900">
+                      {faq.question}
+                    </span>
+
+                    <span className="text-2xl text-gray-500">
+                      {openFaq === index ? "−" : "+"}
+                    </span>
                   </button>
 
                   {openFaq === index && (
-                    <div className="px-6 py-4 bg-white border border-gray-200">
-                      <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
-                    </div>
+                    <p className="mt-4 text-gray-500 max-w-xl">
+                      {faq.answer}
+                    </p>
                   )}
                 </div>
               ))}
