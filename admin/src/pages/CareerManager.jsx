@@ -49,7 +49,7 @@ const CareerManager = () => {
   const fetchCareers = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/api/careers");
+      const response = await axios.get("http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/careers");
       setCareers(response.data);
     } catch (error) {
       console.error("Error fetching careers:", error);
@@ -79,7 +79,7 @@ const CareerManager = () => {
     };
 
     try {
-      await axios.post("http://localhost:5000/api/careers", data);
+      await axios.post("http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/careers", data);
       showSuccess("Job posting created successfully");
       fetchCareers();
       resetForm();
@@ -96,7 +96,7 @@ const CareerManager = () => {
     if (!window.confirm(`Are you sure you want to delete "${title}"?`)) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/careers/${id}`);
+      await axios.delete(`http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/careers/${id}`);
       showSuccess("Job posting deleted successfully");
       fetchCareers();
     } catch (error) {

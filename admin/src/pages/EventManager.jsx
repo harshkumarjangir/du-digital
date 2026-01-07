@@ -53,7 +53,7 @@ const EventManager = () => {
   const fetchEvents = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/api/events");
+      const response = await axios.get("http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/events");
       setEvents(response.data);
     } catch (error) {
       console.error("Error fetching events:", error);
@@ -98,7 +98,7 @@ const EventManager = () => {
       if (selectedEvent) {
         // Edit mode
         await axios.put(
-          `http://localhost:5000/api/events/${selectedEvent._id}`,
+          `http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/events/${selectedEvent._id}`,
           data,
           {
             headers: { "Content-Type": "multipart/form-data" },
@@ -107,7 +107,7 @@ const EventManager = () => {
         showSuccess("Event updated successfully");
       } else {
         // Create mode
-        await axios.post("http://localhost:5000/api/events", data, {
+        await axios.post("http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/events", data, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         showSuccess("Event created successfully");
@@ -128,7 +128,7 @@ const EventManager = () => {
       return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/events/${eventId}`);
+      await axios.delete(`http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/events/${eventId}`);
       showSuccess("Event deleted successfully");
       fetchEvents();
     } catch (error) {
@@ -159,7 +159,7 @@ const EventManager = () => {
       image: null,
     });
     if (event.imageUrl) {
-      setImagePreview(`http://localhost:5000/api${event.imageUrl}`);
+      setImagePreview(`http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api${event.imageUrl}`);
     } else {
       setImagePreview(null);
     }
@@ -175,7 +175,7 @@ const EventManager = () => {
   const fetchGalleryImages = async (eventId) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/events/${eventId}/images`
+        `http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/events/${eventId}/images`
       );
       setGalleryImages(response.data);
     } catch (error) {
@@ -196,7 +196,7 @@ const EventManager = () => {
     setUploading(true);
     try {
       await axios.post(
-        `http://localhost:5000/api/events/${selectedEvent._id}/images`,
+        `http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/events/${selectedEvent._id}/images`,
         data,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -279,7 +279,7 @@ const EventManager = () => {
                 {event.imageUrl && (
                   <div className="image-upload-preview has-image mb-3">
                     <img
-                      src={`http://localhost:5000/api${event.imageUrl}`}
+                      src={`http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api${event.imageUrl}`}
                       alt={event.title}
                       style={{
                         width: "100%",
@@ -510,7 +510,7 @@ const EventManager = () => {
                     <div key={img._id} className="card card-hover">
                       <div className="card-body p-2">
                         <img
-                          src={`http://localhost:5000/api${img.fileUrl}`}
+                          src={`http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api${img.fileUrl}`}
                           alt="Gallery"
                           style={{
                             width: "100%",

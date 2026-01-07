@@ -98,7 +98,7 @@ const FormManager = () => {
                 isActive: data.isActive,
                 fields: data.fields || []
             });
-            setImagePreview(data.image ? `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api'}${data.image}` : '');
+            setImagePreview(data.image ? `${import.meta.env.VITE_API_BASE_URL || 'http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api'}${data.image}` : '');
             setImageFile(null);
             setEditingId(formId);
             setShowModal(true);
@@ -251,7 +251,7 @@ const FormManager = () => {
                                 <td style={{ padding: '1rem' }}>
                                     {form.image ? (
                                         <img
-                                            src={`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api'}${form.image}`}
+                                            src={`${import.meta.env.VITE_API_BASE_URL || 'http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api'}${form.image}`}
                                             alt={form.name}
                                             style={{
                                                 width: '50px',

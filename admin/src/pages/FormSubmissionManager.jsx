@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Mail, Phone, User, Eye, Trash2, FileText, Clock, CheckCircle, MessageCircle, XCircle, ChevronDown, ChevronUp } from 'lucide-react';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api';
 
 const FormSubmissionManager = () => {
     const [submissions, setSubmissions] = useState([]);
@@ -27,7 +27,7 @@ const FormSubmissionManager = () => {
             let url = `${API_BASE_URL}/form-submissions?`;
             if (selectedForm) url += `formId=${selectedForm}&`;
             if (selectedStatus) url += `status=${selectedStatus}&`;
-            
+
             const response = await fetch(url);
             const data = await response.json();
             setSubmissions(data.submissions || []);
@@ -78,7 +78,7 @@ const FormSubmissionManager = () => {
 
     const deleteSubmission = async (id) => {
         if (!window.confirm('Are you sure you want to delete this submission?')) return;
-        
+
         try {
             const response = await fetch(`${API_BASE_URL}/form-submissions/${id}`, {
                 method: 'DELETE'
@@ -131,7 +131,7 @@ const FormSubmissionManager = () => {
         };
         const style = styles[status] || styles.new;
         const Icon = style.icon;
-        
+
         return (
             <span style={{
                 backgroundColor: style.bg,
@@ -248,9 +248,9 @@ const FormSubmissionManager = () => {
             </div>
 
             {/* Table */}
-            <div style={{ 
-                backgroundColor: 'white', 
-                borderRadius: '12px', 
+            <div style={{
+                backgroundColor: 'white',
+                borderRadius: '12px',
                 boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                 overflow: 'hidden'
             }}>
@@ -269,9 +269,9 @@ const FormSubmissionManager = () => {
                         <tbody>
                             {filteredSubmissions.map((submission) => (
                                 <>
-                                    <tr 
-                                        key={submission._id} 
-                                        style={{ 
+                                    <tr
+                                        key={submission._id}
+                                        style={{
                                             borderBottom: '1px solid #eee',
                                             backgroundColor: submission.status === 'new' ? '#fffde7' : 'white',
                                             cursor: 'pointer'
@@ -301,10 +301,10 @@ const FormSubmissionManager = () => {
                                             </div>
                                         </td>
                                         <td style={tdStyle}>
-                                            <div style={{ 
-                                                backgroundColor: '#e8f5e9', 
-                                                color: '#2e7d32', 
-                                                padding: '0.25rem 0.75rem', 
+                                            <div style={{
+                                                backgroundColor: '#e8f5e9',
+                                                color: '#2e7d32',
+                                                padding: '0.25rem 0.75rem',
                                                 borderRadius: '20px',
                                                 display: 'inline-block',
                                                 fontWeight: '500',
@@ -417,7 +417,7 @@ const FormSubmissionManager = () => {
                             <h3 style={{ margin: 0 }}>Submission Details</h3>
                             <button onClick={() => setShowModal(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.5rem' }}>&times;</button>
                         </div>
-                        
+
                         <div style={{ marginBottom: '1rem' }}>
                             <strong>Form:</strong> {selectedSubmission.formName}
                         </div>
@@ -427,7 +427,7 @@ const FormSubmissionManager = () => {
                         <div style={{ marginBottom: '1rem' }}>
                             <strong>Submitted:</strong> {formatDate(selectedSubmission.createdAt)}
                         </div>
-                        
+
                         <h4>Submission Data</h4>
                         <div style={{ backgroundColor: '#f8f9fa', padding: '1rem', borderRadius: '8px' }}>
                             {Object.entries(selectedSubmission.submissionData || {}).map(([key, value]) => (
@@ -437,9 +437,9 @@ const FormSubmissionManager = () => {
                                 </div>
                             ))}
                         </div>
-                        
+
                         <div style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
-                            <button 
+                            <button
                                 onClick={() => setShowModal(false)}
                                 style={{ padding: '0.75rem 1.5rem', border: '1px solid #ddd', borderRadius: '8px', cursor: 'pointer' }}
                             >

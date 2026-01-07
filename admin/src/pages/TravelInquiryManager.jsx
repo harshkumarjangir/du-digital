@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { getTravelInquiries } from '../services/api';
 import { Mail, Phone, Users, Calendar, Plane } from 'lucide-react';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api';
 
 const TravelInquiryManager = () => {
     const [inquiries, setInquiries] = useState([]);

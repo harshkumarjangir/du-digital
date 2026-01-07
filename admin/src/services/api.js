@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api';
 
 const API_URL_INVESTOR = `${API_BASE_URL}/investor`;
 const API_URL_OFFICE = `${API_BASE_URL}/office`;

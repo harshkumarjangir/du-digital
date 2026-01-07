@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getTravelPackages, createTravelPackage, updateTravelPackage, deleteTravelPackage } from '../services/api';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api';
 
 const TravelPackageManager = () => {
     const [packages, setPackages] = useState([]);
