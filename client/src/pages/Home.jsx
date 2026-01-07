@@ -1,4 +1,4 @@
-import homeData from "../data/homedata.json";
+import homeData from "../data/homeData.json";
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchEvents } from '../redux/slices/eventsSlice';
