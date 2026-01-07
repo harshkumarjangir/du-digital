@@ -1,20 +1,11 @@
 import { useState, useEffect } from "react";
-import { Check, ChevronDown, ChevronUp, MapPin, Phone, Mail, CheckCircle, XCircle, Loader2 } from "lucide-react";
+import { Check, CheckCircle, XCircle, FileText, File, CreditCard } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
+import DigitalArrivalForm from "../components/DigitalArrivalCards/DigitalArrivalForm";
 
 const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
-
-// Static country flag images
-const COUNTRY_FLAGS = {
-  thailand: "https://flagcdn.com/w80/th.png",
-  malaysia: "https://flagcdn.com/w80/my.png",
-  indonesia: "https://flagcdn.com/w80/id.png",
-  singapore: "https://flagcdn.com/w80/sg.png",
-  southKorea: "https://flagcdn.com/w80/kr.png",
-  taiwan: "https://flagcdn.com/w80/tw.png"
-};
 
 // Static images for sections
 const STATIC_IMAGES = {
@@ -28,9 +19,6 @@ const Digitalarrivalcards = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [openFaq, setOpenFaq] = useState(null);
-  const [currentStep, setCurrentStep] = useState(1);
-  const [selectedCountry, setSelectedCountry] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
   const [submitStatus, setSubmitStatus] = useState(null);
   const [submitLoading, setSubmitLoading] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
@@ -65,8 +53,7 @@ const Digitalarrivalcards = () => {
     return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleFormSubmit = async (finalData) => {
     setSubmitLoading(true);
     setSubmitStatus(null);
     setSubmitMessage('');
@@ -75,58 +62,51 @@ const Digitalarrivalcards = () => {
       const response = await fetch(`${BackendURL}/api/form-submissions/slug/digital-arrival-cards`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ country: selectedCountry, phoneNumber }),
+        body: JSON.stringify(finalData),
       });
       const res = await response.json();
 
       if (response.ok) {
         setSubmitStatus('success');
         setSubmitMessage('Thank you! Your application has been submitted successfully. Our team will contact you shortly.');
-        setSelectedCountry("");
-        setPhoneNumber("");
-        setCurrentStep(1);
+        // Optionally redirect or show success modal
       } else {
         setSubmitStatus('error');
         setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+        throw new Error(res.message || 'Submission failed');
       }
     } catch (err) {
       setSubmitStatus('error');
-      setSubmitMessage('Failed to submit. Please check your connection and try again.');
+      setSubmitMessage(err.message || 'Failed to submit. Please check your connection and try again.');
+      throw err; // Re-throw to let child component know if needed
     } finally {
       setSubmitLoading(false);
-      setTimeout(() => { setSubmitStatus(null); setSubmitMessage(''); }, 5000);
+      // Clear message after delay
+      setTimeout(() => {
+        if (submitStatus === 'success') {
+          setSubmitStatus(null);
+          setSubmitMessage('');
+        }
+      }, 7000);
     }
   };
 
   if (loading) return <LoadingState message="Loading Digital Arrival Cards..." fullScreen />;
   if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
 
-  const { name, description, documents = [], faqs = [], contentSections = {} } = formData || {};
+  const { documents = [], faqs = [], contentSections = {} } = formData || {};
 
   // Get sections by API keys
-  const travelReadySection = contentSections['Travel Ready with DU Global'] || [];
   const whyChooseSection = contentSections['Why Choose DU Global'] || [];
 
-  // Parse description for hero text
-  const descriptionParts = description?.split('\r\n\r\n').filter(line => line.trim()) || [];
 
-  // Form steps
-  const formSteps = [
-    { number: 1, label: "Where are you going?" },
-    { number: 2, label: "Personal Details" },
-    { number: 3, label: "Travelling Details" },
-    { number: 4, label: "Submit and Pay" }
-  ];
 
-  // Countries list
-  const countries = [
-    { value: "thailand", label: "Thailand", flag: COUNTRY_FLAGS.thailand },
-    { value: "malaysia", label: "Malaysia", flag: COUNTRY_FLAGS.malaysia },
-    { value: "indonesia", label: "Indonesia", flag: COUNTRY_FLAGS.indonesia },
-    { value: "singapore", label: "Singapore", flag: COUNTRY_FLAGS.singapore },
-    { value: "south-korea", label: "South Korea", flag: COUNTRY_FLAGS.southKorea },
-    { value: "taiwan", label: "Taiwan", flag: COUNTRY_FLAGS.taiwan }
-  ];
+  const documentIcons = {
+    passport: FileText,
+    flight: File,
+    hotel: CreditCard
+  };
+
 
   return (
     <div className="bg-white font-sans">
@@ -139,7 +119,7 @@ const Digitalarrivalcards = () => {
         />
         <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/70 to-black/60" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 h-[800px] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-20 h-[800px] flex items-center">
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
               One Platform for All Your Mandatory Digital Arrival Cards
@@ -152,8 +132,7 @@ const Digitalarrivalcards = () => {
             </p>
             <a
               href="#apply-form"
-              className="inline-block px-8 py-4 rounded-lg font-bold text-lg text-white transition-all duration-300 hover:opacity-90 shadow-lg"
-              style={{ backgroundColor: '#C00C02' }}
+              className="inline-block px-8 py-4 rounded-full font-bold text-lg text-[#FFFDF5] transition-all duration-300 bg-[#FF1033] hover:bg-[#511313] hover:text-[#FF1033] hover:opacity-90 shadow-lg"
             >
               Start Your Application
             </a>
@@ -163,7 +142,7 @@ const Digitalarrivalcards = () => {
 
       {/* ===== TRAVEL READY SECTION - Fixed Background Parallax ===== */}
       <section
-        className="relative py-24 bg-fixed bg-cover bg-center m-[100px] rounded-[30px] overflow-hidden"
+        className="relative py-20 bg-fixed bg-cover bg-center m-[100px] rounded-[30px] overflow-hidden"
         style={{
           backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
           backgroundAttachment: 'fixed'
@@ -189,11 +168,11 @@ const Digitalarrivalcards = () => {
         />
 
         {/* Content */}
-        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 italic">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
             Travel Ready with DU Global
           </h2>
-          <p className="text-gray-300 text-lg md:text-xl leading-relaxed">
+          <p className="text-gray-50 text-lg md:text-xl leading-relaxed">
             Apply your Digital Arrival Card today and fly worry-free to{' '}
             <span className="text-white font-medium">Thailand, Malaysia, Indonesia, Singapore, South Korea, or Taiwan</span>
           </p>
@@ -203,172 +182,103 @@ const Digitalarrivalcards = () => {
       {/* ===== MULTI-STEP FORM SECTION ===== */}
       <section id="apply-form" className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-6">
-          <div
-            className="bg-white rounded-2xl p-8 shadow-lg"
-            style={{ border: '3px solid #C00C02' }}
-          >
-            {/* Step Progress */}
-            <div className="flex items-center justify-between mb-10">
-              {formSteps.map((step, index) => (
-                <div key={step.number} className="flex items-center flex-1">
-                  <div className="flex flex-col items-center">
-                    <div
-                      className={`w-8 h-8 rounded flex items-center justify-center font-bold text-sm ${currentStep === step.number
-                        ? 'text-white'
-                        : currentStep > step.number
-                          ? 'text-white'
-                          : 'text-gray-600 border-2 border-gray-300'
-                        }`}
-                      style={{
-                        backgroundColor: currentStep >= step.number ? '#C00C02' : 'transparent'
-                      }}
-                    >
-                      {step.number}
-                    </div>
-                    <span
-                      className={`text-xs mt-2 text-center whitespace-nowrap ${currentStep === step.number ? 'font-semibold' : ''
-                        }`}
-                      style={{ color: currentStep === step.number ? '#C00C02' : '#6b7280' }}
-                    >
-                      {step.label}
-                    </span>
-                  </div>
-                  {index < formSteps.length - 1 && (
-                    <div
-                      className="flex-1 h-0.5 mx-2 mt-[-20px]"
-                      style={{
-                        backgroundColor: currentStep > step.number ? '#C00C02' : '#d1d5db'
-                      }}
-                    />
-                  )}
-                </div>
-              ))}
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Apply for Digital Arrival Card</h2>
+
+          {/* Success/Error Message Display */}
+          {submitStatus === 'success' && (
+            <div className="mb-8 p-4 bg-green-100 border border-green-200 rounded-lg flex items-center gap-3 text-green-800">
+              <CheckCircle className="w-6 h-6 shrink-0" />
+              <div>
+                <p className="font-semibold">Success!</p>
+                <p>{submitMessage}</p>
+              </div>
             </div>
+          )}
+          {submitStatus === 'error' && (
+            <div className="mb-8 p-4 bg-red-100 border border-red-200 rounded-lg flex items-center gap-3 text-red-800">
+              <XCircle className="w-6 h-6 shrink-0" />
+              <div>
+                <p className="font-semibold">Error</p>
+                <p>{submitMessage}</p>
+              </div>
+            </div>
+          )}
 
-            {/* Form Content - Step 1 */}
-            {currentStep === 1 && (
-              <form onSubmit={handleSubmit}>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-gray-700 font-medium mb-2">
-                      Where are you going? <span className="text-red-500">*</span>
-                    </label>
-                    <select
-                      value={selectedCountry}
-                      onChange={(e) => setSelectedCountry(e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none appearance-none cursor-pointer"
-                      required
-                      style={{
-                        backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-                        backgroundPosition: 'right 0.75rem center',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundSize: '1.5em 1.5em',
-                        paddingRight: '2.5rem'
-                      }}
-                    >
-                      <option value="">Select Country</option>
-                      {countries.map(country => (
-                        <option key={country.value} value={country.value}>
-                          {country.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-gray-700 font-medium mb-2">
-                      Phone Number <span className="text-red-500">*</span>
-                    </label>
-                    <div className="flex">
-                      <div className="flex items-center gap-2 px-3 py-3 border border-gray-300 border-r-0 rounded-l-lg bg-gray-50">
-                        <img src="https://flagcdn.com/w20/in.png" alt="IN" className="w-5 h-4 object-cover" />
-                        <ChevronDown className="w-4 h-4 text-gray-500" />
-                      </div>
-                      <input
-                        type="tel"
-                        value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        placeholder="Phone Number"
-                        required
-                        className="flex-1 px-4 py-3 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Submit Status Message */}
-                {submitStatus && (
-                  <div className={`flex items-center gap-3 p-3 rounded mt-6 ${submitStatus === 'success' ? 'bg-green-100' : 'bg-red-100'}`}>
-                    {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-600" /> : <XCircle className="w-5 h-5 text-red-600" />}
-                    <p className={`text-sm ${submitStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>{submitMessage}</p>
-                  </div>
-                )}
-
-                {/* Navigation Button */}
-                <div className="flex justify-end mt-8">
-                  <button
-                    type="submit"
-                    disabled={submitLoading}
-                    className="px-8 py-3 font-semibold rounded-full bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] transition-colors disabled:opacity-70 flex items-center gap-2"
-                  >
-                    {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Save and Continue'}
-                  </button>
-                </div>
-              </form>
-            )}
-          </div>
+          {/* Render the Form Component */}
+          {submitStatus !== 'success' && (
+            <DigitalArrivalForm
+              onSubmit={handleFormSubmit}
+              serverError={submitStatus === 'error' ? submitMessage : null}
+              loading={submitLoading}
+            />
+          )}
         </div>
       </section>
 
 
-
       {/* ===== DOCUMENTS REQUIRED SECTION ===== */}
-      {documents.length > 0 && (
+      {documents?.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+
+            {/* Heading */}
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333333]">
                 Documents Required
               </h2>
-              <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#C00C02' }}></div>
+              {/* <div className="w-16 h-1 bg-[#C00C02] mx-auto mt-4" /> */}
             </div>
 
-            {/* Document Cards */}
-            <div className="grid md:grid-cols-3 gap-6">
+            {/* Cards */}
+            <div className="grid md:grid-cols-3 gap-8">
               {documents.map((doc, index) => {
-                const number = String(index + 1).padStart(2, '0');
+                const number = String(index + 1).padStart(2, "0");
+
                 return (
                   <div
-                    key={doc._id || index}
-                    className="bg-white rounded-xl p-6 shadow-md relative overflow-hidden min-h-[150px]"
-                    style={{ border: '2px solid #C00C02' }}
+                    key={doc._id}
+                    className="relative bg-white rounded-2xl p-8 border border-gray-900 shadow-sm min-h-[220px]"
                   >
-                    {/* Large number */}
-                    <div
-                      className="text-5xl font-bold mb-4"
-                      style={{ color: '#C00C02' }}
-                    >
+                    {/* Static Icons (UI only) */}
+                    <div className="mb-6 text-[#C00C02]">
+                      {index === 0 && <FileText className="w-10 h-10" />}
+                      {index === 1 && <File className="w-10 h-10" />}
+                      {index === 2 && <CreditCard className="w-10 h-10" />}
+                    </div>
+
+                    {/* Description */}
+                    <h3 className="text-xl font-semibold text-[#333333] leading-snug">
+                      {doc.description}
+                    </h3>
+
+                    {/* Number */}
+                    <div className="absolute top-6 right-6 text-6xl font-bold text-red-200">
                       {number}
                     </div>
-                    <p className="text-gray-700 font-medium">
-                      {doc.description?.replace(/\n/g, ' ')}
-                    </p>
                   </div>
                 );
               })}
             </div>
+
           </div>
         </section>
       )}
 
       {/* ===== WHY CHOOSE SECTION ===== */}
       {whyChooseSection.length > 0 && (
-        <section className="py-20 relative overflow-hidden" style={{ backgroundColor: '#C00C02' }}>
-          {/* Large watermark text */}
-
-
-          <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <section className="max-w-6xl mx-auto py-10 rounded-lg relative overflow-hidden" style={{ backgroundColor: '#C00C02' }}>
+          <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
             {whyChooseSection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
+                <div className="flex justify-center">
+                  <img
+                    src={item.image ? getImageUrl(item.image) : STATIC_IMAGES.whyChoose}
+                    alt={item.title}
+                    className="max-w-full h-auto rounded-2xl shadow-2xl"
+                    style={{ maxHeight: '400px' }}
+                  />
+                </div>
+
                 <div className="text-white">
                   <h2 className="text-3xl md:text-4xl font-bold mb-6">
                     {item.title}
@@ -386,26 +296,15 @@ const Digitalarrivalcards = () => {
                     ))}
                   </ul>
                 </div>
-                <div className="flex justify-center">
-                  <img
-                    src={item.image ? getImageUrl(item.image) : STATIC_IMAGES.whyChoose}
-                    alt={item.title}
-                    className="max-w-full h-auto rounded-2xl shadow-2xl"
-                    style={{ maxHeight: '400px' }}
-                  />
-                </div>
+
               </div>
             ))}
           </div>
         </section>
       )}
 
-      {/* ===== SUPPORTED COUNTRIES SECTION ===== */}
-
-
       {/* ===== FAQ SECTION ===== */}
       {faqs.length > 0 && (
-
         <section className="bg-white py-24">
           <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
@@ -433,13 +332,9 @@ const Digitalarrivalcards = () => {
             {/* RIGHT FAQ LIST */}
             <div className="divide-y">
               {faqs.map((faq, index) => (
-
                 <div key={index} className="py-6">
                   <button
-
-                    onClick={() => setOpenFaq(index)}
-
-
+                    onClick={() => setOpenFaq(index === openFaq ? null : index)}
                     className="w-full flex justify-between items-center text-left"
                   >
                     <span className="text-lg font-semibold text-gray-900">
