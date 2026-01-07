@@ -12,7 +12,7 @@ const PartnerManager = () => {
     // Modal State
     const [showCompleteModal, setShowCompleteModal] = useState(false);
     const [selectedRequestId, setSelectedRequestId] = useState(null);
-    const [completeFiles, setCompleteFiles] = useState({ logo: null, userImage: null });
+    const [completeFiles, setCompleteFiles] = useState({ logo: null, userImage: null, country:"",date:"" });
     const [completing, setCompleting] = useState(false);
 
     const { user } = useAuth();
@@ -71,6 +71,8 @@ const PartnerManager = () => {
             formData.append('status', 'Complete');
             if (completeFiles.logo) formData.append('logo', completeFiles.logo);
             if (completeFiles.userImage) formData.append('userImage', completeFiles.userImage);
+            if (completeFiles.country) formData.append('country', completeFiles.country);
+            if (completeFiles.date) formData.append('date', completeFiles.date);
 
             const updated = await updatePartnerStatus(selectedRequestId, formData);
             setRequests(requests.map(r => r._id === selectedRequestId ? updated : r));
@@ -250,6 +252,20 @@ const PartnerManager = () => {
                                         className="form-control"
                                         accept="image/*"
                                         onChange={e => setCompleteFiles({...completeFiles, userImage: e.target.files[0]})}
+                                    />
+                                </FormGroup>
+                                <FormGroup label="country">
+                                    <input 
+                                        type="text" 
+                                        className="form-control"
+                                        onChange={e => setCompleteFiles({ ...completeFiles, country: e.target.value})}
+                                    />
+                                </FormGroup>
+                                <FormGroup label="Date">
+                                    <input 
+                                        type="date" 
+                                        className="form-control"
+                                        onChange={e => setCompleteFiles({...completeFiles, date: e.target.value})}
                                     />
                                 </FormGroup>
 

@@ -9,13 +9,16 @@ const partnerSchema = new mongoose.Schema(
         },
         year: {
             type: String,
-            default: () => new Date().getFullYear().toString()
         },
         logo: {
             type: String,
             required: true
         },
-
+        country:{
+            type:String,
+            require:true
+        }
+,
         countryId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Country"

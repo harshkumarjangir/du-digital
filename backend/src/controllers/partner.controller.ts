@@ -90,6 +90,7 @@ export const updatePartnerStatus = async (req: Request, res: Response) => {
         // If status is "Complete", automatically add to Partners table
         if (status === "Complete") {
             const files = (req as any).files;
+            const { date, country } = req.body;
             let logoUrl = "https://via.placeholder.com/150";
             let userImageUrl = "https://via.placeholder.com/150";
 
@@ -108,11 +109,12 @@ export const updatePartnerStatus = async (req: Request, res: Response) => {
                     name: updatedRequest.fullName,
                     BussnessName: updatedRequest.businessName || "Pending Business Name",
                     logo: logoUrl,
+                    country: country,
                     userImage: userImageUrl,
                     description: updatedRequest.lookingFor,
                     isOfficial: false, // Default to false until verified manually
                     isActive: true,
-                    year: new Date().getFullYear().toString()
+                    year: new Date(date).getFullYear().toString()
                 });
             }
 
@@ -176,7 +178,7 @@ export const getPartnerStats = async (req: Request, res: Response) => {
 export const getOfficialPartners = async (req: Request, res: Response) => {
     try {
         const partners = await Partner.find({ isActive: true })
-            .select('year logo description')
+            .select('year logo description country')
             .sort({ year: -1 });
 
         res.status(200).json(partners);
