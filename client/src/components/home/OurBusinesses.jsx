@@ -1,6 +1,20 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchOfficialPartners } from "../../redux/slices/partnerSlice";
 import { ArrowRight } from "lucide-react";
 
 const OurBusinesses = ({ data }) => {
+    const dispatch = useDispatch();
+    const { officialPartners } = useSelector((state) => state.partner);
+    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+    const backendApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
+    useEffect(() => {
+        dispatch(fetchOfficialPartners());
+    }, [dispatch]);
+
+    const partnersToDisplay = officialPartners && officialPartners.length > 0 ? officialPartners : data.countries;
+
     return (
         <section className="py-24 bg-white">
             <div className="max-w-7xl mx-auto px-6">
@@ -18,15 +32,15 @@ const OurBusinesses = ({ data }) => {
 
                 {/* ===== FLAGS ===== */}
                 <div className="flex flex-wrap justify-center gap-10 mb-12">
-                    {data.countries.map((country, i) => (
+                    {partnersToDisplay.map((country, i) => (
                         <div key={i} className="flex flex-col items-center gap-2">
                             <img
-                                src={country.flag}
-                                alt={country.name}
+                                src={country.logo ? (country.logo.startsWith('http') ? country.logo : `${backendApiUrl}${country.logo}`) : country.flag}
+                                alt={country.country || country.name}
                                 className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover"
                             />
                             <span className="text-sm font-medium text-gray-700">
-                                {country.name}
+                                {country.country || country.name}
                             </span>
                         </div>
                     ))}
