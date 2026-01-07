@@ -25,7 +25,8 @@ const TeamGrid = ({ title, subtitle, data }) => {
                     {data.map((member, i) => (
                         <div
                             key={member._id || i}
-                            className="group relative h-[420px] rounded-2xl overflow-hidden bg-gray-200"
+                            tabIndex="0"
+                            className="group relative h-[420px] rounded-2xl overflow-hidden bg-gray-200 focus:outline-none focus:ring-2 focus:ring-red-600"
                         >
                             {/* IMAGE */}
                             <img
@@ -49,7 +50,7 @@ const TeamGrid = ({ title, subtitle, data }) => {
 
                             {/* HOVER DESCRIPTION */}
                             {member.description && (
-                                <div className="absolute inset-0 z-20 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div className="absolute inset-0 z-20 bg-black/80 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300">
                                     <div className="absolute bottom-0 w-full max-h-[100%] overflow-y-auto p-4 text-sm text-white no-scrollbar">
                                         <ul className="space-y-1">
                                             {member.description

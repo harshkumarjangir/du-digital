@@ -1,46 +1,50 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const VisaServices = ({ data }) => {
     const [from, setFrom] = useState("");
     const [to, setTo] = useState("");
-
-    const duDigitalUrl = import.meta.env.VITE_DUDIGITAL_URL || 'https://dudigitalglobal.com';
+    const navigate = useNavigate();
 
     const indiaRedirects = {
-        'UAE 5-year Tourist Visa': `${duDigitalUrl}/dubai-5year-tourist-visa/`,
-        'Armenia': `${duDigitalUrl}/apply-for-any-visa/`,
-        'Australia': `${duDigitalUrl}/australia-tourist-visa/`,
-        'Azerbaijan': `${duDigitalUrl}/apply-for-any-visa/`,
-        'Bahrain': `${duDigitalUrl}/apply-for-any-visa/`,
+        'UAE 5-year Tourist Visa': `/dubai-5year-tourist-visa`,
+        'Armenia': `/apply-for-any-visa`,
+        'Australia': `/australia-tourist-visa`,
+        'Azerbaijan': `/apply-for-any-visa`,
+        'Bahrain': `/apply-for-any-visa`,
         'Bangladesh': 'https://www.bdvisa.com/',
-        'Cambodia': `${duDigitalUrl}/apply-for-any-visa/`,
-        'Canada': `${duDigitalUrl}/apply-for-any-visa/`,
-        'China': `${duDigitalUrl}/apply-for-any-visa/`,
-        'Egypt': `${duDigitalUrl}/egypt-visa-for-indians/`,
-        'France': `${duDigitalUrl}/apply-for-any-visa/`,
-        'Georgia': `${duDigitalUrl}/georgia-evisa/`,
-        'Germany': `${duDigitalUrl}/apply-for-any-visa/`,
-        'Greece': `${duDigitalUrl}/apply-for-any-visa/`,
-        'Indonesia': `${duDigitalUrl}/apply-for-any-visa/`,
-        'Japan': `${duDigitalUrl}/japan-tourist-visa-for-indians/`,
-        'Kenya': `${duDigitalUrl}/apply-for-any-visa/`,
-        'Morocco': `${duDigitalUrl}/morocco-visa/`,
-        'Oman': `${duDigitalUrl}/apply-for-any-visa/`,
-        'Russia': `${duDigitalUrl}/apply-for-any-visa/`,
-        'Singapore': `${duDigitalUrl}/apply-for-any-visa/`,
-        'South Korea': `${duDigitalUrl}/south-korea-visa-for-indians/`,
-        'Switzerland': `${duDigitalUrl}/apply-for-any-visa/`,
-        'Thailand': `${duDigitalUrl}/apply-for-any-visa/`,
-        'Tunisia': `${duDigitalUrl}/apply-for-any-visa/`,
-        'Turkey': `${duDigitalUrl}/apply-for-any-visa/`,
-        'UK': `${duDigitalUrl}/apply-for-any-visa/`,
-        'USA': `${duDigitalUrl}/apply-for-any-visa/`,
-        'Uzbekistan': `${duDigitalUrl}/apply-for-any-visa/`,
-        'Vietnam': `${duDigitalUrl}/apply-for-any-visa/`,
-        'Other Countries': `${duDigitalUrl}/apply-for-any-visa/`
+        // 'Bangladesh': `/bangladesh-vac`,
+        'Cambodia': `/apply-for-any-visa`,
+        'Canada': `/apply-for-any-visa`,
+        'China': `/apply-for-any-visa`,
+        'Egypt': `/egypt-visa-for-indians`,
+        'France': `/apply-for-any-visa`,
+        'Georgia': `/georgia-evisa`,
+        'Germany': `/apply-for-any-visa`,
+        'Greece': `/greece-work-visa`,
+        'Indonesia': `/apply-for-any-visa`,
+        'Japan': `/japan-tourist-visa-for-indians`,
+        'Kenya': `/apply-for-any-visa`,
+        'Lebanon': `/lebanon`,
+        'Malaysia': `/malaysia-visa-for-indians`,
+        'Morocco': `/morocco-visa`,
+        'Oman': `/apply-for-any-visa`,
+        'Russia': `/apply-for-any-visa`,
+        'Serbia': `/serbia-work-permit-visa`,
+        'Singapore': `/apply-for-any-visa`,
+        'South Korea': `/south-korea-visa-for-indians`,
+        'Switzerland': `/apply-for-any-visa`,
+        'Thailand': `/digital-arrival-cards`,
+        'Tunisia': `/apply-for-any-visa`,
+        'Turkey': `/apply-for-any-visa`,
+        'UK': `/apply-for-any-visa`,
+        'USA': `/apply-for-any-visa`,
+        'Uzbekistan': `/apply-for-any-visa`,
+        'Vietnam': `/apply-for-any-visa`,
+        'Other Countries': `/apply-for-any-visa`
     };
 
-    const defaultRedirect = `${duDigitalUrl}/apply-for-any-visa/`;
+    const defaultRedirect = `/apply-for-any-visa`;
 
     // Dynamic options for "Applying from"
     const fromOptions = ["India", "South Korea", "Bangladesh", "Thailand"];
@@ -63,17 +67,21 @@ const VisaServices = ({ data }) => {
         if (from === 'India') {
             redirectURL = indiaRedirects[to] || defaultRedirect;
         } else if (from === 'South Korea' && to === 'India') {
-            redirectURL = 'https://duicac.dudigitalglobal.com/sk/';
+            redirectURL = '/sk';
         } else if (from === 'Thailand' && to === 'India') {
-            redirectURL = 'https://duicac.dudigitalglobal.com/th/';
+            redirectURL = '/th';
         } else if (from === 'Bangladesh') {
             if (to === 'UAE' || to === 'Singapore' || to === 'Ireland') {
-                redirectURL = 'https://dudigitalglobal.com/bangladesh-visas-for-uae-singapore/';
+                redirectURL = '/bangladesh-visas-for-uae-singapore';
             }
         }
 
         if (to) {
-            window.location.href = redirectURL;
+            if (redirectURL.startsWith('http')) {
+                window.open(redirectURL, '_blank', 'noopener,noreferrer');
+            } else {
+                navigate(redirectURL);
+            }
         } else {
             alert('Please select a destination.');
         }
@@ -97,10 +105,11 @@ const VisaServices = ({ data }) => {
 
                         {/* From */}
                         <div>
-                            <label className="block mb-2 text-sm font-medium">
+                            <label htmlFor="visa-from" className="block mb-2 text-sm font-medium">
                                 {data.fromLabel}
                             </label>
                             <select
+                                id="visa-from"
                                 value={from}
                                 onChange={(e) => {
                                     setFrom(e.target.value);
@@ -121,10 +130,11 @@ const VisaServices = ({ data }) => {
 
                         {/* To */}
                         <div>
-                            <label className="block mb-2 text-sm font-medium">
+                            <label htmlFor="visa-to" className="block mb-2 text-sm font-medium">
                                 {data.toLabel}
                             </label>
                             <select
+                                id="visa-to"
                                 value={to}
                                 onChange={(e) => setTo(e.target.value)}
                                 className="w-full border border-red-500 rounded-full px-5 py-3 focus:outline-none"

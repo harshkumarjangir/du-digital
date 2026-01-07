@@ -67,7 +67,7 @@ const Navbar = () => {
                 <div
                   className="absolute left-1/2 -translate-x-1/2 top-full mt-2
                flex opacity-0 invisible group-hover:opacity-100
-               group-hover:visible transition-all duration-200"
+               group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200"
                 >
                   {/* LEFT PANEL */}
                   <div className="min-w-60 text-wrap bg-white shadow-xl rounded-xl">
@@ -77,7 +77,7 @@ const Navbar = () => {
                           <Link
                             to={child.link}
                             className="px-6 py-3 flex justify-between items-center cursor-pointer
-                       hover:bg-gray-100 hover:text-red-600 block"
+                       hover:bg-gray-100 hover:text-red-600"
                           >
                             {child.label}
                             {child.children && <ChevronDown size={20} color="black" className="-rotate-90" />}
@@ -147,6 +147,7 @@ const Navbar = () => {
           <button
             className="lg:hidden text-3xl font-bold"
             onClick={() => setOpen(!open)}
+            aria-label="Toggle navigation menu"
           >
             ☰
           </button>

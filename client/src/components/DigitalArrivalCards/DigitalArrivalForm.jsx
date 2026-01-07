@@ -107,6 +107,7 @@ const DigitalArrivalForm = ({ onSubmit, serverError, loading }) => {
                                         ? 'text-white bg-[#C00C02]'
                                         : 'text-gray-600 border-2 border-gray-300 bg-white'
                                     }`}
+                                aria-current={currentStep === step.number ? 'step' : undefined}
                             >
                                 {step.number}
                             </div>

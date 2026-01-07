@@ -42,6 +42,7 @@ const Step4SubmitPay = ({ formData, handleChange, submitForm, prevStep, loading,
                     <button
                         type="button"
                         onClick={() => setIsIndividual(true)}
+                        aria-pressed={isIndividual}
                         className={`px-6 py-2 rounded-md transition-colors ${isIndividual ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
                     >
                         Yes
@@ -49,6 +50,7 @@ const Step4SubmitPay = ({ formData, handleChange, submitForm, prevStep, loading,
                     <button
                         type="button"
                         onClick={() => setIsIndividual(false)}
+                        aria-pressed={!isIndividual}
                         className={`px-6 py-2 rounded-md transition-colors ${!isIndividual ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
                     >
                         No
@@ -59,8 +61,9 @@ const Step4SubmitPay = ({ formData, handleChange, submitForm, prevStep, loading,
             {/* If Not individual, ask for how many people */}
             {!isIndividual && (
                 <div className="animate-in fade-in slide-in-from-top-1 duration-300">
-                    <label className="block text-gray-700 font-medium mb-2">Total Persons (Including you) <span className="text-red-500">*</span></label>
+                    <label htmlFor="totalPersons" className="block text-gray-700 font-medium mb-2">Total Persons (Including you) <span className="text-red-500">*</span></label>
                     <select
+                        id="totalPersons"
                         name="totalPersons"
                         value={formData.totalPersons || 1}
                         onChange={handleChange}

@@ -52,6 +52,17 @@ const TimelineSlider = ({ data = [] }) => {
                                                 ? topSwiper.slideToLoop(index)
                                                 : topSwiper.slideTo(index)
                                         }
+                                        onKeyDown={(e) => {
+                                            if (e.key === "Enter" || e.key === " ") {
+                                                e.preventDefault();
+                                                shouldLoop
+                                                    ? topSwiper.slideToLoop(index)
+                                                    : topSwiper.slideTo(index);
+                                            }
+                                        }}
+                                        role="button"
+                                        tabIndex="0"
+                                        aria-label={`View year ${item.year}`}
                                         className="flex flex-col items-center cursor-pointer relative"
                                     >
                                         <div

@@ -17,6 +17,8 @@ const NewsCoverage = ({ data }) => {
                         onClick={() =>
                             setOpenYear(openYear === year ? null : year)
                         }
+                        aria-expanded={openYear === year}
+                        aria-controls={`year-content-${year}`}
                         className="w-full flex justify-between items-center py-5 text-[#C62625] text-lg font-semibold"
                     >
                         <span className="text-black">{year}</span>
@@ -25,7 +27,7 @@ const NewsCoverage = ({ data }) => {
 
                     {/* NEWS LIST */}
                     {openYear === year && (
-                        <div className="space-y-6 pb-6">
+                        <div id={`year-content-${year}`} className="space-y-6 pb-6">
                             {grouped[year].map((item) => (
                                 <a
                                     key={item._id}

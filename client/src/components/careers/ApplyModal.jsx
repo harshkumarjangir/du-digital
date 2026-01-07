@@ -38,6 +38,7 @@ const ApplyModal = ({ open, job, onClose }) => {
                 <button
                     onClick={onClose}
                     className="absolute top-4 right-4 text-gray-500 hover:text-black text-xl"
+                    aria-label="Close"
                 >
                     ✕
                 </button>
@@ -60,10 +61,11 @@ const ApplyModal = ({ open, job, onClose }) => {
                 <form onSubmit={handleSubmit} className="space-y-4">
 
                     {/* Full Name */}
-                    <label className="block mb-2 text-sm font-medium text-gray-900">
+                    <label htmlFor="apply-name" className="block mb-2 text-sm font-medium text-gray-900">
                         Full Name <span className="text-red-500">*</span>
                     </label>
                     <input
+                        id="apply-name"
                         type="text"
                         placeholder="Full Name"
                         value={formData.name}
@@ -75,10 +77,11 @@ const ApplyModal = ({ open, job, onClose }) => {
                     />
 
                     {/* Email */}
-                    <label className="block mb-2 text-sm font-medium text-gray-900">
+                    <label htmlFor="apply-email" className="block mb-2 text-sm font-medium text-gray-900">
                         Email <span className="text-red-500">*</span>
                     </label>
                     <input
+                        id="apply-email"
                         type="email"
                         placeholder="Email"
                         value={formData.email}
@@ -103,7 +106,7 @@ const ApplyModal = ({ open, job, onClose }) => {
                     <label className="block mb-2 text-sm font-medium text-gray-900">
                         Upload Your Resume (Only pdf and doc files are allowed) <span className="text-red-500">*</span>
                     </label>
-                    <label className="block cursor-pointer">
+                    <label htmlFor="resume-upload" className="block cursor-pointer">
                         <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-red-500 transition">
                             <p className="text-sm text-gray-600">
                                 Upload Resume <span className="text-red-600">(PDF / DOC)</span>
@@ -117,9 +120,10 @@ const ApplyModal = ({ open, job, onClose }) => {
                         </div>
 
                         <input
+                            id="resume-upload"
                             type="file"
                             accept=".pdf,.doc,.docx"
-                            hidden
+                            className="sr-only"
                             onChange={(e) =>
                                 setFormData({
                                     ...formData,

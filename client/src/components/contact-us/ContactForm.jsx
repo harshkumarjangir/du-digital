@@ -69,6 +69,7 @@ const ContactForm = ({ form }) => {
                     onChange={handleChange}
                     className="w-full border rounded-md px-4 py-3"
                     required
+                    aria-label="Name"
                 />
 
                 <input
@@ -79,6 +80,7 @@ const ContactForm = ({ form }) => {
                     onChange={handleChange}
                     className="w-full border rounded-md px-4 py-3"
                     required
+                    aria-label="Email Address"
                 />
 
                 <CountryPhoneInput onChange={handlePhoneChange} />
@@ -90,6 +92,7 @@ const ContactForm = ({ form }) => {
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full border rounded-md px-4 py-3"
+                    aria-label="Message"
                 />
 
                 <label className="flex items-start gap-2 text-sm text-gray-600">

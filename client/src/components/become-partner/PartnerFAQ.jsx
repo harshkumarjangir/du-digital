@@ -30,6 +30,8 @@ const PartnerFAQ = ({ data }) => {
                                 <button
                                     onClick={() => setOpen(isOpen ? null : index)}
                                     className="w-full flex items-center justify-between px-6 py-5 text-left group"
+                                    aria-expanded={isOpen}
+                                    aria-controls={`faq-answer-${index}`}
                                 >
                                     <div className="flex items-center gap-6">
                                         <span className="text-sm text-gray-400 font-mono">
@@ -49,7 +51,10 @@ const PartnerFAQ = ({ data }) => {
 
                                 {/* CONTENT */}
                                 {isOpen && (
-                                    <div className="px-16 pb-5 text-gray-600 text-sm leading-relaxed">
+                                    <div
+                                        id={`faq-answer-${index}`}
+                                        className="px-16 pb-5 text-gray-600 text-sm leading-relaxed"
+                                    >
                                         {item.answer}
                                     </div>
                                 )}

@@ -58,6 +58,7 @@ const ContactUs = () => {
                     <iframe
                         key={i}
                         src={office.mapEmbed}
+                        title={office.title || "Office Map"}
                         className="w-full h-[380px] border-0 rounded-xl"
                         loading="lazy"
                     />

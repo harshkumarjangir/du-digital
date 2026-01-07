@@ -171,6 +171,7 @@ const Dubai5yeartouristvisa = () => {
                           onChange={handleInputChange}
                           className="w-full px-4 py-3 bg-white border-0 rounded-lg text-gray-700 focus:ring-2 focus:ring-red-500 transition-all outline-none appearance-none cursor-pointer"
                           required={field.required}
+                          aria-label={field.label || field.placeholder}
                           style={{
                             backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
                             backgroundPosition: 'right 0.75rem center',
@@ -198,28 +199,29 @@ const Dubai5yeartouristvisa = () => {
                           placeholder={field.placeholder || field.label}
                           className="w-full px-4 py-3 bg-white border-0 rounded-lg text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none"
                           required={field.required}
+                          aria-label={field.label || field.placeholder}
                         />
                       );
                     }
                   })}
                   {
-                    fields.filter(f=>f.type=="textarea").map((field,index)=>    
-                <>
-                    {field.label && (
-                        <label className={`${labelClass} block mb-2`}>
+                    fields.filter(f => f.type == "textarea").map((field, index) =>
+                      <>
+                        {field.label && (
+                          <label className={`${labelClass} block mb-2`}>
                             {field.label} {field.required && <span className="text-red-500">*</span>}
-                        </label>
-                    )}
-                    <textarea
-                        name={field.name}
-                        value={formValues[field.name] || ''}
-                        onChange={handleInputChange}
-                        placeholder={field.placeholder || field.label}
-                        className={`${baseInputClass} min-h-[100px]`}
-                        required={field.required}
-                    />
-                </>
-                )
+                          </label>
+                        )}
+                        <textarea
+                          name={field.name}
+                          value={formValues[field.name] || ''}
+                          onChange={handleInputChange}
+                          placeholder={field.placeholder || field.label}
+                          className={`${baseInputClass} min-h-[100px]`}
+                          required={field.required}
+                        />
+                      </>
+                    )
                   }
 
                   {/* Radio buttons */}
@@ -518,11 +520,10 @@ const Dubai5yeartouristvisa = () => {
 
                 <div key={index} className="py-6">
                   <button
-
                     onClick={() => setOpenFaq(index)}
-
-
                     className="w-full flex justify-between items-center text-left"
+                    aria-expanded={openFaq === index}
+                    aria-controls={`faq-answer-${index}`}
                   >
                     <span className="text-lg font-semibold text-gray-900">
                       {faq.question}

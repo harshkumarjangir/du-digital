@@ -254,6 +254,7 @@ const IndianEvisa = () => {
                         value={formValues[field.name] || ""}
                         onChange={handleInputChange}
                         className="h-[46px] px-4 rounded-lg text-sm bg-white focus:ring-2 focus:ring-red-500 outline-none"
+                        aria-label={field.placeholder || field.name}
                       />
                     ))}
                 </div>
@@ -630,11 +631,10 @@ const IndianEvisa = () => {
                 {faqs.filter(f => f.isActive).map((item, index) => (
                   <div key={index} className="py-6">
                     <button
-
                       onClick={() => toggleFaq(index)}
-
-
                       className="w-full flex justify-between items-center text-left"
+                      aria-expanded={openFaqIndex === index}
+                      aria-controls={`faq-answer-${index}`}
                     >
                       <span className="text-lg font-semibold text-gray-900">
                         {item.question}

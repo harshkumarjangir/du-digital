@@ -247,6 +247,7 @@ const Globalrecruitmentservices = () => {
                           value={formValues[field.name] || ''}
                           onChange={handleInputChange}
                           required={field.required}
+                          aria-label={field.label || field.placeholder}
                           className="w-full h-12 px-4 rounded-lg border border-gray-300 focus:border-[#c60505] focus:ring-1 focus:ring-[#c60505] outline-none text-gray-700 text-sm"
                         >
                           <option value="">
@@ -259,55 +260,55 @@ const Globalrecruitmentservices = () => {
                           ))}
                         </select>
                       ) :
-                      field.types=="radio"?(
-                            <div  className="space-y-2">
-                        <label className="text-white text-sm font-medium block mb-2">
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
-                        </label>
-                        <div className="flex flex-wrap gap-4">
-                            {field.options?.map((opt, i) => (
+                        field.types == "radio" ? (
+                          <div className="space-y-2">
+                            <label className="text-white text-sm font-medium block mb-2">
+                              {field.label} {field.required && <span className="text-red-500">*</span>}
+                            </label>
+                            <div className="flex flex-wrap gap-4">
+                              {field.options?.map((opt, i) => (
                                 <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
-                                    <input
-                                        type="radio"
-                                        name={field.name}
-                                        value={opt.value || opt.label || opt}
-                                        checked={formValues[field.name] === (opt.value || opt.label || opt)}
-                                        onChange={handleInputChange}
-                                        className="w-4 h-4"
-                                        required={field.required}
-                                    />
-                                    <span className="text-sm">{opt.label || opt}</span>
+                                  <input
+                                    type="radio"
+                                    name={field.name}
+                                    value={opt.value || opt.label || opt}
+                                    checked={formValues[field.name] === (opt.value || opt.label || opt)}
+                                    onChange={handleInputChange}
+                                    className="w-4 h-4"
+                                    required={field.required}
+                                  />
+                                  <span className="text-sm">{opt.label || opt}</span>
                                 </label>
-                            ))}
-                        </div>
-                    </div>
-                    
-  
+                              ))}
+                            </div>
+                          </div>
 
-                      )
-                      
-                      :field.type=="checkbox"?(
-                  <label key={field._id || `checkbox-${index}`} className="flex items-start gap-3 text-gray-600 cursor-pointer mb-4">
-                        <input
-                          type="checkbox"
-                          name={field.name}
-                          checked={formValues[field.name] || false}
-                          onChange={handleInputChange}
-                          className="mt-1 w-4 h-4 accent-red-600 rounded flex-shrink-0"
-                        />
-                        <span className="text-xs leading-relaxed">{field.label}</span>
-                      </label>
-                      ): (
-                        <input
-                          type={field.type}
-                          name={field.name}
-                          value={formValues[field.name] || ''}
-                          onChange={handleInputChange}
-                          placeholder={field.placeholder || field.label}
-                          required={field.required}
-                          className="w-full h-12 px-4 rounded-lg border border-gray-300 focus:border-[#c60505] focus:ring-1 focus:ring-[#c60505] outline-none text-gray-900 text-sm"
-                        />
-                      )}
+
+
+                        )
+
+                          : field.type == "checkbox" ? (
+                            <label key={field._id || `checkbox-${index}`} className="flex items-start gap-3 text-gray-600 cursor-pointer mb-4">
+                              <input
+                                type="checkbox"
+                                name={field.name}
+                                checked={formValues[field.name] || false}
+                                onChange={handleInputChange}
+                                className="mt-1 w-4 h-4 accent-red-600 rounded flex-shrink-0"
+                              />
+                              <span className="text-xs leading-relaxed">{field.label}</span>
+                            </label>
+                          ) : (
+                            <input
+                              type={field.type}
+                              name={field.name}
+                              value={formValues[field.name] || ''}
+                              onChange={handleInputChange}
+                              placeholder={field.placeholder || field.label}
+                              required={field.required}
+                              className="w-full h-12 px-4 rounded-lg border border-gray-300 focus:border-[#c60505] focus:ring-1 focus:ring-[#c60505] outline-none text-gray-900 text-sm"
+                            />
+                          )}
                     </div>
                   ))}
               </div>
@@ -497,10 +498,10 @@ const Globalrecruitmentservices = () => {
               </Swiper>
 
               {/* Navigation Arrows */}
-              <button className="industry-prev absolute left-[-40px] top-1/2 -translate-y-1/2 text-5xl text-black">
+              <button className="industry-prev absolute left-[-40px] top-1/2 -translate-y-1/2 text-5xl text-black" aria-label="Previous Industries">
                 ‹
               </button>
-              <button className="industry-next absolute right-[-40px] top-1/2 -translate-y-1/2 text-5xl text-black">
+              <button className="industry-next absolute right-[-40px] top-1/2 -translate-y-1/2 text-5xl text-black" aria-label="Next Industries">
                 ›
               </button>
             </div>

@@ -81,6 +81,7 @@ const HomeSlider = ({ data }) => {
             <button
                 onClick={prevSlide}
                 className="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-black/50 text-white text-5xl px-3 rounded-full"
+                aria-label="Previous slide"
             >
                 ‹
             </button>
@@ -88,6 +89,7 @@ const HomeSlider = ({ data }) => {
             <button
                 onClick={nextSlide}
                 className="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-black/50 text-white text-5xl px-3 rounded-full"
+                aria-label="Next slide"
             >
                 ›
             </button>

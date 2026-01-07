@@ -38,6 +38,7 @@ const JobDescriptionModal = ({ job, onApply, onClose }) => {
                         <button
                             onClick={onClose}
                             className="text-2xl text-gray-500 hover:text-black transition"
+                            aria-label="Close"
                         >
                             ✕
                         </button>

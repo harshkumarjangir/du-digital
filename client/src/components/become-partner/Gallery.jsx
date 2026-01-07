@@ -81,6 +81,15 @@ const Gallery = () => {
                 src={`${import.meta.env.VITE_BACKEND_IMAGES_URL}${img.imageSrc}`}
                 alt={img.imageName}
                 onClick={() => setActiveIndex(i)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setActiveIndex(i);
+                  }
+                }}
+                tabIndex="0"
+                role="button"
+                aria-label={`View ${img.imageName}`}
                 className="h-[220px] w-full object-cover rounded-lg cursor-pointer"
               />
             </SwiperSlide>

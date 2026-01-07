@@ -88,12 +88,14 @@ const Testimonials = ({ data }) => {
                     <button
                         onClick={prev}
                         className="text-red-600 hover:scale-110 transition"
+                        aria-label="Previous testimonial"
                     >
                         <ChevronLeft size={28} />
                     </button>
                     <button
                         onClick={next}
                         className="text-red-600 hover:scale-110 transition"
+                        aria-label="Next testimonial"
                     >
                         <ChevronRight size={28} />
                     </button>

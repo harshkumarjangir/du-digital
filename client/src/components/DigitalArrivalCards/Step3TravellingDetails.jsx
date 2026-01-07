@@ -27,8 +27,9 @@ const Step3TravellingDetails = ({ formData, handleChange, nextStep, prevStep, op
                 </h3>
                 <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                        <label className="block text-gray-700 font-medium mb-2">Passport Number <span className="text-red-500">*</span></label>
+                        <label htmlFor="passportNumber" className="block text-gray-700 font-medium mb-2">Passport Number <span className="text-red-500">*</span></label>
                         <input
+                            id="passportNumber"
                             type="text"
                             name="passportNumber"
                             value={formData.passportNumber}
@@ -39,8 +40,9 @@ const Step3TravellingDetails = ({ formData, handleChange, nextStep, prevStep, op
                         />
                     </div>
                     <div>
-                        <label className="block text-gray-700 font-medium mb-2">Passport Expiry Date <span className="text-red-500">*</span></label>
+                        <label htmlFor="passportExpiry" className="block text-gray-700 font-medium mb-2">Passport Expiry Date <span className="text-red-500">*</span></label>
                         <input
+                            id="passportExpiry"
                             type="date"
                             name="passportExpiry"
                             value={formData.passportExpiry}
@@ -51,8 +53,9 @@ const Step3TravellingDetails = ({ formData, handleChange, nextStep, prevStep, op
                     </div>
 
                     <div>
-                        <label className="block text-gray-700 font-medium mb-2">Date of Arrival <span className="text-red-500">*</span></label>
+                        <label htmlFor="arrivalDate" className="block text-gray-700 font-medium mb-2">Date of Arrival <span className="text-red-500">*</span></label>
                         <input
+                            id="arrivalDate"
                             type="date"
                             name="arrivalDate"
                             value={formData.arrivalDate}
@@ -62,8 +65,9 @@ const Step3TravellingDetails = ({ formData, handleChange, nextStep, prevStep, op
                         />
                     </div>
                     <div>
-                        <label className="block text-gray-700 font-medium mb-2">Date of Departure <span className="text-red-500">*</span></label>
+                        <label htmlFor="departureDate" className="block text-gray-700 font-medium mb-2">Date of Departure <span className="text-red-500">*</span></label>
                         <input
+                            id="departureDate"
                             type="date"
                             name="departureDate"
                             value={formData.departureDate}
@@ -74,9 +78,10 @@ const Step3TravellingDetails = ({ formData, handleChange, nextStep, prevStep, op
                     </div>
 
                     <div>
-                        <label className="block text-gray-700 font-medium mb-2">Mode of Travel <span className="text-red-500">*</span></label>
+                        <label htmlFor="travelMode" className="block text-gray-700 font-medium mb-2">Mode of Travel <span className="text-red-500">*</span></label>
                         <div className="relative">
                             <select
+                                id="travelMode"
                                 name="travelMode"
                                 value={formData.travelMode}
                                 onChange={handleChange}
@@ -95,8 +100,9 @@ const Step3TravellingDetails = ({ formData, handleChange, nextStep, prevStep, op
                     </div>
 
                     <div>
-                        <label className="block text-gray-700 font-medium mb-2">Flight/Transport Number <span className="text-red-500">*</span></label>
+                        <label htmlFor="flightNumber" className="block text-gray-700 font-medium mb-2">Flight/Transport Number <span className="text-red-500">*</span></label>
                         <input
+                            id="flightNumber"
                             type="text"
                             name="flightNumber"
                             value={formData.flightNumber}
@@ -108,8 +114,9 @@ const Step3TravellingDetails = ({ formData, handleChange, nextStep, prevStep, op
                     </div>
 
                     <div>
-                        <label className="block text-gray-700 font-medium mb-2">Departure Flight Number (Optional)</label>
+                        <label htmlFor="departureFlightNumber" className="block text-gray-700 font-medium mb-2">Departure Flight Number (Optional)</label>
                         <input
+                            id="departureFlightNumber"
                             type="text"
                             name="departureFlightNumber"
                             value={formData.departureFlightNumber}

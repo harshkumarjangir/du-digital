@@ -6,7 +6,7 @@ const HomeAboutSection = ({ data }) => {
             {/* ✅ ABSOLUTE BACKGROUND SHAPE */}
             <img
                 src="/assets/home/about/about-bg-shape.png"
-                alt="background shape"
+                alt=""
                 className="
           absolute 
           inset-0

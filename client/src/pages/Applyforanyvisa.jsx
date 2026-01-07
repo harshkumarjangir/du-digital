@@ -172,7 +172,7 @@ const Applyforanyvisa = () => {
                 const selectFields = fields.filter(f => f.type === 'select' || f.type === 'dropdown');
                 const checkboxFields = fields.filter(f => f.type === 'checkbox');
                 const radioFields = fields.filter(f => f.type === 'radio');
-                const textarea=fields.filter(f=>f.type==="textarea")
+                const textarea = fields.filter(f => f.type === "textarea")
 
                 return (
                   <>
@@ -187,6 +187,7 @@ const Applyforanyvisa = () => {
                             value={formValues[field.name] || ''}
                             onChange={handleInputChange}
                             placeholder={field.placeholder || field.label}
+                            aria-label={field.label || field.placeholder}
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none"
                             required={field.required}
                           />
@@ -206,6 +207,7 @@ const Applyforanyvisa = () => {
                               onChange={handleInputChange}
                               className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none appearance-none cursor-pointer bg-white"
                               required={field.required}
+                              aria-label={field.label || field.placeholder}
                               style={{
                                 backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
                                 backgroundPosition: 'right 0.75rem center',
@@ -233,6 +235,7 @@ const Applyforanyvisa = () => {
                             onChange={handleInputChange}
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none appearance-none cursor-pointer bg-white mb-4"
                             required={field.required}
+                            aria-label={field.label || field.placeholder}
                             style={{
                               backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
                               backgroundPosition: 'right 0.75rem center',
@@ -252,21 +255,21 @@ const Applyforanyvisa = () => {
                       </>
                     )}
                     {
-                      textarea.map((field,index)=>   <div key={index}>
-                    {field.label && (
-                        <label className={`${labelClass} block mb-2`}>
+                      textarea.map((field, index) => <div key={index}>
+                        {field.label && (
+                          <label className={`${labelClass} block mb-2`}>
                             {field.label} {field.required && <span className="text-red-500">*</span>}
-                        </label>
-                    )}
-                    <textarea
-                        name={field.name}
-                        value={formValues[field.name] || ''}
-                        onChange={handleInputChange}
-                        placeholder={field.placeholder || field.label}
-                        className={`${baseInputClass} min-h-[100px]`}
-                        required={field.required}
-                    />
-                </div>)
+                          </label>
+                        )}
+                        <textarea
+                          name={field.name}
+                          value={formValues[field.name] || ''}
+                          onChange={handleInputChange}
+                          placeholder={field.placeholder || field.label}
+                          className={`${baseInputClass} min-h-[100px]`}
+                          required={field.required}
+                        />
+                      </div>)
                     }
 
                     {/* Checkbox fields */}
@@ -283,29 +286,29 @@ const Applyforanyvisa = () => {
                       </label>
                     ))}
 
-{radioFields.map((index,field)=>   <div key={index} className="space-y-2">
-                        <label className="text-white text-sm font-medium block mb-2">
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
-                        </label>
-                        <div className="flex flex-wrap gap-4">
-                            {field.options?.map((opt, i) => (
-                                <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
-                                    <input
-                                        type="radio"
-                                        name={field.name}
-                                        value={opt.value || opt.label || opt}
-                                        checked={formValues[field.name] === (opt.value || opt.label || opt)}
-                                        onChange={handleInputChange}
-                                        className="w-4 h-4"
-                                        required={field.required}
-                                    />
-                                    <span className="text-sm">{opt.label || opt}</span>
-                                </label>
-                            ))}
-                        </div>
+                    {radioFields.map((index, field) => <div key={index} className="space-y-2">
+                      <label className="text-white text-sm font-medium block mb-2">
+                        {field.label} {field.required && <span className="text-red-500">*</span>}
+                      </label>
+                      <div className="flex flex-wrap gap-4">
+                        {field.options?.map((opt, i) => (
+                          <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                            <input
+                              type="radio"
+                              name={field.name}
+                              value={opt.value || opt.label || opt}
+                              checked={formValues[field.name] === (opt.value || opt.label || opt)}
+                              onChange={handleInputChange}
+                              className="w-4 h-4"
+                              required={field.required}
+                            />
+                            <span className="text-sm">{opt.label || opt}</span>
+                          </label>
+                        ))}
+                      </div>
                     </div>)
-  
-}
+
+                    }
                     {/* Submit Status Message */}
                     {submitStatus && (
                       <div className={`flex items-center gap-3 p-4 rounded-lg mb-4 ${submitStatus === 'success' ? 'bg-green-100 border border-green-300' : 'bg-red-100 border border-red-300'}`}>
@@ -379,27 +382,27 @@ const Applyforanyvisa = () => {
       )}
 
       {/* ===== WHY DU GLOBAL SECTION ===== */}
-  
+
 
       <WhyUsSection data={homeData.whyUsSection} />
       {/* ===== OUR FOOTPRINTS SECTION ===== */}
       {footprintsSection.length > 0 && (
 
-              
+
         <OurFootprints data={homeData.ourFootprintsSection} />
-      
-       
+
+
       )}
-      
-    
+
+
 
       {/* ===== ISO CERTIFICATES SECTION ===== */}
       {isoCertificatesSection.length > 0 && (
-      <div className="py-12 bg-white border-t border-gray-100">
-         <div className="max-w-7xl mx-auto px-6">
+        <div className="py-12 bg-white border-t border-gray-100">
+          <div className="max-w-7xl mx-auto px-6">
             <IsoCertificates data={homeData.certificationsSection} />
-         </div>
-      </div>
+          </div>
+        </div>
       )}
 
       {/* ===== DOCUMENTS SECTION (only if documents exist) ===== */}

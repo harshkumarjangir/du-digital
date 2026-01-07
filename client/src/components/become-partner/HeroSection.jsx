@@ -138,6 +138,7 @@ const HeroSection = ({ data }) => {
               value={formData.fullName}
               onChange={handleChange}
               required
+              aria-label="Name"
             />
 
             <input
@@ -148,6 +149,7 @@ const HeroSection = ({ data }) => {
               value={formData.email}
               onChange={handleChange}
               required
+              aria-label="Email Address"
             />
 
             <CountryPhoneInput onChange={handlePhoneChange} />
@@ -159,6 +161,7 @@ const HeroSection = ({ data }) => {
               value={formData.lookingFor}
               onChange={handleChange}
               required
+              aria-label="What are you looking for?"
             >
               <option value="">What are you looking for?</option>
               {LOOKING_FOR_OPTIONS.map((opt) => (
@@ -176,6 +179,7 @@ const HeroSection = ({ data }) => {
                 value={formData.businessName}
                 onChange={handleChange}
                 required
+                aria-label="Business Name"
               />
             )}
 
@@ -189,6 +193,7 @@ const HeroSection = ({ data }) => {
                 value={formData.destinationCountry}
                 onChange={handleChange}
                 required
+                aria-label="Destination country"
               />
             )}
 
@@ -199,6 +204,7 @@ const HeroSection = ({ data }) => {
               value={formData.city}
               onChange={handleChange}
               required
+              aria-label="Location (City)"
             >
               <option value="">Location (City)</option>
               {CITY_OPTIONS.map((city) => (

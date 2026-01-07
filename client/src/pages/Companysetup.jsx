@@ -185,6 +185,7 @@ const Companysetup = () => {
                           onChange={handleInputChange}
                           className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none bg-white text-gray-700 appearance-none cursor-pointer"
                           required={field.required || field.isRequired}
+                          aria-label={field.label || field.placeholder}
                           style={{
                             backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
                             backgroundPosition: 'right 0.75rem center',
@@ -212,6 +213,7 @@ const Companysetup = () => {
                           rows={3}
                           className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none resize-none"
                           required={field.required || field.isRequired}
+                          aria-label={field.label || field.placeholder}
                         />
                       );
                     } else {
@@ -230,6 +232,7 @@ const Companysetup = () => {
                           placeholder={field.placeholder || field.label}
                           className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none"
                           required={field.required || field.isRequired}
+                          aria-label={field.label || field.placeholder}
                         />
                       );
                     }

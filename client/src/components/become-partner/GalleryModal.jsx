@@ -43,21 +43,21 @@ const GalleryModal = ({ images, startIndex, onClose }) => {
 
         {/* Actions */}
         <div className="flex items-center gap-4 relative">
-          <button onClick={toggleFullscreen}>
+          <button onClick={toggleFullscreen} aria-label="Toggle Fullscreen">
             <Maximize size={20} />
           </button>
 
-          <button onClick={() => setZoom(z => Math.min(z + 0.25, 2))}>
+          <button onClick={() => setZoom(z => Math.min(z + 0.25, 2))} aria-label="Zoom In">
             <ZoomIn size={20} />
           </button>
 
-          <button onClick={() => setZoom(z => Math.max(z - 0.25, 1))}>
+          <button onClick={() => setZoom(z => Math.max(z - 0.25, 1))} aria-label="Zoom Out">
             <ZoomOut size={20} />
           </button>
 
           {/* Share Dropdown */}
           <div className="relative">
-            <button onClick={() => setShowShare(!showShare)}>
+            <button onClick={() => setShowShare(!showShare)} aria-label="Share">
               <Share2 size={20} />
             </button>
 
@@ -84,7 +84,7 @@ const GalleryModal = ({ images, startIndex, onClose }) => {
             )}
           </div>
 
-          <button onClick={onClose}>
+          <button onClick={onClose} aria-label="Close">
             <X size={22} />
           </button>
         </div>

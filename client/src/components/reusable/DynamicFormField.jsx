@@ -15,19 +15,19 @@ import React from "react";
  * @param {Function} handleInputChange - Change handler function
  * @param {string} theme - 'light' or 'dark' (default: 'light')
  */
-const DynamicFormField = ({ 
-    field, 
-    formValues, 
-    handleInputChange, 
+const DynamicFormField = ({
+    field,
+    formValues,
+    handleInputChange,
     onFileChange,
-    theme = 'light' 
+    theme = 'light'
 }) => {
     const isDark = theme === 'dark';
-    
-    const baseInputClass = isDark 
+
+    const baseInputClass = isDark
         ? "w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder:text-gray-400 focus:border-[#E31E24] focus:ring-1 focus:ring-[#E31E24] outline-none transition-all"
         : "w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:border-[#E31E24] focus:ring-1 focus:ring-[#E31E24] outline-none transition-all placeholder:text-gray-500";
-    
+
     const labelClass = isDark ? "text-white text-sm" : "text-gray-700 text-sm font-medium";
 
     switch (field.type) {
@@ -36,11 +36,12 @@ const DynamicFormField = ({
             return (
                 <div>
                     {field.label && (
-                        <label className={`${labelClass} block mb-2`}>
+                        <label htmlFor={field.name} className={`${labelClass} block mb-2`}>
                             {field.label} {field.required && <span className="text-red-500">*</span>}
                         </label>
                     )}
                     <select
+                        id={field.name}
                         name={field.name}
                         value={formValues[field.name] || ''}
                         onChange={handleInputChange}
@@ -103,11 +104,12 @@ const DynamicFormField = ({
             return (
                 <div>
                     {field.label && (
-                        <label className={`${labelClass} block mb-2`}>
+                        <label htmlFor={field.name} className={`${labelClass} block mb-2`}>
                             {field.label} {field.required && <span className="text-red-500">*</span>}
                         </label>
                     )}
                     <textarea
+                        id={field.name}
                         name={field.name}
                         value={formValues[field.name] || ''}
                         onChange={handleInputChange}
@@ -158,11 +160,12 @@ const DynamicFormField = ({
             return (
                 <div>
                     {field.showLabel && field.label && (
-                        <label className={`${labelClass} block mb-2`}>
+                        <label htmlFor={field.name} className={`${labelClass} block mb-2`}>
                             {field.label} {field.required && <span className="text-red-500">*</span>}
                         </label>
                     )}
                     <input
+                        id={field.name}
                         type={field.type || 'text'}
                         name={field.name}
                         value={formValues[field.name] || ''}

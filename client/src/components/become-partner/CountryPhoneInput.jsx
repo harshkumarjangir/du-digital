@@ -41,11 +41,20 @@ const CountryPhoneInput = ({ onChange }) => {
     return (
         <div ref={wrapperRef} className="relative w-full">
             <div
-                className="flex items-center border border-gray-400 outline-none rounded-md px-3 py-3 bg-white cursor-pointer"
-                onClick={() => setOpen(!open)}
+                className="flex items-center border border-gray-400 outline-none rounded-md px-3 py-3 bg-white"
             >
-                <span className="mr-2">{selected.flag}</span>
-                <span className="mr-2 text-sm font-medium">{selected.code}</span>
+                <button
+                    type="button"
+                    className="flex items-center mr-2 focus:outline-none"
+                    onClick={() => setOpen(!open)}
+                    aria-label="Select Country"
+                    aria-expanded={open}
+                    aria-haspopup="listbox"
+                >
+                    <span className="mr-2">{selected.flag}</span>
+                    <span className="mr-2 text-sm font-medium">{selected.code}</span>
+                    <span className="text-gray-500 text-xs">{open ? "▲" : "▼"}</span>
+                </button>
 
                 <input
                     type="tel"
@@ -54,9 +63,8 @@ const CountryPhoneInput = ({ onChange }) => {
                     onChange={(e) => setPhone(e.target.value)}
                     onFocus={() => setOpen(true)}
                     className="flex-1 outline-none text-sm"
+                    aria-label="Phone Number"
                 />
-
-                <span className="ml-2 text-gray-500">{open ? "▲" : "▼"}</span>
             </div>
 
             {open && (

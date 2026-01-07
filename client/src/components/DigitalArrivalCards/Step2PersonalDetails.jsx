@@ -28,8 +28,9 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                 </h3>
                 <div className="grid md:grid-cols-3 gap-6">
                     <div>
-                        <label className="block text-gray-700 font-medium mb-2">First Name <span className="text-red-500">*</span></label>
+                        <label htmlFor="firstName" className="block text-gray-700 font-medium mb-2">First Name <span className="text-red-500">*</span></label>
                         <input
+                            id="firstName"
                             type="text"
                             name="firstName"
                             value={formData.firstName}
@@ -40,8 +41,9 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                         />
                     </div>
                     <div>
-                        <label className="block text-gray-700 font-medium mb-2">Middle Name</label>
+                        <label htmlFor="middleName" className="block text-gray-700 font-medium mb-2">Middle Name</label>
                         <input
+                            id="middleName"
                             type="text"
                             name="middleName"
                             value={formData.middleName}
@@ -51,8 +53,9 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                         />
                     </div>
                     <div>
-                        <label className="block text-gray-700 font-medium mb-2">Last Name <span className="text-red-500">*</span></label>
+                        <label htmlFor="lastName" className="block text-gray-700 font-medium mb-2">Last Name <span className="text-red-500">*</span></label>
                         <input
+                            id="lastName"
                             type="text"
                             name="lastName"
                             value={formData.lastName}
@@ -64,8 +67,9 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                     </div>
 
                     <div className="md:col-span-2">
-                        <label className="block text-gray-700 font-medium mb-2">Email Address <span className="text-red-500">*</span></label>
+                        <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email Address <span className="text-red-500">*</span></label>
                         <input
+                            id="email"
                             type="email"
                             name="email"
                             value={formData.email}
@@ -77,9 +81,10 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                     </div>
 
                     <div>
-                        <label className="block text-gray-700 font-medium mb-2">Nationality/Citizenship <span className="text-red-500">*</span></label>
+                        <label htmlFor="nationality" className="block text-gray-700 font-medium mb-2">Nationality/Citizenship <span className="text-red-500">*</span></label>
                         <div className="relative">
                             <select
+                                id="nationality"
                                 name="nationality"
                                 value={formData.nationality}
                                 onChange={handleChange}
@@ -98,9 +103,10 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                     </div>
 
                     <div>
-                        <label className="block text-gray-700 font-medium mb-2">Gender <span className="text-red-500">*</span></label>
+                        <label htmlFor="gender" className="block text-gray-700 font-medium mb-2">Gender <span className="text-red-500">*</span></label>
                         <div className="relative">
                             <select
+                                id="gender"
                                 name="gender"
                                 value={formData.gender}
                                 onChange={handleChange}
@@ -119,8 +125,9 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                     </div>
 
                     <div>
-                        <label className="block text-gray-700 font-medium mb-2">Date of Birth <span className="text-red-500">*</span></label>
+                        <label htmlFor="dob" className="block text-gray-700 font-medium mb-2">Date of Birth <span className="text-red-500">*</span></label>
                         <input
+                            id="dob"
                             type="date"
                             name="dob"
                             value={formData.dob}
@@ -139,8 +146,9 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                 </h3>
                 <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                        <label className="block text-gray-700 font-medium mb-2">Address Line 1 <span className="text-red-500">*</span></label>
+                        <label htmlFor="accommodationLine1" className="block text-gray-700 font-medium mb-2">Address Line 1 <span className="text-red-500">*</span></label>
                         <input
+                            id="accommodationLine1"
                             type="text"
                             name="accommodationLine1"
                             value={formData.accommodationLine1}
@@ -151,8 +159,9 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                         />
                     </div>
                     <div>
-                        <label className="block text-gray-700 font-medium mb-2">Address Line 2</label>
+                        <label htmlFor="accommodationLine2" className="block text-gray-700 font-medium mb-2">Address Line 2</label>
                         <input
+                            id="accommodationLine2"
                             type="text"
                             name="accommodationLine2"
                             value={formData.accommodationLine2}
@@ -162,8 +171,9 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                         />
                     </div>
                     <div>
-                        <label className="block text-gray-700 font-medium mb-2">City <span className="text-red-500">*</span></label>
+                        <label htmlFor="accommodationCity" className="block text-gray-700 font-medium mb-2">City <span className="text-red-500">*</span></label>
                         <input
+                            id="accommodationCity"
                             type="text"
                             name="accommodationCity"
                             value={formData.accommodationCity}
@@ -174,8 +184,9 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                         />
                     </div>
                     <div>
-                        <label className="block text-gray-700 font-medium mb-2">State/Province <span className="text-red-500">*</span></label>
+                        <label htmlFor="accommodationState" className="block text-gray-700 font-medium mb-2">State/Province <span className="text-red-500">*</span></label>
                         <input
+                            id="accommodationState"
                             type="text"
                             name="accommodationState"
                             value={formData.accommodationState}
@@ -186,8 +197,9 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                         />
                     </div>
                     <div>
-                        <label className="block text-gray-700 font-medium mb-2">Zip/Postal Code <span className="text-red-500">*</span></label>
+                        <label htmlFor="accommodationZip" className="block text-gray-700 font-medium mb-2">Zip/Postal Code <span className="text-red-500">*</span></label>
                         <input
+                            id="accommodationZip"
                             type="text"
                             name="accommodationZip"
                             value={formData.accommodationZip}

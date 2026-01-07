@@ -44,7 +44,7 @@ const EventsGrid = ({ data }) => {
             {data.map((event) => (
                 <div
                     key={event._id}
-                    className="relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer"
+                    className="relative rounded-2xl overflow-hidden shadow-lg group"
                 // onClick={() => navigate(`/events/${event._id}`)}
                 >
                     {/* IMAGE */}
@@ -69,7 +69,7 @@ const EventsGrid = ({ data }) => {
                         <span className="text-xl font-bold text-red-500">↗</span>
                     </button> */}
 
-                    <Link to={`/events/${event._id}`} className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition z-10">
+                    <Link to={`/events/${event._id}`} aria-label="View event details" className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition z-10">
                         <ArrowUpRight size={24} className="text-red-600 " />
                     </Link>
 

@@ -26,6 +26,7 @@ const ConsultationModal = ({
                 <button
                     onClick={onClose}
                     className="absolute top-3 right-3 z-10 p-2 transition-colors text-red-500 hover:text-red-500 hover:scale-105 cursor-pointer"
+                    aria-label="Close"
                 >
                     <X className="w-5 h-5" />
                 </button>
@@ -85,6 +86,7 @@ const ConsultationModal = ({
                                                 backgroundSize: '1.5em 1.5em',
                                                 paddingRight: '2.5rem'
                                             }}
+                                            aria-label={field.label || field.placeholder}
                                         >
                                             <option value="" disabled>{field.placeholder || field.label}</option>
                                             {field.options?.map((opt, optIdx) => (
@@ -106,6 +108,7 @@ const ConsultationModal = ({
                                         rows={3}
                                         className={`${commonClasses} resize-none col-span-1 md:col-span-2`}
                                         required={field.required || field.isRequired}
+                                        aria-label={field.label || field.placeholder}
                                     />
                                 );
                             } else if (fieldType === 'checkbox') {
@@ -140,6 +143,7 @@ const ConsultationModal = ({
                                         placeholder={field.placeholder || field.label}
                                         className={commonClasses}
                                         required={field.required || field.isRequired}
+                                        aria-label={field.label || field.placeholder}
                                     />
                                 );
                             }
