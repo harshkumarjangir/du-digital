@@ -106,6 +106,11 @@ export const createLocation = async (data) => {
     return response.data;
 };
 
+export const updateLocation = async (id, data) => {
+    const response = await axios.put(`${API_URL_OFFICE}/locations/${id}`, data);
+    return response.data;
+};
+
 export const deleteLocation = async (id) => {
     const response = await axios.delete(`${API_URL_OFFICE}/locations/${id}`);
     return response.data;

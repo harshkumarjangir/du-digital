@@ -55,8 +55,7 @@ export const getPartnerRequests = async (req: Request, res: Response) => {
         let query: any = {};
 
         if (status) {
-            // Handle multiple statuses if comma separated or just single
-            // But based on request "reject and pending", likely just one filter at a time or simple "status" match
+        
             query.status = status;
         }
 

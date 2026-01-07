@@ -29,6 +29,7 @@ import {
   deleteOfficeType,
   getLocations,
   createLocation,
+  updateLocation,
   deleteLocation,
 } from "../services/api";
 
@@ -40,6 +41,8 @@ const OfficeManager = () => {
   const [saving, setSaving] = useState(false);
   const [isTypeModalOpen, setIsTypeModalOpen] = useState(false);
   const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
+  const [editingLocation, setEditingLocation] = useState(null);
+  const [mapPreviewUrl, setMapPreviewUrl] = useState(null);
 
   // Forms state
   const [newType, setNewType] = useState({
@@ -58,6 +61,7 @@ const OfficeManager = () => {
     pincode: "",
     phone: "",
     email: "",
+    googleMapLink: "",
   });
 
   const { toasts, removeToast, showSuccess, showError } = useToast();
@@ -141,28 +145,44 @@ const OfficeManager = () => {
           phone: newLocation.phone,
           email: newLocation.email,
         },
+        googleMapLink: newLocation.googleMapLink,
       };
-      await createLocation(payload);
-      setNewLocation({
-        officeTypeId: "",
-        officeName: "",
-        line1: "",
-        line2: "",
-        city: "",
-        state: "",
-        country: "",
-        pincode: "",
-        phone: "",
-        email: "",
-      });
+
+      if (editingLocation) {
+        await updateLocation(editingLocation._id, payload);
+        showSuccess("Location updated successfully");
+      } else {
+        await createLocation(payload);
+        showSuccess("Location created successfully");
+      }
+
+      resetLocationForm();
       fetchLocations();
       setIsLocationModalOpen(false);
-      showSuccess("Location created successfully");
+      setEditingLocation(null);
     } catch (error) {
-      showError("Failed to create location");
+      showError(editingLocation ? "Failed to update location" : "Failed to create location");
     } finally {
       setSaving(false);
     }
+  };
+
+  const handleEditLocation = (location) => {
+    setEditingLocation(location);
+    setNewLocation({
+      officeTypeId: location.officeTypeId?._id || location.officeTypeId || "",
+      officeName: location.officeName || "",
+      line1: location.address?.line1 || "",
+      line2: location.address?.line2 || "",
+      city: location.address?.city || "",
+      state: location.address?.state || "",
+      country: location.address?.country || "",
+      pincode: location.address?.pincode || "",
+      phone: location.contact?.phone || "",
+      email: location.contact?.email || "",
+      googleMapLink: location.googleMapLink || "",
+    });
+    setIsLocationModalOpen(true);
   };
 
   const handleDeleteLocation = async (id, name) => {
@@ -192,7 +212,9 @@ const OfficeManager = () => {
       pincode: "",
       phone: "",
       email: "",
+      googleMapLink: "",
     });
+    setEditingLocation(null);
   };
 
   if (loading) {
@@ -395,17 +417,25 @@ const OfficeManager = () => {
                           </span>
                         </div>
                       </div>
-                      <button
-                        className="action-btn btn-delete"
-                        onClick={() =>
-                          handleDeleteLocation(
-                            location._id,
-                            location.officeName
-                          )
-                        }
-                        title="Delete location">
-                        <Trash2 size={14} />
-                      </button>
+                      <div className="d-flex gap-1">
+                        <button
+                          className="action-btn btn-edit"
+                          onClick={() => handleEditLocation(location)}
+                          title="Edit location">
+                          <Edit3 size={14} />
+                        </button>
+                        <button
+                          className="action-btn btn-delete"
+                          onClick={() =>
+                            handleDeleteLocation(
+                              location._id,
+                              location.officeName
+                            )
+                          }
+                          title="Delete location">
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
                     </div>
 
                     {/* Address */}
@@ -444,6 +474,27 @@ const OfficeManager = () => {
                           <span style={{ fontSize: "0.875rem" }}>
                             {location.contact.email}
                           </span>
+                        </div>
+                      )}
+                      {location.googleMapLink && (
+                        <div className="d-flex align-items-center gap-2">
+                          <button
+                            type="button"
+                            onClick={() => setMapPreviewUrl(location.googleMapLink)}
+                            className="d-flex align-items-center gap-2"
+                            style={{
+                              color: "#3b82f6",
+                              textDecoration: "none",
+                              background: "none",
+                              border: "none",
+                              padding: 0,
+                              cursor: "pointer"
+                            }}>
+                            <Globe size={14} />
+                            <span style={{ fontSize: "0.875rem" }}>
+                              View on Google Maps
+                            </span>
+                          </button>
                         </div>
                       )}
                     </div>
@@ -530,21 +581,24 @@ const OfficeManager = () => {
         </div>
       )}
 
-      {/* Add Location Modal */}
+      {/* Add/Edit Location Modal */}
       {isLocationModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content" style={{ maxWidth: "700px" }}>
             <div className="modal-header">
-              <h2>Add Office Location</h2>
+              <h2>{editingLocation ? "Edit Office Location" : "Add Office Location"}</h2>
               <button
                 className="modal-close"
-                onClick={() => setIsLocationModalOpen(false)}>
+                onClick={() => {
+                  setIsLocationModalOpen(false);
+                  resetLocationForm();
+                }}>
                 <X size={20} />
               </button>
             </div>
 
             <form onSubmit={handleCreateLocation} className="form-section">
-              {saving && <FormLoadingOverlay message="Creating location..." />}
+              {saving && <FormLoadingOverlay message={editingLocation ? "Updating location..." : "Creating location..."} />}
 
               <div className="modal-body">
                 <div className="grid grid-cols-2 gap-4 mb-4">
@@ -694,25 +748,83 @@ const OfficeManager = () => {
                     />
                   </FormGroup>
                 </div>
+
+                <FormGroup label="Google Map Link" required>
+                  <Input
+                    type="url"
+                    value={newLocation.googleMapLink}
+                    onChange={(e) =>
+                      setNewLocation({
+                        ...newLocation,
+                        googleMapLink: e.target.value,
+                      })
+                    }
+                    placeholder="https://maps.google.com/..."
+                    required
+                  />
+                </FormGroup>
               </div>
 
               <div className="modal-footer">
                 <Button
                   type="button"
                   variant="secondary"
-                  onClick={() => setIsLocationModalOpen(false)}>
+                  onClick={() => {
+                    setIsLocationModalOpen(false);
+                    resetLocationForm();
+                  }}>
                   Cancel
                 </Button>
                 <Button
                   type="submit"
                   loading={saving}
                   disabled={
-                    !newLocation.officeTypeId || !newLocation.officeName
+                    !newLocation.officeTypeId || !newLocation.officeName || !newLocation.googleMapLink
                   }>
-                  Create Location
+                  {editingLocation ? "Update Location" : "Create Location"}
                 </Button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Google Maps Preview Modal */}
+      {mapPreviewUrl && (
+        <div className="modal-overlay">
+          <div className="modal-content" style={{ maxWidth: "900px", height: "80vh" }}>
+            <div className="modal-header">
+              <h2>Google Maps Preview</h2>
+              <button
+                className="modal-close"
+                onClick={() => setMapPreviewUrl(null)}>
+                <X size={20} />
+              </button>
+            </div>
+            <div className="modal-body" style={{ padding: 0, height: "calc(100% - 120px)" }}>
+              <iframe
+                src={mapPreviewUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Google Maps Preview"
+              />
+            </div>
+            <div className="modal-footer">
+              <Button
+                variant="secondary"
+                onClick={() => setMapPreviewUrl(null)}>
+                Close
+              </Button>
+              <Button
+                onClick={() => window.open(mapPreviewUrl, "_blank")}>
+                <Globe size={16} />
+                Open in New Tab
+              </Button>
+            </div>
           </div>
         </div>
       )}

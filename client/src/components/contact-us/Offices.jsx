@@ -1,11 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGroupedOffices } from "../../redux/slices/officeSlice";
-import { MapPin } from "lucide-react";
+import { MapPin, X, Globe } from "lucide-react";
 
 const Offices = () => {
     const dispatch = useDispatch();
     const { india, loading, error } = useSelector((state) => state.office);
+    const [mapPreviewUrl, setMapPreviewUrl] = useState(null);
 
     useEffect(() => {
         dispatch(fetchGroupedOffices());
@@ -94,15 +95,13 @@ const Offices = () => {
                             </div>
 
                             {/* View on Maps */}
-                            <a
-                                href={office.mapLink || "#"}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 text-sm font-medium text-red-600 hover:text-red-700"
+                            <button
+                                onClick={() => setMapPreviewUrl(office.googleMapLink)}
+                                className="inline-flex items-center gap-2 text-sm font-medium text-red-600 hover:text-red-700 bg-transparent border-none cursor-pointer"
                             >
                                 <MapPin size={16} />
                                 View on Maps
-                            </a>
+                            </button>
                         </div>
                     ))}
                 </div>
@@ -113,6 +112,55 @@ const Offices = () => {
                         <p className="text-gray-500">
                             No offices available at the moment.
                         </p>
+                    </div>
+                )}
+
+                {/* Google Maps Preview Modal */}
+                {mapPreviewUrl && (
+                    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+                        <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl h-[80vh] flex flex-col">
+                            {/* Modal Header */}
+                            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+                                <h2 className="text-xl font-semibold text-gray-900">Google Maps Preview</h2>
+                                <button
+                                    onClick={() => setMapPreviewUrl(null)}
+                                    className="p-2 hover:bg-gray-100 rounded-full transition"
+                                >
+                                    <X size={20} className="text-gray-600" />
+                                </button>
+                            </div>
+
+                            {/* Modal Body - iframe */}
+                            <div className="flex-1 overflow-hidden">
+                                <iframe
+                                    src={mapPreviewUrl}
+                                    width="100%"
+                                    height="100%"
+                                    style={{ border: 0 }}
+                                    allowFullScreen=""
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    title="Google Maps Preview"
+                                />
+                            </div>
+
+                            {/* Modal Footer */}
+                            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-gray-200">
+                                <button
+                                    onClick={() => setMapPreviewUrl(null)}
+                                    className="px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition"
+                                >
+                                    Close
+                                </button>
+                                <button
+                                    onClick={() => window.open(mapPreviewUrl, "_blank")}
+                                    className="inline-flex items-center gap-2 px-4 py-2 text-white bg-[#DA3745] hover:bg-[#c12d3a] rounded-lg font-medium transition"
+                                >
+                                    <Globe size={16} />
+                                    Open in New Tab
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 )}
             </div>

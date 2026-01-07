@@ -52,18 +52,47 @@ export const getLocations = async (req: Request, res: Response) => {
 
 export const createLocation = async (req: Request, res: Response) => {
     try {
-        const { officeTypeId, officeName, address, contact } = req.body;
+        const { officeTypeId, officeName, address, contact, googleMapLink } = req.body;
         const newLocation = new OfficeLocation({
             officeTypeId,
             officeName,
             address,
-            contact
+            contact,
+            googleMapLink
         });
         await newLocation.save();
         res.status(201).json(newLocation);
     } catch (error) {
         console.error("Create Location Error", error);
         res.status(500).json({ message: "Error creating location" });
+    }
+};
+
+export const updateLocation = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const { officeTypeId, officeName, address, contact, googleMapLink } = req.body;
+
+        const updatedLocation = await OfficeLocation.findByIdAndUpdate(
+            id,
+            {
+                officeTypeId,
+                officeName,
+                address,
+                contact,
+                googleMapLink
+            },
+            { new: true }
+        ).populate("officeTypeId");
+
+        if (!updatedLocation) {
+            return res.status(404).json({ message: "Location not found" });
+        }
+
+        res.status(200).json(updatedLocation);
+    } catch (error) {
+        console.error("Update Location Error", error);
+        res.status(500).json({ message: "Error updating location" });
     }
 };
 

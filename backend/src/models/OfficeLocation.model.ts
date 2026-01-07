@@ -26,6 +26,11 @@ const officeLocationSchema = new mongoose.Schema({
         email: String
     },
 
+    googleMapLink: {
+        type: String,
+        required: true
+    },
+
 
 
     isActive: {

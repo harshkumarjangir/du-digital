@@ -5,6 +5,7 @@ import {
     deleteOfficeType,
     getLocations,
     createLocation,
+    updateLocation,
     deleteLocation,
     getGroupedOffices
 } from "../controllers/office.controller";
@@ -20,6 +21,7 @@ router.delete("/types/:id", deleteOfficeType);
 router.get("/locations", getLocations);
 router.get("/locations/grouped", getGroupedOffices);
 router.post("/locations", createLocation);
+router.put("/locations/:id", updateLocation);
 router.delete("/locations/:id", deleteLocation);
 
 export default router;
