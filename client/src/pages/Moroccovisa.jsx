@@ -167,7 +167,7 @@ const Moroccovisa = () => {
                           ))}
                         </select>
                       );
-                    } else if(fieldType === 'textarea') {
+                    } else if (fieldType === 'textarea') {
                       return (
                         <textarea
                           key={field._id || index}
@@ -179,42 +179,44 @@ const Moroccovisa = () => {
                           required={field.required}
                         />
                       );
-                    }else if(fieldType=="redio"){
-      <div  className="space-y-2">
-                        <label className="text-white text-sm font-medium block mb-2">
+                    } else if (fieldType == "redio") {
+                      return (
+                        <div className="space-y-2">
+                          <label className="text-white text-sm font-medium block mb-2">
                             {field.label} {field.required && <span className="text-red-500">*</span>}
-                        </label>
-                        <div className="flex flex-wrap gap-4">
+                          </label>
+                          <div className="flex flex-wrap gap-4">
                             {field.options?.map((opt, i) => (
-                                <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
-                                    <input
-                                        type="radio"
-                                        name={field.name}
-                                        value={opt.value || opt.label || opt}
-                                        checked={formValues[field.name] === (opt.value || opt.label || opt)}
-                                        onChange={handleInputChange}
-                                        className="w-4 h-4"
-                                        required={field.required}
-                                    />
-                                    <span className="text-sm">{opt.label || opt}</span>
-                                </label>
+                              <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                                <input
+                                  type="radio"
+                                  name={field.name}
+                                  value={opt.value || opt.label || opt}
+                                  checked={formValues[field.name] === (opt.value || opt.label || opt)}
+                                  onChange={handleInputChange}
+                                  className="w-4 h-4"
+                                  required={field.required}
+                                />
+                                <span className="text-sm">{opt.label || opt}</span>
+                              </label>
                             ))}
+                          </div>
                         </div>
-                    </div>
-  
-
-                    } else if(fieldType==="checkbox"){
- <label key={field._id || `checkbox-${index}`} className="flex items-start gap-3 text-gray-600 cursor-pointer mb-4">
-                        <input
-                          type="checkbox"
-                          name={field.name}
-                          checked={formValues[field.name] || false}
-                          onChange={handleInputChange}
-                          className="mt-1 w-4 h-4 accent-red-600 rounded flex-shrink-0"
-                        />
-                        <span className="text-xs leading-relaxed">{field.label}</span>
-                      </label>
-                    }else {
+                      );
+                    } else if (fieldType === "checkbox") {
+                      return (
+                        <label key={field._id || `checkbox-${index}`} className="flex items-start gap-3 text-gray-600 cursor-pointer mb-4">
+                          <input
+                            type="checkbox"
+                            name={field.name}
+                            checked={formValues[field.name] || false}
+                            onChange={handleInputChange}
+                            className="mt-1 w-4 h-4 accent-red-600 rounded flex-shrink-0"
+                          />
+                          <span className="text-xs leading-relaxed">{field.label}</span>
+                        </label>
+                      );
+                    } else {
                       return (
                         <input
                           key={field._id || index}

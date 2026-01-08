@@ -529,7 +529,7 @@ const Southkoreavisaforindians = () => {
 
       {/* ===== HOW TO APPLY ===== */}
       {howToApplySection.length > 0 && (
-        <section className="py-20 relative overflow-hidden" style={{ backgroundColor: '#0f0f1a' }}>
+        <section className="py-20 relative overflow-hidden bg-[#3a3a3c]" >
 
 
           <div className="relative z-10 max-w-5xl mx-auto px-6">
@@ -544,7 +544,7 @@ const Southkoreavisaforindians = () => {
               {howToApplySection.map((item, index) => (
                 <div
                   key={item._id || index}
-                  className="bg-white/5 backdrop-blur-sm rounded-xl p-6 relative overflow-hidden border border-white/10"
+                  className=" backdrop-blur-sm rounded-xl p-6 relative overflow-hidden border bg-white border-white/10"
                 >
                   <div
                     className="w-12 h-12 rounded-lg flex items-center justify-center mb-4"
@@ -552,7 +552,7 @@ const Southkoreavisaforindians = () => {
                   >
                     {index === 0 ? <Building className="w-6 h-6 text-white" /> : <Check className="w-6 h-6 text-white" />}
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                  <h3 className="text-lg font-bold text-gray-400 mb-2">{item.title}</h3>
                   <p className="text-gray-400 text-sm">
                     {item.contentHtml?.replace(/\r?\n/g, ' ').trim()}
                   </p>
@@ -572,7 +572,7 @@ const Southkoreavisaforindians = () => {
 
       {/* ===== WHY CHOOSE DU GLOBAL ===== */}
       {whyChooseSection.length > 0 && (
-        <section className="py-20 bg-black relative overflow-hidden">
+        <section className="py-20  relative overflow-hidden">
           {/* SOUTH KOREA watermark */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white/5 text-[120px] font-bold pointer-events-none whitespace-nowrap">
             SOUTH KOREA
@@ -581,10 +581,9 @@ const Southkoreavisaforindians = () => {
           <div className="relative z-10 max-w-6xl mx-auto px-6">
             {/* Section Header */}
             <div className="text-center mb-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+              <h2 className="text-3xl md:text-4xl font-bold mb-3">
                 Why Choose DU Global?
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
 
             {/* Subtitle */}
@@ -605,7 +604,7 @@ const Southkoreavisaforindians = () => {
                 return (
                   <div
                     key={item._id || index}
-                    className="relative rounded-xl overflow-hidden min-h-[280px] group"
+                    className="relative rounded-xl hover:bg-[rgba(227,30,37,0.48)] overflow-hidden min-h-[280px] group"
                     style={{
                       backgroundImage: `url('${bgImage}')`,
                       backgroundSize: 'cover',
@@ -615,7 +614,7 @@ const Southkoreavisaforindians = () => {
                     {/* Dark overlay */}
                     <div className="absolute inset-0 bg-black/60"></div>
                     {/* Red top accent */}
-                    <div className="absolute top-0 left-0 right-0 h-1" style={{ backgroundColor: '#E31E24' }}></div>
+                    {/* <div className="absolute top-0 left-0 right-0 h-1" style={{ backgroundColor: '#E31E24' }}></div> */}
                     {/* Content */}
                     <div className="relative z-10 p-6 h-full flex flex-col justify-end">
                       <h3 className="text-xl font-bold text-white mb-2">{item.title?.trim()}</h3>

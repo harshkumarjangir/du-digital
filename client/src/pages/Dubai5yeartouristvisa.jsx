@@ -3,6 +3,8 @@ import { Check, ChevronDown, ChevronUp, Star, Shield, Clock, Users, Globe, Check
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
 
+import WhyUsSection from "../components/reusable/WhyUsSection";
+import homeData from "../data/homeData.json";
 const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
 
@@ -292,37 +294,47 @@ const Dubai5yeartouristvisa = () => {
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
 
-            {feesSection.map((item, index) => (
-              <div key={item._id || index} className="bg-white rounded-2xl shadow-lg p-8 text-center">
-                <h3 className="text-2xl font-bold text-gray-900 mb-8">{item.title}</h3>
+            {feesSection.map((item, index) => {
+              // Parse contentHtml for dynamic key-value pairs
+              const lines = item.contentHtml?.split(/[\r\n]+/).filter(line => line.trim()) || [];
+              const pairs = [];
 
-                {/* Visa details grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-                  <div className="p-4">
-                    <p className="text-gray-500 text-sm mb-2">Processing time</p>
-                    <p className="text-xl font-bold text-gray-900">7 Working Days</p>
+              for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (line.endsWith(':')) {
+                  const label = line; // Keep the colon if desired, or slice(0, -1) to remove
+                  const value = lines[i + 1]?.trim() || '';
+                  pairs.push({ label, value });
+                  i++; // Skip the value line
+                }
+              }
+
+              return (
+                <div key={item._id || index} className="bg-white rounded-2xl shadow-lg p-8 max-w-md mx-auto">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6 text-left">{item.title}</h3>
+
+                  {/* Visa details dynamic list */}
+                  <div className="space-y-4 mb-8">
+                    {pairs.map((pair, idx) => (
+                      <div key={idx} className="flex justify-between items-center border-b border-gray-100 pb-2">
+                        <span className="text-gray-600 text-lg">{pair.label}</span>
+                        <span className="text-lg font-medium text-gray-900">{pair.value}</span>
+                      </div>
+                    ))}
                   </div>
-                  <div className="p-4">
-                    <p className="text-gray-500 text-sm mb-2">Stay period</p>
-                    <p className="text-xl font-bold text-gray-900">90 Days*</p>
+
+                  <div className="text-center">
+                    <button
+                      className="px-10 py-3 rounded-md font-medium text-lg transition-all duration-300 bg-[#E31E24] text-white hover:bg-[#c4191f] shadow-md"
+                    >
+                      Enquire Now
+                    </button>
                   </div>
-                  <div className="p-4">
-                    <p className="text-gray-500 text-sm mb-2">Validity</p>
-                    <p className="text-xl font-bold text-gray-900">5 Years</p>
-                  </div>
-                  <div className="p-4">
-                    <p className="text-gray-500 text-sm mb-2">Entry</p>
-                    <p className="text-xl font-bold text-gray-900">Multiple</p>
-                  </div>
+
+                  <p className="text-gray-500 text-sm mt-6 text-left">*T&C Apply</p>
                 </div>
-
-                <button
-                  className="px-10 py-4 rounded-lg font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]"
-                >
-                  Enquire Now
-                </button>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
       )}
@@ -399,94 +411,8 @@ const Dubai5yeartouristvisa = () => {
       )}
 
       {/* ===== WHY CHOOSE US SECTION ===== */}
-      <section className="py-16 bg-black relative overflow-hidden">
-        {/* Decorative curved lines on left */}
-        <div
-          className="absolute left-0 top-0 w-1/3 h-full opacity-20 pointer-events-none"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cpath d='M0 100 Q100 200 0 300' fill='none' stroke='white' stroke-width='0.5'/%3E%3Cpath d='M20 80 Q120 200 20 320' fill='none' stroke='white' stroke-width='0.5'/%3E%3Cpath d='M40 60 Q140 200 40 340' fill='none' stroke='white' stroke-width='0.5'/%3E%3Cpath d='M60 40 Q160 200 60 360' fill='none' stroke='white' stroke-width='0.5'/%3E%3C/svg%3E")`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'left center',
-            backgroundSize: 'contain'
-          }}
-        />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-3 gap-12 items-start">
-            {/* Left - Title */}
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white italic mb-4">
-                Why Choose Us
-              </h2>
-              {/* Decorative lines under title */}
-              <div className="space-y-1">
-                <div className="w-24 h-0.5 bg-gray-600"></div>
-                <div className="w-16 h-0.5 bg-gray-600"></div>
-                <div className="w-10 h-0.5 bg-gray-600"></div>
-              </div>
-            </div>
-
-            {/* Right - Features Grid 2x2 */}
-            <div className="lg:col-span-2 grid md:grid-cols-2 gap-8">
-              {/* Quality and Value */}
-              <div className="flex items-start gap-4">
-                <div
-                  className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0"
-                  style={{ backgroundColor: '#E31E24' }}
-                >
-                  <Users className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-2">Quality and Value</h3>
-                  <p className="text-gray-400 text-sm">Quality Beyond Compromise, Value That Is Unmatched.</p>
-                </div>
-              </div>
-
-              {/* Services */}
-              <div className="flex items-start gap-4">
-                <div
-                  className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0"
-                  style={{ backgroundColor: '#E31E24' }}
-                >
-                  <Users className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-2">Services</h3>
-                  <p className="text-gray-400 text-sm">Service that exceeds expectations</p>
-                </div>
-              </div>
-
-              {/* Security */}
-              <div className="flex items-start gap-4">
-                <div
-                  className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0"
-                  style={{ backgroundColor: '#E31E24' }}
-                >
-                  <Shield className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-2">Security</h3>
-                  <p className="text-gray-400 text-sm">The utmost security of our clients data is paramount for us</p>
-                </div>
-              </div>
-
-              {/* Technology */}
-              <div className="flex items-start gap-4">
-                <div
-                  className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0"
-                  style={{ backgroundColor: '#E31E24' }}
-                >
-                  <Globe className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-2">Technology</h3>
-                  <p className="text-gray-400 text-sm">Optimum use of evolving technology to strengthen our portfolio and service mechanism</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <WhyUsSection data={homeData.whyUsSection} />
 
       {/* ===== FAQ SECTION ===== */}
       {faqs.length > 0 && (

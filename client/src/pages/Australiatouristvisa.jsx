@@ -314,25 +314,26 @@ const Australiatouristvisa = () => {
       </section>
 
       {/* ===== VISA TYPES, PROCESSING TIME, AND FEES ===== */}
-      <section className="py-20" style={{ backgroundColor: '#B31D1D' }}>
+      <section className="py-20" > 
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+        Types of Australia Tourist Visas,<br />Processing Time, and Fees
+      </h2>
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid  lg:grid-cols-2 gap-x-5 rounded-2xl items-center" style={{ backgroundColor: '#B31D1D' }}>
             {/* Left - Image */}
-            <div className="flex justify-center">
+            <div className="flex justify-center h-full">
               <img
-                src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                src="/imageinau.jpg"
                 alt="Australia Visa Application"
-                className="rounded-2xl shadow-2xl max-h-[400px]"
+                className="rounded-2xl shadow-2xl h-full"
               />
             </div>
 
             {/* Right - Visa Details Cards */}
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">
-                Types of Australia Tourist Visas,<br />Processing Time, and Fees
-              </h2>
+            <div >
+            
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4 m-2">
                 {/* Processing Time Card */}
                 <div className="border-2 border-white/30 rounded-xl p-5 bg-white/10 backdrop-blur-sm">
                   <div className="flex items-center gap-3 mb-3">
@@ -569,43 +570,54 @@ const Australiatouristvisa = () => {
 
       {/* ===== FAQ SECTION ===== */}
       {faqs.length > 0 && (
-        <section className="py-20 bg-gray-50 relative overflow-hidden">
-          {/* Watermark */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-200 text-[120px] font-bold opacity-30 pointer-events-none">
-            FAQS
-          </div>
+        <section className="bg-white py-24">
+          <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
-          <div className="relative z-10 max-w-4xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-                Frequently Asked Questions
+            {/* LEFT CONTENT */}
+            <div>
+              <h2 className="text-4xl font-bold leading-tight mb-6">
+                Any questions? <br />
+                We got you.
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+
+              <p className="text-gray-500 max-w-md mb-6">
+                Yet bed any for assistance indulgence unpleasing. Not thoughts all
+                exercise blessing. Indulgence way everything joy alteration
+                boisterous the attachment.
+              </p>
+
+              <a
+                href="#"
+                className="flex items-center text-[#FF1033] font-medium hover:underline"
+              >
+                More FAQs →
+              </a>
             </div>
 
-            {/* FAQ Accordion - Red border style */}
-            <div className="space-y-4">
+            {/* RIGHT FAQ LIST */}
+            <div className="divide-y">
               {faqs.map((faq, index) => (
-                <div
-                  key={faq._id || index}
-                  className="rounded-lg overflow-hidden border-2"
-                  style={{ borderColor: '#E31E24' }}
-                >
+
+                <div key={index} className="py-6">
                   <button
-                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    className="w-full px-6 py-5 flex items-center justify-between text-left bg-white"
+                    onClick={() => setOpenFaq(index)}
+                    className="w-full flex justify-between items-center text-left"
+                    aria-expanded={openFaq === index}
+                    aria-controls={`faq-answer-${index}`}
                   >
-                    <span className="font-semibold text-gray-900 pr-4">{faq.question}</span>
-                    <ChevronDown
-                      className={`w-6 h-6 flex-shrink-0 transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`}
-                      style={{ color: '#E31E24' }}
-                    />
+                    <span className="text-lg font-semibold text-gray-900">
+                      {faq.question}
+                    </span>
+
+                    <span className="text-2xl text-gray-500">
+                      {openFaq === index ? "−" : "+"}
+                    </span>
                   </button>
 
                   {openFaq === index && (
-                    <div className="px-6 py-5 bg-gray-50 border-t" style={{ borderColor: '#E31E24' }}>
-                      <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
-                    </div>
+                    <p className="mt-4 text-gray-500 max-w-xl">
+                      {faq.answer}
+                    </p>
                   )}
                 </div>
               ))}
