@@ -3,6 +3,7 @@ import Event from "../models/event.model";
 import EventImage from "../models/eventImages.model";
 import fs from "fs";
 import path from "path";
+import { getCache, setCache, deleteCache, deleteCacheByPattern } from "../utils/cache";
 
 // Create Event
 export const createEvent = async (req: Request, res: Response) => {
@@ -29,6 +30,10 @@ export const createEvent = async (req: Request, res: Response) => {
         });
 
         await newEvent.save();
+
+        // Invalidate cache
+        deleteCache('events_list');
+
         res.status(201).json(newEvent);
     } catch (error) {
         console.error("Create Event Error", error);
@@ -39,7 +44,19 @@ export const createEvent = async (req: Request, res: Response) => {
 // Get Events
 export const getEvents = async (req: Request, res: Response) => {
     try {
+        const cacheKey = 'events_list';
+
+        // Check cache
+        const cachedEvents = getCache(cacheKey);
+        if (cachedEvents) {
+            return res.status(200).json(cachedEvents);
+        }
+
         const events = await Event.find().sort({ date: -1 });
+
+        // Set cache
+        setCache(cacheKey, events, 300);
+
         res.status(200).json(events);
     } catch (error) {
         console.error("Get Events Error", error);
@@ -76,6 +93,10 @@ export const updateEvent = async (req: Request, res: Response) => {
         }
 
         await event.save();
+
+        // Invalidate cache
+        deleteCache('events_list');
+
         res.status(200).json(event);
     } catch (error) {
         console.error("Update Event Error", error);
@@ -112,6 +133,11 @@ export const deleteEvent = async (req: Request, res: Response) => {
         await EventImage.deleteMany({ event: id });
 
         await Event.findByIdAndDelete(id);
+
+        // Invalidate caches
+        deleteCache('events_list');
+        deleteCache(`event_images_${id}`);
+
         res.status(200).json({ message: "Event deleted successfully" });
     } catch (error) {
         console.error("Delete Event Error", error);
@@ -143,6 +169,10 @@ export const addEventImages = async (req: Request, res: Response) => {
         });
 
         const savedImages = await Promise.all(imagePromises);
+
+        // Invalidate cache
+        deleteCache(`event_images_${id}`);
+
         res.status(201).json(savedImages);
     } catch (error) {
         console.error("Add Event Images Error", error);
@@ -154,7 +184,19 @@ export const addEventImages = async (req: Request, res: Response) => {
 export const getEventImages = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
+        const cacheKey = `event_images_${id}`;
+
+        // Check cache
+        const cachedImages = getCache(cacheKey);
+        if (cachedImages) {
+            return res.status(200).json(cachedImages);
+        }
+
         const images = await EventImage.find({ event: id });
+
+        // Set cache
+        setCache(cacheKey, images, 300);
+
         res.status(200).json(images);
     } catch (error) {
         console.error("Get Event Images Error", error);

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import NewsMedia from "../models/News.model";
+import { getCache, setCache, deleteCache, deleteCacheByPattern } from "../utils/cache";
 
 // Create News
 export const createNews = async (req: Request, res: Response) => {
@@ -25,6 +26,10 @@ export const createNews = async (req: Request, res: Response) => {
         });
 
         await newNews.save();
+
+        // Invalidate cache
+        deleteCacheByPattern('news_');
+
         res.status(201).json(newNews);
     } catch (error) {
         console.error("Create News Error", error);
@@ -36,6 +41,14 @@ export const createNews = async (req: Request, res: Response) => {
 export const getNews = async (req: Request, res: Response) => {
     try {
         const { year } = req.query;
+        const cacheKey = `news_${year || 'all'}`;
+
+        // Check cache
+        const cachedNews = getCache(cacheKey);
+        if (cachedNews) {
+            return res.status(200).json(cachedNews);
+        }
+
         let query: any = {};
 
         if (year) {
@@ -48,6 +61,10 @@ export const getNews = async (req: Request, res: Response) => {
         }
 
         const news = await NewsMedia.find(query).sort({ datePublished: -1 });
+
+        // Set cache
+        setCache(cacheKey, news, 300);
+
         res.status(200).json(news);
     } catch (error) {
         console.error("Get News Error", error);
@@ -79,6 +96,9 @@ export const updateNews = async (req: Request, res: Response) => {
             return res.status(404).json({ message: "News not found" });
         }
 
+        // Invalidate cache
+        deleteCacheByPattern('news_');
+
         res.status(200).json(updatedNews);
     } catch (error) {
         console.error("Update News Error", error);
@@ -97,6 +117,9 @@ export const deleteNews = async (req: Request, res: Response) => {
         }
 
         // Optional: Delete file from uploads folder if needed
+
+        // Invalidate cache
+        deleteCacheByPattern('news_');
 
         res.status(200).json({ message: "News deleted successfully" });
     } catch (error) {

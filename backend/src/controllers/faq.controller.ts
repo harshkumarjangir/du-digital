@@ -1,11 +1,19 @@
 import { Request, Response } from "express";
 import FAQ from "../models/FAQ.model";
 import Form from "../models/Pages.model";
+import { getCache, setCache, deleteCache, deleteCacheByPattern } from "../utils/cache";
 
 // Get all FAQs
 export const getFAQs = async (req: Request, res: Response) => {
     try {
         const { formId } = req.query;
+        const cacheKey = `faqs_${formId || 'all'}`;
+
+        // Check cache
+        const cachedFAQs = getCache(cacheKey);
+        if (cachedFAQs) {
+            return res.status(200).json(cachedFAQs);
+        }
 
         const filter: any = {};
         if (formId) {
@@ -15,6 +23,9 @@ export const getFAQs = async (req: Request, res: Response) => {
         const faqs = await FAQ.find(filter)
             .populate('formId', 'name slug')
             .sort({ order: 1 });
+
+        // Set cache
+        setCache(cacheKey, faqs, 300);
 
         res.status(200).json(faqs);
     } catch (error) {
@@ -26,12 +37,23 @@ export const getFAQs = async (req: Request, res: Response) => {
 export const getFAQById = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
+        const cacheKey = `faq_${id}`;
+
+        // Check cache
+        const cachedFAQ = getCache(cacheKey);
+        if (cachedFAQ) {
+            return res.status(200).json(cachedFAQ);
+        }
+
         const faq = await FAQ.findById(id)
             .populate('formId', 'name slug');
 
         if (!faq) {
             return res.status(404).json({ message: "FAQ not found" });
         }
+
+        // Set cache
+        setCache(cacheKey, faq, 300);
 
         res.status(200).json(faq);
     } catch (error) {
@@ -71,6 +93,11 @@ export const createFAQ = async (req: Request, res: Response) => {
         const savedFAQ = await newFAQ.save();
         const populated = await savedFAQ.populate('formId', 'name slug');
 
+        // Invalidate caches
+        deleteCacheByPattern('faqs_');
+        // Also invalidate form cache because FAQs are included in getFormBySlug
+        deleteCacheByPattern('form_');
+
         res.status(201).json(populated);
     } catch (error) {
         res.status(500).json({ message: "Error creating FAQ", error });
@@ -101,6 +128,11 @@ export const updateFAQ = async (req: Request, res: Response) => {
             return res.status(404).json({ message: "FAQ not found" });
         }
 
+        // Invalidate caches
+        deleteCacheByPattern('faqs_');
+        deleteCache(`faq_${id}`);
+        deleteCacheByPattern('form_'); // For the specific form it belongs to
+
         res.status(200).json(updatedFAQ);
     } catch (error) {
         res.status(500).json({ message: "Error updating FAQ", error });
@@ -117,6 +149,11 @@ export const deleteFAQ = async (req: Request, res: Response) => {
         if (!deletedFAQ) {
             return res.status(404).json({ message: "FAQ not found" });
         }
+
+        // Invalidate caches
+        deleteCacheByPattern('faqs_');
+        deleteCache(`faq_${id}`);
+        deleteCacheByPattern('form_');
 
         res.status(200).json({ message: "FAQ deleted successfully" });
     } catch (error) {

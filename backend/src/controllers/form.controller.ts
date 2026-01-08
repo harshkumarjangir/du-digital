@@ -7,11 +7,19 @@ import ContentSection from "../models/ContentSection.model";
 import PricingPlan from "../models/PricingPlan.model";
 import FormImage from "../models/FormImages.model";
 import FormEmployeesAddress from "../models/FormEmployeesAddress.model";
+import { getCache, setCache, deleteCacheByPattern, CACHE_KEYS, deleteCache } from "../utils/cache";
 
 // Get form by slug with all related data
 export const getFormBySlug = async (req: Request, res: Response) => {
     try {
         const { slug } = req.params;
+        const cacheKey = `form_${slug}`;
+
+        // Check cache
+        const cachedData = getCache(cacheKey);
+        if (cachedData) {
+            return res.status(200).json(cachedData);
+        }
 
         const form = await Form.findOne({ slug });
 
@@ -44,7 +52,7 @@ export const getFormBySlug = async (req: Request, res: Response) => {
             groupedContentSections[key].push(section);
         });
 
-        res.status(200).json({
+        const responseData = {
             ...form.toObject(),
             fields,
             documents,
@@ -53,7 +61,12 @@ export const getFormBySlug = async (req: Request, res: Response) => {
             pricingPlans,
             formImages,
             formEmployeesAddresses
-        });
+        };
+
+        // Set cache
+        setCache(cacheKey, responseData, 300);
+
+        res.status(200).json(responseData);
     } catch (error) {
         res.status(500).json({ message: "Error fetching form data", error });
     }
@@ -61,6 +74,14 @@ export const getFormBySlug = async (req: Request, res: Response) => {
 // Get all forms
 export const getForms = async (req: Request, res: Response) => {
     try {
+        const cacheKey = CACHE_KEYS.FORMS;
+
+        // Check cache
+        const cachedForms = getCache(cacheKey);
+        if (cachedForms) {
+            return res.status(200).json(cachedForms);
+        }
+
         const forms = await Form.find().sort({ createdAt: -1 });
 
         // Get field count for each form
@@ -73,6 +94,9 @@ export const getForms = async (req: Request, res: Response) => {
                 };
             })
         );
+
+        // Set cache
+        setCache(cacheKey, formsWithFieldCount, 300);
 
         res.status(200).json(formsWithFieldCount);
     } catch (error) {
@@ -158,6 +182,12 @@ export const createForm = async (req: Request, res: Response) => {
 
         // Fetch the form with fields
         const fieldsData = await FormField.find({ formId: savedForm._id }).sort({ order: 1 });
+
+        // Invalidate caches
+        deleteCache(CACHE_KEYS.FORMS);
+        // We can't easily guess all affected caches, but since this is create, mainly list cache.
+        // Also invalidate by pattern just in case
+        deleteCacheByPattern('form_');
 
         res.status(201).json({
             ...savedForm.toObject(),
@@ -257,6 +287,10 @@ export const updateForm = async (req: Request, res: Response) => {
         // Fetch the updated form with fields
         const fieldsData = await FormField.find({ formId: id }).sort({ order: 1 });
 
+        // Invalidate caches
+        deleteCache(CACHE_KEYS.FORMS);
+        deleteCacheByPattern('form_');
+
         res.status(200).json({
             ...updatedForm.toObject(),
             fields: fieldsData
@@ -279,6 +313,10 @@ export const deleteForm = async (req: Request, res: Response) => {
 
         // Delete associated fields
         await FormField.deleteMany({ formId: id });
+
+        // Invalidate caches
+        deleteCache(CACHE_KEYS.FORMS);
+        deleteCacheByPattern('form_');
 
         res.status(200).json({ message: "Form and its fields deleted successfully" });
     } catch (error) {

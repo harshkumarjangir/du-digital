@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Blog from "../models/Blog.model";
+import { getCache, setCache, deleteCache, deleteCacheByPattern } from "../utils/cache";
 
 // Get paginated blogs
 export const getBlogs = async (req: Request, res: Response) => {
@@ -7,6 +8,14 @@ export const getBlogs = async (req: Request, res: Response) => {
         const page = parseInt(req.query.page as string) || 1;
         const limit = parseInt(req.query.limit as string) || 10;
         let IsUser = Boolean(req.query.IsUsers as string) || false;
+
+        const cacheKey = `blogs_${page}_${limit}_${IsUser}`;
+
+        // Check cache
+        const cachedData = getCache(cacheKey);
+        if (cachedData) {
+            return res.status(200).json(cachedData);
+        }
 
         const skip = (page - 1) * limit;
 
@@ -20,13 +29,18 @@ export const getBlogs = async (req: Request, res: Response) => {
 
         const total = await Blog.countDocuments();
 
-        res.status(200).json({
+        const responseData = {
             blogs,
             total,
             page,
             totalPages: Math.ceil(total / limit),
             hasMore: page * limit < total
-        });
+        };
+
+        // Set cache (5 minutes)
+        setCache(cacheKey, responseData, 300);
+
+        res.status(200).json(responseData);
     } catch (error) {
         res.status(500).json({ message: "Error fetching blogs", error });
     }
@@ -36,11 +50,22 @@ export const getBlogs = async (req: Request, res: Response) => {
 export const getBlogById = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
+        const cacheKey = `blog_${id}`;
+
+        // Check cache
+        const cachedBlog = getCache(cacheKey);
+        if (cachedBlog) {
+            return res.status(200).json(cachedBlog);
+        }
+
         const blog = await Blog.findById(id);
 
         if (!blog) {
             return res.status(404).json({ message: "Blog not found" });
         }
+
+        // Set cache (5 minutes)
+        setCache(cacheKey, blog, 300);
 
         res.status(200).json(blog);
     } catch (error) {
@@ -77,6 +102,10 @@ export const createBlog = async (req: Request, res: Response) => {
         });
 
         const savedBlog = await newBlog.save();
+
+        // Invalidate list cache
+        deleteCacheByPattern('blogs_');
+
         res.status(201).json(savedBlog);
     } catch (error) {
         res.status(500).json({ message: "Error creating blog", error });
@@ -99,6 +128,10 @@ export const updateBlog = async (req: Request, res: Response) => {
             return res.status(404).json({ message: "Blog not found" });
         }
 
+        // Invalidate list cache and specific blog cache
+        deleteCacheByPattern('blogs_');
+        deleteCache(`blog_${id}`);
+
         res.status(200).json(updatedBlog);
     } catch (error) {
         res.status(500).json({ message: "Error updating blog", error });
@@ -114,6 +147,10 @@ export const deleteBlog = async (req: Request, res: Response) => {
         if (!deletedBlog) {
             return res.status(404).json({ message: "Blog not found" });
         }
+
+        // Invalidate list cache and specific blog cache
+        deleteCacheByPattern('blogs_');
+        deleteCache(`blog_${id}`);
 
         res.status(200).json({ message: "Blog deleted successfully" });
     } catch (error) {

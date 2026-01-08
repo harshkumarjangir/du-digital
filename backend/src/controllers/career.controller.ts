@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Career from "../models/Careers.model";
+import { getCache, setCache, deleteCache, CACHE_KEYS } from "../utils/cache";
 
 // Create Career
 export const createCareer = async (req: Request, res: Response) => {
@@ -22,6 +23,10 @@ export const createCareer = async (req: Request, res: Response) => {
         });
 
         await newCareer.save();
+
+        // Invalidate cache
+        deleteCache(CACHE_KEYS.CAREERS);
+
         res.status(201).json(newCareer);
     } catch (error) {
         console.error("Create Career Error", error);
@@ -32,7 +37,17 @@ export const createCareer = async (req: Request, res: Response) => {
 // Get Careers
 export const getCareers = async (req: Request, res: Response) => {
     try {
+        // Check cache
+        const cachedCareers = getCache(CACHE_KEYS.CAREERS);
+        if (cachedCareers) {
+            return res.status(200).json(cachedCareers);
+        }
+
         const careers = await Career.find({ isActive: true }).sort({ createdAt: -1 });
+
+        // Set cache (5 minutes)
+        setCache(CACHE_KEYS.CAREERS, careers, 300);
+
         res.status(200).json(careers);
     } catch (error) {
         console.error("Get Careers Error", error);
@@ -45,6 +60,10 @@ export const deleteCareer = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
         await Career.findByIdAndDelete(id);
+
+        // Invalidate cache
+        deleteCache(CACHE_KEYS.CAREERS);
+
         res.status(200).json({ message: "Career deleted successfully" });
     } catch (error) {
         console.error("Delete Career Error", error);
@@ -79,6 +98,9 @@ export const updateCareer = async (req: Request, res: Response) => {
         if (!updatedCareer) {
             return res.status(404).json({ message: "Career not found" });
         }
+
+        // Invalidate cache
+        deleteCache(CACHE_KEYS.CAREERS);
 
         res.status(200).json(updatedCareer);
     } catch (error) {

@@ -3,6 +3,7 @@ import InvestorCategory from "../models/investorRelation.model";
 import InvestorReport from "../models/InvestorReport.model";
 import OfficeType from "../models/OfficeType.model";
 import OfficeLocation from "../models/OfficeLocation.model";
+import { getCache, setCache, deleteCache, deleteCacheByPattern, CACHE_KEYS } from "../utils/cache";
 
 export const getDashboardStats = async (req: Request, res: Response) => {
     try {
@@ -36,6 +37,15 @@ export const getDashboardStats = async (req: Request, res: Response) => {
 export const getCategoryBySlug = async (req: Request, res: Response) => {
     try {
         const { slug } = req.params;
+        const isAdmin = req.query.isAdmin === 'true';
+        const cacheKey = `${CACHE_KEYS.CATEGORY_REPORTS(slug)}_${isAdmin}`;
+
+        // Check cache first
+        const cachedData = getCache(cacheKey);
+        if (cachedData && !isAdmin) {
+            return res.status(200).json(cachedData);
+        }
+
         const category = await InvestorCategory.findOne({ slug, isActive: true });
 
         if (!category) {
@@ -43,18 +53,21 @@ export const getCategoryBySlug = async (req: Request, res: Response) => {
         }
 
         // Fetch related reports
-        // If query param 'admin' is true, fetch all, otherwise only active
         const filter: any = { categoryId: category._id };
-        if (req.query.isAdmin !== 'true') {
+        if (!isAdmin) {
             filter.isActive = true;
         }
 
         const reports = await InvestorReport.find(filter).sort({ financialYear: -1, uploadedDate: -1 });
 
-        return res.status(200).json({
-            category,
-            reports
-        });
+        const responseData = { category, reports };
+
+        // Cache for 5 minutes (only for non-admin requests)
+        if (!isAdmin) {
+            setCache(cacheKey, responseData, 300);
+        }
+
+        return res.status(200).json(responseData);
     } catch (error) {
         console.error("Error fetching category:", error);
         return res.status(500).json({ message: "Server error" });
@@ -82,6 +95,10 @@ export const createReport = async (req: Request, res: Response) => {
         });
 
         await newReport.save();
+
+        // Invalidate cache for this category
+        deleteCacheByPattern('category_reports_');
+
         return res.status(201).json(newReport);
     } catch (error) {
         console.error("Error creating report:", error);
@@ -108,6 +125,9 @@ export const updateReport = async (req: Request, res: Response) => {
             return res.status(404).json({ message: "Report not found" });
         }
 
+        // Invalidate cache
+        deleteCacheByPattern('category_reports_');
+
         return res.status(200).json(updatedReport);
     } catch (error) {
         console.error("Error updating report:", error);
@@ -125,6 +145,9 @@ export const deleteReport = async (req: Request, res: Response) => {
             return res.status(404).json({ message: "Report not found" });
         }
 
+        // Invalidate cache
+        deleteCacheByPattern('category_reports_');
+
         // TODO: Optionally delete the file from disk using fs
         return res.status(200).json({ message: "Report deleted successfully" });
     } catch (error) {
@@ -136,7 +159,17 @@ export const deleteReport = async (req: Request, res: Response) => {
 // Public/Admin: Get all categories (helper for UI)
 export const getAllCategories = async (req: Request, res: Response) => {
     try {
+        // Check cache first
+        const cachedCategories = getCache(CACHE_KEYS.CATEGORIES);
+        if (cachedCategories) {
+            return res.status(200).json(cachedCategories);
+        }
+
         const categories = await InvestorCategory.find();
+
+        // Cache for 5 minutes
+        setCache(CACHE_KEYS.CATEGORIES, categories, 300);
+
         res.status(200).json(categories);
     } catch (error) {
         res.status(500).json({ message: "Server Error" });
@@ -169,6 +202,10 @@ export const createCategory = async (req: Request, res: Response) => {
         });
 
         await newCategory.save();
+
+        // Invalidate categories cache
+        deleteCache(CACHE_KEYS.CATEGORIES);
+
         return res.status(201).json(newCategory);
     } catch (error) {
         console.error("Error creating category:", error);
@@ -199,6 +236,10 @@ export const updateCategory = async (req: Request, res: Response) => {
             return res.status(404).json({ message: "Category not found" });
         }
 
+        // Invalidate categories cache
+        deleteCache(CACHE_KEYS.CATEGORIES);
+        deleteCacheByPattern('category_reports_');
+
         return res.status(200).json(updatedCategory);
     } catch (error) {
         console.error("Error updating category:", error);
@@ -224,6 +265,9 @@ export const deleteCategory = async (req: Request, res: Response) => {
         if (!deletedCategory) {
             return res.status(404).json({ message: "Category not found" });
         }
+
+        // Invalidate categories cache
+        deleteCache(CACHE_KEYS.CATEGORIES);
 
         return res.status(200).json({ message: "Category deleted successfully" });
     } catch (error) {

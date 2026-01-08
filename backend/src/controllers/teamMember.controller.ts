@@ -2,11 +2,19 @@ import { Request, Response } from "express";
 import TeamMember from "../models/TeamMember.model";
 import fs from "fs";
 import path from "path";
+import { getCache, setCache, deleteCacheByPattern } from "../utils/cache";
 
 // Get all team members (optional grouping)
 export const getAllTeamMembers = async (req: Request, res: Response) => {
     try {
         const { groupBy } = req.query;
+        const cacheKey = `team_members_${groupBy || 'all'}`;
+
+        // Check cache
+        const cachedData = getCache(cacheKey);
+        if (cachedData) {
+            return res.status(200).json(cachedData);
+        }
 
         const members = await TeamMember.find().sort({ createdAt: -1 });
 
@@ -19,8 +27,15 @@ export const getAllTeamMembers = async (req: Request, res: Response) => {
                 acc[category].push(member);
                 return acc;
             }, {});
+
+            // Set cache
+            setCache(cacheKey, grouped, 300);
+
             return res.status(200).json(grouped);
         }
+
+        // Set cache
+        setCache(cacheKey, members, 300);
 
         res.status(200).json(members);
     } catch (error) {
@@ -57,6 +72,10 @@ export const createTeamMember = async (req: Request, res: Response) => {
         });
 
         const savedMember = await newMember.save();
+
+        // Invalidate cache
+        deleteCacheByPattern('team_members_');
+
         res.status(201).json(savedMember);
     } catch (error) {
         console.error("Create Team Member Error", error);
@@ -96,6 +115,10 @@ export const updateTeamMember = async (req: Request, res: Response) => {
         }
 
         const updatedMember = await member.save();
+
+        // Invalidate cache
+        deleteCacheByPattern('team_members_');
+
         res.status(200).json(updatedMember);
     } catch (error) {
         console.error("Update Team Member Error", error);
@@ -122,6 +145,9 @@ export const deleteTeamMember = async (req: Request, res: Response) => {
         }
 
         await TeamMember.findByIdAndDelete(id);
+
+        // Invalidate cache
+        deleteCacheByPattern('team_members_');
 
         res.status(200).json({ message: "Team member deleted successfully" });
     } catch (error) {
