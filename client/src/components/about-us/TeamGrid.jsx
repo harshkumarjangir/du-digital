@@ -1,3 +1,5 @@
+import LazyImage from "../reusable/LazyImage";
+
 const TeamGrid = ({ title, subtitle, data }) => {
     if (!data || data.length === 0) return null;
 
@@ -29,7 +31,7 @@ const TeamGrid = ({ title, subtitle, data }) => {
                             className="group relative h-[420px] rounded-2xl overflow-hidden bg-gray-200 focus:outline-none focus:ring-2 focus:ring-red-600"
                         >
                             {/* IMAGE */}
-                            <img
+                            <LazyImage
                                 src={`${import.meta.env.VITE_API_URL}${member.profileImage || member.image}`}
                                 alt={member.name}
                                 className="absolute inset-0 w-full h-full object-cover"

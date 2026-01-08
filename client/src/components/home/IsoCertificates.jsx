@@ -1,3 +1,5 @@
+import LazyImage from "../reusable/LazyImage";
+
 const IsoCertificates = ({ data }) => {
     return (
         <section className="relative py-24 md:px-20 bg-white overflow-hidden">
@@ -30,7 +32,7 @@ const IsoCertificates = ({ data }) => {
                         <div key={index} className="flex flex-col items-center">
 
                             {/* ISO IMAGE */}
-                            <img
+                            <LazyImage
                                 src={item.image}
                                 alt={item.title}
                                 className="h-24 object-contain mb-6"

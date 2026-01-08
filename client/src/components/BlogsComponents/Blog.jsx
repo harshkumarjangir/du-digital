@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBlogs } from "../../redux/slices/BlogsSlice";
 import { Link, useSearchParams } from "react-router-dom";
+import LazyImage from "../reusable/LazyImage";
 
 const COLORS = [
   "bg-yellow-400",
@@ -54,7 +55,7 @@ export const Blog = ({ data: propData, className }) => {
                 key={blog._id}
                 className="w-full max-w-sm h-[420px] rounded-2xl overflow-hidden shadow-lg bg-white flex flex-col">
                 {/* Image */}
-                <img
+                <LazyImage
                   src={blog.featuredImage}
                   alt={blog.title}
                   className="h-48 w-full object-cover"

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import LazyImage from "../reusable/LazyImage";
+
 
 const Testimonials = ({ data }) => {
     const [index, setIndex] = useState(0);
@@ -65,7 +67,7 @@ const Testimonials = ({ data }) => {
 
                                         <div className="flex items-center gap-4 mt-8">
                                             {/* <div className="w-12 h-12 rounded-full bg-black" /> */}
-                                            <img src={item.image} alt={item.name} className="w-12 h-12 rounded-full bg-black" />
+                                            <LazyImage src={item.image} alt={item.name} className="w-12 h-12 rounded-full bg-black" />
                                             <div>
                                                 <p className="font-semibold text-gray-900">
                                                     {item.name}

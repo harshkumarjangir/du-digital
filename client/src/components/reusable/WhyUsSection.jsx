@@ -4,8 +4,9 @@ const WhyUsSection = ({ data }) => {
     return (
         <section
             className="relative py-24 bg-cover bg-center text-white"
-            style={{ backgroundImage: `url(${data.backgroundImage})` }}
+        // style={{ backgroundImage: `url(${data.backgroundImage})` }}
         >
+            <img src={data.backgroundImage} alt={data.title} className="absolute inset-0 w-full h-full object-cover" />
             {/* Overlay */}
             <div className="absolute inset-0 bg-black/80" />
 

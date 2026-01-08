@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOfficialPartners } from "../../redux/slices/partnerSlice";
 import { ArrowRight } from "lucide-react";
+import LazyImage from "../reusable/LazyImage";
+import { Link } from "react-router-dom";
 
 const OurBusinesses = ({ data }) => {
     const dispatch = useDispatch();
@@ -48,25 +50,25 @@ const OurBusinesses = ({ data }) => {
 
                 {/* CTA */}
                 <div className="text-center mb-20">
-                    <a
-                        href={data.cta.link}
+                    <Link
+                        to={data.cta.link}
                         className="inline-block bg-[#FF1033] text-[#FFFDF5] px-8 py-3 rounded-full font-bold text-lg hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300 cursor-pointer"
                     >
                         {data.cta.text}
-                    </a>
+                    </Link>
                 </div>
 
                 {/* ===== BUSINESS CARDS ===== */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {data.cards.map((card, i) => (
-                        <a
+                        <Link
                             key={i}
-                            href={card.link}
+                            to={card.link}
                             className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden"
                         >
                             {/* Image */}
                             <div className="h-44 overflow-hidden">
-                                <img
+                                <LazyImage
                                     src={card.image}
                                     alt={card.title}
                                     className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
@@ -87,7 +89,7 @@ const OurBusinesses = ({ data }) => {
                                     className="text-red-600 group-hover:translate-x-1 transition ml-auto"
                                 />
                             </div>
-                        </a>
+                        </Link>
                     ))}
                 </div>
 
