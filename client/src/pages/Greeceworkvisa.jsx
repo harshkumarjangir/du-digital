@@ -127,7 +127,7 @@ const GreeceWorkVisa = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section id="hero-section" className="relative w-full min-h-[600px] sm:h-[800px] overflow-hidden">
+      <section id="hero-section" className="relative w-full min-h-[600px] sm:h-[600px] overflow-hidden">
         <img
           src={getImageUrl(formData?.image) || 'https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'}
           alt="Greece Work Visa"

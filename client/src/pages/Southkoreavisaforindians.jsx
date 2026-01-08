@@ -112,7 +112,7 @@ const Southkoreavisaforindians = () => {
 
       {/* ===== HERO SECTION ===== */}
       <section
-        className="relative w-full h-[800px] overflow-hidden"
+        className="relative w-full h-[600px] overflow-hidden"
       >
         <img
           src={formData?.image ? getImageUrl(formData.image) : ''}

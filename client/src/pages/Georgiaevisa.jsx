@@ -216,7 +216,7 @@ const Georgiaevisa = () => {
     return (
         <div className="bg-white font-sans">
             {/* ===== HERO SECTION (Split Layout) ===== */}
-            <section className="relative w-full min-h-[800px] sm:h-[800px] flex items-center bg-gray-900">
+            <section className="relative w-full min-h-[600px] sm:h-[600px] flex items-center bg-gray-900">
                 <img
                     src={image ? getImageUrl(image) : ''}
                     alt="Georgia eVisa"

@@ -4,7 +4,7 @@ import data from "../data/swifttravels.json";
 export const Swifttravels = () => {
   return (
     <>
-      <section className="relative w-full h-[800px] overflow-hidden">
+      <section className="relative w-full h-[600px] overflow-hidden">
         {/* IMAGE (Right → Left) */}
         <img
           src={data.hero.image}

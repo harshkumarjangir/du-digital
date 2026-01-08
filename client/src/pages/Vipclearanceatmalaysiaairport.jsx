@@ -95,7 +95,7 @@ const Vipclearanceatmalaysiaairport = () => {
     return (
         <div className="bg-white font-sans">
             {/* ===== HERO SECTION ===== */}
-            <section className="relative w-full min-h-[800px] flex items-center justify-end text-center bg-gray-900">
+            <section className="relative w-full h-[600px] sm:h-[600px] flex items-center justify-end text-center bg-gray-900">
                 <img
                     src={image ? getImageUrl(image) : ''}
                     alt="VIP Clearance at Malaysia Airport"

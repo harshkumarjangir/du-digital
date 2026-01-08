@@ -1,5 +1,5 @@
 const AboutHero = ({ data }) => (
-    <section className="h-[800px] relative flex items-center">
+    <section className="h-[600px] relative flex items-center">
         <img
             src={data.backgroundImage}
             alt={data.title || "About Us Hero"}

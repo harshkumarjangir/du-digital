@@ -11,7 +11,11 @@ const Duverify = () => {
   const [formData, setFormData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
+  const [formValues, setFormValues] = useState({});
   useEffect(() => {
     fetchFormData();
   }, []);
@@ -33,17 +37,13 @@ const Duverify = () => {
   const getImageUrl = (imagePath) => {
     if (!imagePath) return '';
     if (imagePath.startsWith('http')) return imagePath;
-    return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
+    return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath.replace("/api", "")}`;
     // return `${BackendURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
   };
 
   if (loading) return <LoadingState message="Loading DuVerify..." fullScreen />;
   if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
-  const [submitStatus, setSubmitStatus] = useState(null);
-  const [submitLoading, setSubmitLoading] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState('');
 
-  const [formValues, setFormValues] = useState({});
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormValues(prev => ({
@@ -83,7 +83,7 @@ const Duverify = () => {
     }
   };
 
-  const { name, description, contentSections = {}, fields={}} = formData || {};
+  const { name, description, contentSections = {}, fields = {} } = formData || {};
 
   // Get sections by API keys
   const aboutSection = contentSections['About DuVerify'] || [];
@@ -96,7 +96,7 @@ const Duverify = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full h-[800px] overflow-hidden">
+      <section className="relative w-full h-[600px] overflow-hidden">
         <img
           src={getImageUrl(formData?.image) || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'}
           alt="DuVerify Hero"

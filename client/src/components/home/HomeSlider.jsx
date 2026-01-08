@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const { slides, autoplay, interval } = data;
 const HomeSlider = ({ data }) => {
-    const { slides, autoplay, interval } = data;
     const [current, setCurrent] = useState(0);
 
     useEffect(() => {
@@ -23,7 +23,8 @@ const HomeSlider = ({ data }) => {
     };
 
     return (
-        <section className="relative w-full h-[800px] overflow-hidden">
+
+        <section className="relative  w-full h-[600px]  overflow-hidden">
 
             <AnimatePresence mode="wait">
                 <motion.div

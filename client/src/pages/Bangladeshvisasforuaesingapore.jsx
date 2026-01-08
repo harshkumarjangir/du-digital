@@ -113,7 +113,7 @@ const BangladeshVisasForUaeSingapore = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full min-h-[800px] flex items-center bg-gray-900">
+      <section className="relative w-full min-h-[600px] sm:h-[600px] flex items-center bg-gray-900">
         <img
           src={formData?.image ? getImageUrl(formData.image) : ''}
           alt="Hero Background"
