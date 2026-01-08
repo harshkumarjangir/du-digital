@@ -60,6 +60,21 @@ export const getCategories = async () => {
     return response.data;
 };
 
+export const createCategory = async (data) => {
+    const response = await axios.post(`${API_URL_INVESTOR}/categories`, data);
+    return response.data;
+};
+
+export const updateCategory = async (id, data) => {
+    const response = await axios.put(`${API_URL_INVESTOR}/categories/${id}`, data);
+    return response.data;
+};
+
+export const deleteCategory = async (id) => {
+    const response = await axios.delete(`${API_URL_INVESTOR}/categories/${id}`);
+    return response.data;
+};
+
 export const createReport = async (formData) => {
     const response = await axios.post(`${API_URL_INVESTOR}/report`, formData, {
         headers: {

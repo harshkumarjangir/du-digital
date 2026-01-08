@@ -27,6 +27,14 @@ const ReportForm = ({ categoryId, onUploadSuccess, editingReport, onCancelEdit }
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        console.log("Form submit triggered", {
+            title,
+            financialYear,
+            file,
+            categoryId,
+            editingReport
+        });
+
         // For new reports, file is required. For editing, it's optional.
         if (!editingReport && !file) {
             alert("Please select a PDF file.");
@@ -49,9 +57,12 @@ const ReportForm = ({ categoryId, onUploadSuccess, editingReport, onCancelEdit }
             formData.append('pdf', file);
         }
 
+        console.log("Sending formData with file:", file?.name);
+
         setLoading(true);
         try {
             await onUploadSuccess(formData, editingReport?._id);
+            console.log("Upload successful");
             // Reset form after successful submission
             setTitle('');
             setFinancialYear('');

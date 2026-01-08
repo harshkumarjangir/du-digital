@@ -4,6 +4,9 @@ import path from "path";
 import {
     getCategoryBySlug,
     getAllCategories,
+    createCategory,
+    updateCategory,
+    deleteCategory,
     createReport,
     updateReport,
     deleteReport,
@@ -27,11 +30,14 @@ const upload = multer({ storage });
 // Stats Route (Placed before :slug to avoid conflict if slug matches 'stats', though unlikely with 'category' prefix)
 router.get("/stats", getDashboardStats);
 
-// Public Routes
+// Category Routes
 router.get("/categories", getAllCategories);
 router.get("/category/:slug", getCategoryBySlug);
+router.post("/categories", createCategory);
+router.put("/categories/:id", updateCategory);
+router.delete("/categories/:id", deleteCategory);
 
-// Admin Routes (TODO: Add Auth Middleware)
+// Report Routes
 router.post("/report", upload.single("pdf"), createReport);
 router.put("/report/:id", upload.single("pdf"), updateReport);
 router.delete("/report/:id", deleteReport);
