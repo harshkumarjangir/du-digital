@@ -3,17 +3,20 @@ import {
   getCategories,
   getReportsByCategory,
   createReport,
+  updateReport,
   deleteReport,
 } from "../services/api";
 import ReportForm from "../components/ReportForm";
-import { Trash2, FileText, Folder } from "lucide-react";
+import { Trash2, FileText, Folder, Edit3 } from "lucide-react";
 
 const InvestorRelations = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [reports, setReports] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [editingReport, setEditingReport] = useState(null);
 
+  const backendUrl = import.meta.env.VITE_API_BASE_URL;
   useEffect(() => {
     fetchCategories();
   }, []);
@@ -49,11 +52,31 @@ const InvestorRelations = () => {
     }
   };
 
-  const handleUpload = async (formData) => {
-    await createReport(formData);
-    if (selectedCategory) {
-      fetchReports(selectedCategory.slug);
+  const handleUpload = async (formData, reportId) => {
+    try {
+      if (reportId) {
+        // Update existing report
+        await updateReport(reportId, formData);
+        setEditingReport(null);
+      } else {
+        // Create new report
+        await createReport(formData);
+      }
+      if (selectedCategory) {
+        fetchReports(selectedCategory.slug);
+      }
+    } catch (error) {
+      console.error("Error saving report:", error);
+      throw error;
     }
+  };
+
+  const handleEdit = (report) => {
+    setEditingReport(report);
+  };
+
+  const handleCancelEdit = () => {
+    setEditingReport(null);
   };
 
   const handleDelete = async (id) => {
@@ -122,6 +145,8 @@ const InvestorRelations = () => {
               <ReportForm
                 categoryId={selectedCategory._id}
                 onUploadSuccess={handleUpload}
+                editingReport={editingReport}
+                onCancelEdit={handleCancelEdit}
               />
             </div>
 
@@ -143,7 +168,7 @@ const InvestorRelations = () => {
                         display: "flex",
                         justifyContent: "space-between",
                         alignItems: "center",
-                        backgroundColor: "#fff",
+                        backgroundColor: editingReport?._id === report._id ? "#fff9e6" : "#fff",
                       }}>
                       <div
                         style={{
@@ -162,22 +187,40 @@ const InvestorRelations = () => {
                           </div>
                         </div>
                       </div>
-                      <div style={{ display: "flex", gap: "10px" }}>
+                      <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
                         <a
-                          href={`http://localhost:5000${report.fileUrl}`}
+                          href={`${backendUrl}${report.fileUrl}`}
                           target="_blank"
                           rel="noreferrer"
                           style={{ textDecoration: "none", color: "#007bff" }}>
                           View
                         </a>
                         <button
+                          type="button"
+                          onClick={() => {
+                            console.log("Edit clicked", report);
+                            handleEdit(report);
+                          }}
+                          style={{
+                            background: "none",
+                            border: "none",
+                            cursor: "pointer",
+                            color: "#007bff",
+                            padding: "5px",
+                          }}
+                          title="Edit report">
+                          <Edit3 size={20} style={{ pointerEvents: "none" }} />
+                        </button>
+                        <button
+                          type="button"
                           onClick={() => handleDelete(report._id)}
                           style={{
                             background: "none",
                             border: "none",
                             cursor: "pointer",
                             color: "#dc3545",
-                          }}>
+                          }}
+                          title="Delete report">
                           <Trash2 size={20} />
                         </button>
                       </div>

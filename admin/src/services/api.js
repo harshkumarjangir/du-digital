@@ -79,6 +79,15 @@ export const deleteReport = async (id) => {
     return response.data;
 };
 
+export const updateReport = async (id, formData) => {
+    const response = await axios.put(`${API_URL_INVESTOR}/report/${id}`, formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    });
+    return response.data;
+};
+
 // --- Office Locations ---
 
 export const getOfficeTypes = async () => {

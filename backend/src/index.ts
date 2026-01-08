@@ -6,8 +6,8 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+app.use(express.json({ limit: '100mb' }));
+app.use(express.urlencoded({ extended: true, limit: '100mb' }));
 
 // Enable CORS
 import cors from 'cors';

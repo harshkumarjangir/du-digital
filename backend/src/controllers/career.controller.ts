@@ -51,3 +51,38 @@ export const deleteCareer = async (req: Request, res: Response) => {
         res.status(500).json({ message: "Server Error" });
     }
 };
+
+// Update Career
+export const updateCareer = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const {
+            title, location, department, experience,
+            jobType, description, responsibilities, qualifications
+        } = req.body;
+
+        const updatedCareer = await Career.findByIdAndUpdate(
+            id,
+            {
+                title,
+                location,
+                department,
+                experience,
+                jobType,
+                description,
+                responsibilities,
+                qualifications
+            },
+            { new: true }
+        );
+
+        if (!updatedCareer) {
+            return res.status(404).json({ message: "Career not found" });
+        }
+
+        res.status(200).json(updatedCareer);
+    } catch (error) {
+        console.error("Update Career Error", error);
+        res.status(500).json({ message: "Server Error" });
+    }
+};

@@ -40,6 +40,7 @@ const CareerManager = () => {
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [editingCareer, setEditingCareer] = useState(null);
   const { toasts, removeToast, showSuccess, showError } = useToast();
 
   useEffect(() => {
@@ -79,14 +80,19 @@ const CareerManager = () => {
     };
 
     try {
-      await axios.post("http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/careers", data);
-      showSuccess("Job posting created successfully");
+      if (editingCareer) {
+        await axios.put(`http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/careers/${editingCareer._id}`, data);
+        showSuccess("Job posting updated successfully");
+      } else {
+        await axios.post("http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/careers", data);
+        showSuccess("Job posting created successfully");
+      }
       fetchCareers();
       resetForm();
       setIsModalOpen(false);
     } catch (error) {
-      console.error("Error creating career:", error);
-      showError("Failed to create job posting");
+      console.error("Error saving career:", error);
+      showError(editingCareer ? "Failed to update job posting" : "Failed to create job posting");
     } finally {
       setSaving(false);
     }
@@ -116,6 +122,26 @@ const CareerManager = () => {
       responsibilities: "",
       qualifications: "",
     });
+    setEditingCareer(null);
+  };
+
+  const handleEdit = (job) => {
+    setEditingCareer(job);
+    setFormData({
+      title: job.title || "",
+      location: job.location || "",
+      department: job.department || "",
+      experience: job.experience || "",
+      jobType: job.jobType || "",
+      description: job.description || "",
+      responsibilities: Array.isArray(job.responsibilities)
+        ? job.responsibilities.join("\n")
+        : job.responsibilities || "",
+      qualifications: Array.isArray(job.qualifications)
+        ? job.qualifications.join("\n")
+        : job.qualifications || "",
+    });
+    setIsModalOpen(true);
   };
 
   const getJobTypeColor = (jobType) => {
@@ -219,6 +245,7 @@ const CareerManager = () => {
                     <div className="action-buttons">
                       <button
                         className="action-btn btn-edit"
+                        onClick={() => handleEdit(job)}
                         title="Edit job posting">
                         <Edit3 size={14} />
                       </button>
@@ -297,14 +324,14 @@ const CareerManager = () => {
         </div>
       )}
 
-      {/* Add Job Modal */}
+      {/* Add/Edit Job Modal */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div
             className="modal-content"
             style={{ maxWidth: "800px", maxHeight: "90vh" }}>
             <div className="modal-header">
-              <h2>Add Job Vacancy</h2>
+              <h2>{editingCareer ? "Edit Job Vacancy" : "Add Job Vacancy"}</h2>
               <button
                 className="modal-close"
                 onClick={() => setIsModalOpen(false)}>
@@ -314,7 +341,7 @@ const CareerManager = () => {
 
             <form onSubmit={handleSubmit} className="form-section">
               {saving && (
-                <FormLoadingOverlay message="Creating job posting..." />
+                <FormLoadingOverlay message={editingCareer ? "Updating job posting..." : "Creating job posting..."} />
               )}
 
               <div className="modal-body" style={{ overflowY: "auto" }}>
@@ -430,7 +457,7 @@ const CareerManager = () => {
                   type="submit"
                   loading={saving}
                   disabled={!formData.title}>
-                  Create Job Post
+                  {editingCareer ? "Update Job Post" : "Create Job Post"}
                 </Button>
               </div>
             </form>

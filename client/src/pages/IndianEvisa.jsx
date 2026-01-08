@@ -72,7 +72,10 @@ const IndianEvisa = () => {
   const getImageUrl = (imagePath) => {
     if (!imagePath) return '';
     if (imagePath.startsWith('http')) return imagePath;
-    return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
+    console.log(JSON.stringify(`${BackendURL }${ imagePath.startsWith('/') ? '' : '/' }${ imagePath }`),JSON.stringify(BackendImagesURL));
+    
+
+    return `${BackendURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
   };
 
   const handleInputChange = (e) => {

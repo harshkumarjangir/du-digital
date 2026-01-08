@@ -7,6 +7,7 @@ import Footer from './components/common/Footer'
 import ContactUs from './pages/ContactUs'
 import OurOffices from './components/common/OurOffices';
 import Copyright from './components/common/Copyright'
+import ScrollToTop from './components/common/ScrollToTop'
 import BecomePartner from './pages/BecomePartner'
 import InvestorRelation from './pages/InvestorRelation'
 import AboutUs from './pages/AboutUs'
@@ -50,6 +51,7 @@ import Georgiaevisa from './pages/Georgiaevisa'
 const App = () => {
         return (
                 <div>
+                        <ScrollToTop />
                         <Navbar />
                         <Routes>
                                 <Route path="/" element={<Home />} />
@@ -94,7 +96,7 @@ const App = () => {
                                 <Route path="/cookie-policy" element={<CookiePolicy />} />
                                 <Route path="*" element={<NotFound />} />
                         </Routes>
-                            <Footer />
+                        <Footer />
                         <OurOffices />
                         <Copyright />
                         <FloatingChatCTA />
