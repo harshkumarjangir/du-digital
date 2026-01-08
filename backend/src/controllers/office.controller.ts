@@ -163,29 +163,21 @@ export const getGroupedOffices = async (req: Request, res: Response) => {
             return res.status(200).json(cachedGrouped);
         }
 
-        const locations = await OfficeLocation.find({ isActive: true }).populate("officeTypeId");
-        // console.log(locations);
-        
-
-        const indiaOffices = locations.filter(loc =>
-            loc.address?.country?.trim().toLowerCase() === 'india'
-        );
-
-        const internationalOffices = locations.filter(loc =>
-            loc.address?.country?.trim().toLowerCase() !== 'india'
-        );
-        // console.log(internationalOffices,indiaOffices);
-        
+        const locations = await OfficeLocation
+            .find({ isActive: true })
+            .populate("officeTypeId")
+            .lean();
 
         const responseData = {
-            india: indiaOffices,
-            international: internationalOffices
+            india: locations.filter(l => l.address?.country?.toLowerCase() === 'india'),
+            international: locations.filter(l => l.address?.country?.toLowerCase() !== 'india')
         };
 
-        // Set cache
         setCache(cacheKey, responseData, 300);
+        // console.log(responseData);
+        
+        return res.status(200).json(responseData);
 
-        res.status(200).json(responseData);
     } catch (error) {
         console.error("Grouped Offices Error", error);
         res.status(500).json({ message: "Server Error" });
