@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchEventById, clearSelectedEvent } from '../redux/slices/eventsSlice';
 import { ArrowLeft } from 'lucide-react';
 import ImageGalleryModal from '../components/reusable/ImageGalleryModal';
+import LazyImage from '../components/reusable/LazyImage';
 
 const EventDetail = () => {
     const { id } = useParams();
@@ -103,7 +104,7 @@ const EventDetail = () => {
                                     setGalleryOpen(true);
                                 }}
                             >
-                                <img
+                                <LazyImage
                                     src={`${BackendImagesURL}${image}`}
                                     alt={`${selectedEvent.title} - Image ${index + 1}`}
                                     className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-300"

@@ -27,17 +27,15 @@ export const fetchEventById = createAsyncThunk(
     'events/fetchEventById',
     async (eventId, { rejectWithValue }) => {
         try {
-            // Fetch event details
-            const eventResponse = await fetch(`${BackendURL}/api/events/`);
+            // Fetch event details directly
+            const eventResponse = await fetch(`${BackendURL}/api/events/${eventId}`);
             if (!eventResponse.ok) {
-                throw new Error('Failed to fetch events');
+                if (eventResponse.status === 404) {
+                    throw new Error('Event not found');
+                }
+                throw new Error('Failed to fetch event details');
             }
-            const events = await eventResponse.json();
-            const event = events.find(e => e._id === eventId);
-
-            if (!event) {
-                throw new Error('Event not found');
-            }
+            const event = await eventResponse.json();
 
             // Fetch event images
             const imagesResponse = await fetch(`${BackendURL}/api/events/${eventId}/images`);

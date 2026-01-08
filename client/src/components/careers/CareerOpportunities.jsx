@@ -14,7 +14,7 @@ const CareerOpportunities = ({ jobs, onApply, onView }) => {
                     {jobs.map((job) => (
                         <div
                             key={job.id}
-                            className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition"
+                            className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between"
                         >
                             {/* Header */}
                             <div className="flex justify-between items-start mb-6">
