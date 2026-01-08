@@ -5,9 +5,9 @@ const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 // Async thunk to fetch all events
 export const fetchEvents = createAsyncThunk(
     'events/fetchEvents',
-    async (_, { rejectWithValue }) => {
+    async ({ page = 1, limit = 10 } = {}, { rejectWithValue }) => {
         try {
-            const response = await fetch(`${BackendURL}/api/events/`);
+            const response = await fetch(`${BackendURL}/api/events?page=${page}&limit=${limit}`);
 
             if (!response.ok) {
                 const errorData = await response.json().catch(() => ({}));
@@ -64,6 +64,7 @@ export const fetchEventById = createAsyncThunk(
 
 const initialState = {
     events: [],
+    totalPages: 0,
     selectedEvent: null,
     loading: false,
     eventLoading: false,
@@ -94,7 +95,8 @@ const eventsSlice = createSlice({
             .addCase(fetchEvents.fulfilled, (state, action) => {
                 state.loading = false;
                 state.success = true;
-                state.events = action.payload;
+                state.events = action.payload.data || action.payload.events || action.payload; // Handle both paginated and non-paginated responses
+                state.totalPages = action.payload.totalPages || 0;
                 state.error = null;
             })
             .addCase(fetchEvents.rejected, (state, action) => {

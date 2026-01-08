@@ -5,10 +5,14 @@ const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000'
 // Async thunk to fetch blogs
 export const fetchBlogs = createAsyncThunk(
     'Blogs/fetchBlogs',
-    async (page, { rejectWithValue }) => {
+    async (params, { rejectWithValue }) => {
         try {
+            // Handle both primitive input (page number) and object input ({page, limit})
+            const page = typeof params === 'object' ? params.page : params;
+            const limit = typeof params === 'object' ? params.limit : 10;
+            const safePage = page || 1;
 
-            const response = await fetch(`${BackendURL}/api/blogs?page=${page}&limit=10&IsUsers=true`);
+            const response = await fetch(`${BackendURL}/api/blogs?page=${safePage}&limit=${limit}&IsUsers=true`);
             if (!response.ok) {
                 throw new Error('Failed to fetch blogs');
             }

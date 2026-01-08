@@ -1,8 +1,25 @@
 import { ArrowUpRight } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchEvents } from '../../redux/slices/eventsSlice';
+import LazyImage from '../reusable/LazyImage';
 
-const EventsGrid = ({ data }) => {
+const EventsGrid = ({ data: propData }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [searchParams] = useSearchParams();
+    const page = Number(searchParams.get("page")) || 1;
+
+    const { events: reduxData, totalPages, loading, error } = useSelector((state) => state.events);
+    const data = propData || reduxData;
+
+    useEffect(() => {
+        if (!propData) {
+            dispatch(fetchEvents({ page }));
+        }
+    }, [dispatch, page, propData]);
+
     const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
     const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
 
@@ -40,58 +57,81 @@ const EventsGrid = ({ data }) => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {data.map((event) => (
-                <div
-                    key={event._id}
-                    className="relative rounded-2xl overflow-hidden shadow-lg group"
-                // onClick={() => navigate(`/events/${event._id}`)}
-                >
-                    {/* IMAGE */}
-                    <div className="h-[420px] relative">
-                        {event.imageUrl ? (
-                            <img
-                                src={`${BackendImagesURL}${event.imageUrl}`}
-                                alt={event.title}
-                                className="w-full h-full object-cover"
-                            />
-                        ) : (
-                            <div className="w-full h-full bg-gray-300" />
-                        )}
-                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition" />
-                    </div>
+        <div className="max-w-7xl mx-auto px-6 py-12">
+            {loading && !propData && <div className="text-center">Loading...</div>}
+            {error && !propData && <div className="text-center text-red-500">Error: {error}</div>}
 
-                    {/* TOP RIGHT ARROW BUTTON */}
-                    {/* <button
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {data?.map((event) => (
+                    <div
+                        key={event._id}
+                        className="relative rounded-2xl overflow-hidden shadow-lg group"
+                    // onClick={() => navigate(`/events/${event._id}`)}
+                    >
+                        {/* IMAGE */}
+                        <div className="h-[420px] relative">
+                            {event.imageUrl ? (
+                                <LazyImage
+                                    src={`${BackendImagesURL}${event.imageUrl}`}
+                                    alt={event.title}
+                                    className="w-full h-full object-cover"
+                                />
+                            ) : (
+                                <div className="w-full h-full bg-gray-300" />
+                            )}
+                            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition" />
+                        </div>
+
+                        {/* TOP RIGHT ARROW BUTTON */}
+                        {/* <button
                         onClick={() => navigate(`/events/${event._id}`)}
                         className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition"
                     >
                         <span className="text-xl font-bold text-red-500">↗</span>
                     </button> */}
 
-                    <Link to={`/events/${event._id}`} aria-label="View event details" className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition z-10">
-                        <ArrowUpRight size={24} className="text-red-600 " />
-                    </Link>
-
-                    {/* CONTENT */}
-                    <div className="absolute inset-0 flex flex-col justify-end p-6 text-white z-0">
-                        {/* Category Badge */}
-                        <span className={`${getCategoryColor(event.category)} text-white text-xs px-3 py-1 rounded-full w-max mb-3 font-medium`}>
-                            {event.category}
-                        </span>
-
-                        <Link to={`/events/${event._id}`} className="bg-[#FF1033] text-[#FFFDF5] px-6 py-2 mb-4 rounded-full w-max font-bold hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300 cursor-pointer">
-                            View More
+                        <Link to={`/events/${event._id}`} aria-label="View event details" className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition z-10">
+                            <ArrowUpRight size={24} className="text-red-600 " />
                         </Link>
 
-                        <h3 className="font-semibold text-lg leading-snug mb-0">
-                            {event.title}
-                        </h3>
+                        {/* CONTENT */}
+                        <div className="absolute inset-0 flex flex-col justify-end p-6 text-white z-0">
+                            {/* Category Badge */}
+                            <span className={`${getCategoryColor(event.category)} text-white text-xs px-3 py-1 rounded-full w-max mb-3 font-medium`}>
+                                {event.category}
+                            </span>
+
+                            <Link to={`/events/${event._id}`} className="bg-[#FF1033] text-[#FFFDF5] px-6 py-2 mb-4 rounded-full w-max font-bold hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300 cursor-pointer">
+                                View More
+                            </Link>
+
+                            <h3 className="font-semibold text-lg leading-snug mb-0">
+                                {event.title}
+                            </h3>
+                        </div>
                     </div>
+
+
+                ))}
+            </div>
+
+            {/* Pagination Controls */}
+            {!propData && totalPages > 1 && (
+                <div className="flex justify-center mt-12 space-x-2">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                        <Link
+                            key={p}
+                            to={`?page=${p}`}
+                            className={`px-4 py-2 rounded-md transition-colors duration-300 ${page === p
+                                ? "bg-[#FF1033] text-[#FFFDF5]"
+                                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                                }`}
+                        >
+                            {p}
+                        </Link>
+                    ))}
                 </div>
-
-
-            ))}
+            )}
         </div>
     );
 };

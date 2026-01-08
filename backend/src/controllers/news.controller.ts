@@ -40,8 +40,11 @@ export const createNews = async (req: Request, res: Response) => {
 // Get News (Filter by Year)
 export const getNews = async (req: Request, res: Response) => {
     try {
+        const page = parseInt(req.query.page as string) || 1;
+        const limit = parseInt(req.query.limit as string) || 10;
         const { year } = req.query;
-        const cacheKey = `news_${year || 'all'}`;
+        
+        const cacheKey = `news_${year || 'all'}_${page}_${limit}`;
 
         // Check cache
         const cachedNews = getCache(cacheKey);
@@ -60,12 +63,27 @@ export const getNews = async (req: Request, res: Response) => {
             };
         }
 
-        const news = await NewsMedia.find(query).sort({ datePublished: -1 });
+        const skip = (page - 1) * limit;
+
+        const news = await NewsMedia.find(query)
+            .sort({ datePublished: -1 })
+            .skip(skip)
+            .limit(limit);
+
+        const total = await NewsMedia.countDocuments(query);
+
+        const responseData = {
+            data: news,
+            total,
+            page,
+            totalPages: Math.ceil(total / limit),
+            hasMore: page * limit < total
+        };
 
         // Set cache
-        setCache(cacheKey, news, 300);
+        setCache(cacheKey, responseData, 300);
 
-        res.status(200).json(news);
+        res.status(200).json(responseData);
     } catch (error) {
         console.error("Get News Error", error);
         res.status(500).json({ message: "Server Error" });

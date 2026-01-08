@@ -5,9 +5,9 @@ const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 // Async thunk to fetch news
 export const fetchNews = createAsyncThunk(
     'news/fetchNews',
-    async (_, { rejectWithValue }) => {
+    async ({ page = 1, limit = 10 } = {}, { rejectWithValue }) => {
         try {
-            const response = await fetch(`${BackendURL}/api/news/`);
+            const response = await fetch(`${BackendURL}/api/news?page=${page}&limit=${limit}`);
 
             if (!response.ok) {
                 const errorData = await response.json().catch(() => ({}));
@@ -24,6 +24,7 @@ export const fetchNews = createAsyncThunk(
 
 const initialState = {
     news: [],
+    totalPages: 0,
     loading: false,
     error: null,
     success: false
@@ -48,7 +49,8 @@ const newsSlice = createSlice({
             .addCase(fetchNews.fulfilled, (state, action) => {
                 state.loading = false;
                 state.success = true;
-                state.news = action.payload;
+                state.news = action.payload.data || action.payload.news || action.payload;
+                state.totalPages = action.payload.totalPages || 0;
                 state.error = null;
             })
             .addCase(fetchNews.rejected, (state, action) => {

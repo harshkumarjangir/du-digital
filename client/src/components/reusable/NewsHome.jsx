@@ -1,4 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
+import LazyImage from './LazyImage';
 
 const NewsHome = ({ data }) => {
     const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
@@ -15,7 +16,7 @@ const NewsHome = ({ data }) => {
                 >
                     {/* IMAGE CONTAINER */}
                     <div className="relative h-60 w-full overflow-hidden rounded-xl">
-                        <img
+                        <LazyImage
                             src={`${BackendImagesURL}${item.imageUrl}`}
                             alt={item.title}
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
