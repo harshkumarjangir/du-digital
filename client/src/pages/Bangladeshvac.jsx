@@ -107,7 +107,7 @@ const BangladeshVac = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO BANNER ===== */}
-      <section className="relative w-full py-20 h-[800px] flex items-center">
+      <section className="relative w-full py-20 h-[600px] flex items-center">
         <img
           src={formData?.image ? getImageUrl(formData.image) : ''}
           alt="Bangladesh VAC"

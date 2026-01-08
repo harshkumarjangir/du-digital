@@ -107,7 +107,7 @@ const TenantVerification = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full h-[800px] overflow-hidden">
+      <section className="relative w-full h-[600px] overflow-hidden">
         {/* Background Image */}
         <img
           src={getImageUrl(formData?.image) || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1920&q=80'}

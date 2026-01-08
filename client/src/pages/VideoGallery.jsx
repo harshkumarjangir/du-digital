@@ -74,7 +74,7 @@ const VideoGallery = () => {
     if (!videos || videos.length === 0) {
         return (
             <div className="w-full">
-                <section className="h-[800px] relative flex items-center justify-center">
+                <section className="h-[600px] relative flex items-center justify-center">
                     <img
                         src="/assets/video-gallery/video-gallery-bg.jpg"
                         alt="Video Gallery Background"

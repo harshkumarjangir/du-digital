@@ -178,7 +178,7 @@ const Globalrecruitmentservices = () => {
 
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative h-[800px] flex items-center overflow-hidden md:px-12">
+      <section className="relative h-[600px] flex items-center overflow-hidden md:px-12">
 
         {/* Background Image */}
         {formData?.image && (

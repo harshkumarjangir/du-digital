@@ -117,7 +117,7 @@ const Dubai5yeartouristvisa = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full h-[800px] overflow-hidden">
+      <section className="relative w-full h-[600px] overflow-hidden">
         <img
           src={getImageUrl(formData?.image) || STATIC_IMAGES.hero}
           alt="Hero Background"

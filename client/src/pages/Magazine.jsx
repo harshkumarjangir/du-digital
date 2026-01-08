@@ -4,7 +4,7 @@ const Magazine = () => {
     return (
         <section className="bg-white">
             {/* HERO */}
-            <div className="relative h-[800px] flex items-center justify-center overflow-hidden">
+            <div className="relative h-[600px] flex items-center justify-center overflow-hidden">
                 <img
                     src={data.hero.backgroundImage}
                     alt="TnH Hero"

@@ -54,7 +54,7 @@ const EventManager = () => {
     setLoading(true);
     try {
       const response = await axios.get("http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/events");
-      setEvents(response.data);
+      setEvents(response.data.data);
     } catch (error) {
       console.error("Error fetching events:", error);
       showError("Failed to load events");
