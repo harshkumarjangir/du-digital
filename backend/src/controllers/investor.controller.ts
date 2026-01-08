@@ -47,7 +47,8 @@ export const getCategoryBySlug = async (req: Request, res: Response) => {
         }
 
         const category = await InvestorCategory.findOne({ slug, isActive: true });
-
+        
+        
         if (!category) {
             return res.status(404).json({ message: "Category not found" });
         }
@@ -57,9 +58,9 @@ export const getCategoryBySlug = async (req: Request, res: Response) => {
         if (!isAdmin) {
             filter.isActive = true;
         }
-
+        
         const reports = await InvestorReport.find(filter).sort({ financialYear: -1, uploadedDate: -1 });
-
+       
         const responseData = { category, reports };
 
         // Cache for 5 minutes (only for non-admin requests)
@@ -77,7 +78,8 @@ export const getCategoryBySlug = async (req: Request, res: Response) => {
 // Admin: Create a new report
 export const createReport = async (req: Request, res: Response) => {
     try {
-        const { categoryId, title, financialYear } = req.body;
+        const { categoryId, title, financialYear,email } = req.body;
+    
         const file = req.file;
 
         if (!file) {
@@ -91,6 +93,7 @@ export const createReport = async (req: Request, res: Response) => {
             categoryId,
             title,
             financialYear,
+            email,
             fileUrl
         });
 
@@ -110,11 +113,11 @@ export const createReport = async (req: Request, res: Response) => {
 export const updateReport = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-        const { title, financialYear, isActive } = req.body;
+        const { title, financialYear, isActive ,email} = req.body;
 
         // Note: File update logic usually involves deleting old file, but for simplicity we'll handle metadata or new file if uploaded
         // If a new file is uploaded, we update the url
-        const updateData: any = { title, financialYear, isActive };
+        const updateData: any = { title, financialYear, isActive ,email};
         if (req.file) {
             updateData.fileUrl = `/uploads/${req.file.filename}`;
         }

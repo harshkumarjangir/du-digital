@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchInvestorCategoryBySlug } from "../redux/slices/investorSlice";
-import investorData from "../data/investorRelation.json";
+// import investorData from "../data/investorRelation.json";
 
 const InvestorRelation = () => {
     const { slug } = useParams();
@@ -12,15 +12,15 @@ const InvestorRelation = () => {
         (state) => state.investor
     );
 
-    const isMainPage = location.pathname === "/investor-relation";
+    const activeSlug = slug || (location.pathname === "/investor-relation" ? "investor-relations" : null);
 
     useEffect(() => {
-        if (slug) {
-            dispatch(fetchInvestorCategoryBySlug(slug));
+        if (activeSlug) {
+            dispatch(fetchInvestorCategoryBySlug(activeSlug));
         }
-    }, [slug, dispatch]);
+    }, [activeSlug, dispatch]);
 
-    if (slug && loading) {
+    if (activeSlug && loading) {
         return (
             <div className="w-full min-h-screen flex items-center justify-center">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600" />
@@ -28,7 +28,7 @@ const InvestorRelation = () => {
         );
     }
 
-    if (slug && error) {
+    if (activeSlug && error) {
         return (
             <div className="w-full min-h-screen flex items-center justify-center">
                 <p className="text-red-600 text-lg">{error}</p>
@@ -37,17 +37,20 @@ const InvestorRelation = () => {
     }
 
     const displayData =
-        slug && category
+        activeSlug && category
             ? {
                   hero: {
                       title: category.name || "Investor Relation",
                       backgroundImage:
                           category.sildeImage ||
                           "/assets/contact/contact-hero.jpg",
+                        
                   },
                   reports: reports || [],
               }
-            : investorData;
+            : null;
+
+    if (!displayData) return null;
 
     return (
         <div className="w-full">
@@ -92,7 +95,16 @@ const InvestorRelation = () => {
                                     >
                                         {item.title}
                                     </h3>
-
+                                    {item.email && (
+                                        <p
+                                            className="
+                                                text-sm text-gray-600
+                                                group-hover:text-gray-200
+                                            "
+                                        >
+                                            {item.email}
+                                        </p>
+                                    )}
                                     {item.description && (
                                         <p
                                             className="
@@ -107,8 +119,8 @@ const InvestorRelation = () => {
 
                                 {/* CTA */}
                                 <a
-                                    href={item.fileUrl || item.file}
-                                    download
+                                    href={`${import.meta.env.VITE_API_URL}${item.fileUrl}`}
+                                    
                                     className="
                                         mt-8 inline-flex items-center justify-center
                                         px-6 py-3 rounded-md font-medium

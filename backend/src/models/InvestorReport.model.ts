@@ -23,6 +23,9 @@ const investorReportSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    email:{
+        type:String
+    },
     isActive: {
         type: Boolean,
         default: true

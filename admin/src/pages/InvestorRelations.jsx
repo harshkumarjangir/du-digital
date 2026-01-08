@@ -26,7 +26,7 @@ const InvestorRelations = () => {
   const [savingCategory, setSavingCategory] = useState(false);
 
   // Remove /api from base URL for file access (files are served from root)
-  const backendUrl = import.meta.env.VITE_API_BASE_URL|| 'http://localhost:5000';
+  const backendUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
 
   useEffect(() => {
     fetchCategories();
@@ -312,6 +312,10 @@ const InvestorRelations = () => {
                           <div style={{ fontWeight: "bold" }}>
                             {report.title}
                           </div>
+                         {report?.email&& <div>
+                            {report.email}
+                          </div>}
+
                           <div style={{ fontSize: "0.9rem", color: "#666" }}>
                             {report.financialYear} •{" "}
                             {new Date(report.uploadedDate).toLocaleDateString()}

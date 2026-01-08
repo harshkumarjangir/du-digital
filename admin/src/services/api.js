@@ -76,11 +76,7 @@ export const deleteCategory = async (id) => {
 };
 
 export const createReport = async (formData) => {
-    const response = await axios.post(`${API_URL_INVESTOR}/report`, formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
-    });
+    const response = await axios.post(`${API_URL_INVESTOR}/report`, formData);
     return response.data;
 };
 
@@ -95,11 +91,7 @@ export const deleteReport = async (id) => {
 };
 
 export const updateReport = async (id, formData) => {
-    const response = await axios.put(`${API_URL_INVESTOR}/report/${id}`, formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
-    });
+    const response = await axios.put(`${API_URL_INVESTOR}/report/${id}`, formData);
     return response.data;
 };
 

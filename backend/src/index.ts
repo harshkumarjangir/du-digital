@@ -18,7 +18,14 @@ app.use(cors({
 
 // Static folder
 import path from 'path';
-app.use('/api/uploads', express.static(path.join(__dirname, '../uploads')));
+app.use('/api/uploads', express.static(path.join(__dirname, '../uploads'),{
+  setHeaders:(res, path)=>{
+    if(path.endsWith('.pdf')){
+      res.setHeader('Content-Type', 'application/pdf');
+    }
+  }
+}))
+
 
 // DB Connection
 import { ConnectDB } from './db';

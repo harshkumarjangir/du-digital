@@ -164,6 +164,8 @@ export const getGroupedOffices = async (req: Request, res: Response) => {
         }
 
         const locations = await OfficeLocation.find({ isActive: true }).populate("officeTypeId");
+        // console.log(locations);
+        
 
         const indiaOffices = locations.filter(loc =>
             loc.address?.country?.trim().toLowerCase() === 'india'
@@ -172,6 +174,8 @@ export const getGroupedOffices = async (req: Request, res: Response) => {
         const internationalOffices = locations.filter(loc =>
             loc.address?.country?.trim().toLowerCase() !== 'india'
         );
+        // console.log(internationalOffices,indiaOffices);
+        
 
         const responseData = {
             india: indiaOffices,

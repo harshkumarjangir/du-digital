@@ -6,16 +6,18 @@ const ReportForm = ({ categoryId, onUploadSuccess, editingReport, onCancelEdit }
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false);
     const fileInputRef = useRef(null);
-
+const [email,setEmail]=useState('');
     // Populate form when editing
     useEffect(() => {
         if (editingReport) {
             setTitle(editingReport.title || '');
             setFinancialYear(editingReport.financialYear || '');
+            setEmail(editingReport.email || '');
             setFile(null);
         } else {
             setTitle('');
             setFinancialYear('');
+            setEmail('');
             setFile(null);
         }
         // Reset file input
@@ -53,11 +55,12 @@ const ReportForm = ({ categoryId, onUploadSuccess, editingReport, onCancelEdit }
         formData.append('categoryId', categoryId);
         formData.append('title', title);
         formData.append('financialYear', financialYear);
+        formData.append('email', email);
         if (file) {
             formData.append('pdf', file);
         }
 
-        console.log("Sending formData with file:", file?.name);
+        console.log("Sending formData with file:", formData);
 
         setLoading(true);
         try {
@@ -67,6 +70,7 @@ const ReportForm = ({ categoryId, onUploadSuccess, editingReport, onCancelEdit }
             setTitle('');
             setFinancialYear('');
             setFile(null);
+            setEmail('');
             if (fileInputRef.current) {
                 fileInputRef.current.value = '';
             }
@@ -81,6 +85,7 @@ const ReportForm = ({ categoryId, onUploadSuccess, editingReport, onCancelEdit }
     const handleCancel = () => {
         setTitle('');
         setFinancialYear('');
+        setEmail('');
         setFile(null);
         if (fileInputRef.current) {
             fileInputRef.current.value = '';
@@ -109,11 +114,20 @@ const ReportForm = ({ categoryId, onUploadSuccess, editingReport, onCancelEdit }
                 />
             </div>
             <div>
-                <label>Financial Year (e.g. 2023-24):</label>
+                <label> Year:</label>
                 <input
                     type="text"
                     value={financialYear}
                     onChange={(e) => setFinancialYear(e.target.value)}
+                    style={{ width: '100%', padding: '8px', marginTop: '4px' }}
+                />
+            </div>
+            <div>
+                <label>Email:</label>
+                <input
+                    type="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     style={{ width: '100%', padding: '8px', marginTop: '4px' }}
                 />
             </div>
