@@ -107,12 +107,15 @@ const BangladeshVac = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO BANNER ===== */}
-      <section
-        className="relative w-full py-20 bg-cover bg-center h-[800px] flex items-center"
-        style={{
-          backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
-        }}
-      >
+      <section className="relative w-full py-20 h-[800px] flex items-center">
+        <img
+          src={formData?.image ? getImageUrl(formData.image) : ''}
+          alt="Bangladesh VAC"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/60" />
 
@@ -156,7 +159,7 @@ const BangladeshVac = () => {
                   const checkboxFields = fields.filter(f => f.type === 'checkbox');
 
                   const radioFields = fields.filter(f => f.type === 'radio');
-                  const textarea=fields.filter(f=>f.type==="textarea")
+                  const textarea = fields.filter(f => f.type === "textarea")
                   const textFieldPairs = [];
                   for (let i = 0; i < textFields.length; i += 2) {
                     textFieldPairs.push(textFields.slice(i, i + 2));
@@ -214,23 +217,23 @@ const BangladeshVac = () => {
                           required={field.required}
                         />
                       ))}
-                            {
-                      textarea.map((field,index)=>   <div key={index}>
-                    {field.label && (
-                        <label className={`${labelClass} block mb-2`}>
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
-                        </label>
-                    )}
-                    <textarea
-                        name={field.name}
-                        value={formValues[field.name] || ''}
-                        onChange={handleInputChange}
-                        placeholder={field.placeholder || field.label}
-                        className={`${baseInputClass} min-h-[100px]`}
-                        required={field.required}
-                    />
-                </div>)
-                }
+                      {
+                        textarea.map((field, index) => <div key={index}>
+                          {field.label && (
+                            <label className={`${labelClass} block mb-2`}>
+                              {field.label} {field.required && <span className="text-red-500">*</span>}
+                            </label>
+                          )}
+                          <textarea
+                            name={field.name}
+                            value={formValues[field.name] || ''}
+                            onChange={handleInputChange}
+                            placeholder={field.placeholder || field.label}
+                            className={`${baseInputClass} min-h-[100px]`}
+                            required={field.required}
+                          />
+                        </div>)
+                      }
 
                       {checkboxFields.map((field, index) => (
                         <label key={field._id || `checkbox-${index}`} className="flex items-start gap-3 text-gray-700 cursor-pointer">
@@ -247,29 +250,29 @@ const BangladeshVac = () => {
                     </>
                   );
                 })()}
-                {radioFields.map((index,field)=>   <div key={index} className="space-y-2">
-                        <label className="text-white text-sm font-medium block mb-2">
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
-                        </label>
-                        <div className="flex flex-wrap gap-4">
-                            {field.options?.map((opt, i) => (
-                                <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
-                                    <input
-                                        type="radio"
-                                        name={field.name}
-                                        value={opt.value || opt.label || opt}
-                                        checked={formValues[field.name] === (opt.value || opt.label || opt)}
-                                        onChange={handleInputChange}
-                                        className="w-4 h-4"
-                                        required={field.required}
-                                    />
-                                    <span className="text-sm">{opt.label || opt}</span>
-                                </label>
-                            ))}
-                        </div>
-                    </div>)
-  
-}
+                {radioFields.map((index, field) => <div key={index} className="space-y-2">
+                  <label className="text-white text-sm font-medium block mb-2">
+                    {field.label} {field.required && <span className="text-red-500">*</span>}
+                  </label>
+                  <div className="flex flex-wrap gap-4">
+                    {field.options?.map((opt, i) => (
+                      <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                        <input
+                          type="radio"
+                          name={field.name}
+                          value={opt.value || opt.label || opt}
+                          checked={formValues[field.name] === (opt.value || opt.label || opt)}
+                          onChange={handleInputChange}
+                          className="w-4 h-4"
+                          required={field.required}
+                        />
+                        <span className="text-sm">{opt.label || opt}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>)
+
+                }
 
                 {/* Submit Status Message */}
                 {submitStatus && (

@@ -106,10 +106,16 @@ const HeroSection = ({ data }) => {
   };
 
   return (
-    <section
-      className="relative h-[800px] bg-cover bg-center"
-      style={{ backgroundImage: `url(${data.backgroundImage})` }}
-    >
+    <section className="relative min-h-[600px] sm:h-[800px]">
+      <img
+        src={data.backgroundImage}
+        alt={data.title || "Partner Hero"}
+        className="absolute inset-0 w-full h-full object-cover"
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
+        
+      />
       {/* <div className="absolute inset-0 bg-white/80" /> */}
 
       <div className="relative max-w-6xl mx-auto p-2 md:px-4 py-20 grid lg:grid-cols-2 gap-16 items-center">

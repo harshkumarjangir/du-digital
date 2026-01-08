@@ -1,8 +1,13 @@
 const EventsHero = ({ data }) => (
-    <section
-        className="h-[800px] flex items-center justify-center bg-cover bg-center relative"
-        style={{ backgroundImage: `url(${data.background})` }}
-    >
+    <section className="h-[800px] relative flex items-center justify-center">
+        <img
+            src={data.background}
+            alt={data.title || "Events Hero"}
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+        />
         {/* <div className="absolute inset-0 bg-red-900/40" /> */}
         <h1 className="relative text-4xl md:text-5xl font-bold text-white">
             {data.title}

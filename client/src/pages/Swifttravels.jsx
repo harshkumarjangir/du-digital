@@ -6,13 +6,13 @@ export const Swifttravels = () => {
     <>
       <section className="relative w-full h-[800px] overflow-hidden">
         {/* IMAGE (Right → Left) */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${data.hero.image})` }}
-          initial={{ x: 200 }}
-          animate={{ x: 0 }}
-          exit={{ x: -200 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+        <img
+          src={data.hero.image}
+          alt={data.hero.title}
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
         />
 
         {/* Overlay */}

@@ -182,9 +182,13 @@ const Globalrecruitmentservices = () => {
 
         {/* Background Image */}
         {formData?.image && (
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${getImageUrl(formData.image)})` }}
+          <img
+            src={getImageUrl(formData.image)}
+            alt="Global Recruitment Services"
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
           />
         )}
 

@@ -113,9 +113,13 @@ const Digitalarrivalcards = () => {
 
       {/* ===== HERO SECTION ===== */}
       <section className="relative w-full h-[800px] overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${getImageUrl(formData?.image) || STATIC_IMAGES.hero})` }}
+        <img
+          src={getImageUrl(formData?.image) || STATIC_IMAGES.hero}
+          alt="Hero Background"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/70 to-black/60" />
 

@@ -109,13 +109,13 @@ const TenantVerification = () => {
       {/* ===== HERO SECTION ===== */}
       <section className="relative w-full h-[800px] overflow-hidden">
         {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${getImageUrl(formData?.image) ||
-              'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1920&q=80'
-              })`,
-          }}
+        <img
+          src={getImageUrl(formData?.image) || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1920&q=80'}
+          alt="Tenant Verification Hero"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
         />
 
         {/* Dark Gradient Overlay */}

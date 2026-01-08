@@ -26,10 +26,15 @@ const VideoGallery = () => {
     if (loading) {
         return (
             <div className="w-full">
-                <section
-                    className="h-[800px] bg-cover bg-center relative flex items-center justify-center"
-                    style={{ backgroundImage: `url(${'/assets/video-gallery/video-gallery-bg.jpg'})` }}
-                >
+                <section className="h-[800px] relative flex items-center justify-center">
+                    <img
+                        src="/assets/video-gallery/video-gallery-bg.jpg"
+                        alt="Video Gallery Background"
+                        className="absolute inset-0 w-full h-full object-cover"
+                        loading="eager"
+                        decoding="async"
+                        fetchPriority="high"
+                    />
                     <div className="absolute inset-0 bg-black/60" />
                     <h1 className="relative z-10 text-white text-4xl font-semibold">
                         Video Gallery
@@ -45,10 +50,15 @@ const VideoGallery = () => {
     if (error) {
         return (
             <div className="w-full">
-                <section
-                    className="h-[800px] bg-cover bg-center relative flex items-center justify-center"
-                    style={{ backgroundImage: `url(${'/assets/video-gallery/video-gallery-bg.jpg'})` }}
-                >
+                <section className="h-[800px] relative flex items-center justify-center">
+                    <img
+                        src="/assets/video-gallery/video-gallery-bg.jpg"
+                        alt="Video Gallery Background"
+                        className="absolute inset-0 w-full h-full object-cover"
+                        loading="eager"
+                        decoding="async"
+                        fetchPriority="high"
+                    />
                     <div className="absolute inset-0 bg-black/60" />
                     <h1 className="relative z-10 text-white text-4xl font-semibold">
                         Video Gallery
@@ -64,10 +74,15 @@ const VideoGallery = () => {
     if (!videos || videos.length === 0) {
         return (
             <div className="w-full">
-                <section
-                    className="h-[800px] bg-cover bg-center relative flex items-center justify-center"
-                    style={{ backgroundImage: `url(${'/assets/video-gallery/video-gallery-bg.jpg'})` }}
-                >
+                <section className="h-[800px] relative flex items-center justify-center">
+                    <img
+                        src="/assets/video-gallery/video-gallery-bg.jpg"
+                        alt="Video Gallery Background"
+                        className="absolute inset-0 w-full h-full object-cover"
+                        loading="eager"
+                        decoding="async"
+                        fetchPriority="high"
+                    />
                     <div className="absolute inset-0 bg-black/60" />
                     <h1 className="relative z-10 text-white text-4xl font-semibold">
                         Video Gallery
@@ -85,11 +100,16 @@ const VideoGallery = () => {
     return (
         <div className="w-full">
             {/* ===== Hero ===== */}
-            <section
-                className="h-[800px] bg-cover bg-center relative flex items-center justify-center"
-                style={{ backgroundImage: `url(${'/assets/video-gallery/video-gallery-bg.jpg'})` }}
-            >
-                {/* <div className="absolute inset-0 bg-black/60" /> */}
+            <section className="h-[800px] relative flex items-center justify-center">
+                <img
+                    src="/assets/video-gallery/video-gallery-bg.jpg"
+                    alt="Video Gallery Background"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                />
+                <div className="absolute inset-0 bg-black/60" />
                 <h1 className="relative z-10 text-white text-4xl font-semibold">
                     Video Gallery
                 </h1>

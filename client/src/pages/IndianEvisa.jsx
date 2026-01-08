@@ -72,10 +72,10 @@ const IndianEvisa = () => {
   const getImageUrl = (imagePath) => {
     if (!imagePath) return '';
     if (imagePath.startsWith('http')) return imagePath;
-    console.log(JSON.stringify(`${BackendURL }${ imagePath.startsWith('/') ? '' : '/' }${ imagePath }`),JSON.stringify(BackendImagesURL));
-    
+    // console.log(JSON.stringify(`${BackendURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`), JSON.stringify(BackendImagesURL));
 
-    return `${BackendURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
+
+    return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath.replace("/api", '')}`;
   };
 
   const handleInputChange = (e) => {
@@ -161,15 +161,18 @@ const IndianEvisa = () => {
 
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full h-[800px] overflow-hidden">
-        {/* Dark textured background */}
-        <div
-          className="absolute inset-0"
-          style={{
-
-            backgroundImage: `url(${BackendImagesURL}${formData?.image})`,
-          }}
-        />
+      <section className="relative w-full min-h-[800px] sm:h-[800px] overflow-hidden">
+        {/* Hero Image */}
+        {formData?.image && (
+          <img
+            src={getImageUrl(formData.image)}
+            alt="Hero Background"
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+          />
+        )}
 
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/55" />

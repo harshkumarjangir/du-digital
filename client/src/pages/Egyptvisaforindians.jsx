@@ -137,12 +137,15 @@ const Egyptvisaforindians = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section
-        className="relative w-full h-[800px] bg-cover bg-center"
-        style={{
-          backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
-        }}
-      >
+      <section className="relative w-full h-[800px]">
+        <img
+          src={formData?.image ? getImageUrl(formData.image) : ''}
+          alt="Hero Background"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
 
@@ -172,8 +175,8 @@ const Egyptvisaforindians = () => {
                     const checkboxFields = fields.filter(f => f.type === 'checkbox');
                     const radioFields = fields.filter(f => f.type === 'radio');
                     const textarea = fields.filter(f => f.type === 'textarea');
-                    
-                
+
+
 
                     return (
                       <>
@@ -218,23 +221,23 @@ const Egyptvisaforindians = () => {
                             ))}
                           </select>
                         ))}
-                              {
-                      textarea.map((field,index)=>   <div key={index}>
-                    {field.label && (
-                        <label className={`${labelClass} block mb-2`}>
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
-                        </label>
-                    )}
-                    <textarea
-                        name={field.name}
-                        value={formValues[field.name] || ''}
-                        onChange={handleInputChange}
-                        placeholder={field.placeholder || field.label}
-                        className={`${baseInputClass} min-h-[100px]`}
-                        required={field.required}
-                    />
-                </div>)
-                  }
+                        {
+                          textarea.map((field, index) => <div key={index}>
+                            {field.label && (
+                              <label className={`${labelClass} block mb-2`}>
+                                {field.label} {field.required && <span className="text-red-500">*</span>}
+                              </label>
+                            )}
+                            <textarea
+                              name={field.name}
+                              value={formValues[field.name] || ''}
+                              onChange={handleInputChange}
+                              placeholder={field.placeholder || field.label}
+                              className={`${baseInputClass} min-h-[100px]`}
+                              required={field.required}
+                            />
+                          </div>)
+                        }
 
                         {/* Checkboxes */}
                         {checkboxFields.map((field, index) => (
@@ -249,29 +252,29 @@ const Egyptvisaforindians = () => {
                             <span className="text-sm leading-relaxed">{field.label}</span>
                           </label>
                         ))}
-                            {radioFields.map((index,field)=>   <div key={index} className="space-y-2">
-                        <label className="text-white text-sm font-medium block mb-2">
+                        {radioFields.map((index, field) => <div key={index} className="space-y-2">
+                          <label className="text-white text-sm font-medium block mb-2">
                             {field.label} {field.required && <span className="text-red-500">*</span>}
-                        </label>
-                        <div className="flex flex-wrap gap-4">
+                          </label>
+                          <div className="flex flex-wrap gap-4">
                             {field.options?.map((opt, i) => (
-                                <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
-                                    <input
-                                        type="radio"
-                                        name={field.name}
-                                        value={opt.value || opt.label || opt}
-                                        checked={formValues[field.name] === (opt.value || opt.label || opt)}
-                                        onChange={handleInputChange}
-                                        className="w-4 h-4"
-                                        required={field.required}
-                                    />
-                                    <span className="text-sm">{opt.label || opt}</span>
-                                </label>
+                              <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                                <input
+                                  type="radio"
+                                  name={field.name}
+                                  value={opt.value || opt.label || opt}
+                                  checked={formValues[field.name] === (opt.value || opt.label || opt)}
+                                  onChange={handleInputChange}
+                                  className="w-4 h-4"
+                                  required={field.required}
+                                />
+                                <span className="text-sm">{opt.label || opt}</span>
+                              </label>
                             ))}
-                        </div>
-                    </div>)
-  
-}
+                          </div>
+                        </div>)
+
+                        }
                       </>
                     );
                   })()}

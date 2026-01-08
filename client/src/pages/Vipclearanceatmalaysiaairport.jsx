@@ -95,16 +95,17 @@ const Vipclearanceatmalaysiaairport = () => {
     return (
         <div className="bg-white font-sans">
             {/* ===== HERO SECTION ===== */}
-            <section 
-                className="relative w-full min-h-[800px] flex items-center justify-end text-center bg-gray-900"
-                style={{ 
-                    backgroundImage: image ? `url(${getImageUrl(image)})` : 'none',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                }}
-            >
+            <section className="relative w-full min-h-[800px] flex items-center justify-end text-center bg-gray-900">
+                <img
+                    src={image ? getImageUrl(image) : ''}
+                    alt="VIP Clearance at Malaysia Airport"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                />
                 <div className="z-10 max-w-4xl px-6">
-                    <a 
+                    <a
                         href="https://docs.google.com/forms/d/e/1FAIpQLScB4u2Ovi_PMj_st6lqisz8NqNgeTdr9d2737UzTvaNcOAnaw/viewform"
                         target="_blank"
                         className="px-10 py-4 bg-[#E31E24] text-white hover:bg-[#2D1F1F] hover:text-[#E31E24] rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
@@ -125,8 +126,8 @@ const Vipclearanceatmalaysiaairport = () => {
                             Experience hassle-free airport formalities with our premium services
                         </p>
                     </div>
-                    <div className="text-center mb-16"> 
-                        <h2 className="text-4xl bg-[#E31E24] mx-auto rounded font-bold text-white mb-4 px-2" style={{width: 'max-content'}}>
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl bg-[#E31E24] mx-auto rounded font-bold text-white mb-4 px-2" style={{ width: 'max-content' }}>
                             What We <span>Offer</span>
                         </h2>
                     </div>
@@ -135,8 +136,8 @@ const Vipclearanceatmalaysiaairport = () => {
                         {vipServiceItems.map((item, index) => {
                             const IconComponent = serviceIcons[index % serviceIcons.length];
                             return (
-                                <div 
-                                    key={index} 
+                                <div
+                                    key={index}
                                     className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
                                 >
                                     <div className="w-16 h-16 bg-red-50 rounded-xl flex items-center justify-center mb-6">
@@ -161,8 +162,8 @@ const Vipclearanceatmalaysiaairport = () => {
                     <div className="max-w-7xl mx-auto px-6">
                         <div className="grid md:grid-cols-1 gap-8 max-w-3xl mx-auto">
                             {whatWeOfferItems.map((item, index) => (
-                                <div 
-                                    key={index} 
+                                <div
+                                    key={index}
                                     className="bg-gray-50 rounded-2xl p-8 shadow-lg border border-gray-100"
                                 >
                                     <div className="w-16 h-16 bg-red-50 rounded-xl flex items-center justify-center mb-6">
@@ -249,7 +250,7 @@ const Vipclearanceatmalaysiaairport = () => {
 
             {/* ===== VISA CENTRES (Conditional) ===== */}
             {visaCentresSection.length > 0 && (
-                <section 
+                <section
                     className="relative py-24 min-h-[500px] flex items-center"
                     style={{
                         backgroundImage: visaCentresSection[0]?.images?.[0] ? `url(${getImageUrl(visaCentresSection[0].images[0])})` : 'none',
@@ -284,7 +285,7 @@ const Vipclearanceatmalaysiaairport = () => {
                             <h2 className="text-4xl font-bold text-white mb-4">Book Your VIP Service</h2>
                             <p className="text-gray-300">Fill in your details and we'll get back to you</p>
                         </div>
-                        
+
                         {submitStatus && (
                             <div className={`p-4 mb-6 rounded-lg text-center ${submitStatus === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                                 {submitMessage}
@@ -306,7 +307,7 @@ const Vipclearanceatmalaysiaairport = () => {
                                 disabled={submitLoading}
                                 className="w-full py-4 bg-[#E31E24] text-white rounded-full font-bold text-lg hover:bg-white hover:text-[#E31E24] transition-all flex justify-center items-center gap-2"
                             >
-                                {submitLoading ? <Loader2 className="animate-spin w-5 h-5"/> : 'Submit Request'}
+                                {submitLoading ? <Loader2 className="animate-spin w-5 h-5" /> : 'Submit Request'}
                             </button>
                         </form>
                     </div>

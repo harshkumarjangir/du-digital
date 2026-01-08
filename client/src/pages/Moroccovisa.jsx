@@ -105,12 +105,15 @@ const Moroccovisa = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section
-        className="relative w-full h-[800px] overflow-hidden bg-cover bg-center"
-        style={{
-          backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
-        }}
-      >
+      <section className="relative w-full h-[800px] overflow-hidden">
+        <img
+          src={formData?.image ? getImageUrl(formData.image) : ''}
+          alt="Morocco Visa"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
         {/* Dark overlay */}
         <div
           className="absolute inset-0"

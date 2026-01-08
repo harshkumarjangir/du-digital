@@ -54,13 +54,18 @@ const NewsAndMediaHero = ({ data }) => {
                 >
 
                     {/* IMAGE (Right → Left) */}
-                    <motion.div
-                        className="absolute inset-0 bg-cover bg-center"
-                        style={{ backgroundImage: `url(${slides[current].image})` }}
+                    {/* IMAGE (Right → Left) */}
+                    <motion.img
+                        src={slides[current].image}
+                        alt={title}
+                        className="absolute inset-0 w-full h-full object-cover"
                         initial={{ x: 200 }}
                         animate={{ x: 0 }}
                         exit={{ x: -200 }}
                         transition={{ duration: 0.8, ease: "easeInOut" }}
+                        loading="eager"
+                        decoding="async"
+                        fetchPriority="high"
                     />
 
                     {/* Overlay */}

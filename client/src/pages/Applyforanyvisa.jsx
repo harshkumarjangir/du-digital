@@ -118,12 +118,15 @@ const Applyforanyvisa = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION (Text Only) ===== */}
-      <section
-        className="relative w-full py-32 bg-cover bg-center h-[800p]"
-        style={{
-          backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
-        }}
-      >
+      <section className="relative w-full py-32 h-[800px]">
+        <img
+          src={formData?.image ? getImageUrl(formData.image) : ''}
+          alt="Hero Background"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
 

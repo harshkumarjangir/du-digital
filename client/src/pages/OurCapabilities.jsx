@@ -34,6 +34,9 @@ const OurCapabilities = () => {
                     src={data.backgroundImage}
                     alt="Capabilities background"
                     className="absolute inset-0 w-full h-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
                 />
 
                 {/* Overlay */}

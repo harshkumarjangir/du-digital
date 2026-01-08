@@ -96,8 +96,8 @@ const GreeceWorkVisa = () => {
   const eligibilitySection = contentSections['Eligibility Criteria'] || [];
   const salarySection = contentSections['Salary & Benefits'] || [];
   const heroSection = contentSections[
-      "What is a Greece National Visa (Type D) for Employment?"
-    ]|| [];
+    "What is a Greece National Visa (Type D) for Employment?"
+  ] || [];
 
   // Parse description for hero points
   const heroPoints = description?.split('\r\n').filter(line => line.trim()) || [];
@@ -127,10 +127,14 @@ const GreeceWorkVisa = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section id="hero-section" className="relative w-full h-[800px] overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${getImageUrl(formData?.image) || 'https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'})` }}
+      <section id="hero-section" className="relative w-full min-h-[600px] sm:h-[800px] overflow-hidden">
+        <img
+          src={getImageUrl(formData?.image) || 'https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'}
+          alt="Greece Work Visa"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
         />
         {/* Dark overlay with red glow on right */}
         <div className="absolute inset-0" style={{
@@ -199,30 +203,30 @@ const GreeceWorkVisa = () => {
                             ))}
                           </select>
                         );
-                      } else if(fieldType === 'radio') {
-                                <div  className="space-y-2">
-                        <label className="text-white text-sm font-medium block mb-2">
+                      } else if (fieldType === 'radio') {
+                        <div className="space-y-2">
+                          <label className="text-white text-sm font-medium block mb-2">
                             {field.label} {field.required && <span className="text-red-500">*</span>}
-                        </label>
-                        <div className="flex flex-wrap gap-4">
+                          </label>
+                          <div className="flex flex-wrap gap-4">
                             {field.options?.map((opt, i) => (
-                                <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
-                                    <input
-                                        type="checkbox"
-                                        name={field.name}
-                                        value={opt.value || opt.label || opt}
-                                        checked={formValues[field.name] === (opt.value || opt.label || opt)}
-                                        onChange={handleInputChange}
-                                        className="w-4 h-4"
-                                        required={field.required}
-                                    />
-                                    <span className="text-sm">{opt.label || opt}</span>
-                                </label>
+                              <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                                <input
+                                  type="checkbox"
+                                  name={field.name}
+                                  value={opt.value || opt.label || opt}
+                                  checked={formValues[field.name] === (opt.value || opt.label || opt)}
+                                  onChange={handleInputChange}
+                                  className="w-4 h-4"
+                                  required={field.required}
+                                />
+                                <span className="text-sm">{opt.label || opt}</span>
+                              </label>
                             ))}
+                          </div>
                         </div>
-                    </div>
-                      }else if(fieldType=="checkbox"){
-                        
+                      } else if (fieldType == "checkbox") {
+
                       } else {
                         const inputType = fieldType === 'email' ? 'email'
                           : fieldType === 'phone' || fieldType === 'number' ? 'tel'

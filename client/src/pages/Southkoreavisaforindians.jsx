@@ -112,11 +112,16 @@ const Southkoreavisaforindians = () => {
 
       {/* ===== HERO SECTION ===== */}
       <section
-        className="relative w-full h-[800px] overflow-hidden bg-cover bg-center"
-        style={{
-          backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
-        }}
+        className="relative w-full h-[800px] overflow-hidden"
       >
+        <img
+          src={formData?.image ? getImageUrl(formData.image) : ''}
+          alt="Hero Background"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
         {/* Dark overlay with red glow */}
         <div
           className="absolute inset-0"
@@ -170,7 +175,7 @@ const Southkoreavisaforindians = () => {
                 }}
               >
                 <h3 className="text-2xl font-bold text-white mb-6">Apply Now</h3>
-                   <form className="flex flex-col w-full gap-3" onSubmit={handleSubmit}>
+                <form className="flex flex-col w-full gap-3" onSubmit={handleSubmit}>
                   {fields.filter(f => f.type !== 'checkbox').map((field, index) => {
                     const fieldType = field.type || field.fieldType;
 
@@ -199,7 +204,7 @@ const Southkoreavisaforindians = () => {
                           ))}
                         </select>
                       );
-                      } else if(fieldType === 'textarea') {
+                    } else if (fieldType === 'textarea') {
                       return (
                         <textarea
                           key={field._id || index}
@@ -211,31 +216,31 @@ const Southkoreavisaforindians = () => {
                           required={field.required}
                         />
                       );
-                    }else if(fieldType=="redio"){
-      <div  className="space-y-2">
+                    } else if (fieldType == "redio") {
+                      <div className="space-y-2">
                         <label className="text-white text-sm font-medium block mb-2">
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
+                          {field.label} {field.required && <span className="text-red-500">*</span>}
                         </label>
                         <div className="flex flex-wrap gap-4">
-                            {field.options?.map((opt, i) => (
-                                <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
-                                    <input
-                                        type="radio"
-                                        name={field.name}
-                                        value={opt.value || opt.label || opt}
-                                        checked={formValues[field.name] === (opt.value || opt.label || opt)}
-                                        onChange={handleInputChange}
-                                        className="w-4 h-4"
-                                        required={field.required}
-                                    />
-                                    <span className="text-sm">{opt.label || opt}</span>
-                                </label>
-                            ))}
+                          {field.options?.map((opt, i) => (
+                            <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                              <input
+                                type="radio"
+                                name={field.name}
+                                value={opt.value || opt.label || opt}
+                                checked={formValues[field.name] === (opt.value || opt.label || opt)}
+                                onChange={handleInputChange}
+                                className="w-4 h-4"
+                                required={field.required}
+                              />
+                              <span className="text-sm">{opt.label || opt}</span>
+                            </label>
+                          ))}
                         </div>
-                    </div>
-  
+                      </div>
 
-                    }  else {
+
+                    } else {
                       return (
                         <input
                           key={field._id || index}

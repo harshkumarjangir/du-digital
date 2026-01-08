@@ -9,6 +9,9 @@ const Magazine = () => {
                     src={data.hero.backgroundImage}
                     alt="TnH Hero"
                     className="absolute inset-0 w-full h-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
                 />
                 {/* <div className="absolute inset-0 bg-black/60" /> */}
                 <h1 className="relative z-10 text-white text-4xl md:text-5xl font-semibold">

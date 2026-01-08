@@ -216,17 +216,18 @@ const Georgiaevisa = () => {
     return (
         <div className="bg-white font-sans">
             {/* ===== HERO SECTION (Split Layout) ===== */}
-            <section 
-                className="relative w-full min-h-[800px] flex items-center bg-gray-900"
-                style={{ 
-                    backgroundImage: image ? `url(${getImageUrl(image)})` : 'none',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                }}
-            >
+            <section className="relative w-full min-h-[800px] sm:h-[800px] flex items-center bg-gray-900">
+                <img
+                    src={image ? getImageUrl(image) : ''}
+                    alt="Georgia eVisa"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                />
                 <div className="absolute inset-0 bg-black/50" />
                 <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center w-full py-20">
-                    
+
                     {/* Left - Title */}
                     <div className="text-white">
                         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
@@ -238,7 +239,7 @@ const Georgiaevisa = () => {
                     {fields && fields.length > 0 && (
                         <div className="bg-black/70 backdrop-blur-sm rounded-xl p-8 max-w-md w-full ml-auto">
                             <h3 className="text-2xl font-bold text-white mb-6 text-center">Apply Now</h3>
-                            
+
                             {submitStatus && (
                                 <div className={`p-3 mb-4 text-sm rounded ${submitStatus === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                                     {submitMessage}
@@ -252,7 +253,7 @@ const Georgiaevisa = () => {
                                     disabled={submitLoading}
                                     className="w-full py-4 bg-[#E31E24] text-white hover:bg-red-700 rounded-lg font-bold transition-all flex justify-center items-center gap-2"
                                 >
-                                    {submitLoading ? <Loader2 className="animate-spin w-5 h-5"/> : 'Apply Now'}
+                                    {submitLoading ? <Loader2 className="animate-spin w-5 h-5" /> : 'Apply Now'}
                                 </button>
                             </form>
                         </div>
@@ -280,8 +281,8 @@ const Georgiaevisa = () => {
 
                                 {revisedProcessSection[0]?.youtubeUrl && (
                                     <div className="aspect-video w-full max-w-3xl mx-auto rounded-xl overflow-hidden shadow-xl mb-12">
-                                        <video 
-                                            src={revisedProcessSection[0].youtubeUrl} 
+                                        <video
+                                            src={revisedProcessSection[0].youtubeUrl}
                                             controls
                                             className="w-full h-full object-cover"
                                         />

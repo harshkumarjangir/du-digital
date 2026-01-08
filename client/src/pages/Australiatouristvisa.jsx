@@ -113,12 +113,15 @@ const Australiatouristvisa = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section
-        className="relative w-full h-[800px] overflow-hidden bg-cover bg-center"
-        style={{
-          backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
-        }}
-      >
+      <section className="relative w-full h-[800px] overflow-hidden">
+        <img
+          src={formData?.image ? getImageUrl(formData.image) : ''}
+          alt="Hero Background"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
         {/* Dark overlay with red gradient on right */}
         <div
           className="absolute inset-0"
@@ -314,10 +317,10 @@ const Australiatouristvisa = () => {
       </section>
 
       {/* ===== VISA TYPES, PROCESSING TIME, AND FEES ===== */}
-      <section className="py-20" > 
+      <section className="py-20" >
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-        Types of Australia Tourist Visas,<br />Processing Time, and Fees
-      </h2>
+          Types of Australia Tourist Visas,<br />Processing Time, and Fees
+        </h2>
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid  lg:grid-cols-2 gap-x-5 rounded-2xl items-center" style={{ backgroundColor: '#B31D1D' }}>
             {/* Left - Image */}
@@ -331,7 +334,7 @@ const Australiatouristvisa = () => {
 
             {/* Right - Visa Details Cards */}
             <div >
-            
+
 
               <div className="grid grid-cols-2 gap-4 m-2">
                 {/* Processing Time Card */}

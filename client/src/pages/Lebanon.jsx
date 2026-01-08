@@ -113,7 +113,7 @@ const Lebanon = () => {
     };
   };
 
-    const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitLoading(true);
     setSubmitStatus(null);
@@ -148,12 +148,15 @@ const Lebanon = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION (1920x800) ===== */}
-      <section
-        className="relative w-full h-[800px] bg-cover bg-center flex items-center justify-center"
-        style={{
-          backgroundImage: formData?.image ? `url(${getImageUrl(formData.image)})` : 'none'
-        }}
-      >
+      <section className="relative w-full h-[800px] flex items-center justify-center">
+        <img
+          src={formData?.image ? getImageUrl(formData.image) : ''}
+          alt="Lebanon Visa"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/40" />
 
@@ -243,36 +246,36 @@ const Lebanon = () => {
       ))}
 
       {/* ===== FORM SECTION (if fields exist) ===== */}
-    {fields && fields.length > 0 && (
-            <div id="callback-form" className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full ml-auto">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Request a Callback</h3>
-              
-              {submitStatus && (
-                <div className={`p-3 mb-4 text-sm rounded ${submitStatus === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                  {submitMessage}
-                </div>
-              )}
+      {fields && fields.length > 0 && (
+        <div id="callback-form" className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full ml-auto">
+          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Request a Callback</h3>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
-                {fields.map((field, index) => (
-                  <DynamicFormField
-                    key={index}
-                    field={field}
-                    formValues={formValues}
-                    handleInputChange={handleInputChange}
-                    theme="light"
-                  />
-                ))}
-                <button
-                  type="submit"
-                  disabled={submitLoading}
-                  className="w-full py-4 bg-[#E31E24] text-white hover:bg-[#2D1F1F] hover:text-[#E31E24] rounded-full font-bold transition-opacity flex justify-center items-center gap-2"
-                >
-                  {submitLoading ? <Loader2 className="animate-spin w-5 h-5"/> : 'Submit Request'}
-                </button>
-              </form>
+          {submitStatus && (
+            <div className={`p-3 mb-4 text-sm rounded ${submitStatus === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+              {submitMessage}
             </div>
           )}
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {fields.map((field, index) => (
+              <DynamicFormField
+                key={index}
+                field={field}
+                formValues={formValues}
+                handleInputChange={handleInputChange}
+                theme="light"
+              />
+            ))}
+            <button
+              type="submit"
+              disabled={submitLoading}
+              className="w-full py-4 bg-[#E31E24] text-white hover:bg-[#2D1F1F] hover:text-[#E31E24] rounded-full font-bold transition-opacity flex justify-center items-center gap-2"
+            >
+              {submitLoading ? <Loader2 className="animate-spin w-5 h-5" /> : 'Submit Request'}
+            </button>
+          </form>
+        </div>
+      )}
 
       {/* ===== DOCUMENTS SECTION (if documents exist) ===== */}
       {documents.length > 0 && (
