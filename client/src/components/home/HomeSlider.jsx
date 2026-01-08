@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const { slides, autoplay, interval } = data;
 const HomeSlider = ({ data }) => {
+    const { slides, autoplay, interval } = data;
     const [current, setCurrent] = useState(0);
 
     useEffect(() => {
