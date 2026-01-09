@@ -201,7 +201,7 @@ const Duverify = () => {
                   </ul>
                 </div>
                 <div className="flex justify-center">
-                  {item?.images.length > 0?item.images.map(p => <img
+                  {item?.images?.length > 0 ? item.images.map(p => <img
                     src={getImageUrl(p)}
                     alt="About DuVerify"
                     className=" inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
@@ -245,13 +245,13 @@ const Duverify = () => {
               `}
                   >
                     {/* bg image absolute positioned */}
-                    {item?.images.length>0 ? (
+                    {item?.images?.length > 0 ? (
                       <img
                         src={getImageUrl(item.images[0])}
                         alt="Why Choose DuVerify"
                         className="absolute inset-0 w-full h-full opacity-0 object-cover"
                       />
-                    ):
+                    ) :
                       <img
                         src={getImageUrl(item.image)}
                         alt="Why Choose DuVerify"
@@ -309,13 +309,13 @@ const Duverify = () => {
                   className="relative group rounded-lg overflow-hidden border border-white/20 min-h-[280px]"
                 >
                   {/* Background Image */}
-                  {partnership.images.length>0 && (
+                  {partnership?.images?.length > 0 && (
                     <div
                       className="absolute inset-0 bg-cover bg-center"
                       style={{ backgroundImage: `url(${getImageUrl(partnership.images[0])})` }}
                     />
                   )}
-                  
+
                   {/* Dark overlay */}
                   <div className="absolute inset-0 bg-black/50" />
 
@@ -412,7 +412,7 @@ const Duverify = () => {
             <div
               className="absolute inset-0 bg-cover  bg-center"
               style={{
-                backgroundImage: demoSection[0]?.images.length>0
+                backgroundImage: demoSection[0]?.images?.length > 0
                   ? `url(${getImageUrl(demoSection[0].images[0])})`
                   : `url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`
               }}
