@@ -113,7 +113,7 @@ const Australiatouristvisa = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full h-[600px] overflow-hidden">
+      <section className="relative w-full sm:h-[600px] min-h-[600px] overflow-hidden">
         <img
           src={formData?.image ? getImageUrl(formData.image) : ''}
           alt="Hero Background"

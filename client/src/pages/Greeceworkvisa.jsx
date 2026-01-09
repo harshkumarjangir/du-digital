@@ -467,14 +467,19 @@ const GreeceWorkVisa = () => {
             {eligibilitySection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="flex justify-center">
-                  {item.image && (
-                    <img
-                      src={getImageUrl(item.image)}
+                  {item?.images?.length > 0 ? (
+                    item.images.map(p => <img
+                      src={getImageUrl(p)}
                       alt={item.title}
                       className="max-w-full h-auto rounded-xl shadow-lg"
                       style={{ maxHeight: '400px' }}
-                    />
-                  )}
+                    />)
+                  ) : item.image && <img
+                    src={getImageUrl(item.image)}
+                    alt={item.title}
+                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    style={{ maxHeight: '400px' }}
+                  />}
                 </div>
                 <div>
                   <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
@@ -609,14 +614,19 @@ const GreeceWorkVisa = () => {
             {whyChooseSection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="order-2 md:order-2 flex justify-center">
-                  {item.image && (
-                    <img
-                      src={getImageUrl(item.image)}
+                  {item?.images?.length > 0 ? (
+                    item.images.map(p => <img
+                      src={getImageUrl(p)}
                       alt={item.title}
                       className="max-w-full h-auto rounded-xl shadow-lg"
                       style={{ maxHeight: '400px' }}
-                    />
-                  )}
+                    />)
+                  ) : item.image && <img
+                    src={getImageUrl(item.image)}
+                    alt={item.title}
+                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    style={{ maxHeight: '400px' }}
+                  />}
                 </div>
                 <div className="order-1 md:order-1">
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">

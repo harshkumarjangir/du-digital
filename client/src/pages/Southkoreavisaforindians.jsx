@@ -112,7 +112,7 @@ const Southkoreavisaforindians = () => {
 
       {/* ===== HERO SECTION ===== */}
       <section
-        className="relative w-full h-[600px] overflow-hidden"
+        className="relative w-full sm:h-[600px] min-h-[600px] overflow-hidden"
       >
         <img
           src={formData?.image ? getImageUrl(formData.image) : ''}
@@ -137,7 +137,7 @@ const Southkoreavisaforindians = () => {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[800px] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[600px] flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -359,14 +359,19 @@ const Southkoreavisaforindians = () => {
                   </p>
                 </div>
                 <div className="flex justify-center">
-                  {item.image && (
-                    <img
-                      src={getImageUrl(item.image)}
+                  {item?.images?.length > 0 ? (
+                    item.images.map(p => <img
+                      src={getImageUrl(p)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-2xl shadow-xl"
+                      className="max-w-full h-auto rounded-xl shadow-lg"
                       style={{ maxHeight: '400px' }}
-                    />
-                  )}
+                    />)
+                  ) : item.image && <img
+                    src={getImageUrl(item.image)}
+                    alt={item.title}
+                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    style={{ maxHeight: '400px' }}
+                  />}
                 </div>
               </div>
             ))}
@@ -381,14 +386,19 @@ const Southkoreavisaforindians = () => {
             {ktoSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                 <div className="flex justify-center order-2 lg:order-1">
-                  {item.image && (
-                    <img
-                      src={getImageUrl(item.image)}
+                  {item?.images?.length > 0 ? (
+                    item.images.map(p => <img
+                      src={getImageUrl(p)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-2xl shadow-xl"
+                      className="max-w-full h-auto rounded-xl shadow-lg"
                       style={{ maxHeight: '400px' }}
-                    />
-                  )}
+                    />)
+                  ) : item.image && <img
+                    src={getImageUrl(item.image)}
+                    alt={item.title}
+                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    style={{ maxHeight: '400px' }}
+                  />}
                 </div>
                 <div className="order-1 lg:order-2">
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">

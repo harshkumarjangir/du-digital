@@ -28,7 +28,7 @@ const OurCapabilities = () => {
     return (
         <section className="bg-gray-50">
             {/* HERO */}
-            <div className="relative h-[600px] flex items-center justify-center overflow-hidden">
+            <div className="relative sm:h-[600px] min-h-[600px]flex items-center justify-center overflow-hidden">
                 {/* Background Image */}
                 <img
                     src={data.backgroundImage}

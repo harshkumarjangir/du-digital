@@ -50,7 +50,7 @@ const TenantVerification = () => {
   const getImageUrl = (imagePath) => {
     if (!imagePath) return '';
     if (imagePath.startsWith('http')) return imagePath;
-    return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
+    return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath.replace("/api", "")}`;
   };
 
   if (loading) return <LoadingState message="Loading verification details..." fullScreen />;
@@ -107,7 +107,7 @@ const TenantVerification = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full h-[600px] overflow-hidden">
+      <section className="relative w-full sm:h-[600px] min-h-[600px] overflow-hidden">
         {/* Background Image */}
         <img
           src={getImageUrl(formData?.image) || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1920&q=80'}
@@ -198,16 +198,19 @@ const TenantVerification = () => {
 
                 {/* RIGHT IMAGE */}
                 <div className="flex justify-center">
-                  {item.image && (
-                    <div className="bg-[#FFF9EF] rounded-3xl p-6">
-                      <img
-                        src={getImageUrl(item.image)}
-                        alt="Why Choose DuVerify"
-                        className="max-w-full h-auto"
-                        style={{ maxHeight: '420px' }}
-                      />
-                    </div>
-                  )}
+                  {item?.images?.length > 0 ? (
+                    item.images.map(p => <img
+                      src={getImageUrl(p)}
+                      alt={item.title}
+                      className="max-w-full h-auto rounded-xl shadow-lg"
+                      style={{ maxHeight: '400px' }}
+                    />)
+                  ) : item.image && <img
+                    src={getImageUrl(item.image)}
+                    alt={item.title}
+                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    style={{ maxHeight: '400px' }}
+                  />}
                 </div>
               </div>
             ))}

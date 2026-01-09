@@ -117,7 +117,7 @@ const Dubai5yeartouristvisa = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full h-[600px] overflow-hidden">
+      <section className="relative w-full sm:h-[600px] min-h-[600px] overflow-hidden">
         <img
           src={getImageUrl(formData?.image) || STATIC_IMAGES.hero}
           alt="Hero Background"
@@ -132,7 +132,7 @@ const Dubai5yeartouristvisa = () => {
           style={{ background: 'linear-gradient(135deg, rgba(0,30,50,0.85) 0%, rgba(0,50,70,0.75) 100%)' }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 h-[800px] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 h-[600px] flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -160,8 +160,8 @@ const Dubai5yeartouristvisa = () => {
             {/* Right - Contact Form */}
             {fields.length > 0 && (
               <div
-                className="rounded-2xl p-8 shadow-2xl backdrop-blur-md"
-                style={{ backgroundColor: 'rgba(0,0,0,0.7)' }}
+                className="rounded-2xl p-8 shadow-2xl backdrop-blur-md z-10 "
+                style={{ backgroundColor: 'rgba(0,0,0,0.7)'}}
               >
                 <h3 className="text-2xl font-bold text-white mb-6">Apply Now</h3>
                 <form className="space-y-4" onSubmit={handleSubmit}>
@@ -359,13 +359,20 @@ const Dubai5yeartouristvisa = () => {
                   </p>
 
                   {/* Trust badge */}
-                  <div className="flex items-center gap-3 bg-gray-50 rounded-lg p-4 flex">
-                    <Star className="w-6 h-6" style={{ color: '#E31E24' }} fill="#E31E24" />
-                    <span className="text-gray-700 font-semibold">17 Lac+ Happy Customers</span>
-                  </div>
+               
                 </div>
-                <div className="flex justify-center">
-                  {item.image && (
+                <div className="flex justify-center relative">
+                  {item?.images.length > 0 ? (
+                    item?.images.map((image, index) => (
+                      <img
+                        key={index}
+                        src={getImageUrl(image)}
+                        alt={item.title}
+                        className="max-w-full h-auto rounded-2xl shadow-xl"
+                        style={{ maxHeight: '450px' }}
+                      />
+                    ))
+                  ) : (
                     <img
                       src={getImageUrl(item.image)}
                       alt={item.title}
@@ -373,6 +380,14 @@ const Dubai5yeartouristvisa = () => {
                       style={{ maxHeight: '450px' }}
                     />
                   )}
+                  {
+                    item?.badge && (
+                      <div className="flex items-center gap-3 absolute -top-10 -right-10 rounded-lg p-4 flex" style={{
+                        backgroundColor: `${item.badge.background||"#E31E24"}`}}>
+                        <span className="font-semibold">{item.badge.text}</span>
+                      </div>
+                    )
+                  }
                 </div>
               </div>
             ))}

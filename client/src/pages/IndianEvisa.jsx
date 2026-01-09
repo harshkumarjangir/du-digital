@@ -355,14 +355,21 @@ const IndianEvisa = () => {
                     />
                   </div>
                   <div className="relative">
-                    {item.image && (
+                    
                       <div className="relative">
-                        <img
+                        {item?.images?.length > 0 ? (
+                          item.images.map(p => <img
+                            src={getImageUrl(p)}
+                            alt={item.title}
+                            className="max-w-full h-auto rounded-xl shadow-lg"
+                            style={{ maxHeight: '400px' }}
+                          />)
+                        ) : item.image && <img
                           src={getImageUrl(item.image)}
                           alt={item.title}
-                          className="rounded-2xl shadow-xl w-full object-cover"
-                          style={{ maxHeight: '450px' }}
-                        />
+                          className="max-w-full h-auto rounded-xl shadow-lg"
+                          style={{ maxHeight: '400px' }}
+                        />}
                         {/* Badge overlay */}
                         {item.badge?.text && (
                           <div
@@ -373,7 +380,7 @@ const IndianEvisa = () => {
                           </div>
                         )}
                       </div>
-                    )}
+                    
                   </div>
                 </div>
               ))}

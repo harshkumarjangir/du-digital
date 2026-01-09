@@ -96,7 +96,7 @@ const Malaysiavisaforndians = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full h-[600px] overflow-hidden">
+      <section className="relative w-full sm:h-[600px] min-h-[600px] overflow-hidden">
         <img
           src={formData?.image ? getImageUrl(formData.image) : ''}
           alt="Malaysia Visa"
@@ -114,7 +114,7 @@ const Malaysiavisaforndians = () => {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[800px] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[600px] flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -270,14 +270,19 @@ const Malaysiavisaforndians = () => {
                   </p>
                 </div>
                 <div className="flex justify-center relative">
-                  {item.image && (
-                    <img
-                      src={getImageUrl(item.image)}
+                  {item?.images?.length > 0 ? (
+                    item.images.map(p => <img
+                      src={getImageUrl(p)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-2xl shadow-xl"
-                      style={{ maxHeight: '450px' }}
-                    />
-                  )}
+                      className="max-w-full h-auto rounded-xl shadow-lg"
+                      style={{ maxHeight: '400px' }}
+                    />)
+                  ) : item.image && <img
+                    src={getImageUrl(item.image)}
+                    alt={item.title}
+                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    style={{ maxHeight: '400px' }}
+                  />}
                   {item.badge?.text && (
                     <div
                       className="inline-flex absolute -top-5 right-10 items-center px-4 py-2 rounded-full text-white text-sm font-semibold mb-4"

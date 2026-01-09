@@ -112,7 +112,7 @@ const Digitalarrivalcards = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full h-[600px] overflow-hidden">
+      <section className="relative w-full sm:h-[600px] min-h-[600px]overflow-hidden">
         <img
           src={getImageUrl(formData?.image) || STATIC_IMAGES.hero}
           alt="Hero Background"
@@ -276,7 +276,7 @@ const Digitalarrivalcards = () => {
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="flex justify-center">
                   <img
-                    src={item.image ? getImageUrl(item.image) : STATIC_IMAGES.whyChoose}
+                    src={item.images.length > 0 ? getImageUrl(item.images[0]) : STATIC_IMAGES.whyChoose}
                     alt={item.title}
                     className="max-w-full h-auto rounded-2xl shadow-2xl"
                     style={{ maxHeight: '400px' }}

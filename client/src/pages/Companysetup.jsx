@@ -3,7 +3,6 @@ import { CheckCircle, Phone, MapPin, Mail, XCircle, Loader2, Check } from "lucid
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
 import ConsultationModal from "../components/reusable/ConsultationModal";
-import { Link } from "react-router-dom";
 
 const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
@@ -134,7 +133,7 @@ const Companysetup = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full h-[600px] overflow-hidden">
+      <section className="relative w-full sm:h-[600px] min-h-[600px]overflow-hidden">
         <img
           src={heroImage}
           alt="Company Setup Hero"
@@ -145,7 +144,7 @@ const Companysetup = () => {
         />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%)' }} />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-32 h-[800px] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-32 h-[600px] flex items-center">
           <div className={`${fields.length > 0 ? 'grid md:grid-cols-2 gap-12 items-center' : ''} w-full`}>
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -287,14 +286,19 @@ const Companysetup = () => {
                   </div>
                 </div>
                 <div className="flex justify-center">
-                  {item.image && (
-                    <img
-                      src={getImageUrl(item.image)}
+                  {item?.images?.length > 0 ? (
+                    item.images.map(p => <img
+                      src={getImageUrl(p)}
                       alt={item.title}
                       className="max-w-full h-auto rounded-xl shadow-lg"
                       style={{ maxHeight: '400px' }}
-                    />
-                  )}
+                    />)
+                  ) : item.image && <img
+                    src={getImageUrl(item.image)}
+                    alt={item.title}
+                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    style={{ maxHeight: '400px' }}
+                  />}
                 </div>
               </div>
             ))}
@@ -309,12 +313,15 @@ const Companysetup = () => {
           className="py-20 relative min-h-[500px] max-w-6xl mx-auto rounded-lg overflow-hidden"
         >
           {/* Background Image */}
-          {item.image && (
+          {item?.images?.length > 0 ? (
             <div
               className="absolute inset-0 bg-cover bg-center rounded-md"
-              style={{ backgroundImage: `url(${getImageUrl(item.image)})` }}
+              style={{ backgroundImage: `url(${getImageUrl(item.images[0])})` }}
             />
-          )}
+          ) : item.image && <div
+            className="absolute inset-0 bg-cover bg-center rounded-md"
+            style={{ backgroundImage: `url(${getImageUrl(item.image)})` }}
+          />}
           <div className="absolute inset-0 bg-black/80 rounded-md" />
 
           <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 text-white rounded-md">
@@ -337,14 +344,19 @@ const Companysetup = () => {
             {freezoneSection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-6 items-center">
                 <div className="order-2 md:order-2 flex justify-center">
-                  {item.image && (
-                    <img
-                      src={getImageUrl(item.image)}
+                  {item?.images?.length > 0 ? (
+                    item.images.map(p => <img
+                      src={getImageUrl(p)}
                       alt={item.title}
                       className="max-w-full h-auto rounded-xl shadow-lg"
                       style={{ maxHeight: '500px' }}
-                    />
-                  )}
+                    />)
+                  ) : item.image && <img
+                    src={getImageUrl(item.image)}
+                    alt={item.title}
+                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    style={{ maxHeight: '500px' }}
+                  />}
                 </div>
                 <div className="order-1 md:order-1">
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -464,13 +476,18 @@ const Companysetup = () => {
               >
                 {/* Image */}
                 <div className="flex justify-center">
-                  {item.image && (
-                    <img
-                      src={getImageUrl(item.image)}
+                  {item?.images?.length > 0 ? (
+                    item.images.map(p => <img
+                      src={getImageUrl(p)}
                       alt={item.title}
-                      className="w-full max-w-[520px] h-auto rounded-3xl shadow-xl"
-                    />
-                  )}
+                      className="max-w-full h-auto rounded-xl shadow-lg"
+                    />)
+                  ) : item.image && <img
+                    src={getImageUrl(item.image)}
+                    alt={item.title}
+                    className="max-w-full h-auto rounded-xl shadow-lg"
+
+                  />}
                 </div>
 
                 {/* Content */}
@@ -599,16 +616,22 @@ const Companysetup = () => {
                 >
                   {/* Image */}
                   <div className="h-48 md:h-60 overflow-hidden rounded-xl p-3">
-                    {step.image ? (
-                      <img
-                        src={getImageUrl(step.image)}
-                        alt={step.title}
-                        className="w-full h-full object-cover p-0 rounded-xl"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                        <span className="text-gray-400">No Image</span>
-                      </div>
+                    {step?.images?.length > 0 ? (
+                      step.images.map((image, index) => (
+                        <img
+                          key={index}
+                          src={getImageUrl(image)}
+                          alt={step.title}
+                          className="w-full h-full object-cover p-0 rounded-xl"
+                        />
+                      ))
+                    ) :step.image&& (
+                        <img
+                          key={index}
+                          src={getImageUrl(step.image)}
+                          alt={step.title}
+                          className="w-full h-full object-cover p-0 rounded-xl"
+                        />
                     )}
                   </div>
 
