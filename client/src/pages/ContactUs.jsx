@@ -2,8 +2,18 @@ import contactData from "../data/contactData.json";
 import Offices from "../components/contact-us/Offices";
 import ContactForm from "../components/contact-us/ContactForm";
 
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchGroupedOffices } from "../redux/slices/officeSlice";
+
 const ContactUs = () => {
     const { hero, offices, form } = contactData;
+    const dispatch = useDispatch();
+    const officeData = useSelector((state) => state.office);
+
+    useEffect(() => {
+        dispatch(fetchGroupedOffices());
+    }, [dispatch]);
 
     return (
         <div className="w-full">
@@ -54,15 +64,40 @@ const ContactUs = () => {
 
             {/* Maps */}
             <section className="grid grid-cols-1 md:grid-cols-3 gap-4 px-6 pb-20">
-                {offices.slice(1).map((office, i) => (
-                    <iframe
-                        key={i}
-                        src={office.mapEmbed}
-                        title={office.title || "Office Map"}
-                        className="w-full h-[380px] border-0 rounded-xl"
-                        loading="lazy"
-                    />
-                ))}
+                {offices.slice(0, 3).map((office, i) => {
+                    // Flatten API offices for easier searching
+                    const apiOffices = [...(officeData.india || []), ...(officeData.international || [])];
+
+                    // Try to find a match in API data
+                    // Matching strategy:
+                    // 1. Check if office title contains the Country name (e.g. "Office in Thailand" -> "Thailand")
+                    // 2. Check if office title contains the City name
+
+                    const apiMatch = apiOffices.find(apiOffice => {
+                        const country = apiOffice.address?.country || "";
+                        const city = apiOffice.address?.city || "";
+
+                        // Extract keyword from JSON title (e.g., "Office in Thailand" -> "Thailand")
+                        const titleKeyword = office.title.replace("Office in ", "").trim();
+
+                        return (
+                            (country && country.toLowerCase().includes(titleKeyword.toLowerCase())) ||
+                            (city && city.toLowerCase().includes(titleKeyword.toLowerCase()))
+                        );
+                    });
+
+                    const mapSrc = apiMatch?.googleMapLink || office.mapEmbed;
+
+                    return (
+                        <iframe
+                            key={i}
+                            src={mapSrc}
+                            title={office.title || "Office Map"}
+                            className="w-full h-[380px] border-0 rounded-xl"
+                            loading="lazy"
+                        />
+                    );
+                })}
             </section>
         </div>
     );

@@ -8,7 +8,7 @@ const LOOKING_FOR_OPTIONS = [
   "Traveler - I am looking for a Visa to Travel"
 ];
 
-const CITY_OPTIONS = ["Delhi", "Mumbai", "Bangalore", "Chennai", "Other"];
+const CITY_OPTIONS = ["Bangalore", "Chandigarh", "Chennai", "Delhi NCR", "Jammu & Kashmir", "Kolkata", "Mumbai", "Other"];
 
 const HeroSection = ({ data }) => {
   const dispatch = useDispatch();
@@ -22,6 +22,7 @@ const HeroSection = ({ data }) => {
     businessName: "",
     destinationCountry: "",
     city: "",
+    otherCity: "",
     isMsg: false,
   });
 
@@ -43,18 +44,37 @@ const HeroSection = ({ data }) => {
   //   }));
   // };
 
+  // const handleChange = (e) => {
+  //   const { name, value, type, checked } = e.target;
+
+  //   setFormData((prev) => ({
+  //     ...prev,
+  //     [name]: type === "checkbox" ? checked : value,
+  //     ...(name === "lookingFor" && {
+  //       businessName: "",
+  //       destinationCountry: "",
+  //     }),
+  //   }));
+  // };
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
+
       ...(name === "lookingFor" && {
         businessName: "",
         destinationCountry: "",
       }),
+
+      ...(name === "city" && value !== "Other" && {
+        otherCity: "",
+      }),
     }));
   };
+
 
 
   const handleSubmit = async (e) => {
@@ -114,7 +134,7 @@ const HeroSection = ({ data }) => {
         loading="eager"
         decoding="async"
         fetchPriority="high"
-        
+
       />
       {/* <div className="absolute inset-0 bg-white/80" /> */}
 
@@ -203,6 +223,7 @@ const HeroSection = ({ data }) => {
               />
             )}
 
+
             {/* CITY */}
             <select
               name="city"
@@ -210,13 +231,26 @@ const HeroSection = ({ data }) => {
               value={formData.city}
               onChange={handleChange}
               required
-              aria-label="Location (City)"
             >
               <option value="">Location (City)</option>
               {CITY_OPTIONS.map((city) => (
                 <option key={city} value={city}>{city}</option>
               ))}
             </select>
+
+            {/* OTHER CITY INPUT */}
+            {formData.city === "Other" && (
+              <input
+                type="text"
+                name="otherCity"
+                placeholder="Enter your city"
+                className="w-full border px-4 py-3 rounded-md"
+                value={formData.otherCity}
+                onChange={handleChange}
+                required
+              />
+            )}
+
 
             {/* CONSENT */}
             <div className="flex items-start gap-3 text-sm">

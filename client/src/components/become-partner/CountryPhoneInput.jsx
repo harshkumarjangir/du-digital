@@ -64,6 +64,7 @@ const CountryPhoneInput = ({ onChange }) => {
                     onFocus={() => setOpen(true)}
                     className="flex-1 outline-none text-sm"
                     aria-label="Phone Number"
+                    required
                 />
             </div>
 
