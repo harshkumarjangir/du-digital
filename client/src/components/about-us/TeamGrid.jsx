@@ -35,6 +35,7 @@ const TeamGrid = ({ title, subtitle, data }) => {
                                 src={`${import.meta.env.VITE_API_URL}${member.profileImage || member.image}`}
                                 alt={member.name}
                                 className="absolute inset-0 w-full h-full object-cover"
+                                fill
                             />
 
                             {/* DARK GRADIENT */}

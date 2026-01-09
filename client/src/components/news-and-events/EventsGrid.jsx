@@ -79,6 +79,7 @@ const EventsGrid = ({ data: propData }) => {
                                     src={`${BackendImagesURL}${event.imageUrl}`}
                                     alt={event.title}
                                     className="w-full h-full object-cover"
+                                    fill
                                 />
                             ) : (
                                 <div className="w-full h-full bg-gray-300" />
