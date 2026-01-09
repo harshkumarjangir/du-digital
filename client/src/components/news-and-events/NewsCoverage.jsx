@@ -58,7 +58,7 @@ const NewsCoverage = ({ data: propData }) => {
                                         src={`${import.meta.env.VITE_BACKEND_IMAGES_URL}${item.imageUrl}`}
                                         // src={item.imageUrl}
                                         alt={item.title}
-                                        className="w-[ 300px] h-40 object-cover rounded-xl"
+                                        className="w-[300px] h-[200px] object-cover rounded-xl"
                                     />
 
                                     <div>
