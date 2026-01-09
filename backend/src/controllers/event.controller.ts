@@ -44,38 +44,64 @@ export const createEvent = async (req: Request, res: Response) => {
 // Get Events
 export const getEvents = async (req: Request, res: Response) => {
     try {
-        const page = parseInt(req.query.page as string) || 1;
-        const limit = parseInt(req.query.limit as string) || 10;
-        
-        const cacheKey = `events_list_${page}_${limit}`;
+        let page 
+        let limit
+        if(req.query.page){
+             page = parseInt(req.query.page as string)
+             limit = parseInt(req.query.limit as string)    
+             
+             const cacheKey = `events_list_${page}_${limit}`;
+             
+             // Check cache
+             const cachedEvents = getCache(cacheKey);
+             if (cachedEvents) {
+                 return res.status(200).json(cachedEvents);
+                }
+                
+                const skip = (page - 1) * limit;
+                
+                const events = await Event.find()
+                .sort({ date: -1 })
+                .skip(skip)
+                .limit(limit);
+                
+                const total = await Event.countDocuments();
+                
+                const responseData = {
+                    data: events,
+                    total,
+                    page,
+                    totalPages: Math.ceil(total / limit),
+                    hasMore: page * limit < total
+                };
+                
+                // Set cache
+                setCache(cacheKey, responseData, 300);
+                
+                res.status(200).json(responseData);
+            }else{
+            // Check cache
+            const cacheKey = `events_list`;
+            const cachedEvents = getCache(cacheKey);
+            if (cachedEvents) {
+                return res.status(200).json(cachedEvents);
+            }
 
-        // Check cache
-        const cachedEvents = getCache(cacheKey);
-        if (cachedEvents) {
-            return res.status(200).json(cachedEvents);
-        }
 
-        const skip = (page - 1) * limit;
+            const events = await Event.find()
+                .sort({ date: -1 })
 
-        const events = await Event.find()
-            .sort({ date: -1 })
-            .skip(skip)
-            .limit(limit);
 
-        const total = await Event.countDocuments();
+            const responseData = {
+                data: events,
+                comeWithElse:true
+            };
 
-        const responseData = {
-            data: events,
-            total,
-            page,
-            totalPages: Math.ceil(total / limit),
-            hasMore: page * limit < total
-        };
+            // Set cache
+            setCache(cacheKey, responseData, 300);
 
-        // Set cache
-        setCache(cacheKey, responseData, 300);
-
-        res.status(200).json(responseData);
+            res.status(200).json(responseData);
+            }
     } catch (error) {
         console.error("Get Events Error", error);
         res.status(500).json({ message: "Server Error" });

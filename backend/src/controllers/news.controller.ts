@@ -40,21 +40,26 @@ export const createNews = async (req: Request, res: Response) => {
 // Get News (Filter by Year)
 export const getNews = async (req: Request, res: Response) => {
     try {
-        const page = parseInt(req.query.page as string) || 1;
-        const limit = parseInt(req.query.limit as string) || 10;
+
+        let page 
+        let limit
         const { year } = req.query;
-        
-        const cacheKey = `news_${year || 'all'}_${page}_${limit}`;
-
-        // Check cache
-        const cachedNews = getCache(cacheKey);
-        if (cachedNews) {
-            return res.status(200).json(cachedNews);
-        }
-
-        let query: any = {};
-
-        if (year) {
+        if(req.query.page){
+             page = parseInt(req.query.page as string) || 1;
+             limit = parseInt(req.query.limit as string) || 10;
+             
+             
+             const cacheKey = `news_${year || 'all'}_${page}_${limit}`;
+             
+             // Check cache
+             const cachedNews = getCache(cacheKey);
+             if (cachedNews) {
+                 return res.status(200).json(cachedNews);
+                }
+                
+                let query: any = {};
+                
+                if (year) {
             const startStr = `${year}-01-01T00:00:00.000Z`;
             const endStr = `${year}-12-31T23:59:59.999Z`;
             query.datePublished = {
@@ -64,14 +69,14 @@ export const getNews = async (req: Request, res: Response) => {
         }
 
         const skip = (page - 1) * limit;
-
+        
         const news = await NewsMedia.find(query)
-            .sort({ datePublished: -1 })
-            .skip(skip)
-            .limit(limit);
-
+        .sort({ datePublished: -1 })
+        .skip(skip)
+        .limit(limit);
+        
         const total = await NewsMedia.countDocuments(query);
-
+        
         const responseData = {
             data: news,
             total,
@@ -79,11 +84,44 @@ export const getNews = async (req: Request, res: Response) => {
             totalPages: Math.ceil(total / limit),
             hasMore: page * limit < total
         };
-
+        
         // Set cache
         setCache(cacheKey, responseData, 300);
-
+        
         res.status(200).json(responseData);
+    }else{
+            const cacheKey = `news_${year || 'all'}`;
+
+            // Check cache
+            const cachedNews = getCache(cacheKey);
+            if (cachedNews) {
+                return res.status(200).json(cachedNews);
+            }
+
+            let query: any = {};
+
+            if (year) {
+                const startStr = `${year}-01-01T00:00:00.000Z`;
+                const endStr = `${year}-12-31T23:59:59.999Z`;
+                query.datePublished = {
+                    $gte: new Date(startStr),
+                    $lte: new Date(endStr)
+                };
+            }
+
+
+            const news = await NewsMedia.find(query)
+                .sort({ datePublished: -1 })
+
+
+        
+
+            // Set cache
+            setCache(cacheKey, news, 300);
+
+            res.status(200).json(news);
+
+    }
     } catch (error) {
         console.error("Get News Error", error);
         res.status(500).json({ message: "Server Error" });

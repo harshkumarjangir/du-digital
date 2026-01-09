@@ -24,8 +24,6 @@ export const getBlogs = async (req: Request, res: Response) => {
             .skip(skip)
             .limit(limit).select("title featuredImage tags") : await Blog.find()
                 .sort({ publishedAt: -1 })
-                .skip(skip)
-                .limit(limit)
 
         const total = await Blog.countDocuments();
 
