@@ -334,10 +334,26 @@ const Egyptvisaforindians = () => {
                     {item.contentHtml}
                   </p>
                 </div>
-                {item.images?.[0] && (
+                {item?.images?.[0] ? (
                   <div className="relative">
                     <img
                       src={getImageUrl(item.images[0])}
+                      alt={item.title}
+                      className="rounded-xl shadow-lg w-full"
+                    />
+                    {item.badge?.text && (
+                      <div
+                        className="absolute -bottom-4 -right-4 px-4 py-2 rounded-lg text-white font-bold shadow-lg"
+                        style={{ backgroundColor: item.badge.background || '#E31E24' }}
+                      >
+                        {item.badge.text} Happy Customers
+                      </div>
+                    )}
+                  </div>
+                ) : item.images&&(
+                  <div className="relative">
+                    <img
+                      src={getImageUrl(item.image)}
                       alt={item.title}
                       className="rounded-xl shadow-lg w-full"
                     />
@@ -422,7 +438,7 @@ const Egyptvisaforindians = () => {
                   </div>
 
                 </div>
-                {item.images?.[0] && (
+                {item?.images?.[0] ? (
                   <div className="order-1 lg:order-2">
                     <img
                       src={getImageUrl(item.images[0])}
@@ -431,7 +447,14 @@ const Egyptvisaforindians = () => {
                     />
                   </div>
 
-                )}
+                ):item.image&&
+                  <div className="order-1 lg:order-2">
+                    <img
+                      src={getImageUrl(item.image)}
+                      alt={item.title}
+                      className="rounded-xl shadow-lg w-full"
+                    />
+                  </div>}
                 <p className="text-gray-600 leading-relaxed whitespace-pre-line">
                   {item.contentHtml}
                 </p>
@@ -456,7 +479,7 @@ const Egyptvisaforindians = () => {
                     {item.contentHtml}
                   </p>
                 </div>
-                {item.images?.[0] && (
+                {item?.images?.[0] ? (
                   <div>
                     <img
                       src={getImageUrl(item.images[0])}
@@ -464,7 +487,14 @@ const Egyptvisaforindians = () => {
                       className="rounded-xl shadow-lg w-full"
                     />
                   </div>
-                )}
+                ):(item?.image&&
+                  <div>
+                    <img
+                      src={getImageUrl(item.image)}
+                      alt={item.title}
+                      className="rounded-xl shadow-lg w-full"
+                    />
+                  </div>)}
               </div>
             ))}
           </div>
@@ -477,7 +507,7 @@ const Egyptvisaforindians = () => {
           <div className="max-w-6xl mx-auto px-6">
             {planningSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
-                {item.images?.[0] && (
+                {item?.images?.[0] ? (
                   <div>
                     <img
                       src={getImageUrl(item.images[0])}
@@ -485,7 +515,14 @@ const Egyptvisaforindians = () => {
                       className="rounded-xl shadow-lg w-full"
                     />
                   </div>
-                )}
+                ):(item?.image&&
+                  <div>
+                    <img
+                      src={getImageUrl(item.image)}
+                      alt={item.title}
+                      className="rounded-xl shadow-lg w-full"
+                    />
+                  </div>)}
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                     {item.title}

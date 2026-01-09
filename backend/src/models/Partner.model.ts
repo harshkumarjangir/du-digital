@@ -10,15 +10,19 @@ const partnerSchema = new mongoose.Schema(
         year: {
             type: String,
         },
+        partnerProgramId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "PartnerProgram"
+        },
         logo: {
             type: String,
             required: true
         },
-        country:{
-            type:String,
-            require:true
+        country: {
+            type: String,
+            require: true
         }
-,
+        ,
         countryId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Country"

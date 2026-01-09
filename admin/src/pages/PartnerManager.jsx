@@ -238,7 +238,7 @@ const PartnerManager = () => {
                                 This will create a new official Partner record. Please upload the necessary images.
                             </p>
                             <form onSubmit={handleCompleteSubmit}>
-                                <FormGroup label="Business Logo">
+                                <FormGroup label="Flag">
                                     <input 
                                         type="file" 
                                         className="form-control"

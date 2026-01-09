@@ -304,7 +304,7 @@ const Japantouristvisaforindians = () => {
                     {item.contentHtml}
                   </p>
                 </div>
-                {item.images?.[0] && (
+                {item?.images?.[0] ? (
                   <div className="relative">
                     <img
                       src={getImageUrl(item.images[0])}
@@ -320,7 +320,21 @@ const Japantouristvisaforindians = () => {
                       </div>
                     )}
                   </div>
-                )}
+                ) : item.image && <div className="relative">
+                  <img
+                    src={getImageUrl(item.image)}
+                    alt={item.title}
+                    className="rounded-xl shadow-lg w-full"
+                  />
+                  {item.badge?.text && (
+                    <div
+                      className="absolute -bottom-4 -right-4 px-4 py-2 rounded-lg text-white font-bold shadow-lg"
+                      style={{ backgroundColor: item.badge.background || '#E31E24' }}
+                    >
+                      {item.badge.text} Happy Customers
+                    </div>
+                  )}
+                </div>}
               </div>
             ))}
           </div>

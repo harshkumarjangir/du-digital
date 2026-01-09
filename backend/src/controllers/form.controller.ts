@@ -29,17 +29,15 @@ export const getFormBySlug = async (req: Request, res: Response) => {
 
         const formId = form._id;
 
-        // Fetch all related data in parallel
-        // Note: FormImage and FormEmployeesAddress use slug (FormSlug/formId field stores slug)
-        // while other models use ObjectId formId
+      
         const [fields, documents, faqs, contentSections, pricingPlans, formImages, formEmployeesAddresses] = await Promise.all([
-            FormField.find({ formId }).sort({ order: 1 }),
-            DocumentRequirement.find({ formId, isActive: true }).sort({ order: 1 }),
-            FAQ.find({ formId, isActive: true }).sort({ order: 1 }),
-            ContentSection.find({ formId, isActive: true }).sort({ order: 1 }),
-            PricingPlan.find({ formId, isActive: true }).sort({ order: 1 }),
-            FormImage.find({ formId: slug, isActive: true }).sort({ createdAt: -1 }),
-            FormEmployeesAddress.find({ FormSlug: slug }).sort({ createdAt: -1 })
+            FormField.find({ formId }).lean(),
+            DocumentRequirement.find({ formId, isActive: true }).lean(),
+            FAQ.find({ formId, isActive: true }).lean(),
+            ContentSection.find({ formId, isActive: true }).lean(),
+            PricingPlan.find({ formId, isActive: true }).lean(),
+            FormImage.find({ formId: slug, isActive: true }).lean(),
+            FormEmployeesAddress.find({ FormSlug: slug }).lean()
         ]);
 
         // Group content sections by sectionKey

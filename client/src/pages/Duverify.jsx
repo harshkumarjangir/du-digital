@@ -201,14 +201,15 @@ const Duverify = () => {
                   </ul>
                 </div>
                 <div className="flex justify-center">
-                  {item.image && (
-                    <img
-                      src={getImageUrl(item.image)}
-                      alt="About DuVerify"
-                      className="max-w-full h-auto rounded-xl shadow-lg"
-                      style={{ maxHeight: '400px' }}
-                    />
-                  )}
+                  {item?.images.length > 0?item.images.map(p => <img
+                    src={getImageUrl(p)}
+                    alt="About DuVerify"
+                    className=" inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                  />) : item.image && <img
+                    src={getImageUrl(item.image)}
+                    alt="About DuVerify"
+                    className=" inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                  />}
                 </div>
               </div>
             ))}
@@ -244,13 +245,19 @@ const Duverify = () => {
               `}
                   >
                     {/* bg image absolute positioned */}
-                    {item.images && (
+                    {item?.images.length>0 ? (
                       <img
                         src={getImageUrl(item.images[0])}
                         alt="Why Choose DuVerify"
                         className="absolute inset-0 w-full h-full opacity-0 object-cover"
                       />
-                    )}
+                    ):
+                      <img
+                        src={getImageUrl(item.image)}
+                        alt="Why Choose DuVerify"
+                        className="absolute inset-0 w-full h-full opacity-0 object-cover"
+                      />
+                    }
                     {/* Decorative watermark */}
                     {/* <div className="absolute bottom-0 right-0 w-40 h-40 opacity-[0.06] bg-[radial-gradient(circle,_#c60505_1px,_transparent_1px)] bg-[length:10px_10px]" /> */}
 
@@ -302,12 +309,13 @@ const Duverify = () => {
                   className="relative group rounded-lg overflow-hidden border border-white/20 min-h-[280px]"
                 >
                   {/* Background Image */}
-                  {partnership.image && (
+                  {partnership.images.length>0 && (
                     <div
                       className="absolute inset-0 bg-cover bg-center"
-                      style={{ backgroundImage: `url(${getImageUrl(partnership.image)})` }}
+                      style={{ backgroundImage: `url(${getImageUrl(partnership.images[0])})` }}
                     />
                   )}
+                  
                   {/* Dark overlay */}
                   <div className="absolute inset-0 bg-black/50" />
 
@@ -400,12 +408,12 @@ const Duverify = () => {
       <section id="connectwithus" className="py-4">
         <div className="flex flex-wrap  gap-3 justify-center">
           {/* Left - Request a Demo */}
-          <div className="relative group h-[250px] sm:w-[45%]">
+          <div className="relative group h-[300px] overflow-hidden rounded-2xl  sm:w-[45%]">
             <div
-              className="absolute inset-0 bg-cover bg-center"
+              className="absolute inset-0 bg-cover  bg-center"
               style={{
-                backgroundImage: demoSection[0]?.image
-                  ? `url(${getImageUrl(demoSection[0].image)})`
+                backgroundImage: demoSection[0]?.images.length>0
+                  ? `url(${getImageUrl(demoSection[0].images[0])})`
                   : `url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`
               }}
             />
@@ -423,7 +431,7 @@ const Duverify = () => {
           </div>
 
           {/* Right - Connect with us */}
-          <div className="bg-[#050505] h-[250px] md:p-10 sm:w-[45%] flex flex-col justify-center">
+          <div className="bg-[#050505] h-[300px] md:p-10 rounded-2xl o sm:p-10 sm:w-[45%] flex flex-col justify-center">
             <h3 className="text-2xl md:text-3xl lg:text-5xl font-semibold text-white mb-2">Connect with us</h3>
             <div className="w-12 h-1 mb-8" style={{ backgroundColor: '#A10000' }}></div>
 

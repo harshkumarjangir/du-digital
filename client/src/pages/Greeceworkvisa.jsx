@@ -106,9 +106,17 @@ const GreeceWorkVisa = () => {
   const positions = [
     { title: "Housekeeping Staff", icon: "/assets/greece-work-visa/slide-one.png" },
     { title: "Kitchen Staff", icon: "/assets/greece-work-visa/slide-two.png" },
-    { title: "European Cook A / Asian Cook A / Indian Cook", icon: "/assets/greece-work-visa/slide-three.png" },
+    { title: "European Cook A / Asian Cook A / Indian Cook", icon: "/assets/greece-work-visa/Food.png" },
     { title: "Pizzaiolo (Pizza Chef)", icon: "/assets/greece-work-visa/slide-four.png" },
-    { title: "Sushi Makers", icon: "/assets/greece-work-visa/slide-five.png" },
+    { title: "Sushi Makers", icon: "/assets/greece-work-visa/Susi.png" },
+    { title: "Laundry Attendants", icon: "/assets/greece-work-visa/LaundryAttendants.png" },
+    { title: "Cleaners", icon: "/assets/greece-work-visa/Cleaner.png" },
+    { title: "Driver", icon: "/assets/greece-work-visa/Driver.png" },
+    { title: "General Maintenance / Support Staff", icon: "/assets/greece-work-visa/slide-five.png" },
+    { title: "Massage Therapists", icon: "/assets/greece-work-visa/Mass.png" },
+    { title: "Bartenders", icon: "/assets/greece-work-visa/Bartenders.png" },
+    { title: "Waiters / Waitresses", icon: "/assets/greece-work-visa/Waiters-Waitresses.png" },
+    { title: "Pizzaiolo (Pizza Chef)", icon: "/assets/greece-work-visa/Pizza.png" },
   ];
 
 
@@ -426,14 +434,20 @@ const GreeceWorkVisa = () => {
                   </ul>
                 </div>
                 <div className="flex justify-center">
-                  {item.image && (
-                    <img
-                      src={getImageUrl(item.image)}
+                  {item?.images.length>0 ? (
+                    item.images.map(p => <img
+                      src={getImageUrl(p)}
                       alt={item.title}
                       className="max-w-full h-auto rounded-xl shadow-lg"
                       style={{ maxHeight: '400px' }}
-                    />
-                  )}
+                    />)
+                  ) : item.image && <img
+                    src={getImageUrl(item.image)}
+                    alt={item.title}
+                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    style={{ maxHeight: '400px' }}
+                  />
+                  }
                 </div>
               </div>
             ))}

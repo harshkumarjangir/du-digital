@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Shield, Clock, Award, CheckCircle, XCircle, Loader2 } from "lucide-react";
+import { Shield, Clock, Award, CheckCircle, XCircle, Loader2, Mail, Phone } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
 
@@ -94,13 +94,36 @@ const Serbiaworkpermitvisa = () => {
   const whatIsSection = contentSections['What is a Serbia D-Type Visa?'] || [];
   const whoCanApplySection = contentSections['Who Can Apply?'] || [];
   const whyChooseSection = contentSections['Why Choose DU Global?'] || [];
-  const getStartedSection = contentSections[' Get Started Today!'] || [];
+  // const getStartedSection = contentSections[' Get Started Today!'] || [];
+  const VisaApplicationCentreAddress = contentSections['Visa Application Centre Addresses'] || [];
+  const connectWithUsSection = contentSections['Connect with us'] || [];
+  const getStartedSection = contentSections['Get Started Today!'] || [];
 
   // Parse description lines
   const descriptionLines = description?.split('\r\n').filter(line => line.trim()) || [];
 
   // Icons for Why Choose section
   const whyChooseIcons = [Award, Clock, Shield];
+
+  let centreAddressTableData = null;
+  if (VisaApplicationCentreAddress.length > 0) {
+    // Check if tableData exists directly (if backend structure supports it)
+    if (VisaApplicationCentreAddress[0]?.tableData) {
+      centreAddressTableData = VisaApplicationCentreAddress[0].tableData;
+    }
+    // Fallback: parse contentHtml if tableData is missing but contentHtml has JSON
+    else if (VisaApplicationCentreAddress[0]?.contentHtml) {
+      try {
+        const rawHtml = VisaApplicationCentreAddress[0].contentHtml.replace(/<[^>]*>?/gm, '');
+        // Check if it looks like JSON before parsing to avoid syntax errors on normal text
+        if (rawHtml.trim().startsWith('{') || rawHtml.trim().startsWith('[')) {
+          centreAddressTableData = JSON.parse(rawHtml);
+        }
+      } catch (e) {
+        console.warn("Could not parse address table data", e);
+      }
+    }
+  }
 
   return (
     <div className="bg-white font-sans">
@@ -277,14 +300,20 @@ const Serbiaworkpermitvisa = () => {
                   </p>
                 </div>
                 <div className="flex justify-center">
-                  {item.image && (
-                    <img
+                  {item.images?.length > 0 ? (
+                    item.images.map(p => <img
+                      src={getImageUrl(p)}
+                      alt={item.title}
+                      className="max-w-full h-auto rounded-2xl shadow-xl"
+                      style={{ maxHeight: '400px' }}
+                    />)
+                  ):item.image&&
+                  <img
                       src={getImageUrl(item.image)}
                       alt={item.title}
                       className="max-w-full h-auto rounded-2xl shadow-xl"
                       style={{ maxHeight: '400px' }}
-                    />
-                  )}
+                    />}
                 </div>
               </div>
             ))}
@@ -302,8 +331,8 @@ const Serbiaworkpermitvisa = () => {
 
               return (
                 <div key={item._id || index} className="mb-16 last:mb-0">
-                  <div className="grid lg:grid-cols-2 gap-12 items-start">
-                    <div>
+                  <div className={`grid lg:grid-cols-2 gap-12 place-items-center `}>
+                    <div className={`${index % 2 != 0 ? 'lg:order-1' : 'lg:order-2'}`}>
                       <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                         {item.title}
                       </h2>
@@ -344,16 +373,24 @@ const Serbiaworkpermitvisa = () => {
                       )}
                     </div>
 
-                    {item.image && (
-                      <div className="flex justify-center">
-                        <img
-                          src={getImageUrl(item.image)}
+                    <div className={`flex justify-center ${index % 2 != 0 ? 'lg:order-2' : 'lg:order-1'
+                      }`}>
+                      {item.images?.length > 0 ? (
+                        item.images.map(p => <img
+                          src={getImageUrl(p)}
                           alt={item.title}
                           className="max-w-full h-auto rounded-2xl shadow-xl"
-                          style={{ maxHeight: '350px' }}
+
                         />
-                      </div>
-                    )}
+                        )
+                      ):
+                      item.image&&<img
+                      src={getImageUrl(item.image)}
+                      alt={item.title}
+                      className="max-w-full h-auto rounded-2xl shadow-xl"
+
+                    />}
+                    </div>
                   </div>
                 </div>
               );
@@ -377,15 +414,15 @@ const Serbiaworkpermitvisa = () => {
               {whyChooseSection.map((item, index) => {
                 const IconComponent = whyChooseIcons[index % whyChooseIcons.length];
                 return (
-                  <div key={item._id || index} className="text-center">
-                    <div
-                      className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-                      style={{ backgroundColor: '#E31E24' }}
-                    >
-                      <IconComponent className="w-8 h-8 text-white" />
+                  <div key={item._id || index} className="text-center bg-white rounded-[2rem] p-10 relative overflow-hidden shadow-lg hover:translate-y-[-5px] transition-all duration-300">
+                    {/* Red Corner Accent */}
+                    <div className="absolute top-0 right-0 w-[100px] h-[100px] bg-[#C5202F] transform translate-x-1/2 -translate-y-1/2 rotate-45" />
+
+                    <div className="mb-6 relative z-10 flex justify-center mt-4">
+                      <IconComponent className="w-16 h-16 text-[#C5202F]" strokeWidth={1.5} />
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                    <p className="text-gray-400">{item.contentHtml?.trim()}</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4 relative z-10">{item.title}</h3>
+                    <p className="text-gray-600 leading-relaxed relative z-10 text-base">{item.contentHtml?.trim()}</p>
                   </div>
                 );
               })}
@@ -395,40 +432,7 @@ const Serbiaworkpermitvisa = () => {
       )}
 
       {/* ===== GET STARTED TODAY ===== */}
-      {getStartedSection.length > 0 && (
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
-            {getStartedSection.map((item, index) => (
-              <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    {item.title?.trim()}
-                  </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div>
-                  <p className="text-gray-600 leading-relaxed text-lg whitespace-pre-line">
-                    {item.contentHtml}
-                  </p>
-                  <button
-                    className="mt-6 px-8 py-3 rounded-full font-bold transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] uppercase"
-                  >
-                    Get Started
-                  </button>
-                </div>
-                <div className="flex justify-center">
-                  {item.image && (
-                    <img
-                      src={getImageUrl(item.image)}
-                      alt={item.title}
-                      className="max-w-full h-auto rounded-2xl shadow-xl"
-                      style={{ maxHeight: '400px' }}
-                    />
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+    
 
       {/* ===== FAQ SECTION ===== */}
       {faqs.length > 0 && (
@@ -478,6 +482,106 @@ const Serbiaworkpermitvisa = () => {
           </div>
         </section>
       )}
+
+      {
+        VisaApplicationCentreAddress.length > 0 && centreAddressTableData && (
+          <section className="bg-white py-24">
+            <div className="max-w-7xl mx-auto px-6  gap-12 items-start">
+              {/* LEFT CONTENT */}
+              <div>
+                <h2 className="text-3xl md:text-4xl text-center font-bold leading-tight mb-6 text-gray-900">
+                  {VisaApplicationCentreAddress[0]?.title || "Visa Application Centre Addresses"}
+                </h2>
+                <div className="w-20 h-1 mx-auto mb-6" style={{ backgroundColor: '#E31E24' }}></div>
+              </div>
+              <div className="bg-white  shadow-lg border border-gray-100">
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead className="bg-[#FFFDF5]">
+                      <tr>
+                        {centreAddressTableData.headers?.map((header, idx) => (
+                          <th key={idx} className="px-6 py-4 text-left text-sm font-bold text-white border-b bg-[#b8161b] whitespace-nowrap">
+                            {header}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                      {centreAddressTableData.rows?.map((row, rowIdx) => (
+                        <tr key={rowIdx} className={`hover:bg-gray-50/50 ${rowIdx % 2 === 0 ? 'bg-gray-300/50' : ''} transition-colors`}>
+                          {row.map((cell, cellIdx) => (
+                            <td key={cellIdx} className="px-6 py-4 text-sm text-black align-top">
+                              {cell}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+
+            </div>
+          </section>
+        )
+      }
+      {getStartedSection.length > 0 &&   <section id="connectwithus" className="py-4">
+              <div className="flex flex-wrap  gap-3 justify-center">
+                {/* Left - Request a Demo */}
+                <div className="relative group h-[300px] overflow-hidden rounded-2xl  sm:w-[45%]">
+                  <div
+                    className="absolute inset-0 bg-cover  bg-center"
+                    style={{
+                      backgroundImage: getStartedSection[0]?.images.length>0
+                        ? `url(${getImageUrl(getStartedSection[0].images[0])})`
+                        : `url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-black/70" />
+                  <div className="absolute inset-0 bg-[#A10000]/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      
+                  <div className="relative z-10 p-10 md:p-10 flex flex-col justify-center h-full">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-4">
+                      {getStartedSection[0]?.title || 'Request a Demo Today'}
+                    </h2>
+                    <p className="text-gray-100 leading-relaxed">
+                      {getStartedSection[0]?.contentHtml?.replace(/\r?\n/g, ' ').trim() || 'Discover how DuVerify can transform your visa and document verification workflows.'}
+                    </p>
+                  </div>
+                </div>
+      
+                {/* Right - Connect with us */}
+                <div className="bg-[#050505] h-[300px] md:p-10 rounded-2xl o sm:p-10 sm:w-[45%] flex flex-col justify-center">
+                  <h3 className="text-2xl md:text-3xl lg:text-5xl font-semibold text-white mb-2">Connect with us</h3>
+                  <div className="w-12 h-1 mb-8" style={{ backgroundColor: '#A10000' }}></div>
+      
+                  <div className="mb-6">
+                    <h4 className="text-xl md:text-2xl lg:text-3xl font-semibold text-white mb-1">Dolly Chauhan</h4>
+                    <p className="text-gray-100">Manager-Operations</p>
+                  </div>
+      
+                  <div className="space-y-4">
+                    <a
+                      href="mailto:dolly@dudigitalglobal.com"
+                      className="flex items-center gap-3 transition-colors"
+                      style={{ color: '#e57373' }}
+                    >
+                      <Mail className="w-5 h-5" />
+                      dolly@dudigitalglobal.com
+                    </a>
+                    <a
+                      href="tel:+917400747408"
+                      className="flex items-center gap-3 transition-colors"
+                      style={{ color: '#e57373' }}
+                    >
+                      <Phone className="w-5 h-5" />
+                      +91-7400747408
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>}
     </div>
   );
 };

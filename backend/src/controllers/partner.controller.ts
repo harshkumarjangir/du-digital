@@ -55,7 +55,7 @@ export const getPartnerRequests = async (req: Request, res: Response) => {
         let query: any = {};
 
         if (status) {
-        
+
             query.status = status;
         }
 
@@ -102,10 +102,11 @@ export const updatePartnerStatus = async (req: Request, res: Response) => {
                 }
             }
 
-            const existingPartner = await Partner.findOne({ name: updatedRequest.fullName });
+            const existingPartner = await Partner.findOne({ partnerProgramId: updatedRequest._id });
             if (!existingPartner) {
                 await Partner.create({
                     name: updatedRequest.fullName,
+                    partnerProgramId: updatedRequest._id,
                     BussnessName: updatedRequest.businessName || "Pending Business Name",
                     logo: logoUrl,
                     country: country,
@@ -134,6 +135,14 @@ export const updatePartnerStatus = async (req: Request, res: Response) => {
             } catch (emailError) {
                 console.error("Error sending welcome email to partner:", emailError);
                 // Don't fail the request if email fails, just log it
+            }
+        }
+
+        // If status changed to Pending or Rejected, remove the partner if they exist
+        if (status === "Pending" || status === "Rejected") {
+            const existingPartner = await Partner.findOne({ partnerProgramId: updatedRequest._id });
+            if (existingPartner) {
+                await Partner.findByIdAndDelete(existingPartner._id);
             }
         }
 

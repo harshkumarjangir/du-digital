@@ -549,12 +549,18 @@ const Australiatouristvisa = () => {
                   className="relative rounded-xl overflow-hidden min-h-[280px] flex flex-col justify-end group"
                 >
                   {/* Background Image */}
-                  {item.images?.[0] && (
+                  {item?.images?.[0] ? (
                     <div
                       className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                       style={{ backgroundImage: `url(${getImageUrl(item.images[0])})` }}
                     />
-                  )}
+                  ) : item?.image ? (
+                    <img
+                      src={getImageUrl(item.image)}
+                      alt={item.title}
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                    />
+                  ) : null}
 
                   {/* Dark Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
