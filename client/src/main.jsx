@@ -14,3 +14,24 @@ createRoot(document.getElementById('root')).render(
     </Provider>
   </BrowserRouter>,
 )
+
+
+/*
+sudo rm -rf /var/www/du-digital/client/dist  
+sudo mkdir -p /var/www/du-digital/client 
+sudo cp -r dist /var/www/du-digital/client/  
+sudo chown -R www-data:www-data /var/www/du-digital
+sudo chmod -R 755 /var/www/du-digital
+sudo nginx -t
+sudo systemctl reload nginx
+
+sudo rm -rf /var/www/du-digital/admin/dist  
+sudo mkdir -p /var/www/du-digital/admin 
+sudo cp -r dist /var/www/du-digital/admin/  
+sudo chown -R www-data:www-data /var/www/du-digital
+sudo chmod -R 755 /var/www/du-digital
+sudo nginx -t
+sudo systemctl reload nginx
+
+
+*/
