@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Shield, Wallet, Clock, Lock, Check, X, FileText, Award, ThumbsUp, Users, Plus, Minus, ArrowRight, CheckCircle, Phone, Share2, Target } from "lucide-react";
+import { Shield, Wallet, Clock, Lock, Check, X, FileText, Award, ThumbsUp, Users, Plus, Minus, ArrowRight, CheckCircle, Phone, Share2, Target, Loader2 } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
 
@@ -9,7 +9,7 @@ const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://loca
 // Default icons for dynamic content
 const defaultIcons = [Shield, Wallet, Clock, Lock, FileText, Award, ThumbsUp, Users];
 const benefitIcons = [Target, CheckCircle, Phone, Share2];
-
+const noPlainUrl = 'https://tenant.duverify.com/admins/sign_up?bundle_code=premium'
 // Pricing features for comparison table (from original site)
 const pricingFeatures = [
   "Identity verification",
@@ -24,6 +24,50 @@ const TenantVerification = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
+  const [plain, setPlain] = useState(null)
+  const [policeVerification, setPoliceVerification] = useState("");
+  const [formValues, setFormValues] = useState({});
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+  const handleSubmit = async (e) => {
+
+    setSubmitLoading(true);
+    setSubmitStatus(null);
+    setSubmitMessage('');
+
+    try {
+      const response = await fetch(`${BackendURL}/api/form-submissions/slug/tenant-and-domestic-help-verification`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formValues),
+      });
+      const res = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setSubmitMessage('Thank you! Your application has been submitted successfully. Our team will contact you shortly.');
+        setFormValues({});
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setSubmitStatus('error');
+      setSubmitMessage('Failed to submit. Please check your connection and try again.');
+    } finally {
+      setSubmitLoading(false);
+      setTimeout(() => { setSubmitStatus(null); setSubmitMessage(''); }, 5000);
+    }
+  };
+  const proceed = async () => {
+    if (policeVerification == "no") {
+      return window.open(noPlainUrl, '_blank');
+    } else {
+      await handleSubmit()
+      window.open(noPlainUrl, '_blank')
+    }
+  }
 
   useEffect(() => {
     fetchFormData();
@@ -43,6 +87,10 @@ const TenantVerification = () => {
     }
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues(prev => ({ ...prev, [name]: value }));
+  };
   const toggleFaq = (index) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
   };
@@ -56,7 +104,7 @@ const TenantVerification = () => {
   if (loading) return <LoadingState message="Loading verification details..." fullScreen />;
   if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
 
-  const { name, description, pricingPlans = [], faqs = [], contentSections = {} } = formData || {};
+  const { name, description, pricingPlans = [], faqs = [], fields = [], contentSections = {} } = formData || {};
 
   // Get sections by exact API keys
   const whyChooseSection = contentSections['Why Choose DuVerify Platform?'] || [];
@@ -119,7 +167,8 @@ const TenantVerification = () => {
         />
 
         {/* Dark Gradient Overlay */}
-        <div className="absolute inset-0 bg-linear-to-r from-black/50 via-black/30 to-black/20" />
+
+        <div className="absolute inset-0 bg-[#000000a3] transition-opacity duration-500 group-hover:opacity-0" />
 
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 min-h-[90vh] flex items-center">
@@ -145,7 +194,11 @@ const TenantVerification = () => {
             </p>
 
             {/* CTA */}
-            <button
+            <button onClick={() => {
+              setTimeout(() => {
+                document.getElementById('plan-form-container')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }, 100);
+            }}
               className="px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-xl cursor-pointer"
             >
               Get Started Today – Verify Now
@@ -407,7 +460,7 @@ const TenantVerification = () => {
                         <td key={plan._id || index} className="py-8 text-center">
                           <button
                             className="w-[80%] py-4 rounded-full font-bold text-white text-lg shadow-lg hover:opacity-90 transition"
-                            style={{ backgroundColor: color.bg }}
+                            style={{ backgroundColor: color.bg }} onClick={() => setPlain(plan.planName)}
                           >
                             Choose Plan
                           </button>
@@ -417,6 +470,7 @@ const TenantVerification = () => {
                   </tr>
                 </tbody>
               </table>
+
             </div>
             {/* ===== MOBILE PRICING CARDS ===== */}
             <div className="block md:hidden space-y-8 mt-16">
@@ -488,8 +542,14 @@ const TenantVerification = () => {
                     {/* Button */}
                     <div className="px-6 pb-8">
                       <button
-                        className="w-full py-4 rounded-full text-white font-bold text-lg shadow-lg transition hover:opacity-90"
+                        className="w-full py-4 rounded-full text-white font-bold text-lg shadow-lg transition hover:opacity-90 cursor-pointer"
                         style={{ backgroundColor: color.bg }}
+                        onClick={() => {
+                          setPlain(plan.planName);
+                          setTimeout(() => {
+                            document.getElementById('plan-form-container')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                          }, 100);
+                        }}
                       >
                         Choose Plan
                       </button>
@@ -497,6 +557,181 @@ const TenantVerification = () => {
                   </div>
                 );
               })}
+            </div>
+
+            <div id="plan-form-container" className="mt-12">
+              {plain && (
+                <div className="plan-card bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-gray-200">
+                  <div className="form-row flex flex-col md:flex-row gap-6 mb-8">
+                    {/* Selected Plan */}
+                    <div className="form-group flex-1 ">
+                      <label className="block text-gray-800 font-bold mb-2">
+                        Selected Plan <span className="required text-red-500">*</span>
+                      </label>
+                      <select
+                        value={plain}
+                        onChange={(e) => setPlain(e.target.value)}
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 focus:ring-2 focus:ring-red-500 outline-none"
+                      >
+                        {pricingPlans.map((plan, index) => (
+                          <option key={index} value={plan.planName}>
+                            {plan.planName}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Police Verification */}
+                    <div className="form-group flex-1 ">
+                      <label className="block text-gray-800 font-bold mb-2">
+                        Police Verification Required? <span className="required text-red-500">*</span>
+                      </label>
+
+                      <div className="toggle-group flex gap-4">
+                        <button
+                          className={`flex-1 px-6 py-3 rounded-lg font-semibold border transition-all ${policeVerification === "yes"
+                            ? "bg-red-600 border-red-600 text-white"
+                            : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
+                            }`}
+                          onClick={() => setPoliceVerification("yes")}
+                          type="button"
+                        >
+                          Yes
+                        </button>
+                        <button
+                          className={`flex-1 px-6 py-3 rounded-lg font-semibold border transition-all ${policeVerification === "no"
+                            ? "bg-red-600 border-red-600 text-white"
+                            : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
+                            }`}
+                          onClick={() => setPoliceVerification("no")}
+                          type="button"
+                        >
+                          No
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {policeVerification == "yes" && fields.length > 0 && (
+                    <form className="flex sm:flex-nowrap flex-wrap w-full gap-4" >
+                      {fields.filter(f => f.type !== 'checkbox').map((field, index) => {
+                        const fieldType = field.type || field.fieldType;
+
+                        if (fieldType === 'select' || fieldType === 'dropdown') {
+                          return (
+                            <select
+                              key={field._id || index}
+                              name={field.name}
+                              value={formValues[field.name] || ''}
+                              onChange={handleInputChange}
+                              className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 focus:ring-2 focus:ring-red-500 transition-all outline-none appearance-none cursor-pointer text-sm"
+                              required={field.required}
+                              style={{
+                                backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                                backgroundPosition: 'right 0.75rem center',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundSize: '1.25em 1.25em',
+                                paddingRight: '2.5rem'
+                              }}
+                            >
+                              <option value="">{field.placeholder || field.label}</option>
+                              {field.options?.map((opt, optIdx) => (
+                                <option key={opt._id || optIdx} value={opt.value || opt}>
+                                  {opt.label || opt}
+                                </option>
+                              ))}
+                            </select>
+                          );
+                        } else if (fieldType === 'textarea') {
+                          return (
+                            <textarea
+                              key={field._id || index}
+                              name={field.name}
+                              value={formValues[field.name] || ''}
+                              onChange={handleInputChange}
+                              placeholder={field.placeholder || field.label}
+                              className="flex-1 w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none text-sm min-h-[100px]"
+                              required={field.required}
+                            />
+                          );
+                        } else if (fieldType == "redio") {
+                          return (
+                            <div className="space-y-3 bg-gray-50 p-4 rounded-lg border border-gray-200">
+                              <label className="text-gray-800 text-sm font-bold block">
+                                {field.label} {field.required && <span className="text-red-500">*</span>}
+                              </label>
+                              <div className="flex flex-wrap gap-6">
+                                {field.options?.map((opt, i) => (
+                                  <label key={i} className="flex items-center gap-2 text-gray-700 cursor-pointer">
+                                    <input
+                                      type="radio"
+                                      name={field.name}
+                                      value={opt.value || opt.label || opt}
+                                      checked={formValues[field.name] === (opt.value || opt.label || opt)}
+                                      onChange={handleInputChange}
+                                      className="w-5 h-5 accent-red-600"
+                                      required={field.required}
+                                    />
+                                    <span className="text-sm font-medium">{opt.label || opt}</span>
+                                  </label>
+                                ))}
+                              </div>
+                            </div>
+                          );
+                        } else {
+                          return (
+                            <input
+                              key={field._id || index}
+                              type={fieldType === 'number' ? 'tel' : fieldType}
+                              name={field.name}
+                              value={formValues[field.name] || ''}
+                              onChange={handleInputChange}
+                              placeholder={field.placeholder || field.label}
+                              className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none text-sm"
+                              required={field.required}
+                            />
+                          );
+                        }
+                      })}
+
+                      {/* Checkbox fields */}
+                      <div className="space-y-3 mt-2">
+                        {fields.filter(f => f.type === 'checkbox').map((field, index) => (
+                          <label key={field._id || index} className="flex items-start gap-3 text-gray-700 text-sm cursor-pointer hover:text-gray-900">
+                            <input
+                              type="checkbox"
+                              name={field.name}
+                              checked={formValues[field.name] || false}
+                              onChange={handleInputChange}
+                              className="mt-1 w-5 h-5 accent-red-600 rounded shrink-0"
+                            />
+                            <span className="leading-tight">{field.label}</span>
+                          </label>
+                        ))}
+                      </div>
+
+                      {/* Submit Status Message */}
+                      {submitStatus && (
+                        <div className={`flex items-center gap-3 p-4 rounded-lg border ${submitStatus === 'success' ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`}>
+                          {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 shrink-0" /> : <XCircle className="w-5 h-5 shrink-0" />}
+                          <p className="text-sm font-medium">{submitMessage}</p>
+                        </div>
+                      )}
+
+                    </form>
+                  )}
+
+                  <div className="mt-8 pt-6 border-t border-gray-100">
+                    <button
+                      disabled={submitLoading}
+                      className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-white hover:bg-[#D90022] hover:shadow-lg mt-4 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
+                      onClick={() => proceed()}
+                    >
+                      {submitLoading ? <><Loader2 className="w-6 h-6 animate-spin" /> Submitting...</> : 'Wait, I just need verification (No Form)'}
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
 
 
@@ -510,6 +745,7 @@ const TenantVerification = () => {
 
 
       {/* ===== HOW IT WORKS SECTION ===== */}
+
       {howItWorksSection.length > 0 && (
         <section className="py-24" style={{ backgroundColor: '#111111' }}>
           <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -591,43 +827,26 @@ const TenantVerification = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {deliverablesSection.map((item, index) => (
-                // <div
-                //   key={item._id || index}
-                //   className="relative h-64 rounded-xl overflow-hidden group cursor-pointer"
-                // >
-                //   {item.image ? (
-                //     <div
-                //       className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                //       style={{ backgroundImage: `url(${getImageUrl(item.image)})` }}
-                //     />
-                //   ) : (
-                //     <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900" />
-                //   )}
-                //   <div className="absolute inset-0 bg-black/60 group-hover:bg-black/70 transition-colors" />
-                //   <div className="relative h-full flex flex-col items-center justify-center text-white p-6 text-center">
-                //     <h3 className="text-xl font-bold uppercase tracking-wider mb-3">{item.title}</h3>
-                //     <p className="text-gray-200 text-sm" dangerouslySetInnerHTML={{ __html: item.contentHtml }} />
-                //   </div>
-                // </div>
+           
                 <div
                   key={item._id || index}
                   className="relative h-64 rounded-2xl overflow-hidden group cursor-pointer"
                 >
                   {/* Background Image */}
-                  {item?.images?.length>0 ? (
+                  {item?.images?.length > 0 ? (
                     <div
                       className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
                       style={{ backgroundImage: `url(${getImageUrl(item.images[0])})` }}
                     />
-                  ) : item.image&&(
-                      <div
-                        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-                        style={{ backgroundImage: `url(${getImageUrl(item.image)})` }}
-                      />
+                  ) : item.image && (
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+                      style={{ backgroundImage: `url(${getImageUrl(item.image)})` }}
+                    />
                   )}
 
                   {/* Dark Overlay (default) */}
-                  <div className="absolute inset-0 bg-black/40 transition-opacity duration-500 group-hover:opacity-0" />
+                  <div className="absolute inset-0 bg-[#000000d7] transition-opacity duration-500 group-hover:opacity-0" />
 
                   {/* Red Overlay (hover) */}
                   <div className="absolute inset-0 bg-[#A10000]/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -711,8 +930,8 @@ const TenantVerification = () => {
 
       )}
 
-
     </div>
+
   );
 };
 
