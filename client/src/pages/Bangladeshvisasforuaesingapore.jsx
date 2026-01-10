@@ -138,8 +138,7 @@ const BangladeshVisasForUaeSingapore = () => {
 
           {/* Form - Only if fields exist */}
           {fields && fields.length > 0 && (
-            <div id="callback-form" className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full ml-auto">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Request a Callback</h3>
+            <div id="callback-form" className="bg-white rounded-2xl shadow-2xl p-5 max-w-md w-full ml-auto">
 
               {submitStatus && (
                 <div className={`p-3 mb-4 text-sm rounded ${submitStatus === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
