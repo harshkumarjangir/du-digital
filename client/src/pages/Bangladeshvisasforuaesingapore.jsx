@@ -248,7 +248,7 @@ const BangladeshVisasForUaeSingapore = () => {
                 </div>
 
                 <div className="flex flex-wrap gap-12">
-                  {weCaterSection.map((item, index) => (
+                  {weCaterSection.splice(1).map((item, index) => (
                     <div key={index} className="flex flex-col items-center gap-4 group cursor-pointer">
                       <div className="w-24 h-24 rounded-full overflow-hidden shadow-lg border-4 border-white group-hover:border-[#E31E24] transition-all duration-300">
                         <img

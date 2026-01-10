@@ -134,7 +134,7 @@ const Japantouristvisaforindians = () => {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[800px] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[600px] flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -313,7 +313,7 @@ const Japantouristvisaforindians = () => {
                     />
                     {item.badge?.text && (
                       <div
-                        className="absolute -bottom-4 -right-4 px-4 py-2 rounded-lg text-white font-bold shadow-lg"
+                        className="absolute -top-4 -right-10 px-4 py-2 rounded-lg text-white font-bold shadow-lg"
                         style={{ backgroundColor: item.badge.background || '#E31E24' }}
                       >
                         {item.badge.text} Happy Customers

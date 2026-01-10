@@ -110,7 +110,7 @@ const Globalrecruitmentservices = () => {
   const getImageUrl = (imagePath) => {
     if (!imagePath) return '';
     if (imagePath.startsWith('http')) return imagePath;
-    return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
+    return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath.replace("/api","")}`;
   };
 
   const handleInputChange = (e) => {
@@ -595,7 +595,15 @@ const Globalrecruitmentservices = () => {
             </div>
 
             {/* RIGHT IMAGE */}
-            {readyToBuildSection[0]?.image && (
+            {readyToBuildSection[0]?.images?.length>0 ? (
+              <div className="flex justify-center lg:justify-end">
+                <img
+                  src={getImageUrl(readyToBuildSection[0].images[0])}
+                  alt="Ready to Build Your Team"
+                  className="w-full max-w-[520px] rounded-[28px] shadow-xl object-cover"
+                />
+              </div>
+            ) : readyToBuildSection[0]?.image&&(
               <div className="flex justify-center lg:justify-end">
                 <img
                   src={getImageUrl(readyToBuildSection[0].image)}

@@ -614,13 +614,16 @@ const TenantVerification = () => {
                   className="relative h-64 rounded-2xl overflow-hidden group cursor-pointer"
                 >
                   {/* Background Image */}
-                  {item.image ? (
+                  {item?.images?.length>0 ? (
                     <div
                       className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-                      style={{ backgroundImage: `url(${getImageUrl(item.image)})` }}
+                      style={{ backgroundImage: `url(${getImageUrl(item.images[0])})` }}
                     />
-                  ) : (
-                    <div className="absolute inset-0 bg-gray-800" />
+                  ) : item.image&&(
+                      <div
+                        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+                        style={{ backgroundImage: `url(${getImageUrl(item.image)})` }}
+                      />
                   )}
 
                   {/* Dark Overlay (default) */}

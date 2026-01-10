@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Check, ChevronDown, ChevronUp, Globe, Users, Shield, Clock, Award, Building, CheckCircle, XCircle, Loader2 } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
-
+import WhyUsSection from "../components/reusable/WhyUsSection";
+import homeData from "../data/homeData.json";
 const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
 
@@ -360,33 +361,8 @@ const Moroccovisa = () => {
       )}
 
       {/* ===== WHY DU GLOBAL SECTION ===== */}
-      <section className="py-20 bg-black">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-              Why DU GLOBAL
-            </h2>
-            <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
-          </div>
+      <WhyUsSection data={homeData.whyUsSection} />
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {whyChooseFeatures.map((feature, index) => (
-              <div key={index} className="flex items-start gap-4">
-                <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center shrink-0"
-                  style={{ backgroundColor: '#E31E24' }}
-                >
-                  <feature.icon className="w-7 h-7 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-1">{feature.title}</h3>
-                  <p className="text-gray-400 text-sm">{feature.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ===== DOCUMENTS REQUIRED SECTION ===== */}
       {documents.length > 0 && (
