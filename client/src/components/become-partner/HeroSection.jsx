@@ -126,7 +126,7 @@ const HeroSection = ({ data }) => {
   };
 
   return (
-    <section className="relative min-h-[600px] sm:h-[600px]">
+    <section className="relative min-h-[600px] ">
       <img
         src={data.backgroundImage}
         alt={data.title || "Partner Hero"}
@@ -138,7 +138,7 @@ const HeroSection = ({ data }) => {
       />
       {/* <div className="absolute inset-0 bg-white/80" /> */}
 
-      <div className="relative max-w-6xl mx-auto p-2 md:px-4 py-20 grid lg:grid-cols-2 gap-16 items-center">
+      <div className="relative max-w-6xl mx-auto p-2 md:px-4 py-20 grid lg:grid-cols-2 gap-16 items-center place-items-center">
         {/* LEFT CONTENT */}
         <div>
           <h1 className="text-4xl lg:text-5xl font-bold mb-8">
@@ -154,7 +154,7 @@ const HeroSection = ({ data }) => {
         </div>
 
         {/* FORM */}
-        <div className="bg-white shadow-xl max-w-md ml-auto rounded-lg p-3 md:p-8">
+        <div className="bg-white shadow-xl max-w-md lg:ml-auto rounded-lg p-3 md:p-6 ">
           <form className="space-y-5" onSubmit={handleSubmit}>
             <input
               type="text"

@@ -133,7 +133,7 @@ const Companysetup = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full sm:h-[600px] min-h-[600px]overflow-hidden">
+      <section className="relative w-full md:h-[600px] min-h-[600px] py-12 pb-16 overflow-hidden">
         <img
           src={heroImage}
           alt="Company Setup Hero"
@@ -144,7 +144,7 @@ const Companysetup = () => {
         />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%)' }} />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-32 h-[600px] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-0 flex items-center">
           <div className={`${fields.length > 0 ? 'grid md:grid-cols-2 gap-12 items-center' : ''} w-full`}>
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -163,7 +163,7 @@ const Companysetup = () => {
 
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="inline-block px-8 py-4 rounded-full font-bold text-lg text-[#FFFDF5] transition-all duration-300 bg-[#FF1033] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+                className="inline-block px-8 py-4 rounded-full font-bold text-lg text-[#FFFDF5] transition-all duration-300 bg-[#FF1033] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg cursor-pointer"
               >
                 Book A Free Consultation
               </button>
@@ -171,9 +171,9 @@ const Companysetup = () => {
 
             {/* Right - Contact Form (only show if fields exist) */}
             {fields.length > 0 && (
-              <div className="bg-white rounded-2xl p-8 shadow-2xl">
+              <div className="bg-white rounded-2xl p-5 md:p-8 shadow-2xl">
                 <h3 className="text-xl font-bold text-gray-900 mb-6">Get Your Free Consultation</h3>
-                <form className="space-y-4" onSubmit={handleSubmit}>
+                <form className="grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit={handleSubmit}>
                   {fields.map((field, index) => {
                     // Get field type from either 'type' or 'fieldType' property
                     const fieldType = field.type || field.fieldType;
@@ -181,29 +181,47 @@ const Companysetup = () => {
                     // Render different input types based on field type
                     if (fieldType === 'select' || fieldType === 'dropdown') {
                       return (
-                        <select
-                          key={field._id || index}
-                          name={field.name}
-                          value={formValues[field.name] || ''}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none bg-white text-gray-700 appearance-none cursor-pointer"
-                          required={field.required || field.isRequired}
-                          aria-label={field.label || field.placeholder}
-                          style={{
-                            backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-                            backgroundPosition: 'right 0.75rem center',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundSize: '1.5em 1.5em',
-                            paddingRight: '2.5rem'
-                          }}
-                        >
-                          <option value="" disabled className="text-gray-400">{field.placeholder || field.label}</option>
-                          {field.options?.map((opt, optIdx) => (
-                            <option key={opt._id || optIdx} value={opt.value || opt}>
-                              {opt.label || opt}
-                            </option>
-                          ))}
-                        </select>
+                        <div key={field._id || index} className="col-span-1 md:col-span-2">
+                          <select
+                            name={field.name}
+                            value={formValues[field.name] || ''}
+                            onChange={handleInputChange}
+                            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none bg-white text-gray-700 appearance-none cursor-pointer"
+                            required={field.required || field.isRequired}
+                            aria-label={field.label || field.placeholder}
+                            style={{
+                              backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                              backgroundPosition: 'right 0.75rem center',
+                              backgroundRepeat: 'no-repeat',
+                              backgroundSize: '1.5em 1.5em',
+                              paddingRight: '2.5rem'
+                            }}
+                          >
+                            <option value="" disabled className="text-gray-400">{field.placeholder || field.label}</option>
+                            {field.options?.map((opt, optIdx) => (
+                              <option key={opt._id || optIdx} value={opt.value || opt}>
+                                {opt.label || opt}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      );
+                    } else if (fieldType === 'checkbox') {
+                      return (
+                        <div key={field._id || index} className="col-span-1 md:col-span-2 flex items-start gap-3 mt-2">
+                          <input
+                            type="checkbox"
+                            name={field.name}
+                            checked={formValues[field.name] || false}
+                            onChange={handleInputChange}
+                            id={`hero-field-${index}`}
+                            className="mt-1 w-5 h-5 rounded border-gray-300 text-red-600 focus:ring-red-500 cursor-pointer accent-red-600"
+                            required={field.required || field.isRequired}
+                          />
+                          <label htmlFor={`hero-field-${index}`} className="text-xs md:text-sm text-gray-500 leading-snug cursor-pointer">
+                            {field.label || field.placeholder}
+                          </label>
+                        </div>
                       );
                     } else if (fieldType === 'textarea') {
                       return (
@@ -214,7 +232,7 @@ const Companysetup = () => {
                           onChange={handleInputChange}
                           placeholder={field.placeholder || field.label}
                           rows={3}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none resize-none"
+                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none resize-none col-span-1 md:col-span-2"
                           required={field.required || field.isRequired}
                           aria-label={field.label || field.placeholder}
                         />
@@ -241,21 +259,23 @@ const Companysetup = () => {
                     }
                   })}
 
-                  {/* Submit Status Message */}
-                  {submitStatus && (
-                    <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-100' : 'bg-red-100'}`}>
-                      {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-600" /> : <XCircle className="w-5 h-5 text-red-600" />}
-                      <p className={`text-sm ${submitStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>{submitMessage}</p>
-                    </div>
-                  )}
+                  <div className="col-span-1 md:col-span-2 mt-4 space-y-4">
+                    {/* Submit Status Message */}
+                    {submitStatus && (
+                      <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-100' : 'bg-red-100'}`}>
+                        {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-600" /> : <XCircle className="w-5 h-5 text-red-600" />}
+                        <p className={`text-sm ${submitStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>{submitMessage}</p>
+                      </div>
+                    )}
 
-                  <button
-                    type="submit"
-                    disabled={submitLoading}
-                    className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-2"
-                  >
-                    {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Submit Enquiry'}
-                  </button>
+                    <button
+                      type="submit"
+                      disabled={submitLoading}
+                      className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-2"
+                    >
+                      {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Submit Enquiry'}
+                    </button>
+                  </div>
                 </form>
               </div>
             )}
@@ -625,13 +645,13 @@ const Companysetup = () => {
                           className="w-full h-full object-cover p-0 rounded-xl"
                         />
                       ))
-                    ) :step.image&& (
-                        <img
-                          key={index}
-                          src={getImageUrl(step.image)}
-                          alt={step.title}
-                          className="w-full h-full object-cover p-0 rounded-xl"
-                        />
+                    ) : step.image && (
+                      <img
+                        key={index}
+                        src={getImageUrl(step.image)}
+                        alt={step.title}
+                        className="w-full h-full object-cover p-0 rounded-xl"
+                      />
                     )}
                   </div>
 
