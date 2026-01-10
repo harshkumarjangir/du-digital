@@ -37,10 +37,17 @@ const formFieldSchema = new mongoose.Schema(
 
         placeholder: String,
 
+        parentField: {
+            type: String,
+            default: null
+        }, // Name of the parent field (for cascading dropdowns)
+
         options: [
             {
+                id: String, // Unique ID for the option
                 label: String,
-                value: String
+                value: String,
+                connectId: String // ID of the parent option this depends on
             }
         ], // only for select / radio
 

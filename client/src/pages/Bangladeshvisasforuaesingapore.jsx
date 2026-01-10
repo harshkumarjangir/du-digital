@@ -154,6 +154,7 @@ const BangladeshVisasForUaeSingapore = () => {
                     field={field}
                     formValues={formValues}
                     handleInputChange={handleInputChange}
+                    allFields={fields}
                     theme="light"
                   />
                 ))}
@@ -213,7 +214,7 @@ const BangladeshVisasForUaeSingapore = () => {
                     </div>
                   ) : (
                     <img
-                      src={getImageUrl(item?.images?.[0]||item?.image)}
+                      src={getImageUrl(item?.images?.[0] || item?.image)}
                       alt="Global Experts"
                       className="rounded-xl shadow-2xl w-full h-auto object-cover"
                     />
@@ -252,7 +253,7 @@ const BangladeshVisasForUaeSingapore = () => {
                     <div key={index} className="flex flex-col items-center gap-4 group cursor-pointer">
                       <div className="w-24 h-24 rounded-full overflow-hidden shadow-lg border-4 border-white group-hover:border-[#E31E24] transition-all duration-300">
                         <img
-                          src={getImageUrl(item.images?.[0]||item.image)}
+                          src={getImageUrl(item.images?.[0] || item.image)}
                           alt={item.title}
                           className="w-full h-full object-cover transform group-hover:scale-110 transition-transform"
                         />
@@ -277,7 +278,7 @@ const BangladeshVisasForUaeSingapore = () => {
             <div className="order-2 md:order-2 relative">
               <div className="absolute -inset-4 bg-gray-50 rounded-full opacity-50 -z-10" />
               <img
-                src={getImageUrl(item.images?.[0]||item.image)}
+                src={getImageUrl(item.images?.[0] || item.image)}
                 alt={item.title}
                 className="rounded-2xl shadow-xl w-full h-auto"
               />

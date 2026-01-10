@@ -154,6 +154,7 @@ const Duverify = () => {
                 field={field}
                 formValues={formValues}
                 handleInputChange={handleInputChange}
+                allFields={fields}
                 theme="light"
               />
             ))}

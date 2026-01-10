@@ -71,6 +71,33 @@ const ConsultationModal = ({
                             const commonClasses = "w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all outline-none text-gray-700 placeholder-gray-400";
 
                             if (fieldType === 'select' || fieldType === 'dropdown') {
+                                // Filter options for cascading dropdowns
+                                let displayOptions = field.options;
+                                if (field.parentField) {
+                                    const parentValue = formValues[field.parentField];
+                                    if (!parentValue) {
+                                        return null;
+                                    } else {
+                                        const parentFieldDef = fields.find(f => f.name === field.parentField);
+                                        // Note: formValues stores the 'value' (or label/string) of the selected option
+                                        const selectedParentOption = parentFieldDef?.options?.find(opt =>
+                                            (opt.value || opt) === parentValue
+                                        );
+
+                                        const parentId = selectedParentOption?.id || selectedParentOption?._id;
+                                        const parentVal = selectedParentOption?.value || selectedParentOption?.label || selectedParentOption;
+
+                                        if (parentId || parentVal) {
+                                            displayOptions = field.options?.filter(opt => {
+                                                // Robust matching: ID or Value
+                                                return opt.connectId === parentId || opt.connectId === parentVal;
+                                            }) || [];
+                                        } else {
+                                            displayOptions = []; // Parent option found but has no identifiers?
+                                        }
+                                    }
+                                }
+
                                 return (
                                     <div key={field._id || index} className="col-span-1 md:col-span-2">
                                         <select
@@ -89,7 +116,7 @@ const ConsultationModal = ({
                                             aria-label={field.label || field.placeholder}
                                         >
                                             <option value="" disabled>{field.placeholder || field.label}</option>
-                                            {field.options?.map((opt, optIdx) => (
+                                            {displayOptions?.map((opt, optIdx) => (
                                                 <option key={opt._id || optIdx} value={opt.value || opt}>
                                                     {opt.label || opt}
                                                 </option>
