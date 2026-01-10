@@ -287,7 +287,7 @@ const Serbiaworkpermitvisa = () => {
       {/* ===== WHAT IS SERBIA D-TYPE VISA ===== */}
       {whatIsSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             {whatIsSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
@@ -307,13 +307,13 @@ const Serbiaworkpermitvisa = () => {
                       className="max-w-full h-auto rounded-2xl shadow-xl"
                       style={{ maxHeight: '400px' }}
                     />)
-                  ):item.image&&
+                  ) : item.image &&
                   <img
-                      src={getImageUrl(item.image)}
-                      alt={item.title}
-                      className="max-w-full h-auto rounded-2xl shadow-xl"
-                      style={{ maxHeight: '400px' }}
-                    />}
+                    src={getImageUrl(item.image)}
+                    alt={item.title}
+                    className="max-w-full h-auto rounded-2xl shadow-xl"
+                    style={{ maxHeight: '400px' }}
+                  />}
                 </div>
               </div>
             ))}
@@ -329,35 +329,52 @@ const Serbiaworkpermitvisa = () => {
               // Check if this is a table-like content (has tabs)
               const isTable = item.contentHtml?.includes('\t');
 
+              // Special layout for "Who Can Apply?"
+              if (item.title === 'Who Can Apply?') {
+                return (
+                  <div key={item._id || index} className="mb-16 last:mb-0 text-center">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333333] mb-4">
+                      {item.title}
+                    </h2>
+                    <div className="w-20 h-1 mx-auto mb-6" style={{ backgroundColor: '#E31E24' }}></div>
+                    <p className="text-gray-600 leading-relaxed text-lg max-w-4xl mx-auto">
+                      {item.contentHtml}
+                    </p>
+                  </div>
+                );
+              }
+
               return (
                 <div key={item._id || index} className="mb-16 last:mb-0">
                   <div className={`grid lg:grid-cols-2 gap-12 place-items-center `}>
                     <div className={`${index % 2 != 0 ? 'lg:order-1' : 'lg:order-2'}`}>
-                      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                      <h2 className="text-2xl md:text-3xl font-semibold text-[#333333] mb-4">
                         {item.title}
                       </h2>
                       <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div>
 
-                      {isTable ? (
+                      {isTable || item.title.includes('Checklist') ? (
                         // Render as table
-                        <div className="bg-white rounded-xl shadow-md overflow-hidden">
+                        <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
                           <table className="w-full">
-                            <tbody>
+                            <thead>
+                              <tr className="bg-gray-100 border-b border-gray-200">
+                                <th className="px-6 py-4 text-left text-sm font-bold text-gray-900 border-r border-gray-200 last:border-r-0">Document</th>
+                                <th className="px-6 py-4 text-left text-sm font-bold text-gray-900">Who Provides</th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-200">
                               {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((row, rowIdx) => {
+                                // If the first row in data matches our hardcoded header, skip it
+                                if (rowIdx === 0 && (row.toLowerCase().includes('document') || row.toLowerCase().includes('provides'))) return null;
+
                                 const cells = row.split('\t');
-                                const isHeader = rowIdx === 0 && item.title.includes('Document');
                                 return (
-                                  <tr key={rowIdx} className={isHeader ? 'bg-gray-100' : 'border-b border-gray-100'}>
+                                  <tr key={rowIdx} className="hover:bg-gray-50 transition-colors even:bg-gray-50">
                                     {cells.map((cell, cellIdx) => (
-                                      isHeader ? (
-                                        <th key={cellIdx} className="px-4 py-3 text-left text-sm font-semibold text-gray-900">
-                                          {cell.trim()}
-                                        </th>
-                                      ) : (
-                                        <td key={cellIdx} className="px-4 py-3 text-sm text-gray-600">
-                                          {cell.trim()}
-                                        </td>
-                                      )
+                                      <td key={cellIdx} className={`px-6 py-4 text-sm text-gray-700 ${cellIdx === 0 ? 'border-r border-gray-200' : ''}`}>
+                                        {cell.trim()}
+                                      </td>
                                     ))}
                                   </tr>
                                 );
@@ -377,19 +394,20 @@ const Serbiaworkpermitvisa = () => {
                       }`}>
                       {item.images?.length > 0 ? (
                         item.images.map(p => <img
+                          key={p}
                           src={getImageUrl(p)}
                           alt={item.title}
                           className="max-w-full h-auto rounded-2xl shadow-xl"
 
                         />
                         )
-                      ):
-                      item.image&&<img
-                      src={getImageUrl(item.image)}
-                      alt={item.title}
-                      className="max-w-full h-auto rounded-2xl shadow-xl"
+                      ) :
+                        item.image && <img
+                          src={getImageUrl(item.image)}
+                          alt={item.title}
+                          className="max-w-full h-auto rounded-2xl shadow-xl"
 
-                    />}
+                        />}
                     </div>
                   </div>
                 </div>
@@ -432,7 +450,7 @@ const Serbiaworkpermitvisa = () => {
       )}
 
       {/* ===== GET STARTED TODAY ===== */}
-    
+
 
       {/* ===== FAQ SECTION ===== */}
       {faqs.length > 0 && (
@@ -526,62 +544,62 @@ const Serbiaworkpermitvisa = () => {
           </section>
         )
       }
-      {getStartedSection.length > 0 &&   <section id="connectwithus" className="py-4">
-              <div className="flex flex-wrap  gap-3 justify-center">
-                {/* Left - Request a Demo */}
-                <div className="relative group h-[300px] overflow-hidden rounded-2xl  sm:w-[45%]">
-                  <div
-                    className="absolute inset-0 bg-cover  bg-center"
-                    style={{
-                      backgroundImage: getStartedSection[0]?.images.length>0
-                        ? `url(${getImageUrl(getStartedSection[0].images[0])})`
-                        : `url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-black/70" />
-                  <div className="absolute inset-0 bg-[#A10000]/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-      
-                  <div className="relative z-10 p-10 md:p-10 flex flex-col justify-center h-full">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-4">
-                      {getStartedSection[0]?.title || 'Request a Demo Today'}
-                    </h2>
-                    <p className="text-gray-100 leading-relaxed">
-                      {getStartedSection[0]?.contentHtml?.replace(/\r?\n/g, ' ').trim() || 'Discover how DuVerify can transform your visa and document verification workflows.'}
-                    </p>
-                  </div>
-                </div>
-      
-                {/* Right - Connect with us */}
-                <div className="bg-[#050505] h-[300px] md:p-10 rounded-2xl o sm:p-10 sm:w-[45%] flex flex-col justify-center">
-                  <h3 className="text-2xl md:text-3xl lg:text-5xl font-semibold text-white mb-2">Connect with us</h3>
-                  <div className="w-12 h-1 mb-8" style={{ backgroundColor: '#A10000' }}></div>
-      
-                  <div className="mb-6">
-                    <h4 className="text-xl md:text-2xl lg:text-3xl font-semibold text-white mb-1">Dolly Chauhan</h4>
-                    <p className="text-gray-100">Manager-Operations</p>
-                  </div>
-      
-                  <div className="space-y-4">
-                    <a
-                      href="mailto:dolly@dudigitalglobal.com"
-                      className="flex items-center gap-3 transition-colors"
-                      style={{ color: '#e57373' }}
-                    >
-                      <Mail className="w-5 h-5" />
-                      dolly@dudigitalglobal.com
-                    </a>
-                    <a
-                      href="tel:+917400747408"
-                      className="flex items-center gap-3 transition-colors"
-                      style={{ color: '#e57373' }}
-                    >
-                      <Phone className="w-5 h-5" />
-                      +91-7400747408
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </section>}
+      {getStartedSection.length > 0 && <section id="connectwithus" className="py-4">
+        <div className="flex flex-wrap  gap-3 justify-center">
+          {/* Left - Request a Demo */}
+          <div className="relative group h-[300px] overflow-hidden rounded-2xl  sm:w-[45%]">
+            <div
+              className="absolute inset-0 bg-cover  bg-center"
+              style={{
+                backgroundImage: getStartedSection[0]?.images.length > 0
+                  ? `url(${getImageUrl(getStartedSection[0].images[0])})`
+                  : `url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`
+              }}
+            />
+            <div className="absolute inset-0 bg-black/70" />
+            <div className="absolute inset-0 bg-[#A10000]/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+            <div className="relative z-10 p-10 md:p-10 flex flex-col justify-center h-full">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-4">
+                {getStartedSection[0]?.title || 'Request a Demo Today'}
+              </h2>
+              <p className="text-gray-100 leading-relaxed">
+                {getStartedSection[0]?.contentHtml?.replace(/\r?\n/g, ' ').trim() || 'Discover how DuVerify can transform your visa and document verification workflows.'}
+              </p>
+            </div>
+          </div>
+
+          {/* Right - Connect with us */}
+          <div className="bg-[#050505] h-[300px] md:p-10 rounded-2xl o sm:p-10 sm:w-[45%] flex flex-col justify-center">
+            <h3 className="text-2xl md:text-3xl lg:text-5xl font-semibold text-white mb-2">Connect with us</h3>
+            <div className="w-12 h-1 mb-8" style={{ backgroundColor: '#A10000' }}></div>
+
+            <div className="mb-6">
+              <h4 className="text-xl md:text-2xl lg:text-3xl font-semibold text-white mb-1">Dolly Chauhan</h4>
+              <p className="text-gray-100">Manager-Operations</p>
+            </div>
+
+            <div className="space-y-4">
+              <a
+                href="mailto:dolly@dudigitalglobal.com"
+                className="flex items-center gap-3 transition-colors"
+                style={{ color: '#e57373' }}
+              >
+                <Mail className="w-5 h-5" />
+                dolly@dudigitalglobal.com
+              </a>
+              <a
+                href="tel:+917400747408"
+                className="flex items-center gap-3 transition-colors"
+                style={{ color: '#e57373' }}
+              >
+                <Phone className="w-5 h-5" />
+                +91-7400747408
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>}
     </div>
   );
 };
