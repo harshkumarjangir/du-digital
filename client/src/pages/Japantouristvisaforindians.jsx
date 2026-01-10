@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Check, ChevronDown, MapPin, Clock, Wallet, Calendar, CheckCircle, XCircle, Loader2 } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { Check, MapPin, Clock, Wallet, Calendar, CheckCircle, XCircle, Loader2, Circle, Square } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
 
@@ -45,6 +45,55 @@ const Japantouristvisaforindians = () => {
     }
     return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
   };
+
+  const renderDocumentContent = useCallback((description) => {
+    if (!description) return null;
+
+    // Split by newlines and filter out completely empty lines, but keep lines with just spaces (though usually we want content)
+    // Actually, we need to preserve leading spaces to determine level.
+    const lines = description.split('\n').filter(line => line.trim().length > 0);
+
+    return (
+      <div className="space-y-4">
+        {lines.map((line, index) => {
+          // Count leading spaces
+          const leadingSpaces = line.search(/\S|$/);
+          const content = line.trim();
+
+          let level = 0;
+          if (leadingSpaces >= 6) level = 3;
+          else if (leadingSpaces >= 3) level = 2;
+          else if (leadingSpaces >= 2) level = 1;
+
+          return (
+            <div
+              key={index}
+              className={`flex items-start gap-3 ${level === 0 ? '' :
+                level === 1 ? 'ml-6' :
+                  level === 2 ? 'ml-12' :
+                    'ml-18'
+                }`}
+            >
+              <div className="mt-1 shrink-0">
+                {level === 0 ? (
+                  <CheckCircle className="w-5 h-5 text-red-600 fill-red-50" />
+                ) : level === 1 ? (
+                  <Circle className="w-4 h-4 text-red-600" strokeWidth={2.5} />
+                ) : level === 2 ? (
+                  <Square className="w-3 h-3 text-red-600 fill-red-600" />
+                ) : (
+                  <Check className="w-3 h-3 text-red-600 fill-red-600" />
+                )}
+              </div>
+              <span className={`text-gray-700 leading-relaxed ${level === 0 ? 'font-medium' : ''}`}>
+                {content}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -117,6 +166,8 @@ const Japantouristvisaforindians = () => {
     });
     return details;
   };
+
+
 
   return (
     <div className="bg-white font-sans">
@@ -354,7 +405,7 @@ const Japantouristvisaforindians = () => {
                   <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
                 </div>
                 <div className="space-y-6">
-                  {item.contentHtml?.split('\n\n').filter(p => p.trim()).map((paragraph, pIdx) => {
+                  {item.contentHtml?.split(/\r?\n\r?\n/).filter(p => p.trim()).map((paragraph, pIdx) => {
                     const [title, ...rest] = paragraph.split(':');
                     if (rest.length > 0) {
                       return (
@@ -407,7 +458,7 @@ const Japantouristvisaforindians = () => {
             {/* Destination descriptions */}
             {destinationsSection[0]?.contentHtml && (
               <div className="space-y-6">
-                {destinationsSection[0].contentHtml.split('\n\n').filter(p => p.trim()).map((paragraph, pIdx) => {
+                {destinationsSection[0].contentHtml.split(/\r?\n\r?\n/).filter(p => p.trim()).map((paragraph, pIdx) => {
                   const [title, ...rest] = paragraph.split(':');
                   if (rest.length > 0 && title.trim().length < 30) {
                     return (
@@ -431,15 +482,7 @@ const Japantouristvisaforindians = () => {
           <div className="max-w-6xl mx-auto px-6">
             {mustVisitSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
-                {item.images?.[0] && (
-                  <div className="order-2 lg:order-1">
-                    <img
-                      src={getImageUrl(item.images[0])}
-                      alt={item.title}
-                      className="rounded-xl shadow-lg w-full"
-                    />
-                  </div>
-                )}
+
                 <div className={item.images?.[0] ? "order-1 lg:order-2" : ""}>
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                     {item.title}
@@ -460,6 +503,15 @@ const Japantouristvisaforindians = () => {
                     })}
                   </div>
                 </div>
+                {item.images?.[0] && (
+                  <div className="order-2 lg:order-1">
+                    <img
+                      src={getImageUrl(item.images[0])}
+                      alt={item.title}
+                      className="rounded-xl shadow-lg w-full"
+                    />
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -533,14 +585,9 @@ const Japantouristvisaforindians = () => {
             {documents.map((doc, docIndex) => (
               <div key={doc._id || docIndex} className="bg-gray-50 rounded-xl p-8">
                 <h3 className="text-xl font-bold text-gray-900 mb-6">{doc.title}</h3>
-                <ul className="space-y-3">
-                  {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 mt-0.5 shrink-0" style={{ color: '#E31E24' }} />
-                      <span className="text-gray-700">{item.trim()}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="mt-2">
+                  {renderDocumentContent(doc.description)}
+                </div>
               </div>
             ))}
           </div>

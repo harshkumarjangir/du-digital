@@ -41,6 +41,8 @@ const EventManager = () => {
   const [isEventModalOpen, setIsEventModalOpen] = useState(false);
   const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
   const [galleryImages, setGalleryImages] = useState([]);
+  const [selectedFiles, setSelectedFiles] = useState([]); // [NEW] Batch selection state
+  const [previews, setPreviews] = useState([]);         // [NEW] Preview state
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
@@ -50,10 +52,18 @@ const EventManager = () => {
     fetchEvents();
   }, []);
 
+  // [NEW] Cleanup object URLs
+  useEffect(() => {
+    return () => {
+      previews.forEach(url => URL.revokeObjectURL(url));
+    };
+  }, []);
+  const ApiUrl = import.meta.env.VITE_API_BASE_URL
+
   const fetchEvents = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/events");
+      const response = await axios.get(`${ApiUrl}/events`);
       setEvents(response.data.data);
     } catch (error) {
       console.error("Error fetching events:", error);
@@ -98,7 +108,7 @@ const EventManager = () => {
       if (selectedEvent) {
         // Edit mode
         await axios.put(
-          `http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/events/${selectedEvent._id}`,
+          `${ApiUrl}/events/${selectedEvent._id}`,
           data,
           {
             headers: { "Content-Type": "multipart/form-data" },
@@ -107,7 +117,7 @@ const EventManager = () => {
         showSuccess("Event updated successfully");
       } else {
         // Create mode
-        await axios.post("http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/events", data, {
+        await axios.post(`${ApiUrl}/events`, data, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         showSuccess("Event created successfully");
@@ -128,7 +138,7 @@ const EventManager = () => {
       return;
 
     try {
-      await axios.delete(`http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/events/${eventId}`);
+      await axios.delete(`${ApiUrl}/events/${eventId}`);
       showSuccess("Event deleted successfully");
       fetchEvents();
     } catch (error) {
@@ -159,7 +169,7 @@ const EventManager = () => {
       image: null,
     });
     if (event.imageUrl) {
-      setImagePreview(`http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api${event.imageUrl}`);
+      setImagePreview(`${ApiUrl}${event.imageUrl.replace("/api","")}`);
     } else {
       setImagePreview(null);
     }
@@ -175,7 +185,7 @@ const EventManager = () => {
   const fetchGalleryImages = async (eventId) => {
     try {
       const response = await axios.get(
-        `http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/events/${eventId}/images`
+        `${ApiUrl}/events/${eventId}/images`
       );
       setGalleryImages(response.data);
     } catch (error) {
@@ -184,31 +194,68 @@ const EventManager = () => {
     }
   };
 
-  const handleGalleryUpload = async (e) => {
-    const files = Array.from(e.target.files);
-    if (files.length === 0) return;
+  // [NEW] Handle file selection for batch upload
+  const handleFileSelect = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const newFiles = Array.from(e.target.files);
+      setSelectedFiles(prev => [...prev, ...newFiles]);
+
+      const newPreviews = newFiles.map(file => URL.createObjectURL(file));
+      setPreviews(prev => [...prev, ...newPreviews]);
+    }
+  };
+
+  // [NEW] Remove file from pending batch
+  const handleRemoveFile = (index) => {
+    URL.revokeObjectURL(previews[index]); // Cleanup
+    setSelectedFiles(prev => prev.filter((_, i) => i !== index));
+    setPreviews(prev => prev.filter((_, i) => i !== index));
+  };
+
+  // [MODIFIED] Batch upload function
+  const handleBatchUpload = async () => {
+    if (selectedFiles.length === 0) return;
 
     const data = new FormData();
-    files.forEach((file) => {
+    selectedFiles.forEach((file) => {
       data.append("images", file);
     });
 
     setUploading(true);
     try {
       await axios.post(
-        `http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/events/${selectedEvent._id}/images`,
+        `${ApiUrl}/events/${selectedEvent._id}/images`,
         data,
         {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
-      showSuccess(`${files.length} image(s) uploaded successfully`);
+      showSuccess(`${selectedFiles.length} image(s) uploaded successfully`);
+
+      // Cleanup and refresh
+      setSelectedFiles([]);
+      setPreviews([]);
       fetchGalleryImages(selectedEvent._id);
     } catch (error) {
       console.error("Error uploading gallery images:", error);
       showError("Failed to upload images");
-    } finally {
+    }
+    finally {
       setUploading(false);
+    }
+  };
+
+  // [NEW] Delete uploaded gallery image
+  const handleDeleteGalleryImage = async (imageId) => {
+    if (!window.confirm("Delete this image from the gallery?")) return;
+
+    try {
+      await axios.delete(`${ApiUrl}/events/images/${imageId}`);
+      showSuccess("Image deleted successfully");
+      fetchGalleryImages(selectedEvent._id);
+    } catch (error) {
+      console.error("Error deleting gallery image:", error);
+      showError("Failed to delete image");
     }
   };
 
@@ -279,7 +326,7 @@ const EventManager = () => {
                 {event.imageUrl && (
                   <div className="image-upload-preview has-image mb-3">
                     <img
-                      src={`http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api${event.imageUrl}`}
+                      src={`${ApiUrl}${event.imageUrl.replace("/api","")}`}
                       alt={event.title}
                       style={{
                         width: "100%",
@@ -335,7 +382,7 @@ const EventManager = () => {
                     size="sm"
                     onClick={() => openGalleryManager(event)}>
                     <Images size={14} />
-                    Gallery ({galleryImages.length || 0})
+                    Gallery ({event.galleryCount || 0})
                   </Button>
 
                   <div className="action-buttons">
@@ -480,22 +527,95 @@ const EventManager = () => {
 
             <div className="modal-body" style={{ overflowY: "auto" }}>
               <div className="mb-4">
-                <FormGroup label="Upload Images (Multiple Selection)">
-                  <input
-                    type="file"
-                    multiple
-                    onChange={handleGalleryUpload}
-                    className="form-control"
-                    accept="image/*"
-                    disabled={uploading}
-                  />
-                  {uploading && (
-                    <div className="d-flex align-items-center gap-2 mt-2 text-primary">
-                      <div className="spinner"></div>
-                      <span>Uploading images...</span>
+                <div className="mb-4">
+                  <div style={{ padding: '1.5rem', border: '1px solid #e2e8f0', borderRadius: '0.5rem', backgroundColor: '#f8fafc' }}>
+                    <h4 className="font-semibold mb-3">Add New Images</h4>
+
+                    {/* File Selection */}
+                    <div className="mb-4">
+                      <input
+                        type="file"
+                        multiple
+                        onChange={handleFileSelect}
+                        id="event-gallery-upload"
+                        className="hidden" // Assuming you have a hidden class or style={{display: 'none'}}
+                        style={{ display: 'none' }}
+                        accept="image/*"
+                        disabled={uploading}
+                      />
+                      <label
+                        htmlFor="event-gallery-upload"
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '8px',
+                          padding: '10px 20px',
+                          background: '#fff',
+                          border: '1px solid #cbd5e1',
+                          borderRadius: '0.375rem',
+                          cursor: 'pointer',
+                          color: '#475569',
+                          fontWeight: '500',
+                          fontSize: '0.875rem'
+                        }}
+                      >
+                        <Plus size={16} /> Choose Images
+                      </label>
+                      <span className="ml-3 text-sm text-gray-500" style={{ marginLeft: '12px' }}>
+                        {selectedFiles.length} file(s) selected
+                      </span>
                     </div>
-                  )}
-                </FormGroup>
+
+                    {/* Previews Grid */}
+                    {previews.length > 0 && (
+                      <div className="mb-4">
+                        <p className="text-sm font-medium text-gray-500 mb-2">Pending Uploads:</p>
+                        <div className="grid grid-cols-4 md:grid-cols-6 gap-2">
+                          {previews.map((preview, index) => (
+                            <div key={index} className="relative group" style={{ position: 'relative', height: '80px', borderRadius: '0.375rem', overflow: 'hidden' }}>
+                              <img
+                                src={preview}
+                                alt="preview"
+                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                              />
+                              <button
+                                onClick={() => handleRemoveFile(index)}
+                                style={{
+                                  position: 'absolute',
+                                  top: '2px',
+                                  right: '2px',
+                                  background: 'rgba(0,0,0,0.6)',
+                                  color: 'white',
+                                  border: 'none',
+                                  borderRadius: '50%',
+                                  width: '20px',
+                                  height: '20px',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  cursor: 'pointer',
+                                  padding: 0
+                                }}
+                              >
+                                <X size={12} />
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Upload Action */}
+                    <Button
+                      onClick={handleBatchUpload}
+                      disabled={uploading || selectedFiles.length === 0}
+                      loading={uploading}
+                    >
+                      <Upload size={16} />
+                      {uploading ? 'Uploading...' : `Upload ${selectedFiles.length > 0 ? selectedFiles.length : ''} Images`}
+                    </Button>
+                  </div>
+                </div>
               </div>
 
               {galleryImages.length === 0 ? (
@@ -507,18 +627,43 @@ const EventManager = () => {
               ) : (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                   {galleryImages.map((img) => (
-                    <div key={img._id} className="card card-hover">
+                    <div key={img._id} className="card card-hover bg-white border border-gray-200">
                       <div className="card-body p-2">
-                        <img
-                          src={`http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api${img.fileUrl}`}
-                          alt="Gallery"
-                          style={{
-                            width: "100%",
-                            height: "120px",
-                            objectFit: "cover",
-                            borderRadius: "0.375rem",
-                          }}
-                        />
+                        <div style={{ position: 'relative', width: '100%', height: '120px' }} className="group">
+                          <img
+                            src={`${ApiUrl}${img.fileUrl.replace("/api", "")}`}
+                            alt="Gallery"
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              objectFit: "cover",
+                              borderRadius: "0.375rem",
+                            }}
+                          />
+                          <button
+                            onClick={() => handleDeleteGalleryImage(img._id)}
+                            className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity shadow-sm"
+                            style={{
+                              position: 'absolute',
+                              top: '5px',
+                              right: '5px',
+                              background: 'rgba(220, 38, 38, 0.9)',
+                              color: 'white',
+                              border: 'none',
+                              borderRadius: '50%',
+                              width: '24px',
+                              height: '24px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              cursor: 'pointer',
+                              zIndex: 10
+                            }}
+                            title="Delete Image"
+                          >
+                            <Trash2 size={14} />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   ))}
