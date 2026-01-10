@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
-import { Loader2, Check, ChevronDown, FileText } from "lucide-react";
+import { Loader2, Check, ChevronDown } from "lucide-react";
+import DynamicFormField from "../components/reusable/DynamicFormField";
 
 const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
@@ -81,128 +82,6 @@ const Georgiaevisa = () => {
         }
     };
 
-    // Dynamic field renderer - handles all field types
-    const renderField = (field, index) => {
-        switch (field.type) {
-            case 'select':
-            case 'dropdown':
-                return (
-                    <select
-                        key={index}
-                        name={field.name}
-                        value={formValues[field.name] || ''}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:border-[#E31E24] outline-none"
-                        required={field.required}
-                    >
-                        <option value="">{field.label}</option>
-                        {field.options?.map((opt, i) => (
-                            <option key={i} value={opt.value || opt.label || opt}>{opt.label || opt}</option>
-                        ))}
-                    </select>
-                );
-
-            case 'checkbox':
-                return (
-                    <div key={index} className="flex items-center gap-3">
-                        <input
-                            type="checkbox"
-                            name={field.name}
-                            checked={formValues[field.name] || false}
-                            onChange={handleInputChange}
-                            className="w-5 h-5"
-                            required={field.required}
-                        />
-                        <label className="text-white text-sm">
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
-                        </label>
-                    </div>
-                );
-
-            case 'radio':
-                return (
-                    <div key={index} className="space-y-2">
-                        <label className="text-white text-sm font-medium block mb-2">
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
-                        </label>
-                        <div className="flex flex-wrap gap-4">
-                            {field.options?.map((opt, i) => (
-                                <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
-                                    <input
-                                        type="radio"
-                                        name={field.name}
-                                        value={opt.value || opt.label || opt}
-                                        checked={formValues[field.name] === (opt.value || opt.label || opt)}
-                                        onChange={handleInputChange}
-                                        className="w-4 h-4"
-                                        required={field.required}
-                                    />
-                                    <span className="text-sm">{opt.label || opt}</span>
-                                </label>
-                            ))}
-                        </div>
-                    </div>
-                );
-
-            case 'textarea':
-                return (
-                    <textarea
-                        key={index}
-                        name={field.name}
-                        value={formValues[field.name] || ''}
-                        onChange={handleInputChange}
-                        placeholder={field.placeholder || field.label}
-                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:border-[#E31E24] outline-none min-h-[100px]"
-                        required={field.required}
-                    />
-                );
-
-            case 'date':
-                return (
-                    <input
-                        key={index}
-                        type="date"
-                        name={field.name}
-                        value={formValues[field.name] || ''}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:border-[#E31E24] outline-none"
-                        required={field.required}
-                    />
-                );
-
-            case 'file':
-                return (
-                    <div key={index}>
-                        <label className="text-white text-sm block mb-2">
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
-                        </label>
-                        <input
-                            type="file"
-                            name={field.name}
-                            onChange={(e) => setFormValues(prev => ({ ...prev, [field.name]: e.target.files[0] }))}
-                            className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg"
-                            required={field.required}
-                        />
-                    </div>
-                );
-
-            default:
-                // text, email, number, tel, etc.
-                return (
-                    <input
-                        key={index}
-                        type={field.type || 'text'}
-                        name={field.name}
-                        value={formValues[field.name] || ''}
-                        onChange={handleInputChange}
-                        placeholder={field.placeholder || field.label}
-                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:border-[#E31E24] outline-none"
-                        required={field.required}
-                    />
-                );
-        }
-    };
-
     if (loading) return <LoadingState message="Loading Content..." fullScreen />;
     if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
 
@@ -247,7 +126,16 @@ const Georgiaevisa = () => {
                             )}
 
                             <form onSubmit={handleSubmit} className="space-y-4">
-                                {fields.map((field, index) => renderField(field, index))}
+                                {fields.map((field, index) => (
+                                    <DynamicFormField
+                                        key={index}
+                                        field={field}
+                                        formValues={formValues}
+                                        handleInputChange={handleInputChange}
+                                        allFields={fields}
+                                        theme="dark"
+                                    />
+                                ))}
                                 <button
                                     type="submit"
                                     disabled={submitLoading}

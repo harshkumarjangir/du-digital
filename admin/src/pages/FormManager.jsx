@@ -141,6 +141,7 @@ const FormManager = () => {
             required: false,
             options: [],
             isActive: true,
+            parentField: null,
             order: formData.fields.length
         };
         setFormData({ ...formData, fields: [...formData.fields, newField] });
@@ -181,7 +182,12 @@ const FormManager = () => {
         if (!updatedFields[fieldIndex].options) {
             updatedFields[fieldIndex].options = [];
         }
-        updatedFields[fieldIndex].options.push({ label: '', value: '' });
+        updatedFields[fieldIndex].options.push({
+            id: Date.now().toString(), // Simple unique ID generation
+            label: '',
+            value: '',
+            connectId: ''
+        });
         setFormData({ ...formData, fields: updatedFields });
     };
 
@@ -201,6 +207,21 @@ const FormManager = () => {
         const updatedFields = [...formData.fields];
         updatedFields[fieldIndex].options = updatedFields[fieldIndex].options.filter((_, i) => i !== optionIndex);
         setFormData({ ...formData, fields: updatedFields });
+    };
+
+    // Helper to get potential parent fields (select/radio fields that are NOT this field)
+    const getPotentialParents = (currentFieldIndex) => {
+        return formData.fields.filter((f, i) =>
+            i !== currentFieldIndex &&
+            (f.type === 'select' || f.type === 'dropdown' || f.type === 'radio') &&
+            f.name // Parent must have a name
+        );
+    };
+
+    // Helper to get options from the selected parent field
+    const getParentOptions = (parentFieldName) => {
+        const parent = formData.fields.find(f => f.name === parentFieldName);
+        return parent ? parent.options : [];
     };
 
     const inputStyle = {
@@ -556,6 +577,30 @@ const FormManager = () => {
                                                     </div>
                                                 </div>
 
+                                                {/* Parent Field Selection for Cascading Dropdowns */}
+                                                {(field.type === 'select' || field.type === 'dropdown') && (
+                                                    <div style={{ marginTop: '1rem', padding: '0.75rem', backgroundColor: '#e9ecef', borderRadius: '4px' }}>
+                                                        <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.85rem', fontWeight: 'bold' }}>
+                                                            Parent Field (Optional - for dependent dropdowns)
+                                                        </label>
+                                                        <select
+                                                            value={field.parentField || ''}
+                                                            onChange={(e) => updateField(index, 'parentField', e.target.value)}
+                                                            style={{ ...inputStyle, width: '100%' }}
+                                                        >
+                                                            <option value="">-- Independent Dropdown --</option>
+                                                            {getPotentialParents(index).map((p, pIdx) => (
+                                                                <option key={pIdx} value={p.name}>
+                                                                    {p.label} ({p.name})
+                                                                </option>
+                                                            ))}
+                                                        </select>
+                                                        <p style={{ margin: '0.25rem 0 0', fontSize: '0.75rem', color: '#666' }}>
+                                                            Select a field that this dropdown depends on (e.g., Select "Country" for a "State" dropdown).
+                                                        </p>
+                                                    </div>
+                                                )}
+
                                                 {/* Options for select/radio types */}
                                                 {(field.type === 'select' || field.type === 'radio') && (
                                                     <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
@@ -585,6 +630,22 @@ const FormManager = () => {
                                                                     style={{ ...inputStyle, flex: 1, backgroundColor: '#fff' }}
                                                                     placeholder="option_value"
                                                                 />
+
+                                                                {/* Connect to Parent Option */}
+                                                                {field.parentField && (
+                                                                    <select
+                                                                        value={option.connectId || ''}
+                                                                        onChange={(e) => updateOption(index, optIdx, 'connectId', e.target.value)}
+                                                                        style={{ ...inputStyle, flex: 1, backgroundColor: '#fff3cd' }}
+                                                                    >
+                                                                        <option value="">-- Connect to {field.parentField} --</option>
+                                                                        {getParentOptions(field.parentField)?.map((pOpt, poIdx) => (
+                                                                            <option key={poIdx} value={pOpt.id || pOpt.value}>
+                                                                                {pOpt.label}
+                                                                            </option>
+                                                                        ))}
+                                                                    </select>
+                                                                )}
                                                                 <button
                                                                     type="button"
                                                                     onClick={() => removeOption(index, optIdx)}

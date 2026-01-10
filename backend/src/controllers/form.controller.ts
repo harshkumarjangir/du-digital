@@ -29,7 +29,7 @@ export const getFormBySlug = async (req: Request, res: Response) => {
 
         const formId = form._id;
 
-      
+
         const [fields, documents, faqs, contentSections, pricingPlans, formImages, formEmployeesAddresses] = await Promise.all([
             FormField.find({ formId }).lean(),
             DocumentRequirement.find({ formId, isActive: true }).lean(),
@@ -172,7 +172,8 @@ export const createForm = async (req: Request, res: Response) => {
                 options: field.options || [],
                 required: field.required || false,
                 order: field.order !== undefined ? field.order : index,
-                isActive: field.isActive !== undefined ? field.isActive : true
+                isActive: field.isActive !== undefined ? field.isActive : true,
+                parentField: field.parentField || null
             }));
 
             await FormField.insertMany(formFields);
@@ -259,7 +260,8 @@ export const updateForm = async (req: Request, res: Response) => {
                         options: field.options || [],
                         required: field.required || false,
                         order: field.order !== undefined ? field.order : i,
-                        isActive: field.isActive !== undefined ? field.isActive : true
+                        isActive: field.isActive !== undefined ? field.isActive : true,
+                        parentField: field.parentField || null
                     };
 
                     if (field._id) {

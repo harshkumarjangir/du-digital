@@ -20,15 +20,57 @@ const DynamicFormField = ({
     formValues,
     handleInputChange,
     onFileChange,
+    allFields = [], // New prop for cascading logic
     theme = 'light'
 }) => {
     const isDark = theme === 'dark';
 
-    const baseInputClass = isDark
+    const baseInputClass = !isDark
         ? "w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder:text-gray-400 focus:border-[#E31E24] focus:ring-1 focus:ring-[#E31E24] outline-none transition-all"
         : "w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:border-[#E31E24] focus:ring-1 focus:ring-[#E31E24] outline-none transition-all placeholder:text-gray-500";
 
     const labelClass = isDark ? "text-white text-sm" : "text-gray-700 text-sm font-medium";
+
+    // Helper to filter options for cascading dropdowns
+    const getFilteredOptions = () => {
+        // If not a dependent field, return all options
+        if (!field.parentField) return field.options;
+
+        // If parent value is not selected, return empty options (user must select parent first)
+        const parentValue = formValues[field.parentField];
+        if (!parentValue) return [];
+
+        // If we don't have access to all fields definition, return all options (fallback)
+        if (!allFields || allFields.length === 0) return field.options;
+
+        // Find the parent field definition
+        const parentFieldDef = allFields.find(f => f.name === field.parentField);
+        if (!parentFieldDef) return field.options;
+
+        // Find the selected option object in the parent field to get its ID
+        // Note: formValues stores the 'value' (or label/string) of the selected option
+        const selectedParentOption = parentFieldDef.options?.find(opt =>
+            (opt.value || opt.label || opt) === parentValue
+        );
+
+        // If parent option doesn't have an ID (legacy) or not found, we can't filter uniquely by ID
+        // But we can try to fall back to value matching if configured that way
+        const parentId = selectedParentOption.id || selectedParentOption._id;
+        const parentOptionValue = selectedParentOption.value || selectedParentOption.label || selectedParentOption;
+
+        // Filter valid options: match connectId to parent's ID or Value
+        return field.options?.filter(opt => {
+            if (!opt.connectId) return true; // Keep options with no specific connection? Or hide? usually hide.
+            // If strict cascading is desired, options without connectId should probably be hidden if parentField is set.
+            // But for now let's assume if connectId is present it must match.
+
+            return opt.connectId === parentId || opt.connectId === parentOptionValue;
+        }) || [];
+    };
+
+    const displayOptions = (field.type === 'select' || field.type === 'dropdown')
+        ? getFilteredOptions()
+        : field.options;
 
     switch (field.type) {
         case 'select':
@@ -49,7 +91,7 @@ const DynamicFormField = ({
                         required={field.required}
                     >
                         <option value="">{field.placeholder || `Select ${field.label}`}</option>
-                        {field.options?.map((opt, i) => (
+                        {displayOptions?.map((opt, i) => (
                             <option key={i} value={opt.value || opt.label || opt}>
                                 {opt.label || opt}
                             </option>
