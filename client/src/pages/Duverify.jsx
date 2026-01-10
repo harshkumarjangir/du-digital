@@ -318,7 +318,7 @@ const Duverify = () => {
                   )}
 
                   {/* Dark overlay */}
-                  <div className="absolute inset-0 bg-black/50" />
+                  <div className="absolute inset-0 bg-black/85" />
 
                   <div className="absolute inset-0 bg-[#A10000]/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
@@ -422,7 +422,7 @@ const Duverify = () => {
             <div className="absolute inset-0 bg-[#A10000]/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
             <div className="relative z-10 p-10 md:p-10 flex flex-col justify-center h-full">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-4">
+              <h2 className="text-3xl md:text-4xl lg:text-4xl font-semibold text-white mb-4">
                 {demoSection[0]?.title || 'Request a Demo Today'}
               </h2>
               <p className="text-gray-100 leading-relaxed">
@@ -433,30 +433,37 @@ const Duverify = () => {
 
           {/* Right - Connect with us */}
           <div className="bg-[#050505] h-[300px] md:p-10 rounded-2xl o sm:p-10 sm:w-[45%] flex flex-col justify-center">
-            <h3 className="text-2xl md:text-3xl lg:text-5xl font-semibold text-white mb-2">Connect with us</h3>
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-2">Connect with us</h3>
             <div className="w-12 h-1 mb-8" style={{ backgroundColor: '#A10000' }}></div>
 
             <div className="mb-6">
-              <h4 className="text-xl md:text-2xl lg:text-3xl font-semibold text-white mb-1">Dolly Chauhan</h4>
-              <p className="text-gray-100">Manager-Operations</p>
+              <h4 className="text-xl md:text-2xl lg:text-3xl font-semibold text-white mb-1">Dheeraj Shrivastava</h4>
+              <p className="text-gray-100">Sr. Executive - Operation</p>
             </div>
 
             <div className="space-y-4">
               <a
-                href="mailto:dolly@dudigitalglobal.com"
+                href="mailto:dheeraj@dudigitalglobal.com"
                 className="flex items-center gap-3 transition-colors"
                 style={{ color: '#e57373' }}
               >
-                <Mail className="w-5 h-5" />
-                dolly@dudigitalglobal.com
+                {/* <Mail className="w-5 h-5" /> */}
+                <span className="w-5 h-5 text-[#CC3366]">
+                  📧
+                </span>
+                <span className="text-white">Email -</span>
+                <span className="hover:text-[#333366]">dheeraj@dudigitalglobal.com</span>
               </a>
               <a
-                href="tel:+917400747408"
-                className="flex items-center gap-3 transition-colors"
-                style={{ color: '#e57373' }}
+                href="tel:+918510809767"
+                className="flex items-center gap-3 transition-colors text-[#e57373]"
               >
-                <Phone className="w-5 h-5" />
-                +91-7400747408
+                {/* <Phone className="w-5 h-5" /> */}
+                <span className="w-5 h-5 text-[#CC3366]">
+                  📞
+                </span>
+                <span className="text-white">Mobile -</span>
+                <span className="hover:text-[#333366]">+91-8510809767</span>
               </a>
             </div>
           </div>

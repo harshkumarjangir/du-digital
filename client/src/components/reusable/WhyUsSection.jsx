@@ -1,6 +1,7 @@
 import * as Icons from "lucide-react";
+import { Link } from "react-router-dom";
 
-const WhyUsSection = ({ data }) => {
+const WhyUsSection = ({ data, button = false, buttonLink = "", buttonName = "" }) => {
     return (
         <section
             className="relative py-24 bg-cover bg-center text-white"
@@ -30,6 +31,14 @@ const WhyUsSection = ({ data }) => {
                     >
                         {data.cta.text}
                     </a> */}
+                    {button && (
+                        <Link
+                            to={buttonLink}
+                            className="inline-block font-medium px-6 py-3 rounded-full text-white font-semibold  bg-[#FF1033] hover:bg-[#511313] transition"
+                        >
+                            {buttonName}
+                        </Link>
+                    )}
                 </div>
 
                 {/* RIGHT FEATURES */}

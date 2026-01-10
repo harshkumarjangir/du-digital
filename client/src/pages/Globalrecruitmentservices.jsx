@@ -110,7 +110,7 @@ const Globalrecruitmentservices = () => {
   const getImageUrl = (imagePath) => {
     if (!imagePath) return '';
     if (imagePath.startsWith('http')) return imagePath;
-    return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath.replace("/api","")}`;
+    return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath.replace("/api", "")}`;
   };
 
   const handleInputChange = (e) => {
@@ -178,7 +178,7 @@ const Globalrecruitmentservices = () => {
 
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative sm:h-[600px] min-h-[600px] flex items-center overflow-hidden md:px-12">
+      <section className="relative lg:h-[600px] min-h-[600px] flex items-center overflow-hidden md:px-12">
 
         {/* Background Image */}
         {formData?.image && (
@@ -195,7 +195,7 @@ const Globalrecruitmentservices = () => {
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/65" />
 
-        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center place-items-center">
 
           {/* LEFT CONTENT */}
           <div className="text-white">
@@ -218,9 +218,9 @@ const Globalrecruitmentservices = () => {
           </div>
 
           {/* RIGHT FORM CARD */}
-          <div className="bg-white rounded-2xl p-6 md:p-6 shadow-2xl w-full max-w-md ml-auto">
+          <div className="bg-white rounded-2xl p-6 md:p-6 shadow-2xl w-full max-w-md lg:ml-auto">
 
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+            <h3 className="text-2xl font-bold text-[#333333] mb-6">
               Global Workforce Recruitment
             </h3>
 
@@ -595,7 +595,7 @@ const Globalrecruitmentservices = () => {
             </div>
 
             {/* RIGHT IMAGE */}
-            {readyToBuildSection[0]?.images?.length>0 ? (
+            {readyToBuildSection[0]?.images?.length > 0 ? (
               <div className="flex justify-center lg:justify-end">
                 <img
                   src={getImageUrl(readyToBuildSection[0].images[0])}
@@ -603,7 +603,7 @@ const Globalrecruitmentservices = () => {
                   className="w-full max-w-[520px] rounded-[28px] shadow-xl object-cover"
                 />
               </div>
-            ) : readyToBuildSection[0]?.image&&(
+            ) : readyToBuildSection[0]?.image && (
               <div className="flex justify-center lg:justify-end">
                 <img
                   src={getImageUrl(readyToBuildSection[0].image)}

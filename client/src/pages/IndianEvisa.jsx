@@ -31,7 +31,6 @@ const IndianEvisa = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
   const [openDocIndex, setOpenDocIndex] = useState(0);
   const [formValues, setFormValues] = useState({});
-  const [visaType, setVisaType] = useState('tourist');
   const [submitStatus, setSubmitStatus] = useState(null);
   const [submitLoading, setSubmitLoading] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
@@ -79,8 +78,11 @@ const IndianEvisa = () => {
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues(prev => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setFormValues(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -93,7 +95,7 @@ const IndianEvisa = () => {
       const response = await fetch(`${BackendURL}/api/form-submissions/slug/india-evisa`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formValues, visaType }),
+        body: JSON.stringify(formValues),
       });
       const res = await response.json();
 
@@ -161,7 +163,7 @@ const IndianEvisa = () => {
 
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full min-h-[600px] sm:h-[600px] overflow-hidden">
+      <section className="relative w-full min-h-[600px] xl:h-[700px] overflow-hidden">
         {/* Hero Image */}
         {formData?.image && (
           <img
@@ -239,78 +241,181 @@ const IndianEvisa = () => {
             </div>
 
             {/* ===== RIGHT FORM CARD ===== */}
-            <div className="bg-black/75 backdrop-blur-md rounded-2xl p-8 lg:p-10 shadow-2xl">
+            <div className="bg-black/75 backdrop-blur-md rounded-2xl p-4 lg:p-10 shadow-2xl">
               <h2 className="text-2xl font-bold text-white mb-6">
                 Apply for India E-Visa
               </h2>
 
-              <form onSubmit={handleSubmit}>
-                {/* Inputs */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Dynamic Field Rendering */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {fields
-                    .filter(f => f.isActive)
+                    .filter(field => {
+                      if (!field.isActive) return false;
+
+                      // Logic for "I am interested in" visibility based on Visa Type
+                      if (field.name === 'i_am_interested_in') {
+                        // If no visa type selected, hide both
+                        if (!formValues.visa_type) return false;
+
+                        const isTourist = formValues.visa_type === 'tourist_e-visa';
+                        const isBusiness = formValues.visa_type === 'business_e-visa';
+
+                        // Check options count to distinguish between the two same-named fields
+                        // Tourist usually has multiple options (1 month, 1 year, 5 year)
+                        // Business usually has fewer (e.g. 1 year)
+                        // Based on user request/API:
+                        // Field with > 1 option is for Tourist
+                        // Field with 1 option is for Business (or "other dropdown")
+
+                        // Note: This logic depends on the specific API structure provided by the user.
+                        // Ideally we'd use a more robust way to link them, but we'll use option count as a proxy 
+                        // or order if distinct. 
+                        // User API provided:
+                        // Field A (Order 7): 3 options
+                        // Field B (Order 8): 1 option
+
+                        if (isTourist) {
+                          return field.options.length > 1;
+                        }
+                        if (isBusiness) {
+                          return field.options.length === 1;
+                        }
+                        return false;
+                      }
+                      return true;
+                    })
                     .sort((a, b) => a.order - b.order)
-                    .map(field => (
-                      <input
-                        key={field._id}
-                        type={field.type}
-                        name={field.name}
-                        placeholder={field.placeholder}
-                        required={field.required}
-                        value={formValues[field.name] || ""}
-                        onChange={handleInputChange}
-                        className="h-[46px] px-4 rounded-lg text-sm bg-white focus:ring-2 focus:ring-red-500 outline-none"
-                        aria-label={field.placeholder || field.name}
-                      />
-                    ))}
-                </div>
+                    .map((field, index) => {
+                      const commonClasses = "w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none bg-white text-gray-700 placeholder-gray-400";
 
-                {/* Visa Type */}
-                <div className="mb-6">
-                  <p className="text-white font-medium mb-3">
-                    Visa Type <span className="text-red-500">*</span>
-                  </p>
+                      const fieldType = field.type || field.fieldType;
+                      const isFullWidth = ['checkbox', 'textarea'].includes(fieldType);
 
-                  <div className="flex gap-6">
-                    {["tourist", "business"].map(type => (
-                      <label key={type} className="flex items-center gap-2 cursor-pointer">
-                        <input
-                          type="radio"
-                          checked={visaType === type}
-                          onChange={() => setVisaType(type)}
-                          className="hidden"
-                        />
-                        <span
-                          className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${visaType === type
-                            ? "border-red-600 bg-red-600"
-                            : "border-gray-400"
-                            }`}
-                        >
-                          {visaType === type && (
-                            <span className="w-2 h-2 bg-white rounded-full" />
-                          )}
-                        </span>
-                        <span className="text-white text-sm capitalize">
-                          {type} e-Visa
-                        </span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
+                      // Wrapper class
+                      const wrapperClass = isFullWidth ? "col-span-1 md:col-span-2" : "col-span-1";
 
-                {/* Agreement Checkbox */}
-                <div className="mb-6">
-                  <label className="flex items-start gap-3 cursor-pointer">
-                    <div
-                      className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5"
-                      style={{ backgroundColor: '#c62625' }}
-                    >
-                      <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                    </div>
-                    <span className="text-white text-xs leading-relaxed">
-                      I agree to receive communication regarding my visa application and promotional offers from DU Global
-                    </span>
-                  </label>
+                      // Special render for Select
+                      if (fieldType === 'select' || fieldType === 'dropdown') {
+                        return (
+                          <div key={field._id || index} className={wrapperClass}>
+                            <select
+                              name={field.name}
+                              value={formValues[field.name] || ''}
+                              onChange={handleInputChange}
+                              className={`${commonClasses} appearance-none cursor-pointer`}
+                              required={field.required}
+                              style={{
+                                backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                                backgroundPosition: 'right 0.75rem center',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundSize: '1.5em 1.5em',
+                                paddingRight: '2.5rem'
+                              }}
+                            >
+                              <option value="" disabled>{field.placeholder || field.label}</option>
+                              {field.options?.map((opt, optIdx) => (
+                                <option key={opt._id || optIdx} value={opt.value}>
+                                  {opt.label}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        );
+                      }
+
+                      // Special render for Radio (Visa Type)
+                      if (fieldType === 'radio') {
+                        return (
+                          <div key={field._id || index} className={wrapperClass}>
+                            <p className="text-white font-medium mb-3">
+                              {field.label} {field.required && <span className="text-red-500">*</span>}
+                            </p>
+                            <div className="flex flex-wrap gap-6">
+                              {field.options?.map((opt, optIdx) => (
+                                <label key={opt._id || optIdx} className="flex items-center gap-2 cursor-pointer">
+                                  <input
+                                    type="radio"
+                                    name={field.name}
+                                    value={opt.value}
+                                    checked={formValues[field.name] === opt.value}
+                                    onChange={handleInputChange}
+                                    className="hidden"
+                                    required={field.required}
+                                  />
+                                  <span
+                                    className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${formValues[field.name] === opt.value
+                                      ? "border-red-600 bg-red-600"
+                                      : "border-gray-400"
+                                      }`}
+                                  >
+                                    {formValues[field.name] === opt.value && (
+                                      <span className="w-2 h-2 bg-white rounded-full" />
+                                    )}
+                                  </span>
+                                  <span className="text-white text-sm capitalize">
+                                    {opt.label}
+                                  </span>
+                                </label>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      }
+
+                      // Special render for Checkbox
+                      if (fieldType === 'checkbox') {
+                        return (
+                          <div key={field._id || index} className={`${wrapperClass} flex items-start gap-3 mt-2`}>
+                            <input
+                              type="checkbox"
+                              name={field.name}
+                              checked={!!formValues[field.name]}
+                              onChange={handleInputChange}
+                              id={`field-${field._id || index}`}
+                              className="mt-1 w-5 h-5 rounded border-gray-300 text-red-600 focus:ring-red-500 cursor-pointer accent-red-600"
+                              required={field.required}
+                            />
+                            <label htmlFor={`field-${field._id || index}`} className="text-white text-xs md:text-sm leading-relaxed cursor-pointer">
+                              {field.label || field.placeholder}
+                            </label>
+                          </div>
+                        );
+                      }
+
+                      // Special render for Date
+                      if (fieldType === 'date') {
+                        return (
+                          <div key={field._id || index} className={wrapperClass}>
+                            <input
+                              type={fieldType}
+                              name={field.name}
+                              value={formValues[field.name] || ''}
+                              onChange={handleInputChange}
+                              placeholder={field.placeholder || field.label}
+                              className={`${commonClasses} w-full`} // Ensure full width
+                              required={field.required}
+                            />
+                          </div>
+                        )
+                      }
+
+
+                      // Default Input (Text, Email, Number, etc)
+                      return (
+                        <div key={field._id || index} className={wrapperClass}>
+                          <input
+                            type={fieldType}
+                            name={field.name}
+                            value={formValues[field.name] || ''}
+                            onChange={handleInputChange}
+                            placeholder={field.placeholder || field.label}
+                            className={commonClasses}
+                            required={field.required}
+                          />
+                        </div>
+                      );
+                    })}
                 </div>
 
                 {/* Submit Status Message */}
@@ -324,11 +429,11 @@ const IndianEvisa = () => {
                 <button
                   type="submit"
                   disabled={submitLoading}
-                  className="px-8 py-3 rounded-full font-semibold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-2"
+                  className="px-8 py-3 rounded-full font-semibold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-2 w-full md:w-auto"
                 >
                   {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Submit Form'}
                 </button>
-              </form >
+              </form>
             </div >
 
           </div >
@@ -355,32 +460,32 @@ const IndianEvisa = () => {
                     />
                   </div>
                   <div className="relative">
-                    
-                      <div className="relative">
-                        {item?.images?.length > 0 ? (
-                          item.images.map(p => <img
-                            src={getImageUrl(p)}
-                            alt={item.title}
-                            className="max-w-full h-auto rounded-xl shadow-lg"
-                            style={{ maxHeight: '400px' }}
-                          />)
-                        ) : item.image && <img
-                          src={getImageUrl(item.image)}
+
+                    <div className="relative">
+                      {item?.images?.length > 0 ? (
+                        item.images.map(p => <img
+                          src={getImageUrl(p)}
                           alt={item.title}
                           className="max-w-full h-auto rounded-xl shadow-lg"
-                          style={{ maxHeight: '400px' }}
-                        />}
-                        {/* Badge overlay */}
-                        {item.badge?.text && (
-                          <div
-                            className="absolute -top-14 -right-4 w-28 h-28 flex flex-col items-center justify-center text-white text-center shadow-lg"
-                            style={{ backgroundColor: item.badge.background || '#e63938' }}
-                          >
-                            <span className="text-xs font-medium leading-tight px-2">{item.badge.text}</span>
-                          </div>
-                        )}
-                      </div>
-                    
+                        // style={{ maxHeight: '400px' }}
+                        />)
+                      ) : item.image && <img
+                        src={getImageUrl(item.image)}
+                        alt={item.title}
+                        className="max-w-full h-auto rounded-xl shadow-lg"
+                      // style={{ maxHeight: '400px' }}
+                      />}
+                      {/* Badge overlay */}
+                      {item.badge?.text && (
+                        <div
+                          className="absolute -top-14 -right-4 w-28 h-28 flex flex-col items-center justify-center text-white text-center shadow-lg"
+                          style={{ backgroundColor: item.badge.background || '#e63938' }}
+                        >
+                          <span className="text-xs font-medium leading-tight px-2">{item.badge.text}</span>
+                        </div>
+                      )}
+                    </div>
+
                   </div>
                 </div>
               ))}
@@ -399,7 +504,7 @@ const IndianEvisa = () => {
             <div className="w-32 h-0.75 mx-auto" style={{ backgroundColor: '#e63938' }}></div>
           </div>
 
-          <div className="rounded-2xl p-8 md:p-10">
+          <div className="rounded-2xl p-0 md:p-10">
             <div className="space-y-4">
               {[
                 "International travellers whose sole objective for visiting India is recreation, sightseeing, casual visit to meet friends and relatives, attending a short term yoga programme, Short term courses on local languages, music, dance, arts & crafts, cooking, medicine etc. which should not be a formal or structured course/programme (courses not exceeding 6 months duration and not issued with a qualifying certificate/ diploma etc),Voluntary work of short duration (for a maximum period of one month, which do not involve any monetary payment or consideration of any kind in return), medical treatment including treatment under Indian systems of medicine, business purpose, as attendant to e-Medical visa holder, attending a conference/ seminar/ workshop organized by a Ministry or Department of the Government of India, State Governments or UT Administrations etc. & their subordinate/ attached organizations & PSUs and private conferences organized by private persons/companies/organizations.",
@@ -422,11 +527,13 @@ const IndianEvisa = () => {
               ))}
             </div>
           </div>
+
+
         </div>
       </section>
 
       {/* ===== WHY DU GLOBAL SECTION ===== */}
-      <WhyUsSection data={whyUsSectionData.whyUsSection} />
+      <WhyUsSection data={whyUsSectionData.whyUsSection} button={true} buttonLink="/about-us" buttonName="About Us" />
 
 
       {/* ===== E-VISA APPLICATION PROCESS ===== */}

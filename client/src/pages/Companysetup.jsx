@@ -492,7 +492,7 @@ const Companysetup = () => {
             {benefitsSection.map((item, index) => (
               <div
                 key={item._id || index}
-                className="grid md:grid-cols-2 gap attaching-center items-center"
+                className="grid md:grid-cols-2 gap-8 attaching-center items-center"
               >
                 {/* Image */}
                 <div className="flex justify-center">
@@ -599,13 +599,13 @@ const Companysetup = () => {
       {/* ===== ENTITY OPTIONS SECTION ===== */}
       {entityOptionsSection.length > 0 && (
         <section className="py-20 bg-black text-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
+          <div className="max-w-7xl mx-auto px-6 md:px-12 text-left">
             {entityOptionsSection.map((item, index) => (
               <div key={item._id || index}>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-                  Entity Options for <span style={{ color: '#A10000' }}>Free Zone</span> Company Setup
+                <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold mb-6">
+                  Entity Options for <span style={{ color: '#A10000' }}>Free Zone Company</span> Setup in the UAE
                 </h2>
-                <div className="text-gray-300 leading-relaxed">
+                <div className="text-white leading-relaxed">
                   {item.contentHtml?.split('\r\n\r\n').filter(p => p.trim()).map((para, idx) => (
                     <p key={idx} className="mb-4">{para}</p>
                   ))}
