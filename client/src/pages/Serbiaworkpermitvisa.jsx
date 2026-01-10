@@ -129,7 +129,7 @@ const Serbiaworkpermitvisa = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full sm:h-[600px] min-h-[600px] overflow-hidden">
+      <section className="relative w-full md:h-[600px] min-h-[600px] overflow-hidden">
         <img
           src={formData?.image ? getImageUrl(formData.image) : ''}
           alt="Serbia Work Permit Visa"
@@ -146,7 +146,7 @@ const Serbiaworkpermitvisa = () => {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[800px] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
