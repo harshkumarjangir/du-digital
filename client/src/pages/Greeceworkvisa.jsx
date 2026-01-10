@@ -135,7 +135,7 @@ const GreeceWorkVisa = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section id="hero-section" className="relative w-full min-h-[600px] sm:h-[600px] overflow-hidden">
+      <section id="hero-section" className="relative w-full min-h-[600px] lg:h-[600px] overflow-hidden">
         <img
           src={getImageUrl(formData?.image) || 'https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'}
           alt="Greece Work Visa"
@@ -149,7 +149,7 @@ const GreeceWorkVisa = () => {
           background: 'linear-gradient(to right, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 50%, rgba(161,0,0,0.3) 100%)'
         }} />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-24 h-[800px] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-10 h-full flex items-center">
           <div className="grid md:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -182,7 +182,7 @@ const GreeceWorkVisa = () => {
                 <h3 className="text-2xl font-bold text-white mb-6 text-center">Speak to our Experts</h3>
                 <form className="space-y-4" onSubmit={handleSubmit}>
                   {/* Form fields in grid for first 4 fields */}
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {fields.map((field, index) => {
                       const fieldType = field.type || field.fieldType;
 
@@ -434,7 +434,7 @@ const GreeceWorkVisa = () => {
                   </ul>
                 </div>
                 <div className="flex justify-center">
-                  {item?.images.length>0 ? (
+                  {item?.images.length > 0 ? (
                     item.images.map(p => <img
                       src={getImageUrl(p)}
                       alt={item.title}
