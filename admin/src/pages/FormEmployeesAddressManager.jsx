@@ -44,7 +44,7 @@ const FormEmployeesAddressManager = () => {
             setAddresses(data);
         } catch (error) {
             console.error('Error fetching addresses:', error);
-            alert('Failed to fetch form employees addresses');
+            alert('Failed to fetch Office addresses');
         }
     };
 
@@ -155,7 +155,7 @@ const FormEmployeesAddressManager = () => {
     return (
         <div style={{ padding: '2rem', maxWidth: '1400px', margin: '0 auto' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                <h2 style={{ fontSize: '1.8rem', color: '#333' }}>Form Employees Addresses</h2>
+                <h2 style={{ fontSize: '1.8rem', color: '#333' }}>Office Addresses</h2>
                 <button
                     onClick={openCreateModal}
                     style={{ ...buttonStyle, backgroundColor: '#007bff', color: 'white' }}

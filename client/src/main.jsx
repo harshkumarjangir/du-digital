@@ -18,6 +18,7 @@ createRoot(document.getElementById('root')).render(
 
 
 /*
+unzip dist.zip
 sudo rm -rf /var/www/du-digital/client/dist  
 sudo mkdir -p /var/www/du-digital/client 
 sudo cp -r dist /var/www/du-digital/client/  
@@ -26,6 +27,7 @@ sudo chmod -R 755 /var/www/du-digital
 sudo nginx -t
 sudo systemctl reload nginx
 
+unzip dist.zip
 sudo rm -rf /var/www/du-digital/admin/dist  
 sudo mkdir -p /var/www/du-digital/admin 
 sudo cp -r dist /var/www/du-digital/admin/  
