@@ -26,7 +26,7 @@ const DynamicFormField = ({
     const isDark = theme === 'dark';
 
     const baseInputClass = isDark
-        ? "w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder:text-gray-400 focus:border-[#E31E24] focus:ring-1 focus:ring-[#E31E24] outline-none transition-all"
+        ? "w-full px-4 py-3 bg-white/10 border text-black border-white/20 rounded-lg text-white placeholder:text-gray-400 focus:border-[#E31E24] focus:ring-1 focus:ring-[#E31E24] outline-none transition-all"
         : "w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:border-[#E31E24] focus:ring-1 focus:ring-[#E31E24] outline-none transition-all placeholder:text-gray-500";
 
     const labelClass = isDark ? "text-white text-sm" : "text-gray-700 text-sm font-medium";

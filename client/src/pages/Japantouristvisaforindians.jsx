@@ -134,6 +134,32 @@ const Japantouristvisaforindians = () => {
     }
   };
 
+  const getFilteredOptions = (field) => {
+    if (!field.parentField) return field.options;
+
+    const parentValue = formValues[field.parentField];
+    if (!parentValue) return [];
+
+    const parentFieldDef = fields.find(f => f.name === field.parentField);
+    if (!parentFieldDef) return field.options;
+
+    const selectedParentOption = parentFieldDef.options?.find(opt =>
+      (opt.value || opt.label || opt) === parentValue
+    );
+
+    if (!selectedParentOption) return [];
+
+    const parentId = selectedParentOption.id || selectedParentOption._id;
+    const parentOptionValue = selectedParentOption.value || selectedParentOption.label || selectedParentOption;
+
+    return field.options?.filter(opt => {
+      // If the option has no connectId, it's considered valid (e.g. the parent options themselves)
+      if (!opt.connectId) return true;
+      // Match against ID or Value
+      return opt.connectId === parentId || opt.connectId === parentOptionValue;
+    }) || [];
+  };
+
   if (loading) return <LoadingState message="Loading Japan Tourist Visa..." fullScreen />;
   if (error) return <ErrorState error={error} onRetry={fetchFormData} showHomeButton fullScreen />;
 
@@ -209,9 +235,12 @@ const Japantouristvisaforindians = () => {
                   {(() => {
                     const textFields = fields.filter(f => ['text', 'email', 'number'].includes(f.type));
                     const selectFields = fields.filter(f => f.type === 'select' || f.type === 'dropdown');
+
                     const checkboxFields = fields.filter(f => f.type === 'checkbox');
                     const radioFields = fields.filter(f => f.type === 'radio');
-                    const textarea = fields.filter(f => f.type === "textarea")
+                    const textarea = fields.filter(f => f.type === "textarea");
+                    const baseInputClass = "w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none";
+                    const labelClass = "text-white text-sm font-medium";
 
                     return (
                       <>
@@ -234,22 +263,22 @@ const Japantouristvisaforindians = () => {
                           <div className="grid md:grid-cols-2 gap-4">
                             {selectFields.map((field, index) => (
                               <select
-                                key={field._id || `select-${index}`}
+                                key={field._id || index}
                                 name={field.name}
                                 value={formValues[field.name] || ''}
                                 onChange={handleInputChange}
-                                className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none appearance-none cursor-pointer"
+                                className="flex-1 w-full px-4 py-3 bg-white border-0 rounded text-gray-700 focus:ring-2 focus:ring-red-500 transition-all outline-none appearance-none cursor-pointer text-sm"
                                 required={field.required}
                                 style={{
                                   backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-                                  backgroundPosition: 'right 0.75rem center',
+                                  backgroundPosition: 'right 0.5rem center',
                                   backgroundRepeat: 'no-repeat',
                                   backgroundSize: '1.25em 1.25em',
-                                  paddingRight: '2.5rem'
+                                  paddingRight: '2rem'
                                 }}
                               >
                                 <option value="">{field.placeholder || field.label}</option>
-                                {field.options?.map((opt, optIdx) => (
+                                {getFilteredOptions(field)?.map((opt, optIdx) => (
                                   <option key={opt._id || optIdx} value={opt.value || opt}>
                                     {opt.label || opt}
                                   </option>
@@ -277,7 +306,7 @@ const Japantouristvisaforindians = () => {
                             />
                           </div>)
                         }
-                        {radioFields.map((index, field) => <div key={index} className="space-y-2">
+                        {radioFields.map((field, index) => <div key={index} className="space-y-2">
                           <label className="text-white text-sm font-medium block mb-2">
                             {field.label} {field.required && <span className="text-red-500">*</span>}
                           </label>
