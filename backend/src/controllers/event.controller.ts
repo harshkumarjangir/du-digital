@@ -61,7 +61,6 @@ export const getEvents = async (req: Request, res: Response) => {
             const skip = (page - 1) * limit;
 
             const events = await Event.find()
-                .sort({ date: -1 })
                 .skip(skip)
                 .limit(limit);
 
