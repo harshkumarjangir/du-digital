@@ -38,7 +38,7 @@ const FormManager = () => {
             setForms(data);
         } catch (error) {
             console.error('Error fetching forms:', error);
-            alert('Failed to fetch forms');
+            alert('Failed to fetch Pages Data');
         }
     };
 
@@ -244,12 +244,12 @@ const FormManager = () => {
     return (
         <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                <h2 style={{ fontSize: '1.8rem', color: '#333' }}>Form Management</h2>
+                <h2 style={{ fontSize: '1.8rem', color: '#333' }}>Page Management</h2>
                 <button
                     onClick={() => setShowModal(true)}
                     style={{ ...buttonStyle, backgroundColor: '#007bff', color: 'white' }}
                 >
-                    + Create New Form
+                    + Create New Page
                 </button>
             </div>
 
@@ -376,7 +376,7 @@ const FormManager = () => {
                                 borderRadius: '8px'
                             }}>
                                 <div>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Form Name *</label>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Page Name *</label>
                                     <input
                                         type="text"
                                         value={formData.name}
@@ -410,7 +410,7 @@ const FormManager = () => {
                                     />
                                 </div>
                                 <div style={{ gridColumn: '1 / -1' }}>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Form Image</label>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Page Image</label>
                                     <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
                                         <div style={{ flex: 1 }}>
                                             <input
@@ -420,7 +420,7 @@ const FormManager = () => {
                                                 style={{ ...inputStyle, padding: '0.35rem' }}
                                             />
                                             <p style={{ margin: '0.5rem 0 0', fontSize: '0.8rem', color: '#666' }}>
-                                                Upload an image for this form (optional)
+                                                Upload an image for this Page (optional)
                                             </p>
                                         </div>
                                         {imagePreview && (

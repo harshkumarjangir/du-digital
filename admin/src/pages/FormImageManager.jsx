@@ -41,7 +41,7 @@ const FormImageManager = () => {
             setFormImages(data);
         } catch (error) {
             console.error('Error fetching form images:', error);
-            alert('Failed to fetch form images');
+            alert('Failed to fetch Page images');
         }
     };
 
@@ -78,30 +78,30 @@ const FormImageManager = () => {
 
             if (editingId) {
                 await updateFormImage(editingId, data);
-                alert('Form image updated successfully');
+                alert('Page image updated successfully');
             } else {
                 await createFormImage(data);
-                alert('Form image created successfully');
+                alert('Page image created successfully');
             }
             fetchFormImages();
             resetForm();
         } catch (error) {
             console.error('Error saving form image:', error);
-            alert('Failed to save form image');
+            alert('Failed to save Page image');
         } finally {
             setLoading(false);
         }
     };
 
     const handleDelete = async (id) => {
-        if (!window.confirm('Are you sure you want to delete this form image entry?')) return;
+        if (!window.confirm('Are you sure you want to delete this Page image entry?')) return;
         try {
             await deleteFormImage(id);
-            alert('Form image deleted successfully');
+            alert('Page image deleted successfully');
             fetchFormImages();
         } catch (error) {
             console.error('Error deleting form image:', error);
-            alert('Failed to delete form image');
+            alert('Failed to delete Page image');
         }
     };
 
@@ -201,12 +201,12 @@ const FormImageManager = () => {
     return (
         <div style={{ padding: '2rem', maxWidth: '1400px', margin: '0 auto' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                <h2 style={{ fontSize: '1.8rem', color: '#333' }}>Form Images</h2>
+                <h2 style={{ fontSize: '1.8rem', color: '#333' }}>Page Images</h2>
                 <button
                     onClick={openCreateModal}
                     style={{ ...buttonStyle, backgroundColor: '#007bff', color: 'white' }}
                 >
-                    + Add Form Image
+                    + Add Page Image
                 </button>
             </div>
 

@@ -55,13 +55,13 @@ const Layout = () => {
     { name: "Applicants", href: "/applicants", icon: UserCheck, requiredPermission: "manage_applicants" },
     { name: "System", type: "section" },
     { name: "User Management", href: "/users", icon: UserCheck, requiredPermission: "manage_users" }, // Handled by admin check in backend usually, but for UI hiding
-    { name: "Forms", href: "/forms", icon: FileText, requiredPermission: "manage_forms" },
+    { name: "Pages", href: "/forms", icon: FileText, requiredPermission: "manage_forms" },
     { name: "Documents", href: "/documents", icon: FileText, requiredPermission: "manage_documents" },
     { name: "FAQs", href: "/faqs", icon: MessageSquare, requiredPermission: "manage_faqs" },
     { name: "Content Sections", href: "/content-sections", icon: FileText, requiredPermission: "manage_content" },
     { name: "Pricing Plans", href: "/pricing-plans", icon: FileText, requiredPermission: "manage_pricing" },
-    { name: "Form Images", href: "/form-images", icon: Images, requiredPermission: "manage_forms" },
-    { name: "Form Employees", href: "/form-employees-addresses", icon: Users, requiredPermission: "manage_forms" },
+    { name: "Page Images", href: "/form-images", icon: Images, requiredPermission: "manage_forms" },
+    { name: "Office Address Page", href: "/form-employees-addresses", icon: Users, requiredPermission: "manage_forms" },
   ];
 
   const hasAccess = (item) => {
