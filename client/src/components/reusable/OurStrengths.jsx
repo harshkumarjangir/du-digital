@@ -29,7 +29,7 @@ const OurStrengths = ({ data }) => {
                 <div className="grid lg:grid-cols-3 gap-8">
 
                     {/* LEFT FEATURE CARD */}
-                    <div className="lg:row-span-2 bg-[#FFF4CC] text-gray-900 rounded-2xl p-8 flex flex-col justify-between">
+                    <div className="lg:row-span-2 h-[96%] bg-[#FFF4CC] text-gray-900 rounded-2xl px-8 pt-8 pb-6 flex flex-col justify-between">
 
                         <div>
                             <h3 className="text-2xl font-semibold leading-snug mb-4">

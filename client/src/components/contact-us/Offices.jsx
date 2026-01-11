@@ -97,7 +97,7 @@ const Offices = () => {
                             {/* View on Maps */}
                             <button
                                 onClick={() => setMapPreviewUrl(office.googleMapLink)}
-                                className="inline-flex items-center gap-2 text-sm font-medium text-red-600 hover:text-red-700 bg-transparent absolute bottom-2 border-none cursor-pointer"
+                                className="inline-flex items-center pt-2 gap-2 text-sm font-medium text-red-600 hover:text-red-700 bg-transparent absolute bottom-3 border-none cursor-pointer"
                             >
                                 <MapPin size={16} />
                                 View on Maps
@@ -169,7 +169,7 @@ const Offices = () => {
                             {/* View on Maps */}
                             <button
                                 onClick={() => setMapPreviewUrl(office.googleMapLink)}
-                                className="inline-flex absolute bottom-1  items-center gap-2 text-sm font-medium text-red-600 hover:text-red-700 bg-transparent border-none cursor-pointer"
+                                className="inline-flex absolute bottom-3 pt-2  items-center gap-2 text-sm font-medium text-red-600 hover:text-red-700 bg-transparent border-none cursor-pointer"
                             >
                                 <MapPin size={16} />
                                 View on Maps

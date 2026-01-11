@@ -33,6 +33,7 @@ const TimelineSlider = ({ data = [] }) => {
                         modules={[Navigation, Autoplay]}
                         onSwiper={setTopSwiper}
                         navigation
+                        
                         autoplay={{
                             delay: 4000,
                             disableOnInteraction: false,

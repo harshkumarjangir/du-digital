@@ -50,7 +50,7 @@ export default function Footer() {
           <input
             type="email"
             placeholder="Your Email Address"
-            className="w-full rounded-full px-5 py-2 bg-[#FFFDF5] text-[#b10e2a] outline-none"
+            className="w-full text-sm rounded-full px-5 py-2 bg-[#FFFDF5] text-[#b10e2a] outline-none"
             aria-label="Your Email Address"
           />
         </div>

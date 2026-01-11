@@ -52,7 +52,7 @@ const NewsCoverage = ({ data: propData }) => {
                                     href={item.link}
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="flex flex-col sm:flex-row gap-6 group"
+                                    className="flex flex-col sm:flex-row gap-6 group relative"
                                 >
                                     <img
                                         src={`${import.meta.env.VITE_BACKEND_IMAGES_URL}${item.imageUrl}`}
@@ -62,11 +62,11 @@ const NewsCoverage = ({ data: propData }) => {
                                     />
 
                                     <div>
-                                        <div className="flex justify-between">
+                                        <div className="flex justify-between ">
                                             <p className="text-sm text-red-600 mb-1">
                                                 ANI News
                                             </p>
-                                            <p className="text-sm text-gray-500">
+                                            <p className="text-sm text-gray-500 absolute right-2 top-0">
                                                 {new Date(item.datePublished).toLocaleDateString(
                                                     "en-IN",
                                                     { month: "long", year: "numeric" }
@@ -76,12 +76,7 @@ const NewsCoverage = ({ data: propData }) => {
                                         <h4 className="font-semibold group-hover:text-red-600 mt-4">
                                             {item.title}
                                         </h4>
-                                        {/* <p className="text-sm text-gray-500">
-                                            {new Date(item.datePublished).toLocaleDateString(
-                                                "en-IN",
-                                                { month: "long", year: "numeric" }
-                                            )}
-                                        </p> */}
+                                     
                                     </div>
                                 </a>
                             ))}

@@ -1,5 +1,5 @@
 const CareersHero = ({ data }) => (
-    <section className="sm:h-[600px] min-h-[600px] relative flex items-center justify-center">
+    <section className="h-[650px] relative flex items-center justify-center">
         <img
             src={data.background}
             alt={data.title || "Careers Hero"}

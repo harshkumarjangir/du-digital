@@ -123,7 +123,7 @@ const InvestorRelation = () => {
                                 {/* CTA */}
                                 <a
                                     href={`${import.meta.env.VITE_API_URL}${item.fileUrl}`}
-                                    
+                                    target="_blank"
                                     className="
                                         mt-8 inline-flex items-center justify-center
                                         px-6 py-3 rounded-md font-medium
