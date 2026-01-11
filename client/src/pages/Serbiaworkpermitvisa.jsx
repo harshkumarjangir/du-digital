@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Shield, Clock, Award, CheckCircle, XCircle, Loader2, Mail, Phone } from "lucide-react";
+import { Shield, Clock, Award, CheckCircle, XCircle, Loader2, Mail, Phone, Check } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
 
@@ -167,116 +167,156 @@ const Serbiaworkpermitvisa = () => {
                 className="rounded-xl p-6"
                 style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}
               >
-                <form className="flex flex-col w-full gap-3" onSubmit={handleSubmit}>
-                  {fields.filter(f => f.type !== 'checkbox').map((field, index) => {
-                    const fieldType = field.type || field.fieldType;
+                <form className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full" onSubmit={handleSubmit}>
+                  {fields
+                    .sort((a, b) => a.order - b.order)
+                    .map((field, index) => {
+                      const fieldType = field.type || field.fieldType;
 
-                    if (fieldType === 'select' || fieldType === 'dropdown') {
-                      return (
-                        <select
-                          key={field._id || index}
-                          name={field.name}
-                          value={formValues[field.name] || ''}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-white border-0 rounded text-gray-700 focus:ring-2 focus:ring-red-500 transition-all outline-none appearance-none cursor-pointer text-sm"
-                          required={field.required}
-                          style={{
-                            backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-                            backgroundPosition: 'right 0.5rem center',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundSize: '1.25em 1.25em',
-                            paddingRight: '2rem'
-                          }}
-                        >
-                          <option value="">{field.placeholder || field.label}</option>
-                          {field.options?.map((opt, optIdx) => (
-                            <option key={opt._id || optIdx} value={opt.value || opt}>
-                              {opt.label || opt}
-                            </option>
-                          ))}
-                        </select>
-                      );
-                    } else if (fieldType === 'textarea') {
-                      return (
-                        <textarea
-                          key={field._id || index}
-                          name={field.name}
-                          value={formValues[field.name] || ''}
-                          onChange={handleInputChange}
-                          placeholder={field.placeholder || field.label}
-                          className="flex-1 w-full px-4 py-3 bg-white border-0 rounded text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none text-sm"
-                          required={field.required}
-                        />
-                      );
-                    } else if (fieldType == "redio") {
-                      <div className="space-y-2">
-                        <label className="text-white text-sm font-medium block mb-2">
-                          {field.label} {field.required && <span className="text-red-500">*</span>}
-                        </label>
-                        <div className="flex flex-wrap gap-4">
-                          {field.options?.map((opt, i) => (
-                            <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                      // Logic for "Preferred Center" - Conditional Radio
+                      if (field.name === 'preferred_center') {
+                        const selectedCountry = formValues['country'];
+                        if (!selectedCountry) return null; // Don't show if no country selected
+
+                        // Filter options based on connectId
+                        const relevantOptions = field.options?.filter(opt =>
+                          opt.connectId?.toLowerCase() === selectedCountry.toLowerCase()
+                        );
+
+                        if (!relevantOptions || relevantOptions.length === 0) return null; // Don't show if no matching centers
+
+                        return (
+                          <div key={field._id || index} className="col-span-1 md:col-span-2 mt-2">
+                            <label className="text-white text-base font-semibold block mb-3">
+                              {field.label} {field.required && <span className="text-red-500">*</span>}
+                            </label>
+                            <div className="space-y-2">
+                              {relevantOptions.map((opt, i) => (
+                                <label key={i} className="flex items-center gap-3 cursor-pointer group">
+                                  <div className={`w-5 h-5 rounded-full border border-white flex items-center justify-center transition-all ${formValues[field.name] === (opt.value || opt.label) ? 'bg-white' : 'bg-transparent'
+                                    }`}>
+                                    {formValues[field.name] === (opt.value || opt.label) && (
+                                      <div className="w-2.5 h-2.5 rounded-full bg-black" />
+                                    )}
+                                  </div>
+                                  <input
+                                    type="radio"
+                                    name={field.name}
+                                    value={opt.value || opt.label}
+                                    checked={formValues[field.name] === (opt.value || opt.label)}
+                                    onChange={handleInputChange}
+                                    className="hidden"
+                                    required={field.required}
+                                  />
+                                  <span className="text-white text-sm md:text-base font-medium">{opt.label || opt}</span>
+                                </label>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      }
+
+                      // Standard Fields
+                      const isFullWidth = ['textarea', 'checkbox'].includes(fieldType) || field.type === 'checkbox';
+                      const wrapperClass = isFullWidth ? "col-span-1 md:col-span-2" : "col-span-1";
+
+                      if (fieldType === 'select' || fieldType === 'dropdown') {
+                        return (
+                          <div key={field._id || index} className={wrapperClass}>
+                            <select
+                              name={field.name}
+                              value={formValues[field.name] || ''}
+                              onChange={handleInputChange}
+                              className="w-full px-4 py-3 bg-white border-0 rounded text-gray-700 focus:ring-2 focus:ring-red-500 transition-all outline-none appearance-none cursor-pointer text-sm"
+                              required={field.required}
+                              style={{
+                                backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                                backgroundPosition: 'right 0.5rem center',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundSize: '1.25em 1.25em',
+                                paddingRight: '2rem'
+                              }}
+                            >
+                              <option value="">{field.placeholder || field.label}</option>
+                              {field.options?.map((opt, optIdx) => (
+                                <option key={opt._id || optIdx} value={opt.value || opt}>
+                                  {opt.label || opt}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        );
+                      } else if (fieldType === 'textarea') {
+                        return (
+                          <div key={field._id || index} className={wrapperClass}>
+                            <textarea
+                              name={field.name}
+                              value={formValues[field.name] || ''}
+                              onChange={handleInputChange}
+                              placeholder={field.placeholder || field.label}
+                              className="w-full px-4 py-3 bg-white border-0 rounded text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none text-sm min-h-[100px]"
+                              required={field.required}
+                            />
+                          </div>
+                        );
+                      } else if (fieldType === 'checkbox') {
+                        return (
+                          <div key={field._id || index} className={`${wrapperClass} flex items-center gap-3 mt-2`}>
+                            <div className="relative flex items-start">
                               <input
-                                type="radio"
+                                type="checkbox"
                                 name={field.name}
-                                value={opt.value || opt.label || opt}
-                                checked={formValues[field.name] === (opt.value || opt.label || opt)}
+                                checked={formValues[field.name] || false}
                                 onChange={handleInputChange}
-                                className="w-4 h-4"
+                                id={`field-${index}`}
+                                className="peer sr-only"
                                 required={field.required}
                               />
-                              <span className="text-sm">{opt.label || opt}</span>
-                            </label>
-                          ))}
-                        </div>
+                              <div className={`w-5 h-5 rounded transition-colors flex items-center justify-center mt-1.5 shadow-sm ${formValues[field.name] ? 'bg-[#C5202F]' : 'bg-white'}`}>
+                                <Check
+                                  className={`w-3.5 h-3.5 text-white font-bold transition-opacity duration-200 ${formValues[field.name] ? 'opacity-100' : 'opacity-0'}`}
+                                  strokeWidth={4}
+                                />
+                              </div>
+                              <label htmlFor={`field-${index}`} className="ml-2 text-white text-xs md:text-sm leading-relaxed cursor-pointer select-none">
+                                {field.label || field.placeholder}
+                              </label>
+                            </div>
+                          </div>
+                        )
+                      } else {
+                        return (
+                          <div key={field._id || index} className={wrapperClass}>
+                            <input
+                              type={fieldType === 'number' ? 'tel' : fieldType}
+                              name={field.name}
+                              value={formValues[field.name] || ''}
+                              onChange={handleInputChange}
+                              placeholder={field.placeholder || field.label}
+                              className="w-full px-4 py-3 bg-white border-0 rounded text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none text-sm"
+                              required={field.required}
+                            />
+                          </div>
+                        );
+                      }
+                    })}
+
+                  <div className="col-span-1 md:col-span-2">
+                    {submitStatus && (
+                      <div className={`flex items-center gap-3 p-3 rounded mb-4 ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
+                        {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
+                        <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                       </div>
+                    )}
 
-
-                    } else {
-                      return (
-                        <input
-                          key={field._id || index}
-                          type={fieldType === 'number' ? 'tel' : fieldType}
-                          name={field.name}
-                          value={formValues[field.name] || ''}
-                          onChange={handleInputChange}
-                          placeholder={field.placeholder || field.label}
-                          className="w-full px-4 py-3 bg-white border-0 rounded text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none text-sm"
-                          required={field.required}
-                        />
-                      );
-                    }
-                  })}
-
-                  {/* Checkbox fields */}
-                  {fields.filter(f => f.type === 'checkbox').map((field, index) => (
-                    <label key={field._id || index} className="flex items-start gap-3 text-white text-xs cursor-pointer">
-                      <input
-                        type="checkbox"
-                        name={field.name}
-                        checked={formValues[field.name] || false}
-                        onChange={handleInputChange}
-                        className="mt-1 w-4 h-4 accent-red-600 rounded shrink-0"
-                      />
-                      <span className="text-gray-300">{field.label}</span>
-                    </label>
-                  ))}
-
-                  {/* Submit Status Message */}
-                  {submitStatus && (
-                    <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
-                      {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
-                      <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={submitLoading}
-                    className="w-full py-3 rounded-full font-bold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] uppercase mt-2 disabled:opacity-70 flex items-center justify-center gap-2"
-                  >
-                    {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Apply Now'}
-                  </button>
+                    <button
+                      type="submit"
+                      disabled={submitLoading}
+                      className="w-fit py-3 px-5 rounded-full font-medium text-base capitalize transition-all duration-300  bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-2"
+                    >
+                      {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Get Started'}
+                    </button>
+                  </div>
                 </form>
               </div>
             )}
@@ -439,8 +479,8 @@ const Serbiaworkpermitvisa = () => {
                     <div className="mb-6 relative z-10 flex justify-center mt-4">
                       <IconComponent className="w-16 h-16 text-[#C5202F]" strokeWidth={1.5} />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4 relative z-10">{item.title}</h3>
-                    <p className="text-gray-600 leading-relaxed relative z-10 text-base">{item.contentHtml?.trim()}</p>
+                    <h3 className="text-2xl font-semibold text-[#333333] mb-4 relative z-10">{item.title}</h3>
+                    <p className="text-[#333333] leading-relaxed relative z-10 text-base">{item.contentHtml?.trim()}</p>
                   </div>
                 );
               })}
@@ -504,31 +544,31 @@ const Serbiaworkpermitvisa = () => {
       {
         VisaApplicationCentreAddress.length > 0 && centreAddressTableData && (
           <section className="bg-white py-24">
-            <div className="max-w-7xl mx-auto px-6  gap-12 items-start">
+            <div className="max-w-7xl mx-auto px-6 md:px-16 gap-12 items-start">
               {/* LEFT CONTENT */}
               <div>
-                <h2 className="text-3xl md:text-4xl text-center font-bold leading-tight mb-6 text-gray-900">
+                <h2 className="text-3xl md:text-4xl text-center font-bold leading-tight mb-6 text-[#333333]">
                   {VisaApplicationCentreAddress[0]?.title || "Visa Application Centre Addresses"}
                 </h2>
                 <div className="w-20 h-1 mx-auto mb-6" style={{ backgroundColor: '#E31E24' }}></div>
               </div>
-              <div className="bg-white  shadow-lg border border-gray-100">
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead className="bg-[#FFFDF5]">
+              <div className="bg-white shadow-lg border border-gray-200 rounded-lg overflow-hidden">
+                <div className="overflow-x-auto no-scrollbar">
+                  <table className="w-full border-collapse text-nowrap">
+                    <thead>
                       <tr>
                         {centreAddressTableData.headers?.map((header, idx) => (
-                          <th key={idx} className="px-6 py-4 text-left text-sm font-bold text-white border-b bg-[#b8161b] whitespace-nowrap">
+                          <th key={idx} className="px-6 py-4 text-left text-sm font-bold text-white border border-white bg-[#C5202F] whitespace-nowrap">
                             {header}
                           </th>
                         ))}
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-100">
+                    <tbody className="divide-y divide-gray-200">
                       {centreAddressTableData.rows?.map((row, rowIdx) => (
-                        <tr key={rowIdx} className={`hover:bg-gray-50/50 ${rowIdx % 2 === 0 ? 'bg-gray-300/50' : ''} transition-colors`}>
+                        <tr key={rowIdx} className="bg-white hover:bg-gray-50 transition-colors even:bg-gray-50">
                           {row.map((cell, cellIdx) => (
-                            <td key={cellIdx} className="px-6 py-4 text-sm text-black align-top">
+                            <td key={cellIdx} className="px-6 py-4 text-sm text-gray-800 border border-gray-200 align-top">
                               {cell}
                             </td>
                           ))}
@@ -544,62 +584,89 @@ const Serbiaworkpermitvisa = () => {
           </section>
         )
       }
-      {getStartedSection.length > 0 && <section id="connectwithus" className="py-4">
-        <div className="flex flex-wrap  gap-3 justify-center">
-          {/* Left - Request a Demo */}
-          <div className="relative group h-[300px] overflow-hidden rounded-2xl  sm:w-[45%]">
-            <div
-              className="absolute inset-0 bg-cover  bg-center"
-              style={{
-                backgroundImage: getStartedSection[0]?.images.length > 0
-                  ? `url(${getImageUrl(getStartedSection[0].images[0])})`
-                  : `url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`
-              }}
-            />
-            <div className="absolute inset-0 bg-black/70" />
-            <div className="absolute inset-0 bg-[#A10000]/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      {getStartedSection.length > 0 && (
+        <section id="connectwithus" className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-6 md:px-16 grid md:grid-cols-2 gap-4">
+            {/* Left - Get Started Today */}
+            <div className="relative h-full rounded-3xl overflow-hidden group">
+              <img
+                src={getStartedSection[0]?.images.length > 0
+                  ? getImageUrl(getStartedSection[0].images[0])
+                  : 'https://images.unsplash.com/photo-1549488497-69b59747d79b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'} // Fallback to Serbia-like image
+                alt="Background"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              {/* Default Black Gradient Overlay - Fades out on hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/60 transition-opacity duration-500 group-hover:opacity-0" />
 
-            <div className="relative z-10 p-10 md:p-10 flex flex-col justify-center h-full">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-4">
-                {getStartedSection[0]?.title || 'Request a Demo Today'}
-              </h2>
-              <p className="text-gray-100 leading-relaxed">
-                {getStartedSection[0]?.contentHtml?.replace(/\r?\n/g, ' ').trim() || 'Discover how DuVerify can transform your visa and document verification workflows.'}
-              </p>
+              {/* Red Overlay on Hover - Fades in */}
+              <div className="absolute inset-0 bg-[#E31E24]/75 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-multiply" />
+
+              <div className="relative z-10 p-4 md:p-6 flex flex-col h-full text-white">
+                <div>
+                  <h2 className="text-3xl md:text-4xl font-semibold mb-3">
+                    {getStartedSection[0]?.title || 'Get Started Today!'}
+                  </h2>
+                  <p className="text-gray-200 text-sm md:text-base leading-relaxed mb-0">
+                    {getStartedSection[0]?.contentHtml?.replace(/<[^>]*>?/gm, '').split('Note:')[0] || 'Ready to take the next step? Simply fill out our online contact form or call our hotline for a free eligibility assessment.'}
+                  </p>
+                </div>
+
+                {/* Try to extract note from content or just show a default one if it matches the context */}
+                <div className="text-gray-300 text-sm md:text-base mt-3">
+                  <span className="font-bold text-white">Note:</span> A decisive role in whether you need a visa to stay in Serbia for up to 180 days is played by the visa regime of the country you are coming from, as well as the purpose of your stay.
+                </div>
+              </div>
+            </div>
+
+            {/* Right - Connect with us */}
+            <div className="relative h-full rounded-3xl overflow-hidden bg-[#0A0505] p-4 md:p-6 flex flex-col justify-center">
+              {/* Decorative background pattern */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-red-900/10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-red-900/10 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+
+              <div className="relative z-10">
+                <h3 className="text-3xl md:text-4xl font-semibold text-white mb-4">Connect with us</h3>
+                <div className="w-16 h-1 mb-10" style={{ backgroundColor: '#E31E24' }}></div>
+
+                <div className="mb-8">
+                  <h4 className="text-2xl md:text-3xl font-semibold text-white mb-2">Karan Khurana</h4>
+                  <p className="text-white text-lg">Deputy General Manager-Global Access</p>
+                </div>
+
+                <div className="space-y-4">
+                  <a
+                    href="mailto:karan@dudigitalglobal.com"
+                    className="flex items-center gap-4 group transition-colors"
+                  >
+                    {/* <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#E31E24] transition-colors">
+                      <Mail className="w-5 h-5 text-white" />
+                    </div> */}
+
+                    <span className="text-[#E31E24] group-hover:text-white transition-colors font-medium text-lg">
+                      <span className="text-white font-bold mr-2">📧 Email –</span>
+                      karan@dudigitalglobal.com
+                    </span>
+                  </a>
+                  <a
+                    href="tel:+919910987275"
+                    className="flex items-center gap-4 group transition-colors"
+                  >
+                    {/* <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#E31E24] transition-colors">
+                      <Phone className="w-5 h-5 text-white" />
+                    </div> */}
+
+                    <span className="text-[#E31E24] group-hover:text-white transition-colors font-medium text-lg">
+                      <span className="text-white font-bold mr-2">📞 Mobile –</span>
+                      +91 99109 87275
+                    </span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-
-          {/* Right - Connect with us */}
-          <div className="bg-[#050505] h-[300px] md:p-10 rounded-2xl o sm:p-10 sm:w-[45%] flex flex-col justify-center">
-            <h3 className="text-2xl md:text-3xl lg:text-5xl font-semibold text-white mb-2">Connect with us</h3>
-            <div className="w-12 h-1 mb-8" style={{ backgroundColor: '#A10000' }}></div>
-
-            <div className="mb-6">
-              <h4 className="text-xl md:text-2xl lg:text-3xl font-semibold text-white mb-1">Dolly Chauhan</h4>
-              <p className="text-gray-100">Manager-Operations</p>
-            </div>
-
-            <div className="space-y-4">
-              <a
-                href="mailto:dolly@dudigitalglobal.com"
-                className="flex items-center gap-3 transition-colors"
-                style={{ color: '#e57373' }}
-              >
-                <Mail className="w-5 h-5" />
-                dolly@dudigitalglobal.com
-              </a>
-              <a
-                href="tel:+917400747408"
-                className="flex items-center gap-3 transition-colors"
-                style={{ color: '#e57373' }}
-              >
-                <Phone className="w-5 h-5" />
-                +91-7400747408
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>}
+        </section>
+      )}
     </div>
   );
 };

@@ -112,7 +112,7 @@ const Southkoreavisaforindians = () => {
 
       {/* ===== HERO SECTION ===== */}
       <section
-        className="relative w-full sm:h-[600px] min-h-[600px] overflow-hidden"
+        className="relative w-full lg:h-[600px] min-h-[600px] overflow-hidden"
       >
         <img
           src={formData?.image ? getImageUrl(formData.image) : ''}
@@ -123,11 +123,16 @@ const Southkoreavisaforindians = () => {
           fetchPriority="high"
         />
         {/* Dark overlay with red glow */}
-        <div
+        {/* <div
           className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(135deg, rgba(10,10,10,0.9) 0%, rgba(26,26,26,0.85) 50%, rgba(10,10,10,0.9) 100%)'
-          }}
+          // style={{
+          //   background: 'linear-gradient(135deg, rgba(10,10,10,0.9) 0%, rgba(26,26,26,0.85) 50%, rgba(10,10,10,0.9) 100%)'
+          // }}
+        /> */}
+        {/* Dark teal/blue overlay */}
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-black/50 to-black/50"
+        // style={{ background: 'linear-gradient(135deg, rgba(0,30,50,0.85) 0%, rgba(0,50,70,0.75) 100%)' }}
         />
         {/* Red glow effect on right */}
         <div
@@ -137,29 +142,29 @@ const Southkoreavisaforindians = () => {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[600px] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-20 flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
-              <div className="flex items-center gap-3 mb-4">
+              {/* <div className="flex items-center gap-3 mb-4">
                 <div className="w-1 h-10" style={{ backgroundColor: '#E31E24' }}></div>
                 <p className="text-gray-400 uppercase tracking-wider text-sm">South Korea Visa</p>
-              </div>
+              </div> */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                South Korea Visa For Indians – <span style={{ color: '#E31E24' }}>Apply Now!</span>
+                South Korea Visa For Indians – <span style={{ color: '#E31E24' }}> <br />
+                  Apply Now!</span>
               </h1>
 
               {/* Key points */}
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3 mb-8  p-4 rounded-lg bg-gradient-to-r from-[#C12726] to-[#E31E24]/10">
                 {descriptionLines.slice(1).map((line, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <div
-                      className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5"
-                      style={{ backgroundColor: '#E31E24' }}
+                      className="w-5 h-5 rounded-full flex items-center justify-center bg-white shrink-0 mt-0.5"
                     >
-                      <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                      <Check className="w-3 h-3 text-[#E31E24]" strokeWidth={3} />
                     </div>
-                    <span className="text-gray-300">{line}</span>
+                    <span className="text-white">{line}</span>
                   </li>
                 ))}
               </ul>
@@ -174,87 +179,91 @@ const Southkoreavisaforindians = () => {
                   border: '1px solid rgba(255,255,255,0.1)'
                 }}
               >
-                <h3 className="text-2xl font-bold text-white mb-6">Apply Now</h3>
-                <form className="flex flex-col w-full gap-3" onSubmit={handleSubmit}>
-                  {fields.filter(f => f.type !== 'checkbox').map((field, index) => {
-                    const fieldType = field.type || field.fieldType;
+                {/* <h3 className="text-2xl font-bold text-white mb-6">Apply Now</h3> */}
+                <form className="flex flex-col w-full gap-4" onSubmit={handleSubmit}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {fields.filter(f => f.type !== 'checkbox').map((field, index) => {
+                      const fieldType = field.type || field.fieldType;
 
-                    if (fieldType === 'select' || fieldType === 'dropdown') {
-                      return (
-                        <select
-                          key={field._id || index}
-                          name={field.name}
-                          value={formValues[field.name] || ''}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-white border-0 rounded text-gray-700 focus:ring-2 focus:ring-red-500 transition-all outline-none appearance-none cursor-pointer text-sm"
-                          required={field.required}
-                          style={{
-                            backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-                            backgroundPosition: 'right 0.5rem center',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundSize: '1.25em 1.25em',
-                            paddingRight: '2rem'
-                          }}
-                        >
-                          <option value="">{field.placeholder || field.label}</option>
-                          {field.options?.map((opt, optIdx) => (
-                            <option key={opt._id || optIdx} value={opt.value || opt}>
-                              {opt.label || opt}
-                            </option>
-                          ))}
-                        </select>
-                      );
-                    } else if (fieldType === 'textarea') {
-                      return (
-                        <textarea
-                          key={field._id || index}
-                          name={field.name}
-                          value={formValues[field.name] || ''}
-                          onChange={handleInputChange}
-                          placeholder={field.placeholder || field.label}
-                          className="flex-1 w-full px-4 py-3 bg-white border-0 rounded text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none text-sm"
-                          required={field.required}
-                        />
-                      );
-                    } else if (fieldType == "redio") {
-                      <div className="space-y-2">
-                        <label className="text-white text-sm font-medium block mb-2">
-                          {field.label} {field.required && <span className="text-red-500">*</span>}
-                        </label>
-                        <div className="flex flex-wrap gap-4">
-                          {field.options?.map((opt, i) => (
-                            <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
-                              <input
-                                type="radio"
-                                name={field.name}
-                                value={opt.value || opt.label || opt}
-                                checked={formValues[field.name] === (opt.value || opt.label || opt)}
-                                onChange={handleInputChange}
-                                className="w-4 h-4"
-                                required={field.required}
-                              />
-                              <span className="text-sm">{opt.label || opt}</span>
+                      if (fieldType === 'select' || fieldType === 'dropdown') {
+                        return (
+                          <select
+                            key={field._id || index}
+                            name={field.name}
+                            value={formValues[field.name] || ''}
+                            onChange={handleInputChange}
+                            className="w-full px-4 py-3 bg-white border-0 rounded text-gray-700 focus:ring-2 focus:ring-red-500 transition-all outline-none appearance-none cursor-pointer text-sm"
+                            required={field.required}
+                            style={{
+                              backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                              backgroundPosition: 'right 0.5rem center',
+                              backgroundRepeat: 'no-repeat',
+                              backgroundSize: '1.25em 1.25em',
+                              paddingRight: '2rem'
+                            }}
+                          >
+                            <option value="">{field.placeholder || field.label}</option>
+                            {field.options?.map((opt, optIdx) => (
+                              <option key={opt._id || optIdx} value={opt.value || opt}>
+                                {opt.label || opt}
+                              </option>
+                            ))}
+                          </select>
+                        );
+                      } else if (fieldType === 'textarea') {
+                        return (
+                          <textarea
+                            key={field._id || index}
+                            name={field.name}
+                            value={formValues[field.name] || ''}
+                            onChange={handleInputChange}
+                            placeholder={field.placeholder || field.label}
+                            className="flex-1 w-full px-4 py-3 bg-white border-0 rounded text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none text-sm md:col-span-2"
+                            required={field.required}
+                          />
+                        );
+                      } else if (fieldType == "redio") {
+                        return (
+                          <div key={field._id || index} className="space-y-2 md:col-span-2">
+                            <label className="text-white text-sm font-medium block mb-2">
+                              {field.label} {field.required && <span className="text-red-500">*</span>}
                             </label>
-                          ))}
-                        </div>
-                      </div>
+                            <div className="flex flex-wrap gap-4">
+                              {field.options?.map((opt, i) => (
+                                <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                                  <input
+                                    type="radio"
+                                    name={field.name}
+                                    value={opt.value || opt.label || opt}
+                                    checked={formValues[field.name] === (opt.value || opt.label || opt)}
+                                    onChange={handleInputChange}
+                                    className="w-4 h-4"
+                                    required={field.required}
+                                  />
+                                  <span className="text-sm">{opt.label || opt}</span>
+                                </label>
+                              ))}
+                            </div>
+                          </div>
+                        )
 
-
-                    } else {
-                      return (
-                        <input
-                          key={field._id || index}
-                          type={fieldType === 'number' ? 'tel' : fieldType}
-                          name={field.name}
-                          value={formValues[field.name] || ''}
-                          onChange={handleInputChange}
-                          placeholder={field.placeholder || field.label}
-                          className="w-full px-4 py-3 bg-white border-0 rounded text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none text-sm"
-                          required={field.required}
-                        />
-                      );
-                    }
-                  })}
+                      } else {
+                        const isDate = fieldType === 'date' || field.name?.toLowerCase().includes('date') || field.label?.toLowerCase().includes('date');
+                        return (
+                          <input
+                            key={field._id || index}
+                            type={fieldType === 'number' ? 'tel' : fieldType}
+                            name={field.name}
+                            value={formValues[field.name] || ''}
+                            onChange={handleInputChange}
+                            placeholder={field.placeholder || field.label}
+                            className={`w-full px-4 py-3 bg-white border-0 rounded text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none text-sm ${isDate ? 'md:col-span-2' : ''}`}
+                            required={field.required}
+                          />
+                        );
+                      }
+                    })}
+                  </div>
 
                   {/* Checkbox fields */}
                   {fields.filter(f => f.type === 'checkbox').map((field, index) => (
@@ -298,7 +307,7 @@ const Southkoreavisaforindians = () => {
           <div className="max-w-4xl mx-auto px-6">
             {/* Section Title */}
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#333333] mb-3">
                 South Korea Visa Types with Fees
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
@@ -311,29 +320,29 @@ const Southkoreavisaforindians = () => {
                   className="py-4 px-6 text-center"
                   style={{ backgroundColor: '#E31E24' }}
                 >
-                  <h3 className="text-xl font-bold text-white">{item.title}</h3>
+                  <h3 className="text-xl font-semibold text-white">{item.title}</h3>
                 </div>
 
                 {/* Table-style content */}
-                <div className="p-6 space-y-4">
+                <div className="p-6 space-y-2">
                   <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                    <span className="text-gray-600">Processing time:</span>
+                    <span className="text-[#333333]">Processing time:</span>
                     <span className="font-semibold text-gray-900">5 working days</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                    <span className="text-gray-600">Stay period:</span>
+                    <span className="text-[#333333]">Stay period:</span>
                     <span className="font-semibold text-gray-900">30 days</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                    <span className="text-gray-600">Validity:</span>
+                    <span className="text-[#333333]">Validity:</span>
                     <span className="font-semibold text-gray-900">90 Days</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                    <span className="text-gray-600">Entry:</span>
+                    <span className="text-[#333333]">Entry:</span>
                     <span className="font-semibold text-gray-900">Single</span>
                   </div>
                   <div className="flex justify-between items-center py-2">
-                    <span className="text-gray-600">Fees:</span>
+                    <span className="text-[#333333]">Fees:</span>
                     <span className="text-xl font-bold" style={{ color: '#E31E24' }}>INR 6,599/-</span>
                   </div>
                 </div>
@@ -346,15 +355,15 @@ const Southkoreavisaforindians = () => {
       {/* ===== DESIGNATED TRAVEL AGENCY - EMBASSY ===== */}
       {embassySection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             {embassySection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-2xl md:text-3xl font-semibold text-[#333333] mb-2">
                     {item.title}
                   </h2>
                   <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div>
-                  <p className="text-gray-600 leading-relaxed text-lg">
+                  <p className="text-[#333333] leading-relaxed text-lg">
                     {item.contentHtml}
                   </p>
                 </div>
@@ -382,30 +391,37 @@ const Southkoreavisaforindians = () => {
       {/* ===== DESIGNATED TRAVEL AGENCY - KTO ===== */}
       {ktoSection.length > 0 && (
         <section className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             {ktoSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                 <div className="flex justify-center order-2 lg:order-1">
                   {item?.images?.length > 0 ? (
-                    item.images.map(p => <img
-                      src={getImageUrl(p)}
+                    <img
+                      src={getImageUrl(item.images[0])}
                       alt={item.title}
                       className="max-w-full h-auto rounded-xl shadow-lg"
-                      style={{ maxHeight: '400px' }}
-                    />)
+                      style={{ minHeight: '400px' }}
+                    />
                   ) : item.image && <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
                     className="max-w-full h-auto rounded-xl shadow-lg"
-                    style={{ maxHeight: '400px' }}
+                    style={{ minHeight: '400px' }}
                   />}
                 </div>
                 <div className="order-1 lg:order-2">
-                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-2xl md:text-3xl font-semibold text-[#333333] mb-2">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div>
-                  <p className="text-gray-600 leading-relaxed text-lg">
+                  {item?.images?.length > 1 && (
+                    <img
+                      src={getImageUrl(item.images[1])}
+                      alt={item.title}
+                      className="max-w-full h-[100px]"
+                    // style={{ maxHeight: '400px' }}
+                    />)}
+                  {/* <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div> */}
+                  <p className="text-[#333333] leading-relaxed text-lg">
                     {item.contentHtml}
                   </p>
                 </div>
@@ -415,44 +431,101 @@ const Southkoreavisaforindians = () => {
         </section>
       )}
 
+
       {/* ===== DOCUMENTS REQUIRED ===== */}
       {documents.length > 0 && (
         <section className="py-20 bg-white relative overflow-hidden">
+
           {/* Watermark */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-100 text-[100px] font-bold opacity-50 pointer-events-none whitespace-nowrap">
+          {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-100 text-[100px] font-bold opacity-50 pointer-events-none whitespace-nowrap">
             DOCUMENTS
-          </div>
+          </div> */}
 
-          <div className="relative z-10 max-w-4xl mx-auto px-6">
-            {documents.map((doc, index) => (
-              <div key={doc._id || index}>
-                <div className="text-center mb-12">
-                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-                    {doc.title}
-                  </h2>
-                  <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
-                </div>
+          <div className="relative z-10 max-w-[1200px] mx-auto px-6">
+            {documents.map((doc, index) => {
 
-                <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-                  <ul className="space-y-4">
-                    {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-4">
-                        <div
-                          className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5"
-                          style={{ backgroundColor: '#E31E24' }}
-                        >
-                          <Check className="w-4 h-4 text-white" strokeWidth={3} />
-                        </div>
-                        <span className="text-gray-700">{item.trim()}</span>
-                      </li>
-                    ))}
-                  </ul>
+              // 🔹 PREPARE LIST DATA ONCE (NO DUPLICATES)
+              const items = doc.description
+                ?.split("\n")
+                .map(line => line.trim())
+                .filter(Boolean);
+
+              const mid = Math.ceil(items.length / 2);
+              const leftItems = items.slice(0, mid);
+              const rightItems = items.slice(mid);
+
+              return (
+                <div key={doc._id || index}>
+
+                  {/* Heading */}
+                  <div className="text-center mb-10">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#333333] mb-3">
+                      {doc.title}
+                    </h2>
+                    <div className="w-20 h-1 mx-auto bg-[#E31E24]" />
+                  </div>
+
+                  <p className="text-[#333333] leading-relaxed text-lg text-center mb-12">
+                    Below are the requirements for your South Korean Visa.
+                  </p>
+
+                  {/* ===== TWO COLUMN LIST ===== */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-6">
+
+                    {/* LEFT COLUMN */}
+                    <ul className="space-y-6">
+                      {leftItems.map((item, idx) => {
+                        const [title, desc] = item.split(":");
+                        return (
+                          <li key={idx} className="flex items-start gap-4">
+                            <div
+                              className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-1 bg-[#E31E24]"
+                            >
+                              <Check className="w-4 h-4 text-white" strokeWidth={3} />
+                            </div>
+
+                            <div className="text-[17px] leading-relaxed">
+                              <span className="font-bold text-gray-800">
+                                {title}:
+                              </span>{" "}
+                              <span className="text-gray-700">{desc}</span>
+                            </div>
+                          </li>
+                        );
+                      })}
+                    </ul>
+
+                    {/* RIGHT COLUMN */}
+                    <ul className="space-y-6">
+                      {rightItems.map((item, idx) => {
+                        const [title, desc] = item.split(":");
+                        return (
+                          <li key={idx} className="flex items-start gap-4">
+                            <div
+                              className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-1 bg-[#E31E24]"
+                            >
+                              <Check className="w-4 h-4 text-white" strokeWidth={3} />
+                            </div>
+
+                            <div className="text-[17px] leading-relaxed">
+                              <span className="font-bold text-gray-800">
+                                {title}:
+                              </span>{" "}
+                              <span className="text-gray-700">{desc}</span>
+                            </div>
+                          </li>
+                        );
+                      })}
+                    </ul>
+
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
       )}
+
 
       {/* ===== ADDITIONAL REQUIREMENTS ===== */}
       {(additionalReqSection.length > 0 || employedSection.length > 0) && (

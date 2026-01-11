@@ -117,7 +117,7 @@ const Dubai5yeartouristvisa = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full sm:h-[600px] min-h-[600px] overflow-hidden">
+      <section className="relative w-full lg:h-[800px] min-h-[600px] overflow-hidden">
         <img
           src={getImageUrl(formData?.image) || STATIC_IMAGES.hero}
           alt="Hero Background"
@@ -128,28 +128,27 @@ const Dubai5yeartouristvisa = () => {
         />
         {/* Dark teal/blue overlay */}
         <div
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(135deg, rgba(0,30,50,0.85) 0%, rgba(0,50,70,0.75) 100%)' }}
+          className="absolute inset-0 bg-gradient-to-br from-black/50 to-black/50"
+        // style={{ background: 'linear-gradient(135deg, rgba(0,30,50,0.85) 0%, rgba(0,50,70,0.75) 100%)' }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 h-[600px] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-24 flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
-              <p className="text-xl mb-2">Apply For</p>
+              <p className="text-2xl md:text-3xl lg:text-6xl font-bold mb-2">Apply For</p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                <span style={{ color: '#E31E24' }}>UAE/Dubai</span> Tourist Visa
+                <span style={{ color: '#E31E24' }}>UAE/Dubai Tourist Visa</span>
               </h1>
 
               {/* Key points */}
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3 mb-8 p-4 rounded-lg bg-gradient-to-r from-[#C12726] to-[#E31E24]/10">
                 {descriptionLines.slice(2).map((line, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <div
-                      className="w-5 h-5 rounded flex items-center justify-center shrink-0 mt-0.5"
-                      style={{ backgroundColor: '#E31E24' }}
+                      className="w-5 h-5 rounded-full flex items-center justify-center bg-white shrink-0 mt-0.5"
                     >
-                      <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                      <Check className="w-3 h-3 text-[#E31E24]" strokeWidth={3} />
                     </div>
                     <span className="text-gray-200">{line}</span>
                   </li>
@@ -161,55 +160,64 @@ const Dubai5yeartouristvisa = () => {
             {fields.length > 0 && (
               <div
                 className="rounded-2xl p-8 shadow-2xl backdrop-blur-md z-10 "
-                style={{ backgroundColor: 'rgba(0,0,0,0.7)'}}
+                style={{ backgroundColor: 'rgba(0,0,0,0.7)' }}
               >
-                <h3 className="text-2xl font-bold text-white mb-6">Apply Now</h3>
+                {/* <h3 className="text-2xl font-bold text-white mb-6">Apply Now</h3> */}
                 <form className="space-y-4" onSubmit={handleSubmit}>
-                  {fields.filter(f => f.type !== 'checkbox' && f.type !== 'radio').map((field, index) => {
-                    const fieldType = field.type || field.fieldType;
+                  {fields
+                    .filter(f => f.type !== 'checkbox' && f.type !== 'radio')
+                    .sort((a, b) => {
+                      const order = ['name', 'email', 'phone', 'number', 'mobile', 'city', 'travel date', 'travel_date', 'date', 'interested', 'visa type'];
+                      const getIndex = (field) => {
+                        const label = (field.label || field.name || '').toLowerCase();
+                        const index = order.findIndex(key => label.includes(key));
+                        return index === -1 ? 999 : index;
+                      };
+                      return getIndex(a) - getIndex(b);
+                    })
+                    .map((field, index) => {
+                      const fieldType = field.type || field.fieldType;
 
-                    if (fieldType === 'select' || fieldType === 'dropdown') {
-                      return (
-                        <select
-                          key={field._id || index}
-                          name={field.name}
-                          value={formValues[field.name] || ''}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-white border-0 rounded-lg text-gray-700 focus:ring-2 focus:ring-red-500 transition-all outline-none appearance-none cursor-pointer"
-                          required={field.required}
-                          aria-label={field.label || field.placeholder}
-                          style={{
-                            backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-                            backgroundPosition: 'right 0.75rem center',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundSize: '1.5em 1.5em',
-                            paddingRight: '2.5rem'
-                          }}
-                        >
-                          <option value="">{field.placeholder || field.label}</option>
-                          {field.options?.map((opt, optIdx) => (
-                            <option key={opt._id || optIdx} value={opt.value || opt}>
-                              {opt.label || opt}
-                            </option>
-                          ))}
-                        </select>
-                      );
-                    } else {
-                      return (
-                        <input
-                          key={field._id || index}
-                          type={fieldType === 'number' ? 'tel' : fieldType}
-                          name={field.name}
-                          value={formValues[field.name] || ''}
-                          onChange={handleInputChange}
-                          placeholder={field.placeholder || field.label}
-                          className="w-full px-4 py-3 bg-white border-0 rounded-lg text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none"
-                          required={field.required}
-                          aria-label={field.label || field.placeholder}
-                        />
-                      );
-                    }
-                  })}
+                      if (fieldType === 'select' || fieldType === 'dropdown') {
+                        return (
+                          <select
+                            key={field._id || index}
+                            name={field.name}
+                            value={formValues[field.name] || ''}
+                            onChange={handleInputChange}
+                            className="w-full px-4 py-3 bg-white border-0 rounded-lg text-gray-700 focus:ring-2 focus:ring-red-500 transition-all outline-none appearance-none cursor-pointer"
+                            required={field.required}
+                            style={{
+                              backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                              backgroundPosition: 'right 0.75rem center',
+                              backgroundRepeat: 'no-repeat',
+                              backgroundSize: '1.5em 1.5em',
+                              paddingRight: '2.5rem'
+                            }}
+                          >
+                            <option value="">{field.placeholder || field.label}</option>
+                            {field.options?.map((opt, optIdx) => (
+                              <option key={opt._id || optIdx} value={opt.value || opt}>
+                                {opt.label || opt}
+                              </option>
+                            ))}
+                          </select>
+                        );
+                      } else {
+                        return (
+                          <input
+                            key={field._id || index}
+                            type={fieldType === 'number' ? 'tel' : fieldType}
+                            name={field.name}
+                            value={formValues[field.name] || ''}
+                            onChange={handleInputChange}
+                            placeholder={field.placeholder || field.label}
+                            className="w-full px-4 py-3 bg-white border-0 rounded-lg text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none"
+                            required={field.required}
+                          />
+                        );
+                      }
+                    })}
                   {
                     fields.filter(f => f.type == "textarea").map((field, index) =>
                       <>
@@ -229,6 +237,7 @@ const Dubai5yeartouristvisa = () => {
                       </>
                     )
                   }
+                  <p className="text-white text-sm mb-2">Applicants need to provide a valid 6-months bank statement with a minimum balance of approx. INR 3,50,000 (equivalent to USD 4,000)</p>
 
                   {/* Radio buttons */}
                   {fields.filter(f => f.type === 'radio').map((field, index) => (
@@ -292,8 +301,8 @@ const Dubai5yeartouristvisa = () => {
         <section className="py-20 bg-gray-50">
           <div className="max-w-4xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-                5-year UAE Tourist Visa for Indians: Fees and Processing Time
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
+                5-year UAE Tourist Visa for Indians: <br /> Fees and Processing Time
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
@@ -328,11 +337,13 @@ const Dubai5yeartouristvisa = () => {
                   </div>
 
                   <div className="text-center">
-                    <button
-                      className="px-10 py-3 rounded-md font-medium text-lg transition-all duration-300 bg-[#E31E24] text-white hover:bg-[#c4191f] shadow-md"
+                    <a
+                      href="https://wa.me/9711018888"
+                      target="_blank"
+                      className="px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-md"
                     >
                       Enquire Now
-                    </button>
+                    </a>
                   </div>
 
                   <p className="text-gray-500 text-sm mt-6 text-left">*T&C Apply</p>
@@ -346,7 +357,7 @@ const Dubai5yeartouristvisa = () => {
       {/* ===== EXPLORE UAE SECTION ===== */}
       {exploreSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6  md:px-12">
             {exploreSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
@@ -359,7 +370,7 @@ const Dubai5yeartouristvisa = () => {
                   </p>
 
                   {/* Trust badge */}
-               
+
                 </div>
                 <div className="flex justify-center relative">
                   {item?.images.length > 0 ? (
@@ -369,7 +380,7 @@ const Dubai5yeartouristvisa = () => {
                         src={getImageUrl(image)}
                         alt={item.title}
                         className="max-w-full h-auto rounded-2xl shadow-xl"
-                        style={{ maxHeight: '450px' }}
+                      // style={{ maxHeight: '450px' }}
                       />
                     ))
                   ) : (
@@ -382,9 +393,12 @@ const Dubai5yeartouristvisa = () => {
                   )}
                   {
                     item?.badge && (
-                      <div className="flex items-center gap-3 absolute -top-10 -right-10 rounded-lg p-4 flex" style={{
-                        backgroundColor: `${item.badge.background||"#E31E24"}`}}>
-                        <span className="font-semibold">{item.badge.text}</span>
+                      <div className="flex flex-col items-center text-white gap-0 absolute -top-10 -right-10 rounded-lg p-4 flex" style={{
+                        backgroundColor: `${item.badge.background || "#E31E24"}`
+                      }}>
+                        <span>{item.badge.text.split("+")[0]}</span>
+                        <div>{item.badge.text.split("+")[1]}</div>
+                        {/* <span className="font-semibold">{item.badge.text}</span> */}
                       </div>
                     )
                   }
@@ -398,27 +412,27 @@ const Dubai5yeartouristvisa = () => {
       {/* ===== ELIGIBILITY AND DOCUMENTS SECTION ===== */}
       {documents.length > 0 && (
         <section className="py-20 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             {documents.map((doc, index) => (
               <div key={doc._id || index}>
                 <div className="text-center mb-12">
-                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
                     {doc.title}
                   </h2>
                   <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
                 </div>
 
-                <div className="bg-white rounded-2xl shadow-lg p-8">
+                <div className="max-w-5xl mx-auto">
                   <ul className="space-y-4">
                     {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
                       <li key={idx} className="flex items-start gap-4">
                         <div
-                          className="w-6 h-6 rounded flex items-center justify-center shrink-0 mt-0.5"
+                          className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5"
                           style={{ backgroundColor: '#E31E24' }}
                         >
                           <Check className="w-4 h-4 text-white" strokeWidth={3} />
                         </div>
-                        <span className="text-gray-700">{item.trim()}</span>
+                        <span className="text-gray-900 font-semibold">{item.trim()}</span>
                       </li>
                     ))}
                   </ul>
@@ -429,9 +443,7 @@ const Dubai5yeartouristvisa = () => {
         </section>
       )}
 
-      {/* ===== WHY CHOOSE US SECTION ===== */}
 
-      <WhyUsSection data={homeData.whyUsSection} />
 
       {/* ===== FAQ SECTION ===== */}
       {faqs.length > 0 && (
@@ -490,6 +502,10 @@ const Dubai5yeartouristvisa = () => {
           </div>
         </section>
       )}
+
+      {/* ===== WHY CHOOSE US SECTION ===== */}
+
+      <WhyUsSection data={homeData.whyUsSection} />
     </div>
   );
 };
