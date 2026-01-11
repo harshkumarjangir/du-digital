@@ -88,23 +88,22 @@ const Vipclearanceatmalaysiaairport = () => {
 
     const vipServiceItems = contentSections['VIP clearance service at Malaysian Immigration'] || [];
     const whatWeOfferItems = contentSections['What we offer ?'] || [];
+    const allServices = [...vipServiceItems, ...whatWeOfferItems];
     const visaCentresSection = contentSections['Official Malaysia Visa Application Centres now near you'] || [];
-
-    const serviceIcons = [Users, Plane, ArrowRight];
 
     return (
         <div className="bg-white font-sans">
             {/* ===== HERO SECTION ===== */}
-            <section className="relative w-full h-[600px] sm:h-[600px] flex items-center justify-end text-center bg-gray-900">
+            <section className="relative w-full h-[600px] sm:h-[600px] flex items-end justify-end text-center bg-gray-900">
                 <img
                     src={image ? getImageUrl(image) : ''}
                     alt="VIP Clearance at Malaysia Airport"
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-center object-cover"
                     loading="eager"
                     decoding="async"
                     fetchPriority="high"
                 />
-                <div className="z-10 max-w-4xl px-6">
+                <div className="z-10 max-w-4xl px-6 mb-6">
                     <a
                         href="https://docs.google.com/forms/d/e/1FAIpQLScB4u2Ovi_PMj_st6lqisz8NqNgeTdr9d2737UzTvaNcOAnaw/viewform"
                         target="_blank"
@@ -116,166 +115,178 @@ const Vipclearanceatmalaysiaairport = () => {
             </section>
 
             {/* ===== VIP SERVICES SECTION ===== */}
-            <section id="services-section" className="py-24 bg-gray-50">
+            <section id="services-section" className="py-24 bg-white">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                            VIP Clearance <span className="text-[#E31E24]">Services</span>
+                        <h2 className="text-lg md:text-2xl font-bold text-gray-900 mb-2">
+                            Say goodbye to long airport lines and hello to a seamless journey with our exclusive
                         </h2>
-                        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                            Experience hassle-free airport formalities with our premium services
-                        </p>
-                    </div>
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl bg-[#E31E24] mx-auto rounded font-bold text-white mb-4 px-2" style={{ width: 'max-content' }}>
-                            What We <span>Offer</span>
+                        <h2 className="text-4xl md:text-5xl font-bold text-[#E31E24] mb-12">
+                            VIP clearance service at Malaysian Immigration
                         </h2>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-8">
-                        {vipServiceItems.map((item, index) => {
-                            const IconComponent = serviceIcons[index % serviceIcons.length];
-                            return (
-                                <div
-                                    key={index}
-                                    className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
-                                >
-                                    <div className="w-16 h-16 bg-red-50 rounded-xl flex items-center justify-center mb-6">
-                                        <IconComponent className="w-8 h-8 text-[#E31E24]" />
-                                    </div>
-                                    <h3 className="text-xl font-bold text-gray-900 mb-4">
-                                        {item.title}
-                                    </h3>
-                                    <p className="text-gray-600 leading-relaxed whitespace-pre-line">
-                                        {item.contentHtml}
-                                    </p>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
-            </section>
-
-            {/* ===== WHAT WE OFFER SECTION ===== */}
-            {whatWeOfferItems.length > 0 && (
-                <section className="py-24 bg-white">
-                    <div className="max-w-7xl mx-auto px-6">
-                        <div className="grid md:grid-cols-1 gap-8 max-w-3xl mx-auto">
-                            {whatWeOfferItems.map((item, index) => (
-                                <div
-                                    key={index}
-                                    className="bg-gray-50 rounded-2xl p-8 shadow-lg border border-gray-100"
-                                >
-                                    <div className="w-16 h-16 bg-red-50 rounded-xl flex items-center justify-center mb-6">
-                                        <Plane className="w-8 h-8 text-[#E31E24]" />
-                                    </div>
-                                    <h3 className="text-xl font-bold text-gray-900 mb-4">
-                                        {item.title}
-                                    </h3>
-                                    <p className="text-gray-600 leading-relaxed whitespace-pre-line">
-                                        {item.contentHtml}
-                                    </p>
-                                </div>
-                            ))}
+                        <div className="inline-block bg-[#991b1b] text-white px-8 py-3 rounded-lg text-2xl font-bold shadow-lg">
+                            <span className="">What we offer ?</span>
                         </div>
                     </div>
-                </section>
-            )}
 
-            {/* ===== HOW IT WORKS ===== */}
-            <section className="py-24 bg-white">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                            How It <span className="text-[#E31E24]">Works</span>
-                        </h2>
-                    </div>
-
-                    <div className="grid md:grid-cols-4 gap-8">
-                        {[
-                            { step: "1", title: "Book Online", desc: "Submit your service request through our platform" },
-                            { step: "2", title: "Confirmation", desc: "Receive confirmation with service details" },
-                            { step: "3", title: "Meet Agent", desc: "Our agent meets you at the airport" },
-                            { step: "4", title: "Smooth Passage", desc: "Enjoy hassle-free VIP clearance" },
-                        ].map((item, index) => (
-                            <div key={index} className="text-center group">
-                                <div className="w-20 h-20 bg-[#E31E24] text-white rounded-full flex items-center justify-center mx-auto mb-6 text-3xl font-bold group-hover:scale-110 transition-transform">
-                                    {item.step}
+                    <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+                        {allServices.map((item, index) => (
+                            <div
+                                key={index}
+                                className="flex flex-col items-center text-center border-r border-dotted border-gray-300 last:border-r-0 px-4 transition-all duration-300 group"
+                            >
+                                <div className="mb-6 h-32 w-full flex items-center justify-center">
+                                    {item.images && item.images.length > 0 ? (
+                                        <img
+                                            src={getImageUrl(item.images[0])}
+                                            alt={item.title}
+                                            className="h-full w-auto object-contain group-hover:scale-110 transition-transform duration-300"
+                                        />
+                                    ) : (
+                                        <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center">
+                                            <Plane className="w-10 h-10 text-[#E31E24]" />
+                                        </div>
+                                    )}
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
-                                <p className="text-gray-600">{item.desc}</p>
+                                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                                    {item.title}
+                                </h3>
+                                <p className="text-[#333333] leading-relaxed text-base">
+                                    {item.contentHtml}
+                                </p>
                             </div>
                         ))}
                     </div>
+
+                    <div className="flex justify-center mt-12">
+                        <a
+                            href="https://docs.google.com/forms/d/e/1FAIpQLScB4u2Ovi_PMj_st6lqisz8NqNgeTdr9d2737UzTvaNcOAnaw/viewform"
+                            target="_blank"
+                            className="px-10 py-4 bg-[#E31E24] text-white hover:bg-[#2D1F1F] hover:text-[#E31E24] rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
+                        >
+                            Book Now
+                        </a>
+                    </div>
                 </div>
             </section>
 
-            {/* ===== DOCUMENTS REQUIRED (Conditional) ===== */}
+            {/* ===== HOW IT WORKS ===== */}
+            <section className="py-10 md:py-20 bg-white">
+                <div className="max-w-7xl mx-auto px-6">
+
+                    {/* Heading (optional – keep only if NOT inside image) */}
+
+                    <h2 className="text-center text-4xl md:text-5xl font-bold text-black mb-16">
+                        How It Works?
+                    </h2>
+
+
+                    {/* Image */}
+                    <div className="flex justify-center">
+                        <img
+                            src="/assets/vip-clearance-malaysia/Fill-in-the-form-e1714727110441-1.png"
+                            alt="How It Works"
+                            className="w-full max-w-4xl object-contain"
+                        />
+                    </div>
+
+                </div>
+            </section>
+
+
+            {/* ===== DOCUMENTS REQUIRED ===== */}
             {documents && documents.length > 0 && (
-                <section className="py-24 bg-gray-50">
-                    <div className="max-w-5xl mx-auto px-6">
-                        <div className="text-center mb-16">
-                            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                                Documents <span className="text-[#E31E24]">Required</span>
+                <section className="py-24 bg-white">
+                    <div className="max-w-4xl mx-auto px-6">
+
+                        {/* Heading */}
+                        <div className="text-center mb-14">
+                            <h2 className="text-4xl md:text-5xl font-bold text-black">
+                                Documents Required
                             </h2>
                         </div>
 
-                        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+                        {/* List */}
+                        <div className="space-y-8">
                             {documents.map((doc, index) => (
-                                <div key={index} className="mb-8 last:mb-0">
-                                    <div className="flex items-start gap-4">
-                                        <div className="mt-1 w-10 h-10 rounded-full bg-[#E31E24] flex items-center justify-center flex-shrink-0">
-                                            <FileText className="w-5 h-5 text-white" />
-                                        </div>
-                                        <div>
-                                            <h4 className="text-xl font-bold text-gray-900 mb-3">{doc.title}</h4>
-                                            <ul className="space-y-3">
-                                                {doc.description?.split('\n').map((line, i) => (
-                                                    line.trim() && (
-                                                        <li key={i} className="flex items-start gap-3 text-gray-700">
-                                                            <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                                                            <span>{line.trim()}</span>
-                                                        </li>
-                                                    )
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                <ul key={index} className="space-y-6">
+                                    {doc.description
+                                        ?.split("\n")
+                                        .filter(line => line.trim())
+                                        .map((line, i) => (
+                                            <li
+                                                key={i}
+                                                className="flex items-center justify-center gap-4 text-lg md:text-xl font-semibold text-[#333333]"
+                                            >
+                                                {/* Red Check */}
+                                                <span className="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-[#E31E24] flex items-center justify-center">
+                                                    <Check className="w-4 h-4 text-white" />
+                                                </span>
+
+                                                {/* Text */}
+                                                <span>{line.trim()}</span>
+                                            </li>
+                                        ))}
+                                </ul>
                             ))}
                         </div>
+
+                        <div className="flex justify-center mt-12">
+                            <a
+                                href="https://docs.google.com/forms/d/e/1FAIpQLScB4u2Ovi_PMj_st6lqisz8NqNgeTdr9d2737UzTvaNcOAnaw/viewform"
+                                target="_blank"
+                                className="px-10 py-4 bg-[#E31E24] text-white hover:bg-[#2D1F1F] hover:text-[#E31E24] rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
+                            >
+                                Book Now
+                            </a>
+                        </div>
+
                     </div>
                 </section>
             )}
 
-            {/* ===== VISA CENTRES (Conditional) ===== */}
+
+            {/* ===== VISA CENTRES SECTION ===== */}
             {visaCentresSection.length > 0 && (
                 <section
-                    className="relative py-24 min-h-[500px] flex items-center"
+                    className="relative py-20 bg-white overflow-hidden"
                     style={{
-                        backgroundImage: visaCentresSection[0]?.images?.[0] ? `url(${getImageUrl(visaCentresSection[0].images[0])})` : 'none',
-                        backgroundSize: "contain",
+                        backgroundImage: visaCentresSection[0]?.images?.[0]
+                            ? `url(${getImageUrl(visaCentresSection[0].images[0])})`
+                            : "none",
                         backgroundRepeat: "no-repeat",
-                        backgroundPositionY: "bottom",
+                        backgroundPosition: "bottom center",
+                        backgroundSize: "contain",
                     }}
                 >
-                    <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-                        <h2 className="text-4xl font-bold text-white bg-[#E31E24] rounded-3xl p-1 mb-10">
-                            {visaCentresSection[0]?.title}
-                        </h2>
-                        <div className="flex flex-wrap justify-center gap-4">
-                            {visaCentresSection[0]?.contentHtml?.split('\n').map((city, idx) => (
-                                city.trim() && (
-                                    <div key={idx} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full text-white border border-white/20">
-                                        <MapPin className="w-4 h-4 text-[#E31E24] flex-shrink-0" />
-                                        <span className="font-medium text-gray-400">{city.trim()}</span>
-                                    </div>
-                                )
-                            ))}
+                    <div className="max-w-7xl mx-auto px-2 md:px-6 text-center relative z-10">
+
+                        {/* Red Banner Heading */}
+                        <div className="mb-12">
+                            <h2 className="inline-block w-full max-w-6xl mx-auto
+          bg-[#E31E24] text-white text-xl md:text-3xl font-bold
+          py-4 p-4 md:px-8 rounded-full">
+                                {visaCentresSection[0]?.title}
+                            </h2>
                         </div>
+
+                        {/* Cities Row */}
+                        <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-4 text-lg font-semibold text-[#222]">
+                            {visaCentresSection[0]?.contentHtml
+                                ?.split("\n")
+                                .filter(city => city.trim())
+                                .map((city, idx) => (
+                                    <div key={idx} className="flex items-center gap-2">
+                                        <MapPin className="w-4 h-4 text-[#E31E24]" />
+                                        <span>{city.trim()}</span>
+                                    </div>
+                                ))}
+                        </div>
+
                     </div>
                 </section>
             )}
+
 
             {/* ===== FORM SECTION (Conditional - Only if fields exist) ===== */}
             {fields && fields.length > 0 && (
