@@ -58,7 +58,7 @@ const EventDetail = () => {
     return (
         <div className="min-h-screen bg-white">
             {/* Hero Section */}
-            <div className="relative h-[800px]">
+            <div className="relative h-[600px]">
                 <img
                     src={`${BackendImagesURL}${selectedEvent.imageUrl}`}
                     alt={selectedEvent.title}
@@ -67,15 +67,17 @@ const EventDetail = () => {
                     decoding="async"
                     fetchPriority="high"
                 />
+                {/* Black Shade Absolute */}
+                <div className='absolute inset-0 bg-black opacity-70 z-10'></div>
 
                 <div className="relative max-w-7xl mx-auto px-6 md:px-20 h-full flex flex-col justify-center text-white z-20">
-                    <button
+                    {/* <button
                         onClick={() => navigate('/events')}
                         className="flex items-center gap-2 mb-6 hover:opacity-80 transition hover:underline cursor-pointer"
                     >
                         <ArrowLeft size={20} />
                         <span>Back to Events</span>
-                    </button>
+                    </button> */}
 
                     <h1 className="text-3xl md:text-5xl font-semibold text-center mb-4 max-w-4xl mx-auto">
                         {selectedEvent.title}
@@ -105,6 +107,7 @@ const EventDetail = () => {
                                 }}
                             >
                                 <LazyImage
+                                    fill
                                     src={`${BackendImagesURL}${image}`}
                                     alt={`${selectedEvent.title} - Image ${index + 1}`}
                                     className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-300"
