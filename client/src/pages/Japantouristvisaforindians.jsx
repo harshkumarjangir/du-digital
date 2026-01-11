@@ -76,13 +76,17 @@ const Japantouristvisaforindians = () => {
             >
               <div className="mt-1 shrink-0">
                 {level === 0 ? (
-                  <CheckCircle className="w-5 h-5 text-red-600 fill-red-50" />
+                  <div className="bg-red-600 rounded-full p-0.5">
+                    <Check className="w-4 h-4 text-white" />
+                  </div>
                 ) : level === 1 ? (
-                  <Circle className="w-4 h-4 text-red-600" strokeWidth={2.5} />
+                  <Circle className="w-4 h-4 text-red-600 rounded-full" strokeWidth={10} />
                 ) : level === 2 ? (
-                  <Square className="w-3 h-3 text-red-600 fill-red-600" />
+                  <div className="bg-red-600 rounded p-0.5">
+                    <Check className="w-3 h-3 text-white" />
+                  </div>
                 ) : (
-                  <Check className="w-3 h-3 text-red-600 fill-red-600" />
+                  <Circle className="w-3 h-3 text-red-600 rounded-full" strokeWidth={10} />
                 )}
               </div>
               <span className={`text-gray-700 leading-relaxed ${level === 0 ? 'font-medium' : ''}`}>
@@ -173,7 +177,7 @@ const Japantouristvisaforindians = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full h-[600px]">
+      <section className="relative w-full lg:h-[700px] min-h-[600px]">
         <img
           src={formData?.image ? getImageUrl(formData.image) : ''}
           alt="Japan Tourist Visa"
@@ -185,25 +189,25 @@ const Japantouristvisaforindians = () => {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[600px] flex items-center">
+        <div id="enquire-now" className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-20 flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
-              <p className="text-xl mb-2 text-gray-300">Apply for</p>
+              <p className="text-5xl md:text-6xl lg:text-7xl font-bold mb-2">Apply for</p>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-                <span style={{ color: '#E31E24' }}>Japan</span> Tourist Visa
+                <span style={{ color: '#E31E24' }}>Japan <br /> Tourist Visa</span>
               </h1>
-              <p className="text-gray-300 text-lg">
+              {/* <p className="text-gray-300 text-lg">
                 {description}
-              </p>
+              </p> */}
             </div>
 
             {/* Right - Application Form */}
             {fields.length > 0 && (
-              <div className="bg-gray-900/70 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
-                <h2 className="text-white text-xl font-semibold mb-6 text-center">
+              <div className="bg-gray-900/70 backdrop-blur-sm rounded-2xl p-4 md:p-8 shadow-2xl">
+                {/* <h2 className="text-white text-xl font-semibold mb-6 text-center">
                   Let our expert guide you through the Japan Visa process
-                </h2>
+                </h2> */}
 
                 <form className="space-y-4" onSubmit={handleSubmit}>
                   {(() => {
@@ -231,7 +235,7 @@ const Japantouristvisaforindians = () => {
 
                         {/* Select fields - 2 columns */}
                         {selectFields.length > 0 && (
-                          <div className="grid md:grid-cols-2 gap-4">
+                          <div className="grid md:grid-cols-1 gap-4">
                             {selectFields.map((field, index) => (
                               <select
                                 key={field._id || `select-${index}`}
@@ -343,15 +347,15 @@ const Japantouristvisaforindians = () => {
       {/* ===== WHAT SHOULD INDIANS KNOW SECTION ===== */}
       {introSection.length > 0 && (
         <section className="py-16 bg-white">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             {introSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-black mb-4">
                     {item.title}
                   </h2>
                   <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div>
-                  <p className="text-gray-600 leading-relaxed whitespace-pre-line">
+                  <p className="text-[#333333] text-base leading-relaxed whitespace-pre-line">
                     {item.contentHtml}
                   </p>
                 </div>
@@ -364,10 +368,13 @@ const Japantouristvisaforindians = () => {
                     />
                     {item.badge?.text && (
                       <div
-                        className="absolute -top-4 -right-10 px-4 py-2 rounded-lg text-white font-bold shadow-lg"
+                        className="absolute -top-4 -right-10 px-4 py-2 flex flex-col items-center rounded-lg text-white font-bold shadow-lg"
                         style={{ backgroundColor: item.badge.background || '#E31E24' }}
                       >
-                        {item.badge.text} Happy Customers
+                        {/* {item.badge.text}  */}
+                        {/* Happy Customers */}
+                        <span>{item.badge.text.split("+")[0]}+</span>
+                        <span>{item.badge.text.split("+")[1]}</span>
                       </div>
                     )}
                   </div>
@@ -379,10 +386,11 @@ const Japantouristvisaforindians = () => {
                   />
                   {item.badge?.text && (
                     <div
-                      className="absolute -bottom-4 -right-4 px-4 py-2 rounded-lg text-white font-bold shadow-lg"
+                      className="absolute -bottom-4 -right-4 px-4 py-2 flex flex-col items-center rounded-lg text-white font-bold shadow-lg"
                       style={{ backgroundColor: item.badge.background || '#E31E24' }}
                     >
-                      {item.badge.text} Happy Customers
+                      <span>{item.badge.text.split("+")[0]}+</span>
+                      <span>{item.badge.text.split("+")[1]}</span>
                     </div>
                   )}
                 </div>}
@@ -395,11 +403,11 @@ const Japantouristvisaforindians = () => {
       {/* ===== ESSENTIAL TRAVEL TIPS SECTION ===== */}
       {travelTipsSection.length > 0 && (
         <section className="py-16 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             {travelTipsSection.map((item, index) => (
               <div key={item._id || index}>
                 <div className="text-center mb-10">
-                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-black leading-relaxed mb-4">
                     {item.title}
                   </h2>
                   <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
@@ -410,17 +418,17 @@ const Japantouristvisaforindians = () => {
                     if (rest.length > 0) {
                       return (
                         <div key={pIdx} className="flex gap-4">
-                          <div className="shrink-0 w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(227,30,36,0.1)' }}>
+                          {/* <div className="shrink-0 w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(227,30,36,0.1)' }}>
                             <Check className="w-5 h-5" style={{ color: '#E31E24' }} />
-                          </div>
+                          </div> */}
                           <div>
-                            <h4 className="font-bold text-gray-900 mb-1">{title.trim()}</h4>
-                            <p className="text-gray-600 leading-relaxed">{rest.join(':').trim()}</p>
+                            <h4 className="font-bold text-gray-900 text-lg mb-1">{title.trim()}:</h4>
+                            <p className="text-gray-900 text-base leading-relaxed">{rest.join(':').trim()}</p>
                           </div>
                         </div>
                       );
                     }
-                    return <p key={pIdx} className="text-gray-600 leading-relaxed">{paragraph}</p>;
+                    return <p key={pIdx} className="text-gray-900 text-base leading-relaxed">{paragraph}</p>;
                   })}
                 </div>
               </div>
@@ -431,10 +439,10 @@ const Japantouristvisaforindians = () => {
 
       {/* ===== TOP TOURIST DESTINATIONS SECTION ===== */}
       {(destinationsSection.length > 0 || formImages.length > 0) && (
-        <section className="py-16" style={{ backgroundColor: '#fdf2f4' }}>
-          <div className="max-w-6xl mx-auto px-6">
+        <section className="py-16" style={{ backgroundColor: '##FAFAFA' }}>
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             <div className="text-center mb-10">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-black mb-4">
                 {destinationsSection[0]?.title || 'Top Tourist Destinations'}
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
@@ -444,11 +452,11 @@ const Japantouristvisaforindians = () => {
             {formImages.length > 0 && (
               <div className={`grid ${formImages.length === 1 ? 'grid-cols-1' : formImages.length === 2 ? 'grid-cols-2' : 'md:grid-cols-3'} gap-4 mb-10`}>
                 {formImages[0]?.images?.map((img, imgIdx) => (
-                  <div key={imgIdx} className="overflow-hidden rounded-xl shadow-lg">
+                  <div key={imgIdx} className="overflow-hidden rounded-xl">
                     <img
                       src={getImageUrl(img)}
                       alt={`Destination ${imgIdx + 1}`}
-                      className="w-full h-48 object-cover hover:scale-110 transition-transform duration-500"
+                      className="w-full h-48 lg:h-80 object-cover hover:scale-110 transition-transform duration-500"
                     />
                   </div>
                 ))}
@@ -463,12 +471,12 @@ const Japantouristvisaforindians = () => {
                   if (rest.length > 0 && title.trim().length < 30) {
                     return (
                       <div key={pIdx}>
-                        <h4 className="font-bold text-gray-900 mb-2" style={{ color: '#E31E24' }}>{title.trim()}</h4>
-                        <p className="text-gray-600 leading-relaxed">{rest.join(':').trim()}</p>
+                        <h4 className="font-bold text-gray-900 mb-2" style={{ color: '#000000' }}>{title.trim()}:</h4>
+                        <p className="text-gray-900 text-base md:text-lg leading-relaxed">{rest.join(':').trim()}</p>
                       </div>
                     );
                   }
-                  return <p key={pIdx} className="text-gray-600 leading-relaxed">{paragraph}</p>;
+                  return <p key={pIdx} className="text-gray-900 text-base md:text-lg leading-relaxed">{paragraph}</p>;
                 })}
               </div>
             )}
@@ -479,12 +487,12 @@ const Japantouristvisaforindians = () => {
       {/* ===== MUST VISIT DESTINATIONS ===== */}
       {mustVisitSection.length > 0 && (
         <section className="py-16 bg-white">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             {mustVisitSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
 
-                <div className={item.images?.[0] ? "order-1 lg:order-2" : ""}>
-                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                <div className={item.images?.[0] ? "order-1 lg:order-1" : ""}>
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-black mb-4">
                     {item.title}
                   </h2>
                   <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div>
@@ -494,17 +502,17 @@ const Japantouristvisaforindians = () => {
                       if (rest.length > 0 && title.trim().length < 40) {
                         return (
                           <div key={pIdx}>
-                            <h4 className="font-bold text-gray-900 mb-1">{title.trim()}</h4>
-                            <p className="text-gray-600 leading-relaxed">{rest.join(':').trim()}</p>
+                            <h4 className="font-bold text-gray-900 mb-1">{title.trim()}:</h4>
+                            <p className="text-gray-900  text-base leading-relaxed">{rest.join(':').trim()}</p>
                           </div>
                         );
                       }
-                      return <p key={pIdx} className="text-gray-600 leading-relaxed">{paragraph}</p>;
+                      return <p key={pIdx} className="text-gray-900 text-base leading-relaxed">{paragraph}</p>;
                     })}
                   </div>
                 </div>
                 {item.images?.[0] && (
-                  <div className="order-2 lg:order-1">
+                  <div className="order-2 lg:order-2">
                     <img
                       src={getImageUrl(item.images[0])}
                       alt={item.title}
@@ -521,9 +529,9 @@ const Japantouristvisaforindians = () => {
       {/* ===== VISA FEES SECTION ===== */}
       {visaFeesSection.length > 0 && (
         <section className="py-16 bg-gray-100">
-          <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             <div className="text-center mb-10">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 mb-4">
                 {visaFeesSection[0]?.title || 'Visa Fees & Processing Time'}
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
@@ -532,40 +540,50 @@ const Japantouristvisaforindians = () => {
             {visaFeesSection.map((item, index) => {
               const details = parseVisaFees(item.contentHtml);
               return (
-                <div key={item._id || index} className="bg-white rounded-xl shadow-lg p-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">
-                    30/60 Days Tourist Visa
-                  </h3>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
-                      <Clock className="w-8 h-8" style={{ color: '#E31E24' }} />
-                      <div>
-                        <p className="text-sm text-gray-500">Processing Time</p>
-                        <p className="font-bold text-gray-900">{details?.processingTime || '10 working days'}</p>
+                <div key={item._id || index}>
+                  <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-4 md:p-8">
+                    <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">
+                      30/60 Days Tourist Visa
+                    </h3>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+                        <Clock className="w-8 h-8" style={{ color: '#E31E24' }} />
+                        <div>
+                          <p className="text-sm text-gray-500">Processing Time</p>
+                          <p className="font-bold text-gray-900">{details?.processingTime || '10 working days'}</p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
-                      <Calendar className="w-8 h-8" style={{ color: '#E31E24' }} />
-                      <div>
-                        <p className="text-sm text-gray-500">Stay Period</p>
-                        <p className="font-bold text-gray-900">{details?.stayPeriod || '30 days'}</p>
+                      <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+                        <Calendar className="w-8 h-8" style={{ color: '#E31E24' }} />
+                        <div>
+                          <p className="text-sm text-gray-500">Stay Period</p>
+                          <p className="font-bold text-gray-900">{details?.stayPeriod || '30 days'}</p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
-                      <MapPin className="w-8 h-8" style={{ color: '#E31E24' }} />
-                      <div>
-                        <p className="text-sm text-gray-500">Entry Type</p>
-                        <p className="font-bold text-gray-900">{details?.entry || 'Single/Multiple'}</p>
+                      <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+                        <MapPin className="w-8 h-8" style={{ color: '#E31E24' }} />
+                        <div>
+                          <p className="text-sm text-gray-500">Entry Type</p>
+                          <p className="font-bold text-gray-900">{details?.entry || 'Single/Multiple'}</p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
-                      <Wallet className="w-8 h-8" style={{ color: '#E31E24' }} />
-                      <div>
-                        <p className="text-sm text-gray-500">Visa Fees</p>
-                        <p className="font-bold text-xl" style={{ color: '#E31E24' }}>{details?.fees || 'INR 4,200/-'}</p>
+                      <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+                        <Wallet className="w-8 h-8" style={{ color: '#E31E24' }} />
+                        <div>
+                          <p className="text-sm text-gray-500">Visa Fees</p>
+                          <p className="font-bold text-xl" style={{ color: '#E31E24' }}>{details?.fees || 'INR 4,200/-'}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
+                  {/* Cta #enquire-now */}
+                  <a
+                    href="#enquire-now"
+                    className="block w-fit mx-auto px-8 py-4 mt-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]"
+                  >
+                    Apply for Any Visa
+                  </a>
+
                 </div>
               );
             })}
@@ -576,16 +594,16 @@ const Japantouristvisaforindians = () => {
       {/* ===== DOCUMENTS SECTION ===== */}
       {documents.length > 0 && (
         <section className="py-16 bg-white">
-          <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             <div className="text-center mb-10">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Documents Required</h2>
+              <h2 className="text-2xl md:text-3xl lg:text-5xl font-semibold text-gray-900 mb-4">Documents for Indian Citizens: 30/60 Day Japan Tourist Visa</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
 
             {documents.map((doc, docIndex) => (
-              <div key={doc._id || docIndex} className="bg-gray-50 rounded-xl p-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-6">{doc.title}</h3>
-                <div className="mt-2">
+              <div key={doc._id || docIndex} className="">
+                {/* <h3 className="text-xl font-bold text-gray-900 mb-6">{doc.title}</h3> */}
+                <div className="max-w-4xl mx-auto mt-2">
                   {renderDocumentContent(doc.description)}
                 </div>
               </div>
