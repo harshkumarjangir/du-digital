@@ -114,6 +114,32 @@ const Applyforanyvisa = () => {
     { icon: Globe, title: "Trusted Network", description: "35+ locations across 6 countries with global partner offices." }
   ];
 
+  const getFilteredOptions = (field) => {
+    if (!field.parentField) return field.options;
+
+    const parentValue = formValues[field.parentField];
+    if (!parentValue) return [];
+
+    const parentFieldDef = fields.find(f => f.name === field.parentField);
+    if (!parentFieldDef) return field.options;
+
+    const selectedParentOption = parentFieldDef.options?.find(opt =>
+      (opt.value || opt.label || opt) === parentValue
+    );
+
+    if (!selectedParentOption) return [];
+
+    const parentId = selectedParentOption.id || selectedParentOption._id;
+    const parentOptionValue = selectedParentOption.value || selectedParentOption.label || selectedParentOption;
+
+    return field.options?.filter(opt => {
+      // If the option has no connectId, it's considered valid (e.g. the parent options themselves)
+      if (!opt.connectId) return true;
+      // Match against ID or Value
+      return opt.connectId === parentId || opt.connectId === parentOptionValue;
+    }) || [];
+  };
+
   return (
     <div className="bg-white font-sans">
 
@@ -132,13 +158,14 @@ const Applyforanyvisa = () => {
 
         <div className="relative left-0 z-10 max-w-7xl mx-auto px-6">
           <div className="text-white max-w-xl">
-            <p className="text-lg mb-2 text-gray-300">Welcome to</p>
+            {/* <p className="text-lg mb-2 text-gray-300">Welcome to</p> */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-              DU <span style={{ color: '#E31E24' }}>Global</span>
+              Welcome to DU Global
+              {/* <span style={{ color: '#E31E24' }}></span> */}
             </h1>
-            <p className="text-gray-300 text-lg mb-8">
+            {/* <p className="text-gray-300 text-lg mb-8">
               Your trusted partner for visa services worldwide
-            </p>
+            </p> */}
             <a
               href="#apply-form"
               className="inline-block px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]"
@@ -155,7 +182,7 @@ const Applyforanyvisa = () => {
           id="apply-form"
           className="relative max-w-[800px] mx-auto pb-16 pt-4 my-5 rounded-2xl overflow-hidden bg-cover bg-center"
           style={{
-            backgroundImage : 'url(/Visa-banner-2.jpg)'
+            backgroundImage: 'url(/Visa-banner-2.jpg)'
           }}
         >
           {/* Dark overlay */}
@@ -198,35 +225,32 @@ const Applyforanyvisa = () => {
 
                     {/* Select fields - Country & State in one row, others full width */}
                     {selectFields.length > 0 && (
-                      <>
-                        <div className={`grid gap-4 mb-4 ${selectFields.length >= 2 ? 'md:grid-cols-2' : 'grid-cols-1'}`}>
-                          {selectFields.map((field, index) => (
-                            <select
-                              key={field._id || `select-${index}`}
-                              name={field.name}
-                              value={formValues[field.name] || ''}
-                              onChange={handleInputChange}
-                              className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none appearance-none cursor-pointer bg-white"
-                              required={field.required}
-                              aria-label={field.label || field.placeholder}
-                              style={{
-                                backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-                                backgroundPosition: 'right 0.75rem center',
-                                backgroundRepeat: 'no-repeat',
-                                backgroundSize: '1.25em 1.25em',
-                                paddingRight: '2.5rem'
-                              }}
-                            >
-                              <option value="">{field.placeholder || field.label}</option>
-                              {field.options?.map((opt, optIdx) => (
-                                <option key={opt._id || optIdx} value={opt.value || opt}>
-                                  {opt.label || opt}
-                                </option>
-                              ))}
-                            </select>
-                          ))}
-                        </div>
-                      </>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        {selectFields.map((field, index) => (
+                          <select
+                            key={field._id || index}
+                            name={field.name}
+                            value={formValues[field.name] || ''}
+                            onChange={handleInputChange}
+                            className="flex-1 w-full px-4 py-3 bg-white border-0 rounded text-gray-700 focus:ring-2 focus:ring-red-500 transition-all outline-none appearance-none cursor-pointer text-sm"
+                            required={field.required}
+                            style={{
+                              backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                              backgroundPosition: 'right 0.5rem center',
+                              backgroundRepeat: 'no-repeat',
+                              backgroundSize: '1.25em 1.25em',
+                              paddingRight: '2rem'
+                            }}
+                          >
+                            <option value="">{field.placeholder || field.label}</option>
+                            {getFilteredOptions(field)?.map((opt, optIdx) => (
+                              <option key={opt._id || optIdx} value={opt.value || opt}>
+                                {opt.label || opt}
+                              </option>
+                            ))}
+                          </select>
+                        ))}
+                      </div>
                     )}
                     {
                       textarea.map((field, index) => <div key={index}>
