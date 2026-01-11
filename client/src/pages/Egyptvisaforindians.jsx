@@ -437,7 +437,7 @@ const Egyptvisaforindians = () => {
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
             <div className="space-y-6">
-              {travelTipsSection[0]?.contentHtml?.split('\n\n').filter(p => p.trim()).map((paragraph, pIdx) => (
+              {travelTipsSection[0]?.contentHtml?.split('\n').filter(p => p.trim()).map((paragraph, pIdx) => (
                 <div key={pIdx} className="flex gap-4">
                   <div className="shrink-0 w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(227,30,36,0.1)' }}>
                     <Check className="w-5 h-5" style={{ color: '#E31E24' }} />
