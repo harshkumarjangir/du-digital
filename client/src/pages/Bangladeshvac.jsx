@@ -132,7 +132,7 @@ const BangladeshVac = () => {
           <div className="max-w-6xl mx-auto px-6">
             {heroSection.map((item, index) => (
               <div key={item._id || index}>
-                <p className="text-gray-700 leading-relaxed text-lg whitespace-pre-line">
+                <p className="text-black leading-relaxed text-lg whitespace-pre-line">
                   {item.contentHtml}
                 </p>
               </div>
@@ -297,15 +297,15 @@ const BangladeshVac = () => {
 
       {/* ===== COLLABORATION SECTION ===== */}
       {collaborationSection.length > 0 && (
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-6xl mx-auto px-6">
+        <section className="py-16">
+          <div className="max-w-6xl mx-auto px-6 md:px-12">
             {collaborationSection.map((item, index) => (
               <div key={item._id || index}>
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-center">
+                <h2 className="text-2xl md:text-2xl font-bold text-black mb-6 text-left">
                   {item.title}
                 </h2>
-                <div className="w-20 h-1 mx-auto mb-8" style={{ backgroundColor: '#E31E24' }}></div>
-                <p className="text-gray-700 leading-relaxed text-lg whitespace-pre-line text-center max-w-4xl mx-auto">
+                {/* <div className="w-20 h-1 mx-auto mb-8" style={{ backgroundColor: '#E31E24' }}></div> */}
+                <p className="text-black leading-relaxed text-lg whitespace-pre-line text-left mx-auto">
                   {item.contentHtml}
                 </p>
               </div>
@@ -326,15 +326,15 @@ const BangladeshVac = () => {
                 {/* Title at top */}
                 <div
 
-                  className="overflow-hidden w-[60%] mx-auto rounded-lg shadow-md group cursor-pointer"
+                  className="overflow-hidden w-[60%] lg:w-[70%] mx-auto rounded-lg shadow-md group cursor-pointer"
                 >
                   <img
                     src={getImageUrl(gallery.images[0])}
                     alt={`${gallery.title} -1`}
-                    className="w-full h-[50vh] object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-[50vh] lg:h-[70vh] object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
-                <h2 className="text-xl md:text-2xl font-bold text-blue-800 mb-4 text-center">
+                <h2 className="text-xl md:text-xl font-bold text-black my-4 text-center">
                   {gallery.title}
                 </h2>
 
@@ -342,7 +342,7 @@ const BangladeshVac = () => {
                 <div className="w-20 h-1 mx-auto mb-8" style={{ backgroundColor: '#E31E24' }}></div>
 
                 {/* Image Grid - 3 columns with hover effect */}
-                <div className="grid md:grid-cols-3 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   {gallery.images.slice(1)?.map((img, imgIndex) => (
                     <div
                       key={imgIndex}
@@ -351,7 +351,7 @@ const BangladeshVac = () => {
                       <img
                         src={getImageUrl(img)}
                         alt={`${gallery.title} - ${imgIndex + 2}`}
-                        className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-56 lg:h-80 object-cover transition-transform duration-500 group-hover:scale-110"
                       />
                     </div>
                   ))}
@@ -368,8 +368,8 @@ const BangladeshVac = () => {
         <section className="py-16 bg-gray-100">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-3">Our VAC Locations</h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <h2 className="text-3xl lg:text-4xl font-semibold text-black mb-3">Bangladesh Visa Application Centre in India</h2>
+              {/* <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div> */}
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -377,28 +377,28 @@ const BangladeshVac = () => {
                 <div
                   key={location._id || index}
                   className="rounded-xl p-6 text-white shadow-lg"
-                  style={{ backgroundColor: location.color || '#447d1a' }}
+                  style={{ backgroundColor: location.color || '#3E861C' }}
                 >
                   <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
                     <MapPin className="w-6 h-6" />
                     {location.Location}
                   </h3>
 
-                  <div className="space-y-3 text-white/90">
-                    <p className="whitespace-pre-line text-sm leading-relaxed">
+                  <div className="space-y-3 text-white">
+                    <p className="whitespace-pre-line text-base leading-relaxed">
                       {location.Address}
                     </p>
 
                     <div className="flex items-center gap-2">
                       <Mail className="w-4 h-4 shrink-0" />
-                      <a href={`mailto:${location.email}`} className="hover:underline text-sm">
+                      <a href={`mailto:${location.email}`} className="hover:underline text-base">
                         {location.email}
                       </a>
                     </div>
 
                     <div className="flex items-center gap-2">
                       <Phone className="w-4 h-4 shrink-0" />
-                      <a href={`tel:${location.phone}`} className="hover:underline text-sm">
+                      <a href={`tel:${location.phone}`} className="hover:underline text-base">
                         {location.phone}
                       </a>
                     </div>
