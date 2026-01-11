@@ -124,13 +124,13 @@ const Digitalarrivalcards = () => {
         <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/70 to-black/60" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-20 h-full flex items-center">
-          <div className="max-w-3xl">
+          <div className="max-w-4xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
-              One Platform for All Your Mandatory Digital Arrival Cards
+              One Platform for All Your Mandatory Digital Arrival Cards - Thailand, Malaysia, Indonesia, Singapore, South Korea & Taiwan
             </h1>
-            <p className="text-lg text-gray-300 mb-4">
-              Thailand, Malaysia, Indonesia, Singapore, South Korea & Taiwan
-            </p>
+            {/* <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+              - Thailand, Malaysia, Indonesia, Singapore, South Korea & Taiwan
+            </p> */}
             <p className="text-xl text-white font-semibold mb-8">
               It's mandatory for all travellers to apply before flying.
             </p>
@@ -146,7 +146,7 @@ const Digitalarrivalcards = () => {
 
       {/* ===== TRAVEL READY SECTION - Fixed Background Parallax ===== */}
       <section
-        className="relative py-20 bg-fixed bg-cover bg-center m-[100px] rounded-[30px] overflow-hidden"
+        className="relative max-w-6xl mx-auto mx-2 py-20 bg-fixed bg-cover bg-center m-[100px] rounded-[30px] overflow-hidden"
         style={{
           backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
           backgroundAttachment: 'fixed'
@@ -173,7 +173,7 @@ const Digitalarrivalcards = () => {
 
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             Travel Ready with DU Global
           </h2>
           <p className="text-gray-50 text-lg md:text-xl leading-relaxed">
@@ -185,7 +185,7 @@ const Digitalarrivalcards = () => {
 
       {/* ===== MULTI-STEP FORM SECTION ===== */}
       <section id="apply-form" className="py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Apply for Digital Arrival Card</h2>
 
           {/* Success/Error Message Display */}
