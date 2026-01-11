@@ -473,7 +473,7 @@ const Southkoreavisaforindians = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-6">
 
                     {/* LEFT COLUMN */}
-                    <ul className="space-y-6">
+                    <ul className="space-y-3">
                       {leftItems.map((item, idx) => {
                         const [title, desc] = item.split(":");
                         return (
@@ -496,7 +496,7 @@ const Southkoreavisaforindians = () => {
                     </ul>
 
                     {/* RIGHT COLUMN */}
-                    <ul className="space-y-6">
+                    <ul className="space-y-3">
                       {rightItems.map((item, idx) => {
                         const [title, desc] = item.split(":");
                         return (
