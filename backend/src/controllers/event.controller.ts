@@ -263,7 +263,6 @@ export const getEventImages = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
         const cacheKey = `event_images_${id}`;
-
         // Check cache
         const cachedImages = getCache(cacheKey);
         if (cachedImages) {

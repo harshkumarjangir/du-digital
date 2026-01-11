@@ -19,7 +19,7 @@ const ContactUs = () => {
         <div className="w-full">
 
             {/* Hero */}
-            {/* <section
+            <section
                 className="h-[400px] bg-cover bg-center relative flex items-center justify-center"
                 style={{ backgroundImage: `url(${hero.backgroundImage})` }}
             >
@@ -27,7 +27,7 @@ const ContactUs = () => {
                 <h1 className="relative z-10 text-white text-4xl font-semibold">
                     {hero.title}
                 </h1>
-            </section> */}
+            </section>
 
             {/* Offices */}
             <Offices />
