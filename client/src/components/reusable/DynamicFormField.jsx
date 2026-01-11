@@ -90,9 +90,9 @@ const DynamicFormField = ({
                         className={baseInputClass}
                         required={field.required}
                     >
-                        <option value="">{field.placeholder || `Select ${field.label}`}</option>
+                        <option value="" className="text-gray-900">{field.placeholder || `Select ${field.label}`}</option>
                         {displayOptions?.map((opt, i) => (
-                            <option key={i} value={opt.value || opt.label || opt}>
+                            <option key={i} value={opt.value || opt.label || opt} className="text-gray-900">
                                 {opt.label || opt}
                             </option>
                         ))}
