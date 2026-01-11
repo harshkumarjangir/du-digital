@@ -13,13 +13,7 @@ import { getCache, setCache, deleteCacheByPattern, CACHE_KEYS, deleteCache } fro
 export const getFormBySlug = async (req: Request, res: Response) => {
     try {
         const { slug } = req.params;
-        const cacheKey = `form_${slug}`;
-
-        // Check cache
-        const cachedData = getCache(cacheKey);
-        if (cachedData) {
-            return res.status(200).json(cachedData);
-        }
+       
 
         const form = await Form.findOne({ slug });
 
@@ -61,9 +55,6 @@ export const getFormBySlug = async (req: Request, res: Response) => {
             formEmployeesAddresses
         };
 
-        // Set cache
-        setCache(cacheKey, responseData, 300);
-
         res.status(200).json(responseData);
     } catch (error) {
         res.status(500).json({ message: "Error fetching form data", error });
@@ -72,13 +63,7 @@ export const getFormBySlug = async (req: Request, res: Response) => {
 // Get all forms
 export const getForms = async (req: Request, res: Response) => {
     try {
-        const cacheKey = CACHE_KEYS.FORMS;
-
-        // Check cache
-        const cachedForms = getCache(cacheKey);
-        if (cachedForms) {
-            return res.status(200).json(cachedForms);
-        }
+       
 
         const forms = await Form.find().sort({ createdAt: -1 });
 
@@ -94,7 +79,6 @@ export const getForms = async (req: Request, res: Response) => {
         );
 
         // Set cache
-        setCache(cacheKey, formsWithFieldCount, 300);
 
         res.status(200).json(formsWithFieldCount);
     } catch (error) {
