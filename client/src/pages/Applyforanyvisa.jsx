@@ -180,7 +180,7 @@ const Applyforanyvisa = () => {
       {fields.length > 0 && (
         <section
           id="apply-form"
-          className="relative max-w-[800px] mx-auto pb-16 pt-4 my-5 rounded-2xl overflow-hidden bg-cover bg-center"
+          className="relative max-w-6xl mx-auto pb-16 pt-4 my-5 rounded-2xl overflow-hidden bg-cover bg-center"
           style={{
             backgroundImage: 'url(/Visa-banner-2.jpg)'
           }}
@@ -190,7 +190,7 @@ const Applyforanyvisa = () => {
 
           <div className="relative z-10 max-w-4xl mx-auto px-6">
             <div className="text-center mb-8">
-              <p className="text-sm font-semibold mb-2" style={{ color: '#E31E24' }}>VISA APPLICATION</p>
+              <p className="text-xl font-semibold mb-2" style={{ color: '#E31E24' }}>VISA APPLICATION</p>
               <h2 className="text-3xl md:text-4xl font-bold text-white">Apply for Any Visa</h2>
             </div>
 
@@ -225,14 +225,14 @@ const Applyforanyvisa = () => {
 
                     {/* Select fields - Country & State in one row, others full width */}
                     {selectFields.length > 0 && (
-                      <div className="grid md:grid-cols-2 gap-4">
+                      <div className="grid md:grid-cols-3 gap-4">
                         {selectFields.map((field, index) => (
                           <select
                             key={field._id || index}
                             name={field.name}
                             value={formValues[field.name] || ''}
                             onChange={handleInputChange}
-                            className="flex-1 w-full px-4 py-3 bg-white border-0 rounded text-gray-700 focus:ring-2 focus:ring-red-500 transition-all outline-none appearance-none cursor-pointer text-sm"
+                            className="flex-1 w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-red-500 transition-all outline-none appearance-none cursor-pointer text-sm"
                             required={field.required}
                             style={{
                               backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
@@ -272,7 +272,7 @@ const Applyforanyvisa = () => {
 
                     {/* Checkbox fields */}
                     {checkboxFields.map((field, index) => (
-                      <label key={field._id || `checkbox-${index}`} className="flex items-start gap-3 text-gray-600 cursor-pointer mb-4">
+                      <label key={field._id || `checkbox-${index}`} className="flex items-start gap-3 text-gray-600 cursor-pointer my-4">
                         <input
                           type="checkbox"
                           name={field.name}
@@ -350,11 +350,12 @@ const Applyforanyvisa = () => {
               return (
                 <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                   <div>
-                    <p className="text-sm font-semibold mb-2" style={{ color: '#E31E24' }}>Global Experts in</p>
-                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+                    <p className="text-xl md:text-2xl lg:text-4xl font-bold mb-2" style={{ color: '#333333' }}>Global Experts in</p>
+                    <div className="w-14 h-0.5 mr-2" style={{ backgroundColor: '#E31E24' }}></div>
+                    <h2 className="text-2xl md:text-2xl lg:text-3xl font-bold text-[#333333] my-6">
                       {item.title}
                     </h2>
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-[#333333] leading-relaxed">
                       {item.contentHtml}
                     </p>
                   </div>
@@ -382,7 +383,7 @@ const Applyforanyvisa = () => {
       {/* ===== WHY DU GLOBAL SECTION ===== */}
 
 
-      <WhyUsSection data={homeData.whyUsSection} />
+      <WhyUsSection data={homeData.whyUsSection} button={true} buttonLink="/about-us" buttonName="About Us" />
       {/* ===== OUR FOOTPRINTS SECTION ===== */}
       {footprintsSection.length > 0 && (
 
