@@ -453,7 +453,7 @@ const ContentSectionEditor = () => {
                             {imagePreviews.map((preview, idx) => (
                                 <div key={idx} style={{ position: 'relative' }}>
                                     <img 
-                                        src={preview.startsWith('blob:') ? preview : `${import.meta.env.VITE_API_BASE_URL.replace("/api", "")}${preview}`}
+                                        src={preview.startsWith('blob:') ? preview : `${import.meta.env.VITE_API_BASE_URL}${preview.replace('/api', '')}`}
                                         alt={`Preview ${idx + 1}`} 
                                         style={{ 
                                             width: '100%', 
