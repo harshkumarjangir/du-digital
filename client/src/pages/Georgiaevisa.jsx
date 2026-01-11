@@ -95,7 +95,7 @@ const Georgiaevisa = () => {
     return (
         <div className="bg-white font-sans">
             {/* ===== HERO SECTION (Split Layout) ===== */}
-            <section className="relative w-full min-h-[600px] lg:h-[700px] flex items-center bg-gray-900">
+            <section className="relative w-full min-h-[600px] lg:h-[700px] flex items-center bg-[#1D2A37]">
                 <img
                     src={image ? getImageUrl(image) : ''}
                     alt="Georgia eVisa"
@@ -104,7 +104,7 @@ const Georgiaevisa = () => {
                     decoding="async"
                     fetchPriority="high"
                 />
-                <div className="absolute inset-0 bg-black/50" />
+                <div className="absolute inset-0 bg-black/70" />
                 <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 grid lg:grid-cols-2 gap-12 items-center w-full py-20">
 
                     {/* Left - Title */}
@@ -116,7 +116,7 @@ const Georgiaevisa = () => {
 
                     {/* Right - Form (Only if fields exist) */}
                     {fields && fields.length > 0 && (
-                        <div className="bg-black/10 backdrop-blur-sm rounded-xl p-8 max-w-md w-full ml-auto">
+                        <div className="bg-black/50 backdrop-blur-sm rounded-xl p-8 max-w-md w-full ml-auto">
                             <h3 className="text-2xl font-bold text-white mb-6 text-center">Apply Now</h3>
 
                             {submitStatus && (
