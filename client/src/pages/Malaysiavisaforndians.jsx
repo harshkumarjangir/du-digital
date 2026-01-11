@@ -48,8 +48,24 @@ const Malaysiavisaforndians = () => {
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues(prev => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+
+    // For number input, prevent non-numeric characters
+    if (type === 'tel' || type === 'number') {
+      const isNumeric = /^\d*$/.test(value);
+      if (!isNumeric) return;
+    }
+
+    setFormValues(prev => {
+      const newValues = { ...prev, [name]: type === 'checkbox' ? checked : value };
+
+      // Reset state if country changes
+      if (name === 'country') {
+        newValues['state'] = '';
+      }
+
+      return newValues;
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -96,7 +112,7 @@ const Malaysiavisaforndians = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full sm:h-[600px] min-h-[600px] overflow-hidden">
+      <section className="relative w-full lg:h-[600px] min-h-[600px] overflow-hidden">
         <img
           src={formData?.image ? getImageUrl(formData.image) : ''}
           alt="Malaysia Visa"
@@ -114,23 +130,23 @@ const Malaysiavisaforndians = () => {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[600px] flex items-center">
-          <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
+        <div id="enquire-now" className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-20 flex items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center w-full place-items-center">
             {/* Left - Hero Text */}
             <div className="text-white">
-              <p className="text-xl mb-2">Apply For</p>
+              <p className="text-5xl md:text-6xl lg:text-7xl mb-2">Apply For</p>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-                <span style={{ color: '#E31E24' }}>Malaysia</span> Visa
+                <span style={{ color: '#E31E24' }}>Malaysia Visa</span>
               </h1>
-              <p className="text-gray-300 text-lg">
+              {/* <p className="text-gray-300 text-lg">
                 {description}
-              </p>
+              </p> */}
             </div>
 
             {/* Bottom - Contact Form with transparent black bg */}
             {fields.length > 0 && (
               <div
-                className="rounded-xl p-6"
+                className="rounded-xl p-6 max-w-md lg:ml-auto"
                 style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}
               >
                 <form className="flex flex-col w-full items-center gap-3" onSubmit={handleSubmit}>
@@ -139,6 +155,24 @@ const Malaysiavisaforndians = () => {
                     const fieldType = field.type || field.fieldType;
 
                     if (fieldType === 'select' || fieldType === 'dropdown') {
+                      let options = field.options || [];
+
+                      // If this is the state field, filter based on selected country
+                      if (field.name === 'state') {
+                        const selectedCountry = formValues['country']; // Assuming 'country' is the name of the country field
+                        if (!selectedCountry) {
+                          return null; // Don't show state if no country selected
+                        }
+
+                        options = options.filter(opt =>
+                          opt.connectId && opt.connectId.toLowerCase() === selectedCountry.toLowerCase()
+                        );
+
+                        if (options.length === 0) {
+                          return null; // Don't show state if no states for this country
+                        }
+                      }
+
                       return (
                         <select
                           key={field._id || index}
@@ -156,7 +190,7 @@ const Malaysiavisaforndians = () => {
                           }}
                         >
                           <option value="">{field.placeholder || field.label}</option>
-                          {field.options?.map((opt, optIdx) => (
+                          {options.map((opt, optIdx) => (
                             <option key={opt._id || optIdx} value={opt.value || opt}>
                               {opt.label || opt}
                             </option>
@@ -209,7 +243,7 @@ const Malaysiavisaforndians = () => {
                             onChange={handleInputChange}
                             className="mt-1 w-4 h-4 accent-red-600 rounded flex-shrink-0"
                           />
-                          <span className="text-xs leading-relaxed">{field.label}</span>
+                          <span className="text-xs leading-relaxed text-white">{field.label}</span>
                         </label>
                       );
                     } else {
@@ -253,11 +287,11 @@ const Malaysiavisaforndians = () => {
       {/* ===== EXPLORE MALAYSIA SECTION ===== */}
       {exploreSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             {exploreSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
                     {item.title}
                   </h2>
                   <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div>
@@ -265,7 +299,7 @@ const Malaysiavisaforndians = () => {
                   {/* Badge if exists */}
 
 
-                  <p className="text-gray-600 leading-relaxed text-lg whitespace-pre-line">
+                  <p className="text-[#333333] leading-relaxed text-lg whitespace-pre-line">
                     {item.contentHtml}
                   </p>
                 </div>
@@ -275,20 +309,22 @@ const Malaysiavisaforndians = () => {
                       src={getImageUrl(p)}
                       alt={item.title}
                       className="max-w-full h-auto rounded-xl shadow-lg"
-                      style={{ maxHeight: '400px' }}
+                    // style={{ maxHeight: '400px' }}
                     />)
                   ) : item.image && <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
                     className="max-w-full h-auto rounded-xl shadow-lg"
-                    style={{ maxHeight: '400px' }}
+                    style={{ maxHeight: '500px' }}
                   />}
                   {item.badge?.text && (
                     <div
-                      className="inline-flex absolute -top-5 right-10 items-center px-4 py-2 rounded-full text-white text-sm font-semibold mb-4"
+                      className="inline-flex flex-col absolute -top-5 right-0 items-center px-4 py-2 rounded-full text-white text-sm font-semibold mb-4"
                       style={{ backgroundColor: item.badge.background || '#E31E24' }}
                     >
-                      {item.badge.text}
+                      {/* {item.badge.text} */}
+                      <span>{item.badge.text.split("+")[0]}+</span>
+                      <span>{item.badge.text.split("+")[1]}</span>
                     </div>
                   )}
                 </div>
@@ -301,7 +337,7 @@ const Malaysiavisaforndians = () => {
       {/* ===== TYPES OF VISA SECTION ===== */}
       {visaTypesSection.length > 0 && (
         <section className="py-20 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
                 TYPES OF VISA
@@ -310,7 +346,7 @@ const Malaysiavisaforndians = () => {
             </div>
 
             {/* Horizontal Tab buttons */}
-            <div className="flex justify-center border-b border-gray-200 mb-0">
+            {/* <div className="flex justify-center border-b border-gray-200 mb-0">
               {visaTypesSection.map((item, index) => (
                 <button
                   key={item._id || index}
@@ -323,22 +359,76 @@ const Malaysiavisaforndians = () => {
                   {item.title}
                 </button>
               ))}
-            </div>
+            </div> */}
 
             {/* Tab content - Light gray bordered box */}
-            <div className="bg-white border border-gray-200 p-8">
+            {/* <div className="bg-white border border-gray-200 p-8">
               <p className="text-gray-600 leading-relaxed whitespace-pre-line">
                 {visaTypesSection[activeVisaTab]?.contentHtml}
               </p>
+            </div> */}
+
+            {/* OUTER WRAPPER */}
+            <div className="bg-gray-50 border border-gray-300 rounded-lg p-4">
+
+              {/* INNER BOX (TOP BORDER LIVES HERE) */}
+              <div className="relative bg-white border border-gray-300 rounded-md">
+
+                {/* TABS ROW */}
+                <div className="relative flex bg-gray-100 border-b border-gray-300">
+
+                  {visaTypesSection.map((item, index) => {
+                    const isActive = activeVisaTab === index;
+
+                    return (
+                      <button
+                        key={item._id || index}
+                        onClick={() => setActiveVisaTab(index)}
+                        className={`
+              relative px-4 py-4 text-lg font-bold transition-all
+              border-r border-gray-300 last:border-r-0
+              ${isActive
+                            ? 'bg-white text-[#333333] z-10 -mb-px'
+                            : 'text-[#333333] hover:text-gray-800'
+                          }
+            `}
+                      >
+                        {item.title}
+
+                        {/* ACTIVE TAB BORDER COVER */}
+                        {isActive && (
+                          <span className="absolute top-0 left-0 right-0 h-[1px] bg-white"></span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* CONTENT */}
+                <div className="p-4">
+                  <div className="border-none rounded p-0">
+                    <p className="text-[#333333] leading-relaxed whitespace-pre-line">
+                      {visaTypesSection[activeVisaTab]?.contentHtml}
+                    </p>
+                  </div>
+                </div>
+
+              </div>
             </div>
 
+
+
+
+
             {/* Apply Now button centered below */}
+            {/* Want this to go to hero form on click */}
             <div className="mt-8 text-center">
-              <button
+              <a
+                href="#enquire-now"
                 className="px-12 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] uppercase tracking-wide"
               >
                 Apply Now
-              </button>
+              </a>
             </div>
           </div>
         </section>
@@ -349,32 +439,32 @@ const Malaysiavisaforndians = () => {
         <section className="py-20 bg-white">
           <div className="max-w-4xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-                Documents Required
+              <h2 className="text-3xl md:text-4xl font-semibold text-black mb-3">
+                DOCUMENTS REQUIRED FOR Malaysia VISA
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
 
             <div className="space-y-8">
               {documents.map((doc, index) => (
-                <div key={doc._id || index} className="bg-gray-50 rounded-2xl p-8">
+                <div key={doc._id || index} className="">
                   {/* Document category header */}
-                  <div className="flex items-start gap-4 mb-6">
+                  <div className="flex items-start gap-4 mb-3">
                     <div
-                      className="w-6 h-6 rounded flex items-center justify-center shrink-0 mt-0.5"
-                      style={{ backgroundColor: '#E31E24' }}
+                      className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5"
+                      style={{ backgroundColor: '#000000' }}
                     >
-                      <Check className="w-4 h-4 text-white" strokeWidth={3} />
+                      <Check className="w-3 h-3 text-white" strokeWidth={3} />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900">{doc.title}</h3>
+                    <h3 className="text-lg font-normal text-black">{doc.title}</h3>
                   </div>
 
                   {/* Document items list */}
-                  <ul className="space-y-3 ml-10">
+                  <ul className="space-y-1 ml-10">
                     {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
                       <li key={idx} className="flex items-start gap-3">
-                        <div className="w-2 h-2 rounded-full bg-gray-400 shrink-0 mt-2"></div>
-                        <span className="text-gray-600">{item.trim()}</span>
+                        <div className="w-4 h-4 rounded-full border-[5px] border-black shrink-0 mt-2"></div>
+                        <span className="text-black">{item.trim()}</span>
                       </li>
                     ))}
                   </ul>
