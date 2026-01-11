@@ -568,13 +568,13 @@ const Australiatouristvisa = () => {
               {whyChooseSection.map((item, index) => (
                 <div
                   key={item._id || index}
-                  className="relative rounded-2xl overflow-hidden min-h-[280px] flex flex-col justify-center group cursor-pointer"
+                  className="relative rounded-2xl overflow-hidden h-[220px] flex flex-col justify-center group cursor-pointer"
                 >
                   {/* Background Image */}
                   {item?.images?.[0] ? (
                     <div
                       className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                      style={{ backgroundImage: `url(${getImageUrl(item.images[0])})` }}
+                      style={{ backgroundImage: `url(${getImageUrl(item.images[0])})`, backgroundSize: 'cover', backgroundPosition: 'bottom' }}
                     />
                   ) : item?.image ? (
                     <img
@@ -585,7 +585,7 @@ const Australiatouristvisa = () => {
                   ) : null}
 
                   {/* Default Dark Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20 transition-opacity duration-500 group-hover:opacity-0" />
+                  <div className="absolute inset-0 bg-[#0a0909c3] transition-opacity duration-500 group-hover:opacity-0" />
 
                   {/* Red Hover Overlay */}
                   <div className="absolute inset-0 bg-red-600/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
