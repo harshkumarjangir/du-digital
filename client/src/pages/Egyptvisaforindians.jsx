@@ -362,7 +362,38 @@ const Egyptvisaforindians = () => {
                     {item.contentHtml}
                   </p>
                 </div>
-                {item?.images?.[0] ? (
+                <div className="flex justify-center relative">
+                  {item?.images.length > 0 ? (
+                    item?.images.map((image, index) => (
+                      <img
+                        key={index}
+                        src={getImageUrl(image)}
+                        alt={item.title}
+                        className="max-w-full h-auto rounded-2xl shadow-xl"
+                      // style={{ maxHeight: '450px' }}
+                      />
+                    ))
+                  ) : (
+                    <img
+                      src={getImageUrl(item.image)}
+                      alt={item.title}
+                      className="max-w-full h-auto rounded-2xl shadow-xl"
+                      style={{ maxHeight: '450px' }}
+                    />
+                  )}
+                  {
+                    item?.badge && (
+                      <div className="flex flex-col items-center text-white gap-0 absolute -top-10 -right-10 rounded-lg p-4 flex" style={{
+                        backgroundColor: `${item.badge.background || "#E31E24"}`
+                      }}>
+                        <span>{item.badge.text.split("+")[0]}+</span>
+                        <div>{item.badge.text.split("+")[1]}</div>
+                        {/* <span className="font-semibold">{item.badge.text}</span> */}
+                      </div>
+                    )
+                  }
+                </div>
+                {/* {item?.images?.[0] ? (
                   <div className="relative">
                     <img
                       src={getImageUrl(item.images[0])}
@@ -394,7 +425,7 @@ const Egyptvisaforindians = () => {
                       </div>
                     )}
                   </div>
-                )}
+                )} */}
               </div>
             ))}
           </div>
@@ -577,15 +608,15 @@ const Egyptvisaforindians = () => {
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid place-items-center md:grid-cols-2 lg:grid-cols-3 gap-6">
               {visaOverviewSection.map((visa, index) => {
                 const details = parseVisaDetails(visa.contentHtml);
                 return (
                   <div key={visa._id || index} className="bg-white rounded-xl shadow-lg overflow-hidden">
-                    <div className="py-4 px-6 text-center" style={{ backgroundColor: '#E31E24' }}>
-                      <h3 className="text-white text-lg font-bold">{visa.title}</h3>
+                    <div className="py-4 px-6 text-center" >
+                      <h3 className=" text-lg font-bold">{visa.title}</h3>
                     </div>
-                    <div className="p-6">
+                    <div className="px-6">
                       <p className="text-sm text-gray-500 mb-4">
                         Processing: <span className="font-semibold text-gray-800">{details.processingTime || '7-9 working days'}</span>
                       </p>

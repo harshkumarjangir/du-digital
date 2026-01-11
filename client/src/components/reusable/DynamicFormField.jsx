@@ -77,11 +77,7 @@ const DynamicFormField = ({
         case 'dropdown':
             return (
                 <div>
-                    {field.label && (
-                        <label htmlFor={field.name} className={`${labelClass} block mb-2`}>
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
-                        </label>
-                    )}
+                  
                     <select
                         id={field.name}
                         name={field.name}
