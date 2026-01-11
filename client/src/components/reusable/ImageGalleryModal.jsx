@@ -143,7 +143,7 @@ const ImageGalleryModal = ({
             </div>
 
             {/* SLIDER */}
-            <div className="w-full max-w-6xl px-6">
+            <div className="w-full h-full flex items-center justify-center px-4 md:px-10 py-12">
                 <Swiper
                     modules={[Navigation, Pagination]}
                     navigation
@@ -154,15 +154,16 @@ const ImageGalleryModal = ({
                         setCurrent(swiper.realIndex);
                         setZoom(1);
                     }}
+                    className="w-full h-full flex items-center"
                 >
                     {normalizedImages.map((img, i) => (
-                        <SwiperSlide key={i}>
-                            <div className="flex flex-col items-center gap-3">
+                        <SwiperSlide key={i} className="flex items-center justify-center">
+                            <div className="w-full h-full flex flex-col items-center justify-center gap-4">
                                 <img
                                     src={baseUrl + img.src}
                                     alt={img.alt}
                                     style={{ transform: `scale(${zoom})` }}
-                                    className="max-h-[80vh] transition-transform duration-300 rounded-lg object-contain"
+                                    className="max-h-[85vh] max-w-full w-auto object-contain transition-transform duration-300 rounded"
                                 />
 
                                 {/* Image Name */}
