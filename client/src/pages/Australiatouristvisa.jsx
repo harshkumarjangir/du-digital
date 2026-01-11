@@ -113,7 +113,7 @@ const Australiatouristvisa = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full sm:h-[600px] min-h-[600px] overflow-hidden">
+      <section className="relative w-full lg:h-[600px] min-h-[600px] overflow-hidden">
         <img
           src={formData?.image ? getImageUrl(formData.image) : ''}
           alt="Hero Background"
@@ -122,34 +122,36 @@ const Australiatouristvisa = () => {
           decoding="async"
           fetchPriority="high"
         />
+        <div className="absolute inset-0 bg-black/10" />
+
         {/* Dark overlay with red gradient on right */}
         <div
-          className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 60%, rgba(179,29,29,0.6) 100%)'
-          }}
+          className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.85)_0%,rgba(255,255,255,0.65)_40%,rgba(227,30,36,0.55)_100%)]"
+        // style={{
+        //   background: 'linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 60%, rgba(179,29,29,0.6) 100%)'
+        // }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[800px] flex items-center">
-          <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-20 flex items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center w-ful place-items-center">
             {/* Left - Hero Text */}
             <div className="text-white">
-              <p className="text-xl mb-2">Apply for</p>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                <span style={{ color: '#E31E24' }}>Australia</span> Tourist Visa
+              {/* <p className="text-xl mb-2">Apply for</p> */}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight mb-6">
+                Apply for <span style={{ color: '#E31E24' }}>Australia Tourist Visa</span>
               </h1>
-              <p className="text-gray-300 text-lg">
+              {/* <p className="text-gray-300 text-lg">
                 {description}
-              </p>
+              </p> */}
             </div>
 
             {/* Right - Contact Form with dark transparent bg */}
             {fields.length > 0 && (
               <div
-                className="rounded-xl p-6"
+                className="rounded-xl p-3 max-w-md"
                 style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}
               >
-                <form className="space-y-3" onSubmit={handleSubmit}>
+                <form className="space-y-3 border border-white p-3 rounded-xl" onSubmit={handleSubmit}>
                   {/* Dynamically render all fields */}
                   {(() => {
                     // Separate fields by type
@@ -170,7 +172,7 @@ const Australiatouristvisa = () => {
                       <>
                         {/* Text/Email/Number fields in 2-column pairs */}
                         {textFieldPairs.map((pair, pairIndex) => (
-                          <div key={pairIndex} className={`grid gap-3 ${pair.length === 2 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                          <div key={pairIndex} className={`grid gap-3 ${pair.length === 2 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'}`}>
                             {pair.map((field, index) => (
                               <input
                                 key={field._id || `text-${pairIndex}-${index}`}
@@ -189,7 +191,7 @@ const Australiatouristvisa = () => {
 
                         {/* Select/Dropdown fields */}
                         {selectFields.length > 0 && (
-                          <div className={`grid gap-3 ${selectFields.length >= 2 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                          <div className={`grid gap-3 ${selectFields.length >= 2 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'}`}>
                             {selectFields.map((field, index) => (
                               <select
                                 key={field._id || `select-${index}`}
@@ -317,143 +319,146 @@ const Australiatouristvisa = () => {
       </section>
 
       {/* ===== VISA TYPES, PROCESSING TIME, AND FEES ===== */}
-      <section className="py-20" >
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+      <section className="py-20">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-[#333333] mb-10">
           Types of Australia Tourist Visas,<br />Processing Time, and Fees
         </h2>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid  lg:grid-cols-2 gap-x-5 rounded-2xl items-center" style={{ backgroundColor: '#B31D1D' }}>
-            {/* Left - Image */}
-            <div className="flex justify-center h-full">
+        <div className="bg-[#C62828] w-16 h-[3px] mx-auto mb-8 rounded-full"></div>
+
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="grid lg:grid-cols-[40%_60%] rounded-3xl overflow-hidden bg-[#C62828]">
+
+            {/* LEFT IMAGE */}
+            <div className="h-full">
               <img
                 src="/imageinau.jpg"
                 alt="Australia Visa Application"
-                className="rounded-2xl shadow-2xl h-full"
+                className="w-full h-full object-cover"
               />
             </div>
 
-            {/* Right - Visa Details Cards */}
-            <div >
+            {/* RIGHT CONTENT */}
+            <div className="p-4 md:p-6 text-white">
 
+              {/* Title */}
+              <h3 className="text-2xl font-bold text-center mb-8">
+                Tourist Visa
+              </h3>
 
-              <div className="grid grid-cols-2 gap-4 m-2">
-                {/* Processing Time Card */}
-                <div className="border-2 border-white/30 rounded-xl p-5 bg-white/10 backdrop-blur-sm">
-                  <div className="flex items-center gap-3 mb-3">
-                    <Clock className="w-8 h-8 text-white" />
-                    <span className="text-white/80 text-sm">Processing Time</span>
-                  </div>
-                  <p className="text-white font-bold text-lg">
+              {/* Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+                {/* Processing Time */}
+                <div className="border border-white rounded-2xl p-6 flex flex-col items-center">
+                  <Clock className="w-10 h-10 mb-4" />
+                  <h4 className="font-semibold mb-1">Processing Time</h4>
+                  <p className="font-normal text-base">
                     {visaTypesData.processingTime || STATIC_VISA_TYPES.processingTime}
                   </p>
                 </div>
 
-                {/* Validity Card */}
-                <div className="border-2 border-white/30 rounded-xl p-5 bg-white/10 backdrop-blur-sm">
-                  <div className="flex items-center gap-3 mb-3">
-                    <Calendar className="w-8 h-8 text-white" />
-                    <span className="text-white/80 text-sm">Validity</span>
-                  </div>
-                  <p className="text-white font-bold text-lg">
+                {/* Validity */}
+                <div className="border border-white rounded-2xl p-6 flex flex-col items-center">
+                  <Calendar className="w-10 h-10 mb-4" />
+                  <h4 className="font-semibold mb-1">Validity</h4>
+                  <p className="font-normal text-base">
                     {visaTypesData.validity || STATIC_VISA_TYPES.validity}
                   </p>
                 </div>
 
-                {/* Entry Type Card */}
-                <div className="border-2 border-white/30 rounded-xl p-5 bg-white/10 backdrop-blur-sm">
-                  <div className="flex items-center gap-3 mb-3">
-                    <Globe className="w-8 h-8 text-white" />
-                    <span className="text-white/80 text-sm">Entry Type</span>
-                  </div>
-                  <p className="text-white font-bold text-lg">
+                {/* Entry Type */}
+                <div className="border border-white rounded-2xl p-6  flex flex-col items-center">
+                  <Globe className="w-10 h-10 mb-4" />
+                  <h4 className="font-semibold mb-1">Entry Type</h4>
+                  <p className="font-normal text-base">
                     {visaTypesData.entryType || STATIC_VISA_TYPES.entryType}
                   </p>
                 </div>
 
-                {/* Charges Card */}
-                <div className="border-2 border-white/30 rounded-xl p-5 bg-white/10 backdrop-blur-sm">
-                  <div className="flex items-center gap-3 mb-3">
-                    <CreditCard className="w-8 h-8 text-white" />
-                    <span className="text-white/80 text-sm">Charges</span>
-                  </div>
-                  <p className="text-white font-bold text-lg">
+                {/* Charges */}
+                <div className="border border-white rounded-2xl p-6 flex flex-col items-center">
+                  <CreditCard className="w-10 h-10 mb-4" />
+                  <h4 className="font-semibold mb-1">Charges</h4>
+                  <p className="font-normal text-base">
                     {visaTypesData.charges || STATIC_VISA_TYPES.charges}
                   </p>
                 </div>
               </div>
 
-              <p className="text-white/70 text-sm mt-6 italic">
-                *Entry type and validity are determined solely by the embassy.
+              {/* Note */}
+              <p className="text-white font-normal text-base mt-8 italic text-center">
+                <span className="font-bold">Note:</span> The type of entry (single or multiple) and visa validity are determined solely by the embassy and are not guaranteed.
               </p>
             </div>
           </div>
         </div>
       </section>
 
+
+
+
       {/* ===== DOCUMENTS REQUIRED SECTION ===== */}
       {documents.length > 0 && (
-        <section className="py-20 bg-gray-50">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-                Documents Required for Australia Tourist Visa
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+
+            {/* Heading */}
+            <div className="text-center mb-14">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#333333] mb-4">
+                Documents required for Australia Tourist Visa
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <div className="w-20 h-[3px] bg-[#E31E24] mx-auto"></div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              {documents.map((doc, docIndex) => {
-                const items = doc.description?.split('\n').filter(line => line.trim()) || [];
-                // Split items into chunks of 3-4 for card display
-                const chunkSize = Math.ceil(items.length / 4);
-                const chunks = [];
-                for (let i = 0; i < items.length; i += chunkSize) {
-                  chunks.push(items.slice(i, i + chunkSize));
-                }
+            {/* Content */}
+            <div className="grid md:grid-cols-2 gap-x-20 gap-y-6 max-w-6xl mx-auto">
 
-                return chunks.map((chunk, chunkIndex) => (
-                  <div key={`${docIndex}-${chunkIndex}`} className="relative bg-white rounded-xl p-6 shadow-md border border-gray-100 overflow-hidden">
-                    {/* Number */}
-                    <span className="text-5xl font-bold mb-4 block" style={{ color: '#E31E24' }}>
-                      {String(chunkIndex + 1).padStart(2, '0')}
-                    </span>
+              {documents.map((doc) =>
+                doc.description
+                  ?.split("\n")
+                  .filter(item => item.trim())
+                  .map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
 
-                    {/* Items */}
-                    <ul className="space-y-2">
-                      {chunk.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <span className="text-gray-400 mt-1">•</span>
-                          <span className="text-gray-600 text-sm">{item.trim()}</span>
-                        </li>
-                      ))}
-                    </ul>
+                      {/* Check Icon */}
+                      <span className="flex-shrink-0 w-7 h-7 rounded-full bg-[#E31E24] flex items-center justify-center mt-1">
+                        <svg
+                          className="w-4 h-4 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="3"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </span>
 
-                    {/* Decorative accent */}
-                    <div
-                      className="absolute bottom-0 right-0 w-16 h-16"
-                      style={{
-                        background: 'linear-gradient(135deg, transparent 50%, rgba(227,30,36,0.1) 50%)'
-                      }}
-                    />
-                  </div>
-                ));
-              })}
+                      {/* Text */}
+                      <p className="text-base font-medium text-[#333333] leading-relaxed">
+                        {item.trim()}
+                      </p>
+                    </div>
+                  ))
+              )}
+
             </div>
           </div>
         </section>
       )}
 
+
       {/* ===== ADDITIONAL DOCUMENTS SECTION ===== */}
       {additionalDocsSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-                Additional Documents for Your Australia Tourist Visa
+              <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-[#333333] mb-2">
+                Additional Documents for Your Australia Tourist Visa (As Applicable)
               </h2>
-              <p className="text-gray-500 mb-3">(As Applicable)</p>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              {/* <p className="text-[#333333] mb-3">(As Applicable)</p> */}
+              {/* <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div> */}
             </div>
+            <p className="text-[#333333] mb-3 text-center text-base md:px-12">To ensure a smooth application process for your <span className="font-bold">Australia Tourist Visa</span>, you may need to provide additional documents based on your specific circumstances. Here’s a quick guide:</p>
 
             {/* 2-column grid of numbered cards */}
             <div className="grid md:grid-cols-2 gap-6">
@@ -490,19 +495,36 @@ const Australiatouristvisa = () => {
                 </div>
               ))}
             </div>
+            <div className="max-w-6xl mx-auto mt-16 px-6">
+              <h3 className="text-xl font-semibold italic text-gray-900 mb-4">
+                Important Notes
+              </h3>
+
+              <ol className="list-decimal pl-6 space-y-3 text-gray-700 text-base leading-relaxed">
+                <li>
+                  Additional documents may be requested by the embassy depending on individual circumstances.
+                </li>
+                <li>
+                  Ensure that all financial documents, such as bank statements, are recent and meet the Embassy’s
+                  requirements for authenticity (e.g., sealed and stamped).
+                </li>
+              </ol>
+            </div>
+
           </div>
         </section>
       )}
 
       {/* ===== HOW TO APPLY SECTION ===== */}
       {howToApplySection.length > 0 && (
-        <section className="py-20" style={{ backgroundColor: '#2B2B2B' }}>
+        <section className="py-20" style={{ backgroundColor: '#383838' }}>
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
                 How to Apply for Australia Tourist Visa
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <p className="text-white mt-2">A Simple 3-Step Process to Get Your Australia Tourist Visa</p>
+              {/* <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div> */}
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
@@ -511,18 +533,18 @@ const Australiatouristvisa = () => {
                 return (
                   <div key={item._id || index} className="relative bg-white rounded-xl p-6 text-center">
                     {/* Faded number in background */}
-                    <div className="absolute top-4 right-4 text-6xl font-bold text-gray-100">
+                    <div className="absolute top-4 right-4 text-6xl font-bold text-[#EAB1B0]">
                       {String(index + 1).padStart(2, '0')}
                     </div>
 
                     <div
-                      className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+                      className="w-16 h-16 rounded-full flex items-center justify-center mr-auto mb-4"
                       style={{ backgroundColor: '#E31E24' }}
                     >
                       <IconComponent className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
-                    <p className="text-gray-600 text-sm">{item.contentHtml?.trim()}</p>
+                    <h3 className="text-xl font-semibold text-[#333333] mb-2 text-left">{item.title}</h3>
+                    <p className="text-[#333333]  text-left text-base">{item.contentHtml?.trim()}</p>
                   </div>
                 );
               })}
@@ -534,43 +556,51 @@ const Australiatouristvisa = () => {
       {/* ===== WHY CHOOSE DU GLOBAL SECTION ===== */}
       {whyChooseSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6 md:px-12">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333333] mb-3">
                 Why Choose DU Global for Australia Visa
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              {/* <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div> */}
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
               {whyChooseSection.map((item, index) => (
                 <div
                   key={item._id || index}
-                  className="relative rounded-xl overflow-hidden min-h-[280px] flex flex-col justify-end group"
+                  className="relative rounded-2xl overflow-hidden min-h-[280px] flex flex-col justify-center group cursor-pointer"
                 >
                   {/* Background Image */}
                   {item?.images?.[0] ? (
                     <div
-                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                       style={{ backgroundImage: `url(${getImageUrl(item.images[0])})` }}
                     />
                   ) : item?.image ? (
                     <img
                       src={getImageUrl(item.image)}
                       alt={item.title}
-                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                   ) : null}
 
-                  {/* Dark Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
+                  {/* Default Dark Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20 transition-opacity duration-500 group-hover:opacity-0" />
+
+                  {/* Red Hover Overlay */}
+                  <div className="absolute inset-0 bg-red-600/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                   {/* Content */}
                   <div className="relative z-10 p-6">
-                    <h3 className="text-xl font-semibold text-white mb-2">{item.title?.trim()}</h3>
-                    <p className="text-white/90 text-sm leading-relaxed">{item.contentHtml?.trim()}</p>
+                    <h3 className="text-2xl lg:text-3xl font-semibold text-white mb-2">
+                      {item.title?.trim()}
+                    </h3>
+                    <p className="text-white text-sm lg:text-base leading-relaxed">
+                      {item.contentHtml?.trim()}
+                    </p>
                   </div>
                 </div>
+
               ))}
             </div>
           </div>
