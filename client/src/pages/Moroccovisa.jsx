@@ -48,8 +48,24 @@ const Moroccovisa = () => {
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues(prev => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+
+    // For number input, prevent non-numeric characters
+    if (type === 'tel' || type === 'number') {
+      const isNumeric = /^\d*$/.test(value);
+      if (!isNumeric) return;
+    }
+
+    setFormValues(prev => {
+      const newValues = { ...prev, [name]: type === 'checkbox' ? checked : value };
+
+      // Reset state if country changes
+      if (name === 'country') {
+        newValues['state'] = '';
+      }
+
+      return newValues;
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -106,7 +122,7 @@ const Moroccovisa = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full sm:h-[600px] min-h-[600px] overflow-hidden">
+      <section className="relative w-full lg:h-[600px] min-h-[600px] overflow-hidden">
         <img
           src={formData?.image ? getImageUrl(formData.image) : ''}
           alt="Morocco Visa"
@@ -123,17 +139,17 @@ const Moroccovisa = () => {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[800px] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-20 flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
-              <p className="text-xl mb-2">Apply For</p>
+              <p className="text-5xl md:text-6xl lg:text-7xl font-bold mb-2">Apply For</p>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
                 <span style={{ color: '#E31E24' }}>Morocco</span> Visa
               </h1>
-              <p className="text-gray-300 text-lg">
+              {/* <p className="text-gray-300 text-lg">
                 {description}
-              </p>
+              </p> */}
             </div>
 
             {/* Right - Contact Form with dark transparent bg */}
@@ -143,10 +159,28 @@ const Moroccovisa = () => {
                 style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}
               >
                 <form className="flex flex-col w-full items-center gap-3" onSubmit={handleSubmit}>
-                  {fields.map((field, index) => {
+                  {[...fields].sort((a, b) => (a.order || 0) - (b.order || 0)).map((field, index) => {
                     const fieldType = field.type || field.fieldType;
 
                     if (fieldType === 'select' || fieldType === 'dropdown') {
+                      let options = field.options || [];
+
+                      // If this is the state field, filter based on selected country
+                      if (field.name === 'state') {
+                        const selectedCountry = formValues['country']; // Assuming 'country' is the name of the country field
+                        if (!selectedCountry) {
+                          return null; // Don't show state if no country selected
+                        }
+
+                        options = options.filter(opt =>
+                          opt.connectId && opt.connectId.toLowerCase() === selectedCountry.toLowerCase()
+                        );
+
+                        if (options.length === 0) {
+                          return null; // Don't show state if no states for this country
+                        }
+                      }
+
                       return (
                         <select
                           key={field._id || index}
@@ -164,7 +198,7 @@ const Moroccovisa = () => {
                           }}
                         >
                           <option value="">{field.placeholder || field.label}</option>
-                          {field.options?.map((opt, optIdx) => (
+                          {options.map((opt, optIdx) => (
                             <option key={opt._id || optIdx} value={opt.value || opt}>
                               {opt.label || opt}
                             </option>
@@ -217,8 +251,21 @@ const Moroccovisa = () => {
                             onChange={handleInputChange}
                             className="mt-1 w-4 h-4 accent-red-600 rounded flex-shrink-0"
                           />
-                          <span className="text-xs leading-relaxed">{field.label}</span>
+                          <span className="text-xs leading-relaxed text-white">{field.label}</span>
                         </label>
+                      );
+                    } else if (fieldType === 'number' || field.name === 'phone') {
+                      return (
+                        <input
+                          key={field._id || index}
+                          type="tel"
+                          name={field.name}
+                          value={formValues[field.name] || ''}
+                          onChange={handleInputChange}
+                          placeholder={field.placeholder || field.label}
+                          className="w-full px-4 py-3 bg-white border-0 rounded text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none text-sm"
+                          required={field.required}
+                        />
                       );
                     } else {
                       return (
@@ -261,16 +308,16 @@ const Moroccovisa = () => {
       {/* ===== MOROCCO VISA FOR INDIANS SECTION ===== */}
       {introSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             {introSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2 uppercase">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 mb-2 uppercase">
                     {item.title}
                   </h2>
                   <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div>
 
-                  <p className="text-gray-600 leading-relaxed text-lg whitespace-pre-line">
+                  <p className="text-[#333333] leading-relaxed text-lg whitespace-pre-line">
                     {item.contentHtml}
                   </p>
                 </div>
@@ -281,10 +328,12 @@ const Moroccovisa = () => {
 
                   {item.badge?.text && (
                     <div
-                      className="absolute -top-4 right-4 z-10 px-5 py-2 rounded-full text-white text-lg font-bold shadow-lg"
+                      className="absolute -top-4 right-4 z-10 px-5 py-2 flex flex-col items-center rounded-full text-white text-lg font-bold shadow-lg"
                       style={{ backgroundColor: item.badge.background || '#E31E24' }}
                     >
-                      {item.badge.text}
+                      {/* {item.badge.text} */}
+                      <span>{item.badge.text.split("+")[0]} +</span>
+                      <span>{item.badge.text.split("+")[1]} </span>
                     </div>
                   )}
                   {item?.images?.length > 0 ? (
@@ -292,13 +341,13 @@ const Moroccovisa = () => {
                       src={getImageUrl(p)}
                       alt={item.title}
                       className="max-w-full h-auto rounded-xl shadow-lg"
-                      style={{ maxHeight: '400px' }}
+                      style={{ maxHeight: '500px' }}
                     />)
                   ) : item.image && <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
                     className="max-w-full h-auto rounded-xl shadow-lg"
-                    style={{ maxHeight: '400px' }}
+                    style={{ maxHeight: '500px' }}
                   />}
 
                 </div>
@@ -311,15 +360,15 @@ const Moroccovisa = () => {
       {/* ===== VISA TYPES, FEES AND PROCESSING TIME ===== */}
       {visaTypesSection.length > 0 && (
         <section className="py-20 bg-gray-100">
-          <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
             <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+              <h2 className="text-2xl md:text-3xl lg:text-5xl font-semibold text-gray-900 mb-3">
                 Morocco Visa Types, Fees, and Processing Time for Indian Citizens
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {visaTypesSection.map((item, index) => {
                 // Parse the content - labels and values are on alternating lines
                 const lines = item.contentHtml?.split('\r\n').filter(line => line.trim()) || [];
@@ -338,13 +387,13 @@ const Moroccovisa = () => {
 
                 return (
                   <div key={item._id || index} className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">{item.title}</h3>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{item.title}</h3>
                     <div className="space-y-3">
                       {pairs.map((pair, idx) => {
                         const isFee = pair.label.toLowerCase().includes('fee');
                         return (
                           <div key={idx} className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
-                            <span className="text-gray-600">{pair.label}:</span>
+                            <span className="text-black">{pair.label}:</span>
                             <span className={`font-semibold ${isFee ? 'text-xl' : ''}`} style={isFee ? { color: '#E31E24' } : {}}>
                               {pair.value}
                             </span>
@@ -361,7 +410,7 @@ const Moroccovisa = () => {
       )}
 
       {/* ===== WHY DU GLOBAL SECTION ===== */}
-      <WhyUsSection data={homeData.whyUsSection} />
+      <WhyUsSection data={homeData.whyUsSection} button={true} buttonLink={"/about-us"} buttonName="About Us" />
 
 
       {/* ===== DOCUMENTS REQUIRED SECTION ===== */}
@@ -369,8 +418,8 @@ const Moroccovisa = () => {
         <section className="py-20 bg-white">
           <div className="max-w-4xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-                Morocco Visa Requirements
+              <h2 className="text-3xl md:text-4xl font-bold text-black mb-3">
+                Morocco Visa Requirements for Indians
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
             </div>
@@ -379,7 +428,7 @@ const Moroccovisa = () => {
               {documents.map((doc, index) => (
                 <div key={doc._id || index}>
                   {/* Document category header */}
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">{doc.title}</h3>
+                  <h3 className="text-xl font-bold text-[#333333] mb-4">{doc.title}</h3>
 
                   {/* Document items list */}
                   <ul className="space-y-3">
@@ -391,7 +440,7 @@ const Moroccovisa = () => {
                         >
                           <Check className="w-4 h-4 text-white" strokeWidth={3} />
                         </div>
-                        <span className="text-gray-600">{item.trim()}</span>
+                        <span className="text-[#333333]">{item.trim()}</span>
                       </li>
                     ))}
                   </ul>
