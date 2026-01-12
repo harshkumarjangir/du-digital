@@ -6,7 +6,7 @@ const TermsAndConditions = () => {
         <>
             {/* HERO */}
             <section
-                className="h-[380px] flex items-center justify-center bg-cover bg-center relative"
+                className="h-[600px] flex items-center justify-center bg-cover bg-center relative"
                 style={{ backgroundImage: `url(${hero.backgroundImage})` }}
             >
                 <div className="absolute inset-0 bg-black/50" />
