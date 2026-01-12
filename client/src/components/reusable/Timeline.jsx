@@ -8,7 +8,19 @@ const TimelineSlider = ({ data = [] }) => {
     const [topSwiper, setTopSwiper] = useState(null);
     const [contentSwiper, setContentSwiper] = useState(null);
 
-    const shouldLoop = useMemo(() => data.length > 5, [data.length]);
+    // Generate processed data for looping
+    const processedData = useMemo(() => {
+        if (!data.length) return [];
+        // If we have fewer than 10 items (safe margin for slidesPerView=5 loop),
+        // we duplicate the array until we have enough.
+        let result = [...data];
+        while (result.length < 12) {
+            result = [...result, ...data];
+        }
+        return result;
+    }, [data]);
+
+    const shouldLoop = useMemo(() => processedData.length > 5, [processedData.length]);
 
     // Sync content swiper when top swiper changes
     useEffect(() => {
@@ -33,7 +45,7 @@ const TimelineSlider = ({ data = [] }) => {
                         modules={[Navigation, Autoplay]}
                         onSwiper={setTopSwiper}
                         navigation
-                        
+
                         autoplay={{
                             delay: 4000,
                             disableOnInteraction: false,
@@ -44,8 +56,8 @@ const TimelineSlider = ({ data = [] }) => {
                         spaceBetween={0}
                         className="timeline-swiper"
                     >
-                        {data.map((item, index) => (
-                            <SwiperSlide key={item._id || index}>
+                        {processedData.map((item, index) => (
+                            <SwiperSlide key={`${item._id}-${index}`}>
                                 {({ isActive }) => (
                                     <div
                                         onClick={() =>
@@ -95,8 +107,8 @@ const TimelineSlider = ({ data = [] }) => {
                     loop={shouldLoop}
                     className="text-center"
                 >
-                    {data.map((item, index) => (
-                        <SwiperSlide key={item._id || index}>
+                    {processedData.map((item, index) => (
+                        <SwiperSlide key={`${item._id}-${index}`}>
                             <h2 className="text-5xl font-bold text-red-600 mb-6">
                                 {item.year}
                             </h2>

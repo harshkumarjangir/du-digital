@@ -6,7 +6,14 @@ import { fetchVideos } from "../redux/slices/videoSlice";
 const VideoGallery = () => {
     const dispatch = useDispatch();
     const { videos, loading, error } = useSelector((state) => state.video);
-    const [visibleCount, setVisibleCount] = useState(6);
+    const [visibleCounts, setVisibleCounts] = useState({});
+
+    const handleLoadMore = (category) => {
+        setVisibleCounts(prev => ({
+            ...prev,
+            [category]: (prev[category] || 6) + 6
+        }));
+    };
 
     useEffect(() => {
         dispatch(fetchVideos());
@@ -117,31 +124,35 @@ const VideoGallery = () => {
 
             {/* ===== CONTENT ===== */}
             <div className="max-w-7xl mx-auto px-4 md:px-20 py-12 space-y-16">
-                {Object.entries(groupedVideos).map(([category, items]) => (
-                    <div key={category}>
-                        <h2 className="text-2xl font-semibold text-center mb-8">
-                            {category}
-                        </h2>
+                {Object.entries(groupedVideos).map(([category, items]) => {
+                    const currentVisibleCount = visibleCounts[category] || 6;
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {items.slice(0, visibleCount).map((video) => (
-                                <VideoCard key={video._id} video={video} />
-                            ))}
+                    return (
+                        <div key={category}>
+                            <h2 className="text-2xl font-semibold text-center mb-8">
+                                {category}
+                            </h2>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                                {items.slice(0, currentVisibleCount).map((video) => (
+                                    <VideoCard key={video._id} video={video} />
+                                ))}
+                            </div>
+
+                            {/* ===== LOAD MORE FOR CATEGORY ===== */}
+                            {items.length > currentVisibleCount && (
+                                <div className="text-center">
+                                    <button
+                                        onClick={() => handleLoadMore(category)}
+                                        className="mt-6 px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+                                    >
+                                        Load More
+                                    </button>
+                                </div>
+                            )}
                         </div>
-                    </div>
-                ))}
-
-                {/* ===== LOAD MORE ===== */}
-                {visibleCount < totalVideos && (
-                    <div className="text-center">
-                        <button
-                            onClick={() => setVisibleCount((p) => p + 6)}
-                            className="mt-6 px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
-                        >
-                            Load More
-                        </button>
-                    </div>
-                )}
+                    );
+                })}
             </div>
         </div>
     );

@@ -90,6 +90,7 @@ const Vipclearanceatmalaysiaairport = () => {
     const whatWeOfferItems = contentSections['What we offer ?'] || [];
     const allServices = [...vipServiceItems, ...whatWeOfferItems];
     const visaCentresSection = contentSections['Official Malaysia Visa Application Centres now near you'] || [];
+    const howItWorksItems = contentSections['How It Works?'] || [];
 
     return (
         <div className="bg-white font-sans">
@@ -173,23 +174,37 @@ const Vipclearanceatmalaysiaairport = () => {
             {/* ===== HOW IT WORKS ===== */}
             <section className="py-10 md:py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-6">
-
-                    {/* Heading (optional – keep only if NOT inside image) */}
-
-                    <h2 className="text-center text-4xl md:text-5xl font-bold text-black mb-16">
-                        How It Works?
-                    </h2>
-
-
-                    {/* Image */}
-                    <div className="flex justify-center">
-                        <img
-                            src="/assets/vip-clearance-malaysia/Fill-in-the-form-e1714727110441-1.png"
-                            alt="How It Works"
-                            className="w-full max-w-4xl object-contain"
-                        />
-                    </div>
-
+                    {howItWorksItems.length > 0 ? (
+                        <>
+                            {howItWorksItems[0].title && (
+                                <h2 className="text-center text-4xl md:text-5xl font-bold text-black mb-16">
+                                    {howItWorksItems[0].title}
+                                </h2>
+                            )}
+                            <div className="flex justify-center">
+                                {howItWorksItems[0].images && howItWorksItems[0].images.length > 0 && (
+                                    <img
+                                        src={getImageUrl(howItWorksItems[0].images[0])}
+                                        alt={howItWorksItems[0].title || "How It Works"}
+                                        className="w-full max-w-4xl object-contain"
+                                    />
+                                )}
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <h2 className="text-center text-4xl md:text-5xl font-bold text-black mb-16">
+                                How It Works?
+                            </h2>
+                            <div className="flex justify-center">
+                                <img
+                                    src="/assets/vip-clearance-malaysia/Fill-in-the-form-e1714727110441-1.png"
+                                    alt="How It Works"
+                                    className="w-full max-w-4xl object-contain"
+                                />
+                            </div>
+                        </>
+                    )}
                 </div>
             </section>
 
