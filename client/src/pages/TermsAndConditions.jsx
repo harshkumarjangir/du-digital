@@ -6,9 +6,14 @@ const TermsAndConditions = () => {
         <>
             {/* HERO */}
             <section
-                className="h-[600px] flex items-center justify-center bg-cover bg-center relative"
-                style={{ backgroundImage: `url(${hero.backgroundImage})` }}
+                className="h-[600px] flex items-center justify-center relative overflow-hidden"
+            // style={{ backgroundImage: `url(${hero.backgroundImage})` }}
             >
+                <img
+                    src={hero.backgroundImage}
+                    alt="Terms and Conditions"
+                    className="absolute inset-0 w-full h-full object-center object-cover"
+                />
                 <div className="absolute inset-0 bg-black/50" />
                 <h1 className="relative z-10 text-white text-4xl md:text-5xl font-semibold p-2 text-center">
                     {hero.title}
