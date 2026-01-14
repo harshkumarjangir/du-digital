@@ -81,7 +81,7 @@ const TimelineSlider = ({ data = [] }) => {
                                         <div
                                             className={`z-10 w-4 h-4 rounded-full border-2 transition-all duration-300
                                             ${isActive
-                                                    ? "bg-red-600 border-red-600 scale-100"
+                                                    ? "bg-[#FF1033] border-[#FF1033] scale-100"
                                                     : "bg-white border-gray-300 scale-95"
                                                 }`}
                                         />
@@ -109,7 +109,7 @@ const TimelineSlider = ({ data = [] }) => {
                 >
                     {processedData.map((item, index) => (
                         <SwiperSlide key={`${item._id}-${index}`}>
-                            <h2 className="text-5xl font-bold text-red-600 mb-6">
+                            <h2 className="text-5xl font-bold text-[#FF1033] mb-6">
                                 {item.year}
                             </h2>
 
@@ -202,7 +202,7 @@ export default TimelineSlider;
 //                                         <div
 //                                             className={`z-10 w-4 h-4 rounded-full border-2 transition-all duration-300
 //                                             ${isActive
-//                                                     ? "bg-red-600 border-red-600 scale-110"
+//                                                     ? "bg-[#FF1033] border-[#FF1033] scale-110"
 //                                                     : "bg-white border-gray-300"
 //                                                 }`}
 //                                         />
@@ -230,7 +230,7 @@ export default TimelineSlider;
 //                 >
 //                     {data.map((item, index) => (
 //                         <SwiperSlide key={item._id || index}>
-//                             <h2 className="text-5xl font-bold text-red-600 mb-6">
+//                             <h2 className="text-5xl font-bold text-[#FF1033] mb-6">
 //                                 {item.year}
 //                             </h2>
 
@@ -335,7 +335,7 @@ export default TimelineSlider;
 //                                         <div
 //                                             className={`z-10 w-4 h-4 rounded-full border-2 transition-all duration-300
 //                                             ${isActive
-//                                                     ? "bg-red-600 border-red-600 scale-100"
+//                                                     ? "bg-[#FF1033] border-[#FF1033] scale-100"
 //                                                     : "bg-white border-gray-300 scale-95"
 //                                                 }`}
 //                                         />
@@ -364,7 +364,7 @@ export default TimelineSlider;
 //                 >
 //                     {data.map((item, index) => (
 //                         <SwiperSlide key={item._id || index}>
-//                             <h2 className="text-5xl font-bold text-red-600 mb-6">
+//                             <h2 className="text-5xl font-bold text-[#FF1033] mb-6">
 //                                 {item.year}
 //                             </h2>
 
@@ -455,7 +455,7 @@ export default TimelineSlider;
 //                                         {/* DOT */}
 //                                         <div
 //                                             className={`z-10 w-4 h-4 rounded-full border-2 transition-all ${isActive
-//                                                 ? "bg-red-600 border-red-600"
+//                                                 ? "bg-[#FF1033] border-[#FF1033]"
 //                                                 : "bg-white border-gray-300"
 //                                                 }`}
 //                                         />
@@ -486,7 +486,7 @@ export default TimelineSlider;
 //                 >
 //                     {data.map((item) => (
 //                         <SwiperSlide key={item._id}>
-//                             <h2 className="text-5xl font-bold text-red-600 mb-6">
+//                             <h2 className="text-5xl font-bold text-[#FF1033] mb-6">
 //                                 {item.year}
 //                             </h2>
 
@@ -575,7 +575,7 @@ export default TimelineSlider;
 //                                         {/* DOT */}
 //                                         <div
 //                                             className={`z-10 w-4 h-4 rounded-full border-2 transition-all duration-300 ${isActive
-//                                                 ? "bg-red-600 border-red-600 scale-100"
+//                                                 ? "bg-[#FF1033] border-[#FF1033] scale-100"
 //                                                 : "bg-white border-gray-300 scale-95"
 //                                                 }`}
 //                                         />
@@ -607,7 +607,7 @@ export default TimelineSlider;
 //                 >
 //                     {data.map((item, index) => (
 //                         <SwiperSlide key={item._id || item.year || index}>
-//                             <h2 className="text-5xl font-bold text-red-600 mb-6">
+//                             <h2 className="text-5xl font-bold text-[#FF1033] mb-6">
 //                                 {item.year}
 //                             </h2>
 

@@ -115,7 +115,7 @@ const Duverify = () => {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
               {name?.startsWith('DuVerify') ? (
                 <>
-                  <span className="text-red-500">DuVerify</span>
+                  <span className="text-[#FF1033]">DuVerify</span>
                   <span className="text-white">{name.slice(8)}</span>
                 </>
               ) : (
@@ -161,7 +161,7 @@ const Duverify = () => {
             <button
               type="submit"
               disabled={submitLoading}
-              className="w-full py-4 bg-[#E31E24] text-white hover:bg-[#2D1F1F] hover:text-[#E31E24] rounded-full font-bold transition-opacity flex justify-center items-center gap-2"
+              className="w-full py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold transition-opacity flex justify-center items-center gap-2"
             >
               {submitLoading ? <Loader2 className="animate-spin w-5 h-5" /> : 'Submit Request'}
             </button>
@@ -479,7 +479,7 @@ export default Duverify;
 
 
 //<h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
-//  <span className="text-red-500">DuVerify</span>
+//  <span className="text-[#FF1033]">DuVerify</span>
 //  <span className="text-white">
 //    {name
 //      ? name.replace(/^DuVerify\s*[-–]?\s*/, ' – ')

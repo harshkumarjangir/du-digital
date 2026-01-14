@@ -73,7 +73,7 @@ const AboutUs = () => {
       <WhoWeAre data={data.whoWeAre} />
       <Timeline data={sortedPartners} />
       {loading && <div className="text-center py-8">Loading team members...</div>}
-      {error && <div className="text-center py-8 text-red-500">Error loading team members: {error}</div>}
+      {error && <div className="text-center py-8 text-[#FF1033]">Error loading team members: {error}</div>}
       {!loading && !error && (
         <>
           {sortedCategories.map((category) => (

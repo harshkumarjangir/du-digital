@@ -127,7 +127,7 @@
     --color-beige: #ffedd2;
     --color-mint: #00ab63;
     --color-blue: #4a7edb;
-    --color-brand-red: #ac0826;
+    --color-brand-red: #FF1033;
 
     /* Tertiary Colors */
     --color-light-gray: #d6d8d8;
@@ -151,7 +151,7 @@ body {
 .timeline-swiper .swiper-button-next {
     top: 8px;
     transform: translateY(0);
-    color: #ac0826;
+    color: #FF1033;
 }
 
 .timeline-swiper .swiper-button-prev::after,
@@ -181,13 +181,13 @@ body {
 }
 
 .swiper-pagination-bullet {
-    background: #ac0826;
+    background: #FF1033;
     opacity: 0.4;
 }
 
 .swiper-pagination-bullet-active {
     opacity: 1;
-    background: #ac0826;
+    background: #FF1033;
 }
 
 

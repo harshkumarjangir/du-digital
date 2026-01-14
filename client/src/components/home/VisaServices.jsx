@@ -91,12 +91,12 @@ const VisaServices = ({ data }) => {
         <section className="relative py-16">
             {/* ... dotted background commented out ... */}
 
-            <div className="relative max-w-6xl mx-auto px-4">
+            <div className="relative max-w-7xl mx-auto px-6 md:px-20">
 
                 <div className="bg-white rounded-2xl shadow-xl p-4">
 
                     {/* Header */}
-                    <div className="bg-red-600 text-white text-center py-4 rounded-xl text-2xl font-semibold mb-8">
+                    <div className="bg-[#FF1033] text-white text-center py-4 rounded-xl text-2xl font-semibold mb-8">
                         {data.title}
                     </div>
 

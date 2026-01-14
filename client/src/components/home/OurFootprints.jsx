@@ -13,7 +13,7 @@ const OurFootprints = ({ data }) => {
             />
 
             {/* CONTENT */}
-            <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+            <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 text-center">
 
                 {/* Heading */}
                 <h2 className="text-4xl md:text-5xl font-semibold text-gray-900">
@@ -21,7 +21,7 @@ const OurFootprints = ({ data }) => {
                 </h2>
 
                 {/* Divider */}
-                <div className="w-16 h-[3px] bg-red-600 mx-auto my-6" />
+                <div className="w-16 h-[3px] bg-[#FF1033] mx-auto my-6" />
 
                 {/* Description */}
                 <p className="max-w-5xl mx-auto text-gray-700 leading-relaxed">
@@ -45,17 +45,17 @@ const OurFootprints = ({ data }) => {
                         >
                             {/* Value */}
                             <div className="flex justify-center items-end">
-                                <span className="text-4xl font-semibold text-[#AC0826]">
+                                <span className="text-4xl font-semibold text-[#FF1033]">
                                     {item.value}
                                 </span>
-                                <span className="text-3xl font-semibold text-[#AC0826] ml-1">
+                                <span className="text-3xl font-semibold text-[#FF1033] ml-1">
                                     {item.suffix}
                                 </span>
                             </div>
 
                             {/* Sub value */}
                             {item.subValue && (
-                                <p className="mt-1 text-sm font-semibold text-[#AC0826]">
+                                <p className="mt-1 text-sm font-semibold text-[#FF1033]">
                                     {item.subValue}
                                 </p>
                             )}
@@ -107,16 +107,16 @@ export default OurFootprints;
 //                                 `}
 //                         >
 //                             <div className="flex justify-center items-end">
-//                                 <span className="text-3xl md:text-4xl font-semibold text-[#AC0826]">
+//                                 <span className="text-3xl md:text-4xl font-semibold text-[#FF1033]">
 //                                     {item.value}
 //                                 </span>
-//                                 <span className="text-2xl md:text-3xl font-semibold text-[#AC0826] ml-1">
+//                                 <span className="text-2xl md:text-3xl font-semibold text-[#FF1033] ml-1">
 //                                     {item.suffix}
 //                                 </span>
 //                             </div>
 
 //                             {item.subValue && (
-//                                 <p className="text-sm font-semibold text-[#AC0826] mt-1">
+//                                 <p className="text-sm font-semibold text-[#FF1033] mt-1">
 //                                     {item.subValue}
 //                                 </p>
 //                             )}

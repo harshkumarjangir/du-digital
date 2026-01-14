@@ -138,7 +138,7 @@ const Southkoreavisaforindians = () => {
         <div
           className="absolute right-0 top-0 w-1/2 h-full opacity-30"
           style={{
-            background: 'radial-gradient(ellipse at right center, #E31E24 0%, transparent 70%)'
+            background: 'radial-gradient(ellipse at right center, #FF1033 0%, transparent 70%)'
           }}
         />
 
@@ -147,22 +147,22 @@ const Southkoreavisaforindians = () => {
             {/* Left - Hero Text */}
             <div className="text-white">
               {/* <div className="flex items-center gap-3 mb-4">
-                <div className="w-1 h-10" style={{ backgroundColor: '#E31E24' }}></div>
+                <div className="w-1 h-10" style={{ backgroundColor: '#FF1033' }}></div>
                 <p className="text-gray-400 uppercase tracking-wider text-sm">South Korea Visa</p>
               </div> */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                South Korea Visa For Indians – <span style={{ color: '#E31E24' }}> <br />
+                South Korea Visa For Indians – <span style={{ color: '#FF1033' }}> <br />
                   Apply Now!</span>
               </h1>
 
               {/* Key points */}
-              <ul className="space-y-3 mb-8  p-4 rounded-lg bg-gradient-to-r from-[#C12726] to-[#E31E24]/10">
+              <ul className="space-y-3 mb-8  p-4 rounded-lg bg-gradient-to-r from-[#FF1033] to-[#FF1033]/10">
                 {descriptionLines.slice(1).map((line, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <div
                       className="w-5 h-5 rounded-full flex items-center justify-center bg-white shrink-0 mt-0.5"
                     >
-                      <Check className="w-3 h-3 text-[#E31E24]" strokeWidth={3} />
+                      <Check className="w-3 h-3 text-[#FF1033]" strokeWidth={3} />
                     </div>
                     <span className="text-white">{line}</span>
                   </li>
@@ -226,7 +226,7 @@ const Southkoreavisaforindians = () => {
                         return (
                           <div key={field._id || index} className="space-y-2 md:col-span-2">
                             <label className="text-white text-sm font-medium block mb-2">
-                              {field.label} {field.required && <span className="text-red-500">*</span>}
+                              {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                             </label>
                             <div className="flex flex-wrap gap-4">
                               {field.options?.map((opt, i) => (
@@ -281,7 +281,7 @@ const Southkoreavisaforindians = () => {
 
                   {/* Submit Status Message */}
                   {submitStatus && (
-                    <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
+                    <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
                       {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                     </div>
@@ -310,7 +310,7 @@ const Southkoreavisaforindians = () => {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#333333] mb-3">
                 South Korea Visa Types with Fees
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             {visaTypesSection.map((item, index) => (
@@ -318,7 +318,7 @@ const Southkoreavisaforindians = () => {
                 {/* Red header banner */}
                 <div
                   className="py-4 px-6 text-center"
-                  style={{ backgroundColor: '#E31E24' }}
+                  style={{ backgroundColor: '#FF1033' }}
                 >
                   <h3 className="text-xl font-semibold text-white">{item.title}</h3>
                 </div>
@@ -343,7 +343,7 @@ const Southkoreavisaforindians = () => {
                   </div>
                   <div className="flex justify-between items-center py-2">
                     <span className="text-[#333333]">Fees:</span>
-                    <span className="text-xl font-bold" style={{ color: '#E31E24' }}>INR 6,599/-</span>
+                    <span className="text-xl font-bold" style={{ color: '#FF1033' }}>INR 6,599/-</span>
                   </div>
                 </div>
               </div>
@@ -362,7 +362,7 @@ const Southkoreavisaforindians = () => {
                   <h2 className="text-2xl md:text-3xl font-semibold text-[#333333] mb-2">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div>
+                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
                   <p className="text-[#333333] leading-relaxed text-lg">
                     {item.contentHtml}
                   </p>
@@ -420,7 +420,7 @@ const Southkoreavisaforindians = () => {
                       className="max-w-full h-[100px]"
                     // style={{ maxHeight: '400px' }}
                     />)}
-                  {/* <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div> */}
+                  {/* <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div> */}
                   <p className="text-[#333333] leading-relaxed text-lg">
                     {item.contentHtml}
                   </p>
@@ -462,7 +462,7 @@ const Southkoreavisaforindians = () => {
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#333333] mb-3">
                       {doc.title}
                     </h2>
-                    <div className="w-20 h-1 mx-auto bg-[#E31E24]" />
+                    <div className="w-20 h-1 mx-auto bg-[#FF1033]" />
                   </div>
 
                   <p className="text-[#333333] leading-relaxed text-lg text-center mb-12">
@@ -479,7 +479,7 @@ const Southkoreavisaforindians = () => {
                         return (
                           <li key={idx} className="flex items-start gap-4">
                             <div
-                              className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-1 bg-[#E31E24]"
+                              className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-1 bg-[#FF1033]"
                             >
                               <Check className="w-4 h-4 text-white" strokeWidth={3} />
                             </div>
@@ -502,7 +502,7 @@ const Southkoreavisaforindians = () => {
                         return (
                           <li key={idx} className="flex items-start gap-4">
                             <div
-                              className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-1 bg-[#E31E24]"
+                              className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-1 bg-[#FF1033]"
                             >
                               <Check className="w-4 h-4 text-white" strokeWidth={3} />
                             </div>
@@ -535,7 +535,7 @@ const Southkoreavisaforindians = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
                 Additional Requirements
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
@@ -548,7 +548,7 @@ const Southkoreavisaforindians = () => {
                   {/* Large number */}
                   <div
                     className="text-5xl font-bold mb-4"
-                    style={{ color: '#E31E24' }}
+                    style={{ color: '#FF1033' }}
                   >
                     {String(index + 1).padStart(2, '0')}
                   </div>
@@ -558,7 +558,7 @@ const Southkoreavisaforindians = () => {
                       <li key={idx} className="flex items-start gap-2 text-gray-600 text-sm">
                         <div
                           className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5"
-                          style={{ backgroundColor: '#E31E24' }}
+                          style={{ backgroundColor: '#FF1033' }}
                         >
                           <Check className="w-2.5 h-2.5 text-white" strokeWidth={3} />
                         </div>
@@ -584,7 +584,7 @@ const Southkoreavisaforindians = () => {
                 >
                   <div
                     className="text-5xl font-bold mb-4"
-                    style={{ color: '#E31E24' }}
+                    style={{ color: '#FF1033' }}
                   >
                     {String(additionalReqSection.length + index + 1).padStart(2, '0')}
                   </div>
@@ -594,7 +594,7 @@ const Southkoreavisaforindians = () => {
                       <li key={idx} className="flex items-start gap-2 text-gray-600 text-sm">
                         <div
                           className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5"
-                          style={{ backgroundColor: '#E31E24' }}
+                          style={{ backgroundColor: '#FF1033' }}
                         >
                           <Check className="w-2.5 h-2.5 text-white" strokeWidth={3} />
                         </div>
@@ -625,7 +625,7 @@ const Southkoreavisaforindians = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
                 How to Apply for your South Korea Visa
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
@@ -636,7 +636,7 @@ const Southkoreavisaforindians = () => {
                 >
                   <div
                     className="w-12 h-12 rounded-lg flex items-center justify-center mb-4"
-                    style={{ backgroundColor: '#E31E24' }}
+                    style={{ backgroundColor: '#FF1033' }}
                   >
                     {index === 0 ? <Building className="w-6 h-6 text-white" /> : <Check className="w-6 h-6 text-white" />}
                   </div>
@@ -702,7 +702,7 @@ const Southkoreavisaforindians = () => {
                     {/* Dark overlay */}
                     <div className="absolute inset-0 bg-black/60"></div>
                     {/* Red top accent */}
-                    {/* <div className="absolute top-0 left-0 right-0 h-1" style={{ backgroundColor: '#E31E24' }}></div> */}
+                    {/* <div className="absolute top-0 left-0 right-0 h-1" style={{ backgroundColor: '#FF1033' }}></div> */}
                     {/* Content */}
                     <div className="relative z-10 p-6 h-full flex flex-col justify-end">
                       <h3 className="text-xl font-bold text-white mb-2">{item.title?.trim()}</h3>

@@ -23,7 +23,7 @@ const InvestorRelation = () => {
     if (activeSlug && loading) {
         return (
             <div className="w-full min-h-screen flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600" />
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF1033]" />
             </div>
         );
     }
@@ -31,7 +31,7 @@ const InvestorRelation = () => {
     if (activeSlug && error) {
         return (
             <div className="w-full min-h-screen flex items-center justify-center">
-                <p className="text-red-600 text-lg">{error}</p>
+                <p className="text-[#FF1033] text-lg">{error}</p>
             </div>
         );
     }
@@ -191,7 +191,7 @@ export default InvestorRelation;
 //         return (
 //             <div className="w-full min-h-screen flex items-center justify-center">
 //                 <div className="text-center">
-//                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
+//                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF1033] mx-auto mb-4"></div>
 //                     <p className="text-gray-600">Loading...</p>
 //                 </div>
 //             </div>
@@ -203,7 +203,7 @@ export default InvestorRelation;
 //         return (
 //             <div className="w-full min-h-screen flex items-center justify-center">
 //                 <div className="text-center">
-//                     <p className="text-red-600 text-lg mb-4">Error: {error}</p>
+//                     <p className="text-[#FF1033] text-lg mb-4">Error: {error}</p>
 //                     <p className="text-gray-600">Failed to load category data</p>
 //                 </div>
 //             </div>
@@ -257,7 +257,7 @@ export default InvestorRelation;
 //                                     <a
 //                                         href={item.fileUrl || item.file}
 //                                         download
-//                                         className="inline-block bg-red-600 hover:bg-red-700 text-white font-medium px-6 py-3 rounded-md text-center transition mt-4"
+//                                         className="inline-block bg-[#FF1033] hover:bg-[#511313] text-white font-medium px-6 py-3 rounded-md text-center transition mt-4"
 //                                     >
 //                                         {item.buttonText || "Download Report"}
 //                                     </a>
@@ -294,7 +294,7 @@ export default InvestorRelation;
 //                                         href={item.fileUrl || item.file}
 //                                         target="_blank"
 //                                         rel="noopener noreferrer"
-//                                         className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-md transition mt-auto"
+//                                         className="inline-flex items-center justify-center gap-2 bg-[#FF1033] hover:bg-[#511313] text-white font-semibold px-6 py-3 rounded-md transition mt-auto"
 //                                     >
 //                                         <span>{item.buttonText || "Download Report"}</span>
 //                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -169,7 +169,7 @@ export default NewsAndMediaHero;
 //                             </p>
 //                             <a
 //                                 href={slide.buttonLink}
-//                                 className="inline-block mt-6 bg-white text-red-600 px-4 py-2 rounded-md font-medium border border-white hover:bg-transparent hover:text-white hover:border-white transition"
+//                                 className="inline-block mt-6 bg-white text-[#FF1033] px-4 py-2 rounded-md font-medium border border-white hover:bg-transparent hover:text-white hover:border-white transition"
 //                             >
 //                                 {slide.buttonText}
 //                             </a>

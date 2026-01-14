@@ -76,7 +76,7 @@ const OurFootprints = ({ aboutSection, data }) => {
                 </h2> */}
 
                 {/* Divider */}
-                {/* <div className="w-16 h-[3px] bg-red-600 mx-auto my-6" /> */}
+                {/* <div className="w-16 h-[3px] bg-[#FF1033] mx-auto my-6" /> */}
 
                 {/* Description */}
                 {/* <p className="max-w-5xl mx-auto text-gray-700 leading-relaxed">
@@ -100,17 +100,17 @@ const OurFootprints = ({ aboutSection, data }) => {
                         >
                             {/* Value */}
                             <div className="flex justify-center items-end">
-                                <span className="text-4xl font-semibold text-[#AC0826]">
+                                <span className="text-4xl font-semibold text-[#FF1033]">
                                     {item.value}
                                 </span>
-                                <span className="text-3xl font-semibold text-[#AC0826] ml-1">
+                                <span className="text-3xl font-semibold text-[#FF1033] ml-1">
                                     {item.suffix}
                                 </span>
                             </div>
 
                             {/* Sub value */}
                             {item.subValue && (
-                                <p className="mt-1 text-sm font-semibold text-[#AC0826]">
+                                <p className="mt-1 text-sm font-semibold text-[#FF1033]">
                                     {item.subValue}
                                 </p>
                             )}
@@ -159,7 +159,7 @@ export default OurFootprints;
 //                                 Our Footprints
 //                             </h3>
 
-//                             <div className="w-14 h-1 bg-red-600 mt-3" />
+//                             <div className="w-14 h-1 bg-[#FF1033] mt-3" />
 //                         </div>
 
 //                         {/* Description */}
@@ -197,16 +197,16 @@ export default OurFootprints;
 //                                 `}
 //                             >
 //                                 <div className="flex justify-center items-end">
-//                                     <span className="text-4xl md:text-5xl font-bold text-red-600">
+//                                     <span className="text-4xl md:text-5xl font-bold text-[#FF1033]">
 //                                         {item.value}
 //                                     </span>
-//                                     <span className="text-3xl md:text-4xl font-bold text-red-600 ml-1">
+//                                     <span className="text-3xl md:text-4xl font-bold text-[#FF1033] ml-1">
 //                                         {item.suffix}
 //                                     </span>
 //                                 </div>
 
 //                                 {item.subValue && (
-//                                     <p className="text-sm font-semibold text-red-600 mt-1">
+//                                     <p className="text-sm font-semibold text-[#FF1033] mt-1">
 //                                         {item.subValue}
 //                                     </p>
 //                                 )}
@@ -269,16 +269,16 @@ export default OurFootprints;
 //                       md:last:border-r-transparent"
 //                                 >
 //                                     <div className="flex items-end">
-//                                         <span className="text-4xl font-bold text-red-600">
+//                                         <span className="text-4xl font-bold text-[#FF1033]">
 //                                             {item.value}
 //                                         </span>
-//                                         <span className="text-3xl font-bold text-red-600 ml-1">
+//                                         <span className="text-3xl font-bold text-[#FF1033] ml-1">
 //                                             {item.suffix}
 //                                         </span>
 //                                     </div>
 
 //                                     {item.subValue && (
-//                                         <p className="text-lg font-semibold text-red-600 mt-1">
+//                                         <p className="text-lg font-semibold text-[#FF1033] mt-1">
 //                                             {item.subValue}
 //                                         </p>
 //                                     )}
@@ -327,7 +327,7 @@ export default OurFootprints;
 //             <div className="flex justify-center gap-10">
 //                 {data.stats.map((item, i) => (
 //                     <div key={i}>
-//                         <p className="text-3xl font-bold text-red-600">{item.value}</p>
+//                         <p className="text-3xl font-bold text-[#FF1033]">{item.value}</p>
 //                         <p className="text-gray-600">{item.label}</p>
 //                     </div>
 //                 ))}

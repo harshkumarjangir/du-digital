@@ -143,7 +143,7 @@ const HeroSection = ({ data }) => {
         <div>
           <h1 className="text-4xl lg:text-5xl font-bold mb-8">
             {data.title}
-            {/* <span className="text-red-600">{data.highlight}</span> */}
+            {/* <span className="text-[#FF1033]">{data.highlight}</span> */}
           </h1>
 
           <ul className="space-y-4">
@@ -405,7 +405,7 @@ export default HeroSection;
 //         {/* LEFT */}
 //         <div>
 //           <h1 className="text-4xl lg:text-5xl font-bold mb-8">
-//             {data.title} <span className="text-red-600">{data.highlight}</span>
+//             {data.title} <span className="text-[#FF1033]">{data.highlight}</span>
 //           </h1>
 
 //           <ul className="space-y-4">
@@ -497,8 +497,8 @@ export default HeroSection;
 //             <button
 //               type="submit"
 //               disabled={loading}
-//               className={`bg-red-600 text-white px-6 py-3 rounded-md w-full ${
-//                 loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-red-700'
+//               className={`bg-[#FF1033] text-white px-6 py-3 rounded-md w-full ${
+//                 loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#511313]'
 //               } transition-colors`}
 //             >
 //               {loading ? 'Submitting...' : data.form.buttonText}

@@ -10,7 +10,7 @@ const WhoWeAre = ({ data }) => {
 
             <div className="relative max-w-7xl mx-auto px-6 md:px-20">
                 {/* Top Label */}
-                <p className="text-center text-red-600 font-semibold tracking-widest mb-2">
+                <p className="text-center text-[#FF1033] font-semibold tracking-widest mb-2">
                     {/* {data.title} */}
                 </p>
 
@@ -20,7 +20,7 @@ const WhoWeAre = ({ data }) => {
                 </h3>
 
                 {/* Red Divider */}
-                {/* <div className="w-16 h-1 bg-red-600 mx-auto mb-12"></div> */}
+                {/* <div className="w-16 h-1 bg-[#FF1033] mx-auto mb-12"></div> */}
 
                 {/* Content */}
                 <div className="grid grid-cols-1 md:grid-cols-1 gap-8 text-gray-700 text-justify leading-relaxed">

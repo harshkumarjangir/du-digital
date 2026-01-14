@@ -52,10 +52,10 @@ const Navbar = () => {
               <NavLink
                 to={item.link || "#"}
 
-                className={`font-semibold text-[15px] text-gray-800 hover:text-red-600 flex items-center gap-1
-                   border-b-2 border-transparent group-hover:border-red-600 pb-1 ${isNavActive(item)
-                    ? "text-red-600 border-red-600"
-                    : "text-gray-800 border-transparent hover:text-red-600 hover:border-red-600"
+                className={`font-semibold text-[15px] text-gray-800 hover:text-[#FF1033] flex items-center gap-1
+                   border-b-2 border-transparent group-hover:border-[#FF1033] pb-1 ${isNavActive(item)
+                    ? "text-[#FF1033] border-[#FF1033]"
+                    : "text-gray-800 border-transparent hover:text-[#FF1033] hover:border-[#FF1033]"
                   }`}
               >
                 {item.label}
@@ -77,7 +77,7 @@ const Navbar = () => {
                           <Link
                             to={child.link}
                             className="px-6 py-3 flex justify-between items-center cursor-pointer
-                       hover:bg-gray-100 hover:text-red-600"
+                       hover:bg-gray-100 hover:text-[#FF1033]"
                           >
                             {child.label}
                             {child.children && <ChevronDown size={20} color="black" className="-rotate-90" />}
@@ -85,7 +85,7 @@ const Navbar = () => {
                         ) : (
                           <div
                             className="px-6 py-3 flex justify-between items-center cursor-pointer
-                       hover:bg-gray-100 hover:text-red-600"
+                       hover:bg-gray-100 hover:text-[#FF1033]"
                           >
                             {child.label}
                             {child.children && <ChevronDown size={20} color="black" className="-rotate-90" />}
@@ -108,12 +108,12 @@ const Navbar = () => {
                                   {sub.link ? (
                                     <Link
                                       to={sub.link}
-                                      className="block px-6 py-2 hover:bg-gray-50 hover:text-red-600"
+                                      className="block px-6 py-2 hover:bg-gray-50 hover:text-[#FF1033]"
                                     >
                                       {sub.label}
                                     </Link>
                                   ) : (
-                                    <span className="block px-6 py-2 hover:bg-gray-50 hover:text-red-600">
+                                    <span className="block px-6 py-2 hover:bg-gray-50 hover:text-[#FF1033]">
                                       {sub.label}
                                     </span>
                                   )}
@@ -138,7 +138,7 @@ const Navbar = () => {
           <div className="text-gray-600">
             <a href="tel:+919876543210" className="flex items-center gap-2">
               <img src="/assets/navbar/phone.png" alt="Phone" className="w-8 h-8" />
-              {/* <Phone className="w-8 h-8 text-red-600 bg-red-600 bg-clip-text" /> */}
+              {/* <Phone className="w-8 h-8 text-[#FF1033] bg-[#FF1033] bg-clip-text" /> */}
             </a>
           </div>
 
@@ -255,7 +255,7 @@ export default Navbar;
 //       <div
 //         key={cIndex}
 //         className="group/child px-6 py-3 cursor-pointer flex justify-between items-center
-//            hover:bg-gray-100 hover:text-red-600"
+//            hover:bg-gray-100 hover:text-[#FF1033]"
 //       >
 //         <span>{child.label}</span>
 //         {child.children && "›"}
@@ -272,7 +272,7 @@ export default Navbar;
 //                 <li key={sIndex}>
 //                   <a
 //                     href={sub.link}
-//                     className="block px-6 py-2 hover:bg-white hover:text-red-600"
+//                     className="block px-6 py-2 hover:bg-white hover:text-[#FF1033]"
 //                   >
 //                     {sub.label}
 //                   </a>
@@ -296,7 +296,7 @@ export default Navbar;
 //       <div key={index} className="group/item">
 //         <div
 //           className="px-6 py-3 flex justify-between items-center cursor-pointer
-//      hover:bg-gray-100 hover:text-red-600"
+//      hover:bg-gray-100 hover:text-[#FF1033]"
 //         >
 //           {child.label}
 //           {child.children && "›"}
@@ -315,7 +315,7 @@ export default Navbar;
 //                 <li key={i}>
 //                   <a
 //                     href={sub.link}
-//                     className="block px-6 py-2 hover:bg-white hover:text-red-600"
+//                     className="block px-6 py-2 hover:bg-white hover:text-[#FF1033]"
 //                   >
 //                     {sub.label}
 //                   </a>
@@ -352,7 +352,7 @@ export default Navbar;
 //   >
 //     <a
 //       href={item.link || "#"}
-//       className="font-medium text-gray-800 hover:text-red-600 flex items-center gap-1 border-b-2 border-white hover:border-b-2 hover:border-red-600"
+//       className="font-medium text-gray-800 hover:text-[#FF1033] flex items-center gap-1 border-b-2 border-white hover:border-b-2 hover:border-[#FF1033]"
 //     >
 //       {item.label}
 //       {item.children && "▾"}
@@ -369,7 +369,7 @@ export default Navbar;
 //               onMouseEnter={() => setActiveChild(cIndex)}
 //               className={`px-6 py-3 cursor-pointer flex justify-between items-center
 //                 ${activeChild === cIndex
-//                   ? "bg-gray-100 text-red-600"
+//                   ? "bg-gray-100 text-[#FF1033]"
 //                   : "hover:bg-gray-50"
 //                 }`}
 //             >
@@ -388,7 +388,7 @@ export default Navbar;
 //                   <li key={sIndex}>
 //                     <a
 //                       href={sub.link}
-//                       className="block px-6 py-2 hover:bg-white hover:text-red-600"
+//                       className="block px-6 py-2 hover:bg-white hover:text-[#FF1033]"
 //                     >
 //                       {sub.label}
 //                     </a>

@@ -27,7 +27,7 @@ const AboutSwifttravelSection = ({ data }) => {
             {/* TOP CONTENT */}
             <div className="max-w-5xl mx-auto px-6 pt-20 text-center">
                 {badge && (
-                    <p className="text-sm font-semibold text-red-600 tracking-wider mb-3">
+                    <p className="text-sm font-semibold text-[#FF1033] tracking-wider mb-3">
                         {badge}
                     </p>
                 )}
@@ -36,7 +36,7 @@ const AboutSwifttravelSection = ({ data }) => {
                     {title}
                 </h2>
 
-                <div className="w-16 h-1 bg-red-600 mx-auto my-4" />
+                <div className="w-16 h-1 bg-[#FF1033] mx-auto my-4" />
 
                 <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">
                     {description}
@@ -55,11 +55,11 @@ const AboutSwifttravelSection = ({ data }) => {
                                 className="bg-white rounded-xl p-8 shadow-lg relative overflow-hidden"
                             >
                                 {/* LEFT RED BORDER */}
-                                <div className="absolute left-0 top-0 h-full w-2 bg-red-600" />
+                                <div className="absolute left-0 top-0 h-full w-2 bg-[#FF1033]" />
 
                                 {/* ICON */}
                                 {Icon && (
-                                    <Icon className="w-12 h-12 text-red-600 mb-4" />
+                                    <Icon className="w-12 h-12 text-[#FF1033] mb-4" />
                                 )}
 
                                 <h3 className="text-xl font-bold text-gray-900 mb-3">

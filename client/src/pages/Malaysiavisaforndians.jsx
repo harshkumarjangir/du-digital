@@ -136,7 +136,7 @@ const Malaysiavisaforndians = () => {
             <div className="text-white">
               <p className="text-5xl md:text-6xl lg:text-7xl mb-2">Apply For</p>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-                <span style={{ color: '#E31E24' }}>Malaysia Visa</span>
+                <span style={{ color: '#FF1033' }}>Malaysia Visa</span>
               </h1>
               {/* <p className="text-gray-300 text-lg">
                 {description}
@@ -213,7 +213,7 @@ const Malaysiavisaforndians = () => {
                       return (
                         <div className="space-y-2">
                           <label className="text-white text-sm font-medium block mb-2">
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
+                            {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                           </label>
                           <div className="flex flex-wrap gap-4">
                             {field.options?.map((opt, i) => (
@@ -264,7 +264,7 @@ const Malaysiavisaforndians = () => {
 
                   {/* Submit Status Message */}
                   {submitStatus && (
-                    <div className={`w-full flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
+                    <div className={`w-full flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
                       {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                     </div>
@@ -294,7 +294,7 @@ const Malaysiavisaforndians = () => {
                   <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div>
+                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
 
                   {/* Badge if exists */}
 
@@ -320,7 +320,7 @@ const Malaysiavisaforndians = () => {
                   {item.badge?.text && (
                     <div
                       className="inline-flex flex-col absolute -top-5 right-0 items-center px-4 py-2 rounded-full text-white text-sm font-semibold mb-4"
-                      style={{ backgroundColor: item.badge.background || '#E31E24' }}
+                      style={{ backgroundColor: item.badge.background || '#FF1033' }}
                     >
                       {/* {item.badge.text} */}
                       <span>{item.badge.text.split("+")[0]}+</span>
@@ -342,7 +342,7 @@ const Malaysiavisaforndians = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
                 TYPES OF VISA
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             {/* Horizontal Tab buttons */}
@@ -352,7 +352,7 @@ const Malaysiavisaforndians = () => {
                   key={item._id || index}
                   onClick={() => setActiveVisaTab(index)}
                   className={`px-8 py-4 font-semibold transition-all duration-300 border-b-4 ${activeVisaTab === index
-                    ? 'border-red-500 text-red-500 bg-white'
+                    ? 'border-red-500 text-[#FF1033] bg-white'
                     : 'border-transparent text-gray-500 hover:text-gray-700 bg-gray-100'
                     }`}
                 >
@@ -442,7 +442,7 @@ const Malaysiavisaforndians = () => {
               <h2 className="text-3xl md:text-4xl font-semibold text-black mb-3">
                 DOCUMENTS REQUIRED FOR Malaysia VISA
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             <div className="space-y-8">

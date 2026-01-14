@@ -24,12 +24,12 @@ export const Blog = ({ data: propData, className }) => {
 
   // Category color mapping (same as EventsGrid)
   const categoryColors = {
-    'Business Networking': 'bg-red-500',
+    'Business Networking': 'bg-[#FF1033]',
     'Industry Conference': 'bg-green-500',
     'Product Launch': 'bg-yellow-500',
     'Community Event': 'bg-blue-500',
     'Trade Show': 'bg-purple-500',
-    'Tenant Verification': 'bg-red-500',
+    'Tenant Verification': 'bg-[#FF1033]',
     'default': 'bg-gray-500'
   };
 
@@ -38,16 +38,16 @@ export const Blog = ({ data: propData, className }) => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-12">
+    <div className="max-w-7xl mx-auto px-6 md:px-20 py-12">
       {loading && !propData && <div className="text-center">Loading...</div>}
-      {error && !propData && <div className="text-center text-red-500">Error: {error}</div>}
+      {error && !propData && <div className="text-center text-[#FF1033]">Error: {error}</div>}
 
       {/* Blog Grid - matching EventsGrid structure */}
       <div className={`grid grid-cols-1 md:grid-cols-2 ${className || 'lg:grid-cols-3'} gap-8`}>
         {data?.map((blog) => (
           <div
             key={blog._id}
-            className="relative rounded-2xl overflow-hidden shadow-lg group"
+            className="relative rounded-2xl overflow-hidden shadow-none group"
           >
             {/* IMAGE */}
             <div className="h-[420px] relative">
@@ -63,9 +63,9 @@ export const Blog = ({ data: propData, className }) => {
             <Link
               to={`/blog/${blog._id}`}
               aria-label="View blog details"
-              className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition z-10"
+              className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-none hover:scale-105 transition z-10"
             >
-              <ArrowUpRight size={24} className="text-red-600" />
+              <ArrowUpRight size={24} className="text-[#FF1033]" />
             </Link>
 
             {/* CONTENT */}
@@ -98,7 +98,7 @@ export const Blog = ({ data: propData, className }) => {
               key={p}
               to={`?page=${p}`}
               className={`px-4 py-2 rounded-md transition-colors duration-300 ${page === p
-                ? "bg-[#ac0826] text-white"
+                ? "bg-[#FF1033] text-[#FFFDF5]"
                 : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                 }`}
             >

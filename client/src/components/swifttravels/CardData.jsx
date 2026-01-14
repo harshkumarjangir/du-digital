@@ -65,7 +65,7 @@ const CardData = () => {
         </div>
       ) : error ? (
         <div className="flex justify-center items-center min-h-[400px]">
-          <div className="text-xl text-red-600">Error: {error}</div>
+          <div className="text-xl text-[#FF1033]">Error: {error}</div>
         </div>
       ) : (
         <>
@@ -215,7 +215,7 @@ const CardData = () => {
                     <button
                       type="submit"
                       disabled={formLoading || formSuccess}
-                      className="w-full bg-red-600 hover:bg-red-700 disabled:bg-red-400 text-white py-2 rounded-md font-semibold">
+                      className="w-full bg-[#FF1033] hover:bg-[#511313] disabled:bg-red-400 text-white py-2 rounded-md font-semibold">
                       {formLoading ? "Submitting..." : formSuccess ? "Submitted!" : "Submit"}
                     </button>
                   </form>

@@ -147,7 +147,7 @@ const BangladeshVac = () => {
           <div className="max-w-4xl mx-auto px-6">
             <div className="text-center mb-10">
               <h2 className="text-3xl font-bold text-gray-900 mb-3">Apply Now</h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             <div className="bg-white rounded-xl p-8 shadow-lg">
@@ -221,7 +221,7 @@ const BangladeshVac = () => {
                         textarea.map((field, index) => <div key={index}>
                           {field.label && (
                             <label className={`${labelClass} block mb-2`}>
-                              {field.label} {field.required && <span className="text-red-500">*</span>}
+                              {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                             </label>
                           )}
                           <textarea
@@ -252,7 +252,7 @@ const BangladeshVac = () => {
                 })()}
                 {radioFields.map((index, field) => <div key={index} className="space-y-2">
                   <label className="text-white text-sm font-medium block mb-2">
-                    {field.label} {field.required && <span className="text-red-500">*</span>}
+                    {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                   </label>
                   <div className="flex flex-wrap gap-4">
                     {field.options?.map((opt, i) => (
@@ -277,7 +277,7 @@ const BangladeshVac = () => {
                 {/* Submit Status Message */}
                 {submitStatus && (
                   <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-100' : 'bg-red-100'}`}>
-                    {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-600" /> : <XCircle className="w-5 h-5 text-red-600" />}
+                    {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-600" /> : <XCircle className="w-5 h-5 text-[#FF1033]" />}
                     <p className={`text-sm ${submitStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>{submitMessage}</p>
                   </div>
                 )}
@@ -304,7 +304,7 @@ const BangladeshVac = () => {
                 <h2 className="text-2xl md:text-2xl font-bold text-black mb-6 text-left">
                   {item.title}
                 </h2>
-                {/* <div className="w-20 h-1 mx-auto mb-8" style={{ backgroundColor: '#E31E24' }}></div> */}
+                {/* <div className="w-20 h-1 mx-auto mb-8" style={{ backgroundColor: '#FF1033' }}></div> */}
                 <p className="text-black leading-relaxed text-lg whitespace-pre-line text-left mx-auto">
                   {item.contentHtml}
                 </p>
@@ -339,7 +339,7 @@ const BangladeshVac = () => {
                 </h2>
 
                 {/* Red underline */}
-                <div className="w-20 h-1 mx-auto mb-8" style={{ backgroundColor: '#E31E24' }}></div>
+                <div className="w-20 h-1 mx-auto mb-8" style={{ backgroundColor: '#FF1033' }}></div>
 
                 {/* Image Grid - 3 columns with hover effect */}
                 <div className="grid md:grid-cols-2 gap-4">
@@ -369,7 +369,7 @@ const BangladeshVac = () => {
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl lg:text-4xl font-semibold text-black mb-3">Bangladesh Visa Application Centre in India</h2>
-              {/* <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div> */}
+              {/* <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div> */}
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -416,7 +416,7 @@ const BangladeshVac = () => {
           <div className="max-w-5xl mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-3">Documents Required</h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             <div className="space-y-6">
@@ -425,7 +425,7 @@ const BangladeshVac = () => {
                   <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
                     <div
                       className="w-6 h-6 rounded flex items-center justify-center"
-                      style={{ backgroundColor: '#E31E24' }}
+                      style={{ backgroundColor: '#FF1033' }}
                     >
                       <Check className="w-4 h-4 text-white" />
                     </div>
@@ -452,7 +452,7 @@ const BangladeshVac = () => {
           <div className="max-w-4xl mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-3">Frequently Asked Questions</h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             <div className="space-y-4">

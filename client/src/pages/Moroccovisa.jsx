@@ -145,7 +145,7 @@ const Moroccovisa = () => {
             <div className="text-white">
               <p className="text-5xl md:text-6xl lg:text-7xl font-bold mb-2">Apply For</p>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-                <span style={{ color: '#E31E24' }}>Morocco</span> Visa
+                <span style={{ color: '#FF1033' }}>Morocco</span> Visa
               </h1>
               {/* <p className="text-gray-300 text-lg">
                 {description}
@@ -221,7 +221,7 @@ const Moroccovisa = () => {
                       return (
                         <div className="space-y-2">
                           <label className="text-white text-sm font-medium block mb-2">
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
+                            {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                           </label>
                           <div className="flex flex-wrap gap-4">
                             {field.options?.map((opt, i) => (
@@ -285,7 +285,7 @@ const Moroccovisa = () => {
 
                   {/* Submit Status Message */}
                   {submitStatus && (
-                    <div className={`w-full flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
+                    <div className={`w-full flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
                       {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                     </div>
@@ -315,7 +315,7 @@ const Moroccovisa = () => {
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 mb-2 uppercase">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div>
+                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
 
                   <p className="text-[#333333] leading-relaxed text-lg whitespace-pre-line">
                     {item.contentHtml}
@@ -329,7 +329,7 @@ const Moroccovisa = () => {
                   {item.badge?.text && (
                     <div
                       className="absolute -top-4 right-4 z-10 px-5 py-2 flex flex-col items-center rounded-full text-white text-lg font-bold shadow-lg"
-                      style={{ backgroundColor: item.badge.background || '#E31E24' }}
+                      style={{ backgroundColor: item.badge.background || '#FF1033' }}
                     >
                       {/* {item.badge.text} */}
                       <span>{item.badge.text.split("+")[0]} +</span>
@@ -365,7 +365,7 @@ const Moroccovisa = () => {
               <h2 className="text-2xl md:text-3xl lg:text-5xl font-semibold text-gray-900 mb-3">
                 Morocco Visa Types, Fees, and Processing Time for Indian Citizens
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -394,7 +394,7 @@ const Moroccovisa = () => {
                         return (
                           <div key={idx} className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
                             <span className="text-black">{pair.label}:</span>
-                            <span className={`font-semibold ${isFee ? 'text-xl' : ''}`} style={isFee ? { color: '#E31E24' } : {}}>
+                            <span className={`font-semibold ${isFee ? 'text-xl' : ''}`} style={isFee ? { color: '#FF1033' } : {}}>
                               {pair.value}
                             </span>
                           </div>
@@ -421,7 +421,7 @@ const Moroccovisa = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-black mb-3">
                 Morocco Visa Requirements for Indians
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             <div className="space-y-8">
@@ -436,7 +436,7 @@ const Moroccovisa = () => {
                       <li key={idx} className="flex items-start gap-3">
                         <div
                           className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5"
-                          style={{ backgroundColor: '#E31E24' }}
+                          style={{ backgroundColor: '#FF1033' }}
                         >
                           <Check className="w-4 h-4 text-white" strokeWidth={3} />
                         </div>

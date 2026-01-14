@@ -329,7 +329,7 @@ const IndianEvisa = () => {
                         return (
                           <div key={field._id || index} className={wrapperClass}>
                             <p className="text-white font-medium mb-3">
-                              {field.label} {field.required && <span className="text-red-500">*</span>}
+                              {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                             </p>
                             <div className="flex flex-wrap gap-6">
                               {field.options?.map((opt, optIdx) => (
@@ -345,7 +345,7 @@ const IndianEvisa = () => {
                                   />
                                   <span
                                     className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${formValues[field.name] === opt.value
-                                      ? "border-red-600 bg-red-600"
+                                      ? "border-[#FF1033] bg-[#FF1033]"
                                       : "border-gray-400"
                                       }`}
                                   >
@@ -373,7 +373,7 @@ const IndianEvisa = () => {
                               checked={!!formValues[field.name]}
                               onChange={handleInputChange}
                               id={`field-${field._id || index}`}
-                              className="mt-1 w-5 h-5 rounded border-gray-300 text-red-600 focus:ring-red-500 cursor-pointer accent-red-600"
+                              className="mt-1 w-5 h-5 rounded border-gray-300 text-[#FF1033] focus:ring-red-500 cursor-pointer accent-red-600"
                               required={field.required}
                             />
                             <label htmlFor={`field-${field._id || index}`} className="text-white text-xs md:text-sm leading-relaxed cursor-pointer">
@@ -420,7 +420,7 @@ const IndianEvisa = () => {
 
                 {/* Submit Status Message */}
                 {submitStatus && (
-                  <div className={`flex items-center gap-3 p-3 rounded mb-4 ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
+                  <div className={`flex items-center gap-3 p-3 rounded mb-4 ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
                     {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
                     <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                   </div>
@@ -575,7 +575,7 @@ const IndianEvisa = () => {
 
                 {/* Arrow */}
                 {index < 3 && (
-                  <div className="absolute -right-8 top-1/2 -translate-y-1/2 text-red-600 text-3xl font-bold">
+                  <div className="absolute -right-8 top-1/2 -translate-y-1/2 text-[#FF1033] text-3xl font-bold">
                     →
                   </div>
                 )}
@@ -597,7 +597,7 @@ const IndianEvisa = () => {
                 )}
 
                 {/* Step Circle */}
-                <div className="absolute left-0 top-0 w-11 h-11 rounded-full border-4 border-red-600 text-red-600 flex items-center justify-center font-bold text-lg bg-white">
+                <div className="absolute left-0 top-0 w-11 h-11 rounded-full border-4 border-[#FF1033] text-[#FF1033] flex items-center justify-center font-bold text-lg bg-white">
                   {index + 1}
                 </div>
 
@@ -666,7 +666,7 @@ const IndianEvisa = () => {
                         </div>
                         {doc.isMandatory && (
                           <div className="mt-4 pt-4 border-t border-gray-100">
-                            <span className="text-sm text-red-600 font-medium">* Mandatory Documents</span>
+                            <span className="text-sm text-[#FF1033] font-medium">* Mandatory Documents</span>
                           </div>
                         )}
                       </div>

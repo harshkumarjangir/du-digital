@@ -62,7 +62,7 @@ const ApplyModal = ({ open, job, onClose }) => {
 
                     {/* Full Name */}
                     <label htmlFor="apply-name" className="block mb-2 text-sm font-medium text-gray-900">
-                        Full Name <span className="text-red-500">*</span>
+                        Full Name <span className="text-[#FF1033]">*</span>
                     </label>
                     <input
                         id="apply-name"
@@ -78,7 +78,7 @@ const ApplyModal = ({ open, job, onClose }) => {
 
                     {/* Email */}
                     <label htmlFor="apply-email" className="block mb-2 text-sm font-medium text-gray-900">
-                        Email <span className="text-red-500">*</span>
+                        Email <span className="text-[#FF1033]">*</span>
                     </label>
                     <input
                         id="apply-email"
@@ -94,7 +94,7 @@ const ApplyModal = ({ open, job, onClose }) => {
 
                     {/* Phone */}
                     <label className="block mb-2 text-sm font-medium text-gray-900">
-                        Phone <span className="text-red-500">*</span>
+                        Phone <span className="text-[#FF1033]">*</span>
                     </label>
                     <CountryPhoneInput
                         onChange={(phoneData) =>
@@ -104,12 +104,12 @@ const ApplyModal = ({ open, job, onClose }) => {
 
                     {/* Upload Resume */}
                     <label className="block mb-2 text-sm font-medium text-gray-900">
-                        Upload Your Resume (Only pdf and doc files are allowed) <span className="text-red-500">*</span>
+                        Upload Your Resume (Only pdf and doc files are allowed) <span className="text-[#FF1033]">*</span>
                     </label>
                     <label htmlFor="resume-upload" className="block cursor-pointer">
                         <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-red-500 transition">
                             <p className="text-sm text-gray-600">
-                                Upload Resume <span className="text-red-600">(PDF / DOC)</span>
+                                Upload Resume <span className="text-[#FF1033]">(PDF / DOC)</span>
                             </p>
 
                             {formData.resume && (

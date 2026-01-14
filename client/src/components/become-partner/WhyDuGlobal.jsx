@@ -87,10 +87,10 @@ export default WhyDuGlobal;
 //             return (
 //               <div
 //                 key={index}
-//                 className="border-2 border-red-600 rounded-2xl p-10 flex items-center gap-6"
+//                 className="border-2 border-[#FF1033] rounded-2xl p-10 flex items-center gap-6"
 //               >
-//                 <Icon className="text-red-600 text-4xl shrink-0" />
-//                 <p className="text-2xl font-semibold text-red-600">
+//                 <Icon className="text-[#FF1033] text-4xl shrink-0" />
+//                 <p className="text-2xl font-semibold text-[#FF1033]">
 //                   {item.text}
 //                 </p>
 //               </div>

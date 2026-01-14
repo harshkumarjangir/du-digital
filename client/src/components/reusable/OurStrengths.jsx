@@ -129,13 +129,13 @@ export default OurStrengths;
 //                                 className="
 //                   bg-white text-gray-800
 //                   rounded-xl p-8
-//                   border-l-4 border-red-600
+//                   border-l-4 border-[#FF1033]
 //                   shadow-lg hover:shadow-xl
 //                   transition
 //                 "
 //                             >
 //                                 {/* Icon */}
-//                                 <Icon className="text-red-600 text-4xl mb-4" />
+//                                 <Icon className="text-[#FF1033] text-4xl mb-4" />
 
 //                                 {/* Title */}
 //                                 <h4 className="text-xl font-bold mb-4 leading-snug">
@@ -175,7 +175,7 @@ export default OurStrengths;
 //     <section className="py-16 bg-black text-white">
 //         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 px-6">
 //             {data.map((item, i) => (
-//                 <div key={i} className="bg-gray-900 p-6 rounded border border-red-600">
+//                 <div key={i} className="bg-gray-900 p-6 rounded border border-[#FF1033]">
 //                     <h4 className="font-semibold mb-2">{item.title}</h4>
 //                     <p className="text-gray-300">{item.description}</p>
 //                 </div>

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
  * @param {string} title - Error title (default: "Oops! Something went wrong")
  * @param {string} bgColor - Background color class (default: "bg-black")
  * @param {string} textColor - Text color class (default: "text-white")
- * @param {string} errorColor - Error accent color class (default: "text-red-500")
+ * @param {string} errorColor - Error accent color class (default: "text-[#FF1033]")
  * @param {function} onRetry - Optional retry callback function
  * @param {boolean} showHomeButton - Show button to navigate home (default: false)
  * @param {boolean} fullScreen - Whether to take full screen height (default: false)
@@ -19,7 +19,7 @@ const ErrorState = ({
     title = "Oops! Something went wrong",
     bgColor = "bg-black",
     textColor = "text-white",
-    errorColor = "text-red-500",
+    errorColor = "text-[#FF1033]",
     onRetry,
     showHomeButton = false,
     fullScreen = false,
@@ -31,7 +31,7 @@ const ErrorState = ({
         <section className={`${bgColor} ${paddingClasses} ${className}`}>
             <div className="max-w-6xl mx-auto px-6 text-center flex flex-col items-center justify-center gap-6">
                 {/* Error Icon */}
-                <div className={`${errorColor} bg-red-500/10 p-4 rounded-full`}>
+                <div className={`${errorColor} bg-[#FF1033]/10 p-4 rounded-full`}>
                     <AlertCircle className="w-16 h-16" strokeWidth={2} />
                 </div>
 
@@ -50,7 +50,7 @@ const ErrorState = ({
                     {onRetry && (
                         <button
                             onClick={onRetry}
-                            className="flex items-center gap-2 bg-red-600 hover:bg-red-700 transition px-6 py-3 font-semibold text-white rounded-lg"
+                            className="flex items-center gap-2 bg-[#FF1033] hover:bg-[#511313] transition px-6 py-3 font-semibold text-white rounded-lg"
                         >
                             <RefreshCw className="w-5 h-5" />
                             Try Again

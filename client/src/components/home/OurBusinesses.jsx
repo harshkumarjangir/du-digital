@@ -19,14 +19,14 @@ const OurBusinesses = ({ data }) => {
 
     return (
         <section className="py-24 bg-white">
-            <div className="max-w-7xl mx-auto px-6">
+            <div className="max-w-7xl mx-auto px-6 md:px-20">
 
                 {/* ===== HEADER ===== */}
                 <div className="text-center mb-14">
                     <h2 className="text-4xl font-semibold text-gray-900">
                         {data.title}
                     </h2>
-                    <div className="w-16 h-[3px] bg-red-600 mx-auto my-4" />
+                    <div className="w-16 h-[3px] bg-[#FF1033] mx-auto my-4" />
                     <p className="text-gray-600 font-medium">
                         {data.subtitle}
                     </p>
@@ -86,7 +86,7 @@ const OurBusinesses = ({ data }) => {
 
                                 <ArrowRight
                                     size={25}
-                                    className="text-red-600 group-hover:translate-x-1 transition ml-auto"
+                                    className="text-[#FF1033] group-hover:translate-x-1 transition ml-auto"
                                 />
                             </div>
                         </Link>

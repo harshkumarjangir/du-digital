@@ -28,7 +28,7 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                 </h3>
                 <div className="grid md:grid-cols-3 gap-6">
                     <div>
-                        <label htmlFor="firstName" className="block text-gray-700 font-medium mb-2">First Name <span className="text-red-500">*</span></label>
+                        <label htmlFor="firstName" className="block text-gray-700 font-medium mb-2">First Name <span className="text-[#FF1033]">*</span></label>
                         <input
                             id="firstName"
                             type="text"
@@ -53,7 +53,7 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                         />
                     </div>
                     <div>
-                        <label htmlFor="lastName" className="block text-gray-700 font-medium mb-2">Last Name <span className="text-red-500">*</span></label>
+                        <label htmlFor="lastName" className="block text-gray-700 font-medium mb-2">Last Name <span className="text-[#FF1033]">*</span></label>
                         <input
                             id="lastName"
                             type="text"
@@ -67,7 +67,7 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                     </div>
 
                     <div className="md:col-span-2">
-                        <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email Address <span className="text-red-500">*</span></label>
+                        <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email Address <span className="text-[#FF1033]">*</span></label>
                         <input
                             id="email"
                             type="email"
@@ -81,7 +81,7 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                     </div>
 
                     <div>
-                        <label htmlFor="nationality" className="block text-gray-700 font-medium mb-2">Nationality/Citizenship <span className="text-red-500">*</span></label>
+                        <label htmlFor="nationality" className="block text-gray-700 font-medium mb-2">Nationality/Citizenship <span className="text-[#FF1033]">*</span></label>
                         <div className="relative">
                             <select
                                 id="nationality"
@@ -103,7 +103,7 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                     </div>
 
                     <div>
-                        <label htmlFor="gender" className="block text-gray-700 font-medium mb-2">Gender <span className="text-red-500">*</span></label>
+                        <label htmlFor="gender" className="block text-gray-700 font-medium mb-2">Gender <span className="text-[#FF1033]">*</span></label>
                         <div className="relative">
                             <select
                                 id="gender"
@@ -125,7 +125,7 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                     </div>
 
                     <div>
-                        <label htmlFor="dob" className="block text-gray-700 font-medium mb-2">Date of Birth <span className="text-red-500">*</span></label>
+                        <label htmlFor="dob" className="block text-gray-700 font-medium mb-2">Date of Birth <span className="text-[#FF1033]">*</span></label>
                         <input
                             id="dob"
                             type="date"
@@ -146,7 +146,7 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                 </h3>
                 <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                        <label htmlFor="accommodationLine1" className="block text-gray-700 font-medium mb-2">Address Line 1 <span className="text-red-500">*</span></label>
+                        <label htmlFor="accommodationLine1" className="block text-gray-700 font-medium mb-2">Address Line 1 <span className="text-[#FF1033]">*</span></label>
                         <input
                             id="accommodationLine1"
                             type="text"
@@ -171,7 +171,7 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                         />
                     </div>
                     <div>
-                        <label htmlFor="accommodationCity" className="block text-gray-700 font-medium mb-2">City <span className="text-red-500">*</span></label>
+                        <label htmlFor="accommodationCity" className="block text-gray-700 font-medium mb-2">City <span className="text-[#FF1033]">*</span></label>
                         <input
                             id="accommodationCity"
                             type="text"
@@ -184,7 +184,7 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                         />
                     </div>
                     <div>
-                        <label htmlFor="accommodationState" className="block text-gray-700 font-medium mb-2">State/Province <span className="text-red-500">*</span></label>
+                        <label htmlFor="accommodationState" className="block text-gray-700 font-medium mb-2">State/Province <span className="text-[#FF1033]">*</span></label>
                         <input
                             id="accommodationState"
                             type="text"
@@ -197,7 +197,7 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                         />
                     </div>
                     <div>
-                        <label htmlFor="accommodationZip" className="block text-gray-700 font-medium mb-2">Zip/Postal Code <span className="text-red-500">*</span></label>
+                        <label htmlFor="accommodationZip" className="block text-gray-700 font-medium mb-2">Zip/Postal Code <span className="text-[#FF1033]">*</span></label>
                         <input
                             id="accommodationZip"
                             type="text"

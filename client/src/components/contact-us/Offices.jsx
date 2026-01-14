@@ -23,7 +23,7 @@ const Offices = () => {
     if (error) {
         return (
             <section className="py-20 bg-gray-50 text-center">
-                <p className="text-red-600">Error: {error}</p>
+                <p className="text-[#FF1033]">Error: {error}</p>
             </section>
         );
     }
@@ -97,7 +97,7 @@ const Offices = () => {
                             {/* View on Maps */}
                             <button
                                 onClick={() => setMapPreviewUrl(office.googleMapLink)}
-                                className="inline-flex items-center pt-2 gap-2 text-sm font-medium text-red-600 hover:text-red-700 bg-transparent absolute bottom-3 border-none cursor-pointer"
+                                className="inline-flex items-center pt-2 gap-2 text-sm font-medium text-[#FF1033] hover:text-red-700 bg-transparent absolute bottom-3 border-none cursor-pointer"
                             >
                                 <MapPin size={16} />
                                 View on Maps
@@ -169,7 +169,7 @@ const Offices = () => {
                             {/* View on Maps */}
                             <button
                                 onClick={() => setMapPreviewUrl(office.googleMapLink)}
-                                className="inline-flex absolute bottom-3 pt-2  items-center gap-2 text-sm font-medium text-red-600 hover:text-red-700 bg-transparent border-none cursor-pointer"
+                                className="inline-flex absolute bottom-3 pt-2  items-center gap-2 text-sm font-medium text-[#FF1033] hover:text-red-700 bg-transparent border-none cursor-pointer"
                             >
                                 <MapPin size={16} />
                                 View on Maps
@@ -280,7 +280,7 @@ export default Offices;
 //         return (
 //             <section className="py-16 bg-gray-50">
 //                 <div className="max-w-7xl mx-auto px-6 text-center">
-//                     <p className="text-red-600">Error: {error}</p>
+//                     <p className="text-[#FF1033]">Error: {error}</p>
 //                 </div>
 //             </section>
 //         );

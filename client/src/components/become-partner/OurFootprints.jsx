@@ -19,16 +19,16 @@ const OurFootprints = ({ data }) => {
                     {data.stats.map((item, i) => (
                         <div key={i} className="flex flex-col items-center max-md:pb-5 max-md:border-b-2 md:border-r-2 max-md:last:border-b-transparent  md:last:border-r-transparent">
                             <div className="flex items-end">
-                                <span className="text-4xl font-bold text-red-600">
+                                <span className="text-4xl font-bold text-[#FF1033]">
                                     {item.value}
                                 </span>
-                                <span className="text-3xl font-bold text-red-600 ml-1">
+                                <span className="text-3xl font-bold text-[#FF1033] ml-1">
                                     {item.suffix}
                                 </span>
                             </div>
 
                             {item.subValue && (
-                                <p className="text-lg font-semibold text-red-600 mt-1">
+                                <p className="text-lg font-semibold text-[#FF1033] mt-1">
                                     {item.subValue}
                                 </p>
                             )}
@@ -43,10 +43,10 @@ const OurFootprints = ({ data }) => {
                     {data.stats.map((item, i) => (
                         <div key={i} className="flex flex-col items-center">
                         <div className="flex items-end">
-                            <span className="text-5xl font-bold text-red-600">
+                            <span className="text-5xl font-bold text-[#FF1033]">
                                 {item.value}
                             </span>
-                            <span className="text-3xl font-bold text-red-600 ml-1">
+                            <span className="text-3xl font-bold text-[#FF1033] ml-1">
                                 {item.suffix}
                             </span>
                         </div>
@@ -86,7 +86,7 @@ export default OurFootprints;
 //             <div className="flex justify-center gap-10">
 //                 {data.stats.map((item, i) => (
 //                     <div key={i}>
-//                         <p className="text-3xl font-bold text-red-600">{item.value}</p>
+//                         <p className="text-3xl font-bold text-[#FF1033]">{item.value}</p>
 //                         <p className="text-gray-600">{item.label}</p>
 //                     </div>
 //                 ))}

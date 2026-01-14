@@ -407,7 +407,7 @@ const TenantVerification = () => {
                             {isAvailable ? (
                               <Check className="w-7 h-7 text-green-500 mx-auto" strokeWidth={3} />
                             ) : (
-                              <X className="w-7 h-7 text-red-500 mx-auto" strokeWidth={3} />
+                              <X className="w-7 h-7 text-[#FF1033] mx-auto" strokeWidth={3} />
                             )}
                           </td>
                         );
@@ -532,7 +532,7 @@ const TenantVerification = () => {
                             {isAvailable ? (
                               <Check className="w-6 h-6 text-green-500" strokeWidth={3} />
                             ) : (
-                              <X className="w-6 h-6 text-red-500" strokeWidth={3} />
+                              <X className="w-6 h-6 text-[#FF1033]" strokeWidth={3} />
                             )}
                           </div>
                         );
@@ -566,7 +566,7 @@ const TenantVerification = () => {
                     {/* Selected Plan */}
                     <div className="form-group flex-1 ">
                       <label className="block text-gray-800 font-bold mb-2">
-                        Selected Plan <span className="required text-red-500">*</span>
+                        Selected Plan <span className="required text-[#FF1033]">*</span>
                       </label>
                       <select
                         value={plain}
@@ -584,13 +584,13 @@ const TenantVerification = () => {
                     {/* Police Verification */}
                     <div className="form-group flex-1 ">
                       <label className="block text-gray-800 font-bold mb-2">
-                        Police Verification Required? <span className="required text-red-500">*</span>
+                        Police Verification Required? <span className="required text-[#FF1033]">*</span>
                       </label>
 
                       <div className="toggle-group flex gap-4">
                         <button
                           className={`flex-1 px-6 py-3 rounded-lg font-semibold border transition-all ${policeVerification === "yes"
-                            ? "bg-red-600 border-red-600 text-white"
+                            ? "bg-[#FF1033] border-[#FF1033] text-white"
                             : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
                             }`}
                           onClick={() => setPoliceVerification("yes")}
@@ -600,7 +600,7 @@ const TenantVerification = () => {
                         </button>
                         <button
                           className={`flex-1 px-6 py-3 rounded-lg font-semibold border transition-all ${policeVerification === "no"
-                            ? "bg-red-600 border-red-600 text-white"
+                            ? "bg-[#FF1033] border-[#FF1033] text-white"
                             : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
                             }`}
                           onClick={() => setPoliceVerification("no")}
@@ -658,7 +658,7 @@ const TenantVerification = () => {
                           return (
                             <div className="space-y-3 bg-gray-50 p-4 rounded-lg border border-gray-200">
                               <label className="text-gray-800 text-sm font-bold block">
-                                {field.label} {field.required && <span className="text-red-500">*</span>}
+                                {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                               </label>
                               <div className="flex flex-wrap gap-6">
                                 {field.options?.map((opt, i) => (

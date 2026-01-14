@@ -163,7 +163,7 @@ const Georgiaevisa = () => {
                         {/* Video Section */}
                         {revisedProcessSection.length > 0 && (
                             <>
-                                <h2 className="text-3xl md:text-4xl font-bold text-[#E31E24] mb-8">
+                                <h2 className="text-3xl md:text-4xl font-bold text-[#FF1033] mb-8">
                                     {revisedProcessSection[0]?.title}
                                 </h2>
 

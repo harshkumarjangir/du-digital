@@ -26,8 +26,8 @@ const DynamicFormField = ({
     const isDark = theme === 'dark';
 
     const baseInputClass = isDark
-        ? "w-full px-4 py-3 bg-white/10 border text-black border-white/20 rounded-lg text-white placeholder:text-gray-400 focus:border-[#E31E24] focus:ring-1 focus:ring-[#E31E24] outline-none transition-all"
-        : "w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:border-[#E31E24] focus:ring-1 focus:ring-[#E31E24] outline-none transition-all placeholder:text-gray-500";
+        ? "w-full px-4 py-3 bg-white/10 border text-black border-white/20 rounded-lg text-white placeholder:text-gray-400 focus:border-[#FF1033] focus:ring-1 focus:ring-[#FF1033] outline-none transition-all"
+        : "w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:border-[#FF1033] focus:ring-1 focus:ring-[#FF1033] outline-none transition-all placeholder:text-gray-500";
 
     const labelClass = isDark ? "text-white text-sm" : "text-gray-700 text-sm font-medium";
 
@@ -104,11 +104,11 @@ const DynamicFormField = ({
                         name={field.name}
                         checked={formValues[field.name] || false}
                         onChange={handleInputChange}
-                        className="w-5 h-5 text-[#E31E24] border-gray-300 rounded focus:ring-[#E31E24]"
+                        className="w-5 h-5 text-[#FF1033] border-gray-300 rounded focus:ring-[#FF1033]"
                         required={field.required}
                     />
                     <label className={labelClass}>
-                        {field.label} {field.required && <span className="text-red-500">*</span>}
+                        {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                     </label>
                 </div>
             );
@@ -117,7 +117,7 @@ const DynamicFormField = ({
             return (
                 <div className="space-y-2">
                     <label className={`${labelClass} block mb-2`}>
-                        {field.label} {field.required && <span className="text-red-500">*</span>}
+                        {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                     </label>
                     <div className="flex flex-wrap gap-4">
                         {field.options?.map((opt, i) => (
@@ -128,7 +128,7 @@ const DynamicFormField = ({
                                     value={opt.value || opt.label || opt}
                                     checked={formValues[field.name] === (opt.value || opt.label || opt)}
                                     onChange={handleInputChange}
-                                    className="w-4 h-4 text-[#E31E24] focus:ring-[#E31E24]"
+                                    className="w-4 h-4 text-[#FF1033] focus:ring-[#FF1033]"
                                     required={field.required}
                                 />
                                 <span>{opt.label || opt}</span>
@@ -143,7 +143,7 @@ const DynamicFormField = ({
                 <div>
                     {field.label && (
                         <label htmlFor={field.name} className={`${labelClass} block mb-2`}>
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
+                            {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                         </label>
                     )}
                     <textarea
@@ -163,7 +163,7 @@ const DynamicFormField = ({
                 <div>
                     {field.label && (
                         <label className={`${labelClass} block mb-2`}>
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
+                            {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                         </label>
                     )}
                     <input
@@ -181,13 +181,13 @@ const DynamicFormField = ({
             return (
                 <div>
                     <label className={`${labelClass} block mb-2`}>
-                        {field.label} {field.required && <span className="text-red-500">*</span>}
+                        {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                     </label>
                     <input
                         type="file"
                         name={field.name}
                         onChange={(e) => onFileChange ? onFileChange(field.name, e.target.files[0]) : handleInputChange(e)}
-                        className={`${baseInputClass} file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#E31E24] file:text-white hover:file:bg-red-700`}
+                        className={`${baseInputClass} file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#FF1033] file:text-white hover:file:bg-[#511313]`}
                         required={field.required}
                     />
                 </div>
@@ -199,7 +199,7 @@ const DynamicFormField = ({
                 <div>
                     {field.showLabel && field.label && (
                         <label htmlFor={field.name} className={`${labelClass} block mb-2`}>
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
+                            {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                         </label>
                     )}
                     <input

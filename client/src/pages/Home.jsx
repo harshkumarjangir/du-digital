@@ -73,13 +73,13 @@ const Home = () => {
 
             {/* BLOGS SECTION */}
             <div ref={blogsRef} className="py-10 bg-gray-50 min-h-[500px]">
-                <div className="max-w-7xl mx-auto px-6 mb-2 text-center">
+                <div className="max-w-7xl mx-auto px-6 md:px-20 mb-2 text-center">
                     <h2 className="text-3xl font-bold text-gray-900">Our Latest Blogs</h2>
                 </div>
                 {blogs.length > 0 && (
                     <Blog data={blogs.slice(0, 3)} className="lg:grid-cols-3" />
                 )}
-                <Link to="/blogs" className="block text-center py-4" aria-label="View All Blogs">
+                <Link to="/blogs" className="block text-center pt-4" aria-label="View All Blogs">
                     <span className="inline-block px-6 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] cursor-pointer">
                         View All Blogs
                     </span>
@@ -88,13 +88,13 @@ const Home = () => {
 
             {/* NEWS SECTION */}
             <div ref={newsRef} className="py-10 bg-white min-h-[500px]">
-                <div className="max-w-7xl mx-auto px-6 mb-8 text-center">
+                <div className="max-w-7xl mx-auto px-6 md:px-20 mb-2 text-center">
                     <h2 className="text-3xl font-bold text-gray-900">News Coverage</h2>
                 </div>
                 {news.length > 0 && (
                     <NewsHome data={news.slice(0, 3)} />
                 )}
-                <Link to="/news-and-media" className="block text-center pt-8" aria-label="View All News">
+                <Link to="/news-and-media" className="block text-center pt-4" aria-label="View All News">
                     <span className="inline-block px-6 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] cursor-pointer">
                         View All News
                     </span>
@@ -105,13 +105,13 @@ const Home = () => {
 
             {/* EVENTS SECTION */}
             <div ref={eventsRef} className="py-10 bg-gray-50 min-h-[500px]">
-                <div className="max-w-7xl mx-auto px-6 mb-2 text-center">
+                <div className="max-w-7xl mx-auto px-6 md:px-20 mb-2 text-center">
                     <h2 className="text-3xl font-bold text-gray-900">Latest Updates & Events</h2>
                 </div>
                 {events.length > 0 && (
                     <EventsGrid data={events.slice(0, 6)} />
                 )}
-                <Link to="/events" className="block text-center py-4" aria-label="View All Events">
+                <Link to="/events" className="block text-center pt-4" aria-label="View All Events">
                     <span className="inline-block px-6 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] cursor-pointer">
                         View All Events
                     </span>

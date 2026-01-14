@@ -194,7 +194,7 @@ export default TeamGrid;
 //                         className="group relative bg-gradient-to-b from-[#F9E9E9] to-[#F9E9E9]/50 rounded-lg overflow-hidden shadow hover:shadow-lg transition"
 //                     >
 //                         {/* RED TOP BAR */}
-//                         {/* <div className="h-1 bg-red-600"></div> */}
+//                         {/* <div className="h-1 bg-[#FF1033]"></div> */}
 
 //                         {/* IMAGE */}
 //                         <div className="relative">
@@ -226,7 +226,7 @@ export default TeamGrid;
 //                         </div>
 
 //                         {/* NAME & DESIGNATION */}
-//                         <div className="p-4 text-center bg-white border-t-4 border-red-600 w-[80%] mx-auto relative z-10">
+//                         <div className="p-4 text-center bg-white border-t-4 border-[#FF1033] w-[80%] mx-auto relative z-10">
 //                             <h4 className="font-semibold text-gray-900">
 //                                 {member.name}
 //                             </h4>

@@ -215,7 +215,7 @@ const Companysetup = () => {
                             checked={formValues[field.name] || false}
                             onChange={handleInputChange}
                             id={`hero-field-${index}`}
-                            className="mt-1 w-5 h-5 rounded border-gray-300 text-red-600 focus:ring-red-500 cursor-pointer accent-red-600"
+                            className="mt-1 w-5 h-5 rounded border-gray-300 text-[#FF1033] focus:ring-red-500 cursor-pointer accent-red-600"
                             required={field.required || field.isRequired}
                           />
                           <label htmlFor={`hero-field-${index}`} className="text-xs md:text-sm text-gray-500 leading-snug cursor-pointer">
@@ -263,7 +263,7 @@ const Companysetup = () => {
                     {/* Submit Status Message */}
                     {submitStatus && (
                       <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-100' : 'bg-red-100'}`}>
-                        {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-600" /> : <XCircle className="w-5 h-5 text-red-600" />}
+                        {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-600" /> : <XCircle className="w-5 h-5 text-[#FF1033]" />}
                         <p className={`text-sm ${submitStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>{submitMessage}</p>
                       </div>
                     )}
@@ -295,7 +295,7 @@ const Companysetup = () => {
                   </h2> */}
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                     {item.title.split("Company Setup")[0]}
-                    <span className="text-red-600 font-bold">Company Setup</span>
+                    <span className="text-[#FF1033] font-bold">Company Setup</span>
                     {item.title.split("Company Setup")[1]}
                   </h2>
 
@@ -402,7 +402,7 @@ const Companysetup = () => {
           {/* Heading */}
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
-              Our <span className="text-red-600">Partners</span>
+              Our <span className="text-[#FF1033]">Partners</span>
             </h2>
           </div>
 
@@ -445,7 +445,7 @@ const Companysetup = () => {
                   className="group bg-white rounded-xl p-8 shadow-md hover:shadow-lg transition-shadow text-center"
                 >
                   <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-6 bg-red-600 group-hover:bg-black"
+                    className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-6 bg-[#FF1033] group-hover:bg-black"
                   // style={{ backgroundColor: 'rgba(161, 0, 0, 0.1)' }}
                   >
                     <Check className="w-8 h-8 text-white font-semibold\" />
@@ -698,7 +698,7 @@ const Companysetup = () => {
                 </h2> */}
                 <h2 className="text-3xl md:text-4xl lg:text-[43px] font-bold text-gray-900 mb-6">
                   {doc.title.split("Company Setup")[0]}
-                  <span className="text-red-600 font-bold">Company Setup</span>
+                  <span className="text-[#FF1033] font-bold">Company Setup</span>
                   {doc.title.split("Company Setup")[1]}
                 </h2>
 

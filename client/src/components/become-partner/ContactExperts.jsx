@@ -67,7 +67,7 @@ const ContactExperts = ({ data }) => {
                                 </p>
 
                                 {/* Phone */}
-                                <p className="mt-4 text-red-600 font-medium">
+                                <p className="mt-4 text-[#FF1033] font-medium">
                                     {expert.phone}
                                 </p>
                             </div>
@@ -105,7 +105,7 @@ export default ContactExperts;
 //                         {data.title}
 //                     </h2>
 
-//                     <button className="mt-6 md:mt-0 bg-red-600 hover:bg-red-700 transition px-8 py-3 font-semibold text-white rounded">
+//                     <button className="mt-6 md:mt-0 bg-[#FF1033] hover:bg-[#511313] transition px-8 py-3 font-semibold text-white rounded">
 //                         {data.ctaText}
 //                     </button>
 //                 </div>
@@ -139,7 +139,7 @@ export default ContactExperts;
 //                                             {item.designation}
 //                                         </p>
 
-//                                         <p className="mt-2 text-red-600 font-medium">
+//                                         <p className="mt-2 text-[#FF1033] font-medium">
 //                                             {item.phone}
 //                                         </p>
 //                                     </div>
@@ -177,7 +177,7 @@ export default ContactExperts;
 //                         {data.title}
 //                     </h2>
 
-//                     <Link to="/contact-us" className="mt-6 md:mt-0 bg-red-600 hover:bg-red-700 transition px-8 py-3 font-semibold text-white">
+//                     <Link to="/contact-us" className="mt-6 md:mt-0 bg-[#FF1033] hover:bg-[#511313] transition px-8 py-3 font-semibold text-white">
 //                         {data.ctaText}
 //                     </Link>
 //                 </div>
@@ -194,11 +194,11 @@ export default ContactExperts;
 //                                             {item.region}
 //                                         </p>
 
-//                                         <p className="text-red-600 font-medium mt-1">
+//                                         <p className="text-[#FF1033] font-medium mt-1">
 //                                             {item.name} ({item.designation})
 //                                         </p>
 
-//                                         <p className="text-red-600">
+//                                         <p className="text-[#FF1033]">
 //                                             {item.phone}
 //                                         </p>
 //                                     </div>
@@ -242,7 +242,7 @@ export default ContactExperts;
 //                             needs.
 //                         </p>
 
-//                         <button className="bg-red-600 hover:bg-red-700 transition px-8 py-3 font-semibold">
+//                         <button className="bg-[#FF1033] hover:bg-[#511313] transition px-8 py-3 font-semibold">
 //                             {data.ctaText}
 //                         </button>
 //                     </div>
@@ -262,11 +262,11 @@ export default ContactExperts;
 //                                                 {item.region}
 //                                             </p>
 
-//                                             <p className="text-red-600 font-medium mt-1">
+//                                             <p className="text-[#FF1033] font-medium mt-1">
 //                                                 {item.name} ({item.designation})
 //                                             </p>
 
-//                                             <p className="text-red-600">
+//                                             <p className="text-[#FF1033]">
 //                                                 {item.phone}
 //                                             </p>
 //                                         </div>
@@ -308,7 +308,7 @@ export default ContactExperts;
 //                 </h2>
 
 //                 {/* CTA */}
-//                 <button className="bg-red-600 hover:bg-red-700 transition px-8 py-3 font-semibold mb-16">
+//                 <button className="bg-[#FF1033] hover:bg-[#511313] transition px-8 py-3 font-semibold mb-16">
 //                     {data.ctaText}
 //                 </button>
 
@@ -320,7 +320,7 @@ export default ContactExperts;
 //                             className="relative bg-white text-black p-4 shadow-lg"
 //                         >
 //                             {/* Icon */}
-//                             <div className="absolute -top-6 right-6 bg-red-600 text-white p-4 rounded-full">
+//                             <div className="absolute -top-6 right-6 bg-[#FF1033] text-white p-4 rounded-full">
 //                                 {card.type === "phone" ? (
 //                                     <FaPhoneAlt />
 //                                 ) : (
@@ -336,13 +336,13 @@ export default ContactExperts;
 //                             {card.type === "phone" &&
 //                                 card.regions.map((item, i) => (
 //                                     <div key={i} className="mb-6">
-//                                         <p className="text-red-600 font-semibold">
+//                                         <p className="text-[#FF1033] font-semibold">
 //                                             {item.region}
 //                                         </p>
-//                                         <p className="text-red-600">
+//                                         <p className="text-[#FF1033]">
 //                                             {item.name} ({item.designation})  {item.phone}
 //                                         </p>
-//                                         {/* <p className="text-red-600">
+//                                         {/* <p className="text-[#FF1033]">
 //                                             {item.phone}
 //                                         </p> */}
 //                                     </div>
@@ -351,7 +351,7 @@ export default ContactExperts;
 //                             {/* Location Card */}
 //                             {card.type === "location" && (
 //                                 <div>
-//                                     <p className="text-red-600 font-semibold">
+//                                     <p className="text-[#FF1033] font-semibold">
 //                                         {card.addressTitle}:
 //                                     </p>
 //                                     <p className="mt-2">

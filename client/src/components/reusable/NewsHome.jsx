@@ -5,9 +5,9 @@ const NewsHome = ({ data }) => {
         import.meta.env.VITE_BACKEND_IMAGES_URL || "http://localhost:5000/api";
 
     return (
-        <div className="max-w-7xl mx-auto px-6 py-20">
+        <div className="max-w-7xl mx-auto px-6 md:px-20 py-12">
             {/* Header */}
-            <div className="text-center mb-14">
+            <div className="text-center mb-12">
                 <h2 className="text-5xl font-bold mb-3">
                     See what all the talk is about!
                 </h2>
@@ -57,7 +57,7 @@ const NewsHome = ({ data }) => {
                                 {item.company || "Verified User"}
                             </p> */}
                             <div className="flex items-center justify-between gap-2">
-                                <span className="text-xs font-semibold tracking-wider text-red-600 uppercase">
+                                <span className="text-xs font-semibold tracking-wider text-[#FF1033] uppercase">
                                     News
                                 </span>
                                 <div className="flex items-center gap-2">

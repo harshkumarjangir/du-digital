@@ -67,7 +67,7 @@ const HomeSlider = ({ data }) => {
 
                             <a
                                 href={slides[current].buttonLink}
-                                className="inline-block mt-6 bg-white text-red-600 px-5 py-3 rounded-md font-medium border border-white hover:bg-transparent hover:text-white transition"
+                                className="inline-block mt-6 bg-white text-[#FF1033] px-5 py-3 rounded-md font-medium border border-white hover:bg-transparent hover:text-white transition"
                             >
                                 {slides[current].buttonText}
                             </a>
@@ -149,7 +149,7 @@ export default HomeSlider;
 //                     <div className="absolute inset-0 bg-black/50" />
 
 //                     {/* Content */}
-//                     <div className="relative z-20 max-w-7xl mx-auto px-6 md:px-20 h-full flex items-center"
+//                     <div className="relative z-20 max-w-7xl mx-auto px-6 md:px-20 md:px-20 h-full flex items-center"
 //                         initial={{ opacity: 0, y: 100 }}
 //                         animate={{ opacity: 1, y: 0 }}
 //                         transition={{ duration: 2 }}
@@ -163,7 +163,7 @@ export default HomeSlider;
 //                             </p>
 //                             <a
 //                                 href={slide.buttonLink}
-//                                 className="inline-block mt-6 bg-white text-red-600 px-4 py-2 rounded-md font-medium border border-white hover:bg-transparent hover:text-white hover:border-white transition"
+//                                 className="inline-block mt-6 bg-white text-[#FF1033] px-4 py-2 rounded-md font-medium border border-white hover:bg-transparent hover:text-white hover:border-white transition"
 //                             >
 //                                 {slide.buttonText}
 //                             </a>

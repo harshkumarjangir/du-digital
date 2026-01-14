@@ -154,7 +154,7 @@ const Serbiaworkpermitvisa = () => {
                 <p key={index} className={index === 0 ? "text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4" : "text-xl text-gray-300 mb-2"}>
                   {index === 0 ? (
                     <>
-                      Work in <span style={{ color: '#E31E24' }}>Serbia</span>: Secure Your D-Type Visa with
+                      Work in <span style={{ color: '#FF1033' }}>Serbia</span>: Secure Your D-Type Visa with
                     </>
                   ) : line}
                 </p>
@@ -188,7 +188,7 @@ const Serbiaworkpermitvisa = () => {
                         return (
                           <div key={field._id || index} className="col-span-1 md:col-span-2 mt-2">
                             <label className="text-white text-base font-semibold block mb-3">
-                              {field.label} {field.required && <span className="text-red-500">*</span>}
+                              {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                             </label>
                             <div className="space-y-2">
                               {relevantOptions.map((opt, i) => (
@@ -272,7 +272,7 @@ const Serbiaworkpermitvisa = () => {
                                 className="peer sr-only"
                                 required={field.required}
                               />
-                              <div className={`w-5 h-5 rounded transition-colors flex items-center justify-center mt-1.5 shadow-sm ${formValues[field.name] ? 'bg-[#C5202F]' : 'bg-white'}`}>
+                              <div className={`w-5 h-5 rounded transition-colors flex items-center justify-center mt-1.5 shadow-sm ${formValues[field.name] ? 'bg-[#FF1033]' : 'bg-white'}`}>
                                 <Check
                                   className={`w-3.5 h-3.5 text-white font-bold transition-opacity duration-200 ${formValues[field.name] ? 'opacity-100' : 'opacity-0'}`}
                                   strokeWidth={4}
@@ -303,7 +303,7 @@ const Serbiaworkpermitvisa = () => {
 
                   <div className="col-span-1 md:col-span-2">
                     {submitStatus && (
-                      <div className={`flex items-center gap-3 p-3 rounded mb-4 ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
+                      <div className={`flex items-center gap-3 p-3 rounded mb-4 ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
                         {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
                         <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                       </div>
@@ -334,7 +334,7 @@ const Serbiaworkpermitvisa = () => {
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div>
+                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
                   <p className="text-gray-600 leading-relaxed text-lg">
                     {item.contentHtml}
                   </p>
@@ -376,7 +376,7 @@ const Serbiaworkpermitvisa = () => {
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333333] mb-4">
                       {item.title}
                     </h2>
-                    <div className="w-20 h-1 mx-auto mb-6" style={{ backgroundColor: '#E31E24' }}></div>
+                    <div className="w-20 h-1 mx-auto mb-6" style={{ backgroundColor: '#FF1033' }}></div>
                     <p className="text-gray-600 leading-relaxed text-lg max-w-4xl mx-auto">
                       {item.contentHtml}
                     </p>
@@ -391,7 +391,7 @@ const Serbiaworkpermitvisa = () => {
                       <h2 className="text-2xl md:text-3xl font-semibold text-[#333333] mb-4">
                         {item.title}
                       </h2>
-                      <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div>
+                      <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
 
                       {isTable || item.title.includes('Checklist') ? (
                         // Render as table
@@ -465,7 +465,7 @@ const Serbiaworkpermitvisa = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
                 Why Choose DU Global?
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
@@ -474,10 +474,10 @@ const Serbiaworkpermitvisa = () => {
                 return (
                   <div key={item._id || index} className="text-center bg-white rounded-[2rem] p-10 relative overflow-hidden shadow-lg hover:translate-y-[-5px] transition-all duration-300">
                     {/* Red Corner Accent */}
-                    <div className="absolute top-0 right-0 w-[100px] h-[100px] bg-[#C5202F] transform translate-x-1/2 -translate-y-1/2 rotate-45" />
+                    <div className="absolute top-0 right-0 w-[100px] h-[100px] bg-[#FF1033] transform translate-x-1/2 -translate-y-1/2 rotate-45" />
 
                     <div className="mb-6 relative z-10 flex justify-center mt-4">
-                      <IconComponent className="w-16 h-16 text-[#C5202F]" strokeWidth={1.5} />
+                      <IconComponent className="w-16 h-16 text-[#FF1033]" strokeWidth={1.5} />
                     </div>
                     <h3 className="text-2xl font-semibold text-[#333333] mb-4 relative z-10">{item.title}</h3>
                     <p className="text-[#333333] leading-relaxed relative z-10 text-base">{item.contentHtml?.trim()}</p>
@@ -508,7 +508,7 @@ const Serbiaworkpermitvisa = () => {
               <a
                 href="#"
                 className="inline-flex items-center font-medium hover:underline"
-                style={{ color: '#E31E24' }}
+                style={{ color: '#FF1033' }}
               >
                 More FAQs →
               </a>
@@ -550,7 +550,7 @@ const Serbiaworkpermitvisa = () => {
                 <h2 className="text-3xl md:text-4xl text-center font-bold leading-tight mb-6 text-[#333333]">
                   {VisaApplicationCentreAddress[0]?.title || "Visa Application Centre Addresses"}
                 </h2>
-                <div className="w-20 h-1 mx-auto mb-6" style={{ backgroundColor: '#E31E24' }}></div>
+                <div className="w-20 h-1 mx-auto mb-6" style={{ backgroundColor: '#FF1033' }}></div>
               </div>
               <div className="bg-white shadow-lg border border-gray-200 rounded-lg overflow-hidden">
                 <div className="overflow-x-auto no-scrollbar">
@@ -558,7 +558,7 @@ const Serbiaworkpermitvisa = () => {
                     <thead>
                       <tr>
                         {centreAddressTableData.headers?.map((header, idx) => (
-                          <th key={idx} className="px-6 py-4 text-left text-sm font-bold text-white border border-white bg-[#C5202F] whitespace-nowrap">
+                          <th key={idx} className="px-6 py-4 text-left text-sm font-bold text-white border border-white bg-[#FF1033] whitespace-nowrap">
                             {header}
                           </th>
                         ))}
@@ -600,7 +600,7 @@ const Serbiaworkpermitvisa = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/60 transition-opacity duration-500 group-hover:opacity-0" />
 
               {/* Red Overlay on Hover - Fades in */}
-              <div className="absolute inset-0 bg-[#E31E24]/75 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-multiply" />
+              <div className="absolute inset-0 bg-[#FF1033]/75 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-multiply" />
 
               <div className="relative z-10 p-4 md:p-6 flex flex-col h-full text-white">
                 <div>
@@ -627,7 +627,7 @@ const Serbiaworkpermitvisa = () => {
 
               <div className="relative z-10">
                 <h3 className="text-3xl md:text-4xl font-semibold text-white mb-4">Connect with us</h3>
-                <div className="w-16 h-1 mb-10" style={{ backgroundColor: '#E31E24' }}></div>
+                <div className="w-16 h-1 mb-10" style={{ backgroundColor: '#FF1033' }}></div>
 
                 <div className="mb-8">
                   <h4 className="text-2xl md:text-3xl font-semibold text-white mb-2">Karan Khurana</h4>
@@ -639,11 +639,11 @@ const Serbiaworkpermitvisa = () => {
                     href="mailto:karan@dudigitalglobal.com"
                     className="flex items-center gap-4 group transition-colors"
                   >
-                    {/* <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#E31E24] transition-colors">
+                    {/* <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#FF1033] transition-colors">
                       <Mail className="w-5 h-5 text-white" />
                     </div> */}
 
-                    <span className="text-[#E31E24] group-hover:text-white transition-colors font-medium text-lg">
+                    <span className="text-[#FF1033] group-hover:text-white transition-colors font-medium text-lg">
                       <span className="text-white font-bold mr-2">📧 Email –</span>
                       karan@dudigitalglobal.com
                     </span>
@@ -652,11 +652,11 @@ const Serbiaworkpermitvisa = () => {
                     href="tel:+919910987275"
                     className="flex items-center gap-4 group transition-colors"
                   >
-                    {/* <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#E31E24] transition-colors">
+                    {/* <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#FF1033] transition-colors">
                       <Phone className="w-5 h-5 text-white" />
                     </div> */}
 
-                    <span className="text-[#E31E24] group-hover:text-white transition-colors font-medium text-lg">
+                    <span className="text-[#FF1033] group-hover:text-white transition-colors font-medium text-lg">
                       <span className="text-white font-bold mr-2">📞 Mobile –</span>
                       +91 99109 87275
                     </span>

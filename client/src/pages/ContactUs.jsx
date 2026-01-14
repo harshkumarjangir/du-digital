@@ -270,7 +270,7 @@ export default ContactUs;
 //                     <button
 //                         type="submit"
 //                         disabled={loading}
-//                         className={`bg-red-600 text-white px-8 py-3 rounded-md hover:bg-red-700 transition-colors ${loading ? 'opacity-50 cursor-not-allowed' : ''
+//                         className={`bg-[#FF1033] text-white px-8 py-3 rounded-md hover:bg-[#511313] transition-colors ${loading ? 'opacity-50 cursor-not-allowed' : ''
 //                             }`}
 //                     >
 //                         {loading ? 'Submitting...' : 'Submit'}
@@ -339,7 +339,7 @@ export default ContactUs;
 //                             ✉️{" "}
 //                             <a
 //                                 href={`mailto:${office.email}`}
-//                                 className="text-red-600 hover:underline"
+//                                 className="text-[#FF1033] hover:underline"
 //                             >
 //                                 {office.email}
 //                             </a>
@@ -390,7 +390,7 @@ export default ContactUs;
 
 //                     <button
 //                         type="submit"
-//                         className="bg-red-600 text-white px-8 py-3 rounded-md hover:bg-red-700"
+//                         className="bg-[#FF1033] text-white px-8 py-3 rounded-md hover:bg-[#511313]"
 //                     >
 //                         Submit
 //                     </button>

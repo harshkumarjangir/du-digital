@@ -161,7 +161,7 @@ const Applyforanyvisa = () => {
             {/* <p className="text-lg mb-2 text-gray-300">Welcome to</p> */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
               Welcome to DU Global
-              {/* <span style={{ color: '#E31E24' }}></span> */}
+              {/* <span style={{ color: '#FF1033' }}></span> */}
             </h1>
             {/* <p className="text-gray-300 text-lg mb-8">
               Your trusted partner for visa services worldwide
@@ -190,7 +190,7 @@ const Applyforanyvisa = () => {
 
           <div className="relative z-10 max-w-4xl mx-auto px-6">
             <div className="text-center mb-8">
-              <p className="text-xl font-semibold mb-2" style={{ color: '#E31E24' }}>VISA APPLICATION</p>
+              <p className="text-xl font-semibold mb-2" style={{ color: '#FF1033' }}>VISA APPLICATION</p>
               <h2 className="text-3xl md:text-4xl font-bold text-white">Apply for Any Visa</h2>
             </div>
 
@@ -256,7 +256,7 @@ const Applyforanyvisa = () => {
                       textarea.map((field, index) => <div key={index}>
                         {field.label && (
                           <label className={`${labelClass} block mb-2`}>
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
+                            {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                           </label>
                         )}
                         <textarea
@@ -286,7 +286,7 @@ const Applyforanyvisa = () => {
 
                     {radioFields.map((index, field) => <div key={index} className="space-y-2">
                       <label className="text-white text-sm font-medium block mb-2">
-                        {field.label} {field.required && <span className="text-red-500">*</span>}
+                        {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                       </label>
                       <div className="flex flex-wrap gap-4">
                         {field.options?.map((opt, i) => (
@@ -310,7 +310,7 @@ const Applyforanyvisa = () => {
                     {/* Submit Status Message */}
                     {submitStatus && (
                       <div className={`flex items-center gap-3 p-4 rounded-lg mb-4 ${submitStatus === 'success' ? 'bg-green-100 border border-green-300' : 'bg-red-100 border border-red-300'}`}>
-                        {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" /> : <XCircle className="w-5 h-5 text-red-600 flex-shrink-0" />}
+                        {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" /> : <XCircle className="w-5 h-5 text-[#FF1033] flex-shrink-0" />}
                         <p className={`text-sm ${submitStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>{submitMessage}</p>
                       </div>
                     )}
@@ -351,7 +351,7 @@ const Applyforanyvisa = () => {
                 <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                   <div>
                     <p className="text-xl md:text-2xl lg:text-4xl font-bold mb-2" style={{ color: '#333333' }}>Global Experts in</p>
-                    <div className="w-14 h-0.5 mr-2" style={{ backgroundColor: '#E31E24' }}></div>
+                    <div className="w-14 h-0.5 mr-2" style={{ backgroundColor: '#FF1033' }}></div>
                     <h2 className="text-2xl md:text-2xl lg:text-3xl font-bold text-[#333333] my-6">
                       {item.title}
                     </h2>
@@ -410,14 +410,14 @@ const Applyforanyvisa = () => {
           <div className="max-w-5xl mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-3">Documents Required</h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             <div className="space-y-6">
               {documents.map((doc, index) => (
                 <div key={doc._id || index} className="bg-white rounded-xl p-6 shadow-sm">
                   <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <Check className="w-5 h-5" style={{ color: '#E31E24' }} />
+                    <Check className="w-5 h-5" style={{ color: '#FF1033' }} />
                     {doc.title}
                   </h3>
                   <ul className="space-y-2">
@@ -441,7 +441,7 @@ const Applyforanyvisa = () => {
           <div className="max-w-4xl mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-3">Frequently Asked Questions</h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             <div className="space-y-4">

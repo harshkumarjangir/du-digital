@@ -202,7 +202,7 @@ const Lebanon = () => {
                     if (paragraph.includes('Important Notes:') || paragraph.includes('For Nepal:') || paragraph.includes('For Bangladesh:')) {
                       return (
                         <div key={pIdx} className="mb-4">
-                          <p className="text-red-600 font-semibold mb-2">
+                          <p className="text-[#FF1033] font-semibold mb-2">
                             {paragraph.split(':')[0]}:
                           </p>
                           <p className="text-gray-700">
@@ -270,7 +270,7 @@ const Lebanon = () => {
             <button
               type="submit"
               disabled={submitLoading}
-              className="w-full py-4 bg-[#E31E24] text-white hover:bg-[#2D1F1F] hover:text-[#E31E24] rounded-full font-bold transition-opacity flex justify-center items-center gap-2"
+              className="w-full py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold transition-opacity flex justify-center items-center gap-2"
             >
               {submitLoading ? <Loader2 className="animate-spin w-5 h-5" /> : 'Submit Request'}
             </button>
@@ -373,7 +373,7 @@ const Lebanon = () => {
                   {/* Red top bar */}
                   <div
                     className="h-2"
-                    style={{ backgroundColor: office.color || '#E31E24' }}
+                    style={{ backgroundColor: office.color || '#FF1033' }}
                   />
 
                   <div className="p-6">
@@ -397,7 +397,7 @@ const Lebanon = () => {
                     {office.phone && (
                       <div className="flex items-center gap-3 mb-3">
                         <Phone className="w-5 h-5 text-gray-400" />
-                        <a href={`tel:${office.phone}`} className="text-gray-600 text-sm hover:text-red-600">
+                        <a href={`tel:${office.phone}`} className="text-gray-600 text-sm hover:text-[#FF1033]">
                           {office.phone}
                         </a>
                       </div>
@@ -406,7 +406,7 @@ const Lebanon = () => {
                     {office.email && (
                       <div className="flex items-center gap-3 mb-3">
                         <Mail className="w-5 h-5 text-gray-400" />
-                        <a href={`mailto:${office.email}`} className="text-gray-600 text-sm hover:text-red-600">
+                        <a href={`mailto:${office.email}`} className="text-gray-600 text-sm hover:text-[#FF1033]">
                           {office.email}
                         </a>
                       </div>

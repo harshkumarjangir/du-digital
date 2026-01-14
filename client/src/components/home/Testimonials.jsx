@@ -20,7 +20,7 @@ const Testimonials = ({ data }) => {
 
     return (
         <section className="bg-[#FFF1D9] py-24 relative overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6 text-center">
+            <div className="max-w-7xl mx-auto px-6 md:px-20 text-center">
 
                 {/* Heading */}
                 <p className="text-sm font-semibold tracking-widest text-gray-700">
@@ -89,14 +89,14 @@ const Testimonials = ({ data }) => {
                 <div className="flex justify-between mt-16 px-2">
                     <button
                         onClick={prev}
-                        className="text-red-600 hover:scale-110 transition bg-red-600/10 hover:bg-red-600 hover:text-white rounded-full p-2 hover:cursor-pointer"
+                        className="text-[#FF1033] hover:scale-110 transition bg-[#FF1033]/10 hover:bg-[#FF1033] hover:text-white rounded-full p-2 hover:cursor-pointer"
                         aria-label="Previous testimonial"
                     >
                         <ChevronLeft size={28} />
                     </button>
                     <button
                         onClick={next}
-                        className="text-red-600 hover:scale-110 transition bg-red-600/10  hover:bg-red-600 hover:text-white rounded-full p-2 hover:cursor-pointer"
+                        className="text-[#FF1033] hover:scale-110 transition bg-[#FF1033]/10  hover:bg-[#FF1033] hover:text-white rounded-full p-2 hover:cursor-pointer"
                         aria-label="Next testimonial"
                     >
                         <ChevronRight size={28} />

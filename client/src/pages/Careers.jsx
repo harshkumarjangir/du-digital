@@ -33,7 +33,7 @@ const Careers = () => {
 
             {error && (
                 <div className="py-20 text-center">
-                    <p className="text-red-600">Error: {error}</p>
+                    <p className="text-[#FF1033]">Error: {error}</p>
                 </div>
             )}
 

@@ -102,7 +102,7 @@ export default FloatingChatCTA;
 //             <div className="flex items-center gap-3">
 //                 <a
 //                     href="/contact"
-//                     className="bg-[#FF1F3D] text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:bg-red-600 transition"
+//                     className="bg-[#FF1F3D] text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:bg-[#FF1033] transition"
 //                 >
 //                     Chat with us!
 //                 </a>

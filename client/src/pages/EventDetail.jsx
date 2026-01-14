@@ -38,7 +38,7 @@ const EventDetail = () => {
         return (
             <div className="min-h-screen flex items-center justify-center">
                 <div className="text-center">
-                    <p className="text-red-600 mb-4">Error: {error}</p>
+                    <p className="text-[#FF1033] mb-4">Error: {error}</p>
                     <button
                         onClick={() => navigate('/events')}
                         className="text-blue-600 hover:underline"

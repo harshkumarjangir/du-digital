@@ -178,7 +178,7 @@ const Egyptvisaforindians = () => {
             <div className="text-white">
               <p className="text-xl mb-2 text-gray-300">Apply For</p>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-                <span style={{ color: '#E31E24' }}>Egypt</span> Visa
+                <span style={{ color: '#FF1033' }}>Egypt</span> Visa
               </h1>
               <p className="text-gray-300 text-lg">
                 Experience the wonders of Egypt with our hassle-free visa service
@@ -253,7 +253,7 @@ const Egyptvisaforindians = () => {
                           textarea.map((field, index) => <div key={index}>
                             {field.label && (
                               <label className={`${labelClass} block mb-2`}>
-                                {field.label} {field.required && <span className="text-red-500">*</span>}
+                                {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                               </label>
                             )}
                             <textarea
@@ -282,7 +282,7 @@ const Egyptvisaforindians = () => {
                         ))}
                         {radioFields.map((field, index) => <div key={index} className="space-y-2">
                           <label className="text-white text-sm font-medium block mb-2">
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
+                            {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                           </label>
                           <div className="flex flex-wrap gap-4">
                             {field.options?.map((opt, i) => (
@@ -312,7 +312,7 @@ const Egyptvisaforindians = () => {
                     <div
                       className={`flex items-center gap-3 p-4 rounded-lg ${submitStatus === 'success'
                         ? 'bg-green-500/20 border border-green-500/50'
-                        : 'bg-red-500/20 border border-red-500/50'
+                        : 'bg-[#FF1033]/20 border border-red-500/50'
                         }`}
                     >
                       {submitStatus === 'success' ? (
@@ -357,7 +357,7 @@ const Egyptvisaforindians = () => {
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div>
+                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
                   <p className="text-gray-600 leading-relaxed whitespace-pre-line">
                     {item.contentHtml}
                   </p>
@@ -384,7 +384,7 @@ const Egyptvisaforindians = () => {
                   {
                     item?.badge && (
                       <div className="flex flex-col items-center text-white gap-0 absolute -top-10 -right-10 rounded-lg p-4 flex" style={{
-                        backgroundColor: `${item.badge.background || "#E31E24"}`
+                        backgroundColor: `${item.badge.background || "#FF1033"}`
                       }}>
                         <span>{item.badge.text.split("+")[0]}+</span>
                         <div>{item.badge.text.split("+")[1]}</div>
@@ -403,7 +403,7 @@ const Egyptvisaforindians = () => {
                     {item.badge?.text && (
                       <div
                         className="absolute -bottom-4 -right-4 px-4 py-2 rounded-lg text-white font-bold shadow-lg"
-                        style={{ backgroundColor: item.badge.background || '#E31E24' }}
+                        style={{ backgroundColor: item.badge.background || '#FF1033' }}
                       >
                         {item.badge.text} Happy Customers
                       </div>
@@ -419,7 +419,7 @@ const Egyptvisaforindians = () => {
                     {item.badge?.text && (
                       <div
                         className="absolute -bottom-4 -right-4 px-4 py-2 rounded-lg text-white font-bold shadow-lg"
-                        style={{ backgroundColor: item.badge.background || '#E31E24' }}
+                        style={{ backgroundColor: item.badge.background || '#FF1033' }}
                       >
                         {item.badge.text} Happy Customers
                       </div>
@@ -440,7 +440,7 @@ const Egyptvisaforindians = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                 {centersSection[0]?.title}
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
             <div className="flex flex-wrap justify-center gap-4">
               {centersSection[0]?.contentHtml?.split('\n').filter(c => c.trim()).map((city, idx) => (
@@ -448,7 +448,7 @@ const Egyptvisaforindians = () => {
                   key={idx}
                   className="flex items-center gap-2 px-6 py-3 bg-white rounded-full shadow-sm border border-gray-200"
                 >
-                  <MapPin className="w-5 h-5" style={{ color: '#E31E24' }} />
+                  <MapPin className="w-5 h-5" style={{ color: '#FF1033' }} />
                   <span className="font-medium text-gray-800">{city.trim()}</span>
                 </div>
               ))}
@@ -465,13 +465,13 @@ const Egyptvisaforindians = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                 {travelTipsSection[0]?.title}
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
             <div className="space-y-6">
               {travelTipsSection[0]?.contentHtml?.split('\n').filter(p => p.trim()).map((paragraph, pIdx) => (
                 <div key={pIdx} className="flex gap-4">
                   <div className="shrink-0 w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(227,30,36,0.1)' }}>
-                    <Check className="w-5 h-5" style={{ color: '#E31E24' }} />
+                    <Check className="w-5 h-5" style={{ color: '#FF1033' }} />
                   </div>
                   <p className="text-gray-600 leading-relaxed">{paragraph.trim()}</p>
                 </div>
@@ -492,7 +492,7 @@ const Egyptvisaforindians = () => {
                     <h2 className="text-2xl md:text-3xl text-center font-bold text-gray-900 mb-4">
                       {item.title}
                     </h2>
-                    <div className="w-20 h-1 mb-6 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+                    <div className="w-20 h-1 mb-6 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
 
                   </div>
 
@@ -533,7 +533,7 @@ const Egyptvisaforindians = () => {
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div>
+                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
                   <p className="text-gray-600 leading-relaxed whitespace-pre-line">
                     {item.contentHtml}
                   </p>
@@ -586,7 +586,7 @@ const Egyptvisaforindians = () => {
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div>
+                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
                   <p className="text-gray-600 leading-relaxed whitespace-pre-line">
                     {item.contentHtml}
                   </p>
@@ -605,7 +605,7 @@ const Egyptvisaforindians = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                 Egypt Visa Overview: Types, Processing, Fees, and Validity
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             <div className="grid place-items-center md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -635,7 +635,7 @@ const Egyptvisaforindians = () => {
                           </p>
                           <p className="flex justify-between">
                             <span className="text-gray-500">Fees:</span>
-                            <span className="font-bold" style={{ color: '#E31E24' }}>{details.single.fees || 'INR 2700/-'}</span>
+                            <span className="font-bold" style={{ color: '#FF1033' }}>{details.single.fees || 'INR 2700/-'}</span>
                           </p>
                         </div>
                       </div>
@@ -654,7 +654,7 @@ const Egyptvisaforindians = () => {
                           </p>
                           <p className="flex justify-between">
                             <span className="text-gray-500">Fees:</span>
-                            <span className="font-bold" style={{ color: '#E31E24' }}>{details.multiple.fees || 'INR 5800/-'}</span>
+                            <span className="font-bold" style={{ color: '#FF1033' }}>{details.multiple.fees || 'INR 5800/-'}</span>
                           </p>
                         </div>
                       </div>
@@ -673,7 +673,7 @@ const Egyptvisaforindians = () => {
           <div className="max-w-5xl mx-auto px-6">
             <div className="text-center mb-10">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Documents Required</h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             <div className="space-y-8">
@@ -683,7 +683,7 @@ const Egyptvisaforindians = () => {
                   <ul className="space-y-3">
                     {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
                       <li key={idx} className="flex items-start gap-3">
-                        <Check className="w-5 h-5 mt-0.5 shrink-0" style={{ color: '#E31E24' }} />
+                        <Check className="w-5 h-5 mt-0.5 shrink-0" style={{ color: '#FF1033' }} />
                         <span className="text-gray-700">{item.trim()}</span>
                       </li>
                     ))}

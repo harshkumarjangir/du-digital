@@ -108,7 +108,7 @@ const Vipclearanceatmalaysiaairport = () => {
                     <a
                         href="https://docs.google.com/forms/d/e/1FAIpQLScB4u2Ovi_PMj_st6lqisz8NqNgeTdr9d2737UzTvaNcOAnaw/viewform"
                         target="_blank"
-                        className="px-10 py-4 bg-[#E31E24] text-white hover:bg-[#2D1F1F] hover:text-[#E31E24] rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
+                        className="px-10 py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
                     >
                         Book Now
                     </a>
@@ -122,7 +122,7 @@ const Vipclearanceatmalaysiaairport = () => {
                         <h2 className="text-lg md:text-2xl font-bold text-gray-900 mb-2">
                             Say goodbye to long airport lines and hello to a seamless journey with our exclusive
                         </h2>
-                        <h2 className="text-4xl md:text-5xl font-bold text-[#E31E24] mb-12">
+                        <h2 className="text-4xl md:text-5xl font-bold text-[#FF1033] mb-12">
                             VIP clearance service at Malaysian Immigration
                         </h2>
                         <div className="inline-block bg-[#991b1b] text-white px-8 py-3 rounded-lg text-2xl font-bold shadow-lg">
@@ -145,7 +145,7 @@ const Vipclearanceatmalaysiaairport = () => {
                                         />
                                     ) : (
                                         <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center">
-                                            <Plane className="w-10 h-10 text-[#E31E24]" />
+                                            <Plane className="w-10 h-10 text-[#FF1033]" />
                                         </div>
                                     )}
                                 </div>
@@ -163,7 +163,7 @@ const Vipclearanceatmalaysiaairport = () => {
                         <a
                             href="https://docs.google.com/forms/d/e/1FAIpQLScB4u2Ovi_PMj_st6lqisz8NqNgeTdr9d2737UzTvaNcOAnaw/viewform"
                             target="_blank"
-                            className="px-10 py-4 bg-[#E31E24] text-white hover:bg-[#2D1F1F] hover:text-[#E31E24] rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
+                            className="px-10 py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
                         >
                             Book Now
                         </a>
@@ -234,7 +234,7 @@ const Vipclearanceatmalaysiaairport = () => {
                                                 className="flex items-center justify-center gap-4 text-lg md:text-xl font-semibold text-[#333333]"
                                             >
                                                 {/* Red Check */}
-                                                <span className="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-[#E31E24] flex items-center justify-center">
+                                                <span className="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-[#FF1033] flex items-center justify-center">
                                                     <Check className="w-4 h-4 text-white" />
                                                 </span>
 
@@ -250,7 +250,7 @@ const Vipclearanceatmalaysiaairport = () => {
                             <a
                                 href="https://docs.google.com/forms/d/e/1FAIpQLScB4u2Ovi_PMj_st6lqisz8NqNgeTdr9d2737UzTvaNcOAnaw/viewform"
                                 target="_blank"
-                                className="px-10 py-4 bg-[#E31E24] text-white hover:bg-[#2D1F1F] hover:text-[#E31E24] rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
+                                className="px-10 py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
                             >
                                 Book Now
                             </a>
@@ -279,7 +279,7 @@ const Vipclearanceatmalaysiaairport = () => {
                         {/* Red Banner Heading */}
                         <div className="mb-12">
                             <h2 className="inline-block w-full max-w-6xl mx-auto
-          bg-[#E31E24] text-white text-xl md:text-3xl font-bold
+          bg-[#FF1033] text-white text-xl md:text-3xl font-bold
           py-4 p-4 md:px-8 rounded-full">
                                 {visaCentresSection[0]?.title}
                             </h2>
@@ -292,7 +292,7 @@ const Vipclearanceatmalaysiaairport = () => {
                                 .filter(city => city.trim())
                                 .map((city, idx) => (
                                     <div key={idx} className="flex items-center gap-2">
-                                        <MapPin className="w-4 h-4 text-[#E31E24]" />
+                                        <MapPin className="w-4 h-4 text-[#FF1033]" />
                                         <span>{city.trim()}</span>
                                     </div>
                                 ))}
@@ -332,7 +332,7 @@ const Vipclearanceatmalaysiaairport = () => {
                             <button
                                 type="submit"
                                 disabled={submitLoading}
-                                className="w-full py-4 bg-[#E31E24] text-white rounded-full font-bold text-lg hover:bg-white hover:text-[#E31E24] transition-all flex justify-center items-center gap-2"
+                                className="w-full py-4 bg-[#FF1033] text-white rounded-full font-bold text-lg hover:bg-white hover:text-[#FF1033] transition-all flex justify-center items-center gap-2"
                             >
                                 {submitLoading ? <Loader2 className="animate-spin w-5 h-5" /> : 'Submit Request'}
                             </button>
@@ -347,7 +347,7 @@ const Vipclearanceatmalaysiaairport = () => {
                     <div className="max-w-4xl mx-auto px-6">
                         <div className="text-center mb-16">
                             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                                Frequently Asked <span className="text-[#E31E24]">Questions</span>
+                                Frequently Asked <span className="text-[#FF1033]">Questions</span>
                             </h2>
                         </div>
                         <div className="space-y-6">

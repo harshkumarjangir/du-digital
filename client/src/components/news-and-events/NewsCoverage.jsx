@@ -26,7 +26,7 @@ const NewsCoverage = ({ data: propData }) => {
     return (
         <div className="max-w-6xl mx-auto px-6 md:px-12">
             {loading && !propData && <div className="text-center">Loading...</div>}
-            {error && !propData && <div className="text-center text-red-500">Error: {error}</div>}
+            {error && !propData && <div className="text-center text-[#FF1033]">Error: {error}</div>}
 
             {years.map((year) => (
                 <div key={year} className="border-b">
@@ -63,7 +63,7 @@ const NewsCoverage = ({ data: propData }) => {
 
                                     <div>
                                         <div className="flex justify-between ">
-                                            <p className="text-sm text-red-600 mb-1">
+                                            <p className="text-sm text-[#FF1033] mb-1">
                                                 ANI News
                                             </p>
                                             <p className="text-sm text-gray-500 absolute right-2 top-0">
@@ -73,7 +73,7 @@ const NewsCoverage = ({ data: propData }) => {
                                                 )}
                                             </p>
                                         </div>
-                                        <h4 className="font-semibold group-hover:text-red-600 mt-4">
+                                        <h4 className="font-semibold group-hover:text-[#FF1033] mt-4">
                                             {item.title}
                                         </h4>
                                      

@@ -177,7 +177,7 @@ const Digitalarrivalcards = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-gray-700 font-medium mb-2">
-                    Where are you going? <span className="text-red-500">*</span>
+                    Where are you going? <span className="text-[#FF1033]">*</span>
                   </label>
                   <select
                     value={selectedCountry}
@@ -201,7 +201,7 @@ const Digitalarrivalcards = () => {
                 </div>
                 <div>
                   <label className="block text-gray-700 font-medium mb-2">
-                    Phone Number <span className="text-red-500">*</span>
+                    Phone Number <span className="text-[#FF1033]">*</span>
                   </label>
                   <div className="flex">
                     <div className="flex items-center gap-2 px-3 py-3 border border-gray-300 border-r-0 rounded-l-lg bg-gray-50">

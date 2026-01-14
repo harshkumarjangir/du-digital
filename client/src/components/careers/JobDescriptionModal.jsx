@@ -160,7 +160,7 @@ export default JobDescriptionModal;
 
 //                 {/* Apply Button */}
 //                 {/* <div className="pt-6">
-//                     <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold">
+//                     <button className="bg-[#FF1033] hover:bg-[#511313] text-white px-8 py-3 rounded-lg font-semibold">
 //                         Apply Now
 //                     </button>
 //                 </div> */}

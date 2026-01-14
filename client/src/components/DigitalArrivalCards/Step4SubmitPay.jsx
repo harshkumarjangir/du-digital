@@ -37,7 +37,7 @@ const Step4SubmitPay = ({ formData, handleChange, submitForm, prevStep, loading,
 
             {/* Individual vs Group */}
             <div>
-                <label className="block text-gray-700 font-medium mb-2">Individual? <span className="text-red-500">*</span></label>
+                <label className="block text-gray-700 font-medium mb-2">Individual? <span className="text-[#FF1033]">*</span></label>
                 <div className="flex items-center gap-4">
                     <button
                         type="button"
@@ -61,7 +61,7 @@ const Step4SubmitPay = ({ formData, handleChange, submitForm, prevStep, loading,
             {/* If Not individual, ask for how many people */}
             {!isIndividual && (
                 <div className="animate-in fade-in slide-in-from-top-1 duration-300">
-                    <label htmlFor="totalPersons" className="block text-gray-700 font-medium mb-2">Total Persons (Including you) <span className="text-red-500">*</span></label>
+                    <label htmlFor="totalPersons" className="block text-gray-700 font-medium mb-2">Total Persons (Including you) <span className="text-[#FF1033]">*</span></label>
                     <select
                         id="totalPersons"
                         name="totalPersons"
@@ -132,7 +132,7 @@ const Step4SubmitPay = ({ formData, handleChange, submitForm, prevStep, loading,
                         type="button"
                         onClick={() => submitForm({ ...formData, totalPersons: finalTotal, isIndividual })}
                         disabled={loading}
-                        className="px-8 py-3 font-semibold rounded-full bg-[#AC0826] text-[#FFFDF5] hover:bg-[#511313] transition-colors disabled:opacity-70 flex items-center gap-2 shadow-md hover:shadow-lg"
+                        className="px-8 py-3 font-semibold rounded-full bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] transition-colors disabled:opacity-70 flex items-center gap-2 shadow-md hover:shadow-lg"
                     >
                         {loading ? <><Loader2 className="w-5 h-5 animate-spin" /> Processing...</> : 'Proceed to Payment'}
                     </button>

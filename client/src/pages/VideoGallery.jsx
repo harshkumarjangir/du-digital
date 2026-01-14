@@ -71,7 +71,7 @@ const VideoGallery = () => {
                         Video Gallery
                     </h1>
                 </section>
-                <div className="max-w-7xl mx-auto px-4 py-12 text-center text-red-500">
+                <div className="max-w-7xl mx-auto px-4 py-12 text-center text-[#FF1033]">
                     <p>Error loading videos: {error}</p>
                 </div>
             </div>

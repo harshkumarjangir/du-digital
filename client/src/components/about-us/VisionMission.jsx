@@ -114,7 +114,7 @@ export default VisionMission;
 //                     <h3 className="text-4xl font-bold text-gray-900">
 //                         {data.heading}
 //                     </h3>
-//                     <div className="w-16 h-1 bg-red-600 mx-auto mt-3"></div>
+//                     <div className="w-16 h-1 bg-[#FF1033] mx-auto mt-3"></div>
 //                 </div>
 
 //                 {/* Cards */}
@@ -131,7 +131,7 @@ export default VisionMission;
 
 //                     {/* Mission */}
 //                     <div className="bg-white rounded-xl shadow-lg p-8">
-//                         <FaBullseye className="text-4xl text-red-500 mb-6" />
+//                         <FaBullseye className="text-4xl text-[#FF1033] mb-6" />
 
 //                         <h4 className="text-2xl font-bold mb-4">Mission</h4>
 //                         <p className="text-gray-600 leading-relaxed">
@@ -166,7 +166,7 @@ export default VisionMission;
 //         </h2>
 
 //         {/* Top Label */}
-//         <p className="text-center text-red-600 font-semibold tracking-widest mb-2">
+//         <p className="text-center text-[#FF1033] font-semibold tracking-widest mb-2">
 //             {data.heading}
 //         </p>
 //         <div className="bg-white p-6 shadow rounded">

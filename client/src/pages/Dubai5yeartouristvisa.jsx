@@ -138,17 +138,17 @@ const Dubai5yeartouristvisa = () => {
             <div className="text-white">
               <p className="text-2xl md:text-3xl lg:text-6xl font-bold mb-2">Apply For</p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                <span style={{ color: '#E31E24' }}>UAE/Dubai Tourist Visa</span>
+                <span style={{ color: '#FF1033' }}>UAE/Dubai Tourist Visa</span>
               </h1>
 
               {/* Key points */}
-              <ul className="space-y-3 mb-8 p-4 rounded-lg bg-gradient-to-r from-[#C12726] to-[#E31E24]/10">
+              <ul className="space-y-3 mb-8 p-4 rounded-lg bg-gradient-to-r from-[#FF1033] to-[#FF1033]/10">
                 {descriptionLines.slice(2).map((line, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <div
                       className="w-5 h-5 rounded-full flex items-center justify-center bg-white shrink-0 mt-0.5"
                     >
-                      <Check className="w-3 h-3 text-[#E31E24]" strokeWidth={3} />
+                      <Check className="w-3 h-3 text-[#FF1033]" strokeWidth={3} />
                     </div>
                     <span className="text-gray-200">{line}</span>
                   </li>
@@ -223,7 +223,7 @@ const Dubai5yeartouristvisa = () => {
                       <>
                         {field.label && (
                           <label className={`${labelClass} block mb-2`}>
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
+                            {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                           </label>
                         )}
                         <textarea
@@ -276,7 +276,7 @@ const Dubai5yeartouristvisa = () => {
 
                   {/* Submit Status Message */}
                   {submitStatus && (
-                    <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
+                    <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
                       {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                     </div>
@@ -304,7 +304,7 @@ const Dubai5yeartouristvisa = () => {
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
                 5-year UAE Tourist Visa for Indians: <br /> Fees and Processing Time
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             {feesSection.map((item, index) => {
@@ -364,7 +364,7 @@ const Dubai5yeartouristvisa = () => {
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#E31E24' }}></div>
+                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
                   <p className="text-gray-600 leading-relaxed text-lg mb-6">
                     {item.contentHtml}
                   </p>
@@ -394,7 +394,7 @@ const Dubai5yeartouristvisa = () => {
                   {
                     item?.badge && (
                       <div className="flex flex-col items-center text-white gap-0 absolute -top-10 -right-10 rounded-lg p-4 flex" style={{
-                        backgroundColor: `${item.badge.background || "#E31E24"}`
+                        backgroundColor: `${item.badge.background || "#FF1033"}`
                       }}>
                         <span>{item.badge.text.split("+")[0]}</span>
                         <div>{item.badge.text.split("+")[1]}</div>
@@ -419,7 +419,7 @@ const Dubai5yeartouristvisa = () => {
                   <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
                     {doc.title}
                   </h2>
-                  <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div>
+                  <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
                 </div>
 
                 <div className="max-w-5xl mx-auto">
@@ -428,7 +428,7 @@ const Dubai5yeartouristvisa = () => {
                       <li key={idx} className="flex items-start gap-4">
                         <div
                           className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5"
-                          style={{ backgroundColor: '#E31E24' }}
+                          style={{ backgroundColor: '#FF1033' }}
                         >
                           <Check className="w-4 h-4 text-white" strokeWidth={3} />
                         </div>

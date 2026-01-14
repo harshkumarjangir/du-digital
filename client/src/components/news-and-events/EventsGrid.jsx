@@ -30,7 +30,7 @@ const EventsGrid = ({ data: propData }) => {
     const COLORS = [
         "bg-yellow-400",
         "bg-green-500",
-        "bg-red-500",
+        "bg-[#FF1033]",
         "bg-blue-500",
         "bg-emerald-500",
         "bg-pink-500",
@@ -48,7 +48,7 @@ const EventsGrid = ({ data: propData }) => {
 
     // Category color mapping
     const categoryColors = {
-        'Business Networking': 'bg-red-500',
+        'Business Networking': 'bg-[#FF1033]',
         'Industry Conference': 'bg-green-500',
         'Product Launch': 'bg-yellow-500',
         'Community Event': 'bg-blue-500',
@@ -61,15 +61,15 @@ const EventsGrid = ({ data: propData }) => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="max-w-7xl mx-auto px-6 md:px-20 py-12">
             {loading && !propData && <div className="text-center">Loading...</div>}
-            {error && !propData && <div className="text-center text-red-500">Error: {error}</div>}
+            {error && !propData && <div className="text-center text-[#FF1033]">Error: {error}</div>}
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {data?.map((event) => (
                     <div
                         key={event._id}
-                        className="relative rounded-2xl overflow-hidden shadow-lg group"
+                        className="relative rounded-2xl overflow-hidden shadow-none group"
                     // onClick={() => navigate(`/events/${event._id}`)}
                     >
                         {/* IMAGE */}
@@ -92,11 +92,11 @@ const EventsGrid = ({ data: propData }) => {
                         onClick={() => navigate(`/events/${event._id}`)}
                         className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition"
                     >
-                        <span className="text-xl font-bold text-red-500">↗</span>
+                        <span className="text-xl font-bold text-[#FF1033]">↗</span>
                     </button> */}
 
                         <Link to={`/events/${event._id}`} aria-label="View event details" className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition z-10">
-                            <ArrowUpRight size={24} className="text-red-600 " />
+                            <ArrowUpRight size={24} className="text-[#FF1033] " />
                         </Link>
 
                         {/* CONTENT */}
@@ -178,7 +178,7 @@ export default EventsGrid;
 //         onClick={() => navigate(`/events/${event._id}`)}
 //         className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition"
 //     >
-//         <span className="text-xl font-bold text-red-500">↗</span>
+//         <span className="text-xl font-bold text-[#FF1033]">↗</span>
 //     </button>
 
 //     {/* BOTTOM CONTENT */}

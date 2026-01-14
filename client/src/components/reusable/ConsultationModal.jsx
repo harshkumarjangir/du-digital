@@ -25,7 +25,7 @@ const ConsultationModal = ({
                 {/* Close Button */}
                 <button
                     onClick={onClose}
-                    className="absolute top-3 right-3 z-10 p-2 transition-colors text-red-500 hover:text-red-500 hover:scale-105 cursor-pointer"
+                    className="absolute top-3 right-3 z-10 p-2 transition-colors text-[#FF1033] hover:text-[#FF1033] hover:scale-105 cursor-pointer"
                     aria-label="Close"
                 >
                     <X className="w-5 h-5" />
@@ -52,7 +52,7 @@ const ConsultationModal = ({
                             <p className="text-gray-300 text-sm">Get your license today with 100% ownership.</p>
                         </div> */}
                         <h2 className="text-xxl md:text-2xl font-bold text-[#333333] mb-6 leading-tight">
-                            Begin your journey for <span className="text-red-600">Business Set-up in the UAE</span> by filling in the details
+                            Begin your journey for <span className="text-[#FF1033]">Business Set-up in the UAE</span> by filling in the details
                         </h2>
                     </div>
                 </div>
@@ -60,7 +60,7 @@ const ConsultationModal = ({
                 {/* Right Side - Form */}
                 <div className="w-full md:w-1/2 p-6 md:p-10 overflow-y-auto">
                     {/* <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 leading-tight">
-                        Begin your journey for <span className="text-red-600">Business Set-up in the UAE</span> by filling in the details
+                        Begin your journey for <span className="text-[#FF1033]">Business Set-up in the UAE</span> by filling in the details
                     </h2> */}
 
                     <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -147,7 +147,7 @@ const ConsultationModal = ({
                                             checked={formValues[field.name] || false}
                                             onChange={handleInputChange}
                                             id={`modal-field-${index}`}
-                                            className="mt-1 w-5 h-5 rounded border-gray-300 text-red-600 focus:ring-red-500 cursor-pointer"
+                                            className="mt-1 w-5 h-5 rounded border-gray-300 text-[#FF1033] focus:ring-red-500 cursor-pointer"
                                             required={field.required || field.isRequired}
                                         />
                                         <label htmlFor={`modal-field-${index}`} className="text-xs md:text-sm text-gray-500 leading-snug cursor-pointer">

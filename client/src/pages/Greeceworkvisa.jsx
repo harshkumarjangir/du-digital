@@ -214,7 +214,7 @@ const GreeceWorkVisa = () => {
                       } else if (fieldType === 'radio') {
                         <div className="space-y-2">
                           <label className="text-white text-sm font-medium block mb-2">
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
+                            {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                           </label>
                           <div className="flex flex-wrap gap-4">
                             {field.options?.map((opt, i) => (
@@ -272,7 +272,7 @@ const GreeceWorkVisa = () => {
 
                   {/* Submit Status Message */}
                   {submitStatus && (
-                    <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
+                    <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
                       {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                     </div>
@@ -341,11 +341,11 @@ const GreeceWorkVisa = () => {
               POSITIONS
             </span> */}
             <div className="relative">
-              <p className="text-red-600 font-bold mb-2">DU GLOBAL</p>
+              <p className="text-[#FF1033] font-bold mb-2">DU GLOBAL</p>
               <h2 className="text-4xl md:text-5xl font-extrabold text-[#333333]">
                 Available Positions
               </h2>
-              <div className="w-16 h-1 bg-red-600 mx-auto mt-4" />
+              <div className="w-16 h-1 bg-[#FF1033] mx-auto mt-4" />
             </div>
           </div>
 
@@ -418,13 +418,13 @@ const GreeceWorkVisa = () => {
                   <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
                     Salary & Benefits
                   </h2>
-                  <div className="w-16 h-1 mb-8" style={{ backgroundColor: '#C5202F' }}></div>
+                  <div className="w-16 h-1 mb-8" style={{ backgroundColor: '#FF1033' }}></div>
                   <ul className="space-y-4">
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((benefit, idx) => (
                       <li key={idx} className="flex items-start gap-4">
                         <div
                           className="w-6 h-6 rounded flex items-center justify-center shrink-0 mt-0.5"
-                          style={{ backgroundColor: '#C5202F' }}
+                          style={{ backgroundColor: '#FF1033' }}
                         >
                           <Check className="w-4 h-4 text-white" strokeWidth={3} />
                         </div>
@@ -485,13 +485,13 @@ const GreeceWorkVisa = () => {
                   <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
                     Eligibility Criteria
                   </h2>
-                  <div className="w-16 h-1 mb-8" style={{ backgroundColor: '#C5202F' }}></div>
+                  <div className="w-16 h-1 mb-8" style={{ backgroundColor: '#FF1033' }}></div>
                   <ul className="space-y-4">
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((criteria, idx) => (
                       <li key={idx} className="flex items-start gap-4">
                         <div
                           className="w-6 h-6 rounded flex items-center justify-center shrink-0 mt-0.5"
-                          style={{ backgroundColor: '#C5202F' }}
+                          style={{ backgroundColor: '#FF1033' }}
                         >
                           <Check className="w-4 h-4 text-white" strokeWidth={3} />
                         </div>
@@ -519,7 +519,7 @@ const GreeceWorkVisa = () => {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
                 Document Checklist
               </h2>
-              <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#C5202F' }}></div>
+              <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             {/* Document Cards */}
@@ -529,7 +529,7 @@ const GreeceWorkVisa = () => {
                   key={doc._id || index}
                   className="rounded-2xl p-8 text-white"
                   style={{
-                    background: 'linear-gradient(135deg, #C5202F 0%, #8B0000 100%)'
+                    background: 'linear-gradient(135deg, #FF1033 0%, #8B0000 100%)'
                   }}
                 >
                   <h3 className="text-2xl font-bold mb-6">{doc.title}</h3>
@@ -537,7 +537,7 @@ const GreeceWorkVisa = () => {
                     {doc.contentHtml?.split('\r\n').filter(line => line.trim()).map((item, idx) => (
                       <li key={idx} className="flex items-start gap-4">
                         <div className="bg-white rounded-md">
-                          <Check className="w-5 h-5 text-red-500 shrink-0 mt-0.5" strokeWidth={3} />
+                          <Check className="w-5 h-5 text-[#FF1033] shrink-0 mt-0.5" strokeWidth={3} />
                         </div>
                         <span className="text-white/95">{item}</span>
                       </li>
@@ -563,7 +563,7 @@ const GreeceWorkVisa = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-3">
                 Fees, Processing Time & Validity
               </h2>
-              <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#C5202F' }}></div>
+              <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             {/* Fees Cards */}
@@ -632,13 +632,13 @@ const GreeceWorkVisa = () => {
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                     Why Choose Global LLC?
                   </h2>
-                  {/* <div className="w-16 h-1 mb-8" style={{ backgroundColor: '#C5202F' }}></div> */}
+                  {/* <div className="w-16 h-1 mb-8" style={{ backgroundColor: '#FF1033' }}></div> */}
                   <ul className="space-y-4">
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((benefit, idx) => (
                       <li key={idx} className="flex items-start gap-4">
                         <div
                           className="w-6 h-6 rounded flex items-center justify-center shrink-0 mt-0.5"
-                          style={{ backgroundColor: '#C5202F' }}
+                          style={{ backgroundColor: '#FF1033' }}
                         >
                           <Check className="w-4 h-4 text-black" strokeWidth={3} />
                         </div>
@@ -733,7 +733,7 @@ const GreeceWorkVisa = () => {
                 <h3 className="text-3xl md:text-4xl font-bold mb-2">
                   Apply Now
                 </h3>
-                <div className="w-14 h-1 bg-red-600 mb-6" />
+                <div className="w-14 h-1 bg-[#FF1033] mb-6" />
 
                 <p className="text-base md:text-lg leading-relaxed mb-6 text-gray-200">
                   Ready to take your hospitality career to Europe? Complete our
@@ -775,7 +775,7 @@ const GreeceWorkVisa = () => {
                 <h3 className="text-3xl md:text-4xl font-bold mb-2">
                   Connect with us
                 </h3>
-                <div className="w-14 h-1 bg-red-600 mb-8" />
+                <div className="w-14 h-1 bg-[#FF1033] mb-8" />
 
                 <h4 className="text-3xl font-bold mb-1">
                   Karan Khurana

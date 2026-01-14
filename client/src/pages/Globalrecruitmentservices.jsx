@@ -267,7 +267,7 @@ const Globalrecruitmentservices = () => {
                         field.types == "radio" ? (
                           <div className="space-y-2">
                             <label className="text-white text-sm font-medium block mb-2">
-                              {field.label} {field.required && <span className="text-red-500">*</span>}
+                              {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                             </label>
                             <div className="flex flex-wrap gap-4">
                               {field.options?.map((opt, i) => (

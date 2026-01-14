@@ -138,7 +138,7 @@ const Australiatouristvisa = () => {
             <div className="text-white">
               {/* <p className="text-xl mb-2">Apply for</p> */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight mb-6">
-                Apply for <span style={{ color: '#E31E24' }}>Australia Tourist Visa</span>
+                Apply for <span style={{ color: '#FF1033' }}>Australia Tourist Visa</span>
               </h1>
               {/* <p className="text-gray-300 text-lg">
                 {description}
@@ -239,7 +239,7 @@ const Australiatouristvisa = () => {
                           <div key={index}>
                             {field.label && (
                               <label className="text-white text-sm font-medium block mb-2">
-                                {field.label} {field.required && <span className="text-red-500">*</span>}
+                                {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                               </label>
                             )}
                             <textarea
@@ -271,7 +271,7 @@ const Australiatouristvisa = () => {
                         {radio.map((field, index) => (
                           <div key={index} className="space-y-2">
                             <label className="text-white text-sm font-medium block mb-2">
-                              {field.label} {field.required && <span className="text-red-500">*</span>}
+                              {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                             </label>
                             <div className="flex flex-wrap gap-4">
                               {field.options?.map((opt, i) => (
@@ -298,7 +298,7 @@ const Australiatouristvisa = () => {
 
                   {/* Submit Status Message */}
                   {submitStatus && (
-                    <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
+                    <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
                       {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                     </div>
@@ -407,7 +407,7 @@ const Australiatouristvisa = () => {
               <h2 className="text-4xl md:text-5xl font-bold text-[#333333] mb-4">
                 Documents required for Australia Tourist Visa
               </h2>
-              <div className="w-20 h-[3px] bg-[#E31E24] mx-auto"></div>
+              <div className="w-20 h-[3px] bg-[#FF1033] mx-auto"></div>
             </div>
 
             {/* Content */}
@@ -421,7 +421,7 @@ const Australiatouristvisa = () => {
                     <div key={index} className="flex items-start gap-3">
 
                       {/* Check Icon */}
-                      <span className="flex-shrink-0 w-7 h-7 rounded-full bg-[#E31E24] flex items-center justify-center mt-1">
+                      <span className="flex-shrink-0 w-7 h-7 rounded-full bg-[#FF1033] flex items-center justify-center mt-1">
                         <svg
                           className="w-4 h-4 text-white"
                           fill="none"
@@ -456,7 +456,7 @@ const Australiatouristvisa = () => {
                 Additional Documents for Your Australia Tourist Visa (As Applicable)
               </h2>
               {/* <p className="text-[#333333] mb-3">(As Applicable)</p> */}
-              {/* <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div> */}
+              {/* <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div> */}
             </div>
             <p className="text-[#333333] mb-3 text-center text-base md:px-12">To ensure a smooth application process for your <span className="font-bold">Australia Tourist Visa</span>, you may need to provide additional documents based on your specific circumstances. Here’s a quick guide:</p>
 
@@ -524,7 +524,7 @@ const Australiatouristvisa = () => {
                 How to Apply for Australia Tourist Visa
               </h2>
               <p className="text-white mt-2">A Simple 3-Step Process to Get Your Australia Tourist Visa</p>
-              {/* <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div> */}
+              {/* <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div> */}
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
@@ -539,7 +539,7 @@ const Australiatouristvisa = () => {
 
                     <div
                       className="w-16 h-16 rounded-full flex items-center justify-center mr-auto mb-4"
-                      style={{ backgroundColor: '#E31E24' }}
+                      style={{ backgroundColor: '#FF1033' }}
                     >
                       <IconComponent className="w-8 h-8 text-white" />
                     </div>
@@ -561,7 +561,7 @@ const Australiatouristvisa = () => {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333333] mb-3">
                 Why Choose DU Global for Australia Visa
               </h2>
-              {/* <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#E31E24' }}></div> */}
+              {/* <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div> */}
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
@@ -588,7 +588,7 @@ const Australiatouristvisa = () => {
                   <div className="absolute inset-0 bg-[#0a0909c3] transition-opacity duration-500 group-hover:opacity-0" />
 
                   {/* Red Hover Overlay */}
-                  <div className="absolute inset-0 bg-red-600/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="absolute inset-0 bg-[#FF1033]/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                   {/* Content */}
                   <div className="relative z-10 p-6">

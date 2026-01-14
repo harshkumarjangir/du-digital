@@ -9,11 +9,11 @@ const IsoCertificates = ({ data }) => {
                 Our Certifications
             </h2> */}
 
-            <div className="relative max-w-7xl mx-auto px-6">
+            <div className="relative max-w-7xl mx-auto px-0 md:px-0">
 
                 {/* HEADER */}
                 <div className="text-center mb-16">
-                    <p className="text-sm font-semibold text-[#AC0826] uppercase tracking-wide">
+                    <p className="text-sm font-semibold text-[#FF1033] uppercase tracking-wide">
                         {data.label}
                     </p>
 
@@ -22,7 +22,7 @@ const IsoCertificates = ({ data }) => {
                     </h3>
 
                     {/* RED UNDERLINE */}
-                    <div className="w-12 h-[2px] bg-[#AC0826] mx-auto mt-4" />
+                    <div className="w-12 md:w-24 h-[2px] bg-[#FF1033] mx-auto mt-4" />
                 </div>
 
                 {/* CERTIFICATES GRID */}
@@ -35,21 +35,21 @@ const IsoCertificates = ({ data }) => {
                             <LazyImage
                                 src={item.image}
                                 alt={item.title}
-                                className="h-24 object-contain mb-6"
+                                className="h-24 md:h-32 object-contain mb-6"
                             />
 
                             {/* STAR DIVIDER */}
                             <div className="flex items-center gap-3 mb-4">
-                                <span className="w-8 h-[1px] bg-[#AC0826]" />
-                                <span className="text-[#AC0826] text-lg">★</span>
-                                <span className="w-8 h-[1px] bg-[#AC0826]" />
+                                <span className="w-8 md:w-12 h-[1px] bg-[#FF1033]" />
+                                <span className="text-[#FF1033] text-lg">★</span>
+                                <span className="w-8 md:w-12 h-[1px] bg-[#FF1033]" />
                             </div>
 
                             {/* TEXT */}
-                            <p className="font-semibold text-gray-900">
+                            <p className="font-semibold text-gray-900 md:text-lg">
                                 {item.title}
                             </p>
-                            <p className="text-sm text-gray-600 mt-1">
+                            <p className="text-sm text-gray-600 mt-1 md:text-base">
                                 {item.description}
                             </p>
 
