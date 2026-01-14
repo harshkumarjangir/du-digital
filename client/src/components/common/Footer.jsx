@@ -21,7 +21,8 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#b10e2a] text-white">
-      <div className="max-w-7xl mx-auto px-10 py-16 grid grid-cols-1 md:grid-cols-4 gap-12">
+      {/* #AC0826 */}
+      <div className="max-w-7xl mx-auto px-6 md:px-20 py-16 flex flex-col md:flex-row justify-between gap-12">
 
         {/* LOGO */}
         <div>

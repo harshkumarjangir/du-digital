@@ -80,43 +80,36 @@ export default function OurOffices() {
   const otherInternationalOffices = international.filter(o => o._id !== dubaiOffice?._id);
 
   return (
-    <div className="w-full font-sans">
+    <div className="w-full">
 
       {/* SECTION 1: Featured Header (Yellow/Orange) */}
-      <section className="bg-[#FFD071] py-16 px-6 md:px-12">
-        <div className="max-w-[1400px] mx-auto grid md:grid-cols-3 gap-8">
+      <section className="bg-[#FFD071] py-16 px-6 md:px-20">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12">
 
           {/* New Delhi (Left) */}
-          <div className="md:col-span-1">
+          <div>
             {newDelhiOffice && (
               <div>
                 <h3 className="text-2xl md:text-3xl font-bold text-[#AC0826] mb-6">
                   New Delhi, India
                 </h3>
-                <div className="text-[#AC0826] text-lg leading-relaxed">
+                <div className="text-[#AC0826] text-sm leading-relaxed">
                   <p>{newDelhiOffice.address?.line1}, {newDelhiOffice.address?.line2}</p>
                   <p>{newDelhiOffice.address?.city} – {newDelhiOffice.address?.pincode}</p>
+                  <p className="mt-1">Corporate Office: B-86, 2nd Floor, Defence Colony, Delhi-110024</p>
                 </div>
               </div>
             )}
           </div>
 
-          {/* Corporate Office (Center - Hardcoded based on image if not in data) */}
-          <div className="md:col-span-1 flex items-end pb-1">
-            <div className="text-[#AC0826] text-lg leading-relaxed">
-              <p>Corporate Office: B-86, 2nd Floor, Defence</p>
-              <p>Colony, Delhi-110024</p>
-            </div>
-          </div>
-
           {/* Dubai (Right) */}
-          <div className="md:col-span-1">
+          <div>
             {dubaiOffice && (
               <div>
                 <h3 className="text-2xl md:text-3xl font-bold text-[#AC0826] mb-6">
                   Dubai, UAE
                 </h3>
-                <div className="text-[#AC0826] text-lg leading-relaxed">
+                <div className="text-[#AC0826] text-sm leading-relaxed">
                   <p>{dubaiOffice.address?.line1}</p>
                   <p>{dubaiOffice.address?.line2}</p>
                   <p>Phone – {dubaiOffice.contact?.phone}</p>
@@ -130,8 +123,8 @@ export default function OurOffices() {
 
 
       {/* SECTION 2: India Offices (Off-White/Beige) */}
-      <section className="bg-[#FFFDF5] py-20 px-6 md:px-12">
-        <div className="max-w-[1400px] mx-auto">
+      <section className="bg-[#FFFDF5] py-20 px-6 md:px-20">
+        <div className="max-w-7xl mx-auto">
           <h3 className="text-3xl font-bold text-[#AC0826] mb-12">
             India Offices
           </h3>
@@ -145,8 +138,8 @@ export default function OurOffices() {
       </section>
 
       {/* SECTION 3: Global Offices (Light Blue) */}
-      <section className="bg-[#C7E6F9] py-20 px-6 md:px-12">
-        <div className="max-w-[1400px] mx-auto">
+      <section className="bg-[#C7E6F9] py-20 px-6 md:px-20">
+        <div className="max-w-7xl mx-auto">
           <h3 className="text-3xl font-bold text-[#162B56] mb-12">
             Global Offices
           </h3>
