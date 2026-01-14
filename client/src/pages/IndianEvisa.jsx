@@ -231,7 +231,7 @@ const IndianEvisa = () => {
                     <a
                       key={i}
                       href={`tel:${c.phone}`}
-                      className="px-6 py-3 rounded-full text-white font-semibold  bg-[#FF1033] hover:bg-[#511313] transition"
+                      className="px-6 py-3 rounded-full font-semibold bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] transition"
                     >
                       {c.name}
                     </a>
@@ -496,7 +496,7 @@ const IndianEvisa = () => {
 
       {/* ===== ELIGIBILITY SECTION ===== */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6 md:px-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
               Eligibility for India eVisa
@@ -538,7 +538,7 @@ const IndianEvisa = () => {
 
       {/* ===== E-VISA APPLICATION PROCESS ===== */}
       <section className="py-20 bg-[#F7F7F7]">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6 md:px-20">
 
           {/* Header */}
           <div className="text-center mb-16">
