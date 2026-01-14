@@ -156,7 +156,7 @@ const Applyforanyvisa = () => {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
 
-        <div className="relative left-0 z-10 max-w-7xl mx-auto px-6">
+        <div className="relative left-0 z-10 max-w-7xl mx-auto px-6 md:px-20">
           <div className="text-white max-w-xl">
             {/* <p className="text-lg mb-2 text-gray-300">Welcome to</p> */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
