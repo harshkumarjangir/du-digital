@@ -622,7 +622,8 @@ const Companysetup = () => {
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-                Steps to Set Up a <span style={{ color: '#A10000' }}>Business</span> in the UAE Free Zones
+                
+                Steps to Set Up a <span style={{ color: '#FF1033' }}>Business</span> in the UAE Free Zones
               </h2>
               {/* <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div> */}
             </div>
@@ -663,7 +664,7 @@ const Companysetup = () => {
                     >
                       {/* {String(index + 1).padStart(2, '0')} */}
                     </div>
-                    <h3 className="text-lg font-bold text-[#A10000] mb-2">
+                    <h3 className="text-lg font-bold text-[#FF1033] mb-2">
                       {step.title}
                     </h3>
                     <p className="text-[#333333] text-base leading-relaxed">
@@ -732,15 +733,82 @@ const Companysetup = () => {
 
 
       {/* ===== SPEAK TO OUR EXPERTS ===== */}
-      <section
+        <section className="bg-black py-20">
+                  <div className="max-w-6xl mx-auto px-6">
+      
+                      {/* TITLE LEFT / CTA RIGHT */}
+                      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
+            <h2 className="text-4xl text-white md:text-4xl lg:text-5xl font-bold leading-tight mb-10">
+              Speak to our <br /> experts
+            </h2>
+      
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="inline-flex items-center justify-center w-fit px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+            >
+              Contact Now
+            </button>
+                      </div>
+      
+                      {/* CONTACT CARDS */}
+                      <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8">
+            <div className="bg-white rounded-2xl p-5 shadow-xl">
+              <div className="w-12 h-12 rounded-full bg-[#FF1033] flex items-center justify-center mb-6">
+                <Phone className="w-6 h-6 text-white" />
+              </div>
+
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                Phone
+              </h3>
+
+              <a
+                href="tel:+917969269997"
+                className="block text-lg text-[#FF1033] mb-3 hover:text-[#333366]"
+              >
+                * INDIA: +91-7969269997
+              </a>
+
+              <a
+                href="tel:+971585955766"
+                className="block text-lg text-[#FF1033] hover:text-[#333366]"
+              >
+                * UAE: +971-585955766
+              </a>
+            </div>
+
+
+            {/* LOCATION CARD */}
+            <div className="bg-white rounded-2xl p-5 shadow-xl">
+              <div className="w-12 h-12 rounded-full bg-[#FF1033] flex items-center justify-center mb-6">
+                <MapPin className="w-6 h-6 text-white" />
+              </div>
+
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                Location
+              </h3>
+
+              <p className="text-lg text-[#FF1033] mb-6">
+                INDIA: 3rd Floor, B-86, Defence Colony, New Delhi – 110024
+              </p>
+
+              <p className="text-lg text-[#FF1033]">
+                DUBAI: Office #4001, 40th Floor, Aspin Commercials Tower, Sheikh Zayed Road, Dubai, UAE
+              </p>
+            </div>
+                      </div>
+      
+                  </div>
+              </section>
+      {/* <section
         id="consultation"
         className="py-24 bg-black"
+
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
 
-            {/* LEFT PANEL */}
-            <div className="flex flex-col justify-center bg-black text-white px-10 py-14 rounded-2xl">
+        
+            <div className="flex justify-center bg-black text-white px-10 py-14 rounded-2xl">
               <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold leading-tight mb-10">
                 Speak to our <br /> experts
               </h2>
@@ -753,9 +821,8 @@ const Companysetup = () => {
               </button>
             </div>
 
-            {/* PHONE CARD */}
             <div className="bg-white rounded-2xl p-5 shadow-xl">
-              <div className="w-12 h-12 rounded-full bg-[#A10000] flex items-center justify-center mb-6">
+              <div className="w-12 h-12 rounded-full bg-[#FF1033] flex items-center justify-center mb-6">
                 <Phone className="w-6 h-6 text-white" />
               </div>
 
@@ -765,23 +832,23 @@ const Companysetup = () => {
 
               <a
                 href="tel:+917969269997"
-                className="block text-lg text-[#A10000] mb-3 hover:text-[#333366]"
+                className="block text-lg text-[#FF1033] mb-3 hover:text-[#333366]"
               >
                 * INDIA: +91-7969269997
               </a>
 
               <a
                 href="tel:+971585955766"
-                className="block text-lg text-[#A10000] hover:text-[#333366]"
+                className="block text-lg text-[#FF1033] hover:text-[#333366]"
               >
                 * UAE: +971-585955766
               </a>
             </div>
 
 
-            {/* LOCATION CARD */}
+          
             <div className="bg-white rounded-2xl p-5 shadow-xl">
-              <div className="w-12 h-12 rounded-full bg-[#A10000] flex items-center justify-center mb-6">
+              <div className="w-12 h-12 rounded-full bg-[#FF1033] flex items-center justify-center mb-6">
                 <MapPin className="w-6 h-6 text-white" />
               </div>
 
@@ -789,18 +856,18 @@ const Companysetup = () => {
                 Location
               </h3>
 
-              <p className="text-lg text-[#A10000] mb-6">
+              <p className="text-lg text-[#FF1033] mb-6">
                 INDIA: 3rd Floor, B-86, Defence Colony, New Delhi – 110024
               </p>
 
-              <p className="text-lg text-[#A10000]">
+              <p className="text-lg text-[#FF1033]">
                 DUBAI: Office #4001, 40th Floor, Aspin Commercials Tower, Sheikh Zayed Road, Dubai, UAE
               </p>
             </div>
 
           </div>
         </div>
-      </section>
+      </section> */}
 
       <ConsultationModal
         isOpen={isModalOpen}
