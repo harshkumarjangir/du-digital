@@ -176,7 +176,7 @@ const Duverify = () => {
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333333] mb-3">
                 About DuVerify
-                {/* <span style={{ color: '#A10000' }}>DuVerify</span> */}
+                {/* <span style={{ color: '#FF1033' }}>DuVerify</span> */}
               </h2>
               <div className="w-16 h-0.75 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>

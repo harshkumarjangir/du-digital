@@ -952,7 +952,7 @@ export default TenantVerification;
 //         <h2 className="text-4xl md:text-5xl font-extrabold text-white">
 //           How It Works?
 //         </h2>
-//         <div className="w-20 h-[2px] bg-[#A10000] mx-auto my-4" />
+//         <div className="w-20 h-[2px] bg-[#FF1033] mx-auto my-4" />
 //         <p className="text-lg text-gray-300 font-medium">
 //           4 streamlined verification steps
 //         </p>
@@ -995,7 +995,7 @@ export default TenantVerification;
 //             >
 //               {/* Step Number */}
 //               <div className="flex-shrink-0">
-//                 <div className="w-12 h-12 rounded-full border-2 border-[#A10000] flex items-center justify-center text-[#A10000] text-xl font-bold">
+//                 <div className="w-12 h-12 rounded-full border-2 border-[#FF1033] flex items-center justify-center text-[#FF1033] text-xl font-bold">
 //                   {index + 1}
 //                 </div>
 //               </div>

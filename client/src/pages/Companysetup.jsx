@@ -346,7 +346,7 @@ const Companysetup = () => {
 
           <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-20 text-white rounded-md">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-              Company <span style={{ color: '#A10000' }}>Formation</span> in the Mainland
+              Company <span style={{ color: '#FF1033' }}>Formation</span> in the Mainland
             </h2>
             <div className="text-gray-300 leading-relaxed space-y-4 text-center">
               {item.contentHtml?.split('\r\n\r\n').filter(p => p.trim()).map((para, idx) => (
@@ -380,7 +380,7 @@ const Companysetup = () => {
                 </div>
                 <div className="order-1 md:order-1">
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                    Company Formation in <span style={{ color: '#A10000' }}>Freezone</span>
+                    Company Formation in <span style={{ color: '#FF1033' }}>Freezone</span>
                   </h2>
                   <div className="text-gray-800 text-base md:text-[17px] leading-relaxed space-y-4">
                     {item.contentHtml?.split('\r\n\r\n').filter(p => p.trim()).map((para, idx) => (
@@ -433,9 +433,9 @@ const Companysetup = () => {
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-                Our <span style={{ color: '#A10000' }}>Strength</span>
+                Our <span style={{ color: '#FF1033' }}>Strength</span>
               </h2>
-              {/* <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div> */}
+              {/* <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div> */}
             </div>
 
             <div className="grid md:grid-cols-3 gap-4">
@@ -485,7 +485,7 @@ const Companysetup = () => {
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
                 Benefits of Establishing a{" "}
-                <span className="text-[#A10000]">Business</span> in the UAE
+                <span className="text-[#FF1033]">Business</span> in the UAE
               </h2>
             </div>
 
@@ -518,7 +518,7 @@ const Companysetup = () => {
                       .filter((line) => line.trim())
                       .map((benefit, idx) => (
                         <li key={idx} className="flex items-start gap-4">
-                          <div className="w-6 h-6 rounded-full bg-[#A10000] flex items-center justify-center shrink-0 mt-1">
+                          <div className="w-6 h-6 rounded-full bg-[#FF1033] flex items-center justify-center shrink-0 mt-1">
                             <Check
                               className="w-4 h-4 text-white"
                               strokeWidth={3}
@@ -552,9 +552,9 @@ const Companysetup = () => {
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-                Types of Business <span style={{ color: '#A10000' }}>License</span> in the UAE
+                Types of Business <span style={{ color: '#FF1033' }}>License</span> in the UAE
               </h2>
-              {/* <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div> */}
+              {/* <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div> */}
             </div>
 
             {/* License Cards with Numbers */}
@@ -569,7 +569,7 @@ const Companysetup = () => {
                     <div className="p-6 pb-16">
                       <div
                         className="text-5xl font-bold mb-4"
-                        style={{ color: '#A10000' }}
+                        style={{ color: '#FF1033' }}
                       >
                         {number}
                       </div>
@@ -603,7 +603,7 @@ const Companysetup = () => {
             {entityOptionsSection.map((item, index) => (
               <div key={item._id || index}>
                 <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold mb-6">
-                  Entity Options for <span style={{ color: '#A10000' }}>Free Zone Company</span> Setup in the UAE
+                  Entity Options for <span style={{ color: '#FF1033' }}>Free Zone Company</span> Setup in the UAE
                 </h2>
                 <div className="text-white leading-relaxed">
                   {item.contentHtml?.split('\r\n\r\n').filter(p => p.trim()).map((para, idx) => (
@@ -622,10 +622,10 @@ const Companysetup = () => {
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-                
+
                 Steps to Set Up a <span style={{ color: '#FF1033' }}>Business</span> in the UAE Free Zones
               </h2>
-              {/* <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div> */}
+              {/* <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div> */}
             </div>
 
             {/* Steps Grid - Horizontal scroll on mobile */}
@@ -660,7 +660,7 @@ const Companysetup = () => {
                   <div className="px-6">
                     <div
                       className="text-4xl font-bold mb-3"
-                      style={{ color: '#A10000' }}
+                      style={{ color: '#FF1033' }}
                     >
                       {/* {String(index + 1).padStart(2, '0')} */}
                     </div>
@@ -707,7 +707,7 @@ const Companysetup = () => {
                   <ul className="space-y-4">
                     {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
                       <li key={idx} className="flex items-start gap-4">
-                        <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: '#A10000' }}>
+                        <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: '#FF1033' }}>
                           <Check className="w-4 h-4 text-white" strokeWidth={3} />
                         </div>
                         <span className="text-black text-base">{item}</span>
@@ -733,25 +733,25 @@ const Companysetup = () => {
 
 
       {/* ===== SPEAK TO OUR EXPERTS ===== */}
-        <section className="bg-black py-20">
-                  <div className="max-w-6xl mx-auto px-6">
-      
-                      {/* TITLE LEFT / CTA RIGHT */}
-                      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
+      <section className="bg-black py-20">
+        <div className="max-w-6xl mx-auto px-6">
+
+          {/* TITLE LEFT / CTA RIGHT */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
             <h2 className="text-4xl text-white md:text-4xl lg:text-5xl font-bold leading-tight mb-10">
               Speak to our <br /> experts
             </h2>
-      
+
             <button
               onClick={() => setIsModalOpen(true)}
               className="inline-flex items-center justify-center w-fit px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
             >
               Contact Now
             </button>
-                      </div>
-      
-                      {/* CONTACT CARDS */}
-                      <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8">
+          </div>
+
+          {/* CONTACT CARDS */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8">
             <div className="bg-white rounded-2xl p-5 shadow-xl">
               <div className="w-12 h-12 rounded-full bg-[#FF1033] flex items-center justify-center mb-6">
                 <Phone className="w-6 h-6 text-white" />
@@ -795,10 +795,10 @@ const Companysetup = () => {
                 DUBAI: Office #4001, 40th Floor, Aspin Commercials Tower, Sheikh Zayed Road, Dubai, UAE
               </p>
             </div>
-                      </div>
-      
-                  </div>
-              </section>
+          </div>
+
+        </div>
+      </section>
       {/* <section
         id="consultation"
         className="py-24 bg-black"
