@@ -85,7 +85,7 @@ export const Blog = ({ data: propData, className }) => {
                 View More
               </Link>
 
-              <h3 className="font-semibold text-lg leading-snug mb-0">
+              <h3 className="font-semibold text-lg leading-snug mb-0 line-clamp-2">
                 {blog.title}
               </h3>
             </div>

@@ -133,7 +133,7 @@ const Companysetup = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full md:h-[600px] min-h-[600px] py-12 pb-16 overflow-hidden">
+      <section className="relative w-full md:h-[800px] min-h-[800px] py-12 pb-16 overflow-hidden">
         <img
           src={heroImage}
           alt="Company Setup Hero"

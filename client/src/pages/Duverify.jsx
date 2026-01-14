@@ -96,7 +96,7 @@ const Duverify = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full sm:h-[600px] min-h-[600px] overflow-hidden">
+      <section className="relative w-full sm:h-[800px] min-h-[800px] overflow-hidden">
         <img
           src={getImageUrl(formData?.image) || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'}
           alt="DuVerify Hero"

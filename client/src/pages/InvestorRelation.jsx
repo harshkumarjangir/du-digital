@@ -55,7 +55,7 @@ const InvestorRelation = () => {
     return (
         <div className="w-full">
             {/* ===== HERO ===== */}
-            <section className="relative sm:h-[600px] min-h-[600px]  flex items-center justify-center overflow-hidden">
+            <section className="relative sm:h-[800px] min-h-[800px]  flex items-center justify-center overflow-hidden">
                 <img
                     src={displayData.hero.backgroundImage}
                     alt="Investor Relation"

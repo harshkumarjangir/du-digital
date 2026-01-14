@@ -119,11 +119,14 @@ const TimelineSlider = ({ data = [] }) => {
 
                             {item.logo && (
                                 <div className="flex justify-center">
-                                    <img
-                                        src={`${import.meta.env.VITE_BACKEND_IMAGES_URL}${item.logo}`}
-                                        alt=""
-                                        className="h-12 object-contain"
-                                    />
+                                    <div className="border-2 border-gray-200 rounded-lg p-4 bg-white">
+                                        <img
+                                            src={`${import.meta.env.VITE_BACKEND_IMAGES_URL}${item.logo}`}
+                                            alt=""
+                                            className="h-20 w-32 object-contain"
+                                        //  className="h-16 w-auto object-contain rounded-sm"
+                                        />
+                                    </div>
                                 </div>
                             )}
                         </SwiperSlide>
@@ -139,6 +142,9 @@ export default TimelineSlider;
 
 
 
+
+
+// event and news and blog card to haev heading to show two lines adn rest ... n card
 
 
 

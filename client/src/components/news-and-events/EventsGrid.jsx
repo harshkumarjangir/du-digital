@@ -95,7 +95,7 @@ const EventsGrid = ({ data: propData }) => {
                                 View More
                             </Link>
 
-                            <h3 className="font-semibold text-lg leading-snug mb-0">
+                            <h3 className="font-semibold text-lg leading-snug mb-0 line-clamp-2">
                                 {event.title}
                             </h3>
                         </div>

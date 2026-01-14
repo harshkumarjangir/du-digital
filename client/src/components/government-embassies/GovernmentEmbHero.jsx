@@ -1,5 +1,5 @@
 const GovernmentEmbHero = ({ data }) => (
-    <section className="sm:h-[600px] min-h-[600px] relative flex items-center">
+    <section className="sm:h-[800px] min-h-[800px] relative flex items-center">
         <img
             src={data.backgroundImage}
             alt={data.title || "Government Embassy Hero"}

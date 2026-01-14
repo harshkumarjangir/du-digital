@@ -163,7 +163,7 @@ const IndianEvisa = () => {
 
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full min-h-[600px] xl:h-[700px] overflow-hidden">
+      <section className="relative w-full min-h-[800px] xl:h-[800px] overflow-hidden">
         {/* Hero Image */}
         {formData?.image && (
           <img

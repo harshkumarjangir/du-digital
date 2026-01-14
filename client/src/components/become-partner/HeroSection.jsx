@@ -126,7 +126,7 @@ const HeroSection = ({ data }) => {
   };
 
   return (
-    <section className="relative min-h-[600px] ">
+    <section className="relative min-h-[800px] ">
       <img
         src={data.backgroundImage}
         alt={data.title || "Partner Hero"}

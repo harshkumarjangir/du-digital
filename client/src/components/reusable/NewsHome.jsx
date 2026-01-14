@@ -47,7 +47,7 @@ const NewsHome = ({ data }) => {
                             </div>
 
                             {/* Text */}
-                            <p className="text-gray-900 text-lg leading-relaxed mb-6">
+                            <p className="text-gray-900 text-lg leading-relaxed mb-6 line-clamp-2">
                                 {item.title}
                             </p>
 

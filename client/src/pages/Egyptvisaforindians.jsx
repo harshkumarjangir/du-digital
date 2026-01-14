@@ -160,7 +160,7 @@ const Egyptvisaforindians = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full sm:h-[600px] min-h-[600px]">
+      <section className="relative w-full sm:h-[800px] min-h-[800px]">
         <img
           src={formData?.image ? getImageUrl(formData.image) : ''}
           alt="Hero Background"
@@ -172,7 +172,7 @@ const Egyptvisaforindians = () => {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[600px] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[800px] flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">

@@ -148,7 +148,7 @@ const Lebanon = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION (1920x800) ===== */}
-      <section className="relative w-full h-[600px] flex items-center justify-center">
+      <section className="relative w-full h-[800px] flex items-center justify-center">
         <img
           src={formData?.image ? getImageUrl(formData.image) : ''}
           alt="Lebanon Visa"

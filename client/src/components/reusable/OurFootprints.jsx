@@ -25,7 +25,7 @@ const OurFootprints = ({ aboutSection, data }) => {
                 {/* Overlay */}
                 {/* <div className="absolute inset-0 bg-[#FFFDF5]/50 z-[15]" /> */}
 
-                <div className="relative  max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+                <div className="relative  max-w-7xl mx-auto px-0 grid lg:grid-cols-2 gap-16 items-center">
 
                     {/* LEFT CONTENT */}
                     <div>

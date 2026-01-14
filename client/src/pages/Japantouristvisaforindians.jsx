@@ -203,7 +203,7 @@ const Japantouristvisaforindians = () => {
     <div className="bg-white font-sans">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full lg:h-[700px] min-h-[600px]">
+      <section className="relative w-full lg:h-[800px] min-h-[800px]">
         <img
           src={formData?.image ? getImageUrl(formData.image) : ''}
           alt="Japan Tourist Visa"
