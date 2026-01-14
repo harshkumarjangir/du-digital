@@ -176,7 +176,7 @@ const Egyptvisaforindians = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center place-items-center w-full place-items-center">
             {/* Left - Hero Text */}
             <div className="text-white">
-              <p className="text-xl mb-2 text-gray-300">Apply For</p>
+              <p className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-300">Apply For</p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
                 <span style={{ color: '#FF1033' }}>Egypt</span> Visa
               </h1>
@@ -484,7 +484,7 @@ const Egyptvisaforindians = () => {
       {/* ===== TOP TOURIST DESTINATIONS SECTION ===== */}
       {destinationsSection.length > 0 && (
         <section className="py-16 bg-gray-50">
-          <div className=" mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             {destinationsSection.map((item, index) => (
               <>
                 <div key={item._id || index} className=" gap-12 items-center">

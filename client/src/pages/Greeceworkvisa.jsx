@@ -156,7 +156,7 @@ const GreeceWorkVisa = () => {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-2">
                 Work in Greece: Secure Your National D-Type
               </h1>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8" style={{ color: '#EE3A39' }}>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8" style={{ color: '#FF1033' }}>
                 – Visa with DU Global LLC
               </h2>
 
@@ -367,7 +367,7 @@ const GreeceWorkVisa = () => {
               {positions.map((item, index) => (
                 <div
                   key={index}
-                  className="w-[200px] md:w-[220px] h-[240px] bg-[#C51E1E] rounded-2xl 
+                  className="w-[200px] md:w-[220px] h-[240px] bg-[#FF1033] rounded-2xl 
                            flex flex-col items-center justify-start text-center
                            text-white px-6 pt-4 shrink-0"
                 >
@@ -529,7 +529,7 @@ const GreeceWorkVisa = () => {
                   key={doc._id || index}
                   className="rounded-2xl p-8 text-white"
                   style={{
-                    background: 'linear-gradient(135deg, #FF1033 0%, #8B0000 100%)'
+                    background: '#FF1033'
                   }}
                 >
                   <h3 className="text-2xl font-bold mb-6">{doc.title}</h3>
@@ -584,7 +584,7 @@ const GreeceWorkVisa = () => {
                     {/* Large number at bottom right */}
                     <div
                       className="absolute bottom-2 right-4 text-6xl font-bold opacity-100"
-                      style={{ color: '#C62625' }}
+                      style={{ color: '#FF1033' }}
                     >
                       {number}
                     </div>

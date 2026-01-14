@@ -164,7 +164,7 @@ const Digitalarrivalcards = () => {
         <div
           className="absolute right-0 top-0 w-1/2 h-full opacity-30 pointer-events-none"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cpath d='M400 0 L800 300 L400 600 M500 100 L800 350 L500 500' fill='none' stroke='%23C00C02' stroke-width='1'/%3E%3Ccircle cx='600' cy='200' r='2' fill='%23C00C02'/%3E%3Ccircle cx='700' cy='400' r='2' fill='%23C00C02'/%3E%3Ccircle cx='500' cy='350' r='1.5' fill='%23C00C02'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cpath d='M400 0 L800 300 L400 600 M500 100 L800 350 L500 500' fill='none' stroke='%23FF1033' stroke-width='1'/%3E%3Ccircle cx='600' cy='200' r='2' fill='%23FF1033'/%3E%3Ccircle cx='700' cy='400' r='2' fill='%23FF1033'/%3E%3Ccircle cx='500' cy='350' r='1.5' fill='%23FF1033'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'right center',
             backgroundSize: 'cover'
@@ -186,7 +186,7 @@ const Digitalarrivalcards = () => {
       {/* ===== MULTI-STEP FORM SECTION ===== */}
       <section id="apply-form" className="py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 md:px-20">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Apply for Digital Arrival Card</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8">Apply for Digital Arrival Card</h2>
 
           {/* Success/Error Message Display */}
           {submitStatus === 'success' && (
@@ -244,7 +244,7 @@ const Digitalarrivalcards = () => {
                     className="relative bg-white rounded-2xl p-8 border border-gray-900 shadow-sm min-h-[220px]"
                   >
                     {/* Static Icons (UI only) */}
-                    <div className="mb-6 text-[#C00C02]">
+                    <div className="mb-6 text-[#FF1033]">
                       {index === 0 && <FileText className="w-10 h-10" />}
                       {index === 1 && <File className="w-10 h-10" />}
                       {index === 2 && <CreditCard className="w-10 h-10" />}
@@ -270,7 +270,7 @@ const Digitalarrivalcards = () => {
 
       {/* ===== WHY CHOOSE SECTION ===== */}
       {whyChooseSection.length > 0 && (
-        <section className="max-w-6xl mx-auto py-10 rounded-lg relative overflow-hidden" style={{ backgroundColor: '#C00C02' }}>
+        <section className="max-w-6xl mx-auto py-10 rounded-lg relative overflow-hidden" style={{ backgroundColor: '#FF1033' }}>
           <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20">
             {whyChooseSection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center place-items-center">
@@ -293,7 +293,7 @@ const Digitalarrivalcards = () => {
                         <div
                           className="w-6 h-6 rounded bg-white flex items-center justify-center shrink-0 mt-0.5"
                         >
-                          <Check className="w-4 h-4" style={{ color: '#C00C02' }} strokeWidth={3} />
+                          <Check className="w-4 h-4" style={{ color: '#FF1033' }} strokeWidth={3} />
                         </div>
                         <span className="text-white/95 text-lg">{benefit}</span>
                       </li>

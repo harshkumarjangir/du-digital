@@ -136,7 +136,7 @@ const Dubai5yeartouristvisa = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center place-items-center w-full place-items-center">
             {/* Left - Hero Text */}
             <div className="text-white">
-              <p className="text-2xl md:text-3xl lg:text-6xl font-bold mb-2">Apply For</p>
+              <p className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">Apply For</p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
                 <span style={{ color: '#FF1033' }}>UAE/Dubai Tourist Visa</span>
               </h1>
@@ -357,7 +357,7 @@ const Dubai5yeartouristvisa = () => {
       {/* ===== EXPLORE UAE SECTION ===== */}
       {exploreSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6  md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             {exploreSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
