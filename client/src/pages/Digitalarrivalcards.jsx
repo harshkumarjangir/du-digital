@@ -123,7 +123,7 @@ const Digitalarrivalcards = () => {
         />
         <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/70 to-black/60" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-20 h-full flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-20 h-full flex items-center">
           <div className="max-w-4xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
               One Platform for All Your Mandatory Digital Arrival Cards - Thailand, Malaysia, Indonesia, Singapore, South Korea & Taiwan
@@ -223,7 +223,7 @@ const Digitalarrivalcards = () => {
       {/* ===== DOCUMENTS REQUIRED SECTION ===== */}
       {documents?.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
 
             {/* Heading */}
             <div className="text-center mb-16">
@@ -271,7 +271,7 @@ const Digitalarrivalcards = () => {
       {/* ===== WHY CHOOSE SECTION ===== */}
       {whyChooseSection.length > 0 && (
         <section className="max-w-6xl mx-auto py-10 rounded-lg relative overflow-hidden" style={{ backgroundColor: '#C00C02' }}>
-          <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20">
             {whyChooseSection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="flex justify-center">

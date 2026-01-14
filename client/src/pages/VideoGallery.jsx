@@ -123,7 +123,7 @@ const VideoGallery = () => {
             </section>
 
             {/* ===== CONTENT ===== */}
-            <div className="max-w-7xl mx-auto px-4 md:px-20 py-12 space-y-16">
+            <div className="max-w-7xl mx-auto px-6 md:px-20 py-12 space-y-16">
                 {Object.entries(groupedVideos).map(([category, items]) => {
                     const currentVisibleCount = visibleCounts[category] || 6;
 

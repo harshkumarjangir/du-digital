@@ -107,7 +107,7 @@ const Duverify = () => {
         />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 100%)' }} />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-32 flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-32 flex items-center">
           <div className="max-w-3xl text-white">
             {/* <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
               {name || 'DuVerify – Revolutionizing Document Verification for Visa Processes'}
@@ -172,7 +172,7 @@ const Duverify = () => {
       {/* ===== ABOUT DUVERIFY SECTION ===== */}
       {aboutSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333333] mb-3">
                 About DuVerify
@@ -222,7 +222,7 @@ const Duverify = () => {
       {/* ===== WHY CHOOSE DUVERIFY (IMAGE MATCHED UI) ===== */}
       {whyChooseSection.length > 0 && (
         <section className="py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             {/* Heading */}
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -343,7 +343,7 @@ const Duverify = () => {
       {/* ===== WHAT DUVERIFY CAN DO FOR YOU ===== */}
       {whatCanDoSection.length > 0 && (
         <section className="py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
 
             {/* Heading */}
             <div className="text-center mb-16">

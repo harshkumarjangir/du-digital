@@ -327,7 +327,7 @@ const Serbiaworkpermitvisa = () => {
       {/* ===== WHAT IS SERBIA D-TYPE VISA ===== */}
       {whatIsSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             {whatIsSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
@@ -544,7 +544,7 @@ const Serbiaworkpermitvisa = () => {
       {
         VisaApplicationCentreAddress.length > 0 && centreAddressTableData && (
           <section className="bg-white py-24">
-            <div className="max-w-7xl mx-auto px-6 md:px-16 gap-12 items-start">
+            <div className="max-w-7xl mx-auto px-6 md:px-20 gap-12 items-start">
               {/* LEFT CONTENT */}
               <div>
                 <h2 className="text-3xl md:text-4xl text-center font-bold leading-tight mb-6 text-[#333333]">
@@ -586,7 +586,7 @@ const Serbiaworkpermitvisa = () => {
       }
       {getStartedSection.length > 0 && (
         <section id="connectwithus" className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-16 grid md:grid-cols-2 gap-4">
+          <div className="max-w-7xl mx-auto px-6 md:px-20 grid md:grid-cols-2 gap-4">
             {/* Left - Get Started Today */}
             <div className="relative h-full rounded-3xl overflow-hidden group">
               <img

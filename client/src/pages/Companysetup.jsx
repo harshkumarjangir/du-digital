@@ -144,7 +144,7 @@ const Companysetup = () => {
         />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%)' }} />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-0 flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-0 flex items-center">
           <div className={`${fields.length > 0 ? 'grid md:grid-cols-2 gap-12 items-center' : ''} w-full`}>
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -286,7 +286,7 @@ const Companysetup = () => {
       {/* ===== TAKE THE FIRST STEP SECTION ===== */}
       {heroSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-16">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             {heroSection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
                 <div>
@@ -344,7 +344,7 @@ const Companysetup = () => {
           />}
           <div className="absolute inset-0 bg-black/80 rounded-md" />
 
-          <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 text-white rounded-md">
+          <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-20 text-white rounded-md">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
               Company <span style={{ color: '#A10000' }}>Formation</span> in the Mainland
             </h2>
@@ -360,7 +360,7 @@ const Companysetup = () => {
       {/* ===== COMPANY FORMATION IN FREEZONE SECTION ===== */}
       {freezoneSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-16">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             {freezoneSection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-6 items-center">
                 <div className="order-2 md:order-2 flex justify-center">
@@ -479,7 +479,7 @@ const Companysetup = () => {
       {/* ===== BENEFITS SECTION ===== */}
       {benefitsSection.length > 0 && (
         <section className="py-24 bg-white">
-          <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="max-w-[1400px] mx-auto px-6 md:px-20">
 
             {/* Heading */}
             <div className="text-center mb-16">
@@ -549,7 +549,7 @@ const Companysetup = () => {
       {/* ===== TYPES OF BUSINESS LICENSE SECTION ===== */}
       {licenseTypesSection.length > 0 && (
         <section className="py-20" style={{ backgroundColor: '#f5f5f5' }}>
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
                 Types of Business <span style={{ color: '#A10000' }}>License</span> in the UAE
@@ -599,7 +599,7 @@ const Companysetup = () => {
       {/* ===== ENTITY OPTIONS SECTION ===== */}
       {entityOptionsSection.length > 0 && (
         <section className="py-20 bg-black text-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12 text-left">
+          <div className="max-w-7xl mx-auto px-6 md:px-20 text-left">
             {entityOptionsSection.map((item, index) => (
               <div key={item._id || index}>
                 <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold mb-6">
@@ -619,7 +619,7 @@ const Companysetup = () => {
       {/* ===== STEPS TO SET UP SECTION ===== */}
       {stepsSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
                 Steps to Set Up a <span style={{ color: '#A10000' }}>Business</span> in the UAE Free Zones

@@ -215,7 +215,7 @@ const Japantouristvisaforindians = () => {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
 
-        <div id="enquire-now" className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-20 flex items-center">
+        <div id="enquire-now" className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-20 flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -376,7 +376,7 @@ const Japantouristvisaforindians = () => {
       {/* ===== WHAT SHOULD INDIANS KNOW SECTION ===== */}
       {introSection.length > 0 && (
         <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             {introSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
@@ -432,7 +432,7 @@ const Japantouristvisaforindians = () => {
       {/* ===== ESSENTIAL TRAVEL TIPS SECTION ===== */}
       {travelTipsSection.length > 0 && (
         <section className="py-16 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             {travelTipsSection.map((item, index) => (
               <div key={item._id || index}>
                 <div className="text-center mb-10">
@@ -469,7 +469,7 @@ const Japantouristvisaforindians = () => {
       {/* ===== TOP TOURIST DESTINATIONS SECTION ===== */}
       {(destinationsSection.length > 0 || formImages.length > 0) && (
         <section className="py-16" style={{ backgroundColor: '##FAFAFA' }}>
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-10">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-black mb-4">
                 {destinationsSection[0]?.title || 'Top Tourist Destinations'}
@@ -516,7 +516,7 @@ const Japantouristvisaforindians = () => {
       {/* ===== MUST VISIT DESTINATIONS ===== */}
       {mustVisitSection.length > 0 && (
         <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             {mustVisitSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
 
@@ -558,7 +558,7 @@ const Japantouristvisaforindians = () => {
       {/* ===== VISA FEES SECTION ===== */}
       {visaFeesSection.length > 0 && (
         <section className="py-16 bg-gray-100">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-10">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 mb-4">
                 {visaFeesSection[0]?.title || 'Visa Fees & Processing Time'}
@@ -623,7 +623,7 @@ const Japantouristvisaforindians = () => {
       {/* ===== DOCUMENTS SECTION ===== */}
       {documents.length > 0 && (
         <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-10">
               <h2 className="text-2xl md:text-3xl lg:text-5xl font-semibold text-gray-900 mb-4">Documents for Indian Citizens: 30/60 Day Japan Tourist Visa</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>

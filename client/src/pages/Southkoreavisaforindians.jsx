@@ -142,7 +142,7 @@ const Southkoreavisaforindians = () => {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-20 flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-20 flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -355,7 +355,7 @@ const Southkoreavisaforindians = () => {
       {/* ===== DESIGNATED TRAVEL AGENCY - EMBASSY ===== */}
       {embassySection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             {embassySection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
@@ -391,7 +391,7 @@ const Southkoreavisaforindians = () => {
       {/* ===== DESIGNATED TRAVEL AGENCY - KTO ===== */}
       {ktoSection.length > 0 && (
         <section className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             {ktoSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                 <div className="flex justify-center order-2 lg:order-1">

@@ -298,7 +298,7 @@ const BangladeshVac = () => {
       {/* ===== COLLABORATION SECTION ===== */}
       {collaborationSection.length > 0 && (
         <section className="py-16">
-          <div className="max-w-6xl mx-auto px-6 md:px-12">
+          <div className="max-w-6xl mx-auto px-6 md:px-20">
             {collaborationSection.map((item, index) => (
               <div key={item._id || index}>
                 <h2 className="text-2xl md:text-2xl font-bold text-black mb-6 text-left">

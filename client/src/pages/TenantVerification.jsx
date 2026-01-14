@@ -171,7 +171,7 @@ const TenantVerification = () => {
         <div className="absolute inset-0 bg-[#000000a3] transition-opacity duration-500 group-hover:opacity-0" />
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 min-h-[90vh] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 min-h-[90vh] flex items-center">
           <div className="max-w-3xl text-white">
 
             {/* Heading */}
@@ -211,7 +211,7 @@ const TenantVerification = () => {
       {/* ===== WHY CHOOSE DUVERIFY SECTION ===== */}
       {whyChooseSection.length > 0 && (
         <section className="py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             {whyChooseSection.map((item, index) => (
               <div
                 key={item._id || index}
@@ -274,7 +274,7 @@ const TenantVerification = () => {
 
       {/* ===== KEY BENEFITS SECTION ===== */}
       <section className="py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="max-w-7xl mx-auto px-6 md:px-20">
 
           {/* Heading */}
           <div className="text-center mb-20">
@@ -345,7 +345,7 @@ const TenantVerification = () => {
       {/* ===== PRICING PLANS - COMPARISON TABLE ===== */}
       {pricingPlans.length > 0 && (
         <section className="py-28 bg-white" id="price_table">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
 
             {/* Heading */}
             <div className="text-center mb-6">
@@ -748,7 +748,7 @@ const TenantVerification = () => {
 
       {howItWorksSection.length > 0 && (
         <section className="py-24" style={{ backgroundColor: '#111111' }}>
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             {/* Heading */}
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
@@ -816,7 +816,7 @@ const TenantVerification = () => {
       {/* ===== DELIVERABLES SECTION ===== */}
       {deliverablesSection.length > 0 && (
         <section className="py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-black">Deliverables</h2>
               <div className="w-24 h-1 mx-auto mt-4" style={{ backgroundColor: '#A10000' }}></div>

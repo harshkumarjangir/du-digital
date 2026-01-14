@@ -132,7 +132,7 @@ const Dubai5yeartouristvisa = () => {
         // style={{ background: 'linear-gradient(135deg, rgba(0,30,50,0.85) 0%, rgba(0,50,70,0.75) 100%)' }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-24 flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-24 flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -412,7 +412,7 @@ const Dubai5yeartouristvisa = () => {
       {/* ===== ELIGIBILITY AND DOCUMENTS SECTION ===== */}
       {documents.length > 0 && (
         <section className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             {documents.map((doc, index) => (
               <div key={doc._id || index}>
                 <div className="text-center mb-12">

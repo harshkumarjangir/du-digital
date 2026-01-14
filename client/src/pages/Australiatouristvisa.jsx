@@ -132,7 +132,7 @@ const Australiatouristvisa = () => {
         // }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-20 flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-20 flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-ful place-items-center">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -182,7 +182,7 @@ const Australiatouristvisa = () => {
                                 onChange={handleInputChange}
                                 placeholder={field.placeholder || field.label}
                                 aria-label={field.label || field.placeholder}
-                                className="w-full px-4 py-3 bg-white border-0 rounded text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-blue-500 transition-all outline-none text-sm"
+                                className="w-full px-4 py-3 bg-white border-0 rounded text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none text-sm"
                                 required={field.required}
                               />
                             ))}
@@ -198,7 +198,7 @@ const Australiatouristvisa = () => {
                                 name={field.name}
                                 value={formValues[field.name] || ''}
                                 onChange={handleInputChange}
-                                className="w-full px-4 py-3 bg-white border-0 rounded text-gray-700 focus:ring-2 focus:ring-blue-500 transition-all outline-none text-sm appearance-none cursor-pointer"
+                                className="w-full px-4 py-3 bg-white border-0 rounded text-gray-700 focus:ring-2 focus:ring-red-500 transition-all outline-none text-sm appearance-none cursor-pointer"
                                 required={field.required}
                                 aria-label={field.label || field.placeholder}
                                 style={{
@@ -230,7 +230,7 @@ const Australiatouristvisa = () => {
                             onChange={handleInputChange}
                             placeholder={field.placeholder || field.label}
                             aria-label={field.label || field.placeholder}
-                            className="w-full px-4 py-3 bg-white border-0 rounded text-gray-700 focus:ring-2 focus:ring-blue-500 transition-all outline-none text-sm"
+                            className="w-full px-4 py-3 bg-white border-0 rounded text-gray-700 focus:ring-2 focus:ring-red-500 transition-all outline-none text-sm"
                             required={field.required}
                           />
                         ))}
@@ -248,7 +248,7 @@ const Australiatouristvisa = () => {
                               onChange={handleInputChange}
                               placeholder={field.placeholder || field.label}
                               aria-label={field.label || field.placeholder}
-                              className="w-full px-4 py-3 bg-white border-0 rounded text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-blue-500 transition-all outline-none text-sm min-h-[100px]"
+                              className="w-full px-4 py-3 bg-white border-0 rounded text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition-all outline-none text-sm min-h-[100px]"
                               required={field.required}
                             />
                           </div>
@@ -262,7 +262,7 @@ const Australiatouristvisa = () => {
                               name={field.name}
                               checked={formValues[field.name] || false}
                               onChange={handleInputChange}
-                              className="mt-1 w-4 h-4 accent-blue-600 rounded flex-shrink-0"
+                              className="mt-1 w-4 h-4 accent-red-600 rounded flex-shrink-0"
                             />
                             <span className="text-gray-300">{field.label}</span>
                           </label>
@@ -325,7 +325,7 @@ const Australiatouristvisa = () => {
         </h2>
         <div className="bg-[#C62828] w-16 h-[3px] mx-auto mb-8 rounded-full"></div>
 
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="max-w-7xl mx-auto px-6 md:px-20">
           <div className="grid lg:grid-cols-[40%_60%] rounded-3xl overflow-hidden bg-[#C62828]">
 
             {/* LEFT IMAGE */}
@@ -400,7 +400,7 @@ const Australiatouristvisa = () => {
       {/* ===== DOCUMENTS REQUIRED SECTION ===== */}
       {documents.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
 
             {/* Heading */}
             <div className="text-center mb-14">
@@ -450,7 +450,7 @@ const Australiatouristvisa = () => {
       {/* ===== ADDITIONAL DOCUMENTS SECTION ===== */}
       {additionalDocsSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-[#333333] mb-2">
                 Additional Documents for Your Australia Tourist Visa (As Applicable)
@@ -556,7 +556,7 @@ const Australiatouristvisa = () => {
       {/* ===== WHY CHOOSE DU GLOBAL SECTION ===== */}
       {whyChooseSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-6 md:px-12">
+          <div className="max-w-6xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333333] mb-3">
                 Why Choose DU Global for Australia Visa

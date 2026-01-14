@@ -149,7 +149,7 @@ const GreeceWorkVisa = () => {
           background: 'linear-gradient(to right, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 50%, rgba(161,0,0,0.3) 100%)'
         }} />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-10 h-full flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-10 h-full flex items-center">
           <div className="grid md:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -293,7 +293,7 @@ const GreeceWorkVisa = () => {
       </section>
       {heroSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             {heroSection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
                 <div>

@@ -179,7 +179,7 @@ const IndianEvisa = () => {
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/55" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-16">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-16">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
 
             {/* ===== LEFT CONTENT ===== */}
@@ -446,7 +446,7 @@ const IndianEvisa = () => {
       {
         heroSection.length > 0 && (
           <section className="py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <div className="max-w-7xl mx-auto px-6 md:px-20">
               {heroSection.map((item, index) => (
                 <div key={item._id || index} className="grid lg:grid-cols-2 gap-16 items-center">
                   <div>

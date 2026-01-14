@@ -337,7 +337,7 @@ const Globalrecruitmentservices = () => {
       {/* ===== WHY CHOOSE DU GLOBAL SECTION (Dynamic) ===== */}
       {whyChooseSection.length > 0 && (
         <section className="py-20 bg-white relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-5xl font-bold text-[#333333] mb-4">
                 Why Choose DU Global?
@@ -381,7 +381,7 @@ const Globalrecruitmentservices = () => {
       {/* ===== OUR SERVICES SECTION (IMAGE MATCHED UI) ===== */}
       {ourServicesSection.length > 0 && (
         <section className="py-20 bg-[#3a3a3a]">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             {/* Heading */}
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
@@ -436,7 +436,7 @@ const Globalrecruitmentservices = () => {
       {/* ===== INDUSTRIES WE SERVE (SLIDER) ===== */}
       {industriesSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-6 md:px-12">
+          <div className="max-w-6xl mx-auto px-6 md:px-20">
 
             {/* Heading */}
             <div className="text-center mb-16">
@@ -519,7 +519,7 @@ const Globalrecruitmentservices = () => {
       {/* ===== OUR TRACK RECORD SECTION (Dynamic) ===== */}
       {trackRecordSection.length > 0 && (
         <section className="py-20 bg-black">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               {/* Left Side - Stats */}
               <div>
@@ -570,7 +570,7 @@ const Globalrecruitmentservices = () => {
       {/* ===== READY TO BUILD YOUR TEAM CTA ===== */}
       {readyToBuildSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div className="max-w-7xl mx-auto px-6 md:px-20 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
             {/* LEFT CONTENT */}
             <div className="text-left">
