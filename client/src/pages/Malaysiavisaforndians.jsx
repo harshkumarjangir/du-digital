@@ -134,8 +134,8 @@ const Malaysiavisaforndians = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full place-items-center">
             {/* Left - Hero Text */}
             <div className="text-white">
-              <p className="text-5xl md:text-6xl lg:text-7xl mb-2">Apply For</p>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+              <p className="text-4xl md:text-5xl lg:text-6xl mb-2">Apply For</p>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
                 <span style={{ color: '#FF1033' }}>Malaysia Visa</span>
               </h1>
               {/* <p className="text-gray-300 text-lg">

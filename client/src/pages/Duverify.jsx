@@ -109,10 +109,10 @@ const Duverify = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-32 flex items-center">
           <div className="max-w-3xl text-white">
-            {/* <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
+            {/* <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
               {name || 'DuVerify – Revolutionizing Document Verification for Visa Processes'}
             </h1> */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
               {name?.startsWith('DuVerify') ? (
                 <>
                   <span className="text-[#FF1033]">DuVerify</span>
@@ -478,7 +478,7 @@ export default Duverify;
 
 
 
-//<h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
+//<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
 //  <span className="text-[#FF1033]">DuVerify</span>
 //  <span className="text-white">
 //    {name

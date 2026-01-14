@@ -159,7 +159,7 @@ const Applyforanyvisa = () => {
         <div className="relative left-0 z-10 max-w-7xl mx-auto px-6">
           <div className="text-white max-w-xl">
             {/* <p className="text-lg mb-2 text-gray-300">Welcome to</p> */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
               Welcome to DU Global
               {/* <span style={{ color: '#FF1033' }}></span> */}
             </h1>

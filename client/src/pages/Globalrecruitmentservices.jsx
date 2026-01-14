@@ -199,7 +199,7 @@ const Globalrecruitmentservices = () => {
 
           {/* LEFT CONTENT */}
           <div className="text-white">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-5">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5">
               Global Recruitment Services – Apply Now!
             </h1>
 

@@ -153,7 +153,7 @@ const GreeceWorkVisa = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-2">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-2">
                 Work in Greece: Secure Your National D-Type
               </h1>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8" style={{ color: '#EE3A39' }}>

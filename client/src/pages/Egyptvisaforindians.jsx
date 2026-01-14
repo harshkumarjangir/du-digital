@@ -177,7 +177,7 @@ const Egyptvisaforindians = () => {
             {/* Left - Hero Text */}
             <div className="text-white">
               <p className="text-xl mb-2 text-gray-300">Apply For</p>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
                 <span style={{ color: '#FF1033' }}>Egypt</span> Visa
               </h1>
               <p className="text-gray-300 text-lg">

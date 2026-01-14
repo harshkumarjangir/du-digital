@@ -175,7 +175,7 @@ const TenantVerification = () => {
           <div className="max-w-3xl text-white">
 
             {/* Heading */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
               Comprehensive Verification for <br />
               Tenants, Drivers, Maids, and <br />
               Nannies by{' '}
