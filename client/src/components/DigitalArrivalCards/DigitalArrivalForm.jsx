@@ -94,7 +94,7 @@ const DigitalArrivalForm = ({ onSubmit, serverError, loading }) => {
     };
 
     return (
-        <div className="bg-white rounded-2xl p-8 shadow-lg border-[3px] border-[#C00C02]">
+        <div className="bg-white rounded-2xl p-8 shadow-lg border-[3px] border-[#FF1033]">
             {/* Progress Bar */}
             <div className="flex items-center justify-between mb-10 overflow-x-auto">
                 {formConfig.steps.map((step, index) => (
@@ -102,9 +102,9 @@ const DigitalArrivalForm = ({ onSubmit, serverError, loading }) => {
                         <div className="flex flex-col items-center w-full z-10">
                             <div
                                 className={`w-8 h-8 rounded flex items-center justify-center font-bold text-sm transition-colors duration-300 ${currentStep === step.number
-                                    ? 'text-white bg-[#C00C02]'
+                                    ? 'text-white bg-[#FF1033]'
                                     : currentStep > step.number
-                                        ? 'text-white bg-[#C00C02]'
+                                        ? 'text-white bg-[#FF1033]'
                                         : 'text-gray-600 border-2 border-gray-300 bg-white'
                                     }`}
                                 aria-current={currentStep === step.number ? 'step' : undefined}
@@ -112,7 +112,7 @@ const DigitalArrivalForm = ({ onSubmit, serverError, loading }) => {
                                 {step.number}
                             </div>
                             <span
-                                className={`text-xs mt-2 text-center whitespace-nowrap hidden sm:block ${currentStep === step.number ? 'font-semibold text-[#C00C02]' : 'text-gray-500'
+                                className={`text-xs mt-2 text-center whitespace-nowrap hidden sm:block ${currentStep === step.number ? 'font-semibold text-[#FF1033]' : 'text-gray-500'
                                     }`}
                             >
                                 {step.label}
@@ -122,7 +122,7 @@ const DigitalArrivalForm = ({ onSubmit, serverError, loading }) => {
                             <div
                                 className="flex-1 h-0.5 mx-2 -mt-6 transition-colors duration-300"
                                 style={{
-                                    backgroundColor: currentStep > step.number ? '#C00C02' : '#e5e7eb'
+                                    backgroundColor: currentStep > step.number ? '#FF1033' : '#e5e7eb'
                                 }}
                             />
                         )}

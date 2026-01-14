@@ -221,7 +221,7 @@ const TenantVerification = () => {
                 <div>
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
                     Why Choose{' '}
-                    <span className="text-[#A10000]">DuVerify</span> Platform?
+                    <span className="text-[#FF1033]">DuVerify</span> Platform?
                   </h2>
 
                   <p className="text-xl font-semibold md:font-bold text-gray-800 mb-6">
@@ -239,8 +239,8 @@ const TenantVerification = () => {
                   {/* SERVICES LIST */}
                   <div className="flex flex-wrap gap-x-4 gap-y-3 mt-0">
                     {services.map((service, idx) => (
-                      <div key={idx} className="flex items-center gap-4 border-r border-[#A10000] pr-5 last:border-r-0">
-                        <span className="text-[#A10000] text-lg font-bold">✓</span>
+                      <div key={idx} className="flex items-center gap-4 border-r border-[#FF1033] pr-5 last:border-r-0">
+                        <span className="text-[#FF1033] text-lg font-bold">✓</span>
                         <span className="text-gray-800 font-semibold">
                           {service}
                         </span>
@@ -281,7 +281,7 @@ const TenantVerification = () => {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               Key Benefits
             </h2>
-            <div className="w-20 h-[2px] mx-auto bg-[#A10000]" />
+            <div className="w-20 h-[2px] mx-auto bg-[#FF1033]" />
           </div>
 
           {/* Cards */}
@@ -305,12 +305,12 @@ const TenantVerification = () => {
                         //   className="w-14 h-14 object-contain"
                         // />
                         <IconComponent
-                          className="w-14 h-14 text-[#C81E1E]"
+                          className="w-14 h-14 text-[#FF1033]"
                           strokeWidth={1.5}
                         />
                       ) : (
                         <IconComponent
-                          className="w-14 h-14 text-[#C81E1E]"
+                          className="w-14 h-14 text-[#FF1033]"
                           strokeWidth={1.5}
                         />
                       )}
@@ -352,7 +352,7 @@ const TenantVerification = () => {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
                 Pricing Plans
               </h2>
-              <div className="w-20 h-[2px] bg-[#A10000] mx-auto mt-4 mb-6" />
+              <div className="w-20 h-[2px] bg-[#FF1033] mx-auto mt-4 mb-6" />
               <p className="text-lg text-gray-700 font-medium">
                 Flexible pricing for hassle-free Tenant, Maid, Nanny & Driver verification
               </p>
@@ -754,7 +754,7 @@ const TenantVerification = () => {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
                 How It Works?
               </h2>
-              <div className="w-20 h-[2px] bg-[#A10000] mx-auto my-4" />
+              <div className="w-20 h-[2px] bg-[#FF1033] mx-auto my-4" />
               {howItWorksSection[0]?.badge?.text && (
                 <p className="text-lg md:text-xl lg:text-2xl text-gray-100 font-medium">{howItWorksSection[0].badge.text}</p>
               )}
@@ -771,7 +771,7 @@ const TenantVerification = () => {
                         {steps.map((step, stepIdx) => (
                           <div key={stepIdx} className="flex gap-5 items-center">
                             <div
-                              className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold shrink-0 text-[#A10000] border-2 border-[#A10000]"
+                              className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold shrink-0 text-[#FF1033] border-2 border-[#FF1033]"
                             >
                               {stepIdx + 1}
                             </div>
@@ -819,7 +819,7 @@ const TenantVerification = () => {
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-black">Deliverables</h2>
-              <div className="w-24 h-1 mx-auto mt-4" style={{ backgroundColor: '#A10000' }}></div>
+              <div className="w-24 h-1 mx-auto mt-4" style={{ backgroundColor: '#FF1033' }}></div>
               {deliverablesSection[0]?.badge?.text && (
                 <p className="text-[#333333] text-lg font-bold mt-4">{deliverablesSection[0].badge.text}</p>
               )}
@@ -827,7 +827,7 @@ const TenantVerification = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
               {deliverablesSection.map((item, index) => (
-           
+
                 <div
                   key={item._id || index}
                   className="relative h-64 rounded-2xl overflow-hidden group cursor-pointer"
@@ -849,7 +849,7 @@ const TenantVerification = () => {
                   <div className="absolute inset-0 bg-[#000000d7] transition-opacity duration-500 group-hover:opacity-0" />
 
                   {/* Red Overlay (hover) */}
-                  <div className="absolute inset-0 bg-[#A10000]/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="absolute inset-0 bg-[#FF1033]/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                   {/* Content */}
                   <div className="relative h-full flex flex-col items-center justify-center text-white px-6 text-center z-10">

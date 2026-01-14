@@ -178,7 +178,7 @@ const Duverify = () => {
                 About DuVerify
                 {/* <span style={{ color: '#A10000' }}>DuVerify</span> */}
               </h2>
-              <div className="w-16 h-0.75 mx-auto" style={{ backgroundColor: '#A10000' }}></div>
+              <div className="w-16 h-0.75 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             {aboutSection.map((item, index) => (
@@ -192,7 +192,7 @@ const Duverify = () => {
                   <ul className="space-y-4">
                     {item.contentHtml?.split(/\r?\n/).filter(line => line.trim()).map((benefit, idx) => (
                       <li key={idx} className="flex items-center gap-4">
-                        <div className="w-5 h-5 rounded-none flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: '#A10000' }}>
+                        <div className="w-5 h-5 rounded-none flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: '#FF1033' }}>
                           <Check className="w-4 h-4 text-white" strokeWidth={3} />
                           {/* <CheckCircle className="w-3 h-3 text-white" strokeWidth={3} /> */}
                         </div>
@@ -228,7 +228,7 @@ const Duverify = () => {
               <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
                 Why Choose DuVerify?
               </h2>
-              <div className="w-16 h-[3px] bg-[#c60505] mx-auto" />
+              <div className="w-16 h-[3px] bg-[#FF1033] mx-auto" />
             </div>
 
             {/* Cards */}
@@ -263,7 +263,7 @@ const Duverify = () => {
                     {/* <div className="absolute bottom-0 right-0 w-40 h-40 opacity-[0.06] bg-[radial-gradient(circle,_#c60505_1px,_transparent_1px)] bg-[length:10px_10px]" /> */}
 
                     {/* Number */}
-                    <div className="text-6xl font-bold text-[#c60505] mb-6">
+                    <div className="text-6xl font-bold text-[#FF1033] mb-6">
                       {number}
                     </div>
 
@@ -299,7 +299,7 @@ const Duverify = () => {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
                 Key Partnerships
               </h2>
-              <div className="w-16 h-0.75 mx-auto" style={{ backgroundColor: '#A10000' }}></div>
+              <div className="w-16 h-0.75 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
             {/* Partnership Cards - 2 columns with background images */}
@@ -320,7 +320,7 @@ const Duverify = () => {
                   {/* Dark overlay */}
                   <div className="absolute inset-0 bg-black/85" />
 
-                  <div className="absolute inset-0 bg-[#A10000]/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="absolute inset-0 bg-[#FF1033]/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
 
                   {/* Content */}
@@ -350,7 +350,7 @@ const Duverify = () => {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
                 What DuVerify Can Do For You
               </h2>
-              <div className="w-20 h-[3px] bg-[#A10000] mx-auto" />
+              <div className="w-20 h-[3px] bg-[#FF1033] mx-auto" />
             </div>
 
             {/* Cards */}
@@ -374,7 +374,7 @@ const Duverify = () => {
               "
                   >
                     {/* Number */}
-                    <div className="text-4xl font-bold text-[#A10000] mb-6">
+                    <div className="text-4xl font-bold text-[#FF1033] mb-6">
                       {number}
                     </div>
 
@@ -419,7 +419,7 @@ const Duverify = () => {
               }}
             />
             <div className="absolute inset-0 bg-black/70" />
-            <div className="absolute inset-0 bg-[#A10000]/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            <div className="absolute inset-0 bg-[#FF1033]/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
             <div className="relative z-10 p-10 md:p-10 flex flex-col justify-center h-full">
               <h2 className="text-3xl md:text-4xl lg:text-4xl font-semibold text-white mb-4">
@@ -434,7 +434,7 @@ const Duverify = () => {
           {/* Right - Connect with us */}
           <div className="bg-[#050505] h-[300px] md:p-10 rounded-2xl o sm:p-10 sm:w-[45%] flex flex-col justify-center">
             <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-2">Connect with us</h3>
-            <div className="w-12 h-1 mb-8" style={{ backgroundColor: '#A10000' }}></div>
+            <div className="w-12 h-1 mb-8" style={{ backgroundColor: '#FF1033' }}></div>
 
             <div className="mb-6">
               <h4 className="text-xl md:text-2xl lg:text-3xl font-semibold text-white mb-1">Dheeraj Shrivastava</h4>
@@ -445,10 +445,10 @@ const Duverify = () => {
               <a
                 href="mailto:dheeraj@dudigitalglobal.com"
                 className="flex items-center gap-4 transition-colors"
-                style={{ color: '#e57373' }}
+                style={{ color: '#FF1033' }}
               >
                 {/* <Mail className="w-5 h-5" /> */}
-                <span className="w-5 h-5 text-[#CC3366]">
+                <span className="w-5 h-5 text-[#FF1033]">
                   📧
                 </span>
                 <span className="text-white">Email -</span>
@@ -456,10 +456,10 @@ const Duverify = () => {
               </a>
               <a
                 href="tel:+918510809767"
-                className="flex items-center gap-4 transition-colors text-[#e57373]"
+                className="flex items-center gap-4 transition-colors text-[#FF1033]"
               >
                 {/* <Phone className="w-5 h-5" /> */}
-                <span className="w-5 h-5 text-[#CC3366]">
+                <span className="w-5 h-5 text-[#FF1033]">
                   📞
                 </span>
                 <span className="text-white">Mobile -</span>

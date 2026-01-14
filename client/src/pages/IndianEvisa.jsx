@@ -186,7 +186,7 @@ const IndianEvisa = () => {
             <div className="text-white">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
                 Apply eVisa <br />
-                for <span className="text-[#e63938]">India</span>
+                for <span className="text-[#FF1033]">India</span>
               </h1>
 
               <p className="text-gray-200 text-lg mb-8 max-w-lg">
@@ -196,23 +196,23 @@ const IndianEvisa = () => {
 
               {/* Highlights */}
               {/* Need bg gradient fro left to right */}
-              <div className="bg-linear-to-r from-[#e63938]/80 to-[#e63938]/10 inline-block px-6 py-4 rounded-xl mb-8">
+              <div className="bg-linear-to-r from-[#FF1033]/80 to-[#FF1033]/10 inline-block px-6 py-4 rounded-xl mb-8">
                 <ul className="space-y-4 text-sm font-medium">
                   <li>
                     <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-white mr-2">
-                      <Check className="w-3 h-3 text-[#e63938]" strokeWidth={3} />
+                      <Check className="w-3 h-3 text-[#FF1033]" strokeWidth={3} />
                     </span>
                     Partner of MEA, Government of India
                   </li>
                   <li>
                     <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-white mr-2">
-                      <Check className="w-3 h-3 text-[#e63938]" strokeWidth={3} />
+                      <Check className="w-3 h-3 text-[#FF1033]" strokeWidth={3} />
                     </span>
                     1.7M+ applications processed
                   </li>
                   <li>
                     <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-white mr-2">
-                      <Check className="w-3 h-3 text-[#e63938]" strokeWidth={3} />
+                      <Check className="w-3 h-3 text-[#FF1033]" strokeWidth={3} />
                     </span>
                     Operating in 6 countries
                   </li>
@@ -222,7 +222,7 @@ const IndianEvisa = () => {
               {/* Support Buttons */}
               <div>
                 <p className="flex items-center gap-4 mb-4 font-semibold">
-                  <Phone className="w-5 h-5 text-[#e63938]" />
+                  <Phone className="w-5 h-5 text-[#FF1033]" />
                   Call Us For Quick Support
                 </p>
 
@@ -453,7 +453,7 @@ const IndianEvisa = () => {
                     <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
                       {item.title}
                     </h2>
-                    <div className="w-20 h-0.75 mb-6" style={{ backgroundColor: '#e63938' }}></div>
+                    <div className="w-20 h-0.75 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
                     <div
                       className="text-gray-600 leading-relaxed text-lg"
                       dangerouslySetInnerHTML={{ __html: item.contentHtml }}
@@ -479,7 +479,7 @@ const IndianEvisa = () => {
                       {item.badge?.text && (
                         <div
                           className="absolute -top-14 -right-4 w-28 h-28 flex flex-col items-center justify-center text-white text-center shadow-lg"
-                          style={{ backgroundColor: item.badge.background || '#e63938' }}
+                          style={{ backgroundColor: item.badge.background || '#FF1033' }}
                         >
                           <span className="text-xs font-medium leading-tight px-2">{item.badge.text}</span>
                         </div>
@@ -501,7 +501,7 @@ const IndianEvisa = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
               Eligibility for India eVisa
             </h2>
-            <div className="w-32 h-0.75 mx-auto" style={{ backgroundColor: '#e63938' }}></div>
+            <div className="w-32 h-0.75 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
           </div>
 
           <div className="rounded-2xl p-0 md:p-10">
@@ -639,7 +639,7 @@ const IndianEvisa = () => {
                     <button
                       onClick={() => toggleDoc(index)}
                       className="w-full px-6 py-5 flex items-center justify-between text-left text-white font-bold transition-colors duration-200"
-                      style={{ backgroundColor: '#e63938' }}
+                      style={{ backgroundColor: '#FF1033' }}
                     >
                       <span className="text-lg">{doc.title}</span>
                       {openDocIndex === index ? (
@@ -656,7 +656,7 @@ const IndianEvisa = () => {
                             <div key={idx} className="flex items-center gap-4">
                               <div
                                 className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                                style={{ backgroundColor: '#e63938' }}
+                                style={{ backgroundColor: '#FF1033' }}
                               >
                                 <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />
                               </div>
