@@ -37,8 +37,8 @@ const Navbar = () => {
 
 
   return (
-    <header className="bg-white relative z-50">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <header className="bg-white relative z-50 sticky top-0">
+      <div className="max-w-7xl mx-auto px-6 md:px-16 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link to={navbar.logo.link} className="flex items-center gap-2">
           <img src={navbar.logo.src} alt={navbar.logo.alt} className="h-20" />
