@@ -24,7 +24,7 @@ const NewsHome = ({ data }) => {
                         href={item.link}
                         target="_blank"
                         rel="noreferrer"
-                        className="relative bg-white rounded-[32px] overflow-hidden shadow-sm transition"
+                        className="relative bg-white rounded-[32px] overflow-hidden shadow-none transition"
                     >
                         {/* Image (Tall) */}
                         <div className="relative h-[420px]">
@@ -40,7 +40,7 @@ const NewsHome = ({ data }) => {
                         </div>
 
                         {/* ABSOLUTE Content */}
-                        <div className="absolute inset-x-0 bottom-0 px-6 pb-4 bg-gradient-to-t from-white via-white/90 to-white/10">
+                        <div className="absolute inset-x-0 bottom-0 px-6 pb-4 bg-gradient-to-t from-white via-white/90 to-transparent">
                             {/* Quote */}
                             <div className="text-4xl text-gray-900 mb-0 leading-none">
                                 “

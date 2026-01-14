@@ -22,19 +22,22 @@ export const Blog = ({ data: propData, className }) => {
   // Use propData if available, otherwise use reduxData
   const data = propData || reduxData;
 
-  // Category color mapping (same as EventsGrid)
-  const categoryColors = {
-    'Business Networking': 'bg-[#FF1033]',
-    'Industry Conference': 'bg-green-500',
-    'Product Launch': 'bg-yellow-500',
-    'Community Event': 'bg-blue-500',
-    'Trade Show': 'bg-purple-500',
-    'Tenant Verification': 'bg-[#FF1033]',
-    'default': 'bg-gray-500'
-  };
+  // Button color variations
+  const BUTTON_COLORS = [
+    { bg: 'bg-[#FF1033]', hover: 'hover:bg-[#511313]', hoverText: 'hover:text-[#FF1033]' },
+    { bg: 'bg-blue-600', hover: 'hover:bg-blue-900', hoverText: 'hover:text-blue-600' },
+    { bg: 'bg-green-600', hover: 'hover:bg-green-900', hoverText: 'hover:text-green-600' },
+    { bg: 'bg-purple-600', hover: 'hover:bg-purple-900', hoverText: 'hover:text-purple-600' },
+    { bg: 'bg-orange-600', hover: 'hover:bg-orange-900', hoverText: 'hover:text-orange-600' },
+    { bg: 'bg-pink-600', hover: 'hover:bg-pink-900', hoverText: 'hover:text-pink-600' },
+  ];
 
-  const getCategoryColor = (category) => {
-    return categoryColors[category] || categoryColors.default;
+  const getButtonColor = (id) => {
+    let hash = 0;
+    for (let i = 0; i < id.length; i++) {
+      hash += id.charCodeAt(i);
+    }
+    return BUTTON_COLORS[hash % BUTTON_COLORS.length];
   };
 
   return (
@@ -71,13 +74,13 @@ export const Blog = ({ data: propData, className }) => {
             {/* CONTENT */}
             <div className="absolute inset-0 flex flex-col justify-end p-6 text-white z-0">
               {/* Category Badge */}
-              {/* <span className={`${getCategoryColor(blog.category)} text-white text-xs px-3 py-1 rounded-full w-max mb-3 font-medium`}>
+              {/* <span className="bg-[#FF1033] text-white text-xs px-3 py-1 rounded-full w-max mb-3 font-medium">
                 {blog.category || "Tenant Verification"}
               </span> */}
 
               <Link
                 to={`/blog/${blog._id}`}
-                className="bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] px-6 py-2 mb-4 rounded-full w-max font-bold transition-all duration-300 cursor-pointer"
+                className={`${getButtonColor(blog._id).bg} text-[#FFFDF5] ${getButtonColor(blog._id).hover} ${getButtonColor(blog._id).hoverText} px-6 py-2 mb-4 rounded-full w-max font-bold transition-all duration-300 cursor-pointer`}
               >
                 View More
               </Link>
