@@ -348,7 +348,7 @@ const Applyforanyvisa = () => {
               const embedUrl = getYouTubeEmbedUrl(item.youtubeUrl);
 
               return (
-                <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
+                <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center place-items-center">
                   <div>
                     <p className="text-xl md:text-2xl lg:text-4xl font-bold mb-2" style={{ color: '#333333' }}>Global Experts in</p>
                     <div className="w-14 h-0.5 mr-2" style={{ backgroundColor: '#FF1033' }}></div>

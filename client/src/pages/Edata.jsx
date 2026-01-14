@@ -241,7 +241,7 @@ const Digitalarrivalcards = () => {
 
           <div className="relative z-10 max-w-7xl mx-auto px-6">
             {travelReadySection.map((item, index) => (
-              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
+              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center place-items-center">
                 <div className="flex justify-center">
                   <img
                     src={item.image ? getImageUrl(item.image) : STATIC_IMAGES.travelReady}
@@ -313,7 +313,7 @@ const Digitalarrivalcards = () => {
 
           <div className="relative z-10 max-w-7xl mx-auto px-6">
             {whyChooseSection.map((item, index) => (
-              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
+              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center place-items-center">
                 <div className="text-white">
                   <h2 className="text-3xl md:text-4xl font-bold mb-6">
                     {item.title}

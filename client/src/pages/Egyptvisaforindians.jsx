@@ -173,7 +173,7 @@ const Egyptvisaforindians = () => {
         <div className="absolute inset-0 bg-black/50" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-20 h-[800px] flex items-center">
-          <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
+          <div className="grid lg:grid-cols-2 gap-12 items-center place-items-center w-full place-items-center">
             {/* Left - Hero Text */}
             <div className="text-white">
               <p className="text-xl mb-2 text-gray-300">Apply For</p>
@@ -352,7 +352,7 @@ const Egyptvisaforindians = () => {
         <section className="py-16 bg-white">
           <div className="max-w-6xl mx-auto px-6 md:px-20">
             {introSection.map((item, index) => (
-              <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
+              <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                     {item.title}
@@ -528,7 +528,7 @@ const Egyptvisaforindians = () => {
         <section className="py-16 bg-white">
           <div className="max-w-6xl mx-auto px-6 md:px-20">
             {cuisineSection.map((item, index) => (
-              <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
+              <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                     {item.title}
@@ -565,7 +565,7 @@ const Egyptvisaforindians = () => {
         <section className="py-16" style={{ backgroundColor: '#fdf2f4' }}>
           <div className="max-w-6xl mx-auto px-6 md:px-20">
             {planningSection.map((item, index) => (
-              <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
+              <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center place-items-center">
                 {item?.images?.[0] ? (
                   <div>
                     <img

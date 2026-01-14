@@ -133,7 +133,7 @@ const Australiatouristvisa = () => {
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-20 flex items-center">
-          <div className="grid lg:grid-cols-2 gap-12 items-center w-ful place-items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center place-items-center w-ful place-items-center">
             {/* Left - Hero Text */}
             <div className="text-white">
               {/* <p className="text-xl mb-2">Apply for</p> */}

@@ -273,7 +273,7 @@ const Digitalarrivalcards = () => {
         <section className="max-w-6xl mx-auto py-10 rounded-lg relative overflow-hidden" style={{ backgroundColor: '#C00C02' }}>
           <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20">
             {whyChooseSection.map((item, index) => (
-              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
+              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center place-items-center">
                 <div className="flex justify-center">
                   <img
                     src={item.images.length > 0 ? getImageUrl(item.images[0]) : STATIC_IMAGES.whyChoose}

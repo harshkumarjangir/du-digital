@@ -131,7 +131,7 @@ const Malaysiavisaforndians = () => {
         />
 
         <div id="enquire-now" className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-20 flex items-center">
-          <div className="grid lg:grid-cols-2 gap-12 items-center w-full place-items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center place-items-center w-full place-items-center place-items-center">
             {/* Left - Hero Text */}
             <div className="text-white">
               <p className="text-4xl md:text-5xl lg:text-6xl mb-2">Apply For</p>
@@ -289,7 +289,7 @@ const Malaysiavisaforndians = () => {
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             {exploreSection.map((item, index) => (
-              <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
+              <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
                   <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
                     {item.title}

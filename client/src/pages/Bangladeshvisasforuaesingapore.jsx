@@ -124,7 +124,7 @@ const BangladeshVisasForUaeSingapore = () => {
         />
         <div className="absolute inset-0 bg-black/60" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 grid lg:grid-cols-2 gap-12 items-center w-full py-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 grid lg:grid-cols-2 gap-12 items-center place-items-center w-full place-items-center py-20">
 
           <div className="text-white space-y-4">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">

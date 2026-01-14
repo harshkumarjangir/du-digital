@@ -143,7 +143,7 @@ const Southkoreavisaforindians = () => {
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-20 flex items-center">
-          <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
+          <div className="grid lg:grid-cols-2 gap-12 items-center place-items-center w-full place-items-center">
             {/* Left - Hero Text */}
             <div className="text-white">
               {/* <div className="flex items-center gap-4 mb-4">
@@ -357,7 +357,7 @@ const Southkoreavisaforindians = () => {
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             {embassySection.map((item, index) => (
-              <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
+              <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
                   <h2 className="text-2xl md:text-3xl font-semibold text-[#333333] mb-2">
                     {item.title}
@@ -393,7 +393,7 @@ const Southkoreavisaforindians = () => {
         <section className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             {ktoSection.map((item, index) => (
-              <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
+              <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center place-items-center">
                 <div className="flex justify-center order-2 lg:order-1">
                   {item?.images?.length > 0 ? (
                     <img

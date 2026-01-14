@@ -150,7 +150,7 @@ const GreeceWorkVisa = () => {
         }} />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-10 h-full flex items-center">
-          <div className="grid md:grid-cols-2 gap-12 items-center w-full">
+          <div className="grid md:grid-cols-2 gap-12 items-center place-items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-2">
@@ -295,7 +295,7 @@ const GreeceWorkVisa = () => {
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             {heroSection.map((item, index) => (
-              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
+              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
                   <h2 className="text-3xl md:text-4xl lg:text-[48px] font-bold text-[#333333] mb-6">
                     {item.title}
@@ -413,7 +413,7 @@ const GreeceWorkVisa = () => {
 
           <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20">
             {salarySection.map((item, index) => (
-              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
+              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
                   <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
                     Salary & Benefits
@@ -465,7 +465,7 @@ const GreeceWorkVisa = () => {
 
           <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20">
             {eligibilitySection.map((item, index) => (
-              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
+              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center place-items-center">
                 <div className="flex justify-center">
                   {item?.images?.length > 0 ? (
                     item.images.map(p => <img
@@ -612,7 +612,7 @@ const GreeceWorkVisa = () => {
 
           <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20">
             {whyChooseSection.map((item, index) => (
-              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
+              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center place-items-center">
                 <div className="order-2 md:order-2 flex justify-center">
                   {item?.images?.length > 0 ? (
                     item.images.map(p => <img

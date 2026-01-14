@@ -182,7 +182,7 @@ const Duverify = () => {
             </div>
 
             {aboutSection.map((item, index) => (
-              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
+              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
                   <p className="text-[#333333] leading-relaxed text-base md:text-[17px] mb-6">
                     {item.title}

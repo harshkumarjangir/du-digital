@@ -145,7 +145,7 @@ const Companysetup = () => {
         <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%)' }} />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-0 flex items-center">
-          <div className={`${fields.length > 0 ? 'grid md:grid-cols-2 gap-12 items-center' : ''} w-full`}>
+          <div className={`${fields.length > 0 ? 'grid md:grid-cols-2 gap-12 items-center place-items-center' : ''} w-full`}>
             {/* Left - Hero Text */}
             <div className="text-white">
               <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
@@ -288,7 +288,7 @@ const Companysetup = () => {
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             {heroSection.map((item, index) => (
-              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center">
+              <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
                   {/* <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                     {item.title}
