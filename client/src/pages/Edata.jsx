@@ -106,7 +106,7 @@ const Digitalarrivalcards = () => {
         />
         <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/70 to-black/60" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 min-h-[70vh] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-24 min-h-[70vh] flex items-center">
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
               One Platform for All Your Mandatory Digital Arrival Cards
@@ -129,7 +129,7 @@ const Digitalarrivalcards = () => {
 
       {/* ===== MULTI-STEP FORM SECTION ===== */}
       <section id="apply-form" className="py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-4xl mx-auto px-6 md:px-20">
           <div
             className="bg-white rounded-2xl p-8 shadow-lg"
             style={{ border: '3px solid #C00C02' }}
@@ -174,7 +174,7 @@ const Digitalarrivalcards = () => {
 
             {/* Form Content - Step 1 */}
             {currentStep === 1 && (
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-gray-700 font-medium mb-2">
                     Where are you going? <span className="text-[#FF1033]">*</span>
@@ -204,7 +204,7 @@ const Digitalarrivalcards = () => {
                     Phone Number <span className="text-[#FF1033]">*</span>
                   </label>
                   <div className="flex">
-                    <div className="flex items-center gap-2 px-3 py-3 border border-gray-300 border-r-0 rounded-l-lg bg-gray-50">
+                    <div className="flex items-center gap-4 px-3 py-3 border border-gray-300 border-r-0 rounded-l-lg bg-gray-50">
                       <img src="https://flagcdn.com/w20/in.png" alt="IN" className="w-5 h-4 object-cover" />
                       <ChevronDown className="w-4 h-4 text-gray-500" />
                     </div>
@@ -276,7 +276,7 @@ const Digitalarrivalcards = () => {
             </div>
 
             {/* Document Cards */}
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-4">
               {documents.map((doc, index) => {
                 const number = String(index + 1).padStart(2, '0');
                 return (

@@ -212,13 +212,13 @@ const GreeceWorkVisa = () => {
                           </select>
                         );
                       } else if (fieldType === 'radio') {
-                        <div className="space-y-2">
+                        <div className="space-y-4">
                           <label className="text-white text-sm font-medium block mb-2">
                             {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                           </label>
                           <div className="flex flex-wrap gap-4">
                             {field.options?.map((opt, i) => (
-                              <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                              <label key={i} className="flex items-center gap-4 text-white cursor-pointer">
                                 <input
                                   type="checkbox"
                                   name={field.name}
@@ -257,7 +257,7 @@ const GreeceWorkVisa = () => {
 
                   {/* Checkbox field */}
                   {fields.filter(f => (f.type || f.fieldType) === 'checkbox').map((field, index) => (
-                    <label key={field._id || index} className="flex items-start gap-3 text-gray-300 text-xs cursor-pointer">
+                    <label key={field._id || index} className="flex items-start gap-4 text-gray-300 text-xs cursor-pointer">
                       <input
                         type="checkbox"
                         name={field.name}
@@ -272,7 +272,7 @@ const GreeceWorkVisa = () => {
 
                   {/* Submit Status Message */}
                   {submitStatus && (
-                    <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
+                    <div className={`flex items-center gap-4 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
                       {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                     </div>
@@ -281,7 +281,7 @@ const GreeceWorkVisa = () => {
                   <button
                     type="submit"
                     disabled={submitLoading}
-                    className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-2"
+                    className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-4"
                   >
                     {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Get Started'}
                   </button>
@@ -306,7 +306,7 @@ const GreeceWorkVisa = () => {
                     ))}
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-2 justify-center">
+                <div className="flex flex-wrap gap-4 justify-center">
                   {item.images.length > 0 && (
                     item.images.map(p => <img
                       src={getImageUrl(p)}
@@ -567,7 +567,7 @@ const GreeceWorkVisa = () => {
             </div>
 
             {/* Fees Cards */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
               {feesSection.map((item, index) => {
                 const number = String(index + 1).padStart(2, '0');
                 return (
@@ -785,12 +785,12 @@ const GreeceWorkVisa = () => {
                 </p>
 
                 <div className="space-y-4 text-base md:text-lg">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-4">
                     <span className="text-xl">📧</span>
                     <span>Email – <a href="mailto:karan@dudigitalglobal.com">karan@dudigitalglobal.com</a></span>
                   </div>
 
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-4">
                     <span className="text-xl">📞</span>
                     <span>Mobile – <a href="tel:+919910987275">+91 9910987275</a></span>
                   </div>

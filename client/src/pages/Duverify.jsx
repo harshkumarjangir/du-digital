@@ -161,7 +161,7 @@ const Duverify = () => {
             <button
               type="submit"
               disabled={submitLoading}
-              className="w-full py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold transition-opacity flex justify-center items-center gap-2"
+              className="w-full py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold transition-opacity flex justify-center items-center gap-4"
             >
               {submitLoading ? <Loader2 className="animate-spin w-5 h-5" /> : 'Submit Request'}
             </button>
@@ -189,9 +189,9 @@ const Duverify = () => {
                   </p>
 
                   {/* Benefits List from contentHtml */}
-                  <ul className="space-y-3">
+                  <ul className="space-y-4">
                     {item.contentHtml?.split(/\r?\n/).filter(line => line.trim()).map((benefit, idx) => (
-                      <li key={idx} className="flex items-center gap-3">
+                      <li key={idx} className="flex items-center gap-4">
                         <div className="w-5 h-5 rounded-none flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: '#A10000' }}>
                           <Check className="w-4 h-4 text-white" strokeWidth={3} />
                           {/* <CheckCircle className="w-3 h-3 text-white" strokeWidth={3} /> */}
@@ -303,7 +303,7 @@ const Duverify = () => {
             </div>
 
             {/* Partnership Cards - 2 columns with background images */}
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-4">
               {partnershipsSection.map((partnership, index) => (
                 <div
                   key={partnership._id || index}
@@ -354,7 +354,7 @@ const Duverify = () => {
             </div>
 
             {/* Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
               {whatCanDoSection.map((item, index) => {
                 const number = String(index + 1).padStart(2, "0");
 
@@ -407,7 +407,7 @@ const Duverify = () => {
 
       {/* ===== CONNECT WITH US / REQUEST A DEMO SECTION - Two column layout ===== */}
       <section id="connectwithus" className="py-4">
-        <div className="flex flex-wrap  gap-3 justify-center">
+        <div className="flex flex-wrap  gap-4 justify-center">
           {/* Left - Request a Demo */}
           <div className="relative group h-[300px] overflow-hidden rounded-2xl  sm:w-[45%]">
             <div
@@ -444,7 +444,7 @@ const Duverify = () => {
             <div className="space-y-4">
               <a
                 href="mailto:dheeraj@dudigitalglobal.com"
-                className="flex items-center gap-3 transition-colors"
+                className="flex items-center gap-4 transition-colors"
                 style={{ color: '#e57373' }}
               >
                 {/* <Mail className="w-5 h-5" /> */}
@@ -456,7 +456,7 @@ const Duverify = () => {
               </a>
               <a
                 href="tel:+918510809767"
-                className="flex items-center gap-3 transition-colors text-[#e57373]"
+                className="flex items-center gap-4 transition-colors text-[#e57373]"
               >
                 {/* <Phone className="w-5 h-5" /> */}
                 <span className="w-5 h-5 text-[#CC3366]">

@@ -146,7 +146,7 @@ const Southkoreavisaforindians = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
-              {/* <div className="flex items-center gap-3 mb-4">
+              {/* <div className="flex items-center gap-4 mb-4">
                 <div className="w-1 h-10" style={{ backgroundColor: '#FF1033' }}></div>
                 <p className="text-gray-400 uppercase tracking-wider text-sm">South Korea Visa</p>
               </div> */}
@@ -156,9 +156,9 @@ const Southkoreavisaforindians = () => {
               </h1>
 
               {/* Key points */}
-              <ul className="space-y-3 mb-8  p-4 rounded-lg bg-gradient-to-r from-[#FF1033] to-[#FF1033]/10">
+              <ul className="space-y-4 mb-8  p-4 rounded-lg bg-gradient-to-r from-[#FF1033] to-[#FF1033]/10">
                 {descriptionLines.slice(1).map((line, index) => (
-                  <li key={index} className="flex items-start gap-3">
+                  <li key={index} className="flex items-start gap-4">
                     <div
                       className="w-5 h-5 rounded-full flex items-center justify-center bg-white shrink-0 mt-0.5"
                     >
@@ -224,13 +224,13 @@ const Southkoreavisaforindians = () => {
                         );
                       } else if (fieldType == "redio") {
                         return (
-                          <div key={field._id || index} className="space-y-2 md:col-span-2">
+                          <div key={field._id || index} className="space-y-4 md:col-span-2">
                             <label className="text-white text-sm font-medium block mb-2">
                               {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                             </label>
                             <div className="flex flex-wrap gap-4">
                               {field.options?.map((opt, i) => (
-                                <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                                <label key={i} className="flex items-center gap-4 text-white cursor-pointer">
                                   <input
                                     type="radio"
                                     name={field.name}
@@ -267,7 +267,7 @@ const Southkoreavisaforindians = () => {
 
                   {/* Checkbox fields */}
                   {fields.filter(f => f.type === 'checkbox').map((field, index) => (
-                    <label key={field._id || index} className="flex items-start gap-3 text-white text-xs cursor-pointer">
+                    <label key={field._id || index} className="flex items-start gap-4 text-white text-xs cursor-pointer">
                       <input
                         type="checkbox"
                         name={field.name}
@@ -281,7 +281,7 @@ const Southkoreavisaforindians = () => {
 
                   {/* Submit Status Message */}
                   {submitStatus && (
-                    <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
+                    <div className={`flex items-center gap-4 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
                       {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                     </div>
@@ -290,7 +290,7 @@ const Southkoreavisaforindians = () => {
                   <button
                     type="submit"
                     disabled={submitLoading}
-                    className="w-full py-3 rounded-full font-bold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] uppercase mt-2 disabled:opacity-70 flex items-center justify-center gap-2"
+                    className="w-full py-3 rounded-full font-bold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] uppercase mt-2 disabled:opacity-70 flex items-center justify-center gap-4"
                   >
                     {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Apply Now'}
                   </button>
@@ -304,7 +304,7 @@ const Southkoreavisaforindians = () => {
       {/* ===== VISA INFO CARD ===== */}
       {visaTypesSection.length > 0 && (
         <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-4xl mx-auto px-6 md:px-20">
             {/* Section Title */}
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#333333] mb-3">
@@ -324,7 +324,7 @@ const Southkoreavisaforindians = () => {
                 </div>
 
                 {/* Table-style content */}
-                <div className="p-6 space-y-2">
+                <div className="p-6 space-y-4">
                   <div className="flex justify-between items-center py-2 border-b border-gray-100">
                     <span className="text-[#333333]">Processing time:</span>
                     <span className="font-semibold text-gray-900">5 working days</span>
@@ -473,7 +473,7 @@ const Southkoreavisaforindians = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-6">
 
                     {/* LEFT COLUMN */}
-                    <ul className="space-y-3">
+                    <ul className="space-y-4">
                       {leftItems.map((item, idx) => {
                         const [title, desc] = item.split(":");
                         return (
@@ -496,7 +496,7 @@ const Southkoreavisaforindians = () => {
                     </ul>
 
                     {/* RIGHT COLUMN */}
-                    <ul className="space-y-3">
+                    <ul className="space-y-4">
                       {rightItems.map((item, idx) => {
                         const [title, desc] = item.split(":");
                         return (
@@ -530,7 +530,7 @@ const Southkoreavisaforindians = () => {
       {/* ===== ADDITIONAL REQUIREMENTS ===== */}
       {(additionalReqSection.length > 0 || employedSection.length > 0) && (
         <section className="py-20 bg-gray-50">
-          <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-5xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
                 Additional Requirements
@@ -538,7 +538,7 @@ const Southkoreavisaforindians = () => {
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-4">
               {/* For Employed People */}
               {additionalReqSection.map((item, index) => (
                 <div
@@ -553,9 +553,9 @@ const Southkoreavisaforindians = () => {
                     {String(index + 1).padStart(2, '0')}
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-4">
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((line, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-gray-600 text-sm">
+                      <li key={idx} className="flex items-start gap-4 text-gray-600 text-sm">
                         <div
                           className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5"
                           style={{ backgroundColor: '#FF1033' }}
@@ -589,9 +589,9 @@ const Southkoreavisaforindians = () => {
                     {String(additionalReqSection.length + index + 1).padStart(2, '0')}
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-4">
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((line, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-gray-600 text-sm">
+                      <li key={idx} className="flex items-start gap-4 text-gray-600 text-sm">
                         <div
                           className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5"
                           style={{ backgroundColor: '#FF1033' }}
@@ -620,7 +620,7 @@ const Southkoreavisaforindians = () => {
         <section className="py-20 relative overflow-hidden bg-[#3a3a3c]" >
 
 
-          <div className="relative z-10 max-w-5xl mx-auto px-6">
+          <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
                 How to Apply for your South Korea Visa
@@ -628,7 +628,7 @@ const Southkoreavisaforindians = () => {
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-4">
               {howToApplySection.map((item, index) => (
                 <div
                   key={item._id || index}
@@ -666,7 +666,7 @@ const Southkoreavisaforindians = () => {
             SOUTH KOREA
           </div>
 
-          <div className="relative z-10 max-w-6xl mx-auto px-6">
+          <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-20">
             {/* Section Header */}
             <div className="text-center mb-6">
               <h2 className="text-3xl md:text-4xl font-bold mb-3">
@@ -680,7 +680,7 @@ const Southkoreavisaforindians = () => {
             </p>
 
             {/* Feature Cards with Background Images - Dynamic from API */}
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-4">
               {whyChooseSection.map((item, index) => {
                 // Get image from images array or single image field
                 const bgImage = item.images?.[0]

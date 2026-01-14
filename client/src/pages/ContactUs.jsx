@@ -34,7 +34,7 @@ const ContactUs = () => {
 
             {/* Contact Section (REFERENCE LAYOUT) */}
             <section className="bg-[#FAFAFA] md:px-20 py-20">
-                <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div className="max-w-7xl mx-auto px-6 md:px-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
                     {/* LEFT CONTENT */}
                     <div>
@@ -241,7 +241,7 @@ export default ContactUs;
 //                         className="w-full border border-gray-400 outline-none rounded-md px-4 py-3"
 //                     />
 
-//                     <label className="flex items-start gap-2 text-sm text-gray-600">
+//                     <label className="flex items-start gap-4 text-sm text-gray-600">
 //                         <input
 //                             type="checkbox"
 //                             name="consent"
@@ -321,11 +321,11 @@ export default ContactUs;
 //             </section>
 
 //             {/* ===== Offices ===== */}
-//             <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+//             <section className="max-w-7xl mx-auto px-6 md:px-20 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 //                 {offices.map((office, i) => (
 //                     <div
 //                         key={i}
-//                         className="bg-white shadow-md rounded-lg p-6 space-y-3"
+//                         className="bg-white shadow-md rounded-lg p-6 space-y-4"
 //                     >
 //                         <h3 className="font-semibold text-lg">{office.title}</h3>
 
@@ -382,7 +382,7 @@ export default ContactUs;
 //                         className="w-full border rounded-md px-4 py-3"
 //                     />
 
-//                     <label className="flex items-start gap-2 text-sm text-gray-600">
+//                     <label className="flex items-start gap-4 text-sm text-gray-600">
 //                         <input type="checkbox" className="mt-1" />
 //                         By submitting my details, I authorize DU Global to contact me via
 //                         Call / SMS / WhatsApp / Email.

@@ -172,7 +172,7 @@ const Egyptvisaforindians = () => {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 h-[800px] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-20 h-[800px] flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -269,7 +269,7 @@ const Egyptvisaforindians = () => {
 
                         {/* Checkboxes */}
                         {checkboxFields.map((field, index) => (
-                          <label key={field._id || `checkbox-${index}`} className="flex items-start gap-3 text-white cursor-pointer">
+                          <label key={field._id || `checkbox-${index}`} className="flex items-start gap-4 text-white cursor-pointer">
                             <input
                               type="checkbox"
                               name={field.name}
@@ -280,13 +280,13 @@ const Egyptvisaforindians = () => {
                             <span className="text-sm leading-relaxed">{field.label}</span>
                           </label>
                         ))}
-                        {radioFields.map((field, index) => <div key={index} className="space-y-2">
+                        {radioFields.map((field, index) => <div key={index} className="space-y-4">
                           <label className="text-white text-sm font-medium block mb-2">
                             {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                           </label>
                           <div className="flex flex-wrap gap-4">
                             {field.options?.map((opt, i) => (
-                              <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                              <label key={i} className="flex items-center gap-4 text-white cursor-pointer">
                                 <input
                                   type="radio"
                                   name={field.name}
@@ -310,7 +310,7 @@ const Egyptvisaforindians = () => {
                   {/* Submit Status Message */}
                   {submitStatus && (
                     <div
-                      className={`flex items-center gap-3 p-4 rounded-lg ${submitStatus === 'success'
+                      className={`flex items-center gap-4 p-4 rounded-lg ${submitStatus === 'success'
                         ? 'bg-green-500/20 border border-green-500/50'
                         : 'bg-[#FF1033]/20 border border-red-500/50'
                         }`}
@@ -329,7 +329,7 @@ const Egyptvisaforindians = () => {
                   <button
                     type="submit"
                     disabled={submitLoading}
-                    className="w-full py-3 rounded-full font-medium text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full py-3 rounded-full font-medium text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-4"
                   >
                     {submitLoading ? (
                       <>
@@ -350,7 +350,7 @@ const Egyptvisaforindians = () => {
       {/* ===== WHAT SHOULD INDIANS KNOW SECTION ===== */}
       {introSection.length > 0 && (
         <section className="py-16 bg-white">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6 md:px-20">
             {introSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
@@ -435,7 +435,7 @@ const Egyptvisaforindians = () => {
       {/* ===== VISA APPLICATION CENTRES ===== */}
       {centersSection.length > 0 && (
         <section className="py-12 bg-gray-50">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6 md:px-20">
             <div className="text-center mb-8">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                 {centersSection[0]?.title}
@@ -446,7 +446,7 @@ const Egyptvisaforindians = () => {
               {centersSection[0]?.contentHtml?.split('\n').filter(c => c.trim()).map((city, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-2 px-6 py-3 bg-white rounded-full shadow-sm border border-gray-200"
+                  className="flex items-center gap-4 px-6 py-3 bg-white rounded-full shadow-sm border border-gray-200"
                 >
                   <MapPin className="w-5 h-5" style={{ color: '#FF1033' }} />
                   <span className="font-medium text-gray-800">{city.trim()}</span>
@@ -460,14 +460,14 @@ const Egyptvisaforindians = () => {
       {/* ===== ESSENTIAL TRAVEL TIPS SECTION ===== */}
       {travelTipsSection.length > 0 && (
         <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-4xl mx-auto px-6 md:px-20">
             <div className="text-center mb-10">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                 {travelTipsSection[0]?.title}
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
-            <div className="space-y-6">
+            <div className="space-y-4">
               {travelTipsSection[0]?.contentHtml?.split('\n').filter(p => p.trim()).map((paragraph, pIdx) => (
                 <div key={pIdx} className="flex gap-4">
                   <div className="shrink-0 w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(227,30,36,0.1)' }}>
@@ -526,7 +526,7 @@ const Egyptvisaforindians = () => {
       {/* ===== EGYPTIAN CUISINE SECTION ===== */}
       {cuisineSection.length > 0 && (
         <section className="py-16 bg-white">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6 md:px-20">
             {cuisineSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
@@ -563,7 +563,7 @@ const Egyptvisaforindians = () => {
       {/* ===== ARE YOU PLANNING SECTION ===== */}
       {planningSection.length > 0 && (
         <section className="py-16" style={{ backgroundColor: '#fdf2f4' }}>
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6 md:px-20">
             {planningSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center">
                 {item?.images?.[0] ? (
@@ -600,7 +600,7 @@ const Egyptvisaforindians = () => {
       {/* ===== VISA OVERVIEW SECTION ===== */}
       {visaOverviewSection.length > 0 && (
         <section className="py-16 bg-gray-100">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6 md:px-20">
             <div className="text-center mb-10">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                 Egypt Visa Overview: Types, Processing, Fees, and Validity
@@ -608,7 +608,7 @@ const Egyptvisaforindians = () => {
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
-            <div className="grid place-items-center md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid place-items-center md:grid-cols-2 lg:grid-cols-3 gap-4">
               {visaOverviewSection.map((visa, index) => {
                 const details = parseVisaDetails(visa.contentHtml);
                 return (
@@ -616,7 +616,7 @@ const Egyptvisaforindians = () => {
                     <div className="py-4 px-6 text-center" >
                       <h3 className=" text-lg font-bold">{visa.title}</h3>
                     </div>
-                    <div className="px-6">
+                    <div className="px-6 py-6">
                       <p className="text-sm text-gray-500 mb-4">
                         Processing: <span className="font-semibold text-gray-800">{details.processingTime || '7-9 working days'}</span>
                       </p>
@@ -670,7 +670,7 @@ const Egyptvisaforindians = () => {
       {/* ===== DOCUMENTS SECTION ===== */}
       {documents.length > 0 && (
         <section className="py-16 bg-white">
-          <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-5xl mx-auto px-6 md:px-20">
             <div className="text-center mb-10">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Documents Required</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
@@ -680,9 +680,9 @@ const Egyptvisaforindians = () => {
               {documents.map((doc, docIndex) => (
                 <div key={doc._id || docIndex} className="bg-gray-50 rounded-xl p-8">
                   <h3 className="text-xl font-bold text-gray-900 mb-6">{doc.title}</h3>
-                  <ul className="space-y-3">
+                  <ul className="space-y-4">
                     {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
+                      <li key={idx} className="flex items-start gap-4">
                         <Check className="w-5 h-5 mt-0.5 shrink-0" style={{ color: '#FF1033' }} />
                         <span className="text-gray-700">{item.trim()}</span>
                       </li>

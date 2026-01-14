@@ -17,7 +17,7 @@ const ComponentDemo = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 py-12">
-            <div className="max-w-6xl mx-auto px-6">
+            <div className="max-w-6xl mx-auto px-6 md:px-20">
                 <h1 className="text-4xl font-bold text-gray-900 mb-8">
                     Reusable Components Demo
                 </h1>
@@ -129,7 +129,7 @@ const ComponentDemo = () => {
                     <div className="bg-white rounded-lg shadow p-6">
                         <h2 className="text-2xl font-semibold mb-4">Usage Examples</h2>
 
-                        <div className="space-y-6">
+                        <div className="space-y-4">
                             <div>
                                 <h3 className="text-lg font-semibold mb-2">LoadingState</h3>
                                 <pre className="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto">

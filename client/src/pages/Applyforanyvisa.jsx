@@ -188,7 +188,7 @@ const Applyforanyvisa = () => {
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-black/70" />
 
-          <div className="relative z-10 max-w-4xl mx-auto px-6">
+          <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-20">
             <div className="text-center mb-8">
               <p className="text-xl font-semibold mb-2" style={{ color: '#FF1033' }}>VISA APPLICATION</p>
               <h2 className="text-3xl md:text-4xl font-bold text-white">Apply for Any Visa</h2>
@@ -272,7 +272,7 @@ const Applyforanyvisa = () => {
 
                     {/* Checkbox fields */}
                     {checkboxFields.map((field, index) => (
-                      <label key={field._id || `checkbox-${index}`} className="flex items-start gap-3 text-gray-600 cursor-pointer my-4">
+                      <label key={field._id || `checkbox-${index}`} className="flex items-start gap-4 text-gray-600 cursor-pointer my-4">
                         <input
                           type="checkbox"
                           name={field.name}
@@ -284,13 +284,13 @@ const Applyforanyvisa = () => {
                       </label>
                     ))}
 
-                    {radioFields.map((index, field) => <div key={index} className="space-y-2">
+                    {radioFields.map((index, field) => <div key={index} className="space-y-4">
                       <label className="text-white text-sm font-medium block mb-2">
                         {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                       </label>
                       <div className="flex flex-wrap gap-4">
                         {field.options?.map((opt, i) => (
-                          <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                          <label key={i} className="flex items-center gap-4 text-white cursor-pointer">
                             <input
                               type="radio"
                               name={field.name}
@@ -309,7 +309,7 @@ const Applyforanyvisa = () => {
                     }
                     {/* Submit Status Message */}
                     {submitStatus && (
-                      <div className={`flex items-center gap-3 p-4 rounded-lg mb-4 ${submitStatus === 'success' ? 'bg-green-100 border border-green-300' : 'bg-red-100 border border-red-300'}`}>
+                      <div className={`flex items-center gap-4 p-4 rounded-lg mb-4 ${submitStatus === 'success' ? 'bg-green-100 border border-green-300' : 'bg-red-100 border border-red-300'}`}>
                         {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" /> : <XCircle className="w-5 h-5 text-[#FF1033] flex-shrink-0" />}
                         <p className={`text-sm ${submitStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>{submitMessage}</p>
                       </div>
@@ -318,7 +318,7 @@ const Applyforanyvisa = () => {
                     <button
                       type="submit"
                       disabled={submitLoading}
-                      className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-2"
+                      className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-4"
                     >
                       {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Submit Application'}
                     </button>
@@ -333,7 +333,7 @@ const Applyforanyvisa = () => {
       {/* ===== GLOBAL EXPERTS SECTION ===== */}
       {globalExpertsSection.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6 md:px-20">
             {globalExpertsSection.map((item, index) => {
               // Convert YouTube URL to embed format
               const getYouTubeEmbedUrl = (url) => {
@@ -407,22 +407,22 @@ const Applyforanyvisa = () => {
       {/* ===== DOCUMENTS SECTION (only if documents exist) ===== */}
       {documents.length > 0 && (
         <section className="py-16 bg-gray-50">
-          <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-5xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-3">Documents Required</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4">
               {documents.map((doc, index) => (
                 <div key={doc._id || index} className="bg-white rounded-xl p-6 shadow-sm">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-4">
                     <Check className="w-5 h-5" style={{ color: '#FF1033' }} />
                     {doc.title}
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-4">
                     {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-gray-600">
+                      <li key={idx} className="flex items-start gap-4 text-gray-600">
                         <span className="text-gray-400 mt-1">•</span>
                         <span>{item.trim()}</span>
                       </li>
@@ -438,7 +438,7 @@ const Applyforanyvisa = () => {
       {/* ===== FAQ SECTION (only if faqs exist) ===== */}
       {faqs.length > 0 && (
         <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-4xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-3">Frequently Asked Questions</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>

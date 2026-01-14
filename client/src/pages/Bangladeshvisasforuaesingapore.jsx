@@ -124,9 +124,9 @@ const BangladeshVisasForUaeSingapore = () => {
         />
         <div className="absolute inset-0 bg-black/60" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center w-full py-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 grid lg:grid-cols-2 gap-12 items-center w-full py-20">
 
-          <div className="text-white space-y-6">
+          <div className="text-white space-y-4">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
               Bangladesh Visas for <br />
               <span>UAE & Singapore</span>
@@ -160,7 +160,7 @@ const BangladeshVisasForUaeSingapore = () => {
                 <button
                   type="submit"
                   disabled={submitLoading}
-                  className="w-full py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold transition-opacity flex justify-center items-center gap-2"
+                  className="w-full py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold transition-opacity flex justify-center items-center gap-4"
                 >
                   {submitLoading ? <Loader2 className="animate-spin w-5 h-5" /> : 'Submit Request'}
                 </button>
@@ -185,7 +185,7 @@ const BangladeshVisasForUaeSingapore = () => {
                   <div className="space-y-4 mb-8">
                     {(item.contentHtml ? item.contentHtml.split('\n') : defaultFeatures).map((feature, i) => (
                       feature.trim() && (
-                        <div key={i} className="flex items-start gap-3">
+                        <div key={i} className="flex items-start gap-4">
                           <div className="mt-1 w-5 h-5 rounded-full bg-[#FF1033] flex items-center justify-center flex-shrink-0">
                             <Check className="w-3 h-3 text-white" strokeWidth={3} />
                           </div>
@@ -195,7 +195,7 @@ const BangladeshVisasForUaeSingapore = () => {
                     ))}
                   </div>
 
-                  <button className="flex items-center gap-2 text-[#FF1033] font-bold hover:gap-3 transition-all">
+                  <button className="flex items-center gap-4 text-[#FF1033] font-bold hover:gap-4 transition-all">
                     Learn More <ArrowRight className="w-5 h-5" />
                   </button>
                 </div>
@@ -273,7 +273,7 @@ const BangladeshVisasForUaeSingapore = () => {
       {/* ===== COMPANY SETUP ===== */}
       {companySetupSection && companySetupSection.map((item, index) => (
         <section key={index} className="py-24 bg-white overflow-hidden">
-          <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+          <div className="max-w-7xl mx-auto px-6 md:px-20 grid md:grid-cols-2 gap-16 items-center">
             <div className="order-2 md:order-2 relative">
               <div className="absolute -inset-4 bg-gray-50 rounded-full opacity-50 -z-10" />
               <img
@@ -331,7 +331,7 @@ const BangladeshVisasForUaeSingapore = () => {
             {documents.length > 0 && (
               <div>
                 <h3 className="text-3xl font-bold text-center mb-8">Documents Required</h3>
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 gap-4">
                   {documents.map((doc, idx) => (
                     <div key={idx} className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-[#FF1033]">
                       <h4 className="font-bold text-lg mb-2">{doc.title}</h4>

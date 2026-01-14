@@ -294,7 +294,7 @@ export default InvestorRelation;
 //                                         href={item.fileUrl || item.file}
 //                                         target="_blank"
 //                                         rel="noopener noreferrer"
-//                                         className="inline-flex items-center justify-center gap-2 bg-[#FF1033] hover:bg-[#511313] text-white font-semibold px-6 py-3 rounded-md transition mt-auto"
+//                                         className="inline-flex items-center justify-center gap-4 bg-[#FF1033] hover:bg-[#511313] text-white font-semibold px-6 py-3 rounded-md transition mt-auto"
 //                                     >
 //                                         <span>{item.buttonText || "Download Report"}</span>
 //                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

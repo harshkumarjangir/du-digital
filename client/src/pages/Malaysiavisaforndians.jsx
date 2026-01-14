@@ -149,7 +149,7 @@ const Malaysiavisaforndians = () => {
                 className="rounded-xl p-6 max-w-md lg:ml-auto"
                 style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}
               >
-                <form className="flex flex-col w-full items-center gap-3" onSubmit={handleSubmit}>
+                <form className="flex flex-col w-full items-center gap-4" onSubmit={handleSubmit}>
                   {/* All fields in single row */}
                   {fields.map((field, index) => {
                     const fieldType = field.type || field.fieldType;
@@ -211,13 +211,13 @@ const Malaysiavisaforndians = () => {
                       );
                     } else if (fieldType == "redio") {
                       return (
-                        <div className="space-y-2">
+                        <div className="space-y-4">
                           <label className="text-white text-sm font-medium block mb-2">
                             {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                           </label>
                           <div className="flex flex-wrap gap-4">
                             {field.options?.map((opt, i) => (
-                              <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                              <label key={i} className="flex items-center gap-4 text-white cursor-pointer">
                                 <input
                                   type="radio"
                                   name={field.name}
@@ -235,7 +235,7 @@ const Malaysiavisaforndians = () => {
                       );
                     } else if (fieldType === "checkbox") {
                       return (
-                        <label key={field._id || `checkbox-${index}`} className="flex items-start gap-3 text-gray-600 cursor-pointer mb-4">
+                        <label key={field._id || `checkbox-${index}`} className="flex items-start gap-4 text-gray-600 cursor-pointer mb-4">
                           <input
                             type="checkbox"
                             name={field.name}
@@ -264,7 +264,7 @@ const Malaysiavisaforndians = () => {
 
                   {/* Submit Status Message */}
                   {submitStatus && (
-                    <div className={`w-full flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
+                    <div className={`w-full flex items-center gap-4 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
                       {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                     </div>
@@ -273,7 +273,7 @@ const Malaysiavisaforndians = () => {
                   <button
                     type="submit"
                     disabled={submitLoading}
-                    className="px-8 py-3 rounded-full font-bold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] whitespace-nowrap disabled:opacity-70 flex items-center justify-center gap-2"
+                    className="px-8 py-3 rounded-full font-bold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] whitespace-nowrap disabled:opacity-70 flex items-center justify-center gap-4"
                   >
                     {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Apply Now'}
                   </button>
@@ -437,7 +437,7 @@ const Malaysiavisaforndians = () => {
       {/* ===== DOCUMENTS REQUIRED SECTION ===== */}
       {documents.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-4xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-semibold text-black mb-3">
                 DOCUMENTS REQUIRED FOR Malaysia VISA
@@ -462,7 +462,7 @@ const Malaysiavisaforndians = () => {
                   {/* Document items list */}
                   <ul className="space-y-1 ml-10">
                     {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
+                      <li key={idx} className="flex items-start gap-4">
                         <div className="w-4 h-4 rounded-full border-[5px] border-black shrink-0 mt-2"></div>
                         <span className="text-black">{item.trim()}</span>
                       </li>

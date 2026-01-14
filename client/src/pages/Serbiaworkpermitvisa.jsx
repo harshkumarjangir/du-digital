@@ -146,7 +146,7 @@ const Serbiaworkpermitvisa = () => {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-20 flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -190,9 +190,9 @@ const Serbiaworkpermitvisa = () => {
                             <label className="text-white text-base font-semibold block mb-3">
                               {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                             </label>
-                            <div className="space-y-2">
+                            <div className="space-y-4">
                               {relevantOptions.map((opt, i) => (
-                                <label key={i} className="flex items-center gap-3 cursor-pointer group">
+                                <label key={i} className="flex items-center gap-4 cursor-pointer group">
                                   <div className={`w-5 h-5 rounded-full border border-white flex items-center justify-center transition-all ${formValues[field.name] === (opt.value || opt.label) ? 'bg-white' : 'bg-transparent'
                                     }`}>
                                     {formValues[field.name] === (opt.value || opt.label) && (
@@ -261,7 +261,7 @@ const Serbiaworkpermitvisa = () => {
                         );
                       } else if (fieldType === 'checkbox') {
                         return (
-                          <div key={field._id || index} className={`${wrapperClass} flex items-center gap-3 mt-2`}>
+                          <div key={field._id || index} className={`${wrapperClass} flex items-center gap-4 mt-2`}>
                             <div className="relative flex items-start">
                               <input
                                 type="checkbox"
@@ -303,7 +303,7 @@ const Serbiaworkpermitvisa = () => {
 
                   <div className="col-span-1 md:col-span-2">
                     {submitStatus && (
-                      <div className={`flex items-center gap-3 p-3 rounded mb-4 ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
+                      <div className={`flex items-center gap-4 p-3 rounded mb-4 ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
                         {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
                         <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                       </div>
@@ -312,7 +312,7 @@ const Serbiaworkpermitvisa = () => {
                     <button
                       type="submit"
                       disabled={submitLoading}
-                      className="w-fit py-3 px-5 rounded-full font-medium text-base capitalize transition-all duration-300  bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-2"
+                      className="w-fit py-3 px-5 rounded-full font-medium text-base capitalize transition-all duration-300  bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-4"
                     >
                       {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Get Started'}
                     </button>
@@ -364,7 +364,7 @@ const Serbiaworkpermitvisa = () => {
       {/* ===== WHO CAN APPLY / DOCUMENTS / FEES ===== */}
       {whoCanApplySection.length > 0 && (
         <section className="py-20 bg-gray-50">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6 md:px-20">
             {whoCanApplySection.map((item, index) => {
               // Check if this is a table-like content (has tabs)
               const isTable = item.contentHtml?.includes('\t');
@@ -460,7 +460,7 @@ const Serbiaworkpermitvisa = () => {
       {/* ===== WHY CHOOSE DU GLOBAL ===== */}
       {whyChooseSection.length > 0 && (
         <section className="py-20 bg-black">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
                 Why Choose DU Global?

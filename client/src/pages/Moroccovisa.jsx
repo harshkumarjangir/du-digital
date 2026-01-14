@@ -139,7 +139,7 @@ const Moroccovisa = () => {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 lg:px-24 py-20 flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-20 flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -158,7 +158,7 @@ const Moroccovisa = () => {
                 className="rounded-xl p-6"
                 style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}
               >
-                <form className="flex flex-col w-full items-center gap-3" onSubmit={handleSubmit}>
+                <form className="flex flex-col w-full items-center gap-4" onSubmit={handleSubmit}>
                   {[...fields].sort((a, b) => (a.order || 0) - (b.order || 0)).map((field, index) => {
                     const fieldType = field.type || field.fieldType;
 
@@ -219,13 +219,13 @@ const Moroccovisa = () => {
                       );
                     } else if (fieldType == "redio") {
                       return (
-                        <div className="space-y-2">
+                        <div className="space-y-4">
                           <label className="text-white text-sm font-medium block mb-2">
                             {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                           </label>
                           <div className="flex flex-wrap gap-4">
                             {field.options?.map((opt, i) => (
-                              <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                              <label key={i} className="flex items-center gap-4 text-white cursor-pointer">
                                 <input
                                   type="radio"
                                   name={field.name}
@@ -243,7 +243,7 @@ const Moroccovisa = () => {
                       );
                     } else if (fieldType === "checkbox") {
                       return (
-                        <label key={field._id || `checkbox-${index}`} className="flex items-start gap-3 text-gray-600 cursor-pointer mb-4">
+                        <label key={field._id || `checkbox-${index}`} className="flex items-start gap-4 text-gray-600 cursor-pointer mb-4">
                           <input
                             type="checkbox"
                             name={field.name}
@@ -285,7 +285,7 @@ const Moroccovisa = () => {
 
                   {/* Submit Status Message */}
                   {submitStatus && (
-                    <div className={`w-full flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
+                    <div className={`w-full flex items-center gap-4 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
                       {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                     </div>
@@ -294,7 +294,7 @@ const Moroccovisa = () => {
                   <button
                     type="submit"
                     disabled={submitLoading}
-                    className="w-full py-3 rounded-full font-bold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] uppercase disabled:opacity-70 flex items-center justify-center gap-2"
+                    className="w-full py-3 rounded-full font-bold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] uppercase disabled:opacity-70 flex items-center justify-center gap-4"
                   >
                     {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Apply Now'}
                   </button>
@@ -388,7 +388,7 @@ const Moroccovisa = () => {
                 return (
                   <div key={item._id || index} className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
                     <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{item.title}</h3>
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       {pairs.map((pair, idx) => {
                         const isFee = pair.label.toLowerCase().includes('fee');
                         return (
@@ -416,7 +416,7 @@ const Moroccovisa = () => {
       {/* ===== DOCUMENTS REQUIRED SECTION ===== */}
       {documents.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-4xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-black mb-3">
                 Morocco Visa Requirements for Indians
@@ -431,9 +431,9 @@ const Moroccovisa = () => {
                   <h3 className="text-xl font-bold text-[#333333] mb-4">{doc.title}</h3>
 
                   {/* Document items list */}
-                  <ul className="space-y-3">
+                  <ul className="space-y-4">
                     {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
+                      <li key={idx} className="flex items-start gap-4">
                         <div
                           className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5"
                           style={{ backgroundColor: '#FF1033' }}

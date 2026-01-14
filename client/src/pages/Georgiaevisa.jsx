@@ -139,7 +139,7 @@ const Georgiaevisa = () => {
                                 <button
                                     type="submit"
                                     disabled={submitLoading}
-                                    className="w-full py-4 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] rounded-full font-bold transition-all flex justify-center items-center gap-2"
+                                    className="w-full py-4 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] rounded-full font-bold transition-all flex justify-center items-center gap-4"
                                 >
                                     {submitLoading ? <Loader2 className="animate-spin w-5 h-5" /> : 'Apply Now'}
                                 </button>
@@ -203,7 +203,7 @@ const Georgiaevisa = () => {
             {/* ===== DOCUMENTS / CAPABILITIES SECTION (Conditional) ===== */}
             {documents && documents.length > 0 && (
                 <section className="py-16 bg-white">
-                    <div className="max-w-4xl mx-auto px-6">
+                    <div className="max-w-4xl mx-auto px-6 md:px-20">
                         {documents.map((doc, docIndex) => (
                             <div key={docIndex} className="mb-12 last:mb-0">
                                 <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
@@ -228,7 +228,7 @@ const Georgiaevisa = () => {
             {/* ===== FAQ SECTION (Conditional) ===== */}
             {faqs && faqs.length > 0 && (
                 <section className="py-16 bg-gray-50">
-                    <div className="max-w-4xl mx-auto px-6">
+                    <div className="max-w-4xl mx-auto px-6 md:px-20">
                         <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
                             Frequently Asked Questions
                         </h2>

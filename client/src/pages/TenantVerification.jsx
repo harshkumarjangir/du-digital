@@ -239,7 +239,7 @@ const TenantVerification = () => {
                   {/* SERVICES LIST */}
                   <div className="flex flex-wrap gap-x-4 gap-y-3 mt-0">
                     {services.map((service, idx) => (
-                      <div key={idx} className="flex items-center gap-2 border-r border-[#A10000] pr-5 last:border-r-0">
+                      <div key={idx} className="flex items-center gap-4 border-r border-[#A10000] pr-5 last:border-r-0">
                         <span className="text-[#A10000] text-lg font-bold">✓</span>
                         <span className="text-gray-800 font-semibold">
                           {service}
@@ -656,13 +656,13 @@ const TenantVerification = () => {
                           );
                         } else if (fieldType == "redio") {
                           return (
-                            <div className="space-y-3 bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <div className="space-y-4 bg-gray-50 p-4 rounded-lg border border-gray-200">
                               <label className="text-gray-800 text-sm font-bold block">
                                 {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                               </label>
-                              <div className="flex flex-wrap gap-6">
+                              <div className="flex flex-wrap gap-4">
                                 {field.options?.map((opt, i) => (
-                                  <label key={i} className="flex items-center gap-2 text-gray-700 cursor-pointer">
+                                  <label key={i} className="flex items-center gap-4 text-gray-700 cursor-pointer">
                                     <input
                                       type="radio"
                                       name={field.name}
@@ -695,9 +695,9 @@ const TenantVerification = () => {
                       })}
 
                       {/* Checkbox fields */}
-                      <div className="space-y-3 mt-2">
+                      <div className="space-y-4 mt-2">
                         {fields.filter(f => f.type === 'checkbox').map((field, index) => (
-                          <label key={field._id || index} className="flex items-start gap-3 text-gray-700 text-sm cursor-pointer hover:text-gray-900">
+                          <label key={field._id || index} className="flex items-start gap-4 text-gray-700 text-sm cursor-pointer hover:text-gray-900">
                             <input
                               type="checkbox"
                               name={field.name}
@@ -712,7 +712,7 @@ const TenantVerification = () => {
 
                       {/* Submit Status Message */}
                       {submitStatus && (
-                        <div className={`flex items-center gap-3 p-4 rounded-lg border ${submitStatus === 'success' ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`}>
+                        <div className={`flex items-center gap-4 p-4 rounded-lg border ${submitStatus === 'success' ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`}>
                           {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 shrink-0" /> : <XCircle className="w-5 h-5 shrink-0" />}
                           <p className="text-sm font-medium">{submitMessage}</p>
                         </div>
@@ -724,7 +724,7 @@ const TenantVerification = () => {
                   <div className="mt-8 pt-6 border-t border-gray-100">
                     <button
                       disabled={submitLoading}
-                      className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-white hover:bg-[#D90022] hover:shadow-lg mt-4 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
+                      className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-white hover:bg-[#D90022] hover:shadow-lg mt-4 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-4 cursor-pointer"
                       onClick={() => proceed()}
                     >
                       {submitLoading ? <><Loader2 className="w-6 h-6 animate-spin" /> Submitting...</> : 'Wait, I just need verification (No Form)'}
@@ -767,7 +767,7 @@ const TenantVerification = () => {
                   {howItWorksSection.map((item, index) => {
                     const steps = item.contentHtml?.split(/\r?\n/).filter(line => line.trim()) || [];
                     return (
-                      <div key={item._id || index} className="space-y-6">
+                      <div key={item._id || index} className="space-y-4">
                         {steps.map((step, stepIdx) => (
                           <div key={stepIdx} className="flex gap-5 items-center">
                             <div
@@ -825,7 +825,7 @@ const TenantVerification = () => {
               )}
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
               {deliverablesSection.map((item, index) => (
            
                 <div

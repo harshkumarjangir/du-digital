@@ -28,7 +28,7 @@ const CookiePolicy = () => {
                             {section.text && <p>{section.text}</p>}
 
                             {section.list && (
-                                <ul className="list-disc pl-5 mt-3 space-y-2">
+                                <ul className="list-disc pl-5 mt-3 space-y-4">
                                     {section.list.map((item, idx) => (
                                         <li key={idx}>{item}</li>
                                     ))}

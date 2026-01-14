@@ -172,7 +172,7 @@ const Digitalarrivalcards = () => {
         />
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             Travel Ready with DU Global
           </h2>
@@ -185,12 +185,12 @@ const Digitalarrivalcards = () => {
 
       {/* ===== MULTI-STEP FORM SECTION ===== */}
       <section id="apply-form" className="py-16 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-6 md:px-20">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Apply for Digital Arrival Card</h2>
 
           {/* Success/Error Message Display */}
           {submitStatus === 'success' && (
-            <div className="mb-8 p-4 bg-green-100 border border-green-200 rounded-lg flex items-center gap-3 text-green-800">
+            <div className="mb-8 p-4 bg-green-100 border border-green-200 rounded-lg flex items-center gap-4 text-green-800">
               <CheckCircle className="w-6 h-6 shrink-0" />
               <div>
                 <p className="font-semibold">Success!</p>
@@ -199,7 +199,7 @@ const Digitalarrivalcards = () => {
             </div>
           )}
           {submitStatus === 'error' && (
-            <div className="mb-8 p-4 bg-red-100 border border-red-200 rounded-lg flex items-center gap-3 text-red-800">
+            <div className="mb-8 p-4 bg-red-100 border border-red-200 rounded-lg flex items-center gap-4 text-red-800">
               <XCircle className="w-6 h-6 shrink-0" />
               <div>
                 <p className="font-semibold">Error</p>

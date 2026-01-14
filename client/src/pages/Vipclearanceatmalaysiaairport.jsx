@@ -212,7 +212,7 @@ const Vipclearanceatmalaysiaairport = () => {
             {/* ===== DOCUMENTS REQUIRED ===== */}
             {documents && documents.length > 0 && (
                 <section className="py-24 bg-white">
-                    <div className="max-w-4xl mx-auto px-6">
+                    <div className="max-w-4xl mx-auto px-6 md:px-20">
 
                         {/* Heading */}
                         <div className="text-center mb-14">
@@ -224,7 +224,7 @@ const Vipclearanceatmalaysiaairport = () => {
                         {/* List */}
                         <div className="space-y-8">
                             {documents.map((doc, index) => (
-                                <ul key={index} className="space-y-6">
+                                <ul key={index} className="space-y-4">
                                     {doc.description
                                         ?.split("\n")
                                         .filter(line => line.trim())
@@ -291,7 +291,7 @@ const Vipclearanceatmalaysiaairport = () => {
                                 ?.split("\n")
                                 .filter(city => city.trim())
                                 .map((city, idx) => (
-                                    <div key={idx} className="flex items-center gap-2">
+                                    <div key={idx} className="flex items-center gap-4">
                                         <MapPin className="w-4 h-4 text-[#FF1033]" />
                                         <span>{city.trim()}</span>
                                     </div>
@@ -318,7 +318,7 @@ const Vipclearanceatmalaysiaairport = () => {
                             </div>
                         )}
 
-                        <form onSubmit={handleSubmit} className="space-y-6">
+                        <form onSubmit={handleSubmit} className="space-y-4">
                             {fields.map((field, index) => (
                                 <DynamicFormField
                                     key={index}
@@ -332,7 +332,7 @@ const Vipclearanceatmalaysiaairport = () => {
                             <button
                                 type="submit"
                                 disabled={submitLoading}
-                                className="w-full py-4 bg-[#FF1033] text-white rounded-full font-bold text-lg hover:bg-white hover:text-[#FF1033] transition-all flex justify-center items-center gap-2"
+                                className="w-full py-4 bg-[#FF1033] text-white rounded-full font-bold text-lg hover:bg-white hover:text-[#FF1033] transition-all flex justify-center items-center gap-4"
                             >
                                 {submitLoading ? <Loader2 className="animate-spin w-5 h-5" /> : 'Submit Request'}
                             </button>
@@ -344,13 +344,13 @@ const Vipclearanceatmalaysiaairport = () => {
             {/* ===== FAQ SECTION (Conditional) ===== */}
             {faqs && faqs.length > 0 && (
                 <section className="py-24 bg-gray-50">
-                    <div className="max-w-4xl mx-auto px-6">
+                    <div className="max-w-4xl mx-auto px-6 md:px-20">
                         <div className="text-center mb-16">
                             <h2 className="text-4xl font-bold text-gray-900 mb-4">
                                 Frequently Asked <span className="text-[#FF1033]">Questions</span>
                             </h2>
                         </div>
-                        <div className="space-y-6">
+                        <div className="space-y-4">
                             {faqs.map((faq, index) => (
                                 <div key={index} className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-shadow">
                                     <h3 className="text-lg font-bold text-gray-900 mb-3">{faq.question}</h3>

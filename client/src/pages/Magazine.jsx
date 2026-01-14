@@ -39,7 +39,7 @@ const Magazine = () => {
                 {/* CONTENT GRID */}
                 <div className="grid md:grid-cols-2 gap-20 items-start">
                     {/* LEFT TEXT */}
-                    <div className="text-sm md:text-base text-gray-700 leading-relaxed space-y-5">
+                    <div className="text-sm md:text-base text-gray-700 leading-relaxed space-y-4">
                         <span className="block text-[#FF1033] font-medium">
                             {data.about.label}
                         </span>
@@ -66,7 +66,7 @@ const Magazine = () => {
 
 
             {/* EVENTS */}
-            <div className="max-w-7xl mx-auto px-6 pb-28">
+            <div className="max-w-7xl mx-auto px-6 md:px-20 pb-28">
                 <div className="grid md:grid-cols-2 gap-20 items-start">
                     {/* IMAGE */}
                     <div>
@@ -78,7 +78,7 @@ const Magazine = () => {
                     </div>
 
                     {/* CONTENT */}
-                    <div className="text-sm md:text-base text-gray-700 leading-relaxed space-y-5">
+                    <div className="text-sm md:text-base text-gray-700 leading-relaxed space-y-4">
                         <span className="block text-[#FF1033] font-medium">
                             {data.events.label}
                         </span>
@@ -130,7 +130,7 @@ export default Magazine;
 //             </div>
 
 //             {/* ABOUT */}
-//             <div className="max-w-7xl mx-auto px-6 py-20">
+//             <div className="max-w-7xl mx-auto px-6 md:px-20 py-20">
 //                 <div className="grid md:grid-cols-2 gap-16 items-start">
 //                     {/* LEFT */}
 //                     <div>
@@ -168,7 +168,7 @@ export default Magazine;
 //             </div>
 
 //             {/* EVENTS */}
-//             <div className="max-w-7xl mx-auto px-6 pb-24">
+//             <div className="max-w-7xl mx-auto px-6 md:px-20 pb-24">
 //                 <div className="grid md:grid-cols-2 gap-16 items-start">
 //                     {/* IMAGE */}
 //                     <div>

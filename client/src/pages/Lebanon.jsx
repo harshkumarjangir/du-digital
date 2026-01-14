@@ -173,7 +173,7 @@ const Lebanon = () => {
 
         return (
           <section key={index} className="py-16 bg-white">
-            <div className="max-w-6xl mx-auto px-6">
+            <div className="max-w-6xl mx-auto px-6 md:px-20">
               {/* Content before table */}
               {before && (
                 <div className="prose max-w-none mb-8">
@@ -227,7 +227,7 @@ const Lebanon = () => {
       {/* ===== SERVICE FEE SECTION ===== */}
       {serviceFeeSection.length > 0 && serviceFeeSection.map((section, index) => (
         <section key={index} className="py-12 bg-gray-50">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6 md:px-20">
             <h3 className="text-xl font-bold text-gray-800 mb-4">{section.title}</h3>
 
             {section.contentHtml && (
@@ -270,7 +270,7 @@ const Lebanon = () => {
             <button
               type="submit"
               disabled={submitLoading}
-              className="w-full py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold transition-opacity flex justify-center items-center gap-2"
+              className="w-full py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold transition-opacity flex justify-center items-center gap-4"
             >
               {submitLoading ? <Loader2 className="animate-spin w-5 h-5" /> : 'Submit Request'}
             </button>
@@ -281,11 +281,11 @@ const Lebanon = () => {
       {/* ===== DOCUMENTS SECTION (if documents exist) ===== */}
       {documents.length > 0 && (
         <section className="py-16 bg-gray-50">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6 md:px-20">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
               Documents Required
             </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {documents.map((doc, index) => (
                 <div
                   key={doc._id || index}
@@ -359,12 +359,12 @@ const Lebanon = () => {
       {/* ===== CONTACT DETAILS / OFFICE ADDRESSES ===== */}
       {formEmployeesAddresses.length > 0 && (
         <section className="py-16 bg-gray-100">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6 md:px-20">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
               Contact Details
             </h2>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {formEmployeesAddresses.map((office, index) => (
                 <div
                   key={office._id || index}
@@ -388,14 +388,14 @@ const Lebanon = () => {
                     )}
 
                     {office.Address && (
-                      <div className="flex items-start gap-3 mb-3">
+                      <div className="flex items-start gap-4 mb-3">
                         <MapPin className="w-5 h-5 text-gray-400 shrink-0 mt-0.5" />
                         <p className="text-gray-600 text-sm">{office.Address}</p>
                       </div>
                     )}
 
                     {office.phone && (
-                      <div className="flex items-center gap-3 mb-3">
+                      <div className="flex items-center gap-4 mb-3">
                         <Phone className="w-5 h-5 text-gray-400" />
                         <a href={`tel:${office.phone}`} className="text-gray-600 text-sm hover:text-[#FF1033]">
                           {office.phone}
@@ -404,7 +404,7 @@ const Lebanon = () => {
                     )}
 
                     {office.email && (
-                      <div className="flex items-center gap-3 mb-3">
+                      <div className="flex items-center gap-4 mb-3">
                         <Mail className="w-5 h-5 text-gray-400" />
                         <a href={`mailto:${office.email}`} className="text-gray-600 text-sm hover:text-[#FF1033]">
                           {office.email}

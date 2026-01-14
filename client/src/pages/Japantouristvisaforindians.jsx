@@ -68,7 +68,7 @@ const Japantouristvisaforindians = () => {
           return (
             <div
               key={index}
-              className={`flex items-start gap-3 ${level === 0 ? '' :
+              className={`flex items-start gap-4 ${level === 0 ? '' :
                 level === 1 ? 'ml-6' :
                   level === 2 ? 'ml-12' :
                     'ml-18'
@@ -310,13 +310,13 @@ const Japantouristvisaforindians = () => {
                             />
                           </div>)
                         }
-                        {radioFields.map((field, index) => <div key={index} className="space-y-2">
+                        {radioFields.map((field, index) => <div key={index} className="space-y-4">
                           <label className="text-white text-sm font-medium block mb-2">
                             {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                           </label>
                           <div className="flex flex-wrap gap-4">
                             {field.options?.map((opt, i) => (
-                              <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                              <label key={i} className="flex items-center gap-4 text-white cursor-pointer">
                                 <input
                                   type="radio"
                                   name={field.name}
@@ -336,7 +336,7 @@ const Japantouristvisaforindians = () => {
 
                         {/* Checkboxes */}
                         {checkboxFields.map((field, index) => (
-                          <label key={field._id || `checkbox-${index}`} className="flex items-start gap-3 text-gray-300 cursor-pointer">
+                          <label key={field._id || `checkbox-${index}`} className="flex items-start gap-4 text-gray-300 cursor-pointer">
                             <input
                               type="checkbox"
                               name={field.name}
@@ -353,7 +353,7 @@ const Japantouristvisaforindians = () => {
 
                   {/* Submit Status Message */}
                   {submitStatus && (
-                    <div className={`flex items-center gap-3 p-4 rounded-lg ${submitStatus === 'success' ? 'bg-green-500/20 border border-green-500/50' : 'bg-[#FF1033]/20 border border-red-500/50'}`}>
+                    <div className={`flex items-center gap-4 p-4 rounded-lg ${submitStatus === 'success' ? 'bg-green-500/20 border border-green-500/50' : 'bg-[#FF1033]/20 border border-red-500/50'}`}>
                       {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400 shrink-0" /> : <XCircle className="w-5 h-5 text-red-400 shrink-0" />}
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                     </div>
@@ -362,7 +362,7 @@ const Japantouristvisaforindians = () => {
                   <button
                     type="submit"
                     disabled={submitLoading}
-                    className="w-full py-4 rounded-full font-bold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] uppercase disabled:opacity-70 flex items-center justify-center gap-2"
+                    className="w-full py-4 rounded-full font-bold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] uppercase disabled:opacity-70 flex items-center justify-center gap-4"
                   >
                     {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Apply Now'}
                   </button>
@@ -441,7 +441,7 @@ const Japantouristvisaforindians = () => {
                   </h2>
                   <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
                 </div>
-                <div className="space-y-6">
+                <div className="space-y-4">
                   {item.contentHtml?.split(/\r?\n\r?\n/).filter(p => p.trim()).map((paragraph, pIdx) => {
                     const [title, ...rest] = paragraph.split(':');
                     if (rest.length > 0) {
@@ -494,7 +494,7 @@ const Japantouristvisaforindians = () => {
 
             {/* Destination descriptions */}
             {destinationsSection[0]?.contentHtml && (
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {destinationsSection[0].contentHtml.split(/\r?\n\r?\n/).filter(p => p.trim()).map((paragraph, pIdx) => {
                   const [title, ...rest] = paragraph.split(':');
                   if (rest.length > 0 && title.trim().length < 30) {
@@ -574,7 +574,7 @@ const Japantouristvisaforindians = () => {
                     <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">
                       30/60 Days Tourist Visa
                     </h3>
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid md:grid-cols-2 gap-4">
                       <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
                         <Clock className="w-8 h-8" style={{ color: '#FF1033' }} />
                         <div>

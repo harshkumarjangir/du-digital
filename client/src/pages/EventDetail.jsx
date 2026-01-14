@@ -73,7 +73,7 @@ const EventDetail = () => {
                 <div className="relative max-w-7xl mx-auto px-6 md:px-20 h-full flex flex-col justify-center text-white z-20">
                     {/* <button
                         onClick={() => navigate('/events')}
-                        className="flex items-center gap-2 mb-6 hover:opacity-80 transition hover:underline cursor-pointer"
+                        className="flex items-center gap-4 mb-6 hover:opacity-80 transition hover:underline cursor-pointer"
                     >
                         <ArrowLeft size={20} />
                         <span>Back to Events</span>
@@ -96,7 +96,7 @@ const EventDetail = () => {
                 <h2 className="text-3xl font-semibold mb-8">Event Gallery</h2>
 
                 {selectedEvent.images && selectedEvent.images.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {selectedEvent.images.map((image, index) => (
                             <div
                                 key={index}

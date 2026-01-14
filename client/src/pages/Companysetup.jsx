@@ -208,7 +208,7 @@ const Companysetup = () => {
                       );
                     } else if (fieldType === 'checkbox') {
                       return (
-                        <div key={field._id || index} className="col-span-1 md:col-span-2 flex items-start gap-3 mt-2">
+                        <div key={field._id || index} className="col-span-1 md:col-span-2 flex items-start gap-4 mt-2">
                           <input
                             type="checkbox"
                             name={field.name}
@@ -262,7 +262,7 @@ const Companysetup = () => {
                   <div className="col-span-1 md:col-span-2 mt-4 space-y-4">
                     {/* Submit Status Message */}
                     {submitStatus && (
-                      <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-100' : 'bg-red-100'}`}>
+                      <div className={`flex items-center gap-4 p-3 rounded ${submitStatus === 'success' ? 'bg-green-100' : 'bg-red-100'}`}>
                         {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-600" /> : <XCircle className="w-5 h-5 text-[#FF1033]" />}
                         <p className={`text-sm ${submitStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>{submitMessage}</p>
                       </div>
@@ -271,7 +271,7 @@ const Companysetup = () => {
                     <button
                       type="submit"
                       disabled={submitLoading}
-                      className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-2"
+                      className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-4"
                     >
                       {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Submit Enquiry'}
                     </button>
@@ -397,7 +397,7 @@ const Companysetup = () => {
 
       {/* ===== OUR PARTNERS SECTION ===== */}
       <section className="py-16 bg-black">
-        <div className="max-w-[1400px] mx-auto px-6">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-20">
 
           {/* Heading */}
           <div className="text-center mb-12">
@@ -438,7 +438,7 @@ const Companysetup = () => {
               {/* <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#A10000' }}></div> */}
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-4">
               {strengthSection.map((item, index) => (
                 <div
                   key={item._id || index}
@@ -512,7 +512,7 @@ const Companysetup = () => {
 
                 {/* Content */}
                 <div>
-                  <ul className="space-y-2 max-md:mt-4 mb-10">
+                  <ul className="space-y-4 max-md:mt-4 mb-10">
                     {item.contentHtml
                       ?.split("\r\n")
                       .filter((line) => line.trim())
@@ -558,7 +558,7 @@ const Companysetup = () => {
             </div>
 
             {/* License Cards with Numbers */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {licenseTypesSection.map((item, index) => {
                 const number = String(index + 1).padStart(2, '0');
                 return (
@@ -628,7 +628,7 @@ const Companysetup = () => {
             </div>
 
             {/* Steps Grid - Horizontal scroll on mobile */}
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-4">
               {stepsSection.map((step, index) => (
                 <div
                   key={step._id || index}

@@ -142,9 +142,9 @@ const Dubai5yeartouristvisa = () => {
               </h1>
 
               {/* Key points */}
-              <ul className="space-y-3 mb-8 p-4 rounded-lg bg-gradient-to-r from-[#FF1033] to-[#FF1033]/10">
+              <ul className="space-y-4 mb-8 p-4 rounded-lg bg-gradient-to-r from-[#FF1033] to-[#FF1033]/10">
                 {descriptionLines.slice(2).map((line, index) => (
-                  <li key={index} className="flex items-start gap-3">
+                  <li key={index} className="flex items-start gap-4">
                     <div
                       className="w-5 h-5 rounded-full flex items-center justify-center bg-white shrink-0 mt-0.5"
                     >
@@ -241,11 +241,11 @@ const Dubai5yeartouristvisa = () => {
 
                   {/* Radio buttons */}
                   {fields.filter(f => f.type === 'radio').map((field, index) => (
-                    <div key={field._id || index} className="space-y-2">
+                    <div key={field._id || index} className="space-y-4">
                       <p className="text-white text-sm mb-2">{field.label}</p>
                       <div className="flex gap-4">
                         {field.options?.map((opt, optIdx) => (
-                          <label key={opt._id || optIdx} className="flex items-center gap-2 text-white text-sm cursor-pointer">
+                          <label key={opt._id || optIdx} className="flex items-center gap-4 text-white text-sm cursor-pointer">
                             <input
                               type="radio"
                               name={field.name}
@@ -262,7 +262,7 @@ const Dubai5yeartouristvisa = () => {
 
                   {/* Checkbox */}
                   {fields.filter(f => f.type === 'checkbox').map((field, index) => (
-                    <label key={field._id || index} className="flex items-start gap-3 text-gray-300 text-xs cursor-pointer">
+                    <label key={field._id || index} className="flex items-start gap-4 text-gray-300 text-xs cursor-pointer">
                       <input
                         type="checkbox"
                         name={field.name}
@@ -276,7 +276,7 @@ const Dubai5yeartouristvisa = () => {
 
                   {/* Submit Status Message */}
                   {submitStatus && (
-                    <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
+                    <div className={`flex items-center gap-4 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
                       {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                     </div>
@@ -285,7 +285,7 @@ const Dubai5yeartouristvisa = () => {
                   <button
                     type="submit"
                     disabled={submitLoading}
-                    className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-2"
+                    className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-4"
                   >
                     {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Get Started'}
                   </button>
@@ -299,7 +299,7 @@ const Dubai5yeartouristvisa = () => {
       {/* ===== FEES AND PROCESSING TIME SECTION ===== */}
       {feesSection.length > 0 && (
         <section className="py-20 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-4xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
                 5-year UAE Tourist Visa for Indians: <br /> Fees and Processing Time

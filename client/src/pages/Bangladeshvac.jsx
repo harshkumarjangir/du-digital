@@ -119,7 +119,7 @@ const BangladeshVac = () => {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/60" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 flex items-center justify-center w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 flex items-center justify-center w-full">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center">
             Bangladesh VAC
           </h1>
@@ -129,7 +129,7 @@ const BangladeshVac = () => {
       {/* ===== HERO CONTENT SECTION ===== */}
       {heroSection.length > 0 && (
         <section className="py-16 bg-white">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6 md:px-20">
             {heroSection.map((item, index) => (
               <div key={item._id || index}>
                 <p className="text-black leading-relaxed text-lg whitespace-pre-line">
@@ -144,7 +144,7 @@ const BangladeshVac = () => {
       {/* ===== DYNAMIC FORM SECTION (only if fields exist) ===== */}
       {fields.length > 0 && (
         <section className="py-16 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-4xl mx-auto px-6 md:px-20">
             <div className="text-center mb-10">
               <h2 className="text-3xl font-bold text-gray-900 mb-3">Apply Now</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
@@ -236,7 +236,7 @@ const BangladeshVac = () => {
                       }
 
                       {checkboxFields.map((field, index) => (
-                        <label key={field._id || `checkbox-${index}`} className="flex items-start gap-3 text-gray-700 cursor-pointer">
+                        <label key={field._id || `checkbox-${index}`} className="flex items-start gap-4 text-gray-700 cursor-pointer">
                           <input
                             type="checkbox"
                             name={field.name}
@@ -250,13 +250,13 @@ const BangladeshVac = () => {
                     </>
                   );
                 })()}
-                {radioFields.map((index, field) => <div key={index} className="space-y-2">
+                {radioFields.map((index, field) => <div key={index} className="space-y-4">
                   <label className="text-white text-sm font-medium block mb-2">
                     {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                   </label>
                   <div className="flex flex-wrap gap-4">
                     {field.options?.map((opt, i) => (
-                      <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                      <label key={i} className="flex items-center gap-4 text-white cursor-pointer">
                         <input
                           type="radio"
                           name={field.name}
@@ -276,7 +276,7 @@ const BangladeshVac = () => {
 
                 {/* Submit Status Message */}
                 {submitStatus && (
-                  <div className={`flex items-center gap-3 p-3 rounded ${submitStatus === 'success' ? 'bg-green-100' : 'bg-red-100'}`}>
+                  <div className={`flex items-center gap-4 p-3 rounded ${submitStatus === 'success' ? 'bg-green-100' : 'bg-red-100'}`}>
                     {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-600" /> : <XCircle className="w-5 h-5 text-[#FF1033]" />}
                     <p className={`text-sm ${submitStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>{submitMessage}</p>
                   </div>
@@ -285,7 +285,7 @@ const BangladeshVac = () => {
                 <button
                   type="submit"
                   disabled={submitLoading}
-                  className="w-full py-3 rounded-full font-bold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] uppercase disabled:opacity-70 flex items-center justify-center gap-2"
+                  className="w-full py-3 rounded-full font-bold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] uppercase disabled:opacity-70 flex items-center justify-center gap-4"
                 >
                   {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Submit Application'}
                 </button>
@@ -318,7 +318,7 @@ const BangladeshVac = () => {
 
       {formImages.length > 0 && (
         <section className="py-16 bg-white">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6 md:px-20">
 
             {formImages.map((gallery, galleryIndex) => (
               <div key={gallery._id || galleryIndex} className="mb-12 last:mb-0">
@@ -366,37 +366,37 @@ const BangladeshVac = () => {
       {/* ===== LOCATION CARDS SECTION ===== */}
       {formEmployeesAddresses.length > 0 && (
         <section className="py-16 bg-gray-100">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-3xl lg:text-4xl font-semibold text-black mb-3">Bangladesh Visa Application Centre in India</h2>
               {/* <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div> */}
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {formEmployeesAddresses.map((location, index) => (
                 <div
                   key={location._id || index}
                   className="rounded-xl p-6 text-white shadow-lg"
                   style={{ backgroundColor: location.color || '#3E861C' }}
                 >
-                  <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                  <h3 className="text-2xl font-bold mb-4 flex items-center gap-4">
                     <MapPin className="w-6 h-6" />
                     {location.Location}
                   </h3>
 
-                  <div className="space-y-3 text-white">
+                  <div className="space-y-4 text-white">
                     <p className="whitespace-pre-line text-base leading-relaxed">
                       {location.Address}
                     </p>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-4">
                       <Mail className="w-4 h-4 shrink-0" />
                       <a href={`mailto:${location.email}`} className="hover:underline text-base">
                         {location.email}
                       </a>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-4">
                       <Phone className="w-4 h-4 shrink-0" />
                       <a href={`tel:${location.phone}`} className="hover:underline text-base">
                         {location.phone}
@@ -413,16 +413,16 @@ const BangladeshVac = () => {
       {/* ===== DOCUMENTS SECTION (only if documents exist) ===== */}
       {documents.length > 0 && (
         <section className="py-16 bg-white">
-          <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-5xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-3">Documents Required</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4">
               {documents.map((doc, index) => (
                 <div key={doc._id || index} className="bg-gray-50 rounded-xl p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-4">
                     <div
                       className="w-6 h-6 rounded flex items-center justify-center"
                       style={{ backgroundColor: '#FF1033' }}
@@ -431,9 +431,9 @@ const BangladeshVac = () => {
                     </div>
                     {doc.title}
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-4">
                     {doc.description?.split('\n').filter(line => line.trim()).map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-gray-600">
+                      <li key={idx} className="flex items-start gap-4 text-gray-600">
                         <span className="text-gray-400 mt-1">•</span>
                         <span>{item.trim()}</span>
                       </li>
@@ -449,7 +449,7 @@ const BangladeshVac = () => {
       {/* ===== FAQ SECTION (only if faqs exist) ===== */}
       {faqs.length > 0 && (
         <section className="py-16 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-4xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-3">Frequently Asked Questions</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>

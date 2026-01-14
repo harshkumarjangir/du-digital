@@ -212,7 +212,7 @@ const Globalrecruitmentservices = () => {
                 "DU Global is a global recruitment agency that specializes in connecting employers worldwide with highly skilled Indian professionals across various sectors."}
             </p>
 
-            {/* <button className="inline-flex items-center gap-3 bg-[#c60505] hover:bg-[#a00000] text-white px-10 py-4 rounded-lg font-bold text-lg transition shadow-lg">
+            {/* <button className="inline-flex items-center gap-4 bg-[#c60505] hover:bg-[#a00000] text-white px-10 py-4 rounded-lg font-bold text-lg transition shadow-lg">
               Get Started Now <ArrowRight size={20} />
             </button> */}
           </div>
@@ -225,7 +225,7 @@ const Globalrecruitmentservices = () => {
             </h3>
 
             {submitSuccess && (
-              <div className="bg-green-50 text-green-700 px-4 py-3 rounded-lg mb-5 flex items-center gap-3 border border-green-200">
+              <div className="bg-green-50 text-green-700 px-4 py-3 rounded-lg mb-5 flex items-center gap-4 border border-green-200">
                 <CheckCircle size={20} />
                 Thank you! We'll contact you soon.
               </div>
@@ -265,13 +265,13 @@ const Globalrecruitmentservices = () => {
                         </select>
                       ) :
                         field.types == "radio" ? (
-                          <div className="space-y-2">
+                          <div className="space-y-4">
                             <label className="text-white text-sm font-medium block mb-2">
                               {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                             </label>
                             <div className="flex flex-wrap gap-4">
                               {field.options?.map((opt, i) => (
-                                <label key={i} className="flex items-center gap-2 text-white cursor-pointer">
+                                <label key={i} className="flex items-center gap-4 text-white cursor-pointer">
                                   <input
                                     type="radio"
                                     name={field.name}
@@ -292,7 +292,7 @@ const Globalrecruitmentservices = () => {
                         )
 
                           : field.type == "checkbox" ? (
-                            <label key={field._id || `checkbox-${index}`} className="flex items-start gap-3 text-gray-600 cursor-pointer mb-4">
+                            <label key={field._id || `checkbox-${index}`} className="flex items-start gap-4 text-gray-600 cursor-pointer mb-4">
                               <input
                                 type="checkbox"
                                 name={field.name}
@@ -483,9 +483,9 @@ const Globalrecruitmentservices = () => {
                         </h3>
 
                         {/* Roles */}
-                        <ul className="space-y-3">
+                        <ul className="space-y-4">
                           {roles.map((role, i) => (
-                            <li key={i} className="flex items-start gap-3">
+                            <li key={i} className="flex items-start gap-4">
                               <span className="w-5 h-5 flex items-center justify-center bg-[#c60505] text-white text-xs rounded-sm mt-1">
                                 ✓
                               </span>
@@ -511,7 +511,7 @@ const Globalrecruitmentservices = () => {
             </div>
 
             {/* Dots */}
-            <div className="industry-dots flex justify-center gap-2 mt-8" />
+            <div className="industry-dots flex justify-center gap-4 mt-8" />
           </div>
         </section>
       )}
@@ -579,7 +579,7 @@ const Globalrecruitmentservices = () => {
               </h2>
 
               <div
-                className="text-gray-700 text-lg leading-relaxed space-y-3"
+                className="text-gray-700 text-lg leading-relaxed space-y-4"
                 dangerouslySetInnerHTML={{
                   __html: readyToBuildSection[0]?.contentHtml
                     ?.replace(/\r\n\r\n/g, '</p><p>')

@@ -197,7 +197,7 @@ const IndianEvisa = () => {
               {/* Highlights */}
               {/* Need bg gradient fro left to right */}
               <div className="bg-linear-to-r from-[#e63938]/80 to-[#e63938]/10 inline-block px-6 py-4 rounded-xl mb-8">
-                <ul className="space-y-2 text-sm font-medium">
+                <ul className="space-y-4 text-sm font-medium">
                   <li>
                     <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-white mr-2">
                       <Check className="w-3 h-3 text-[#e63938]" strokeWidth={3} />
@@ -221,7 +221,7 @@ const IndianEvisa = () => {
 
               {/* Support Buttons */}
               <div>
-                <p className="flex items-center gap-2 mb-4 font-semibold">
+                <p className="flex items-center gap-4 mb-4 font-semibold">
                   <Phone className="w-5 h-5 text-[#e63938]" />
                   Call Us For Quick Support
                 </p>
@@ -331,9 +331,9 @@ const IndianEvisa = () => {
                             <p className="text-white font-medium mb-3">
                               {field.label} {field.required && <span className="text-[#FF1033]">*</span>}
                             </p>
-                            <div className="flex flex-wrap gap-6">
+                            <div className="flex flex-wrap gap-4">
                               {field.options?.map((opt, optIdx) => (
-                                <label key={opt._id || optIdx} className="flex items-center gap-2 cursor-pointer">
+                                <label key={opt._id || optIdx} className="flex items-center gap-4 cursor-pointer">
                                   <input
                                     type="radio"
                                     name={field.name}
@@ -366,7 +366,7 @@ const IndianEvisa = () => {
                       // Special render for Checkbox
                       if (fieldType === 'checkbox') {
                         return (
-                          <div key={field._id || index} className={`${wrapperClass} flex items-start gap-3 mt-2`}>
+                          <div key={field._id || index} className={`${wrapperClass} flex items-start gap-4 mt-2`}>
                             <input
                               type="checkbox"
                               name={field.name}
@@ -420,7 +420,7 @@ const IndianEvisa = () => {
 
                 {/* Submit Status Message */}
                 {submitStatus && (
-                  <div className={`flex items-center gap-3 p-3 rounded mb-4 ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
+                  <div className={`flex items-center gap-4 p-3 rounded mb-4 ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
                     {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
                     <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
                   </div>
@@ -429,7 +429,7 @@ const IndianEvisa = () => {
                 <button
                   type="submit"
                   disabled={submitLoading}
-                  className="px-8 py-3 rounded-full font-semibold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-2 w-full md:w-auto"
+                  className="px-8 py-3 rounded-full font-semibold text-base transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-4 w-full md:w-auto"
                 >
                   {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Submit Form'}
                 </button>
@@ -622,7 +622,7 @@ const IndianEvisa = () => {
       {
         documents.length > 0 && (
           <section className="py-20 bg-[#F7F7F7]">
-            <div className="max-w-6xl mx-auto px-6">
+            <div className="max-w-6xl mx-auto px-6 md:px-20">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
                   Documents Required
@@ -651,9 +651,9 @@ const IndianEvisa = () => {
 
                     {openDocIndex === index && (
                       <div className="px-6 py-6 bg-white">
-                        <div className="space-y-3">
+                        <div className="space-y-4">
                           {doc.description?.split('\n').filter(line => line.trim()).map((line, idx) => (
-                            <div key={idx} className="flex items-center gap-3">
+                            <div key={idx} className="flex items-center gap-4">
                               <div
                                 className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
                                 style={{ backgroundColor: '#e63938' }}
@@ -683,7 +683,7 @@ const IndianEvisa = () => {
       {
         faqs.length > 0 && (
           // <section className="py-20 bg-white">
-          //   <div className="max-w-4xl mx-auto px-6">
+          //   <div className="max-w-4xl mx-auto px-6 md:px-20">
           //     <div className="text-center mb-12">
           //       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
           //         Frequently Asked Questions
