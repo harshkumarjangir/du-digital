@@ -3,28 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchBlogs } from "../../redux/slices/BlogsSlice";
 import { Link, useSearchParams } from "react-router-dom";
 import LazyImage from "../reusable/LazyImage";
-
-const COLORS = [
-  "bg-yellow-400",
-  "bg-green-500",
-  "bg-red-500",
-  "bg-blue-500",
-  "bg-emerald-500",
-  "bg-pink-500",
-];
-
-// Stable color based on blog id
-const getColorFromId = (id) => {
-  let hash = 0;
-  for (let i = 0; i < id.length; i++) {
-    hash += id.charCodeAt(i);
-  }
-  return COLORS[hash % COLORS.length];
-};
+import { ArrowUpRight } from "lucide-react";
 
 export const Blog = ({ data: propData, className }) => {
   const dispatch = useDispatch();
-
 
   const [searchParams] = useSearchParams();
   const page = Number(searchParams.get("page")) || 1;
@@ -40,65 +22,91 @@ export const Blog = ({ data: propData, className }) => {
   // Use propData if available, otherwise use reduxData
   const data = propData || reduxData;
 
+  // Category color mapping (same as EventsGrid)
+  const categoryColors = {
+    'Business Networking': 'bg-red-500',
+    'Industry Conference': 'bg-green-500',
+    'Product Launch': 'bg-yellow-500',
+    'Community Event': 'bg-blue-500',
+    'Trade Show': 'bg-purple-500',
+    'Tenant Verification': 'bg-red-500',
+    'default': 'bg-gray-500'
+  };
+
+  const getCategoryColor = (category) => {
+    return categoryColors[category] || categoryColors.default;
+  };
+
   return (
-    <div className="max-w-7xl mx-auto my-5 px-4 mt-6">
-      <div className={`grid grid-cols-1 sm:grid-cols-2 ${className || 'md:grid-cols-4'} gap-6 justify-items-center`}>
-        {loading ? <div>Loading...</div> : error && <div>error</div>}
-        {data.length === 0 ? (
-          <div>No Blog Found</div>
-        ) : (
-          data.map((blog) => {
-            const color = getColorFromId(blog._id);
+    <div className="max-w-7xl mx-auto px-6 py-12">
+      {loading && !propData && <div className="text-center">Loading...</div>}
+      {error && !propData && <div className="text-center text-red-500">Error: {error}</div>}
 
-            return (
-              <div
-                key={blog._id}
-                className="w-full max-w-sm h-[420px] rounded-2xl overflow-hidden shadow-lg bg-white flex flex-col">
-                {/* Image */}
-                <LazyImage
-                  src={blog.featuredImage}
-                  alt={blog.title}
-                  className="h-48 w-full object-cover"
-                />
+      {/* Blog Grid - matching EventsGrid structure */}
+      <div className={`grid grid-cols-1 md:grid-cols-2 ${className || 'lg:grid-cols-3'} gap-8`}>
+        {data?.map((blog) => (
+          <div
+            key={blog._id}
+            className="relative rounded-2xl overflow-hidden shadow-lg group"
+          >
+            {/* IMAGE */}
+            <div className="h-[420px] relative">
+              <LazyImage
+                src={blog.featuredImage}
+                alt={blog.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition" />
+            </div>
 
-                {/* Content */}
-                <div className="p-4 space-y-2 grow">
-                  <h3 className="text-lg font-semibold leading-snug line-clamp-2">
-                    {blog.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 my-2 line-clamp-3">
-                    {blog.tags}
-                  </p>
-                </div>
-
-                {/* Button */}
-                <Link
-                  to={`/blog/${blog._id}`}
-                  className="w-full py-3 px-2 text-[#FFFDF5] font-bold bg-[#FF1033] hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300 text-center">
-                  Read More
-                </Link>
-              </div>
-            );
-          })
-        )}
-      </div>
-      {
-        !propData && totalPages > 1 && <div className="flex justify-center mt-6 space-x-2">
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            {/* TOP RIGHT ARROW BUTTON */}
             <Link
-              to={`?page=${page}`}
-              className={`px-4 py-2 rounded-md ${searchParams.get("page") == page
-                ? "bg-[#FF1033] text-[#FFFDF5]"
-                : "bg-gray-200 text-gray-700"
+              to={`/blog/${blog._id}`}
+              aria-label="View blog details"
+              className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition z-10"
+            >
+              <ArrowUpRight size={24} className="text-red-600" />
+            </Link>
+
+            {/* CONTENT */}
+            <div className="absolute inset-0 flex flex-col justify-end p-6 text-white z-0">
+              {/* Category Badge */}
+              {/* <span className={`${getCategoryColor(blog.category)} text-white text-xs px-3 py-1 rounded-full w-max mb-3 font-medium`}>
+                {blog.category || "Tenant Verification"}
+              </span> */}
+
+              <Link
+                to={`/blog/${blog._id}`}
+                className="bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] px-6 py-2 mb-4 rounded-full w-max font-bold transition-all duration-300 cursor-pointer"
+              >
+                View More
+              </Link>
+
+              <h3 className="font-semibold text-lg leading-snug mb-0">
+                {blog.title}
+              </h3>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Pagination Controls */}
+      {!propData && totalPages > 1 && (
+        <div className="flex justify-center mt-12 space-x-2">
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+            <Link
+              key={p}
+              to={`?page=${p}`}
+              className={`px-4 py-2 rounded-md transition-colors duration-300 ${page === p
+                ? "bg-[#ac0826] text-white"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                 }`}
             >
-              {page}
+              {p}
             </Link>
           ))}
-
-
         </div>
-      }
+      )}
     </div>
   );
 };

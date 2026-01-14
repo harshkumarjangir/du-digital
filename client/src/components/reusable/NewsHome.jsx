@@ -1,59 +1,160 @@
-import { ArrowUpRight } from 'lucide-react';
-import LazyImage from './LazyImage';
+import LazyImage from "./LazyImage";
 
 const NewsHome = ({ data }) => {
-    const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
+    const BackendImagesURL =
+        import.meta.env.VITE_BACKEND_IMAGES_URL || "http://localhost:5000/api";
 
     return (
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {data.map((item, index) => (
-                <a
-                    key={item._id}
-                    href={item.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={`group relative flex flex-col gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-colors duration-300 border border-transparent hover:border-gray-100 ${index % 2 !== 0 ? "scale-110" : ""}`}
-                >
-                    {/* IMAGE CONTAINER */}
-                    <div className="relative h-60 w-full overflow-hidden rounded-xl">
-                        <LazyImage
-                            src={`${BackendImagesURL}${item.imageUrl}`}
-                            alt={item.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                        <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-sm group-hover:bg-white transition-colors">
-                            <ArrowUpRight className="w-5 h-5 text-gray-900" />
-                        </div>
-                    </div>
+        <div className="max-w-7xl mx-auto px-6 py-20">
+            {/* Header */}
+            <div className="text-center mb-14">
+                <h2 className="text-5xl font-bold mb-3">
+                    See what all the talk is about!
+                </h2>
+                <p className="text-gray-600">
+                    Transformative Client experience from all around the globe
+                </p>
+            </div>
 
-                    {/* CONTENT */}
-                    <div className="flex flex-col gap-2">
-                        <div className="flex items-center gap-2">
-                            <span className="text-xs font-semibold tracking-wider text-red-600 uppercase">
-                                News
-                            </span>
-                            <span className="w-1 h-1 rounded-full bg-gray-300" />
-                            <span className="text-xs text-gray-500">
-                                {new Date(item.datePublished).toLocaleDateString("en-IN", {
-                                    month: "long",
-                                    day: "numeric",
-                                    year: "numeric"
-                                })}
-                            </span>
+            {/* Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {data.slice(0, 3).map((item) => (
+                    <a
+                        key={item._id}
+                        href={item.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="relative bg-white rounded-[32px] overflow-hidden shadow-sm transition"
+                    >
+                        {/* Image (Tall) */}
+                        <div className="relative h-[420px]">
+                            <LazyImage
+                                src={`${BackendImagesURL}${item.imageUrl}`}
+                                alt={item.title}
+                                className="w-full h-full object-contain"
+                                fill
+                            />
+
+                            {/* Strong white fade */}
+                            <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-white via-white/90 to-transparent" />
                         </div>
 
-                        <h3 className="text-xl font-bold text-gray-900 leading-snug line-clamp-2 group-hover:text-red-700 transition-colors">
-                            {item.title}
-                        </h3>
+                        {/* ABSOLUTE Content */}
+                        <div className="absolute inset-x-0 bottom-0 px-6 pb-4 bg-gradient-to-t from-white via-white/90 to-white/10">
+                            {/* Quote */}
+                            <div className="text-4xl text-gray-900 mb-0 leading-none">
+                                “
+                            </div>
 
-                        <p className="text-sm text-gray-600 line-clamp-2">
-                            Click to read the full coverage of this news item.
-                        </p>
-                    </div>
-                </a>
-            ))}
+                            {/* Text */}
+                            <p className="text-gray-900 text-lg leading-relaxed mb-6">
+                                {item.title}
+                            </p>
+
+                            {/* Author */}
+                            {/* <p className="text-sm text-gray-500 text-right">
+                                — {item.author || "Client"},{" "}
+                                {item.company || "Verified User"}
+                            </p> */}
+                            <div className="flex items-center justify-between gap-2">
+                                <span className="text-xs font-semibold tracking-wider text-red-600 uppercase">
+                                    News
+                                </span>
+                                <div className="flex items-center gap-2">
+                                    <span className="w-1 h-1 rounded-full bg-gray-300" />
+                                    <span className="text-sm text-gray-500">
+                                        {new Date(item.datePublished).toLocaleDateString("en-IN", {
+                                            month: "long",
+                                            day: "numeric",
+                                            year: "numeric"
+                                        })}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                ))}
+            </div>
         </div>
     );
 };
 
 export default NewsHome;
+
+
+
+
+
+
+
+
+
+
+// import { Quote } from 'lucide-react';
+// import LazyImage from './LazyImage';
+
+// const NewsHome = ({ data }) => {
+//     const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
+
+//     // Gradient colors for each card
+//     const gradients = [
+//         'bg-gradient-to-t from-blue-200/50 via-blue-100/30 to-transparent',
+//         'bg-gradient-to-t from-pink-200/50 via-pink-100/30 to-transparent',
+//         'bg-gradient-to-t from-orange-200/50 via-orange-100/30 to-transparent'
+//     ];
+
+//     return (
+//         <div className="max-w-7xl mx-auto px-6 py-16">
+//             {/* Section Header */}
+//             <div className="text-center mb-12">
+//                 <h2 className="text-5xl font-bold mb-4">
+//                     See what all the talk is about!
+//                 </h2>
+//                 <p className="text-base text-gray-600">
+//                     Transformative Client experience from all around the globe
+//                 </p>
+//             </div>
+
+//             {/* Testimonial Grid */}
+//             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+//                 {data.slice(0, 3).map((item, index) => (
+//                     <a
+//                         key={item._id}
+//                         href={item.link}
+//                         target="_blank"
+//                         rel="noreferrer"
+//                         className="bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300 block"
+//                     >
+//                         {/* Image with Gradient Overlay */}
+//                         <div className="relative h-64 overflow-hidden">
+//                             <LazyImage
+//                                 src={`${BackendImagesURL}${item.imageUrl}`}
+//                                 alt={item.title}
+//                                 className="w-full h-full object-cover"
+//                             />
+//                             <div className={`absolute inset-0 ${gradients[index % 3]}`} />
+//                         </div>
+
+//                         {/* Content */}
+//                         <div className="p-8">
+//                             {/* Quote Icon */}
+//                             <Quote className="w-8 h-8 text-gray-400 mb-4" />
+
+//                             {/* Testimonial Text */}
+//                             <p className="text-base text-gray-800 leading-relaxed mb-4">
+//                                 {item.title}
+//                             </p>
+
+//                             {/* Attribution */}
+//                             <p className="text-sm text-gray-500">
+//                                 — {item.author || "Client"}, {item.company || "Verified User"}
+//                             </p>
+//                         </div>
+//                     </a>
+//                 ))}
+//             </div>
+//         </div>
+//     );
+// };
+
+// export default NewsHome;

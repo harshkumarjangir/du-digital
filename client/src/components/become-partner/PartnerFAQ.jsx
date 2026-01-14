@@ -10,7 +10,7 @@ const PartnerFAQ = ({ data }) => {
 
                 {/* LEFT TITLE CARD */}
                 <div className="bg-[#FFE7EA] border border-[#FF1033]/10 rounded-xl p-10">
-                    <h2 className="text-3xl font-serif text-gray-900">
+                    <h2 className="text-3xl text-gray-900">
                         Our Expertise
                     </h2>
                 </div>
@@ -34,7 +34,7 @@ const PartnerFAQ = ({ data }) => {
                                     aria-controls={`faq-answer-${index}`}
                                 >
                                     <div className="flex items-center gap-6">
-                                        <span className="text-sm text-gray-400 font-mono">
+                                        <span className="text-sm text-gray-400">
                                             {String(index + 1).padStart(2, "0")}
                                         </span>
 
