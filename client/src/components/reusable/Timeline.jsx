@@ -119,7 +119,7 @@ const TimelineSlider = ({ data = [] }) => {
 
                             {item.logo && (
                                 <div className="flex justify-center">
-                                    <div className="border-2 border-gray-200 rounded-lg p-4 bg-white">
+                                    <div className=" rounded-lg p-4">
                                         <img
                                             src={`${import.meta.env.VITE_BACKEND_IMAGES_URL}${item.logo}`}
                                             alt=""
