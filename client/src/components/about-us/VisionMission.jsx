@@ -1,7 +1,7 @@
 const VisionMission = ({ data }) => {
     return (
         <section className="py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-3 md:px-6">
+            <div className="max-w-7xl mx-auto px-3 md:px-10">
 
                 {/* OUTER CARD */}
                 <div className="rounded-2xl p-3 md:p-10">
