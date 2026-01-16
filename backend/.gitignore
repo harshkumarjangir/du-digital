@@ -12,4 +12,5 @@ yarn-error.log*
 .idea/
 .vscode/
 *.swp
+uploads2
 *.swo
