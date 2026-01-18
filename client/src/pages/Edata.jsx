@@ -251,7 +251,7 @@ const Digitalarrivalcards = () => {
                   />
                 </div>
                 <div className="text-white">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                  <h2 className="text-4xl md:text-4xl font-bold mb-6">
                     {item.title}
                   </h2>
                   <p className="text-white/90 text-lg leading-relaxed">
@@ -269,7 +269,7 @@ const Digitalarrivalcards = () => {
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-3">
                 Documents Required
               </h2>
               <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#C00C02' }}></div>
@@ -315,7 +315,7 @@ const Digitalarrivalcards = () => {
             {whyChooseSection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center place-items-center">
                 <div className="text-white">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                  <h2 className="text-4xl md:text-4xl font-bold mb-6">
                     {item.title}
                   </h2>
                   <ul className="space-y-4">
@@ -356,7 +356,7 @@ const Digitalarrivalcards = () => {
 
             {/* LEFT CONTENT */}
             <div>
-              <h2 className="text-4xl font-bold leading-tight mb-6">
+              <h2 className="text-4xl  font-bold leading-tight mb-6">
                 Any questions? <br />
                 We got you.
               </h2>

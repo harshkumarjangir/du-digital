@@ -34,7 +34,7 @@ const ContactExperts = ({ data }) => {
 
                 {/* TITLE LEFT / CTA RIGHT */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
-                    <h2 className="text-4xl font-bold text-white max-w-md">
+                    <h2 className="text-4xl  font-bold text-white max-w-md">
                         {data.title}
                     </h2>
 
@@ -101,7 +101,7 @@ export default ContactExperts;
 
 //                 {/* TITLE LEFT / CTA RIGHT */}
 //                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
-//                     <h2 className="text-4xl font-bold text-white max-w-md">
+//                      <h2 className="text-4xl  font-bold text-white max-w-md">
 //                         {data.title}
 //                     </h2>
 
@@ -173,7 +173,7 @@ export default ContactExperts;
 
 //                 {/* TOP ROW: TITLE LEFT / CTA RIGHT */}
 //                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
-//                     <h2 className="text-4xl font-bold text-white max-w-md">
+//                      <h2 className="text-4xl  font-bold text-white max-w-md">
 //                         {data.title}
 //                     </h2>
 
@@ -232,7 +232,7 @@ export default ContactExperts;
 
 //                     {/* LEFT CONTENT */}
 //                     <div className="text-white">
-//                         <h2 className="text-4xl font-bold mb-6">
+//                          <h2 className="text-4xl  font-bold mb-6">
 //                             {data.title}
 //                         </h2>
 
@@ -303,7 +303,7 @@ export default ContactExperts;
 //         <section className="bg-black text-white py-20">
 //             <div className="max-w-6xl mx-auto px-4 text-center">
 //                 {/* Title */}
-//                 <h2 className="text-4xl font-bold mb-8">
+//                  <h2 className="text-4xl  font-bold mb-8">
 //                     {data.title}
 //                 </h2>
 

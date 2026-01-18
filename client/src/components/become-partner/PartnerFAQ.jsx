@@ -10,7 +10,7 @@ const PartnerFAQ = ({ data }) => {
 
                 {/* LEFT TITLE CARD */}
                 <div className="bg-[#FFE7EA] border border-[#FF1033]/10 rounded-xl p-10">
-                    <h2 className="text-3xl text-gray-900">
+                    <h2 className="text-4xl  font-bold">
                         Our Expertise
                     </h2>
                 </div>
@@ -91,7 +91,7 @@ export default PartnerFAQ;
 
 //                 {/* LEFT CONTENT */}
 //                 <div>
-//                     <h2 className="text-4xl font-bold leading-tight mb-6">
+//                      <h2 className="text-4xl  font-bold leading-tight mb-6">
 //                         Any questions? <br />
 //                         We got you.
 //                     </h2>
@@ -185,7 +185,7 @@ export default PartnerFAQ;
 
 //     return (
 //         <section className="py-16 bg-white">
-//             <h2 className="text-3xl font-bold text-center mb-10">
+//              <h2 className="text-4xl font-bold text-center mb-10">
 //                 Partner With Us For
 //             </h2>
 
@@ -223,7 +223,7 @@ export default PartnerFAQ;
 
 //     return (
 //         <section className="py-16 bg-gray-50">
-//             <h2 className="text-3xl font-bold text-center mb-10">
+//              <h2 className="text-4xl font-bold text-center mb-10">
 //                 Partner With Us For
 //             </h2>
 

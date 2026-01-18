@@ -16,7 +16,7 @@ const OurFootprints = ({ data }) => {
             <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 text-center">
 
                 {/* Heading */}
-                <h2 className="text-4xl md:text-5xl font-semibold text-gray-900">
+                <h2 className="text-4xl  md:text-5xl font-semibold text-gray-900">
                     Our Footprints
                 </h2>
 
@@ -45,10 +45,10 @@ const OurFootprints = ({ data }) => {
                         >
                             {/* Value */}
                             <div className="flex justify-center items-end">
-                                <span className="text-4xl font-semibold text-[#FF1033]">
+                                <span className="text-5xl font-semibold text-[#FF1033]">
                                     {item.value}
                                 </span>
-                                <span className="text-3xl font-semibold text-[#FF1033] ml-1">
+                                <span className="text-4xl font-semibold text-[#FF1033] ml-1">
                                     {item.suffix}
                                 </span>
                             </div>
@@ -61,7 +61,7 @@ const OurFootprints = ({ data }) => {
                             )}
 
                             {/* Label */}
-                            <p className="mt-4 text-xl font-medium text-gray-900">
+                            <p className="mt-2 text-xl font-medium text-gray-900">
                                 {item.label}
                             </p>
                         </div>

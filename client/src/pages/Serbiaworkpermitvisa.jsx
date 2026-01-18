@@ -331,7 +331,7 @@ const Serbiaworkpermitvisa = () => {
             {whatIsSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                  <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-4">
                     {item.title}
                   </h2>
                   <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
@@ -373,7 +373,7 @@ const Serbiaworkpermitvisa = () => {
               if (item.title === 'Who Can Apply?') {
                 return (
                   <div key={item._id || index} className="mb-16 last:mb-0 text-center">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333333] mb-4">
+                    <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-[#333333] mb-4">
                       {item.title}
                     </h2>
                     <div className="w-20 h-1 mx-auto mb-6" style={{ backgroundColor: '#FF1033' }}></div>
@@ -462,7 +462,7 @@ const Serbiaworkpermitvisa = () => {
         <section className="py-20 bg-black">
           <div className="max-w-6xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+              <h2 className="text-4xl md:text-4xl font-bold text-white mb-3">
                 Why Choose DU Global?
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
@@ -498,7 +498,7 @@ const Serbiaworkpermitvisa = () => {
           <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
             {/* LEFT CONTENT */}
             <div>
-              <h2 className="text-4xl font-bold leading-tight mb-6">
+              <h2 className="text-4xl  font-bold leading-tight mb-6">
                 Any questions? <br />
                 We got you.
               </h2>
@@ -547,7 +547,7 @@ const Serbiaworkpermitvisa = () => {
             <div className="max-w-7xl mx-auto px-6 md:px-20 gap-12 items-start">
               {/* LEFT CONTENT */}
               <div>
-                <h2 className="text-3xl md:text-4xl text-center font-bold leading-tight mb-6 text-[#333333]">
+                <h2 className="text-4xl md:text-4xl text-center font-bold leading-tight mb-6 text-[#333333]">
                   {VisaApplicationCentreAddress[0]?.title || "Visa Application Centre Addresses"}
                 </h2>
                 <div className="w-20 h-1 mx-auto mb-6" style={{ backgroundColor: '#FF1033' }}></div>
@@ -604,7 +604,7 @@ const Serbiaworkpermitvisa = () => {
 
               <div className="relative z-10 p-4 md:p-6 flex flex-col h-full text-white">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-semibold mb-3">
+                  <h2 className="text-4xl md:text-4xl font-semibold mb-3">
                     {getStartedSection[0]?.title || 'Get Started Today!'}
                   </h2>
                   <p className="text-gray-200 text-sm md:text-base leading-relaxed mb-0">

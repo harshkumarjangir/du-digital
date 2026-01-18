@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import LazyImage from "../reusable/LazyImage";
 
@@ -58,8 +58,8 @@ const Testimonials = ({ data }) => {
                                 return (
                                     <div
                                         key={offset}
-                                        className={`${offset === 1 ? "hidden md:block" : ""
-                                            } bg-[#FFFCF6] rounded-2xl p-8 text-left shadow-sm`}
+                                        className={`${offset === 1 ? "" : ""
+                                            } bg-[#FFFCF6] rounded-2xl p-8 text-left flex flex-col justify-between shadow-sm`}
                                     >
                                         <p className="text-gray-700 leading-relaxed">
                                             {item.message}
@@ -67,7 +67,7 @@ const Testimonials = ({ data }) => {
 
                                         <div className="flex items-center gap-4 mt-8">
                                             {/* <div className="w-12 h-12 rounded-full bg-black" /> */}
-                                            <LazyImage src={item.image} alt={item.name} className="w-12 h-12 rounded-full bg-black" />
+                                            <LazyImage src={item.image} alt={item.name} className="w-15 h-15 rounded-full bg-black" />
                                             <div>
                                                 <p className="font-semibold text-gray-900">
                                                     {item.name}
@@ -86,20 +86,24 @@ const Testimonials = ({ data }) => {
                 </div>
 
                 {/* Navigation */}
-                <div className="flex justify-between mt-16 px-2">
+                <div className="flex justify-between mt-5">
                     <button
                         onClick={prev}
-                        className="text-[#FF1033] hover:scale-110 transition bg-[#FF1033]/10 hover:bg-[#FF1033] hover:text-white rounded-full p-2 hover:cursor-pointer"
+                        className="text-[#FF1033] hover:scale-110 transition  hover:bg-[#FF1033] hover:text-white rounded-full p-2 hover:cursor-pointer"
                         aria-label="Previous testimonial"
                     >
-                        <ChevronLeft size={28} />
+                        {/* <MoveLeft  size={28}/> */}
+                        {/* <ChevronLeftCircle size={28} /> */}
+                        <ArrowLeft size={32}/>
                     </button>
                     <button
                         onClick={next}
-                        className="text-[#FF1033] hover:scale-110 transition bg-[#FF1033]/10  hover:bg-[#FF1033] hover:text-white rounded-full p-2 hover:cursor-pointer"
+                        className="text-[#FF1033] hover:scale-110 transition  hover:bg-[#FF1033] hover:text-white rounded-full p-2 hover:cursor-pointer"
                         aria-label="Next testimonial"
                     >
-                        <ChevronRight size={28} />
+                        <ArrowRight size={32} />
+                        {/* <MoveRight size={28} /> */}
+                        {/* <ChevronRightCircle size={28} /> */}
                     </button>
                 </div>
             </div>

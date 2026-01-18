@@ -32,7 +32,7 @@ const AboutSwifttravelSection = ({ data }) => {
                     </p>
                 )}
 
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                <h2 className="text-4xl md:text-4xl font-bold text-gray-900">
                     {title}
                 </h2>
 

@@ -173,7 +173,7 @@ const Digitalarrivalcards = () => {
 
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             Travel Ready with DU Global
           </h2>
           <p className="text-gray-50 text-lg md:text-xl leading-relaxed">
@@ -186,7 +186,7 @@ const Digitalarrivalcards = () => {
       {/* ===== MULTI-STEP FORM SECTION ===== */}
       <section id="apply-form" className="py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 md:px-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8">Apply for Digital Arrival Card</h2>
+          <h2 className="text-4xl md:text-4xl font-bold text-center text-gray-900 mb-8">Apply for Digital Arrival Card</h2>
 
           {/* Success/Error Message Display */}
           {submitStatus === 'success' && (
@@ -227,7 +227,7 @@ const Digitalarrivalcards = () => {
 
             {/* Heading */}
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333333]">
+              <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-[#333333]">
                 Documents Required
               </h2>
               {/* <div className="w-16 h-1 bg-[#C00C02] mx-auto mt-4" /> */}
@@ -284,7 +284,7 @@ const Digitalarrivalcards = () => {
                 </div>
 
                 <div className="text-white">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                  <h2 className="text-4xl md:text-4xl font-bold mb-6">
                     {item.title}
                   </h2>
                   <ul className="space-y-4">
@@ -314,7 +314,7 @@ const Digitalarrivalcards = () => {
 
             {/* LEFT CONTENT */}
             <div>
-              <h2 className="text-4xl font-bold leading-tight mb-6">
+              <h2 className="text-4xl  font-bold leading-tight mb-6">
                 Any questions? <br />
                 We got you.
               </h2>

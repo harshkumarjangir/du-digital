@@ -291,7 +291,7 @@ export default Offices;
 //             <div className="max-w-7xl mx-auto px-6">
 //                 {/* Header */}
 //                 <div className="text-center mb-12">
-//                     <h2 className="text-4xl font-bold text-gray-900 mb-2">
+//                      <h2 className="text-4xl  font-bold text-gray-900 mb-2">
 //                         India Offices
 //                     </h2>
 //                     <div className="w-24 h-1 bg-orange-500 mx-auto"></div>

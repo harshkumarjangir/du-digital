@@ -122,7 +122,7 @@ const Vipclearanceatmalaysiaairport = () => {
                         <h2 className="text-lg md:text-2xl font-bold text-gray-900 mb-2">
                             Say goodbye to long airport lines and hello to a seamless journey with our exclusive
                         </h2>
-                        <h2 className="text-4xl md:text-5xl font-bold text-[#FF1033] mb-12">
+                        <h2 className="text-4xl  md:text-5xl font-bold text-[#FF1033] mb-12">
                             VIP clearance service at Malaysian Immigration
                         </h2>
                         <div className="inline-block bg-[#991b1b] text-white px-8 py-3 rounded-lg text-2xl font-bold shadow-lg">
@@ -216,7 +216,7 @@ const Vipclearanceatmalaysiaairport = () => {
 
                         {/* Heading */}
                         <div className="text-center mb-14">
-                            <h2 className="text-4xl md:text-5xl font-bold text-black">
+                            <h2 className="text-4xl  md:text-5xl font-bold text-black">
                                 Documents Required
                             </h2>
                         </div>
@@ -308,7 +308,7 @@ const Vipclearanceatmalaysiaairport = () => {
                 <section className="py-24 bg-[#2D1F1F]">
                     <div className="max-w-2xl mx-auto px-6">
                         <div className="text-center mb-12">
-                            <h2 className="text-4xl font-bold text-white mb-4">Book Your VIP Service</h2>
+                            <h2 className="text-4xl  font-bold text-white mb-4">Book Your VIP Service</h2>
                             <p className="text-gray-300">Fill in your details and we'll get back to you</p>
                         </div>
 
@@ -346,7 +346,7 @@ const Vipclearanceatmalaysiaairport = () => {
                 <section className="py-24 bg-gray-50">
                     <div className="max-w-4xl mx-auto px-6 md:px-20">
                         <div className="text-center mb-16">
-                            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                            <h2 className="text-4xl  font-bold text-gray-900 mb-4">
                                 Frequently Asked <span className="text-[#FF1033]">Questions</span>
                             </h2>
                         </div>

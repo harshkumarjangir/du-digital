@@ -361,7 +361,7 @@ const Dubai5yeartouristvisa = () => {
             {exploreSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-2">
                     {item.title}
                   </h2>
                   <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
@@ -452,7 +452,7 @@ const Dubai5yeartouristvisa = () => {
 
             {/* LEFT CONTENT */}
             <div>
-              <h2 className="text-4xl font-bold leading-tight mb-6">
+              <h2 className="text-4xl  font-bold leading-tight mb-6">
                 Any questions? <br />
                 We got you.
               </h2>

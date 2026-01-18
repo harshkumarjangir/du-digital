@@ -282,7 +282,7 @@ const Lebanon = () => {
       {documents.length > 0 && (
         <section className="py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto px-6 md:px-20">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+            <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
               Documents Required
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -309,7 +309,7 @@ const Lebanon = () => {
 
             {/* LEFT CONTENT */}
             <div>
-              <h2 className="text-4xl font-bold leading-tight mb-6">
+              <h2 className="text-4xl  font-bold leading-tight mb-6">
                 Any questions? <br />
                 We got you.
               </h2>
@@ -360,7 +360,7 @@ const Lebanon = () => {
       {formEmployeesAddresses.length > 0 && (
         <section className="py-16 bg-gray-100">
           <div className="max-w-6xl mx-auto px-6 md:px-20">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+            <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
               Contact Details
             </h2>
 

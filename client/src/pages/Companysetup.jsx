@@ -290,10 +290,10 @@ const Companysetup = () => {
             {heroSection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
-                  {/* <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                  {/*  <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-6">
                     {item.title}
                   </h2> */}
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                  <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-6">
                     {item.title.split("Company Setup")[0]}
                     <span className="text-[#FF1033] font-bold">Company Setup</span>
                     {item.title.split("Company Setup")[1]}
@@ -345,7 +345,7 @@ const Companysetup = () => {
           <div className="absolute inset-0 bg-black/80 rounded-md" />
 
           <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-20 text-white rounded-md">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+            <h2 className="text-4xl md:text-4xl font-bold mb-6 text-center">
               Company <span style={{ color: '#FF1033' }}>Formation</span> in the Mainland
             </h2>
             <div className="text-gray-300 leading-relaxed space-y-4 text-center">
@@ -379,7 +379,7 @@ const Companysetup = () => {
                   />}
                 </div>
                 <div className="order-1 md:order-1">
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                  <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-6">
                     Company Formation in <span style={{ color: '#FF1033' }}>Freezone</span>
                   </h2>
                   <div className="text-gray-800 text-base md:text-[17px] leading-relaxed space-y-4">
@@ -401,7 +401,7 @@ const Companysetup = () => {
 
           {/* Heading */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+            <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-white">
               Our <span className="text-[#FF1033]">Partners</span>
             </h2>
           </div>
@@ -432,7 +432,7 @@ const Companysetup = () => {
         <section className="py-20" style={{ backgroundColor: '#FFF5F4' }}>
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-3">
                 Our <span style={{ color: '#FF1033' }}>Strength</span>
               </h2>
               {/* <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div> */}
@@ -483,7 +483,7 @@ const Companysetup = () => {
 
             {/* Heading */}
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+              <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-gray-900">
                 Benefits of Establishing a{" "}
                 <span className="text-[#FF1033]">Business</span> in the UAE
               </h2>
@@ -551,7 +551,7 @@ const Companysetup = () => {
         <section className="py-20" style={{ backgroundColor: '#f5f5f5' }}>
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-3">
                 Types of Business <span style={{ color: '#FF1033' }}>License</span> in the UAE
               </h2>
               {/* <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div> */}
@@ -602,7 +602,7 @@ const Companysetup = () => {
           <div className="max-w-7xl mx-auto px-6 md:px-20 text-left">
             {entityOptionsSection.map((item, index) => (
               <div key={item._id || index}>
-                <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold mb-6">
+                <h2 className="text-4xl md:text-4xl lg:text-4xl font-bold mb-6">
                   Entity Options for <span style={{ color: '#FF1033' }}>Free Zone Company</span> Setup in the UAE
                 </h2>
                 <div className="text-white leading-relaxed">
@@ -621,7 +621,7 @@ const Companysetup = () => {
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-3">
 
                 Steps to Set Up a <span style={{ color: '#FF1033' }}>Business</span> in the UAE Free Zones
               </h2>
@@ -694,10 +694,10 @@ const Companysetup = () => {
           <div className="max-w-7xl mx-auto px-6">
             {documents.map((doc, index) => (
               <div key={doc._id || index}>
-                {/* <h2 className="text-3xl md:text-4xl lg:text-[43px] font-bold text-gray-900 mb-8 text-left">
+                {/*  <h2 className="text-4xl md:text-4xl lg:text-[43px] font-bold text-gray-900 mb-8 text-left">
                   {doc.title}
                 </h2> */}
-                <h2 className="text-3xl md:text-4xl lg:text-[43px] font-bold text-gray-900 mb-6">
+                <h2 className="text-4xl md:text-4xl lg:text-[43px] font-bold text-gray-900 mb-6">
                   {doc.title.split("Company Setup")[0]}
                   <span className="text-[#FF1033] font-bold">Company Setup</span>
                   {doc.title.split("Company Setup")[1]}
@@ -738,8 +738,8 @@ const Companysetup = () => {
 
           {/* TITLE LEFT / CTA RIGHT */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
-            <h2 className="text-4xl text-white md:text-4xl lg:text-5xl font-bold leading-tight mb-10">
-              Speak to our <br /> experts
+            <h2 className="text-4xl  text-white md:text-4xl lg:text-5xl font-bold leading-tight mb-10">
+              Speak to our experts
             </h2>
 
             <button
@@ -809,7 +809,7 @@ const Companysetup = () => {
 
         
             <div className="flex justify-center bg-black text-white px-10 py-14 rounded-2xl">
-              <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold leading-tight mb-10">
+               <h2 className="text-4xl  md:text-4xl lg:text-5xl font-bold leading-tight mb-10">
                 Speak to our <br /> experts
               </h2>
 

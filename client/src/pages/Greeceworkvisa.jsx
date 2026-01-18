@@ -297,7 +297,7 @@ const GreeceWorkVisa = () => {
             {heroSection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
-                  <h2 className="text-3xl md:text-4xl lg:text-[48px] font-bold text-[#333333] mb-6">
+                  <h2 className="text-4xl md:text-4xl lg:text-[48px] font-bold text-[#333333] mb-6">
                     {item.title}
                   </h2>
                   <div className="text-[#333333] text-base md:text-[17px] leading-relaxed space-y-4">
@@ -342,7 +342,7 @@ const GreeceWorkVisa = () => {
             </span> */}
             <div className="relative">
               <p className="text-[#FF1033] font-bold mb-2">DU GLOBAL</p>
-              <h2 className="text-4xl md:text-5xl font-extrabold text-[#333333]">
+              <h2 className="text-4xl  md:text-5xl font-extrabold text-[#333333]">
                 Available Positions
               </h2>
               <div className="w-16 h-1 bg-[#FF1033] mx-auto mt-4" />
@@ -415,7 +415,7 @@ const GreeceWorkVisa = () => {
             {salarySection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
+                  <h2 className="text-4xl md:text-4xl font-bold text-white mb-2">
                     Salary & Benefits
                   </h2>
                   <div className="w-16 h-1 mb-8" style={{ backgroundColor: '#FF1033' }}></div>
@@ -482,7 +482,7 @@ const GreeceWorkVisa = () => {
                   />}
                 </div>
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
+                  <h2 className="text-4xl md:text-4xl font-bold text-[#333333] mb-2">
                     Eligibility Criteria
                   </h2>
                   <div className="w-16 h-1 mb-8" style={{ backgroundColor: '#FF1033' }}></div>
@@ -516,7 +516,7 @@ const GreeceWorkVisa = () => {
 
           <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
+              <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
                 Document Checklist
               </h2>
               <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
@@ -560,7 +560,7 @@ const GreeceWorkVisa = () => {
 
           <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-3">
+              <h2 className="text-4xl md:text-4xl font-bold text-[#333333] mb-3">
                 Fees, Processing Time & Validity
               </h2>
               <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
@@ -629,7 +629,7 @@ const GreeceWorkVisa = () => {
                   />}
                 </div>
                 <div className="order-1 md:order-1">
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+                  <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                     Why Choose Global LLC?
                   </h2>
                   {/* <div className="w-16 h-1 mb-8" style={{ backgroundColor: '#FF1033' }}></div> */}
@@ -660,7 +660,7 @@ const GreeceWorkVisa = () => {
 
             {/* LEFT CONTENT */}
             <div>
-              <h2 className="text-4xl font-bold leading-tight mb-6">
+              <h2 className="text-4xl  font-bold leading-tight mb-6">
                 Any questions? <br />
                 We got you.
               </h2>

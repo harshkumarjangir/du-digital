@@ -312,7 +312,7 @@ const Moroccovisa = () => {
             {introSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 mb-2 uppercase">
+                  <h2 className="text-4xl md:text-4xl lg:text-5xl font-semibold text-gray-900 mb-2 uppercase">
                     {item.title}
                   </h2>
                   <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
@@ -418,7 +418,7 @@ const Moroccovisa = () => {
         <section className="py-20 bg-white">
           <div className="max-w-4xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-black mb-3">
+              <h2 className="text-4xl md:text-4xl font-bold text-black mb-3">
                 Morocco Visa Requirements for Indians
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
@@ -458,7 +458,7 @@ const Moroccovisa = () => {
 
             {/* LEFT CONTENT */}
             <div>
-              <h2 className="text-4xl font-bold leading-tight mb-6">
+              <h2 className="text-4xl  font-bold leading-tight mb-6">
                 Any questions? <br />
                 We got you.
               </h2>

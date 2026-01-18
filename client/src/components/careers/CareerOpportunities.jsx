@@ -88,7 +88,7 @@ export default CareerOpportunities;
 //         <section className="py-20 bg-[#F6F5F2] px-6">
 //             <div className="max-w-7xl mx-auto">
 //                 {/* Header */}
-//                 <h2 className="text-4xl font-medium mb-2">Open positions</h2>
+//                  <h2 className="text-4xl  font-medium mb-2">Open positions</h2>
 //                 <p className="text-gray-500 mb-12">
 //                     Browse our current openings and see how you can contribute
 //                     to our expanding mission.

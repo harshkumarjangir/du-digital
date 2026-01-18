@@ -3,7 +3,7 @@ const OurFootprints = ({ data }) => {
         <section className="py-20 bg-[#F7F8F9]">
             <div className="max-w-6xl mx-auto px-6">
                 {/* Title */}
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+                <h2 className="text-4xl  md:text-4xl font-bold text-center mb-8">
                     Our Footprints
                 </h2>
 
@@ -78,7 +78,7 @@ export default OurFootprints;
 // const OurFootprints = ({ data }) => {
 //     return (
 //         <section className="py-16 text-center">
-//             <h2 className="text-3xl font-bold mb-6">Our Footprints</h2>
+//              <h2 className="text-4xl font-bold mb-6">Our Footprints</h2>
 //             <p className="max-w-3xl mx-auto text-gray-600 mb-10">
 //                 {data.description}
 //             </p>

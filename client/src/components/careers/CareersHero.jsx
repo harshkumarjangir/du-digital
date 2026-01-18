@@ -8,7 +8,7 @@ const CareersHero = ({ data }) => (
             decoding="async"
             fetchPriority="high"
         />
-        {/* <div className="absolute inset-0 bg-red-900/40" /> */}
+        <div className="absolute inset-0 bg-red-900/40" />
         <h1 className="relative text-4xl md:text-5xl font-bold text-white">
             {data.title}
         </h1>

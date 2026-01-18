@@ -22,7 +22,7 @@ const OurStrengths = ({ data }) => {
             <div className="max-w-7xl mx-auto px-6 md:px-20">
 
                 {/* Heading */}
-                <h2 className="text-4xl font-bold mb-14">
+                <h2 className="text-4xl  font-bold mb-14">
                     {data.heading}
                 </h2>
 
@@ -114,7 +114,7 @@ export default OurStrengths;
 //         <section className="py-20 bg-black text-white">
 //             <div className="max-w-7xl mx-auto px-6">
 //                 {/* Heading */}
-//                 <h2 className="text-4xl font-bold text-center mb-14">
+//                  <h2 className="text-4xl  font-bold text-center mb-14">
 //                     {data.heading}
 //                 </h2>
 

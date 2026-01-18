@@ -18,13 +18,13 @@ const NewsHome = ({ data }) => {
 
             {/* Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {data.slice(0, 3).map((item) => (
+                {data.slice(0, 3).map((item,index) => (
                     <a
                         key={item._id}
                         href={item.link}
                         target="_blank"
                         rel="noreferrer"
-                        className="relative bg-white rounded-[32px] overflow-hidden shadow-none transition"
+                        className={` ${index==1&&"-mt-3"} relative bg-white rounded-[32px] overflow-hidden shadow-none transition`}
                     >
                         {/* Image (Tall) */}
                         <div className="relative h-[420px]">
@@ -40,14 +40,14 @@ const NewsHome = ({ data }) => {
                         </div>
 
                         {/* ABSOLUTE Content */}
-                        <div className="absolute inset-x-0 bottom-0 px-6 pb-4 bg-gradient-to-t from-white via-white/90 to-transparent">
+                        <div className="absolute inset-x-0 -bottom-4 px-6 pb-4 bg-gradient-to-t from-white via-white/90 to-transparent">
                             {/* Quote */}
                             <div className="text-4xl text-gray-900 mb-0 leading-none">
                                 “
                             </div>
 
                             {/* Text */}
-                            <p className="text-gray-900 text-lg leading-relaxed mb-6 line-clamp-2">
+                            <p className="text-gray-900 text-md leading-relaxed mb-6 line-clamp-2 ">
                                 {item.title}
                             </p>
 

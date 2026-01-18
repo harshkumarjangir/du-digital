@@ -146,7 +146,7 @@ const BangladeshVac = () => {
         <section className="py-16 bg-gray-50">
           <div className="max-w-4xl mx-auto px-6 md:px-20">
             <div className="text-center mb-10">
-              <h2 className="text-3xl font-bold text-gray-900 mb-3">Apply Now</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-3">Apply Now</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
@@ -368,7 +368,7 @@ const BangladeshVac = () => {
         <section className="py-16 bg-gray-100">
           <div className="max-w-6xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-semibold text-black mb-3">Bangladesh Visa Application Centre in India</h2>
+              <h2 className="text-4xl lg:text-4xl font-semibold text-black mb-3">Bangladesh Visa Application Centre in India</h2>
               {/* <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div> */}
             </div>
 
@@ -415,7 +415,7 @@ const BangladeshVac = () => {
         <section className="py-16 bg-white">
           <div className="max-w-5xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-3">Documents Required</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-3">Documents Required</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
@@ -451,7 +451,7 @@ const BangladeshVac = () => {
         <section className="py-16 bg-gray-50">
           <div className="max-w-4xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-3">Frequently Asked Questions</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-3">Frequently Asked Questions</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 

@@ -41,7 +41,7 @@ export const Blog = ({ data: propData, className }) => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-20 py-12">
+    <div className="min-w-7xl mx-auto px-6 md:px-20 pb-12 pt-2">
       {loading && !propData && <div className="text-center">Loading...</div>}
       {error && !propData && <div className="text-center text-[#FF1033]">Error: {error}</div>}
 
@@ -53,7 +53,7 @@ export const Blog = ({ data: propData, className }) => {
             className="relative rounded-2xl overflow-hidden shadow-none group"
           >
             {/* IMAGE */}
-            <div className="h-[420px] relative">
+            <div className="h-[450px] relative">
               <LazyImage
                 src={blog.featuredImage}
                 alt={blog.title}
@@ -80,7 +80,7 @@ export const Blog = ({ data: propData, className }) => {
 
               <Link
                 to={`/blog/${blog._id}`}
-                className={`${getButtonColor(blog._id).bg} text-[#FFFDF5] ${getButtonColor(blog._id).hover} ${getButtonColor(blog._id).hoverText} px-6 py-2 mb-4 rounded-full w-max font-bold transition-all duration-300 cursor-pointer`}
+                className={`bg-[#FF1033] text-[#FFFDF5] ${getButtonColor(blog._id).hover} ${getButtonColor(blog._id).hoverText} px-6 py-2 mb-4 rounded-full w-max font-bold transition-all duration-300 cursor-pointer`}
               >
                 View More
               </Link>

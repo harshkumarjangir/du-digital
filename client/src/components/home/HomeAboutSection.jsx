@@ -25,7 +25,7 @@ const HomeAboutSection = ({ data }) => {
 
                 {/* LEFT CONTENT */}
                 <div>
-                    <h2 className="text-3xl lg:text-5xl font-semibold leading-tight mb-6 whitespace-pre-line">
+                    <h2 className="text-4xl  font-bold leading-tight mb-6 whitespace-pre-line">
                         {data.title}
                     </h2>
 
@@ -73,7 +73,7 @@ export default HomeAboutSection;
 
 //                 {/* LEFT CONTENT */}
 //                 <div>
-//                     <h2 className="text-4xl lg:text-5xl font-semibold leading-tight mb-6 whitespace-pre-line">
+//                      <h2 className="text-4xl  lg:text-5xl font-semibold leading-tight mb-6 whitespace-pre-line">
 //                         {data.title}
 //                     </h2>
 

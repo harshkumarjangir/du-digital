@@ -291,7 +291,7 @@ const Malaysiavisaforndians = () => {
             {exploreSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
+                  <h2 className="text-4xl md:text-4xl font-bold text-[#333333] mb-2">
                     {item.title}
                   </h2>
                   <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
@@ -339,7 +339,7 @@ const Malaysiavisaforndians = () => {
         <section className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-3">
                 TYPES OF VISA
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
@@ -439,7 +439,7 @@ const Malaysiavisaforndians = () => {
         <section className="py-20 bg-white">
           <div className="max-w-4xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-semibold text-black mb-3">
+              <h2 className="text-4xl md:text-4xl font-semibold text-black mb-3">
                 DOCUMENTS REQUIRED FOR Malaysia VISA
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
@@ -482,7 +482,7 @@ const Malaysiavisaforndians = () => {
 
             {/* LEFT CONTENT */}
             <div>
-              <h2 className="text-4xl font-bold leading-tight mb-6">
+              <h2 className="text-4xl  font-bold leading-tight mb-6">
                 Any questions? <br />
                 We got you.
               </h2>

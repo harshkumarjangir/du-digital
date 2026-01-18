@@ -219,7 +219,7 @@ const TenantVerification = () => {
               >
                 {/* LEFT CONTENT */}
                 <div>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
+                  <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
                     Why Choose{' '}
                     <span className="text-[#FF1033]">DuVerify</span> Platform?
                   </h2>
@@ -278,7 +278,7 @@ const TenantVerification = () => {
 
           {/* Heading */}
           <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               Key Benefits
             </h2>
             <div className="w-20 h-[2px] mx-auto bg-[#FF1033]" />
@@ -349,7 +349,7 @@ const TenantVerification = () => {
 
             {/* Heading */}
             <div className="text-center mb-6">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+              <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-gray-900">
                 Pricing Plans
               </h2>
               <div className="w-20 h-[2px] bg-[#FF1033] mx-auto mt-4 mb-6" />
@@ -751,7 +751,7 @@ const TenantVerification = () => {
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             {/* Heading */}
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+              <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-white">
                 How It Works?
               </h2>
               <div className="w-20 h-[2px] bg-[#FF1033] mx-auto my-4" />
@@ -818,7 +818,7 @@ const TenantVerification = () => {
         <section className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-black">Deliverables</h2>
+              <h2 className="text-4xl  md:text-5xl font-bold text-black">Deliverables</h2>
               <div className="w-24 h-1 mx-auto mt-4" style={{ backgroundColor: '#FF1033' }}></div>
               {deliverablesSection[0]?.badge?.text && (
                 <p className="text-[#333333] text-lg font-bold mt-4">{deliverablesSection[0].badge.text}</p>
@@ -877,7 +877,7 @@ const TenantVerification = () => {
 
             {/* LEFT CONTENT */}
             <div>
-              <h2 className="text-4xl font-bold leading-tight mb-6">
+              <h2 className="text-4xl  font-bold leading-tight mb-6">
                 Any questions? <br />
                 We got you.
               </h2>
@@ -949,7 +949,7 @@ export default TenantVerification;
 
 //       {/* Heading */}
 //       <div className="text-center mb-16">
-//         <h2 className="text-4xl md:text-5xl font-extrabold text-white">
+//          <h2 className="text-4xl  md:text-5xl font-extrabold text-white">
 //           How It Works?
 //         </h2>
 //         <div className="w-20 h-[2px] bg-[#FF1033] mx-auto my-4" />

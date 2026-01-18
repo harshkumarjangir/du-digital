@@ -163,7 +163,7 @@ const IndianEvisa = () => {
 
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full min-h-[800px] xl:h-[800px] overflow-hidden">
+      <section className="relative w-full  h-[500px] overflow-hidden">
         {/* Hero Image */}
         {formData?.image && (
           <img
@@ -450,7 +450,7 @@ const IndianEvisa = () => {
               {heroSection.map((item, index) => (
                 <div key={item._id || index} className="grid lg:grid-cols-2 gap-16 items-center">
                   <div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
+                    <h2 className="text-4xl md:text-4xl font-bold text-[#333333] mb-2">
                       {item.title}
                     </h2>
                     <div className="w-20 h-0.75 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
@@ -498,7 +498,7 @@ const IndianEvisa = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
+            <h2 className="text-4xl md:text-4xl font-bold text-[#333333] mb-2">
               Eligibility for India eVisa
             </h2>
             <div className="w-32 h-0.75 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
@@ -542,7 +542,7 @@ const IndianEvisa = () => {
 
           {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#333333] tracking-wide">
+            <h2 className="text-4xl md:text-4xl font-bold text-[#333333] tracking-wide">
               E-VISA APPLICATION PROCESS
             </h2>
             <div className="w-24 h-[3px] mx-auto mt-4 bg-[#FF1F3D]"></div>
@@ -624,7 +624,7 @@ const IndianEvisa = () => {
           <section className="py-20 bg-[#F7F7F7]">
             <div className="max-w-6xl mx-auto px-6 md:px-20">
               <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
+                <h2 className="text-4xl md:text-4xl font-bold text-[#333333] mb-2">
                   Documents Required
                 </h2>
                 <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1F3D' }}></div>
@@ -685,7 +685,7 @@ const IndianEvisa = () => {
           // <section className="py-20 bg-white">
           //   <div className="max-w-4xl mx-auto px-6 md:px-20">
           //     <div className="text-center mb-12">
-          //       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+          //        <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-2">
           //         Frequently Asked Questions
           //       </h2>
           //       <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#e63938' }}></div>
@@ -727,7 +727,7 @@ const IndianEvisa = () => {
 
               {/* LEFT CONTENT */}
               <div>
-                <h2 className="text-4xl font-bold leading-tight mb-6">
+                <h2 className="text-4xl  font-bold leading-tight mb-6">
                   Any questions? <br />
                   We got you.
                 </h2>

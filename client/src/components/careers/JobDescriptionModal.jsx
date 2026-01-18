@@ -54,7 +54,7 @@ const JobDescriptionModal = ({ job, onApply, onClose }) => {
                         {/* Responsibilities */}
                         {job.responsibilities?.length > 0 && (
                             <div>
-                                <h2 className="text-xl font-semibold mb-3">
+                                <h2 className="text-4xl font-semibold mb-3">
                                     Key Responsibilities
                                 </h2>
                                 <ul className="list-disc pl-6 space-y-2 text-gray-700">
@@ -68,7 +68,7 @@ const JobDescriptionModal = ({ job, onApply, onClose }) => {
                         {/* Qualifications */}
                         {job.qualifications?.length > 0 && (
                             <div>
-                                <h2 className="text-xl font-semibold mb-3">
+                                <h2 className="text-4xl font-semibold mb-3">
                                     Qualifications
                                 </h2>
                                 <ul className="list-disc pl-6 space-y-2 text-gray-700">

@@ -21,7 +21,7 @@ const Gallery = () => {
   if (loading) {
     return (
       <section className="py-16 bg-white">
-        <h2 className="text-3xl font-bold text-center mb-10">GALLERY</h2>
+        <h2 className="text-4xl font-bold text-center mb-10">GALLERY</h2>
         <div className="max-w-7xl mx-auto px-6 text-center">
           <p>Loading gallery...</p>
         </div>
@@ -32,7 +32,7 @@ const Gallery = () => {
   if (error) {
     return (
       <section className="py-16 bg-white">
-        <h2 className="text-3xl font-bold text-center mb-10">GALLERY</h2>
+        <h2 className="text-4xl font-bold text-center mb-10">GALLERY</h2>
         <div className="max-w-7xl mx-auto px-6 text-center text-[#FF1033]">
           <p>Error loading gallery: {error}</p>
         </div>
@@ -43,7 +43,7 @@ const Gallery = () => {
   if (!images || images.length === 0) {
     return (
       <section className="py-16 bg-white">
-        <h2 className="text-3xl font-bold text-center mb-10">GALLERY</h2>
+        <h2 className="text-4xl font-bold text-center mb-10">Gallery</h2>
         <div className="max-w-7xl mx-auto px-6 text-center">
           <p>No gallery images available.</p>
         </div>
@@ -53,7 +53,7 @@ const Gallery = () => {
 
   return (
     <section className="py-16 bg-white">
-      <h2 className="text-3xl font-bold text-center mb-10">GALLERY</h2>
+      <h2 className="text-4xl font-bold text-center mb-10">Gallery</h2>
 
       <div className="max-w-7xl mx-auto px-6 relative">
         <Swiper
@@ -142,7 +142,7 @@ export default Gallery;
 
 //   return (
 //     <section className="py-16 bg-white">
-//       <h2 className="text-3xl font-bold text-center mb-10">GALLERY</h2>
+//        <h2 className="text-4xl font-bold text-center mb-10">GALLERY</h2>
 
 //       <div className="max-w-7xl mx-auto px-6 relative">
 //         <Swiper
@@ -218,7 +218,7 @@ export default Gallery;
 
 //     return (
 //         <section className="py-16 bg-white">
-//             <h2 className="text-3xl font-bold text-center mb-10">GALLERY</h2>
+//              <h2 className="text-4xl font-bold text-center mb-10">GALLERY</h2>
 
 //             <div className="relative max-w-7xl mx-auto px-6">
 //                 {/* Left Arrow */}
@@ -291,7 +291,7 @@ export default Gallery;
 
 //     return (
 //         <section className="py-16">
-//             <h2 className="text-3xl font-bold text-center mb-10">Gallery</h2>
+//              <h2 className="text-4xl font-bold text-center mb-10">Gallery</h2>
 
 //             <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 px-6">
 //                 {images.map((img, i) => (

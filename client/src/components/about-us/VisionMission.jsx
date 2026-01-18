@@ -7,7 +7,7 @@ const VisionMission = ({ data }) => {
                 <div className="rounded-2xl p-3 md:p-10">
 
                     {/* HEADING */}
-                    <h2 className="text-2xl md:text-4xl font-bold text-center mb-10">
+                    <h2 className="text-4xl font-bold text-center mb-10">
                         {data.heading}
                     </h2>
 

@@ -339,7 +339,7 @@ const Globalrecruitmentservices = () => {
         <section className="py-20 bg-white relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold text-[#333333] mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#333333] mb-4">
                 Why Choose DU Global?
                 {/* <span className="text-[#c60505]">DU Global?</span> */}
               </h2>
@@ -384,7 +384,7 @@ const Globalrecruitmentservices = () => {
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             {/* Heading */}
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+              <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                 Our Services
               </h2>
             </div>
@@ -440,7 +440,7 @@ const Globalrecruitmentservices = () => {
 
             {/* Heading */}
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl  md:text-5xl font-bold text-gray-900 mb-4">
                 Industries We Serve
               </h2>
             </div>
@@ -523,7 +523,7 @@ const Globalrecruitmentservices = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               {/* Left Side - Stats */}
               <div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+                <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                   Our Track Record
                 </h2>
 
@@ -574,7 +574,7 @@ const Globalrecruitmentservices = () => {
 
             {/* LEFT CONTENT */}
             <div className="text-left">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+              <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
                 {readyToBuildSection[0]?.title || "Ready to Build Your Team?"}
               </h2>
 

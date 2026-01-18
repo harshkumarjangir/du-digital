@@ -43,7 +43,7 @@ const ForGovernmentEmbassies = () => {
             {/* NEWS SECTION */}
             <div className="py-10 bg-white">
                 <div className="max-w-7xl mx-auto px-6 mb-8 text-center">
-                    <h2 className="text-3xl font-bold text-gray-900">News and Media</h2>
+                    <h2 className="text-4xl font-bold text-gray-900">News and Media</h2>
                 </div>
                 <NewsHome data={news.slice(0, 3)} />
                 <Link to="/news-and-media" className="block text-center pt-8">

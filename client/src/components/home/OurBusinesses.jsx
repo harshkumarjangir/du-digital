@@ -23,7 +23,7 @@ const OurBusinesses = ({ data }) => {
 
                 {/* ===== HEADER ===== */}
                 <div className="text-center mb-14">
-                    <h2 className="text-4xl font-semibold text-gray-900">
+                    <h2 className="text-4xl  font-bold text-gray-900">
                         {data.title}
                     </h2>
                     <div className="w-16 h-[3px] bg-[#FF1033] mx-auto my-4" />

@@ -163,7 +163,7 @@ const Georgiaevisa = () => {
                         {/* Video Section */}
                         {revisedProcessSection.length > 0 && (
                             <>
-                                <h2 className="text-3xl md:text-4xl font-bold text-[#FF1033] mb-8">
+                                <h2 className="text-4xl md:text-4xl font-bold text-[#FF1033] mb-8">
                                     {revisedProcessSection[0]?.title}
                                 </h2>
 
@@ -190,7 +190,7 @@ const Georgiaevisa = () => {
             {duVerifySection.length > 0 && (
                 <section className="py-16 bg-gray-50">
                     <div className="max-w-4xl mx-auto px-6 text-center">
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+                        <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-8">
                             {duVerifySection[0]?.title}
                         </h2>
                         <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-line text-left">
@@ -229,7 +229,7 @@ const Georgiaevisa = () => {
             {faqs && faqs.length > 0 && (
                 <section className="py-16 bg-gray-50">
                     <div className="max-w-4xl mx-auto px-6 md:px-20">
-                        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+                        <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">
                             Frequently Asked Questions
                         </h2>
                         <div className="space-y-4">

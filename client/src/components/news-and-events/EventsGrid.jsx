@@ -29,12 +29,12 @@ const EventsGrid = ({ data: propData }) => {
 
     // Button color variations
     const BUTTON_COLORS = [
-        { bg: 'bg-[#FF1033]', hover: 'hover:bg-[#511313]', hoverText: 'hover:text-[#FF1033]' },
-        { bg: 'bg-blue-600', hover: 'hover:bg-blue-900', hoverText: 'hover:text-blue-600' },
-        { bg: 'bg-green-600', hover: 'hover:bg-green-900', hoverText: 'hover:text-green-600' },
-        { bg: 'bg-purple-600', hover: 'hover:bg-purple-900', hoverText: 'hover:text-purple-600' },
-        { bg: 'bg-orange-600', hover: 'hover:bg-orange-900', hoverText: 'hover:text-orange-600' },
-        { bg: 'bg-pink-600', hover: 'hover:bg-pink-900', hoverText: 'hover:text-pink-600' },
+        // { bg: 'bg-blue-600', hover: 'hover:bg-blue-900', hoverText: 'hover:text-blue-600' },
+        { bg: 'bg-[#3DADFF]', hover: 'hover:bg-[#3DADFFAA]', hoverText: 'hover:text-[#3DADFF]' },
+        { bg: 'bg-[#00AB63]', hover: 'hover:bg-[#00AB63AA]', hoverText: 'hover:text-[#00AB63]' },
+        { bg: 'bg-[#CDF4D3]', hover: 'hover:bg-[#CDF4D3AA]', hoverText: 'hover:text-[#CDF4D3]' },
+        { bg: 'bg-[#FF1033]', hover: 'hover:bg-[#511313AA]', hoverText: 'hover:text-[#FF1033]' },
+        { bg: 'bg-[#FFD071]', hover: 'hover:bg-[#FFD071AA]', hoverText: 'hover:text-[#FFD071]' },
     ];
 
     const getButtonColor = (id) => {

@@ -174,7 +174,7 @@ const Duverify = () => {
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333333] mb-3">
+              <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-[#333333] mb-3">
                 About DuVerify
                 {/* <span style={{ color: '#FF1033' }}>DuVerify</span> */}
               </h2>
@@ -225,7 +225,7 @@ const Duverify = () => {
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             {/* Heading */}
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                 Why Choose DuVerify?
               </h2>
               <div className="w-16 h-[3px] bg-[#FF1033] mx-auto" />
@@ -296,7 +296,7 @@ const Duverify = () => {
 
           <div className="max-w-7xl mx-auto px-6 relative z-10">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
+              <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
                 Key Partnerships
               </h2>
               <div className="w-16 h-0.75 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
@@ -347,7 +347,7 @@ const Duverify = () => {
 
             {/* Heading */}
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
+              <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
                 What DuVerify Can Do For You
               </h2>
               <div className="w-20 h-[3px] bg-[#FF1033] mx-auto" />
@@ -422,7 +422,7 @@ const Duverify = () => {
             <div className="absolute inset-0 bg-[#FF1033]/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
             <div className="relative z-10 p-10 md:p-10 flex flex-col justify-center h-full">
-              <h2 className="text-3xl md:text-4xl lg:text-4xl font-semibold text-white mb-4">
+              <h2 className="text-4xl md:text-4xl lg:text-4xl font-semibold text-white mb-4">
                 {demoSection[0]?.title || 'Request a Demo Today'}
               </h2>
               <p className="text-gray-100 leading-relaxed">

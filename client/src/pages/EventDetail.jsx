@@ -93,7 +93,7 @@ const EventDetail = () => {
 
             {/* Event Images Gallery */}
             <div className="max-w-7xl mx-auto px-6 md:px-20 py-16">
-                <h2 className="text-3xl font-semibold mb-8">Event Gallery</h2>
+                <h2 className="text-4xl font-semibold mb-8">Event Gallery</h2>
 
                 {selectedEvent.images && selectedEvent.images.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -133,7 +133,7 @@ const EventDetail = () => {
             {selectedEvent.details && (
                 <div className="bg-gray-50 py-16">
                     <div className="max-w-7xl mx-auto px-6">
-                        <h2 className="text-3xl font-semibold mb-6">Event Details</h2>
+                        <h2 className="text-4xl font-semibold mb-6">Event Details</h2>
                         <div className="prose max-w-none">
                             <p className="text-gray-700 leading-relaxed">{selectedEvent.details}</p>
                         </div>

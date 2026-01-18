@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import siteData from "../../data/navigationData.json";
 import { ChevronDown, Phone } from "lucide-react";
 import { Link, NavLink, useLocation } from "react-router-dom";
@@ -9,8 +9,24 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(null);
   const [activeChild, setActiveChild] = useState(null);
+  const [hideDropdowns, setHideDropdowns] = useState(false);
+  const navRef = useRef(null);
 
   const location = useLocation();
+
+  // Hide dropdowns when pathname changes, then allow them to show again on next mouse interaction
+  useEffect(() => {
+    setHideDropdowns(true);
+  }, [location.pathname]);
+
+  // Reset hideDropdowns when mouse leaves the nav area
+  const handleNavMouseLeave = () => {
+    if (hideDropdowns) {
+      setHideDropdowns(false);
+    }
+  };
+
+
 
   const isNavActive = (item) => {
     // direct match
@@ -45,13 +61,16 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Menu */}
-        <nav className="hidden lg:flex gap-4">
+        <nav className="hidden lg:flex gap-4" ref={navRef} onMouseLeave={handleNavMouseLeave}>
           {navbar.items.map((item, i) => (
-            <div key={i} className="relative group ">
+            <div
+              key={i}
+              className="relative group"
+              onMouseEnter={() => setHideDropdowns(false)}
+            >
               {/* Top Level */}
               <NavLink
                 to={item.link || "#"}
-
                 className={`font-semibold text-[15px] text-gray-800 hover:text-[#FF1033] flex items-center gap-1
                    border-b-2 border-transparent group-hover:border-[#FF1033] pb-1 ${isNavActive(item)
                     ? "text-[#FF1033] border-[#FF1033]"
@@ -62,15 +81,15 @@ const Navbar = () => {
                 {/* {item.children && <ChevronDown size={20} color="black" />} */}
               </NavLink>
 
-              {/* Mega Menu */}
-              {item.children && (
+              {/* Mega Menu - NOT rendered when hideDropdowns is true */}
+              {item.children && !hideDropdowns && (
                 <div
                   className="absolute left-1/2 -translate-x-1/2 top-full mt-2
                flex opacity-0 invisible group-hover:opacity-100
                group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200"
                 >
                   {/* LEFT PANEL */}
-                  <div className="min-w-60 text-wrap bg-white shadow-xl rounded-xl">
+                  <div className=" text-wrap bg-white shadow-xl rounded-xl w-max" >
                     {item.children.map((child, index) => (
                       <div key={index} className="group/item relative">
                         {child.link ? (

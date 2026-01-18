@@ -307,7 +307,7 @@ const Southkoreavisaforindians = () => {
           <div className="max-w-4xl mx-auto px-6 md:px-20">
             {/* Section Title */}
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#333333] mb-3">
+              <h2 className="text-4xl md:text-4xl lg:text-5xl font-semibold text-[#333333] mb-3">
                 South Korea Visa Types with Fees
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
@@ -669,7 +669,7 @@ const Southkoreavisaforindians = () => {
           <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-20">
             {/* Section Header */}
             <div className="text-center mb-6">
-              <h2 className="text-3xl md:text-4xl font-bold mb-3">
+              <h2 className="text-4xl md:text-4xl font-bold mb-3">
                 Why Choose DU Global?
               </h2>
             </div>
@@ -725,7 +725,7 @@ const Southkoreavisaforindians = () => {
 
             {/* LEFT CONTENT */}
             <div>
-              <h2 className="text-4xl font-bold leading-tight mb-6">
+              <h2 className="text-4xl  font-bold leading-tight mb-6">
                 Any questions? <br />
                 We got you.
               </h2>

@@ -177,7 +177,7 @@ const BangladeshVisasForUaeSingapore = () => {
             {globalExpertsSection.map((item, index) => (
               <div key={index} className="grid md:grid-cols-2 gap-16 items-center">
                 <div>
-                  <h2 className="text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                  <h2 className="text-4xl  font-bold text-gray-900 mb-6 leading-tight">
                     The Global Experts in <br />
                     <span className="text-[#FF1033]">Visa & Consular Services</span>
                   </h2>
@@ -240,7 +240,7 @@ const BangladeshVisasForUaeSingapore = () => {
               </div>
 
               <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                <h2 className="text-4xl  font-bold text-gray-900 mb-6">
                   {weCaterSection[0]?.title}
                 </h2>
                 <div className="text-lg text-gray-600 mb-12 leading-relaxed">
@@ -284,7 +284,7 @@ const BangladeshVisasForUaeSingapore = () => {
             </div>
 
             <div className="order-1 md:order-1">
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-4xl  font-bold text-gray-900 mb-6">
                 {item.title}
               </h2>
               <div className="prose prose-lg text-gray-600 mb-8">

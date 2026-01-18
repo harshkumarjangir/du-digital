@@ -42,7 +42,7 @@ const ContactUs = () => {
                             WE’RE HERE TO HELP YOU
                         </p>
 
-                        <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                        <h2 className="text-4xl  font-bold text-gray-900 mb-4">
                             Have a question, feedback, or query about DU Global’s services?
                         </h2>
 

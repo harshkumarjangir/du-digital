@@ -5,7 +5,7 @@ const TeamGrid = ({ title, subtitle, data }) => {
 
     return (
         <section className="py-20 bg-[#F9F9F9]">
-            <div className="max-w-6xl mx-auto px-6">
+            <div className="max-w-7xl mx-auto px-6">
 
                 {/* HEADER */}
                 <div className="mb-14">
@@ -13,7 +13,7 @@ const TeamGrid = ({ title, subtitle, data }) => {
                         EXPERTS
                     </span>
 
-                    <h2 className="text-4xl font-bold mb-4">{title}</h2>
+                    <h2 className="text-4xl  font-bold mb-4">{title}</h2>
 
                     {subtitle && (
                         <p className="max-w-2xl text-gray-600">
@@ -54,12 +54,20 @@ const TeamGrid = ({ title, subtitle, data }) => {
                             {/* HOVER DESCRIPTION */}
                             {member.description && (
                                 <div className="absolute inset-0 z-20 bg-black/80 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300">
-                                    <div className="absolute bottom-0 w-full max-h-[100%] overflow-y-auto p-4 text-sm text-white no-scrollbar">
+                                    <div className="absolute top-0 w-full max-h-[100%] overflow-y-auto p-5 text-sm text-white no-scrollbar">
+                                        <div className="py-2 mb-5 text-white z-10">
+                                            <h4 className="text-lg font-semibold">
+                                                {member.name}
+                                            </h4>
+                                            <p className="text-sm text-white/80">
+                                                {member.designation}
+                                            </p>
+                                        </div>
                                         <ul className="space-y-1">
                                             {member.description
                                                 .split("\n")
                                                 .map((point, idx) => (
-                                                    <li key={idx}>• {point}</li>
+                                                    <li key={idx} className="my-3">• {point}</li>
                                                 ))}
                                         </ul>
                                     </div>
@@ -98,7 +106,7 @@ export default TeamGrid;
 //                         EXPERTS
 //                     </span>
 
-//                     <h2 className="text-4xl font-bold mb-4">{title}</h2>
+//                      <h2 className="text-4xl  font-bold mb-4">{title}</h2>
 
 //                     {subtitle && (
 //                         <p className="max-w-2xl text-gray-600">
@@ -185,7 +193,7 @@ export default TeamGrid;
 
 //     return (
 //         <section className="py-16 bg-gray-50">
-//             <h2 className="text-3xl font-bold text-center mb-12">{title}</h2>
+//              <h2 className="text-4xl font-bold text-center mb-12">{title}</h2>
 
 //             <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 px-6">
 //                 {data.map((member, i) => (
@@ -257,7 +265,7 @@ export default TeamGrid;
 
 //     return (
 //         <section className="py-16 bg-gray-50">
-//             <h2 className="text-3xl font-bold text-center mb-10">{title}</h2>
+//              <h2 className="text-4xl font-bold text-center mb-10">{title}</h2>
 //             <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 px-6">
 //                 {data.map((member, i) => (
 //                     <div key={member._id || i} className="text-center bg-white p-4 rounded shadow">

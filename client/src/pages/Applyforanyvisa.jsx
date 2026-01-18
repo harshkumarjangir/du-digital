@@ -191,7 +191,7 @@ const Applyforanyvisa = () => {
           <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-20">
             <div className="text-center mb-8">
               <p className="text-xl font-semibold mb-2" style={{ color: '#FF1033' }}>VISA APPLICATION</p>
-              <h2 className="text-3xl md:text-4xl font-bold text-white">Apply for Any Visa</h2>
+              <h2 className="text-4xl md:text-4xl font-bold text-white">Apply for Any Visa</h2>
             </div>
 
             <form className="bg-white rounded-xl p-8 shadow-2xl" onSubmit={handleSubmit}>
@@ -409,7 +409,7 @@ const Applyforanyvisa = () => {
         <section className="py-16 bg-gray-50">
           <div className="max-w-5xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-3">Documents Required</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-3">Documents Required</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
@@ -440,7 +440,7 @@ const Applyforanyvisa = () => {
         <section className="py-16 bg-white">
           <div className="max-w-4xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-3">Frequently Asked Questions</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-3">Frequently Asked Questions</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 
