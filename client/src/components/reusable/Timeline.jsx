@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Controller, Autoplay } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // CSS Imports
@@ -8,8 +8,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 const TimelineSlider = ({ data = [] }) => {
-    const [topSwiper, setTopSwiper] = useState(null);
-    const [contentSwiper, setContentSwiper] = useState(null);
+    const [activeIndex, setActiveIndex] = useState(0);
+    const swiperRef = useRef(null);
 
     // Refs for custom navigation buttons
     const prevRef = useRef(null);
@@ -21,7 +21,6 @@ const TimelineSlider = ({ data = [] }) => {
         let result = [...data];
 
         // We need at least 15 items for a smooth loop with slidesPerView={5}
-        // This duplicates the array until it's long enough
         while (result.length < 15) {
             result = [...result, ...data];
         }
@@ -31,13 +30,11 @@ const TimelineSlider = ({ data = [] }) => {
     // Only loop if we actually have data
     const shouldLoop = processedData.length > 0;
 
-    // 2. SYNC LOGIC: Link the two sliders
-    useEffect(() => {
-        if (topSwiper && contentSwiper) {
-            topSwiper.controller.control = contentSwiper;
-            contentSwiper.controller.control = topSwiper;
-        }
-    }, [topSwiper, contentSwiper]);
+    // Get the active item based on real index (handles loop correctly)
+    const activeItem = useMemo(() => {
+        if (!processedData.length) return null;
+        return processedData[activeIndex] || processedData[0];
+    }, [processedData, activeIndex]);
 
     if (!data.length) return null;
 
@@ -67,32 +64,34 @@ const TimelineSlider = ({ data = [] }) => {
                         <ChevronRight size={44} strokeWidth={2.5} />
                     </button>
 
-                    {/* Timeline Swiper */}
+                    {/* Timeline Swiper - Only shows dots and years */}
                     <Swiper
-                        modules={[Navigation, Controller]}
-                        onSwiper={setTopSwiper}
-                        // Connect custom arrows
+                        modules={[Navigation, Autoplay]}
+                        onSwiper={(swiper) => {
+                            swiperRef.current = swiper;
+                        }}
                         navigation={{
                             prevEl: prevRef.current,
                             nextEl: nextRef.current,
                         }}
                         autoplay={{
-
-                        delay: 4000,
-
-                        disableOnInteraction: false,
-
-                     }}
+                            delay: 4000,
+                            disableOnInteraction: false,
+                            pauseOnMouseEnter: true,
+                        }}
                         onBeforeInit={(swiper) => {
-                            // Necessary for React to recognize refs immediately
                             swiper.params.navigation.prevEl = prevRef.current;
                             swiper.params.navigation.nextEl = nextRef.current;
+                        }}
+                        onSlideChange={(swiper) => {
+                            // Update active index when slide changes
+                            setActiveIndex(swiper.realIndex);
                         }}
                         loop={shouldLoop}
                         centeredSlides={true}
                         slidesPerView={5}
                         spaceBetween={0}
-                        slideToClickedSlide={true} // Allows clicking a year to slide to it
+                        slideToClickedSlide={true}
                         className="timeline-swiper pt-2 pb-4"
                         breakpoints={{
                             0: { slidesPerView: 3 },
@@ -102,65 +101,58 @@ const TimelineSlider = ({ data = [] }) => {
                         {processedData.map((item, index) => (
                             <SwiperSlide key={`${item._id || index}-top`}>
                                 {({ isActive }) => (
-                                  <>
-                                        <div className="flex flex-col mt-5 items-center cursor-pointer relative z-10 group">
-                                            {/* DOT */}
-                                            <div
-                                                className={`w-5 h-5 rounded-full border-[3px] transition-all duration-300 ease-out
+                                    <div className="flex flex-col mt-5 items-center cursor-pointer relative z-10 group">
+                                        {/* DOT */}
+                                        <div
+                                            className={`w-5 h-5 rounded-full border-[3px] transition-all duration-300 ease-out
                                             ${isActive
-                                                        ? "bg-[#FF1033] border-[#FF1033] scale-125 shadow-lg shadow-red-200"
-                                                        : "bg-white border-gray-300 scale-90 group-hover:border-gray-400"
-                                                    }`}
-                                            />
+                                                    ? "bg-[#FF1033] border-[#FF1033] scale-125 shadow-lg shadow-red-200"
+                                                    : "bg-white border-gray-300 scale-90 group-hover:border-gray-400"
+                                                }`}
+                                        />
 
-                                            {/* YEAR TEXT */}
-                                            <span
-                                                className={` text-lg font-bold transition-colors duration-300
+                                        {/* YEAR TEXT */}
+                                        <span
+                                            className={`text-lg font-bold transition-colors duration-300
                                             ${isActive ? "text-black" : "text-gray-300"}`}
-                                            >
-                                                {item.year}
-                                            </span>
-                                        </div>
-                                        <div className="text-center max-w-3xl mx-auto">
-                                        <div className="flex flex-col items-center px-4">
-
-                                            {/* Big Year Heading */}
-                                            <h2 className="text-6xl font-extrabold text-[#FF1033] mb-6 tracking-tight">
-                                                {item.year}
-                                            </h2>
-
-                                            {/* Title (Optional, if your data has it) */}
-                                            {/* <h3 className="text-2xl font-bold text-black mb-4">
-                                    {item.title || "Milestone Achieved"}
-                                </h3> */}
-
-                                            {/* Description with Line Clamp (Limit to 2 lines) */}
-                                            <p className="text-xl text-gray-700 font-medium mb-8 leading-relaxed line-clamp-2 text-ellipsis overflow-hidden h-[3.5rem]">
-                                                {item.description}
-                                            </p>
-
-                                            {/* Logo Image */}
-                                            {item.logo && (
-                                                <div className="h-24 flex items-center justify-center">
-                                                    <img
-                                                        src={`${import.meta.env.VITE_BACKEND_IMAGES_URL}${item.logo}`}
-                                                        alt={`${item.year} logo`}
-                                                        className="h-full w-auto object-contain hover:scale-105 transition-transform"
-                                                    />
-                                                </div>
-                                            )}
-                                        </div>
-                                        </div>
-                                  </>
-
+                                        >
+                                            {item.year}
+                                        </span>
+                                    </div>
                                 )}
                             </SwiperSlide>
                         ))}
                     </Swiper>
                 </div>
 
-                {/* --- BOTTOM SECTION: CONTENT --- */}
-            
+                {/* --- BOTTOM SECTION: CONTENT (Only Active Item) --- */}
+                {activeItem && (
+                    <div className="text-center max-w-3xl mx-auto">
+                        <div className="flex flex-col items-center px-4">
+
+                            {/* Big Year Heading */}
+                            <h2 className="text-6xl font-extrabold text-[#FF1033] mb-6 tracking-tight">
+                                {activeItem.year}
+                            </h2>
+
+                            {/* Description with Line Clamp */}
+                            <p className="text-xl text-gray-700 font-medium mb-8 leading-relaxed line-clamp-2 text-ellipsis overflow-hidden h-[3.5rem]">
+                                {activeItem.description}
+                            </p>
+
+                            {/* Logo Image */}
+                            {activeItem.logo && (
+                                <div className="h-24 flex items-center justify-center">
+                                    <img
+                                        src={`${import.meta.env.VITE_BACKEND_IMAGES_URL}${activeItem.logo}`}
+                                        alt={`${activeItem.year} logo`}
+                                        className="h-full w-auto object-contain hover:scale-105 transition-transform"
+                                    />
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
 
             </div>
         </section>
