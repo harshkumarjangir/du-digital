@@ -159,7 +159,7 @@ const Applyforanyvisa = () => {
         <div className="relative left-0 z-10 max-w-7xl mx-auto px-6 md:px-20">
           <div className="text-white max-w-xl">
             {/* <p className="text-lg mb-2 text-gray-300">Welcome to</p> */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            <h1 className="text-4xl   lg:text-5xl font-bold leading-tight mb-6">
               Welcome to DU Global
               {/* <span style={{ color: '#FF1033' }}></span> */}
             </h1>
@@ -348,11 +348,11 @@ const Applyforanyvisa = () => {
               const embedUrl = getYouTubeEmbedUrl(item.youtubeUrl);
 
               return (
-                <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center place-items-center">
+                <div key={item._id || index} className="grid lg:grid-cols-2 gap-y-12 items-center place-items-center">
                   <div>
                     <p className="text-xl md:text-2xl lg:text-4xl font-bold mb-2" style={{ color: '#333333' }}>Global Experts in</p>
                     <div className="w-14 h-0.5 mr-2" style={{ backgroundColor: '#FF1033' }}></div>
-                    <h2 className="text-2xl md:text-2xl lg:text-3xl font-bold text-[#333333] my-6">
+                    <h2 className="text-2xl md:text-2xl font-bold text-[#333333] my-6">
                       {item.title}
                     </h2>
                     <p className="text-[#333333] leading-relaxed">
@@ -360,7 +360,7 @@ const Applyforanyvisa = () => {
                     </p>
                   </div>
                   {embedUrl && (
-                    <div className="rounded-xl overflow-hidden shadow-lg">
+                    <div className="rounded-xl w-full overflow-hidden shadow-lg">
                       <iframe
                         width="100%"
                         height="315"

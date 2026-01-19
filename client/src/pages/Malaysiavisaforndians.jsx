@@ -134,8 +134,8 @@ const Malaysiavisaforndians = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center place-items-center w-full place-items-center place-items-center">
             {/* Left - Hero Text */}
             <div className="text-white">
-              <p className="text-4xl md:text-5xl lg:text-6xl mb-2">Apply For</p>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              <p className="text-4xl    mb-2">Apply For</p>
+              <h1 className="text-4xl lg:text-5xl   font-bold leading-tight mb-6">
                 <span style={{ color: '#FF1033' }}>Malaysia Visa</span>
               </h1>
               {/* <p className="text-gray-300 text-lg">
@@ -317,16 +317,17 @@ const Malaysiavisaforndians = () => {
                     className="max-w-full h-auto rounded-xl shadow-lg"
                     style={{ maxHeight: '500px' }}
                   />}
-                  {item.badge?.text && (
-                    <div
-                      className="inline-flex flex-col absolute -top-5 right-0 items-center px-4 py-2 rounded-full text-white text-sm font-semibold mb-4"
-                      style={{ backgroundColor: item.badge.background || '#FF1033' }}
-                    >
-                      {/* {item.badge.text} */}
-                      <span>{item.badge.text.split("+")[0]}+</span>
-                      <span>{item.badge.text.split("+")[1]}</span>
-                    </div>
-                  )}
+                  {
+                    item?.badge && (
+                      <div className="flex flex-col items-center text-white gap-0 absolute -top-10 -right-10 rounded-lg p-4 flex" style={{
+                        backgroundColor: `${item.badge.background || "#FF1033"}`
+                      }}>
+                        <span>{item.badge.text.split("+")[0]}</span>
+                        <div>{item.badge.text.split("+")[1]}</div>
+                        {/* <span className="font-semibold">{item.badge.text}</span> */}
+                      </div>
+                    )
+                  }
                 </div>
               </div>
             ))}

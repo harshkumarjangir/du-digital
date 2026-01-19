@@ -150,7 +150,7 @@ const Southkoreavisaforindians = () => {
                 <div className="w-1 h-10" style={{ backgroundColor: '#FF1033' }}></div>
                 <p className="text-gray-400 uppercase tracking-wider text-sm">South Korea Visa</p>
               </div> */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              <h1 className="text-4xl   lg:text-5xl font-bold leading-tight mb-6">
                 South Korea Visa For Indians – <span style={{ color: '#FF1033' }}> <br />
                   Apply Now!</span>
               </h1>
@@ -307,7 +307,7 @@ const Southkoreavisaforindians = () => {
           <div className="max-w-4xl mx-auto px-6 md:px-20">
             {/* Section Title */}
             <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-4xl lg:text-5xl font-semibold text-[#333333] mb-3">
+              <h2 className="text-4xl md:text-4xl  font-semibold text-[#333333] mb-3">
                 South Korea Visa Types with Fees
               </h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
@@ -547,7 +547,7 @@ const Southkoreavisaforindians = () => {
                 >
                   {/* Large number */}
                   <div
-                    className="text-5xl font-bold mb-4"
+                    className="text-4xl font-bold mb-4"
                     style={{ color: '#FF1033' }}
                   >
                     {String(index + 1).padStart(2, '0')}
@@ -555,24 +555,19 @@ const Southkoreavisaforindians = () => {
                   <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
                   <ul className="space-y-4">
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((line, idx) => (
-                      <li key={idx} className="flex items-start gap-4 text-gray-600 text-sm">
-                        <div
-                          className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5"
-                          style={{ backgroundColor: '#FF1033' }}
-                        >
-                          <Check className="w-2.5 h-2.5 text-white" strokeWidth={3} />
-                        </div>
+                      <li key={idx} className="flex list-disc items-start gap-4 text-gray-600 text-sm">
+                     
                         <span>{line}</span>
                       </li>
                     ))}
                   </ul>
                   {/* Red triangle accent */}
-                  <div
+                  {/* <div
                     className="absolute bottom-0 right-0 w-16 h-16"
                     style={{
                       background: 'linear-gradient(135deg, transparent 50%, rgba(227,30,36,0.2) 50%)'
                     }}
-                  />
+                  /> */}
                 </div>
               ))}
 
@@ -583,7 +578,7 @@ const Southkoreavisaforindians = () => {
                   className="bg-white rounded-xl p-6 shadow-md relative overflow-hidden border border-gray-100"
                 >
                   <div
-                    className="text-5xl font-bold mb-4"
+                    className="text-4xl font-bold mb-4"
                     style={{ color: '#FF1033' }}
                   >
                     {String(additionalReqSection.length + index + 1).padStart(2, '0')}
@@ -591,13 +586,12 @@ const Southkoreavisaforindians = () => {
                   <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
                   <ul className="space-y-4">
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((line, idx) => (
-                      <li key={idx} className="flex items-start gap-4 text-gray-600 text-sm">
-                        <div
+                      <li key={idx} className="flex list-disc items-start gap-4 text-gray-600 text-sm">
+                        {/* <div
                           className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5"
                           style={{ backgroundColor: '#FF1033' }}
                         >
-                          <Check className="w-2.5 h-2.5 text-white" strokeWidth={3} />
-                        </div>
+                        </div> */}
                         <span>{line}</span>
                       </li>
                     ))}

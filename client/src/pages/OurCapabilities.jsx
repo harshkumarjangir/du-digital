@@ -43,7 +43,7 @@ const OurCapabilities = () => {
                 <div className="absolute inset-0 bg-black/60"></div>
 
                 {/* Heading */}
-                <h1 className="relative z-10 text-4xl md:text-5xl font-bold text-white">
+                <h1 className="relative z-10 text-4xl  font-bold text-white">
                     {data.heading}
                 </h1>
             </div>

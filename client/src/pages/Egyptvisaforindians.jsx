@@ -176,13 +176,13 @@ const Egyptvisaforindians = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center place-items-center w-full place-items-center">
             {/* Left - Hero Text */}
             <div className="text-white">
-              <p className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-300">Apply For</p>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              <p className="text-3xl md:text-4xl  font-bold mb-2 text-gray-300">Apply For</p>
+              <h1 className="text-4xl  lg:text-5xl  font-bold leading-tight mb-6">
                 <span style={{ color: '#FF1033' }}>Egypt</span> Visa
               </h1>
-              <p className="text-gray-300 text-lg">
+              {/* <p className="text-gray-300 text-lg">
                 Experience the wonders of Egypt with our hassle-free visa service
-              </p>
+              </p> */}
             </div>
 
             {/* Right - Application Form */}

@@ -48,56 +48,58 @@ const Offices = () => {
                     {india.map((office) => (
                         <div
                             key={office._id}
-                            className="bg-white rounded-xl relative border border-gray-200 shadow-sm hover:shadow-md transition p-6"
+                            className="bg-white rounded-xl flex flex-col justify-between  border border-gray-200 shadow-sm hover:shadow-md transition p-6"
                         >
-                            {/* Office Name */}
-                            <h3 className="text-lg font-semibold text-[#333333] mb-3">
-                                {office.officeName}
-                            </h3>
+                          <div>
+                                {/* Office Name */}
+                                <h3 className="text-lg font-semibold text-[#333333] mb-3">
+                                    {office.officeName}
+                                </h3>
 
-                            {/* Address */}
-                            <div className="text-sm text-[#333333] leading-relaxed space-y-1 mb-4">
-                                <p>{office.address.line1}</p>
-                                {office.address.line2 && <p>{office.address.line2}</p>}
-                                {(office.address.city || office.address.state) && (
-                                    <p>
-                                        {office.address.city}
-                                        {office.address.state && `, ${office.address.state}`}
-                                        {office.address.pincode && ` - ${office.address.pincode}`}
-                                    </p>
-                                )}
-                            </div>
+                                {/* Address */}
+                                <div className="text-sm text-[#333333] leading-relaxed space-y-1 mb-4">
+                                    <p>{office.address.line1}</p>
+                                    {office.address.line2 && <p>{office.address.line2}</p>}
+                                    {(office.address.city || office.address.state) && (
+                                        <p>
+                                            {office.address.city}
+                                            {office.address.state && `, ${office.address.state}`}
+                                            {office.address.pincode && ` - ${office.address.pincode}`}
+                                        </p>
+                                    )}
+                                </div>
 
-                            {/* Contact */}
-                            <div className="text-sm text-gray-600 space-y-1 mb-4">
-                                {office.contact.email && (
-                                    <p>
-                                        Email:{" "}
-                                        <a
-                                            href={`mailto:${office.contact.email}`}
-                                            className="text-blue-600 hover:underline"
-                                        >
-                                            {office.contact.email}
-                                        </a>
-                                    </p>
-                                )}
-                                {office.contact.phone && (
-                                    <p>
-                                        Phone:{" "}
-                                        <a
-                                            href={`tel:${office.contact.phone}`}
-                                            className="text-blue-600 hover:underline"
-                                        >
-                                            {office.contact.phone}
-                                        </a>
-                                    </p>
-                                )}
-                            </div>
+                                {/* Contact */}
+                                <div className="text-sm text-gray-600 space-y-1 mb-4">
+                                    {office.contact.email && (
+                                        <p>
+                                            Email:{" "}
+                                            <a
+                                                href={`mailto:${office.contact.email}`}
+                                                className="text-blue-600 hover:underline"
+                                            >
+                                                {office.contact.email}
+                                            </a>
+                                        </p>
+                                    )}
+                                    {office.contact.phone && (
+                                        <p>
+                                            Phone:{" "}
+                                            <a
+                                                href={`tel:${office.contact.phone}`}
+                                                className="text-blue-600 hover:underline"
+                                            >
+                                                {office.contact.phone}
+                                            </a>
+                                        </p>
+                                    )}
+                                </div>
 
+                          </div>
                             {/* View on Maps */}
                             <button
                                 onClick={() => setMapPreviewUrl(office.googleMapLink)}
-                                className="inline-flex items-center pt-2 gap-2 text-sm font-medium text-[#FF1033] hover:text-red-700 bg-transparent absolute bottom-3 border-none cursor-pointer"
+                                className="inline-flex items-center pt-2 gap-2 text-sm font-medium text-[#FF1033] hover:text-red-700 bg-transparent  border-none cursor-pointer"
                             >
                                 <MapPin size={16} />
                                 View on Maps
@@ -120,56 +122,58 @@ const Offices = () => {
                     {international.map((office) => (
                         <div
                             key={office._id}
-                            className="bg-white rounded-xl relative border border-gray-200 shadow-sm hover:shadow-md transition p-6"
+                            className="bg-white rounded-xl flex flex-col justify-between border border-gray-200 shadow-sm hover:shadow-md transition p-6"
                         >
-                            {/* Office Name */}
-                            <h3 className="text-lg font-semibold text-[#333333] mb-3">
-                                {office.officeName}
-                            </h3>
+                     <div>
+                                {/* Office Name */}
+                                <h3 className="text-lg font-semibold text-[#333333] mb-3">
+                                    {office.officeName}
+                                </h3>
 
-                            {/* Address */}
-                            <div className="text-sm text-[#333333] leading-relaxed space-y-1 mb-4">
-                                <p>{office.address.line1}</p>
-                                {office.address.line2 && <p>{office.address.line2}</p>}
-                                {(office.address.city || office.address.state) && (
-                                    <p>
-                                        {office.address.city}
-                                        {office.address.state && `, ${office.address.state}`}
-                                        {office.address.pincode && ` - ${office.address.pincode}`}
-                                    </p>
-                                )}
-                            </div>
+                                {/* Address */}
+                                <div className="text-sm text-[#333333] leading-relaxed space-y-1 mb-4">
+                                    <p>{office.address.line1}</p>
+                                    {office.address.line2 && <p>{office.address.line2}</p>}
+                                    {(office.address.city || office.address.state) && (
+                                        <p>
+                                            {office.address.city}
+                                            {office.address.state && `, ${office.address.state}`}
+                                            {office.address.pincode && ` - ${office.address.pincode}`}
+                                        </p>
+                                    )}
+                                </div>
 
-                            {/* Contact */}
-                            <div className="text-sm text-gray-600 space-y-1 mb-4">
-                                {office.contact.email && (
-                                    <p>
-                                        Email:{" "}
-                                        <a
-                                            href={`mailto:${office.contact.email}`}
-                                            className="text-blue-600 hover:underline"
-                                        >
-                                            {office.contact.email}
-                                        </a>
-                                    </p>
-                                )}
-                                {office.contact.phone && (
-                                    <p>
-                                        Phone:{" "}
-                                        <a
-                                            href={`tel:${office.contact.phone}`}
-                                            className="text-blue-600 hover:underline"
-                                        >
-                                            {office.contact.phone}
-                                        </a>
-                                    </p>
-                                )}
-                            </div>
+                                {/* Contact */}
+                                <div className="text-sm text-gray-600 space-y-1 mb-4">
+                                    {office.contact.email && (
+                                        <p>
+                                            Email:{" "}
+                                            <a
+                                                href={`mailto:${office.contact.email}`}
+                                                className="text-blue-600 hover:underline"
+                                            >
+                                                {office.contact.email}
+                                            </a>
+                                        </p>
+                                    )}
+                                    {office.contact.phone && (
+                                        <p>
+                                            Phone:{" "}
+                                            <a
+                                                href={`tel:${office.contact.phone}`}
+                                                className="text-blue-600 hover:underline"
+                                            >
+                                                {office.contact.phone}
+                                            </a>
+                                        </p>
+                                    )}
+                                </div>   
+                        </div>
 
                             {/* View on Maps */}
                             <button
                                 onClick={() => setMapPreviewUrl(office.googleMapLink)}
-                                className="inline-flex absolute bottom-3 pt-2  items-center gap-2 text-sm font-medium text-[#FF1033] hover:text-red-700 bg-transparent border-none cursor-pointer"
+                                className="inline-flex pt-2  items-center gap-2 text-sm font-medium text-[#FF1033] hover:text-red-700 bg-transparent border-none cursor-pointer"
                             >
                                 <MapPin size={16} />
                                 View on Maps

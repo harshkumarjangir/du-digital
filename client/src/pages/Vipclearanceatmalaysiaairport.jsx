@@ -122,10 +122,10 @@ const Vipclearanceatmalaysiaairport = () => {
                         <h2 className="text-lg md:text-2xl font-bold text-gray-900 mb-2">
                             Say goodbye to long airport lines and hello to a seamless journey with our exclusive
                         </h2>
-                        <h2 className="text-4xl  md:text-5xl font-bold text-[#FF1033] mb-12">
+                        <h2 className="text-4xl   font-bold text-[#FF1033] mb-12">
                             VIP clearance service at Malaysian Immigration
                         </h2>
-                        <div className="inline-block bg-[#991b1b] text-white px-8 py-3 rounded-lg text-2xl font-bold shadow-lg">
+                        <div className="inline-block bg-[#FF1033] text-white px-8 py-3 rounded-lg text-2xl font-bold shadow-lg">
                             <span className="">What we offer ?</span>
                         </div>
                     </div>
@@ -177,7 +177,7 @@ const Vipclearanceatmalaysiaairport = () => {
                     {howItWorksItems.length > 0 ? (
                         <>
                             {howItWorksItems[0].title && (
-                                <h2 className="text-center text-4xl md:text-5xl font-bold text-black mb-16">
+                                <h2 className="text-center text-4xl  font-bold text-black mb-16">
                                     {howItWorksItems[0].title}
                                 </h2>
                             )}
@@ -193,7 +193,7 @@ const Vipclearanceatmalaysiaairport = () => {
                         </>
                     ) : (
                         <>
-                            <h2 className="text-center text-4xl md:text-5xl font-bold text-black mb-16">
+                            <h2 className="text-center text-4xl  font-bold text-black mb-16">
                                 How It Works?
                             </h2>
                             <div className="flex justify-center">
@@ -216,7 +216,7 @@ const Vipclearanceatmalaysiaairport = () => {
 
                         {/* Heading */}
                         <div className="text-center mb-14">
-                            <h2 className="text-4xl  md:text-5xl font-bold text-black">
+                            <h2 className="text-4xl   font-bold text-black">
                                 Documents Required
                             </h2>
                         </div>

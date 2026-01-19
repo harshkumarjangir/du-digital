@@ -161,7 +161,7 @@ const Lebanon = () => {
         <div className="absolute inset-0 bg-black/40" />
 
         <div className="relative z-10 text-center">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white">
+          <h1 className="text-4xl lg:text-5xl font-bold text-white">
             Lebanon
           </h1>
         </div>
@@ -371,15 +371,12 @@ const Lebanon = () => {
                   className="bg-white rounded-lg shadow-md overflow-hidden"
                 >
                   {/* Red top bar */}
-                  <div
-                    className="h-2"
-                    style={{ backgroundColor: office.color || '#FF1033' }}
-                  />
+               
 
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">
+                    <h3 style={{ backgroundColor: office.color || '#FF1033' }} className="text-xl  p-2 font-bold text-white mb-4">
                       {office.Location}
                     </h3>
+                  <div className="p-6">
 
                     {office.officeName && (
                       <p className="text-gray-700 font-medium mb-3">

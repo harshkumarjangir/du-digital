@@ -144,7 +144,7 @@ export default function OurOffices() {
             Global Offices
           </h3>
 
-          <div className="grid md:grid-cols-3 gap-x-12 gap-y-4">
+          <div className="grid md:grid-cols-3 gap-x-12 gap-y-8">
             {otherInternationalOffices.map((office, idx) => (
               <OfficeCard key={office._id || idx} office={office} titleColor="text-[#162B56]" textColor="text-[#162B56]" />
             ))}

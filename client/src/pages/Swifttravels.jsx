@@ -4,7 +4,7 @@ import data from "../data/swifttravels.json";
 export const Swifttravels = () => {
   return (
     <>
-      <section className="relative w-full h-[800px] overflow-hidden">
+      <section className="relative w-full h-[550px] overflow-hidden">
         {/* IMAGE (Right → Left) */}
         <img
           src={data.hero.image}
@@ -26,7 +26,7 @@ export const Swifttravels = () => {
           exit={{ opacity: 0, y: -50 }}
           transition={{ duration: 0.8, delay: 0.3 }}>
           <div className="max-w-2xl text-white">
-            <h1 className="text-2xl md:text-5xl font-semibold leading-tight">
+            <h1 className="text-4xl lg:text-5xl font-semibold leading-tight">
               {data.hero.title}
             </h1>
 
@@ -37,8 +37,8 @@ export const Swifttravels = () => {
         </div>
       </section>
       <div className="flex justify-center  items-center my-5 flex-col">
-        <h2 class="text-5xl  my-5 font-bold">Travel Packages</h2>
-        <div className="border-2 border-red-800 w-20"></div>
+        <h2 class="text-4xl  my-5 font-bold">Travel Packages</h2>
+        <div className="border-2 border-[#FF1033] w-20"></div>
       </div>
 
       <CardData />

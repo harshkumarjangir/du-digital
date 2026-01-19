@@ -163,7 +163,7 @@ const IndianEvisa = () => {
 
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full  h-[500px] overflow-hidden">
+      <section className="relative w-full min-h-[600px] sm:h-[800px] overflow-hidden">
         {/* Hero Image */}
         {formData?.image && (
           <img
@@ -184,7 +184,7 @@ const IndianEvisa = () => {
 
             {/* ===== LEFT CONTENT ===== */}
             <div className="text-white">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              <h1 className="text-4xl    font-bold leading-tight mb-6">
                 Apply eVisa <br />
                 for <span className="text-[#FF1033]">India</span>
               </h1>

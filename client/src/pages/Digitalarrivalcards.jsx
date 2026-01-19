@@ -125,10 +125,10 @@ const Digitalarrivalcards = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-20 h-full flex items-center">
           <div className="max-w-4xl">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+            <h1 className="text-3xl md:text-4xl  font-bold text-white leading-tight mb-6">
               One Platform for All Your Mandatory Digital Arrival Cards - Thailand, Malaysia, Indonesia, Singapore, South Korea & Taiwan
             </h1>
-            {/* <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+            {/* <p className="text-3xl md:text-4xl  font-bold text-white mb-4">
               - Thailand, Malaysia, Indonesia, Singapore, South Korea & Taiwan
             </p> */}
             <p className="text-xl text-white font-semibold mb-8">
@@ -173,7 +173,7 @@ const Digitalarrivalcards = () => {
 
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 text-center">
-          <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-4xl  font-bold text-white mb-4">
             Travel Ready with DU Global
           </h2>
           <p className="text-gray-50 text-lg md:text-xl leading-relaxed">
@@ -227,7 +227,7 @@ const Digitalarrivalcards = () => {
 
             {/* Heading */}
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-[#333333]">
+              <h2 className="text-4xl md:text-4xl  font-bold text-[#333333]">
                 Documents Required
               </h2>
               {/* <div className="w-16 h-1 bg-[#C00C02] mx-auto mt-4" /> */}

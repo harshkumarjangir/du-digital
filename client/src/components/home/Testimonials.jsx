@@ -27,7 +27,7 @@ const Testimonials = ({ data }) => {
                     TESTIMONIALS
                 </p>
 
-                <h2 className="mt-3 text-4xl md:text-5xl font-semibold text-gray-900">
+                <h2 className="mt-3 text-4xl  font-semibold text-gray-900">
                     {data.title}
                 </h2>
 
@@ -94,7 +94,7 @@ const Testimonials = ({ data }) => {
                     >
                         {/* <MoveLeft  size={28}/> */}
                         {/* <ChevronLeftCircle size={28} /> */}
-                        <ArrowLeft size={32}/>
+                        <ArrowLeft size={32} />
                     </button>
                     <button
                         onClick={next}

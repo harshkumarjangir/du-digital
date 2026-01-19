@@ -8,7 +8,7 @@ const NewsHome = ({ data }) => {
         <div className="max-w-7xl mx-auto px-6 md:px-20 py-12">
             {/* Header */}
             <div className="text-center mb-12">
-                <h2 className="text-5xl font-bold mb-3">
+                <h2 className="text-4xl font-bold mb-3">
                     See what all the talk is about!
                 </h2>
                 <p className="text-gray-600">

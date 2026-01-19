@@ -109,10 +109,10 @@ const Duverify = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-32 flex items-center">
           <div className="max-w-3xl text-white">
-            {/* <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            {/* <h1 className="text-4xl    font-bold leading-tight mb-6">
               {name || 'DuVerify – Revolutionizing Document Verification for Visa Processes'}
             </h1> */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            <h1 className="text-4xl    font-bold leading-tight mb-6">
               {name?.startsWith('DuVerify') ? (
                 <>
                   <span className="text-[#FF1033]">DuVerify</span>
@@ -174,7 +174,7 @@ const Duverify = () => {
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-[#333333] mb-3">
+              <h2 className="text-4xl md:text-4xl  font-bold text-[#333333] mb-3">
                 About DuVerify
                 {/* <span style={{ color: '#FF1033' }}>DuVerify</span> */}
               </h2>
@@ -225,7 +225,7 @@ const Duverify = () => {
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             {/* Heading */}
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl  font-bold text-gray-900 mb-4">
                 Why Choose DuVerify?
               </h2>
               <div className="w-16 h-[3px] bg-[#FF1033] mx-auto" />
@@ -296,7 +296,7 @@ const Duverify = () => {
 
           <div className="max-w-7xl mx-auto px-6 relative z-10">
             <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
+              <h2 className="text-4xl md:text-4xl  font-bold text-white mb-3">
                 Key Partnerships
               </h2>
               <div className="w-16 h-0.75 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
@@ -347,7 +347,7 @@ const Duverify = () => {
 
             {/* Heading */}
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
+              <h2 className="text-4xl md:text-4xl  font-bold text-black mb-4">
                 What DuVerify Can Do For You
               </h2>
               <div className="w-20 h-[3px] bg-[#FF1033] mx-auto" />
@@ -478,7 +478,7 @@ export default Duverify;
 
 
 
-//<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+//<h1 className="text-4xl    font-bold leading-tight mb-6">
 //  <span className="text-[#FF1033]">DuVerify</span>
 //  <span className="text-white">
 //    {name

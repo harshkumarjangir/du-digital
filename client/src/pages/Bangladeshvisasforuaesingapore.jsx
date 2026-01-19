@@ -127,13 +127,13 @@ const BangladeshVisasForUaeSingapore = () => {
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 grid lg:grid-cols-2 gap-12 items-center place-items-center w-full place-items-center py-20">
 
           <div className="text-white space-y-4">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+            <h1 className="text-4xl  lg:text-5xl  font-bold leading-tight">
               Bangladesh Visas for <br />
               <span>UAE & Singapore</span>
             </h1>
-            <p className="text-xl text-gray-200 max-w-lg">
+            {/* <p className="text-xl text-gray-200 max-w-lg">
               Simplifying cross-border travel with expert visa solutions.
-            </p>
+            </p> */}
           </div>
 
           {/* Form - Only if fields exist */}
@@ -186,18 +186,18 @@ const BangladeshVisasForUaeSingapore = () => {
                     {(item.contentHtml ? item.contentHtml.split('\n') : defaultFeatures).map((feature, i) => (
                       feature.trim() && (
                         <div key={i} className="flex items-start gap-4">
-                          <div className="mt-1 w-5 h-5 rounded-full bg-[#FF1033] flex items-center justify-center flex-shrink-0">
+                          {/* <div className="mt-1 w-5 h-5 rounded-full bg-[#FF1033] flex items-center justify-center flex-shrink-0">
                             <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                          </div>
+                          </div> */}
                           <p className="text-lg text-gray-700">{feature.trim()}</p>
                         </div>
                       )
                     ))}
                   </div>
 
-                  <button className="flex items-center gap-4 text-[#FF1033] font-bold hover:gap-4 transition-all">
+                  {/* <button className="flex items-center gap-4 text-[#FF1033] font-bold hover:gap-4 transition-all">
                     Learn More <ArrowRight className="w-5 h-5" />
-                  </button>
+                  </button> */}
                 </div>
 
                 <div className="relative">

@@ -79,7 +79,7 @@ const EventDetail = () => {
                         <span>Back to Events</span>
                     </button> */}
 
-                    <h1 className="text-3xl md:text-5xl font-semibold text-center mb-4 max-w-5xl mx-auto">
+                    <h1 className="text-3xl  font-semibold text-center mb-4 max-w-5xl mx-auto">
                         {selectedEvent.title}
                     </h1>
 

@@ -148,7 +148,7 @@ const Companysetup = () => {
           <div className={`${fields.length > 0 ? 'grid md:grid-cols-2 gap-12 items-center place-items-center' : ''} w-full`}>
             {/* Left - Hero Text */}
             <div className="text-white">
-              <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
+              <h1 className="text-4xl  font-bold leading-tight mb-6">
                 {name || 'Company Formation in Dubai UAE'}
               </h1>
 
@@ -401,7 +401,7 @@ const Companysetup = () => {
 
           {/* Heading */}
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-white">
+            <h2 className="text-4xl md:text-4xl  font-bold text-white">
               Our <span className="text-[#FF1033]">Partners</span>
             </h2>
           </div>
@@ -483,7 +483,7 @@ const Companysetup = () => {
 
             {/* Heading */}
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+              <h2 className="text-4xl md:text-4xl  font-bold text-gray-900">
                 Benefits of Establishing a{" "}
                 <span className="text-[#FF1033]">Business</span> in the UAE
               </h2>
@@ -568,7 +568,7 @@ const Companysetup = () => {
                   >
                     <div className="p-6 pb-16">
                       <div
-                        className="text-5xl font-bold mb-4"
+                        className="text-4xl font-bold mb-4"
                         style={{ color: '#FF1033' }}
                       >
                         {number}
@@ -694,10 +694,10 @@ const Companysetup = () => {
           <div className="max-w-7xl mx-auto px-6">
             {documents.map((doc, index) => (
               <div key={doc._id || index}>
-                {/*  <h2 className="text-4xl md:text-4xl lg:text-[43px] font-bold text-gray-900 mb-8 text-left">
+                {/*  <h2 className="text-4xl md:text-4xl   font-bold text-gray-900 mb-8 text-left">
                   {doc.title}
                 </h2> */}
-                <h2 className="text-4xl md:text-4xl lg:text-[43px] font-bold text-gray-900 mb-6">
+                <h2 className="text-4xl md:text-4xl   font-bold text-gray-900 mb-6">
                   {doc.title.split("Company Setup")[0]}
                   <span className="text-[#FF1033] font-bold">Company Setup</span>
                   {doc.title.split("Company Setup")[1]}
@@ -738,7 +738,7 @@ const Companysetup = () => {
 
           {/* TITLE LEFT / CTA RIGHT */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
-            <h2 className="text-4xl  text-white md:text-4xl lg:text-5xl font-bold leading-tight mb-10">
+            <h2 className="text-4xl  text-white md:text-4xl  font-bold leading-tight mb-10">
               Speak to our experts
             </h2>
 
@@ -809,7 +809,7 @@ const Companysetup = () => {
 
         
             <div className="flex justify-center bg-black text-white px-10 py-14 rounded-2xl">
-               <h2 className="text-4xl  md:text-4xl lg:text-5xl font-bold leading-tight mb-10">
+               <h2 className="text-4xl  md:text-4xl  font-bold leading-tight mb-10">
                 Speak to our <br /> experts
               </h2>
 

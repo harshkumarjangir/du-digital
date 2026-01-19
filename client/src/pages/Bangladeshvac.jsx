@@ -120,7 +120,7 @@ const BangladeshVac = () => {
         <div className="absolute inset-0 bg-black/60" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 flex items-center justify-center w-full">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center">
+          <h1 className="text-4xl lg:text-5xl   font-bold text-white text-center">
             Bangladesh VAC
           </h1>
         </div>

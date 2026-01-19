@@ -136,8 +136,8 @@ const Dubai5yeartouristvisa = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center place-items-center w-full place-items-center">
             {/* Left - Hero Text */}
             <div className="text-white">
-              <p className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">Apply For</p>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              <p className="text-3xl md:text-4xl  font-bold mb-2">Apply For</p>
+              <h1 className="text-4xl   lg:text-5xl font-bold leading-tight mb-6">
                 <span style={{ color: '#FF1033' }}>UAE/Dubai Tourist Visa</span>
               </h1>
 
@@ -159,8 +159,8 @@ const Dubai5yeartouristvisa = () => {
             {/* Right - Contact Form */}
             {fields.length > 0 && (
               <div
-                className="rounded-2xl p-8 shadow-2xl backdrop-blur-md z-10 "
-                style={{ backgroundColor: 'rgba(0,0,0,0.7)' }}
+                className="rounded-2xl p-8 mx-12 shadow-2xl backdrop-blur-md z-10 "
+                style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
               >
                 {/* <h3 className="text-2xl font-bold text-white mb-6">Apply Now</h3> */}
                 <form className="space-y-4" onSubmit={handleSubmit}>

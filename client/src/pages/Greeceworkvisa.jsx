@@ -153,7 +153,7 @@ const GreeceWorkVisa = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center place-items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-2">
+              <h1 className="text-4xl  lg:text-5xl  font-bold leading-tight mb-2">
                 Work in Greece: Secure Your National D-Type
               </h1>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8" style={{ color: '#FF1033' }}>
@@ -179,7 +179,7 @@ const GreeceWorkVisa = () => {
             {/* Right - Contact Form */}
             {fields.length > 0 && (
               <div className="bg-black rounded-2xl p-8 shadow-2xl">
-                <h3 className="text-2xl font-bold text-white mb-6 text-center">Speak to our Experts</h3>
+                {/* <h3 className="text-2xl font-bold text-white mb-6 text-center">Speak to our Experts</h3> */}
                 <form className="space-y-4" onSubmit={handleSubmit}>
                   {/* Form fields in grid for first 4 fields */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -297,7 +297,7 @@ const GreeceWorkVisa = () => {
             {heroSection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
-                  <h2 className="text-4xl md:text-4xl lg:text-[48px] font-bold text-[#333333] mb-6">
+                  <h2 className="text-4xl md:text-4xl   font-bold text-[#333333] mb-6">
                     {item.title}
                   </h2>
                   <div className="text-[#333333] text-base md:text-[17px] leading-relaxed space-y-4">
@@ -342,7 +342,7 @@ const GreeceWorkVisa = () => {
             </span> */}
             <div className="relative">
               <p className="text-[#FF1033] font-bold mb-2">DU GLOBAL</p>
-              <h2 className="text-4xl  md:text-5xl font-extrabold text-[#333333]">
+              <h2 className="text-4xl   font-extrabold text-[#333333]">
                 Available Positions
               </h2>
               <div className="w-16 h-1 bg-[#FF1033] mx-auto mt-4" />
@@ -405,7 +405,7 @@ const GreeceWorkVisa = () => {
           <div
             className="absolute left-0 top-0 w-1/2 h-full opacity-10"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cpath d='M0 200 Q100 100 200 200 T400 200' fill='none' stroke='white' stroke-width='2'/%3E%3Cpath d='M0 250 Q100 150 200 250 T400 250' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E")`,
+              // backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cpath d='M0 200 Q100 100 200 200 T400 200' fill='none' stroke='white' stroke-width='2'/%3E%3Cpath d='M0 250 Q100 150 200 250 T400 250' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E")`,
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover'
             }}
@@ -516,7 +516,7 @@ const GreeceWorkVisa = () => {
 
           <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
+              <h2 className="text-4xl md:text-4xl  font-bold text-white mb-3">
                 Document Checklist
               </h2>
               <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
@@ -629,7 +629,7 @@ const GreeceWorkVisa = () => {
                   />}
                 </div>
                 <div className="order-1 md:order-1">
-                  <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+                  <h2 className="text-4xl md:text-4xl  font-bold text-white mb-4">
                     Why Choose Global LLC?
                   </h2>
                   {/* <div className="w-16 h-1 mb-8" style={{ backgroundColor: '#FF1033' }}></div> */}

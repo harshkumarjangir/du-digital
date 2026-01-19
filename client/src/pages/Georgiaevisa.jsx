@@ -109,7 +109,7 @@ const Georgiaevisa = () => {
 
                     {/* Left - Title */}
                     <div className="text-white">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                        <h1 className="text-4xl  lg:text-5xl  font-bold leading-tight">
                             Georgia eVisa <br /> for Indians
                         </h1>
                     </div>

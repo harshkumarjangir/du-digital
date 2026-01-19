@@ -20,7 +20,7 @@ const ContactUs = () => {
 
             {/* Hero */}
             <section
-                className="h-[400px] bg-cover bg-center relative flex items-center justify-center"
+                className="h-[500px] bg-cover bg-center relative flex items-center justify-center"
                 style={{ backgroundImage: `url(${hero.backgroundImage})` }}
             >
                 <div className="absolute inset-0 bg-black/60" />

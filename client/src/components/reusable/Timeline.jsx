@@ -131,7 +131,7 @@ const TimelineSlider = ({ data = [] }) => {
                         <div className="flex flex-col items-center px-4">
 
                             {/* Big Year Heading */}
-                            <h2 className="text-6xl font-extrabold text-[#FF1033] mb-6 tracking-tight">
+                            <h2 className="text-4xl font-extrabold text-[#FF1033] mb-6 tracking-tight">
                                 {activeItem.year}
                             </h2>
 

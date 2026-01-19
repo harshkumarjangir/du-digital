@@ -69,14 +69,14 @@ const CardData = () => {
         </div>
       ) : (
         <>
-          <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {data.map((event) => (
               <div
                 key={event._id}
                 className="relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer"
                 onClick={() => handleClick(event._id)}>
                 {/* IMAGE */}
-                <div className="h-[420px] relative">
+                <div className="h-[320px] relative">
                   {event.bannerImage ? (
                     <img
                       src={`${import.meta.env.VITE_BACKEND_IMAGES_URL}${
@@ -111,7 +111,7 @@ const CardData = () => {
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
               <div className="relative w-full max-w-5xl mx-4 bg-white rounded-xl shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2">
                 {/* LEFT SIDE */}
-                <div className="bg-[#b53034] text-white p-6">
+                <div className="bg-[#FF1033] text-white p-6">
                   <h2 className="text-2xl font-bold mb-4">
                     {selectedPackage.title.split("-")[0]}
                     <br />

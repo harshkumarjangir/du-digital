@@ -219,8 +219,8 @@ const Japantouristvisaforindians = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center place-items-center w-full place-items-center">
             {/* Left - Hero Text */}
             <div className="text-white">
-              <p className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2">Apply for</p>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              <p className="text-4xl    font-bold mb-2">Apply for</p>
+              <h1 className="text-4xl lg:text-5xl   font-bold leading-tight mb-6">
                 <span style={{ color: '#FF1033' }}>Japan <br /> Tourist Visa</span>
               </h1>
               {/* <p className="text-gray-300 text-lg">
@@ -625,7 +625,7 @@ const Japantouristvisaforindians = () => {
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-10">
-              <h2 className="text-2xl md:text-3xl lg:text-5xl font-semibold text-gray-900 mb-4">Documents for Indian Citizens: 30/60 Day Japan Tourist Visa</h2>
+              <h2 className="text-2xl md:text-3xl  font-semibold text-gray-900 mb-4">Documents for Indian Citizens: 30/60 Day Japan Tourist Visa</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
             </div>
 

@@ -108,7 +108,7 @@ const Digitalarrivalcards = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-24 min-h-[70vh] flex items-center">
           <div className="max-w-3xl">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+            <h1 className="text-3xl md:text-4xl  font-bold text-white leading-tight mb-6">
               One Platform for All Your Mandatory Digital Arrival Cards
             </h1>
             <p className="text-lg text-gray-300 mb-4">
@@ -287,7 +287,7 @@ const Digitalarrivalcards = () => {
                   >
                     {/* Large number */}
                     <div
-                      className="text-5xl font-bold mb-4"
+                      className="text-4xl font-bold mb-4"
                       style={{ color: '#C00C02' }}
                     >
                       {number}

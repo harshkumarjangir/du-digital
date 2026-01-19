@@ -65,7 +65,7 @@ const InvestorRelation = () => {
                     fetchPriority="high"
                 />
                 <div className="absolute inset-0 bg-black/60" />
-                <h1 className="relative z-10 text-white text-4xl md:text-5xl font-semibold">
+                <h1 className="relative z-10 text-white text-4xl  font-semibold">
                     {displayData.hero.title}
                 </h1>
             </section>

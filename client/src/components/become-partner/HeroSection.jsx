@@ -141,7 +141,7 @@ const HeroSection = ({ data }) => {
       <div className="relative max-w-6xl mx-auto  p-2 md:px-4 py-20 grid lg:grid-cols-2 gap-16 items-center place-items-center">
         {/* LEFT CONTENT */}
         <div>
-          <h1 className="text-4xl text-white lg:text-5xl font-bold mb-8">
+          <h1 className="text-4xl text-white  lg:text-5xl font-bold mb-8">
             {data.title}
             {/* <span className="text-[#FF1033]">{data.highlight}</span> */}
           </h1>
@@ -404,7 +404,7 @@ export default HeroSection;
 
 //         {/* LEFT */}
 //         <div>
-//           <h1 className="text-4xl lg:text-5xl font-bold mb-8">
+//           <h1 className="text-4xl  font-bold mb-8">
 //             {data.title} <span className="text-[#FF1033]">{data.highlight}</span>
 //           </h1>
 
