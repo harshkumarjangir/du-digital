@@ -44,7 +44,7 @@ const OurFootprints = ({ aboutSection, data }) => {
                     </div>
 
                     {/* RIGHT VIDEO */}
-                    <div className="relative rounded-xl overflow-hidden shadow-xl bg-black aspect-video">
+                    <div className="relative rounded-xl overflow-hidden  xl bg-black aspect-video">
                         <iframe
                             src={aboutSection.video.embedUrl}
                             title="DU Digital Global"
@@ -171,7 +171,7 @@ export default OurFootprints;
 //                     </div>
 
 //                     {/* RIGHT VIDEO */}
-//                     <div className="w-full aspect-video rounded-xl overflow-hidden shadow-lg bg-black">
+//                     <div className="w-full aspect-video rounded-xl overflow-hidden   bg-black">
 //                         <iframe
 //                             className="w-full h-full"
 //                             src={data.video.youtubeId}
@@ -292,7 +292,7 @@ export default OurFootprints;
 //                     </div>
 
 //                     {/* RIGHT VIDEO */}
-//                     <div className="w-full aspect-video rounded-xl overflow-hidden shadow-lg">
+//                     <div className="w-full aspect-video rounded-xl overflow-hidden  ">
 //                         <iframe
 //                             className="w-full h-full"
 //                             src={data.video.youtubeId}

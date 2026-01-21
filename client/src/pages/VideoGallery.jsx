@@ -144,7 +144,7 @@ const VideoGallery = () => {
                                 <div className="text-center">
                                     <button
                                         onClick={() => handleLoadMore(category)}
-                                        className="mt-6 px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+                                        className="mt-6 px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
                                     >
                                         Load More
                                     </button>

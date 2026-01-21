@@ -2,8 +2,8 @@
   background: #fff;
   padding: 24px;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
- 
+  /* box- : 0 2px 10px rgba(0, 0, 0, 0.08); */
+
 }
 
 .form-row {
@@ -11,6 +11,7 @@
 
   gap: 24px;
 }
+
 @media (min-width: 608px) {
   .form-row {
     grid-template-columns: 1fr 1fr;

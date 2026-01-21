@@ -116,7 +116,7 @@ const Step4SubmitPay = ({ formData, handleChange, submitForm, prevStep, loading,
                     type="button"
                     onClick={prevStep}
                     disabled={loading}
-                    className="px-8 py-3 font-semibold rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors shadow-sm disabled:opacity-50"
+                    className="px-8 py-3 font-semibold rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors disabled:opacity-50"
                 >
                     Previous
                 </button>
@@ -124,7 +124,7 @@ const Step4SubmitPay = ({ formData, handleChange, submitForm, prevStep, loading,
                     <button
                         type="button"
                         disabled={loading}
-                        className="hidden md:block px-8 py-3 font-semibold rounded-full bg-gray-500 text-white hover:bg-gray-600 transition-colors shadow-sm disabled:opacity-50"
+                        className="hidden md:block px-8 py-3 font-semibold rounded-full bg-gray-500 text-white hover:bg-gray-600 transition-colors  disabled:opacity-50"
                     >
                         Save for Later
                     </button>
@@ -132,7 +132,7 @@ const Step4SubmitPay = ({ formData, handleChange, submitForm, prevStep, loading,
                         type="button"
                         onClick={() => submitForm({ ...formData, totalPersons: finalTotal, isIndividual })}
                         disabled={loading}
-                        className="px-8 py-3 font-semibold rounded-full bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] transition-colors disabled:opacity-70 flex items-center gap-2 shadow-md hover:shadow-lg"
+                        className="px-8 py-3 font-semibold rounded-full bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] transition-colors disabled:opacity-70 flex items-center gap-2 "
                     >
                         {loading ? <><Loader2 className="w-5 h-5 animate-spin" /> Processing...</> : 'Proceed to Payment'}
                     </button>

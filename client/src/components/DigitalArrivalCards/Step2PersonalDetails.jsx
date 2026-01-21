@@ -217,14 +217,14 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                 <button
                     type="button"
                     onClick={prevStep}
-                    className="px-8 py-3 font-semibold rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors shadow-sm"
+                    className="px-8 py-3 font-semibold rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors "
                 >
                     Previous
                 </button>
                 <button
                     type="submit"
                     disabled={!isStepValid}
-                    className="px-8 py-3 font-semibold rounded-full bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
+                    className="px-8 py-3 font-semibold rounded-full bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] transition-colors disabled:opacity-50 disabled:cursor-not-allowed "
                 >
                     Save and Continue
                 </button>

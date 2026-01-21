@@ -323,7 +323,7 @@ const Australiatouristvisa = () => {
         <h2 className="text-4xl md:text-4xl  font-bold text-center text-[#333333] mb-10">
           Types of Australia Tourist Visas,<br />Processing Time, and Fees
         </h2>
-        <div className="bg-[#C62828] w-16 h-[3px] mx-auto mb-8 rounded-full"></div>
+        <div className=" w-16 h-[3px] mx-auto mb-8 rounded-full"></div>
 
         <div className="max-w-7xl mx-auto px-6 md:px-20">
           <div className="grid lg:grid-cols-[40%_60%] rounded-3xl overflow-hidden bg-[#C62828]">
@@ -407,7 +407,7 @@ const Australiatouristvisa = () => {
               <h2 className="text-4xl   font-bold text-[#333333] mb-4">
                 Documents required for Australia Tourist Visa
               </h2>
-              <div className="w-20 h-[3px] bg-[#FF1033] mx-auto"></div>
+              <div className="w-20 h-[3px] mx-auto"></div>
             </div>
 
             {/* Content */}
@@ -456,7 +456,7 @@ const Australiatouristvisa = () => {
                 Additional Documents for Your Australia Tourist Visa (As Applicable)
               </h2>
               {/* <p className="text-[#333333] mb-3">(As Applicable)</p> */}
-              {/* <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div> */}
+              {/* <div className="w-20 h-1 mx-auto" ></div> */}
             </div>
             <p className="text-[#333333] mb-3 text-center text-base md:px-12">To ensure a smooth application process for your <span className="font-bold">Australia Tourist Visa</span>, you may need to provide additional documents based on your specific circumstances. Here’s a quick guide:</p>
 
@@ -524,7 +524,7 @@ const Australiatouristvisa = () => {
                 How to Apply for Australia Tourist Visa
               </h2>
               <p className="text-white mt-2">A Simple 3-Step Process to Get Your Australia Tourist Visa</p>
-              {/* <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div> */}
+              {/* <div className="w-20 h-1 mx-auto" ></div> */}
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
@@ -561,7 +561,7 @@ const Australiatouristvisa = () => {
               <h2 className="text-4xl md:text-4xl  font-bold text-[#333333] mb-3">
                 Why Choose DU Global for Australia Visa
               </h2>
-              {/* <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div> */}
+              {/* <div className="w-20 h-1 mx-auto" ></div> */}
             </div>
 
             <div className="grid md:grid-cols-3 gap-4">

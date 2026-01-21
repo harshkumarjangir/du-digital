@@ -154,7 +154,7 @@ const HeroSection = ({ data }) => {
         </div>
 
         {/* FORM */}
-        <div className="bg-white shadow-xl max-w-md lg:ml-auto rounded-lg p-3 md:p-6 ">
+        <div className="bg-white  max-w-md lg:ml-auto rounded-lg p-3 md:p-6 ">
           <form className="space-y-5" onSubmit={handleSubmit}>
             <input
               type="text"
@@ -416,7 +416,7 @@ export default HeroSection;
 //         </div>
 
 //         {/* FORM */}
-//         <div className="bg-white shadow-xl max-w-md ml-auto rounded-lg p-8">
+//         <div className="bg-white  xl max-w-md ml-auto rounded-lg p-8">
 //           <form className="space-y-6" onSubmit={handleSubmit}>
 
 //             <input

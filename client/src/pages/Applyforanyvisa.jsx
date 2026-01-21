@@ -194,7 +194,7 @@ const Applyforanyvisa = () => {
               <h2 className="text-4xl md:text-4xl font-bold text-white">Apply for Any Visa</h2>
             </div>
 
-            <form className="bg-white rounded-xl p-8 shadow-2xl" onSubmit={handleSubmit}>
+            <form className="bg-white rounded-xl p-8  2xl" onSubmit={handleSubmit}>
               {(() => {
                 const textFields = fields.filter(f => ['text', 'email', 'number'].includes(f.type));
                 const selectFields = fields.filter(f => f.type === 'select');
@@ -351,7 +351,7 @@ const Applyforanyvisa = () => {
                 <div key={item._id || index} className="grid lg:grid-cols-2 gap-y-12 items-center place-items-center">
                   <div>
                     <p className="text-xl md:text-2xl lg:text-4xl font-bold mb-2" style={{ color: '#333333' }}>Global Experts in</p>
-                    <div className="w-14 h-0.5 mr-2" style={{ backgroundColor: '#FF1033' }}></div>
+                    <div className="w-14 h-0.5 mr-2"></div>
                     <h2 className="text-2xl md:text-2xl font-bold text-[#333333] my-6">
                       {item.title}
                     </h2>
@@ -360,7 +360,7 @@ const Applyforanyvisa = () => {
                     </p>
                   </div>
                   {embedUrl && (
-                    <div className="rounded-xl w-full overflow-hidden shadow-lg">
+                    <div className="rounded-xl w-full overflow-hidden  ">
                       <iframe
                         width="100%"
                         height="315"
@@ -410,12 +410,12 @@ const Applyforanyvisa = () => {
           <div className="max-w-5xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-3">Documents Required</h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             <div className="space-y-4">
               {documents.map((doc, index) => (
-                <div key={doc._id || index} className="bg-white rounded-xl p-6 shadow-sm">
+                <div key={doc._id || index} className="bg-white rounded-xl p-6  sm">
                   <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-4">
                     <Check className="w-5 h-5" style={{ color: '#FF1033' }} />
                     {doc.title}
@@ -441,7 +441,7 @@ const Applyforanyvisa = () => {
           <div className="max-w-4xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-3">Frequently Asked Questions</h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             <div className="space-y-4">

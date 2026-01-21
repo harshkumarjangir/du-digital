@@ -108,7 +108,7 @@ const Vipclearanceatmalaysiaairport = () => {
                     <a
                         href="https://docs.google.com/forms/d/e/1FAIpQLScB4u2Ovi_PMj_st6lqisz8NqNgeTdr9d2737UzTvaNcOAnaw/viewform"
                         target="_blank"
-                        className="px-10 py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
+                        className="px-10 py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold text-lg transition-all duration-300  xl"
                     >
                         Book Now
                     </a>
@@ -125,7 +125,7 @@ const Vipclearanceatmalaysiaairport = () => {
                         <h2 className="text-4xl   font-bold text-[#FF1033] mb-12">
                             VIP clearance service at Malaysian Immigration
                         </h2>
-                        <div className="inline-block bg-[#FF1033] text-white px-8 py-3 rounded-lg text-2xl font-bold shadow-lg">
+                        <div className="inline-block bg-[#FF1033] text-white px-8 py-3 rounded-lg text-2xl font-bold  ">
                             <span className="">What we offer ?</span>
                         </div>
                     </div>
@@ -163,7 +163,7 @@ const Vipclearanceatmalaysiaairport = () => {
                         <a
                             href="https://docs.google.com/forms/d/e/1FAIpQLScB4u2Ovi_PMj_st6lqisz8NqNgeTdr9d2737UzTvaNcOAnaw/viewform"
                             target="_blank"
-                            className="px-10 py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
+                            className="px-10 py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold text-lg transition-all duration-300  xl"
                         >
                             Book Now
                         </a>
@@ -250,7 +250,7 @@ const Vipclearanceatmalaysiaairport = () => {
                             <a
                                 href="https://docs.google.com/forms/d/e/1FAIpQLScB4u2Ovi_PMj_st6lqisz8NqNgeTdr9d2737UzTvaNcOAnaw/viewform"
                                 target="_blank"
-                                className="px-10 py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
+                                className="px-10 py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold text-lg transition-all duration-300  xl"
                             >
                                 Book Now
                             </a>
@@ -352,7 +352,7 @@ const Vipclearanceatmalaysiaairport = () => {
                         </div>
                         <div className="space-y-4">
                             {faqs.map((faq, index) => (
-                                <div key={index} className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-shadow">
+                                <div key={index} className="bg-white border border-gray-200 rounded-2xl p-6   transition- ">
                                     <h3 className="text-lg font-bold text-gray-900 mb-3">{faq.question}</h3>
                                     <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
                                 </div>

@@ -136,7 +136,7 @@ const Digitalarrivalcards = () => {
             </p>
             <a
               href="#apply-form"
-              className="inline-block px-8 py-4 rounded-full font-bold text-lg text-[#FFFDF5] transition-all duration-300 bg-[#FF1033] hover:bg-[#511313] hover:text-[#FF1033] hover:opacity-90 shadow-lg"
+              className="inline-block px-8 py-4 rounded-full font-bold text-lg text-[#FFFDF5] transition-all duration-300 bg-[#FF1033] hover:bg-[#511313] hover:text-[#FF1033] hover:opacity-90  "
             >
               Start Your Application
             </a>
@@ -241,7 +241,7 @@ const Digitalarrivalcards = () => {
                 return (
                   <div
                     key={doc._id}
-                    className="relative bg-white rounded-2xl p-8 border border-gray-900 shadow-sm min-h-[220px]"
+                    className="relative bg-white rounded-2xl p-8 border border-gray-900  sm min-h-[220px]"
                   >
                     {/* Static Icons (UI only) */}
                     <div className="mb-6 text-[#FF1033]">
@@ -278,7 +278,7 @@ const Digitalarrivalcards = () => {
                   <img
                     src={item.images.length > 0 ? getImageUrl(item.images[0]) : STATIC_IMAGES.whyChoose}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-2xl shadow-2xl"
+                    className="max-w-full h-auto rounded-2xl  2xl"
                     style={{ maxHeight: '400px' }}
                   />
                 </div>

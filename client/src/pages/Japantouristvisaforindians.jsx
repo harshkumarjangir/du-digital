@@ -230,7 +230,7 @@ const Japantouristvisaforindians = () => {
 
             {/* Right - Application Form */}
             {fields.length > 0 && (
-              <div className="bg-gray-900/70 backdrop-blur-sm rounded-2xl p-4 md:p-8 shadow-2xl">
+              <div className="bg-gray-900/70 backdrop-blur-sm rounded-2xl p-4 md:p-8  2xl">
                 {/* <h2 className="text-white text-xl font-semibold mb-6 text-center">
                   Let our expert guide you through the Japan Visa process
                 </h2> */}
@@ -383,7 +383,7 @@ const Japantouristvisaforindians = () => {
                   <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-black mb-4">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
+                  <div className="w-20 h-1 mb-6" ></div>
                   <p className="text-[#333333] text-base leading-relaxed whitespace-pre-line">
                     {item.contentHtml}
                   </p>
@@ -393,11 +393,11 @@ const Japantouristvisaforindians = () => {
                     <img
                       src={getImageUrl(item.images[0])}
                       alt={item.title}
-                      className="rounded-xl shadow-lg w-full"
+                      className="rounded-xl   w-full"
                     />
                     {item.badge?.text && (
                       <div
-                        className="absolute -top-4 -right-10 px-4 py-2 flex flex-col items-center rounded-lg text-white font-bold shadow-lg"
+                        className="absolute -top-4 -right-10 px-4 py-2 flex flex-col items-center rounded-lg text-white font-bold  "
                         style={{ backgroundColor: item.badge.background || '#FF1033' }}
                       >
                         {/* {item.badge.text}  */}
@@ -411,11 +411,11 @@ const Japantouristvisaforindians = () => {
                   <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
-                    className="rounded-xl shadow-lg w-full"
+                    className="rounded-xl   w-full"
                   />
                   {item.badge?.text && (
                     <div
-                      className="absolute -bottom-4 -right-4 px-4 py-2 flex flex-col items-center rounded-lg text-white font-bold shadow-lg"
+                      className="absolute -bottom-4 -right-4 px-4 py-2 flex flex-col items-center rounded-lg text-white font-bold  "
                       style={{ backgroundColor: item.badge.background || '#FF1033' }}
                     >
                       <span>{item.badge.text.split("+")[0]}+</span>
@@ -439,7 +439,7 @@ const Japantouristvisaforindians = () => {
                   <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-black leading-relaxed mb-4">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+                  <div className="w-20 h-1 mx-auto" ></div>
                 </div>
                 <div className="space-y-4">
                   {item.contentHtml?.split(/\r?\n\r?\n/).filter(p => p.trim()).map((paragraph, pIdx) => {
@@ -474,7 +474,7 @@ const Japantouristvisaforindians = () => {
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-black mb-4">
                 {destinationsSection[0]?.title || 'Top Tourist Destinations'}
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             {/* Image Gallery from formImages */}
@@ -524,7 +524,7 @@ const Japantouristvisaforindians = () => {
                   <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-black mb-4">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
+                  <div className="w-20 h-1 mb-6" ></div>
                   <div className="space-y-4">
                     {item.contentHtml?.split('\n\n').filter(p => p.trim()).map((paragraph, pIdx) => {
                       const [title, ...rest] = paragraph.split(':');
@@ -545,7 +545,7 @@ const Japantouristvisaforindians = () => {
                     <img
                       src={getImageUrl(item.images[0])}
                       alt={item.title}
-                      className="rounded-xl shadow-lg w-full"
+                      className="rounded-xl   w-full"
                     />
                   </div>
                 )}
@@ -563,14 +563,14 @@ const Japantouristvisaforindians = () => {
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 mb-4">
                 {visaFeesSection[0]?.title || 'Visa Fees & Processing Time'}
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             {visaFeesSection.map((item, index) => {
               const details = parseVisaFees(item.contentHtml);
               return (
                 <div key={item._id || index}>
-                  <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-4 md:p-8">
+                  <div className="max-w-2xl mx-auto bg-white rounded-xl   p-4 md:p-8">
                     <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">
                       30/60 Days Tourist Visa
                     </h3>
@@ -626,7 +626,7 @@ const Japantouristvisaforindians = () => {
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-10">
               <h2 className="text-2xl md:text-3xl  font-semibold text-gray-900 mb-4">Documents for Indian Citizens: 30/60 Day Japan Tourist Visa</h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             {documents.map((doc, docIndex) => (

@@ -94,10 +94,10 @@ const VisaServices = ({ data }) => {
 
             <div className="relative max-w-5xl mx-auto px-6 md:px-20">
 
-                <div className="bg-white rounded-2xl shadow-xl overflow-hidden ">
+                <div className="bg-white rounded-2xl  xl overflow-hidden ">
 
                     {/* Header */}
-                    <div className="bg-[#FF1033] text-white text-center   text-2xl font-semibold mb-1">
+                    <div className="bg-[#FF1033] text-white text-center   text-2xl font-[400] mb-1">
                         {data.title}
                     </div>
 
@@ -106,7 +106,7 @@ const VisaServices = ({ data }) => {
 
                         {/* From */}
                         <div>
-                            <label htmlFor="visa-from" className="flex items-center gap-2 ps-2 text-[#FF1033] text-lg">
+                            <label htmlFor="visa-from" className="flex items-center gap-2 py-2 ps-2 text-[#FF1033] text-lg">
                                 <LocationEdit backgroundColor="#FF1033" /> {data.fromLabel}
                             </label>
                             <select
@@ -131,8 +131,8 @@ const VisaServices = ({ data }) => {
 
                         {/* To */}
                         <div>
-                            <label htmlFor="visa-to" className="  flex items-center gap-2 ps-2 text-[#FF1033] text-lg ">
-                               <LocationEdit backgroundColor="#FF1033" /> {data.toLabel}
+                            <label htmlFor="visa-to" className="py-2 flex items-center gap-2 ps-2 text-[#FF1033] text-lg ">
+                                <LocationEdit backgroundColor="#FF1033" /> {data.toLabel}
                             </label>
                             <select
                                 id="visa-to"
@@ -152,16 +152,16 @@ const VisaServices = ({ data }) => {
                         </div>
 
                         {/* Button */}
-                    <div>
+                        <div>
 
                             <button
                                 onClick={handleGo}
-                                className="bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300 rounded-full py-3  px-2 text-center text-lg flex items-center justify-center gap-2 cursor-pointer"
+                                className="bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300 rounded-full py-3  px-10 text-center text-lg flex items-center justify-center gap-2 cursor-pointer"
                             >
                                 {data.buttonText}
                                 <span>→</span>
                             </button>
-                    </div>
+                        </div>
 
                     </div>
                 </div>

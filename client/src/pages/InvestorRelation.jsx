@@ -241,7 +241,7 @@ export default InvestorRelation;
 //                                 // Card Type 1: For /investor-relation page
 //                                 <div
 //                                     key={item._id || index}
-//                                     className="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-between hover:shadow-xl transition"
+//                                     className="bg-white rounded-xl   p-8 flex flex-col justify-between   transition"
 //                                 >
 //                                     <div>
 //                                         <h3 className="text-lg font-semibold mb-4 leading-snug">
@@ -266,7 +266,7 @@ export default InvestorRelation;
 //                                 // Card Type 2: For slug pages (e.g., /postal-ballot)
 //                                 <div
 //                                     key={item._id || index}
-//                                     className="bg-[#E4F2EF] rounded-xl shadow-lg p-8 flex flex-col hover:shadow-xl transition"
+//                                     className="bg-[#E4F2EF] rounded-xl   p-8 flex flex-col   transition"
 //                                 >
 //                                     <div className="mb-6">
 //                                         <h3 className="text-lg font-semibold mb-3 leading-tight text-gray-900">

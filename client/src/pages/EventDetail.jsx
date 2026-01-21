@@ -100,7 +100,7 @@ const EventDetail = () => {
                         {selectedEvent.images.map((image, index) => (
                             <div
                                 key={index}
-                                className="relative aspect-square rounded-xl overflow-hidden shadow-lg group cursor-pointer"
+                                className="relative aspect-square rounded-xl overflow-hidden   group cursor-pointer"
                                 onClick={() => {
                                     setSelectedImageIndex(index);
                                     setGalleryOpen(true);

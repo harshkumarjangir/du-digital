@@ -241,7 +241,7 @@ const IndianEvisa = () => {
             </div>
 
             {/* ===== RIGHT FORM CARD ===== */}
-            <div className="bg-black/75 backdrop-blur-md rounded-2xl p-4 lg:p-10 shadow-2xl">
+            <div className="bg-black/75 backdrop-blur-md rounded-2xl p-4 lg:p-10  2xl">
               <h2 className="text-2xl font-bold text-white mb-6">
                 Apply for India E-Visa
               </h2>
@@ -453,7 +453,7 @@ const IndianEvisa = () => {
                     <h2 className="text-4xl md:text-4xl font-bold text-[#333333] mb-2">
                       {item.title}
                     </h2>
-                    <div className="w-20 h-0.75 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
+
                     <div
                       className="text-gray-600 leading-relaxed text-lg"
                       dangerouslySetInnerHTML={{ __html: item.contentHtml }}
@@ -466,19 +466,19 @@ const IndianEvisa = () => {
                         item.images.map(p => <img
                           src={getImageUrl(p)}
                           alt={item.title}
-                          className="max-w-full h-auto rounded-xl shadow-lg"
+                          className="max-w-full h-auto rounded-xl  "
                         // style={{ maxHeight: '400px' }}
                         />)
                       ) : item.image && <img
                         src={getImageUrl(item.image)}
                         alt={item.title}
-                        className="max-w-full h-auto rounded-xl shadow-lg"
+                        className="max-w-full h-auto rounded-xl  "
                       // style={{ maxHeight: '400px' }}
                       />}
                       {/* Badge overlay */}
                       {item.badge?.text && (
                         <div
-                          className="absolute -top-14 -right-4 w-28 h-28 flex flex-col items-center justify-center text-white text-center shadow-lg"
+                          className="absolute -top-14 -right-4 w-28 h-28 flex flex-col items-center justify-center text-white text-center  "
                           style={{ backgroundColor: item.badge.background || '#FF1033' }}
                         >
                           <span className="text-xs font-medium leading-tight px-2">{item.badge.text}</span>
@@ -501,7 +501,6 @@ const IndianEvisa = () => {
             <h2 className="text-4xl md:text-4xl font-bold text-[#333333] mb-2">
               Eligibility for India eVisa
             </h2>
-            <div className="w-32 h-0.75 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
           </div>
 
           <div className="rounded-2xl p-0 md:p-10">
@@ -545,7 +544,6 @@ const IndianEvisa = () => {
             <h2 className="text-4xl md:text-4xl font-bold text-[#333333] tracking-wide">
               E-VISA APPLICATION PROCESS
             </h2>
-            <div className="w-24 h-[3px] mx-auto mt-4 bg-[#FF1F3D]"></div>
           </div>
 
           {/* ================= DESKTOP VIEW ================= */}
@@ -557,7 +555,7 @@ const IndianEvisa = () => {
               <div key={index} className="relative flex items-center">
 
                 {/* Card */}
-                <div className="bg-white rounded-2xl px-8 py-8 text-center shadow-lg w-full min-h-[250px]">
+                <div className="bg-white rounded-2xl px-8 py-8 text-center   w-full min-h-[250px]">
                   <div className="flex justify-center mb-6">
                     <div className="w-14 h-14 rounded-full border-4 border-[#FF1F3D] flex items-center justify-center text-[#FF1F3D] text-xl font-bold">
                       {index + 1}
@@ -602,7 +600,7 @@ const IndianEvisa = () => {
                 </div>
 
                 {/* Content Card */}
-                <div className="bg-white rounded-xl p-6 shadow-md">
+                <div className="bg-white rounded-xl p-6  md">
                   <h3 className="text-lg font-semibold text-gray-800 mb-2">
                     {step.title}
                   </h3>
@@ -627,14 +625,13 @@ const IndianEvisa = () => {
                 <h2 className="text-4xl md:text-4xl font-bold text-[#333333] mb-2">
                   Documents Required
                 </h2>
-                <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1F3D' }}></div>
               </div>
 
               <div className="space-y-4">
                 {documents.filter(d => d.isActive).sort((a, b) => a.order - b.order).map((doc, index) => (
                   <div
                     key={doc._id || index}
-                    className="rounded-xl overflow-hidden shadow-md"
+                    className="rounded-xl overflow-hidden  md"
                   >
                     <button
                       onClick={() => toggleDoc(index)}
@@ -695,7 +692,7 @@ const IndianEvisa = () => {
           //       {faqs.filter(f => f.isActive).map((faq, index) => (
           //         <div 
           //           key={faq._id || index}
-          //           className="rounded-xl overflow-hidden shadow-md"
+          //           className="rounded-xl overflow-hidden  md"
           //         >
           //           <button
           //             onClick={() => toggleFaq(index)}

@@ -46,10 +46,10 @@ const Testimonials = ({ data }) => {
                             {data.buttonText} <img width={20} height={20} src="/google.webp" alt="" />
                         </Link>
                     </div>
-              </div>
+                </div>
 
-              
-              <div className="relative w-full"   >
+
+                <div className="relative w-full"   >
                     {/* Slider */}
                     <div className="relative mt-20 px-6 md:px-20 overflow-hidden">
                         <AnimatePresence mode="wait">
@@ -68,7 +68,7 @@ const Testimonials = ({ data }) => {
                                         <div
                                             key={offset}
                                             className={`${offset === 1 ? "" : ""
-                                                } bg-[#FFFCF6] rounded-2xl p-8 text-left flex flex-col justify-between shadow-sm`}
+                                                } bg-[#FFFCF6] rounded-2xl p-8 text-left flex flex-col justify-between  sm`}
                                         >
                                             <p className="text-gray-700 leading-relaxed">
                                                 {item.message}
@@ -116,8 +116,8 @@ const Testimonials = ({ data }) => {
                         </button>
                     </div>
 
-              </div>
-              </div>
+                </div>
+            </div>
         </section>
     );
 };

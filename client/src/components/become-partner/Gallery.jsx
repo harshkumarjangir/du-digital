@@ -224,7 +224,7 @@ export default Gallery;
 //                 {/* Left Arrow */}
 //                 <button
 //                     onClick={() => scroll("left")}
-//                     className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow rounded-full w-10 h-10"
+//                     className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white   rounded-full w-10 h-10"
 //                 >
 //                     ‹
 //                 </button>
@@ -252,7 +252,7 @@ export default Gallery;
 //                 {/* Right Arrow */}
 //                 <button
 //                     onClick={() => scroll("right")}
-//                     className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow rounded-full w-10 h-10"
+//                     className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white   rounded-full w-10 h-10"
 //                 >
 //                     ›
 //                 </button>

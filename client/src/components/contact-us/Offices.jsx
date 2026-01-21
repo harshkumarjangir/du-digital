@@ -40,7 +40,7 @@ const Offices = () => {
                     <h2 className="text-4xl font-bold text-[#333333]">
                         India Offices
                     </h2>
-                    <div className="w-28 h-1 bg-[#DA3745] mx-auto mt-4 rounded-full" />
+                    <div className="w-28 h-1 mx-auto mt-4 rounded-full" />
                 </div>
 
                 {/* Offices Grid */}
@@ -48,9 +48,9 @@ const Offices = () => {
                     {india.map((office) => (
                         <div
                             key={office._id}
-                            className="bg-white rounded-xl flex flex-col justify-between  border border-gray-200 shadow-sm hover:shadow-md transition p-6"
+                            className="bg-white rounded-xl flex flex-col justify-between  border border-gray-200  transition p-6"
                         >
-                          <div>
+                            <div>
                                 {/* Office Name */}
                                 <h3 className="text-lg font-semibold text-[#333333] mb-3">
                                     {office.officeName}
@@ -95,7 +95,7 @@ const Offices = () => {
                                     )}
                                 </div>
 
-                          </div>
+                            </div>
                             {/* View on Maps */}
                             <button
                                 onClick={() => setMapPreviewUrl(office.googleMapLink)}
@@ -114,7 +114,7 @@ const Offices = () => {
                     <h2 className="text-4xl font-bold text-[#333333]">
                         Global Offices
                     </h2>
-                    <div className="w-28 h-1 bg-[#DA3745] mx-auto mt-4 rounded-full" />
+                    <div className="w-28 h-1 mx-auto mt-4 rounded-full" />
                 </div>
 
                 {/* Offices Grid */}
@@ -122,9 +122,9 @@ const Offices = () => {
                     {international.map((office) => (
                         <div
                             key={office._id}
-                            className="bg-white rounded-xl flex flex-col justify-between border border-gray-200 shadow-sm hover:shadow-md transition p-6"
+                            className="bg-white rounded-xl flex flex-col justify-between border border-gray-200  transition p-6"
                         >
-                     <div>
+                            <div>
                                 {/* Office Name */}
                                 <h3 className="text-lg font-semibold text-[#333333] mb-3">
                                     {office.officeName}
@@ -167,8 +167,8 @@ const Offices = () => {
                                             </a>
                                         </p>
                                     )}
-                                </div>   
-                        </div>
+                                </div>
+                            </div>
 
                             {/* View on Maps */}
                             <button
@@ -194,7 +194,7 @@ const Offices = () => {
                 {/* Google Maps Preview Modal */}
                 {mapPreviewUrl && (
                     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-                        <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl h-[80vh] flex flex-col">
+                        <div className="bg-white rounded-xl  w-full max-w-4xl h-[80vh] flex flex-col">
                             {/* Modal Header */}
                             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
                                 <h2 className="text-xl font-semibold text-gray-900">Google Maps Preview</h2>
@@ -306,7 +306,7 @@ export default Offices;
 //                     {india.map((office) => (
 //                         <div
 //                             key={office._id}
-//                             className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 p-6"
+//                             className="bg-white rounded-lg  md   transition-  duration-300 p-6"
 //                         >
 //                             {/* Office Name */}
 //                             <h3 className="text-xl font-semibold text-gray-900 mb-4">

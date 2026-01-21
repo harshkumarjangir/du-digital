@@ -37,7 +37,7 @@ const VisionMission = ({ data }) => {
                             </div>
 
                             {/* PLAY ICON (OPTIONAL) */}
-                            {/* <div className="absolute right-6 top-1/2 -translate-y-1/2 bg-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg cursor-pointer">
+                            {/* <div className="absolute right-6 top-1/2 -translate-y-1/2 bg-white rounded-full w-14 h-14 flex items-center justify-center   cursor-pointer">
                                 <svg
                                     width="20"
                                     height="20"
@@ -53,7 +53,7 @@ const VisionMission = ({ data }) => {
                         <div className="space-y-3">
 
                             {/* MISSION */}
-                            <div className=" rounded-xl pt-17 pb-3 bg-[#b7edb7] px-6 border border-gray-200">
+                            <div className=" rounded-xl pt-18 pb-3 bg-[#b7edb7] px-6 border border-gray-200">
                                 <h4 className="text-lg font-semibold  text-black mb-2">
                                     Mission
                                 </h4>
@@ -63,7 +63,7 @@ const VisionMission = ({ data }) => {
                             </div>
 
                             {/* VISION */}
-                            <div className="bg-[#00ab63] pt-17 text-white pb-3 rounded-xl px-6">
+                            <div className="bg-[#00ab63] pt-18 text-white pb-3 rounded-xl px-6">
                                 <h4 className="text-lg font-semibold mb-2">
                                     Vision
                                 </h4>
@@ -120,7 +120,7 @@ export default VisionMission;
 //                 {/* Cards */}
 //                 <div className="grid md:grid-cols-2 gap-10">
 //                     {/* Vision */}
-//                     <div className="bg-white rounded-xl shadow-lg p-8">
+//                     <div className="bg-white rounded-xl   p-8">
 //                         <FaBinoculars className="text-4xl text-gray-800 mb-6" />
 
 //                         <h4 className="text-2xl font-bold mb-4">Vision</h4>
@@ -130,7 +130,7 @@ export default VisionMission;
 //                     </div>
 
 //                     {/* Mission */}
-//                     <div className="bg-white rounded-xl shadow-lg p-8">
+//                     <div className="bg-white rounded-xl   p-8">
 //                         <FaBullseye className="text-4xl text-[#FF1033] mb-6" />
 
 //                         <h4 className="text-2xl font-bold mb-4">Mission</h4>
@@ -169,11 +169,11 @@ export default VisionMission;
 //         <p className="text-center text-[#FF1033] font-semibold tracking-widest mb-2">
 //             {data.heading}
 //         </p>
-//         <div className="bg-white p-6 shadow rounded">
+//         <div className="bg-white p-6   rounded">
 //             <h3 className="font-bold mb-2">Vision</h3>
 //             <p>{data.vision}</p>
 //         </div>
-//         <div className="bg-white p-6 shadow rounded">
+//         <div className="bg-white p-6   rounded">
 //             <h3 className="font-bold mb-2">Mission</h3>
 //             <p>{data.mission}</p>
 //         </div>

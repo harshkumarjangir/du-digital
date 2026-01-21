@@ -5,21 +5,21 @@ import ErrorState from "../components/reusable/ErrorState";
 import ConsultationModal from "../components/reusable/ConsultationModal";
 import OurStrengths from "../components/reusable/OurStrengths";
 import {
-    FaCogs,
-    FaUserCheck,
-    FaGem,
-    FaGlobe,
-    FaMoneyBillWave,
-    FaHandshake
+  FaCogs,
+  FaUserCheck,
+  FaGem,
+  FaGlobe,
+  FaMoneyBillWave,
+  FaHandshake
 } from "react-icons/fa";
 
 const iconMap2 = {
-    process: FaCogs,
-    customer: FaUserCheck,
-    value: FaGem,
-    network: FaGlobe,
-    cost: FaMoneyBillWave,
-    trust: FaHandshake
+  process: FaCogs,
+  customer: FaUserCheck,
+  value: FaGem,
+  network: FaGlobe,
+  cost: FaMoneyBillWave,
+  trust: FaHandshake
 };
 
 const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
@@ -74,7 +74,7 @@ const Companysetup = () => {
       [name]: type === 'checkbox' ? checked : value
     }));
   };
-  const iconMap = ["process", "customer", "value", "network", "cost","trust"]
+  const iconMap = ["process", "customer", "value", "network", "cost", "trust"]
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitLoading(true);
@@ -181,7 +181,7 @@ const Companysetup = () => {
 
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="inline-block px-8 py-4 rounded-full font-bold text-lg text-[#FFFDF5] transition-all duration-300 bg-[#FF1033] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg cursor-pointer"
+                className="inline-block px-8 py-4 rounded-full font-bold text-lg text-[#FFFDF5] transition-all duration-300 bg-[#FF1033] hover:bg-[#511313] hover:text-[#FF1033]   cursor-pointer"
               >
                 Book A Free Consultation
               </button>
@@ -189,7 +189,7 @@ const Companysetup = () => {
 
             {/* Right - Contact Form (only show if fields exist) */}
             {fields.length > 0 && (
-              <div className="bg-white rounded-2xl w-[80%]  p-5 md:p-8 shadow-2xl">
+              <div className="bg-white rounded-2xl w-[80%]  p-5 md:p-8  2xl">
                 <form className="grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit={handleSubmit}>
                   {fields.map((field, index) => {
                     // Get field type from either 'type' or 'fieldType' property
@@ -327,13 +327,13 @@ const Companysetup = () => {
                     item.images.map(p => <img
                       src={getImageUrl(p)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-xl shadow-lg"
+                      className="max-w-full h-auto rounded-xl  "
                       style={{ maxHeight: '400px' }}
                     />)
                   ) : item.image && <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    className="max-w-full h-auto rounded-xl  "
                     style={{ maxHeight: '400px' }}
                   />}
                 </div>
@@ -385,13 +385,13 @@ const Companysetup = () => {
                     item.images.map(p => <img
                       src={getImageUrl(p)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-xl shadow-lg"
+                      className="max-w-full h-auto rounded-xl  "
                       style={{ maxHeight: '500px' }}
                     />)
                   ) : item.image && <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    className="max-w-full h-auto rounded-xl  "
                     style={{ maxHeight: '500px' }}
                   />}
                 </div>
@@ -443,10 +443,10 @@ const Companysetup = () => {
         </div>
       </section>
 
-   
+
       {
-        strengthSection.length>0&&(
-          
+        strengthSection.length > 0 && (
+
           <section className="py-20 bg-[#F9F9F9]">
             <div className="max-w-7xl mx-auto px-6 md:px-20">
 
@@ -486,7 +486,7 @@ const Companysetup = () => {
                     return (
                       <div
                         key={i}
-                        className="bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-md transition"
+                        className="bg-white rounded-2xl p-6 border border-gray-200   transition"
                       >
                         {/* Icon */}
                         <div className="w-10 h-10 rounded-lg bg-[#FF1033]/10 flex items-center justify-center mb-4">
@@ -538,12 +538,12 @@ const Companysetup = () => {
                     item.images.map(p => <img
                       src={getImageUrl(p)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-xl shadow-lg"
+                      className="max-w-full h-auto rounded-xl  "
                     />)
                   ) : item.image && <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    className="max-w-full h-auto rounded-xl  "
 
                   />}
                 </div>
@@ -572,7 +572,7 @@ const Companysetup = () => {
                   {/* CTA Button */}
                   <button
                     onClick={() => setIsModalOpen(true)}
-                    className="inline-block px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+                    className="inline-block px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
                   >
                     Book A Free Consultation
                   </button>
@@ -602,7 +602,7 @@ const Companysetup = () => {
                 return (
                   <div
                     key={item._id || index}
-                    className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow relative"
+                    className="bg-white rounded-lg overflow-hidden   transition-  relative"
                   >
                     <div className="p-6 pb-16">
                       <div
@@ -671,7 +671,7 @@ const Companysetup = () => {
               {stepsSection.map((step, index) => (
                 <div
                   key={step._id || index}
-                  className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                  className="bg-white rounded-xl border border-gray-200 overflow-hidden   transition- "
                 >
                   {/* Image */}
                   <div className="h-48 md:h-60 overflow-hidden rounded-xl p-3">
@@ -714,7 +714,7 @@ const Companysetup = () => {
                     {/* CTA Button */}
                     <button
                       onClick={() => setIsModalOpen(true)}
-                      className="inline-block px-5 py-2 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+                      className="inline-block px-5 py-2 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
                     >
                       Book A Free Consultation
                     </button>
@@ -758,7 +758,7 @@ const Companysetup = () => {
                   {/* CTA Button */}
                   <button
                     onClick={() => setIsModalOpen(true)}
-                    className="inline-block px-5 py-2 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+                    className="inline-block px-5 py-2 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
                   >
                     Book A Free Consultation
                   </button>
@@ -782,7 +782,7 @@ const Companysetup = () => {
 
             <button
               onClick={() => setIsModalOpen(true)}
-              className="inline-flex items-center justify-center w-fit px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+              className="inline-flex items-center justify-center w-fit px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
             >
               Contact Now
             </button>
@@ -790,7 +790,7 @@ const Companysetup = () => {
 
           {/* CONTACT CARDS */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8">
-            <div className="bg-white rounded-2xl p-5 shadow-xl">
+            <div className="bg-white rounded-2xl p-5  xl">
               <div className="w-12 h-12 rounded-full bg-[#FF1033] flex items-center justify-center mb-6">
                 <Phone className="w-6 h-6 text-white" />
               </div>
@@ -816,7 +816,7 @@ const Companysetup = () => {
 
 
             {/* LOCATION CARD */}
-            <div className="bg-white rounded-2xl p-5 shadow-xl">
+            <div className="bg-white rounded-2xl p-5  xl">
               <div className="w-12 h-12 rounded-full bg-[#FF1033] flex items-center justify-center mb-6">
                 <MapPin className="w-6 h-6 text-white" />
               </div>
@@ -853,13 +853,13 @@ const Companysetup = () => {
 
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="inline-flex items-center justify-center w-fit px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+                className="inline-flex items-center justify-center w-fit px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
               >
                 Contact Now
               </button>
             </div>
 
-            <div className="bg-white rounded-2xl p-5 shadow-xl">
+            <div className="bg-white rounded-2xl p-5  xl">
               <div className="w-12 h-12 rounded-full bg-[#FF1033] flex items-center justify-center mb-6">
                 <Phone className="w-6 h-6 text-white" />
               </div>
@@ -885,7 +885,7 @@ const Companysetup = () => {
 
 
           
-            <div className="bg-white rounded-2xl p-5 shadow-xl">
+            <div className="bg-white rounded-2xl p-5  xl">
               <div className="w-12 h-12 rounded-full bg-[#FF1033] flex items-center justify-center mb-6">
                 <MapPin className="w-6 h-6 text-white" />
               </div>

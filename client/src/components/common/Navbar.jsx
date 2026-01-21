@@ -89,7 +89,7 @@ const Navbar = () => {
                group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200"
                 >
                   {/* LEFT PANEL */}
-                  <div className=" text-wrap bg-white shadow-xl rounded-xl w-max" >
+                  <div className=" text-wrap bg-white rounded-xl w-max" >
                     {item.children.map((child, index) => (
                       <div key={index} className="group/item relative">
                         {child.link ? (
@@ -115,7 +115,7 @@ const Navbar = () => {
                         {child.children && (
                           <div
                             className="absolute top-0 left-full w-fit text-nowrap h-[70vh] no-scrollbar overflow-y-auto
-                         bg-white shadow-xl rounded-xl
+                         bg-white  rounded-xl
                          opacity-0 invisible
                          group-hover/item:opacity-100
                          group-hover/item:visible
@@ -264,7 +264,7 @@ export default Navbar;
 
 // <div
 //   className="absolute left-1/2 -translate-x-1/2 top-full mt-6 w-[900px]
-//      bg-white shadow-xl rounded-xl flex overflow-hidden
+//      bg-white  xl rounded-xl flex overflow-hidden
 //      opacity-0 invisible group-hover:opacity-100 group-hover:visible
 //      transition-all duration-200"
 // >
@@ -305,7 +305,7 @@ export default Navbar;
 //   </div>
 // </div>
 // <div className="absolute left-1/2 -translate-x-1/2 top-full mt-6 w-[900px]
-// bg-white shadow-xl rounded-xl flex overflow-hidden
+// bg-white  xl rounded-xl flex overflow-hidden
 // opacity-0 invisible group-hover:opacity-100 group-hover:visible
 // transition-all duration-200">
 
@@ -379,7 +379,7 @@ export default Navbar;
 
 //     {/* Mega Menu */}
 //     {item.children && active === i && (
-//       <div className="absolute left-1/2 -translate-x-1/2 top-full mt-6 w-[900px] bg-white shadow-xl rounded-xl flex overflow-hidden">
+//       <div className="absolute left-1/2 -translate-x-1/2 top-full mt-6 w-[900px] bg-white  xl rounded-xl flex overflow-hidden">
 //         {/* Level 1 */}
 //         <div className="w-1/2 border-r">
 //           {item.children.map((child, cIndex) => (

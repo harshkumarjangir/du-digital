@@ -178,7 +178,7 @@ const GreeceWorkVisa = () => {
 
             {/* Right - Contact Form */}
             {fields.length > 0 && (
-              <div className="bg-black rounded-2xl p-8 shadow-2xl">
+              <div className="bg-black rounded-2xl p-8  2xl">
                 {/* <h3 className="text-2xl font-bold text-white mb-6 text-center">Speak to our Experts</h3> */}
                 <form className="space-y-4" onSubmit={handleSubmit}>
                   {/* Form fields in grid for first 4 fields */}
@@ -311,14 +311,14 @@ const GreeceWorkVisa = () => {
                     item.images.map(p => <img
                       src={getImageUrl(p)}
                       alt={item.title}
-                      className="w-[200px] h-auto rounded-xl shadow-lg"
+                      className="w-[200px] h-auto rounded-xl  "
                     />)
                   )}{
                     item.images.length == 0 && item.image &&
                     <img
                       src={getImageUrl(item.image)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-xl shadow-lg"
+                      className="max-w-full h-auto rounded-xl  "
                       style={{ maxHeight: '400px' }}
                     />
 
@@ -345,7 +345,7 @@ const GreeceWorkVisa = () => {
               <h2 className="text-4xl   font-extrabold text-[#333333]">
                 Available Positions
               </h2>
-              <div className="w-16 h-1 bg-[#FF1033] mx-auto mt-4" />
+              <div className="w-16 h-1 mx-auto mt-4" />
             </div>
           </div>
 
@@ -418,7 +418,7 @@ const GreeceWorkVisa = () => {
                   <h2 className="text-4xl md:text-4xl font-bold text-white mb-2">
                     Salary & Benefits
                   </h2>
-                  <div className="w-16 h-1 mb-8" style={{ backgroundColor: '#FF1033' }}></div>
+                  <div className="w-16 h-1 mb-8"></div>
                   <ul className="space-y-4">
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((benefit, idx) => (
                       <li key={idx} className="flex items-start gap-4">
@@ -438,13 +438,13 @@ const GreeceWorkVisa = () => {
                     item.images.map(p => <img
                       src={getImageUrl(p)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-xl shadow-lg"
+                      className="max-w-full h-auto rounded-xl  "
                       style={{ maxHeight: '400px' }}
                     />)
                   ) : item.image && <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    className="max-w-full h-auto rounded-xl  "
                     style={{ maxHeight: '400px' }}
                   />
                   }
@@ -471,13 +471,13 @@ const GreeceWorkVisa = () => {
                     item.images.map(p => <img
                       src={getImageUrl(p)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-xl shadow-lg"
+                      className="max-w-full h-auto rounded-xl  "
                       style={{ maxHeight: '400px' }}
                     />)
                   ) : item.image && <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    className="max-w-full h-auto rounded-xl  "
                     style={{ maxHeight: '400px' }}
                   />}
                 </div>
@@ -485,7 +485,7 @@ const GreeceWorkVisa = () => {
                   <h2 className="text-4xl md:text-4xl font-bold text-[#333333] mb-2">
                     Eligibility Criteria
                   </h2>
-                  <div className="w-16 h-1 mb-8" style={{ backgroundColor: '#FF1033' }}></div>
+                  <div className="w-16 h-1 mb-8"></div>
                   <ul className="space-y-4">
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((criteria, idx) => (
                       <li key={idx} className="flex items-start gap-4">
@@ -519,7 +519,7 @@ const GreeceWorkVisa = () => {
               <h2 className="text-4xl md:text-4xl  font-bold text-white mb-3">
                 Document Checklist
               </h2>
-              <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-16 h-1 mx-auto" ></div>
             </div>
 
             {/* Document Cards */}
@@ -563,7 +563,7 @@ const GreeceWorkVisa = () => {
               <h2 className="text-4xl md:text-4xl font-bold text-[#333333] mb-3">
                 Fees, Processing Time & Validity
               </h2>
-              <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-16 h-1 mx-auto"></div>
             </div>
 
             {/* Fees Cards */}
@@ -573,7 +573,7 @@ const GreeceWorkVisa = () => {
                 return (
                   <div
                     key={item._id || index}
-                    className="bg-white rounded-xl p-6 border border-gray-100 shadow-lg relative overflow-hidden min-h-[180px]"
+                    className="bg-white rounded-xl p-6 border border-gray-100   relative overflow-hidden min-h-[180px]"
                   >
                     <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#333333] mb-3">
                       {item.title}
@@ -618,13 +618,13 @@ const GreeceWorkVisa = () => {
                     item.images.map(p => <img
                       src={getImageUrl(p)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-xl shadow-lg"
+                      className="max-w-full h-auto rounded-xl  "
                       style={{ maxHeight: '400px' }}
                     />)
                   ) : item.image && <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    className="max-w-full h-auto rounded-xl  "
                     style={{ maxHeight: '400px' }}
                   />}
                 </div>
@@ -733,7 +733,7 @@ const GreeceWorkVisa = () => {
                 <h3 className="text-3xl md:text-4xl font-bold mb-2">
                   Apply Now
                 </h3>
-                <div className="w-14 h-1 bg-[#FF1033] mb-6" />
+                <div className="w-14 h-1 mb-6" />
 
                 <p className="text-base md:text-lg leading-relaxed mb-6 text-gray-200">
                   Ready to take your hospitality career to Europe? Complete our
@@ -751,7 +751,7 @@ const GreeceWorkVisa = () => {
 
                 <button
                   onClick={() => document.getElementById('hero-section')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  transition font-semibold text-lg shadow-lg"
+                  className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  transition font-semibold text-lg  "
                 >
                   Start Your Application
                 </button>
@@ -775,7 +775,7 @@ const GreeceWorkVisa = () => {
                 <h3 className="text-3xl md:text-4xl font-bold mb-2">
                   Connect with us
                 </h3>
-                <div className="w-14 h-1 bg-[#FF1033] mb-8" />
+                <div className="w-14 h-1  mb-8" />
 
                 <h4 className="text-3xl font-bold mb-1">
                   Karan Khurana

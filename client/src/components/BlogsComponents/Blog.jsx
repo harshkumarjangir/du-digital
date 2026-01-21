@@ -50,7 +50,7 @@ export const Blog = ({ data: propData, className }) => {
         {data?.map((blog) => (
           <div
             key={blog._id}
-            className="relative rounded-2xl overflow-hidden shadow-none group"
+            className="relative rounded-2xl overflow-hidden  none group"
           >
             {/* IMAGE */}
             <div className="h-[450px] relative">
@@ -66,7 +66,7 @@ export const Blog = ({ data: propData, className }) => {
             <Link
               to={`/blog/${blog._id}`}
               aria-label="View blog details"
-              className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-none hover:scale-105 transition z-10"
+              className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center  none hover:scale-105 transition z-10"
             >
               <ArrowUpRight size={24} className="text-[#FF1033]" />
             </Link>

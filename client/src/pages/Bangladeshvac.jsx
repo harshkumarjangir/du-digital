@@ -147,10 +147,10 @@ const BangladeshVac = () => {
           <div className="max-w-4xl mx-auto px-6 md:px-20">
             <div className="text-center mb-10">
               <h2 className="text-4xl font-bold text-gray-900 mb-3">Apply Now</h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
-            <div className="bg-white rounded-xl p-8 shadow-lg">
+            <div className="bg-white rounded-xl p-8  ">
               <form className="space-y-4" onSubmit={handleSubmit}>
                 {(() => {
                   const textFields = fields.filter(f => ['text', 'email', 'number'].includes(f.type));
@@ -304,7 +304,7 @@ const BangladeshVac = () => {
                 <h2 className="text-2xl md:text-2xl font-bold text-black mb-6 text-left">
                   {item.title}
                 </h2>
-                {/* <div className="w-20 h-1 mx-auto mb-8" style={{ backgroundColor: '#FF1033' }}></div> */}
+                {/* <div className="w-20 h-1 mx-auto mb-8"></div> */}
                 <p className="text-black leading-relaxed text-lg whitespace-pre-line text-left mx-auto">
                   {item.contentHtml}
                 </p>
@@ -326,7 +326,7 @@ const BangladeshVac = () => {
                 {/* Title at top */}
                 <div
 
-                  className="overflow-hidden w-[60%] lg:w-[70%] mx-auto rounded-lg shadow-md group cursor-pointer"
+                  className="overflow-hidden w-[60%] lg:w-[70%] mx-auto rounded-lg  md group cursor-pointer"
                 >
                   <img
                     src={getImageUrl(gallery.images[0])}
@@ -339,14 +339,14 @@ const BangladeshVac = () => {
                 </h2>
 
                 {/* Red underline */}
-                <div className="w-20 h-1 mx-auto mb-8" style={{ backgroundColor: '#FF1033' }}></div>
+                <div className="w-20 h-1 mx-auto mb-8"></div>
 
                 {/* Image Grid - 3 columns with hover effect */}
                 <div className="grid md:grid-cols-2 gap-4">
                   {gallery.images.slice(1)?.map((img, imgIndex) => (
                     <div
                       key={imgIndex}
-                      className="overflow-hidden rounded-lg shadow-md group cursor-pointer"
+                      className="overflow-hidden rounded-lg  md group cursor-pointer"
                     >
                       <img
                         src={getImageUrl(img)}
@@ -369,14 +369,14 @@ const BangladeshVac = () => {
           <div className="max-w-6xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-4xl lg:text-4xl font-semibold text-black mb-3">Bangladesh Visa Application Centre in India</h2>
-              {/* <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div> */}
+              {/* <div className="w-20 h-1 mx-auto" ></div> */}
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {formEmployeesAddresses.map((location, index) => (
                 <div
                   key={location._id || index}
-                  className="rounded-xl p-6 text-white shadow-lg"
+                  className="rounded-xl p-6 text-white  "
                   style={{ backgroundColor: location.color || '#3E861C' }}
                 >
                   <h3 className="text-2xl font-bold mb-4 flex items-center gap-4">
@@ -416,7 +416,7 @@ const BangladeshVac = () => {
           <div className="max-w-5xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-3">Documents Required</h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             <div className="space-y-4">
@@ -452,7 +452,7 @@ const BangladeshVac = () => {
           <div className="max-w-4xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-3">Frequently Asked Questions</h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             <div className="space-y-4">

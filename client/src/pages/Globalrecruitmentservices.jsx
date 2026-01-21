@@ -212,13 +212,13 @@ const Globalrecruitmentservices = () => {
                 "DU Global is a global recruitment agency that specializes in connecting employers worldwide with highly skilled Indian professionals across various sectors."}
             </p>
 
-            {/* <button className="inline-flex items-center gap-4 bg-[#c60505] hover:bg-[#a00000] text-white px-10 py-4 rounded-lg font-bold text-lg transition shadow-lg">
+            {/* <button className="inline-flex items-center gap-4 bg-[#c60505] hover:bg-[#a00000] text-white px-10 py-4 rounded-lg font-bold text-lg transition  ">
               Get Started Now <ArrowRight size={20} />
             </button> */}
           </div>
 
           {/* RIGHT FORM CARD */}
-          <div className="bg-white rounded-2xl p-6 md:p-6 shadow-2xl w-full max-w-md lg:ml-auto">
+          <div className="bg-white rounded-2xl p-6 md:p-6  2xl w-full max-w-md lg:ml-auto">
 
             <h3 className="text-2xl font-bold text-[#333333] mb-6">
               Global Workforce Recruitment
@@ -352,7 +352,7 @@ const Globalrecruitmentservices = () => {
                 return (
                   <div
                     key={item._id || index}
-                    className="bg-white rounded-xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-gray-100 relative overflow-hidden group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
+                    className="bg-white rounded-xl p-8  [0_4px_20px_rgba(0,0,0,0.08)] border border-gray-100 relative overflow-hidden group hover:-translate-y-2   transition-all duration-300"
                   >
                     {/* Red Triangle Accent */}
                     <div className="absolute top-0 right-0 w-0 h-0 border-t-50 border-t-[#c60505] border-l-50 border-l-transparent" />
@@ -397,7 +397,7 @@ const Globalrecruitmentservices = () => {
                 return (
                   <div
                     key={item._id || index}
-                    className="relative bg-white rounded-2xl shadow-xl p-6 overflow-hidden"
+                    className="relative bg-white rounded-2xl  xl p-6 overflow-hidden"
                   >
                     {/* Red corner ribbon */}
                     <div className="absolute top-0 right-0 w-24 h-24 bg-[#c60505] rotate-45 translate-x-12 -translate-y-12" />
@@ -470,7 +470,7 @@ const Globalrecruitmentservices = () => {
 
                   return (
                     <SwiperSlide key={industry._id || index}>
-                      <div className="bg-white rounded-2xl shadow-xl p-8 h-full transition hover:shadow-2xl">
+                      <div className="bg-white rounded-2xl  xl p-8 h-full transition  ">
 
                         {/* Icon */}
                         <div className="mb-6">
@@ -550,7 +550,7 @@ const Globalrecruitmentservices = () => {
                   <img
                     src={getImageUrl(trackRecordSection[0].image)}
                     alt="Our Track Record"
-                    className="w-full h-auto rounded-3xl shadow-xl"
+                    className="w-full h-auto rounded-3xl  xl"
                   />
                 ) : (
                   <div className="bg-gray-50 rounded-3xl p-16 text-center">
@@ -600,7 +600,7 @@ const Globalrecruitmentservices = () => {
                 <img
                   src={getImageUrl(readyToBuildSection[0].images[0])}
                   alt="Ready to Build Your Team"
-                  className="w-full max-w-[520px] rounded-[28px] shadow-xl object-cover"
+                  className="w-full max-w-[520px] rounded-[28px]  xl object-cover"
                 />
               </div>
             ) : readyToBuildSection[0]?.image && (
@@ -608,7 +608,7 @@ const Globalrecruitmentservices = () => {
                 <img
                   src={getImageUrl(readyToBuildSection[0].image)}
                   alt="Ready to Build Your Team"
-                  className="w-full max-w-[520px] rounded-[28px] shadow-xl object-cover"
+                  className="w-full max-w-[520px] rounded-[28px]  xl object-cover"
                 />
               </div>
             )}

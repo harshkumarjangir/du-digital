@@ -35,7 +35,7 @@ const HomeAboutSection = ({ data }) => {
                 </div>
 
                 {/* RIGHT VIDEO */}
-                <div className="relative rounded-xl overflow-hidden shadow-xl bg-black aspect-video">
+                <div className="relative rounded-xl overflow-hidden  xl bg-black aspect-video">
                     <iframe
                         src={data.video.embedUrl}
                         title="DU Digital Global"
@@ -83,7 +83,7 @@ export default HomeAboutSection;
 //                 </div>
 
 //                 {/* RIGHT VIDEO */}
-//                 <div className="relative rounded-xl overflow-hidden shadow-xl bg-black aspect-video">
+//                 <div className="relative rounded-xl overflow-hidden  xl bg-black aspect-video">
 //                     <iframe
 //                         src={data.video.embedUrl}
 //                         title="DU Digital Global"

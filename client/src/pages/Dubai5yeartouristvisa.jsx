@@ -159,7 +159,7 @@ const Dubai5yeartouristvisa = () => {
             {/* Right - Contact Form */}
             {fields.length > 0 && (
               <div
-                className="rounded-2xl p-8 mx-12 shadow-2xl backdrop-blur-md z-10 "
+                className="rounded-2xl p-8 mx-12  2xl backdrop-blur-md z-10 "
                 style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
               >
                 {/* <h3 className="text-2xl font-bold text-white mb-6">Apply Now</h3> */}
@@ -304,7 +304,7 @@ const Dubai5yeartouristvisa = () => {
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
                 5-year UAE Tourist Visa for Indians: <br /> Fees and Processing Time
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             {feesSection.map((item, index) => {
@@ -323,7 +323,7 @@ const Dubai5yeartouristvisa = () => {
               }
 
               return (
-                <div key={item._id || index} className="bg-white rounded-2xl shadow-lg p-8 max-w-md mx-auto">
+                <div key={item._id || index} className="bg-white rounded-2xl   p-8 max-w-md mx-auto">
                   <h3 className="text-2xl font-bold text-gray-900 mb-6 text-left">{item.title}</h3>
 
                   {/* Visa details dynamic list */}
@@ -340,7 +340,7 @@ const Dubai5yeartouristvisa = () => {
                     <a
                       href="https://wa.me/9711018888"
                       target="_blank"
-                      className="px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-md"
+                      className="px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  md"
                     >
                       Enquire Now
                     </a>
@@ -364,7 +364,7 @@ const Dubai5yeartouristvisa = () => {
                   <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-2">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
+                  <div className="w-20 h-1 mb-6" ></div>
                   <p className="text-gray-600 leading-relaxed text-lg mb-6">
                     {item.contentHtml}
                   </p>
@@ -379,7 +379,7 @@ const Dubai5yeartouristvisa = () => {
                         key={index}
                         src={getImageUrl(image)}
                         alt={item.title}
-                        className="max-w-full h-auto rounded-2xl shadow-xl"
+                        className="max-w-full h-auto rounded-2xl  xl"
                       // style={{ maxHeight: '450px' }}
                       />
                     ))
@@ -387,7 +387,7 @@ const Dubai5yeartouristvisa = () => {
                     <img
                       src={getImageUrl(item.image)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-2xl shadow-xl"
+                      className="max-w-full h-auto rounded-2xl  xl"
                       style={{ maxHeight: '450px' }}
                     />
                   )}
@@ -419,7 +419,7 @@ const Dubai5yeartouristvisa = () => {
                   <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
                     {doc.title}
                   </h2>
-                  <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+                  <div className="w-20 h-1 mx-auto" ></div>
                 </div>
 
                 <div className="max-w-5xl mx-auto">

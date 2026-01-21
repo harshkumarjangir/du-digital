@@ -57,7 +57,7 @@ const Magazine = () => {
                             <img
                                 src={data.about.coverImage}
                                 alt="Magazine Cover"
-                                className="rounded-lg shadow-xl object-cover"
+                                className="rounded-lg  xl object-cover"
                             />
                         </div>
                     </div>
@@ -73,7 +73,7 @@ const Magazine = () => {
                         <img
                             src={data.events.image}
                             alt="TnH Events"
-                            className="rounded-lg shadow-md object-cover"
+                            className="rounded-lg  md object-cover"
                         />
                     </div>
 
@@ -161,7 +161,7 @@ export default Magazine;
 //                         <img
 //                             src={data.about.coverImage}
 //                             alt="Magazine Cover"
-//                             className="max-w-sm shadow-xl"
+//                             className="max-w-sm  xl"
 //                         />
 //                     </div>
 //                 </div>
@@ -175,7 +175,7 @@ export default Magazine;
 //                         <img
 //                             src={data.events.image}
 //                             alt="TnH Events"
-//                             className="rounded-lg shadow-md"
+//                             className="rounded-lg  md"
 //                         />
 //                     </div>
 

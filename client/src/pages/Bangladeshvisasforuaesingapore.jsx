@@ -138,7 +138,7 @@ const BangladeshVisasForUaeSingapore = () => {
 
           {/* Form - Only if fields exist */}
           {fields && fields.length > 0 && (
-            <div id="callback-form" className="bg-white rounded-2xl shadow-2xl p-5 max-w-md w-full ml-auto">
+            <div id="callback-form" className="bg-white rounded-2xl  2xl p-5 max-w-md w-full ml-auto">
 
               {submitStatus && (
                 <div className={`p-3 mb-4 text-sm rounded ${submitStatus === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
@@ -203,7 +203,7 @@ const BangladeshVisasForUaeSingapore = () => {
                 <div className="relative">
                   <div className="absolute -inset-4 bg-gray-100 rounded-2xl transform rotate-3 -z-10" />
                   {item.youtubeUrl ? (
-                    <div className="aspect-video w-full rounded-xl overflow-hidden shadow-2xl">
+                    <div className="aspect-video w-full rounded-xl overflow-hidden  2xl">
                       <iframe
                         src={item.youtubeUrl}
                         className="w-full h-full"
@@ -215,7 +215,7 @@ const BangladeshVisasForUaeSingapore = () => {
                     <img
                       src={getImageUrl(item?.images?.[0] || item?.image)}
                       alt="Global Experts"
-                      className="rounded-xl shadow-2xl w-full h-auto object-cover"
+                      className="rounded-xl  2xl w-full h-auto object-cover"
                     />
                   )}
                 </div>
@@ -235,7 +235,7 @@ const BangladeshVisasForUaeSingapore = () => {
                 <img
                   src={getImageUrl(weCaterSection[0]?.images?.[0])}
                   alt="We cater visas"
-                  className="rounded-2xl shadow-2xl w-full h-full object-cover"
+                  className="rounded-2xl  2xl w-full h-full object-cover"
                 />
               </div>
 
@@ -250,11 +250,11 @@ const BangladeshVisasForUaeSingapore = () => {
                 <div className="flex flex-wrap gap-12">
                   {weCaterSection.splice(1).map((item, index) => (
                     <div key={index} className="flex flex-col items-center gap-4 group cursor-pointer">
-                      <div className="w-24 h-24 rounded-full overflow-hidden shadow-lg border-4 border-white group-hover:border-[#FF1033] transition-all duration-300">
+                      <div className="w-24 h-24 rounded-full overflow-hidden   border-4 border-white group-hover:border-[#FF1033] transition-all duration-300">
                         <img
                           src={getImageUrl(item.images?.[0] || item.image)}
                           alt={item.title}
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform"
+                          className="w-[100px] h-[75px] rounded-sm object-cover"
                         />
                       </div>
                       <span className="font-bold text-gray-800 group-hover:text-[#FF1033] transition-colors">
@@ -279,7 +279,7 @@ const BangladeshVisasForUaeSingapore = () => {
               <img
                 src={getImageUrl(item.images?.[0] || item.image)}
                 alt={item.title}
-                className="rounded-2xl shadow-xl w-full h-auto"
+                className="rounded-2xl  xl w-full h-auto"
               />
             </div>
 
@@ -303,7 +303,7 @@ const BangladeshVisasForUaeSingapore = () => {
               </div>
 
               <Link to="/company-setup-in-the-uae">
-                <button className="px-8 py-3 bg-[#FF1033] text-white rounded-full font-bold hover:bg-[#c41920] transition-colors shadow-lg shadow-red-200">
+                <button className="px-8 py-3 bg-[#FF1033] text-white rounded-full font-bold hover:bg-[#c41920] transition-colors    red-200">
                   Explore Company Setup
                 </button>
               </Link>
@@ -333,7 +333,7 @@ const BangladeshVisasForUaeSingapore = () => {
                 <h3 className="text-3xl font-bold text-center mb-8">Documents Required</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   {documents.map((doc, idx) => (
-                    <div key={idx} className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-[#FF1033]">
+                    <div key={idx} className="bg-white p-6 rounded-lg  sm border-l-4 border-[#FF1033]">
                       <h4 className="font-bold text-lg mb-2">{doc.title}</h4>
                       <p className="text-gray-600">{doc.description}</p>
                     </div>
@@ -347,7 +347,7 @@ const BangladeshVisasForUaeSingapore = () => {
                 <h3 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h3>
                 <div className="space-y-4">
                   {faqs.map((faq, idx) => (
-                    <div key={idx} className="bg-white p-6 rounded-lg shadow-sm">
+                    <div key={idx} className="bg-white p-6 rounded-lg  sm">
                       <h4 className="font-bold text-gray-900 mb-2">{faq.question}</h4>
                       <p className="text-gray-600">{faq.answer}</p>
                     </div>

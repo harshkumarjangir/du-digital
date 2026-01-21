@@ -9,8 +9,8 @@ import Timeline from "../components/reusable/Timeline";
 import NewsHome from '../components/reusable/NewsHome';
 import { Link } from 'react-router-dom';
 import OurStrengths from '../components/reusable/OurStrengths';
-import OurFootprints from '../components/reusable/OurFootprints';
 import ConnectWithUs from '../components/reusable/ConnectWithUs';
+import OurFootprints from '../components/home/OurFootprints';
 
 const ForGovernmentEmbassies = () => {
     const dispatch = useDispatch();
@@ -53,8 +53,8 @@ const ForGovernmentEmbassies = () => {
                 </Link>
             </div>
 
-            <OurStrengths data={data.strengths} />
-            <OurFootprints aboutSection={data.aboutSection} data={data.footprints} />
+            <OurStrengths data={data.strengths} image={data.hero.backgroundImage} />
+            <OurFootprints data={data.footprints} />
             <ConnectWithUs data={data.connect} />
 
         </div>

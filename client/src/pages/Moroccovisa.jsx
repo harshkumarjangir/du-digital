@@ -315,7 +315,7 @@ const Moroccovisa = () => {
                   <h2 className="text-4xl md:text-4xl  font-semibold text-gray-900 mb-2 uppercase">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
+                  <div className="w-20 h-1 mb-6" ></div>
 
                   <p className="text-[#333333] leading-relaxed text-lg whitespace-pre-line">
                     {item.contentHtml}
@@ -340,13 +340,13 @@ const Moroccovisa = () => {
                     item.images.map(p => <img
                       src={getImageUrl(p)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-xl shadow-lg"
+                      className="max-w-full h-auto rounded-xl  "
                       style={{ maxHeight: '500px' }}
                     />)
                   ) : item.image && <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    className="max-w-full h-auto rounded-xl  "
                     style={{ maxHeight: '500px' }}
                   />}
 
@@ -365,7 +365,7 @@ const Moroccovisa = () => {
               <h2 className="text-2xl md:text-3xl  font-semibold text-gray-900 mb-3">
                 Morocco Visa Types, Fees, and Processing Time for Indian Citizens
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -386,7 +386,7 @@ const Moroccovisa = () => {
                 }
 
                 return (
-                  <div key={item._id || index} className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
+                  <div key={item._id || index} className="bg-white rounded-xl p-6  md border border-gray-100">
                     <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{item.title}</h3>
                     <div className="space-y-4">
                       {pairs.map((pair, idx) => {
@@ -421,7 +421,7 @@ const Moroccovisa = () => {
               <h2 className="text-4xl md:text-4xl font-bold text-black mb-3">
                 Morocco Visa Requirements for Indians
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             <div className="space-y-8">

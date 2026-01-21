@@ -38,7 +38,6 @@ export const Swifttravels = () => {
       </section>
       <div className="flex justify-center  items-center my-5 flex-col">
         <h2 class="text-4xl  my-5 font-bold">Travel Packages</h2>
-        <div className="border-2 border-[#FF1033] w-20"></div>
       </div>
 
       <CardData />

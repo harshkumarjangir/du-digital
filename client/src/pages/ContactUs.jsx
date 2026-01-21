@@ -325,7 +325,7 @@ export default ContactUs;
 //                 {offices.map((office, i) => (
 //                     <div
 //                         key={i}
-//                         className="bg-white shadow-md rounded-lg p-6 space-y-4"
+//                         className="bg-white  md rounded-lg p-6 space-y-4"
 //                     >
 //                         <h3 className="font-semibold text-lg">{office.title}</h3>
 

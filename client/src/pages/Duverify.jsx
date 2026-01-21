@@ -130,7 +130,7 @@ const Duverify = () => {
 
             <a
               href="#connectwithus"
-              className="inline-block px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+              className="inline-block px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
             >
               Connect with Us
             </a>
@@ -138,7 +138,7 @@ const Duverify = () => {
         </div>
       </section>
       {fields && fields.length > 0 && (
-        <div id="callback-form" className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full ml-auto">
+        <div id="callback-form" className="bg-white rounded-2xl  2xl p-8 max-w-md w-full ml-auto">
           <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Request a Callback</h3>
 
           {submitStatus && (

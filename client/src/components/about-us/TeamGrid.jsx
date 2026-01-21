@@ -199,7 +199,7 @@ export default TeamGrid;
 //                 {data.map((member, i) => (
 //                     <div
 //                         key={member._id || i}
-//                         className="group relative bg-gradient-to-b from-[#F9E9E9] to-[#F9E9E9]/50 rounded-lg overflow-hidden shadow hover:shadow-lg transition"
+//                         className="group relative bg-gradient-to-b from-[#F9E9E9] to-[#F9E9E9]/50 rounded-lg overflow-hidden     transition"
 //                     >
 //                         {/* RED TOP BAR */}
 //                         {/* <div className="h-1 bg-[#FF1033]"></div> */}
@@ -268,7 +268,7 @@ export default TeamGrid;
 //              <h2 className="text-4xl font-bold text-center mb-10">{title}</h2>
 //             <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 px-6">
 //                 {data.map((member, i) => (
-//                     <div key={member._id || i} className="text-center bg-white p-4 rounded shadow">
+//                     <div key={member._id || i} className="text-center bg-white p-4 rounded  ">
 //                         <img
 //                             src={member.profileImage || member.image}
 //                             alt={member.name}

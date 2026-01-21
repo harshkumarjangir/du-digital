@@ -68,7 +68,7 @@ export const Blog = ({ data: propData, className }) => {
                         return (
                             <div
                                 key={blog._id}
-                                className="w-full max-w-sm h-[420px] rounded-2xl overflow-hidden shadow-lg bg-white flex flex-col">
+                                className="w-full max-w-sm h-[420px] rounded-2xl overflow-hidden  bg-white flex flex-col">
                                 {/* Image */}
                                 <img
                                     src={blog.featuredImage}

@@ -59,7 +59,7 @@ const ContactForm = ({ form }) => {
     };
 
     return (
-        <div className="bg-white rounded-2xl shadow-lg p-2.5 md:p-8">
+        <div className="bg-white rounded-2xl  p-2.5 md:p-8">
             <form onSubmit={handleSubmit} className="space-y-5">
                 <input
                     type="text"

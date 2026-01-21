@@ -106,7 +106,7 @@ const TimelineSlider = ({ data = [] }) => {
                                         <div
                                             className={`w-5 h-5 rounded-full border-[3px] transition-all duration-300 ease-out
                                             ${isActive
-                                                    ? "bg-[#FF1033] border-[#FF1033] scale-125 shadow-lg shadow-red-200"
+                                                    ? "bg-[#FF1033] border-[#FF1033] scale-125    red-200"
                                                     : "bg-white border-gray-300 scale-90 group-hover:border-gray-400"
                                                 }`}
                                         />

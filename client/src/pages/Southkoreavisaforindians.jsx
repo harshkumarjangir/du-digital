@@ -173,7 +173,7 @@ const Southkoreavisaforindians = () => {
             {/* Right - Contact Form */}
             {fields.length > 0 && (
               <div
-                className="rounded-2xl p-8 shadow-2xl"
+                className="rounded-2xl p-8  2xl"
                 style={{
                   backgroundColor: 'rgba(0,0,0,0.9)',
                   border: '1px solid rgba(255,255,255,0.1)'
@@ -310,11 +310,11 @@ const Southkoreavisaforindians = () => {
               <h2 className="text-4xl md:text-4xl  font-semibold text-[#333333] mb-3">
                 South Korea Visa Types with Fees
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             {visaTypesSection.map((item, index) => (
-              <div key={item._id || index} className="bg-white rounded-2xl shadow-lg overflow-hidden max-w-md mx-auto">
+              <div key={item._id || index} className="bg-white rounded-2xl   overflow-hidden max-w-md mx-auto">
                 {/* Red header banner */}
                 <div
                   className="py-4 px-6 text-center"
@@ -362,7 +362,7 @@ const Southkoreavisaforindians = () => {
                   <h2 className="text-2xl md:text-3xl font-semibold text-[#333333] mb-2">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
+                  <div className="w-20 h-1 mb-6" ></div>
                   <p className="text-[#333333] leading-relaxed text-lg">
                     {item.contentHtml}
                   </p>
@@ -372,13 +372,13 @@ const Southkoreavisaforindians = () => {
                     item.images.map(p => <img
                       src={getImageUrl(p)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-xl shadow-lg"
+                      className="max-w-full h-auto rounded-xl  "
                       style={{ maxHeight: '400px' }}
                     />)
                   ) : item.image && <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    className="max-w-full h-auto rounded-xl  "
                     style={{ maxHeight: '400px' }}
                   />}
                 </div>
@@ -399,13 +399,13 @@ const Southkoreavisaforindians = () => {
                     <img
                       src={getImageUrl(item.images[0])}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-xl shadow-lg"
+                      className="max-w-full h-auto rounded-xl  "
                       style={{ minHeight: '400px' }}
                     />
                   ) : item.image && <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    className="max-w-full h-auto rounded-xl  "
                     style={{ minHeight: '400px' }}
                   />}
                 </div>
@@ -420,7 +420,7 @@ const Southkoreavisaforindians = () => {
                       className="max-w-full h-[100px]"
                     // style={{ maxHeight: '400px' }}
                     />)}
-                  {/* <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div> */}
+                  {/* <div className="w-20 h-1 mb-6" ></div> */}
                   <p className="text-[#333333] leading-relaxed text-lg">
                     {item.contentHtml}
                   </p>
@@ -462,7 +462,7 @@ const Southkoreavisaforindians = () => {
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#333333] mb-3">
                       {doc.title}
                     </h2>
-                    <div className="w-20 h-1 mx-auto bg-[#FF1033]" />
+                    <div className="w-20 h-1 mx-auto" />
                   </div>
 
                   <p className="text-[#333333] leading-relaxed text-lg text-center mb-12">
@@ -535,7 +535,7 @@ const Southkoreavisaforindians = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
                 Additional Requirements
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-4">
@@ -543,7 +543,7 @@ const Southkoreavisaforindians = () => {
               {additionalReqSection.map((item, index) => (
                 <div
                   key={item._id || index}
-                  className="bg-white rounded-xl p-6 shadow-md relative overflow-hidden border border-gray-100"
+                  className="bg-white rounded-xl p-6  md relative overflow-hidden border border-gray-100"
                 >
                   {/* Large number */}
                   <div
@@ -556,7 +556,7 @@ const Southkoreavisaforindians = () => {
                   <ul className="space-y-4">
                     {item.contentHtml?.split('\r\n').filter(line => line.trim()).map((line, idx) => (
                       <li key={idx} className="flex list-disc items-start gap-4 text-gray-600 text-sm">
-                     
+
                         <span>{line}</span>
                       </li>
                     ))}
@@ -575,7 +575,7 @@ const Southkoreavisaforindians = () => {
               {employedSection.map((item, index) => (
                 <div
                   key={item._id || index}
-                  className="bg-white rounded-xl p-6 shadow-md relative overflow-hidden border border-gray-100"
+                  className="bg-white rounded-xl p-6  md relative overflow-hidden border border-gray-100"
                 >
                   <div
                     className="text-4xl font-bold mb-4"
@@ -619,7 +619,7 @@ const Southkoreavisaforindians = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
                 How to Apply for your South Korea Visa
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-4">

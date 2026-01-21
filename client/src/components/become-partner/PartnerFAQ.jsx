@@ -165,7 +165,7 @@ export default PartnerFAQ;
 //     const rightItems = data.slice(mid);
 
 //     const renderItem = (item, index) => (
-//         <div key={index} className="bg-white rounded shadow">
+//         <div key={index} className="bg-white rounded  ">
 //             <button
 //                 onClick={() => setOpen(open === index ? null : index)}
 //                 className={`w-full text-left p-4 font-semibold flex justify-between items-center transition
@@ -229,7 +229,7 @@ export default PartnerFAQ;
 
 //             <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 space-y-0 px-6">
 //                 {data.map((item, i) => (
-//                     <div key={i} className="bg-white rounded shadow">
+//                     <div key={i} className="bg-white rounded  ">
 //                         <button
 //                             onClick={() => setOpen(open === i ? null : i)}
 //                             className={`w-full text-left p-4 font-semibold flex justify-between ${open === i ? 'bg-[#C62625] text-white' : ''}`}

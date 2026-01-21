@@ -58,7 +58,7 @@ const OurCapabilities = () => {
                             <div
                                 key={i}
                                 className="bg-white rounded-xl p-8 text-center
-                                           shadow-sm hover:shadow-md transition"
+                                            sm   transition"
                             >
                                 {/* Icon */}
                                 <div className="flex justify-center mb-6">

@@ -119,7 +119,7 @@ const Digitalarrivalcards = () => {
             </p>
             <a
               href="#apply-form"
-              className="inline-block px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+              className="inline-block px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
             >
               Start Your Application
             </a>
@@ -131,7 +131,7 @@ const Digitalarrivalcards = () => {
       <section id="apply-form" className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-6 md:px-20">
           <div
-            className="bg-white rounded-2xl p-8 shadow-lg"
+            className="bg-white rounded-2xl p-8  "
             style={{ border: '3px solid #C00C02' }}
           >
             {/* Step Progress */}
@@ -246,7 +246,7 @@ const Digitalarrivalcards = () => {
                   <img
                     src={item.image ? getImageUrl(item.image) : STATIC_IMAGES.travelReady}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-2xl shadow-2xl"
+                    className="max-w-full h-auto rounded-2xl  2xl"
                     style={{ maxHeight: '400px' }}
                   />
                 </div>
@@ -282,7 +282,7 @@ const Digitalarrivalcards = () => {
                 return (
                   <div
                     key={doc._id || index}
-                    className="bg-white rounded-xl p-6 shadow-md relative overflow-hidden min-h-[150px]"
+                    className="bg-white rounded-xl p-6  md relative overflow-hidden min-h-[150px]"
                     style={{ border: '2px solid #C00C02' }}
                   >
                     {/* Large number */}
@@ -335,7 +335,7 @@ const Digitalarrivalcards = () => {
                   <img
                     src={item.image ? getImageUrl(item.image) : STATIC_IMAGES.whyChoose}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-2xl shadow-2xl"
+                    className="max-w-full h-auto rounded-2xl  2xl"
                     style={{ maxHeight: '400px' }}
                   />
                 </div>

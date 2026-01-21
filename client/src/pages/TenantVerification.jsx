@@ -199,7 +199,7 @@ const TenantVerification = () => {
                 document.getElementById('plan-form-container')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }, 100);
             }}
-              className="px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-xl cursor-pointer"
+              className="px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  xl cursor-pointer"
             >
               Get Started Today – Verify Now
             </button>
@@ -255,13 +255,13 @@ const TenantVerification = () => {
                     item.images.map(p => <img
                       src={getImageUrl(p)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-xl shadow-lg"
+                      className="max-w-full h-auto rounded-xl  "
                       style={{ maxHeight: '400px' }}
                     />)
                   ) : item.image && <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    className="max-w-full h-auto rounded-xl  "
                     style={{ maxHeight: '400px' }}
                   />}
                 </div>
@@ -294,7 +294,7 @@ const TenantVerification = () => {
                 return (
                   <div
                     key={benefit._id || index}
-                    className="bg-white rounded-3xl p-10 shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] transition-all duration-300"
+                    className="bg-white rounded-3xl p-10  transition-all duration-300"
                   >
                     {/* Icon */}
                     <div className="mb-8 flex justify-center">
@@ -359,7 +359,7 @@ const TenantVerification = () => {
             </div>
 
             {/* Table Wrapper */}
-            <div className="hidden md:block bg-white rounded-3xl shadow-[0_15px_40px_rgba(0,0,0,0.08)] border border-gray-200 overflow-hidden mt-16">
+            <div className="hidden md:block bg-white rounded-3xl  [0_15px_40px_rgba(0,0,0,0.08)] border border-gray-200 overflow-hidden mt-16">
 
               <table className="w-full border-collapse">
                 {/* Header */}
@@ -459,7 +459,7 @@ const TenantVerification = () => {
                       return (
                         <td key={plan._id || index} className="py-8 text-center">
                           <button
-                            className="w-[80%] py-4 rounded-full font-bold text-white text-lg shadow-lg hover:opacity-90 transition"
+                            className="w-[80%] py-4 rounded-full font-bold text-white text-lg   hover:opacity-90 transition"
                             style={{ backgroundColor: color.bg }} onClick={() => setPlain(plan.planName)}
                           >
                             Choose Plan
@@ -493,7 +493,7 @@ const TenantVerification = () => {
                 return (
                   <div
                     key={plan._id || index}
-                    className="bg-white rounded-3xl shadow-xl border border-gray-200 overflow-hidden"
+                    className="bg-white rounded-3xl  xl border border-gray-200 overflow-hidden"
                   >
                     {/* Header */}
                     <div
@@ -542,7 +542,7 @@ const TenantVerification = () => {
                     {/* Button */}
                     <div className="px-6 pb-8">
                       <button
-                        className="w-full py-4 rounded-full text-white font-bold text-lg shadow-lg transition hover:opacity-90 cursor-pointer"
+                        className="w-full py-4 rounded-full text-white font-bold text-lg   transition hover:opacity-90 cursor-pointer"
                         style={{ backgroundColor: color.bg }}
                         onClick={() => {
                           setPlain(plan.planName);
@@ -561,7 +561,7 @@ const TenantVerification = () => {
 
             <div id="plan-form-container" className="mt-12">
               {plain && (
-                <div className="plan-card bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-gray-200">
+                <div className="plan-card bg-white rounded-3xl  xl p-6 md:p-10 border border-gray-200">
                   <div className="form-row flex flex-col md:flex-row gap-6 mb-8">
                     {/* Selected Plan */}
                     <div className="form-group flex-1 ">
@@ -724,7 +724,7 @@ const TenantVerification = () => {
                   <div className="mt-8 pt-6 border-t border-gray-100">
                     <button
                       disabled={submitLoading}
-                      className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-white hover:bg-[#D90022] hover:shadow-lg mt-4 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-4 cursor-pointer"
+                      className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-white hover:bg-[#D90022]   mt-4 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-4 cursor-pointer"
                       onClick={() => proceed()}
                     >
                       {submitLoading ? <><Loader2 className="w-6 h-6 animate-spin" /> Submitting...</> : 'Wait, I just need verification (No Form)'}
@@ -763,7 +763,7 @@ const TenantVerification = () => {
               {/* Left Side - Title and Steps */}
               <div>
                 {/* Steps Card */}
-                <div className="bg-white rounded-2xl p-8 shadow-xl overflow-y-auto no-scrollbar h-[400px]">
+                <div className="bg-white rounded-2xl p-8  xl overflow-y-auto no-scrollbar h-[400px]">
                   {howItWorksSection.map((item, index) => {
                     const steps = item.contentHtml?.split(/\r?\n/).filter(line => line.trim()) || [];
                     return (
@@ -792,11 +792,11 @@ const TenantVerification = () => {
                   <img
                     src={getImageUrl(howItWorksSection[0].image)}
                     alt="Verification Process"
-                    className="max-w-full h-auto rounded-2xl shadow-2xl"
+                    className="max-w-full h-auto rounded-2xl  2xl"
                     style={{ maxHeight: '500px' }}
                   />
                 ) : (
-                  <div className="bg-white rounded-2xl p-12 shadow-2xl">
+                  <div className="bg-white rounded-2xl p-12  2xl">
                     <div className="text-center">
                       <div className="w-24 h-24 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
                         <Check className="w-12 h-12 text-green-600" strokeWidth={3} />
@@ -962,7 +962,7 @@ export default TenantVerification;
 //       <div className="grid md:grid-cols-2 gap-14 items-center">
 
 //         {/* LEFT – STEPS */}
-//         <div className="bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] overflow-hidden">
+//         <div className="bg-white rounded-3xl  [0_20px_50px_rgba(0,0,0,0.35)] overflow-hidden">
 
 //           {[
 //             {
@@ -1020,7 +1020,7 @@ export default TenantVerification;
 
 //         {/* RIGHT – IMAGE */}
 //         <div className="flex justify-center">
-//           <div className="rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
+//           <div className="rounded-3xl overflow-hidden  [0_20px_60px_rgba(0,0,0,0.6)]">
 //             <img
 //               src={
 //                 howItWorksSection[0]?.image

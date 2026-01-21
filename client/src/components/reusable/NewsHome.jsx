@@ -18,13 +18,13 @@ const NewsHome = ({ data }) => {
 
             {/* Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {data.slice(0, 3).map((item,index) => (
+                {data.slice(0, 3).map((item, index) => (
                     <a
                         key={item._id}
                         href={item.link}
                         target="_blank"
                         rel="noreferrer"
-                        className={` ${index==1&&"-mt-3"} relative bg-white rounded-[32px] overflow-hidden shadow-none transition`}
+                        className={` ${index == 1 && "-mt-3"} relative bg-white rounded-[32px] overflow-hidden  none transition`}
                     >
                         {/* Image (Tall) */}
                         <div className="relative h-[420px]">
@@ -123,7 +123,7 @@ export default NewsHome;
 //                         href={item.link}
 //                         target="_blank"
 //                         rel="noreferrer"
-//                         className="bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300 block"
+//                         className="bg-white rounded-2xl overflow-hidden   transition-  duration-300 block"
 //                     >
 //                         {/* Image with Gradient Overlay */}
 //                         <div className="relative h-64 overflow-hidden">

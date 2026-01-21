@@ -24,7 +24,7 @@ const ConnectWithUs = ({ data }) => {
                 </h2>
 
                 {/* Card */}
-                <div className="bg-white rounded-2xl shadow-xl p-3 md:p-10 max-w-md w-full">
+                <div className="bg-white rounded-2xl  xl p-3 md:p-10 max-w-md w-full">
                     <h3 className="text-2xl font-semibold mb-2">
                         {card.name}
                     </h3>

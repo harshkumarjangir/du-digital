@@ -317,7 +317,7 @@ export default ContactExperts;
 //                     {data.cards.map((card, index) => (
 //                         <div
 //                             key={index}
-//                             className="relative bg-white text-black p-4 shadow-lg"
+//                             className="relative bg-white text-black p-4  "
 //                         >
 //                             {/* Icon */}
 //                             <div className="absolute -top-6 right-6 bg-[#FF1033] text-white p-4 rounded-full">

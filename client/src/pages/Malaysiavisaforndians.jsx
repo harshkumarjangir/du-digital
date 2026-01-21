@@ -294,7 +294,7 @@ const Malaysiavisaforndians = () => {
                   <h2 className="text-4xl md:text-4xl font-bold text-[#333333] mb-2">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
+                  <div className="w-20 h-1 mb-6" ></div>
 
                   {/* Badge if exists */}
 
@@ -308,13 +308,13 @@ const Malaysiavisaforndians = () => {
                     item.images.map(p => <img
                       src={getImageUrl(p)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-xl shadow-lg"
+                      className="max-w-full h-auto rounded-xl  "
                     // style={{ maxHeight: '400px' }}
                     />)
                   ) : item.image && <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    className="max-w-full h-auto rounded-xl  "
                     style={{ maxHeight: '500px' }}
                   />}
                   {
@@ -343,7 +343,7 @@ const Malaysiavisaforndians = () => {
               <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-3">
                 TYPES OF VISA
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             {/* Horizontal Tab buttons */}
@@ -443,7 +443,7 @@ const Malaysiavisaforndians = () => {
               <h2 className="text-4xl md:text-4xl font-semibold text-black mb-3">
                 DOCUMENTS REQUIRED FOR Malaysia VISA
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             <div className="space-y-8">

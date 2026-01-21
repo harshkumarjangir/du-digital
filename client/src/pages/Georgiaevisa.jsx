@@ -168,7 +168,7 @@ const Georgiaevisa = () => {
                                 </h2>
 
                                 {revisedProcessSection[0]?.youtubeUrl && (
-                                    <div className="aspect-video w-full max-w-3xl mx-auto rounded-xl overflow-hidden shadow-xl mb-12">
+                                    <div className="aspect-video w-full max-w-3xl mx-auto rounded-xl overflow-hidden  xl mb-12">
                                         <video
                                             src={revisedProcessSection[0].youtubeUrl}
                                             controls
@@ -234,7 +234,7 @@ const Georgiaevisa = () => {
                         </h2>
                         <div className="space-y-4">
                             {faqs.map((faq, index) => (
-                                <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden">
+                                <div key={index} className="bg-white rounded-lg  sm overflow-hidden">
                                     <button
                                         onClick={() => setOpenFaq(openFaq === index ? null : index)}
                                         className="w-full flex justify-between items-center p-4 text-left hover:bg-gray-50 transition-all"

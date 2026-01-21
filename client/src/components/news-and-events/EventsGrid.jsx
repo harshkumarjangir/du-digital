@@ -54,7 +54,7 @@ const EventsGrid = ({ data: propData }) => {
                 {data?.map((event) => (
                     <div
                         key={event._id}
-                        className="relative rounded-2xl overflow-hidden shadow-none group"
+                        className="relative rounded-2xl overflow-hidden  none group"
                     // onClick={() => navigate(`/events/${event._id}`)}
                     >
                         {/* IMAGE */}
@@ -75,12 +75,12 @@ const EventsGrid = ({ data: propData }) => {
                         {/* TOP RIGHT ARROW BUTTON */}
                         {/* <button
                         onClick={() => navigate(`/events/${event._id}`)}
-                        className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition"
+                        className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center  md hover:scale-105 transition"
                     >
                         <span className="text-xl font-bold text-[#FF1033]">↗</span>
                     </button> */}
 
-                        <Link to={`/events/${event._id}`} aria-label="View event details" className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition z-10">
+                        <Link to={`/events/${event._id}`} aria-label="View event details" className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center  md hover:scale-105 transition z-10">
                             <ArrowUpRight size={24} className="text-[#FF1033] " />
                         </Link>
 
@@ -133,7 +133,7 @@ export default EventsGrid;
 
 // {/* <div
 //     key={event._id}
-//     className="relative h-[460px] rounded-[32px] overflow-hidden group shadow-xl cursor-pointer"
+//     className="relative h-[460px] rounded-[32px] overflow-hidden group  xl cursor-pointer"
 // >
 //     {/* IMAGE */}
 //     {event.imageUrl ? (
@@ -161,7 +161,7 @@ export default EventsGrid;
 //     {/* TOP RIGHT ARROW BUTTON */}
 //     <button
 //         onClick={() => navigate(`/events/${event._id}`)}
-//         className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition"
+//         className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center  md hover:scale-105 transition"
 //     >
 //         <span className="text-xl font-bold text-[#FF1033]">↗</span>
 //     </button>

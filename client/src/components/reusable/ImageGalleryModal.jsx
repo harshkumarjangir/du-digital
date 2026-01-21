@@ -110,7 +110,7 @@ const ImageGalleryModal = ({
                         </button>
 
                         {showShare && (
-                            <div className="absolute right-0 mt-2 bg-white text-black rounded shadow w-44 text-sm">
+                            <div className="absolute right-0 mt-2 bg-white text-black rounded   w-44 text-sm">
                                 <button
                                     onClick={() => {
                                         navigator.clipboard.writeText(currentImageUrl);

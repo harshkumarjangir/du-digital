@@ -34,7 +34,7 @@ const AboutUs = () => {
 
 
   // Define the order in which categories should be displayed
-  const categoryOrder = ["Leadership", "Board of Directors", "Management"];
+  const categoryOrder = ["Board of Directors", "Management", "Leadership"];
 
   // Function to get display title for category
   const getCategoryTitle = (category) => {

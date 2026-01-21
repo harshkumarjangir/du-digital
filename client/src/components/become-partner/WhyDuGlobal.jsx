@@ -24,7 +24,7 @@ const WhyDuGlobal = ({ data }) => {
             return (
               <div
                 key={index}
-                className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-md transition"
+                className="bg-white rounded-2xl border border-gray-200 p-8  transition"
               >
                 {/* Icon */}
                 <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-[#FFE7EA] mb-6">
