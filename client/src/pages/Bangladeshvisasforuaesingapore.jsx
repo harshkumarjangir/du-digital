@@ -250,7 +250,7 @@ const BangladeshVisasForUaeSingapore = () => {
                 <div className="flex flex-wrap gap-12">
                   {weCaterSection.splice(1).map((item, index) => (
                     <div key={index} className="flex flex-col items-center gap-4 group cursor-pointer">
-                      <div className="w-24 h-24 rounded-full overflow-hidden   border-4 border-white group-hover:border-[#FF1033] transition-all duration-300">
+                      <div className="">
                         <img
                           src={getImageUrl(item.images?.[0] || item.image)}
                           alt={item.title}
