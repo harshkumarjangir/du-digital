@@ -88,8 +88,8 @@ const AboutUs = () => {
         </>
       )}
       <VisionMission data={data.visionMission} />
-      <OurStrengths data={data.strengths} />
-      <OurFootprints aboutSection={data.aboutSection} data={data.footprints} />
+      <OurStrengths data={data.strengths} image={data.hero.backgroundImage} />
+      {/* <OurFootprints aboutSection={data.aboutSection} data={data.footprints} /> */}
     </>
   );
 };

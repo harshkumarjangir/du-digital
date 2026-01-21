@@ -296,3 +296,15 @@ body {
     border-radius: 10px;
     margin: 20px 0;
 }
+
+.swiper-pagination-bullet {
+    background: #ff1033 !important;
+    /* red */
+    opacity: 0.4;
+}
+
+.swiper-pagination-bullet-active {
+    background: #ff1033 !important;
+    /* active red */
+    opacity: 1;
+}

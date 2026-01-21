@@ -41,7 +41,7 @@ export const Blog = ({ data: propData, className }) => {
   };
 
   return (
-    <div className="min-w-7xl mx-auto px-6 md:px-20 pb-12 pt-2">
+    <div className=" mx-auto px-6 md:px-20 py-12">
       {loading && !propData && <div className="text-center">Loading...</div>}
       {error && !propData && <div className="text-center text-[#FF1033]">Error: {error}</div>}
 

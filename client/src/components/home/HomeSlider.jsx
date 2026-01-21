@@ -23,7 +23,7 @@ const HomeSlider = ({ data }) => {
 
     return (
 
-        <section className="relative  w-full h-[800px]  overflow-hidden">
+        <section className="relative  w-full min-h-[600px] sm:h-[800px]  overflow-hidden">
 
             <AnimatePresence mode="wait">
                 <motion.div

@@ -53,7 +53,7 @@ const TeamGrid = ({ title, subtitle, data }) => {
 
                             {/* HOVER DESCRIPTION */}
                             {member.description && (
-                                <div className="absolute inset-0 z-20 bg-black/80 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300">
+                                <div className="absolute inset-0 z-20 bg-red-900/80 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300">
                                     <div className="absolute top-0 w-full max-h-[100%] overflow-y-auto p-5 text-sm text-white no-scrollbar">
                                         <div className="py-2 mb-5 text-white z-10">
                                             <h4 className="text-lg font-semibold">

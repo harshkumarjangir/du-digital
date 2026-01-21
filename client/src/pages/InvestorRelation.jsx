@@ -91,7 +91,7 @@ const InvestorRelation = () => {
                                 <div>
                                     <h3
                                         className="
-                                            text-lg font-semibold mb-4 leading-snug
+                                            text-lg font-regular  mb-4 leading-snug
                                             text-gray-900
                                             group-hover:text-white
                                         "
@@ -126,7 +126,7 @@ const InvestorRelation = () => {
                                     target="_blank"
                                     className="
                                         mt-8 inline-flex items-center justify-center
-                                        px-6 py-3 rounded-md font-medium
+                                        px-6 py-3 rounded-md font-normal
                                         border-2 border-[#FF3B1F]
                                         text-[#FF3B1F]
                                         transition-all duration-300

@@ -1,3 +1,4 @@
+import { LocationEdit } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -91,22 +92,22 @@ const VisaServices = ({ data }) => {
         <section className="relative py-16">
             {/* ... dotted background commented out ... */}
 
-            <div className="relative max-w-7xl mx-auto px-6 md:px-20">
+            <div className="relative max-w-5xl mx-auto px-6 md:px-20">
 
-                <div className="bg-white rounded-2xl shadow-xl p-4">
+                <div className="bg-white rounded-2xl shadow-xl overflow-hidden ">
 
                     {/* Header */}
-                    <div className="bg-[#FF1033] text-white text-center py-4 rounded-xl text-2xl font-semibold mb-8">
+                    <div className="bg-[#FF1033] text-white text-center   text-2xl font-semibold mb-1">
                         {data.title}
                     </div>
 
                     {/* Form */}
-                    <div className="grid lg:grid-cols-3 gap-6 items-end">
+                    <div className="grid lg:grid-cols-3 gap-6 px-3 py-3 items-end">
 
                         {/* From */}
                         <div>
-                            <label htmlFor="visa-from" className="block mb-2 text-sm font-medium">
-                                {data.fromLabel}
+                            <label htmlFor="visa-from" className="flex items-center gap-2 ps-2 text-[#FF1033] text-lg">
+                                <LocationEdit backgroundColor="#FF1033" /> {data.fromLabel}
                             </label>
                             <select
                                 id="visa-from"
@@ -130,8 +131,8 @@ const VisaServices = ({ data }) => {
 
                         {/* To */}
                         <div>
-                            <label htmlFor="visa-to" className="block mb-2 text-sm font-medium">
-                                {data.toLabel}
+                            <label htmlFor="visa-to" className="  flex items-center gap-2 ps-2 text-[#FF1033] text-lg ">
+                               <LocationEdit backgroundColor="#FF1033" /> {data.toLabel}
                             </label>
                             <select
                                 id="visa-to"
@@ -151,13 +152,16 @@ const VisaServices = ({ data }) => {
                         </div>
 
                         {/* Button */}
-                        <button
-                            onClick={handleGo}
-                            className="bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300 rounded-full px-8 py-3 text-center font-bold text-lg flex items-center justify-center gap-2 cursor-pointer"
-                        >
-                            {data.buttonText}
-                            <span>→</span>
-                        </button>
+                    <div>
+
+                            <button
+                                onClick={handleGo}
+                                className="bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300 rounded-full py-3  px-2 text-center text-lg flex items-center justify-center gap-2 cursor-pointer"
+                            >
+                                {data.buttonText}
+                                <span>→</span>
+                            </button>
+                    </div>
 
                     </div>
                 </div>

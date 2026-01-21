@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 const OurBusinesses = ({ data }) => {
     const dispatch = useDispatch();
     const { officialPartners } = useSelector((state) => state.partner);
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
     const backendApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
     useEffect(() => {
@@ -26,7 +25,7 @@ const OurBusinesses = ({ data }) => {
                     <h2 className="text-4xl  font-bold text-gray-900">
                         {data.title}
                     </h2>
-                    <div className="w-16 h-[3px] bg-[#FF1033] mx-auto my-4" />
+                    {/* <div className="w-16 h-[3px] bg-[#FF1033] mx-auto my-4" /> */}
                     <p className="text-gray-600 font-medium">
                         {data.subtitle}
                     </p>

@@ -56,7 +56,7 @@ const Home = () => {
             <HomeSlider data={homeData.slider} />
 
             {/* VISA SERVICES (OVERLAP) */}
-            <div className="-mt-32 relative z-20">
+            <div className="-mt-62 relative z-20">
                 <VisaServices data={homeData.visaServiceSection} />
             </div>
 
@@ -72,8 +72,8 @@ const Home = () => {
             <WhyUsSection data={homeData.whyUsSection} />
 
             {/* BLOGS SECTION */}
-            <div ref={blogsRef} className="py-10 bg-gray-50 min-h-[500px]">
-                <div className="max-w-[90%] mx-auto flex justify-between  items-center  mb-1 text-start">
+            <div ref={blogsRef} className="py-10 bg-gray-50  max-w-7xl mx-auto min-h-[500px]">
+                <div className="max-w-[90%] mx-auto px-6  flex justify-between  items-center  mb-1 text-start">
                     <h2 className="text-4xl font-bold text-gray-900"> Blogs</h2>
                     <Link to="/blogs" className="block text-center pt-4" aria-label="View All Blogs">
                         <span className="inline-block px-8  rounded-full  text-md py-2 transition-all duration-300 border-1 border-[#FF1033] text-[#FF1033]  cursor-pointer">

@@ -16,7 +16,7 @@ const iconMap = {
     trust: FaHandshake
 };
 
-const OurStrengths = ({ data }) => {
+const OurStrengths = ({ data ,image}) => {
     return (
         <section className="py-20 bg-[#F9F9F9]">
             <div className="max-w-7xl mx-auto px-6 md:px-20">
@@ -42,6 +42,7 @@ const OurStrengths = ({ data }) => {
                                 embassies, and applicants worldwide.
                             </p>
                         </div>
+                        <img src={image} className="w-[95%] m-1 h-[80%]  object-cover rounded-2xl" alt="" />
 
                         {/* <button className="mt-8 inline-flex items-center gap-2 text-lg font-bold bg-[#FF1033] text-[#FFFDF5] px-6 py-3 rounded-full w-max hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300">
                             Explore Services →

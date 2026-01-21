@@ -4,11 +4,13 @@ const CareerOpportunities = ({ jobs, onApply, onView }) => {
     return (
         <section className="py-20 bg-[#F6F5F2] px-6">
             <div className="max-w-7xl mx-auto">
-                <h2 className="text-4xl font-medium mb-2">Open positions</h2>
-                <p className="text-gray-500 mb-12">
-                    Browse our current openings and see how you can contribute
-                    to our expanding mission.
-                </p>
+               <div className="text-center">
+                    <h2 className="text-4xl font-medium mb-2">Open positions</h2>
+                    <p className="text-gray-500 mb-12">
+                        Browse our current openings and see how you can contribute
+                        to our expanding mission.
+                    </p>
+               </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {jobs.map((job) => (

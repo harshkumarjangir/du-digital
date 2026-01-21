@@ -12,7 +12,7 @@ const BecomePartner = () => {
             <HeroSection data={data.partnerHero} />
             <WhyDuGlobal data={data.whyUs} />
             <PartnerFAQ data={data.faq} />
-            <OurFootprints data={data.footprints} />
+            {/* <OurFootprints data={data.footprints} /> */}
             <Gallery />
             <ContactExperts data={data.contactExpertsSection} />
         </>

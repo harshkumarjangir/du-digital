@@ -93,7 +93,7 @@ export default function OurOffices() {
                 <h3 className="text-2xl md:text-3xl font-bold text-[#AC0826] mb-6">
                   New Delhi, India
                 </h3>
-                <div className="text-[#AC0826] text-sm leading-relaxed">
+                <div className="text-[#AC0826] text-sm leading-relaxed space-y-1">
                   <p>{newDelhiOffice.address?.line1}, {newDelhiOffice.address?.line2}</p>
                   <p>{newDelhiOffice.address?.city} – {newDelhiOffice.address?.pincode}</p>
                   <p className="mt-1">Corporate Office: B-86, 2nd Floor, Defence Colony, Delhi-110024</p>
@@ -125,7 +125,7 @@ export default function OurOffices() {
       {/* SECTION 2: India Offices (Off-White/Beige) */}
       <section className="bg-[#FFFDF5] py-20 px-6 md:px-20">
         <div className="max-w-7xl mx-auto">
-          <h3 className="text-3xl font-bold text-[#AC0826] mb-12">
+          <h3 className="text-2xl md:text-3xl font-bold text-[#AC0826] mb-6">
             India Offices
           </h3>
 
@@ -140,7 +140,7 @@ export default function OurOffices() {
       {/* SECTION 3: Global Offices (Light Blue) */}
       <section className="bg-[#C7E6F9] py-20 px-6 md:px-20">
         <div className="max-w-7xl mx-auto">
-          <h3 className="text-3xl font-bold text-[#162B56] mb-12">
+          <h3 className="text-2xl md:text-3xl font-bold text-[#162B56] mb-6">
             Global Offices
           </h3>
 

@@ -50,24 +50,24 @@ const VisionMission = ({ data }) => {
                         </div>
 
                         {/* RIGHT : MISSION + VISION */}
-                        <div className="space-y-6">
+                        <div className="space-y-3">
 
                             {/* MISSION */}
-                            <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-                                <h4 className="text-lg font-semibold mb-2">
+                            <div className=" rounded-xl pt-17 pb-3 bg-[#b7edb7] px-6 border border-gray-200">
+                                <h4 className="text-lg font-semibold  text-black mb-2">
                                     Mission
                                 </h4>
-                                <p className="text-gray-600 leading-relaxed">
+                                <p className="text-gray-500 leading-relaxed">
                                     {data.mission}
                                 </p>
                             </div>
 
                             {/* VISION */}
-                            <div className="bg-[#FF1033]/10 rounded-xl p-6 border border-[#FF1033]/10">
+                            <div className="bg-[#00ab63] pt-17 text-white pb-3 rounded-xl px-6">
                                 <h4 className="text-lg font-semibold mb-2">
                                     Vision
                                 </h4>
-                                <p className="text-gray-700 leading-relaxed">
+                                <p className=" leading-relaxed">
                                     {data.vision}
                                 </p>
                             </div>

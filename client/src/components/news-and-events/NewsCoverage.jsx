@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useSearchParams } from "react-router-dom";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, MoveRight } from "lucide-react";
 import { groupByYear } from "../../utils/groupByYear";
 import { fetchNews } from '../../redux/slices/newsSlice';
 
@@ -61,7 +61,7 @@ const NewsCoverage = ({ data: propData }) => {
                                         className="w-[300px] h-[200px] object-cover rounded-xl"
                                     />
 
-                                    <div>
+                                    <div className=" relative w-full">
                                         <div className="flex justify-between ">
                                             <p className="text-sm text-[#FF1033] mb-1">
                                                 ANI News
@@ -73,10 +73,19 @@ const NewsCoverage = ({ data: propData }) => {
                                                 )}
                                             </p>
                                         </div>
-                                        <h4 className="font-semibold group-hover:text-[#FF1033] mt-4">
+                                        <h4 className="font-semibold w-1/2 group-hover:text-[#FF1033] mt-4">
                                             {item.title}
                                         </h4>
-                                     
+
+                                        <a
+                                            key={item._id}
+                                            href={item.link}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="flex absolute bottom-0 right-0 flex-col sm:flex-row gap-2 text-[#FF1033]"
+                                        >
+                                            Read More <MoveRight/>
+                                            </a>
                                     </div>
                                 </a>
                             ))}
