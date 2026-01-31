@@ -25,17 +25,17 @@ const HomeAboutSection = ({ data }) => {
 
                 {/* LEFT CONTENT */}
                 <div>
-                    <h2 className="text-4xl  font-bold leading-tight mb-6 whitespace-pre-line">
+                    <h2 className="text-[48px]  font-[450px] text-[#000000] leading-11  mb-6 whitespace-pre-line">
                         {data.title}
                     </h2>
 
-                    <p className="text-gray-700 leading-relaxed max-w-xl">
+                    <p className="text-[#000000] w-[80%]  max-w-xl  leading-tight"> 
                         {data.description}
                     </p>
                 </div>
 
                 {/* RIGHT VIDEO */}
-                <div className="relative rounded-xl overflow-hidden  xl bg-black aspect-video">
+                <div className="relative md:w-[80%] rounded-xl overflow-hidden  xl bg-black aspect-video">
                     <iframe
                         src={data.video.embedUrl}
                         title="DU Digital Global"

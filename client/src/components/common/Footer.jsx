@@ -22,7 +22,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#b10e2a] text-white">
       {/* #AC0826 */}
-      <div className="w-full mx-auto px-6 md:px-20 lg:px-30  py-16  grid grid-cols-1 md:grid-cols-4 justify-between gap-12">
+      <div className="w-full mx-auto px-6 md:px-[8vw]  py-16  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-between gap-10">
 
         {/* LOGO */}
         <div>

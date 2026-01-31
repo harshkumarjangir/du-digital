@@ -116,7 +116,10 @@ const VisaServices = ({ data }) => {
                                     setFrom(e.target.value);
                                     setTo(""); // Reset 'to' when 'from' changes
                                 }}
-                                className="w-full border border-red-500 rounded-full px-5 py-3 focus:outline-none"
+                                className="w-full border border-red-500 rounded-full px-6 py-3.5 focus:outline-none appearance-none bg-no-repeat bg-position-[right_1.5rem_center] bg-size-[1em_1em] text-lg cursor-pointer"
+                                style={{
+                                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23FF1033' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`
+                                }}
                             >
                                 <option value="" disabled>
                                     -{data.fromPlaceholder}-
@@ -138,7 +141,10 @@ const VisaServices = ({ data }) => {
                                 id="visa-to"
                                 value={to}
                                 onChange={(e) => setTo(e.target.value)}
-                                className="w-full border border-red-500 rounded-full px-5 py-3 focus:outline-none"
+                                className="w-full border border-red-500 rounded-full px-6 py-3.5 focus:outline-none appearance-none bg-no-repeat bg-position-[right_1.5rem_center] bg-size-[1em_1em] text-lg cursor-pointer"
+                                style={{
+                                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23FF1033' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`
+                                }}
                             >
                                 <option value="" disabled>
                                     -{data.toPlaceholder}-
@@ -152,14 +158,14 @@ const VisaServices = ({ data }) => {
                         </div>
 
                         {/* Button */}
-                        <div>
+                        <div className="pb-1">
 
                             <button
                                 onClick={handleGo}
-                                className="bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300 rounded-full py-3  px-10 text-center text-lg flex items-center justify-center gap-2 cursor-pointer"
+                                className="w-full bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300 rounded-full py-3.5 px-10 text-center text-lg flex items-center justify-center gap-2 cursor-pointer border border-[#FF1033] hover:border-[#FF1033]"
                             >
                                 {data.buttonText}
-                                <span>→</span>
+                                <span className="text-xl">→</span>
                             </button>
                         </div>
 
