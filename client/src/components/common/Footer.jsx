@@ -22,7 +22,9 @@ export default function Footer() {
   return (
     <footer className="bg-[#b10e2a] text-white">
       {/* #AC0826 */}
-      <div className="max-w-7xl mx-auto px-6 md:px-20 py-16 flex flex-col md:flex-row justify-between gap-12">
+      {/* max-w-7xl mx-auto px-6 md:px-10 lg:px-20 py-16 flex flex-col md:flex-row justify-between gap-12 */}
+      {/* max-w-7xl mx-auto px-6 md:px-20 lg:px-0 py-16 flex flex-col lg:flex-row justify-between gap-12 */}
+      <div className="max-w-[1440px] mx-auto px-6 md:px-20 py-16 flex flex-col lg:flex-row justify-between gap-12">
 
         {/* LOGO */}
         <div>
