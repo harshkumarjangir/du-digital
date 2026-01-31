@@ -1,7 +1,7 @@
 {
     "partnerHero": {
         "backgroundImage": "/assets/become-partner/bg-image-parter.jpg",
-        "title": "Grow your travel business with DU Global",
+        "title": "Grow your travel business with <span class='whitespace-nowrap'>DU Global</span>",
         "highlight": "with DU Global",
         "points": [
             "Access to visa dashboard",

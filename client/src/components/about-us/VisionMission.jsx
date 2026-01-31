@@ -30,7 +30,7 @@ const VisionMission = ({ data }) => {
                                     Our Story
                                 </h4>
                                 <p className="text-sm leading-relaxed text-white/90">
-                                    DU Global Limited, founded in 2015, has grown into a
+                                    <span className="whitespace-nowrap">DU Global </span>Limited, founded in 2015, has grown into a
                                     trusted global partner delivering innovative,
                                     technology-driven solutions across borders.
                                 </p>
