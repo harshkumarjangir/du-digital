@@ -145,7 +145,7 @@ const Lebanon = () => {
   };
 
   return (
-    <div className="bg-white font-sans">
+    <div className="bg-white  ">
 
       {/* ===== HERO SECTION (1920x800) ===== */}
       <section className="relative w-full h-[800px] flex items-center justify-center">

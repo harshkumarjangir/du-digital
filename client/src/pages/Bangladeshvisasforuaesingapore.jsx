@@ -110,7 +110,7 @@ const BangladeshVisasForUaeSingapore = () => {
   const companySetupSection = contentSections['Company Setup in UAE'] || [];
 
   return (
-    <div className="bg-white font-sans">
+    <div className="bg-white  ">
 
       {/* ===== HERO SECTION ===== */}
       <section className="relative w-full min-h-[800px] sm:h-[800px] flex items-center bg-gray-900">

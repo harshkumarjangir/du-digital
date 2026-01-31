@@ -108,7 +108,7 @@ const Southkoreavisaforindians = () => {
   const descriptionLines = description?.split('\r\n').filter(line => line.trim()) || [];
 
   return (
-    <div className="bg-white font-sans">
+    <div className="bg-white  ">
 
       {/* ===== HERO SECTION ===== */}
       <section

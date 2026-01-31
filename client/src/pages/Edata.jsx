@@ -92,7 +92,7 @@ const Digitalarrivalcards = () => {
   ];
 
   return (
-    <div className="bg-white font-sans">
+    <div className="bg-white  ">
 
       {/* ===== HERO SECTION ===== */}
       <section className="relative w-full h-[800px] overflow-hidden">

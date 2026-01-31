@@ -104,7 +104,7 @@ const BangladeshVac = () => {
   const collaborationSection = contentSections['EXCLUSIVE COLLABORATION with SONALI BANK – BANGLADESH LARGEST BANK'] || [];
 
   return (
-    <div className="bg-white font-sans">
+    <div className="bg-white  ">
 
       {/* ===== HERO BANNER ===== */}
       <section className="relative w-full py-20 h-[800px] flex items-center">

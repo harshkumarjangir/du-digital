@@ -93,7 +93,7 @@ const Georgiaevisa = () => {
     const duVerifySection = contentSections['What is DuVerify'] || [];
 
     return (
-        <div className="bg-white font-sans">
+        <div className="bg-white  ">
             {/* ===== HERO SECTION (Split Layout) ===== */}
             <section className="relative w-full min-h-[800px] lg:h-[800px] flex items-center bg-[#1D2A37]">
                 <img

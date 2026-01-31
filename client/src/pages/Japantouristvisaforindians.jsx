@@ -200,7 +200,7 @@ const Japantouristvisaforindians = () => {
 
 
   return (
-    <div className="bg-white font-sans">
+    <div className="bg-white  ">
 
       {/* ===== HERO SECTION ===== */}
       <section className="relative w-full lg:h-[800px] min-h-[800px]">

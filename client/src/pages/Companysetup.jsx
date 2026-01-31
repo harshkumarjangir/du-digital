@@ -148,7 +148,7 @@ const Companysetup = () => {
   const heroImage = getImageUrl(formData?.image) || 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80';
 
   return (
-    <div className="bg-white font-sans">
+    <div className="bg-white">
 
       {/* ===== HERO SECTION ===== */}
       <section className="relative w-full md:h-[800px] min-h-[800px] py-12 pb-16 overflow-hidden">
@@ -311,9 +311,10 @@ const Companysetup = () => {
                     {item.title}
                   </h2> */}
                   <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-6">
-                    {item.title.split("Company Setup")[0]}
-                    <span className="text-[#FF1033] font-bold">Company Setup</span>
-                    {item.title.split("Company Setup")[1]}
+                    {/* {item.title.split("Company Setup")[0]} */}
+                    {/* <span className="text-[#FF1033] font-bold">Company Setup</span> */}
+                    {/* {item.title.split("Company Setup")[1]} */}
+                    {item.title}
                   </h2>
 
                   <div className="text-gray-800 text-base md:text-lg leading-relaxed space-y-4">
@@ -363,7 +364,8 @@ const Companysetup = () => {
 
           <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-20 text-white rounded-md">
             <h2 className="text-4xl md:text-4xl font-bold mb-6 text-center">
-              Company <span style={{ color: '#FF1033' }}>Formation</span> in the Mainland
+              Company Formation in the Mainland
+              {/* Company <span style={{ color: '#FF1033' }}>Formation</span> in the Mainland */}
             </h2>
             <div className="text-gray-300 leading-relaxed space-y-4 text-center">
               {item.contentHtml?.split('\r\n\r\n').filter(p => p.trim()).map((para, idx) => (

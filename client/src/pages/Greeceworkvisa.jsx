@@ -132,7 +132,7 @@ const GreeceWorkVisa = () => {
 
 
   return (
-    <div className="bg-white font-sans">
+    <div className="bg-white  ">
 
       {/* ===== HERO SECTION ===== */}
       <section id="hero-section" className="relative w-full min-h-[800px] lg:h-[800px] overflow-hidden">

@@ -174,7 +174,7 @@ const Globalrecruitmentservices = () => {
   const readyToBuildSection = contentSections['Ready to Build Your Team?'] || [];
 
   return (
-    <div className="font-sans antialiased text-gray-900">
+    <div className="  antialiased text-gray-900">
 
 
       {/* ===== HERO SECTION ===== */}

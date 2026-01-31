@@ -159,7 +159,7 @@ const IndianEvisa = () => {
   ];
 
   return (
-    <div className="bg-white font-sans">
+    <div className="bg-white  ">
 
 
       {/* ===== HERO SECTION ===== */}

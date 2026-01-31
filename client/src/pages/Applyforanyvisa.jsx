@@ -141,7 +141,7 @@ const Applyforanyvisa = () => {
   };
 
   return (
-    <div className="bg-white font-sans">
+    <div className="bg-white  ">
 
       {/* ===== HERO SECTION (Text Only) ===== */}
       <section className="relative w-full py-32 h-[800px]">

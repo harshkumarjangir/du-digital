@@ -93,7 +93,7 @@ const Vipclearanceatmalaysiaairport = () => {
     const howItWorksItems = contentSections['How It Works?'] || [];
 
     return (
-        <div className="bg-white font-sans">
+        <div className="bg-white  ">
             {/* ===== HERO SECTION ===== */}
             <section className="relative w-full h-[800px] sm:h-[800px] flex items-end justify-end text-center bg-gray-900">
                 <img
