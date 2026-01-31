@@ -12,6 +12,7 @@ import {
   FaMoneyBillWave,
   FaHandshake
 } from "react-icons/fa";
+import splitText from "../utils/splitText";
 
 const iconMap2 = {
   process: FaCogs,
@@ -317,7 +318,7 @@ const Companysetup = () => {
                     {item.title}
                   </h2>
 
-                  <div className="text-gray-800 text-base md:text-lg leading-relaxed space-y-4">
+                  <div className="text-gray-800 text-base leading-relaxed space-y-4">
                     {item.contentHtml?.split('\r\n\r\n').map((para, idx) => (
                       <p key={idx}>{para}</p>
                     ))}
@@ -367,7 +368,7 @@ const Companysetup = () => {
               Company Formation in the Mainland
               {/* Company <span style={{ color: '#FF1033' }}>Formation</span> in the Mainland */}
             </h2>
-            <div className="text-gray-300 leading-relaxed space-y-4 text-center">
+            <div className="text-gray-300 text-base leading-relaxed space-y-4 text-center">
               {item.contentHtml?.split('\r\n\r\n').filter(p => p.trim()).map((para, idx) => (
                 <p key={idx}>{para}</p>
               ))}
@@ -399,9 +400,10 @@ const Companysetup = () => {
                 </div>
                 <div className="order-1 md:order-1">
                   <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-6">
-                    Company <span style={{ color: '#FF1033' }}> Formation </span> in Freezone
+                    Company Formation in Freezone
+                    {/* Company <span style={{ color: '#FF1033' }}> Formation </span> in Freezone */}
                   </h2>
-                  <div className="text-gray-800 text-base md:text-[17px] leading-relaxed space-y-4">
+                  <div className="text-gray-800 text-base leading-relaxed space-y-4">
                     {item.contentHtml?.split('\r\n\r\n').filter(p => p.trim()).map((para, idx) => (
                       <p key={idx}>{para}</p>
                     ))}
@@ -420,8 +422,9 @@ const Companysetup = () => {
 
           {/* Heading */}
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-4xl  font-bold text-white">
-              Our <span className="text-[#FF1033]">Partners</span>
+            <h2 className="text-4xl md:text-4xl font-bold text-white">
+              Our Partners
+              {/* Our <span className="text-[#FF1033]">Partners</span> */}
             </h2>
           </div>
 
@@ -460,7 +463,7 @@ const Companysetup = () => {
               <div className="grid lg:grid-cols-3 gap-8">
 
                 {/* LEFT FEATURE CARD */}
-                <div className="lg:row-span-2 h-[96%] bg-[#FFF4CC] text-gray-900 rounded-2xl px-8 pt-8 pb-6 flex flex-col justify-between">
+                <div className="lg:row-span-2 h-[93%] relative bg-[#FFF4CC] text-gray-900 rounded-2xl px-8 pt-8 pb-6 flex flex-col justify-between">
 
                   <div>
                     <h3 className="text-2xl font-semibold leading-snug mb-4">
@@ -477,7 +480,9 @@ const Companysetup = () => {
                   {/* <button className="mt-8 inline-flex items-center gap-2 text-lg font-bold bg-[#FF1033] text-[#FFFDF5] px-6 py-3 rounded-full w-max hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300">
                             Explore Services →
                         </button> */}
-                  <img src={heroImage} alt="" />
+                  {/* <img src={heroImage} alt="" /> */}
+                  {/* <img src={heroImage} className="max-lg:hidden w-[100%] m-0 h-[66%] absolute bottom-0 left-0 right-0  object-cover rounded-2xl" alt="" /> */}
+
                 </div>
 
                 {/* RIGHT GRID */}
@@ -488,7 +493,7 @@ const Companysetup = () => {
                     return (
                       <div
                         key={i}
-                        className="bg-white rounded-2xl p-6 border border-gray-200   transition"
+                        className="bg-white rounded-2xl p-6 border border-gray-200 transition"
                       >
                         {/* Icon */}
                         <div className="w-10 h-10 rounded-lg bg-[#FF1033]/10 flex items-center justify-center mb-4">
@@ -523,9 +528,10 @@ const Companysetup = () => {
 
             {/* Heading */}
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-4xl  font-bold text-gray-900">
-                Benefits of Establishing a{" "}
-                <span className="text-[#FF1033]">Business</span> in the UAE
+              <h2 className="text-4xl md:text-4xl font-bold text-gray-900">
+                Benefits of Establishing a Business in the UAE
+                {/* Benefits of Establishing a{" "}
+                <span className="text-[#FF1033]">Business</span> in the UAE */}
               </h2>
             </div>
 
@@ -552,29 +558,33 @@ const Companysetup = () => {
 
                 {/* Content */}
                 <div>
-                  <ul className="space-y-4 max-md:mt-4 mb-10">
+                  <ul className="space-y-2 max-md:mt-4 mb-4">
                     {item.contentHtml
                       ?.split("\r\n")
                       .filter((line) => line.trim())
-                      .map((benefit, idx) => (
-                        <li key={idx} className="flex items-start gap-4">
-                          <div className="w-6 h-6 rounded-full bg-[#FF1033] flex items-center justify-center shrink-0 mt-1">
-                            <Check
-                              className="w-4 h-4 text-white"
-                              strokeWidth={3}
-                            />
-                          </div>
-                          <span className="text-base md:text-[17px] text-gray-800 leading-relaxed">
-                            {benefit}
-                          </span>
-                        </li>
-                      ))}
+                      .map((benefit, idx) => {
+                        const { title, description } = splitText(benefit);
+                        return (
+                          <li key={idx} className="flex items-start gap-4">
+                            <div className="w-5 h-5 rounded-full bg-[#FF1033] flex items-center justify-center shrink-0 mt-1">
+                              <Check
+                                className="w-4 h-4 text-white"
+                                strokeWidth={3}
+                              />
+                            </div>
+                            <span className="text-base text-black leading-relaxed">
+                              <span className="font-bold">{title}</span>
+                              <span className=""> – {description}</span>
+                            </span>
+                          </li>
+                        )
+                      })}
                   </ul>
 
                   {/* CTA Button */}
                   <button
                     onClick={() => setIsModalOpen(true)}
-                    className="inline-block px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
+                    className="inline-block px-10 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] cursor-pointer"
                   >
                     Book A Free Consultation
                   </button>
@@ -592,7 +602,8 @@ const Companysetup = () => {
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-3">
-                Types of Business <span style={{ color: '#FF1033' }}>License</span> in the UAE
+                Types of Business License in the UAE
+                {/* Types of Business <span style={{ color: '#FF1033' }}>License</span> in the UAE */}
               </h2>
               {/* <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div> */}
             </div>
@@ -643,9 +654,10 @@ const Companysetup = () => {
             {entityOptionsSection.map((item, index) => (
               <div key={item._id || index}>
                 <h2 className="text-4xl md:text-4xl lg:text-4xl font-bold mb-6">
-                  Entity Options for <span style={{ color: '#FF1033' }}>Free Zone Company</span> Setup in the UAE
+                  Entity Options for Free Zone Company Setup in the UAE
+                  {/* Entity Options for <span style={{ color: '#FF1033' }}>Free Zone Company</span> Setup in the UAE */}
                 </h2>
-                <div className="text-white leading-relaxed">
+                <div className="text-white text-base leading-relaxed">
                   {item.contentHtml?.split('\r\n\r\n').filter(p => p.trim()).map((para, idx) => (
                     <p key={idx} className="mb-4">{para}</p>
                   ))}
@@ -663,7 +675,8 @@ const Companysetup = () => {
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-3">
 
-                Steps to Set Up a <span style={{ color: '#FF1033' }}>Business</span> in the UAE Free Zones
+                Steps to Set Up a Business in the UAE Free Zones
+                {/* Steps to Set Up a <span style={{ color: '#FF1033' }}>Business</span> in the UAE Free Zones */}
               </h2>
               {/* <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div> */}
             </div>
@@ -738,9 +751,10 @@ const Companysetup = () => {
                   {doc.title}
                 </h2> */}
                 <h2 className="text-4xl md:text-4xl   font-bold text-gray-900 mb-6">
-                  {doc.title.split("Company Setup")[0]}
-                  <span className="text-[#FF1033] font-bold">Company Setup</span>
-                  {doc.title.split("Company Setup")[1]}
+                  {/* {doc.title.split("Company Setup")[0]} */}
+                  {/* <span className="text-[#FF1033] font-bold">Company Setup</span> */}
+                  {/* {doc.title.split("Company Setup")[1]} */}
+                  {doc.title}
                 </h2>
 
                 <div className="">
@@ -778,13 +792,13 @@ const Companysetup = () => {
 
           {/* TITLE LEFT / CTA RIGHT */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
-            <h2 className="text-4xl  text-white md:text-4xl  font-bold leading-tight mb-10">
+            <h2 className="text-4xl text-white md:text-4xl font-bold leading-tight mb-10">
               Speak to our experts
             </h2>
 
             <button
               onClick={() => setIsModalOpen(true)}
-              className="inline-flex items-center justify-center w-fit px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
+              className="inline-flex items-center justify-center w-fit px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  cursor-pointer"
             >
               Contact Now
             </button>
@@ -803,16 +817,16 @@ const Companysetup = () => {
 
               <a
                 href="tel:+917969269997"
-                className="block text-lg text-[#FF1033] mb-3 hover:text-[#333366]"
+                className="block text-base text-[#FF1033] mb-3 hover:text-[#333366]"
               >
-                * INDIA: +91-7969269997
+                * INDIA: +91-7289000071
               </a>
 
               <a
                 href="tel:+971585955766"
-                className="block text-lg text-[#FF1033] hover:text-[#333366]"
+                className="block text-base text-[#FF1033] hover:text-[#333366]"
               >
-                * UAE: +971-585955766
+                * UAE: +971-585847838
               </a>
             </div>
 
@@ -827,11 +841,11 @@ const Companysetup = () => {
                 Location
               </h3>
 
-              <p className="text-lg text-[#FF1033] mb-6">
+              <p className="text-base text-[#FF1033] mb-6">
                 INDIA: 3rd Floor, B-86, Defence Colony, New Delhi – 110024
               </p>
 
-              <p className="text-lg text-[#FF1033]">
+              <p className="text-base text-[#FF1033]">
                 DUBAI: Office #4001, 40th Floor, Aspin Commercials Tower, Sheikh Zayed Road, Dubai, UAE
               </p>
             </div>

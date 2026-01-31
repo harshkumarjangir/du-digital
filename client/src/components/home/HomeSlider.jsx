@@ -57,7 +57,7 @@ const HomeSlider = ({ data }) => {
                         transition={{ duration: 0.8, delay: 0.3 }}
                     >
                         <div className="max-w-2xl text-white">
-                            <h1 className="text-2xl  font-semibold leading-tight">
+                            <h1 className="text-4xl  font-semibold leading-tight">
                                 {slides[current].title}
                             </h1>
 
