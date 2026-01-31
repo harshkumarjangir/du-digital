@@ -1,7 +1,7 @@
 const HomeAboutSection = ({ data }) => {
     return (
 
-        <section className="relative py-24 md:px-20 bg-[#FFFDF5] overflow-hidden">
+        <section className="relative py-24 px-6 md:px-20 bg-[#FFFDF5] overflow-hidden">
 
             {/* ✅ ABSOLUTE BACKGROUND SHAPE */}
             <img
@@ -29,13 +29,13 @@ const HomeAboutSection = ({ data }) => {
                         {data.title}
                     </h2>
 
-                    <p className="text-[#000000] w-[80%]  max-w-xl  leading-tight"> 
+                    <p className="text-[#000000] max-sm:w-full w-[80%]  max-w-xl  leading-tight">
                         {data.description}
                     </p>
                 </div>
 
                 {/* RIGHT VIDEO */}
-                <div className="relative md:w-[80%] rounded-xl overflow-hidden  xl bg-black aspect-video">
+                <div className="relative mx-auto md:w-[80%] rounded-xl overflow-hidden bg-black aspect-video">
                     <iframe
                         src={data.video.embedUrl}
                         title="DU Digital Global"

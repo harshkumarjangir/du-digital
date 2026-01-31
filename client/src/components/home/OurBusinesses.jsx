@@ -38,7 +38,7 @@ const OurBusinesses = ({ data }) => {
                             <img
                                 src={country.logo ? (country.logo.startsWith('http') ? country.logo : `${backendApiUrl}${country.logo}`) : country.flag}
                                 alt={country.country || country.name}
-                                className="w-[100px] h-[75px] rounded-sm object-cover"
+                                className="w-[128px] h-[128px] rounded-sm object-cover"
                             />
                             <span className="text-sm font-medium text-gray-700">
                                 {country.country || country.name}

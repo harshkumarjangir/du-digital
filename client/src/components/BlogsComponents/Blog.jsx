@@ -58,6 +58,7 @@ export const Blog = ({ data: propData, className }) => {
                 src={blog.featuredImage}
                 alt={blog.title}
                 className="w-full h-full object-cover"
+                fill
               />
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition" />
             </div>
