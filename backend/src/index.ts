@@ -84,7 +84,10 @@ if (cluster.isPrimary) {
   app.use('/api/partner', partnerRoutes);
   app.use('/api/gallery', galleryRoutes);
   app.use('/api/news', newsRoutes);
-  app.use('/api/events', eventRoutes);
+  app.use('/api/events',((req,res,next)=>{
+    console.log("events");
+    next();
+  }), eventRoutes);
   app.use('/api/careers', careerRoutes);
   app.use('/api/employees', employeeRoutes);
   app.use('/api/sales-experts', salesExpertRoutes);

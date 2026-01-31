@@ -94,7 +94,7 @@ const DigitalArrivalForm = ({ onSubmit, serverError, loading }) => {
     };
 
     return (
-        <div className="bg-white rounded-2xl p-8 shadow-lg border-[3px] border-[#FF1033]">
+        <div className="bg-white rounded-2xl p-8  border-[3px] border-[#FF1033]">
             {/* Progress Bar */}
             <div className="flex items-center justify-between mb-10 overflow-x-auto">
                 {formConfig.steps.map((step, index) => (

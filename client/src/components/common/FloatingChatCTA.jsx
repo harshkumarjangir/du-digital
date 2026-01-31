@@ -9,7 +9,7 @@ const FloatingChatCTA = () => {
             {/* ===== Top CTA ===== */}
             <div className="flex items-center gap-3">
                 {showTopText && (
-                    <div className="relative bg-white max-md:hidden px-6 py-3 rounded-full shadow-md text-sm font-semibold pr-10">
+                    <div className="relative bg-white max-md:hidden px-6 py-3 rounded-full  text-sm font-semibold pr-10">
                         Hey, Let’s Chat
                         <button
                             onClick={() => setShowTopText(false)}
@@ -24,7 +24,7 @@ const FloatingChatCTA = () => {
                     href="https://wa.me/917289000071?text=Hello,%20I%20need%20assistance."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-lg hover:scale-105 transition"
+                    className="w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center hover:scale-105 transition"
                 >
                     <img
                         src="/assets/cta/whatsapp-cta.png"
@@ -37,7 +37,7 @@ const FloatingChatCTA = () => {
             {/* ===== Bottom CTA ===== */}
             {/* <div className="flex items-center gap-3">
                 {showBottomText && (
-                    <div className="relative bg-[#FF1F3D] max-md:hidden text-white px-8 py-4 rounded-full font-semibold shadow-lg pr-10">
+                    <div className="relative bg-[#FF1F3D] max-md:hidden text-white px-8 py-4 rounded-full font-semibold   pr-10">
                         Chat with us!
                         <button
                             onClick={() => setShowBottomText(false)}
@@ -50,7 +50,7 @@ const FloatingChatCTA = () => {
 
                 <a
                     href="/contact"
-                    className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition"
+                    className="w-14 h-14 rounded-full bg-white flex items-center justify-center  md hover:scale-105 transition"
                 >
                     <img
                         src="/assets/cta/du-chat-cta.png"
@@ -84,7 +84,7 @@ export default FloatingChatCTA;
 //         <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
 //             {/* Top CTA */}
 //             <div className="flex items-center gap-3">
-//                 <div className="bg-white px-6 py-3 rounded-full shadow-md text-sm font-semibold">
+//                 <div className="bg-white px-6 py-3 rounded-full  md text-sm font-semibold">
 //                     Hey, Let’s Chat
 //                 </div>
 
@@ -92,7 +92,7 @@ export default FloatingChatCTA;
 //                     href="https://wa.me/917289000071?text=Hello,%20I%20need%20assistance."
 //                     target="_blank"
 //                     rel="noopener noreferrer"
-//                     className="w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-lg hover:scale-105 transition"
+//                     className="w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center   hover:scale-105 transition"
 //                 >
 //                     <FaWhatsapp className="text-white text-2xl" />
 //                 </a>
@@ -102,12 +102,12 @@ export default FloatingChatCTA;
 //             <div className="flex items-center gap-3">
 //                 <a
 //                     href="/contact"
-//                     className="bg-[#FF1F3D] text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:bg-[#FF1033] transition"
+//                     className="bg-[#FF1F3D] text-white px-8 py-4 rounded-full font-semibold   hover:bg-[#FF1033] transition"
 //                 >
 //                     Chat with us!
 //                 </a>
 
-//                 <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-md">
+//                 <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center  md">
 //                     <span className="text-[#D1001F] font-bold text-xl">
 //                         D<span className="inline-block -translate-y-1">↑</span>
 //                     </span>

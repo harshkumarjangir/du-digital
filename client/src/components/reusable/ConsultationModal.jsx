@@ -18,7 +18,7 @@ const ConsultationModal = ({
     return (
         <div onClick={onClose} className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
             <div
-                className="relative w-full max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] animate-in zoom-in-95 duration-200"
+                className="relative w-full max-w-5xl bg-white rounded-3xl  2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] animate-in zoom-in-95 duration-200"
                 onClick={(e) => e.stopPropagation()}
             >
 
@@ -193,7 +193,7 @@ const ConsultationModal = ({
                             <button
                                 type="submit"
                                 disabled={submitLoading}
-                                className="w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-[#FF1033] text-white hover:bg-[#D9001B] hover:shadow-lg disabled:opacity-70 flex items-center justify-center gap-2 transform active:scale-[0.98]"
+                                className="w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-[#FF1033] text-white hover:bg-[#D9001B]   disabled:opacity-70 flex items-center justify-center gap-2 transform active:scale-[0.98]"
                             >
                                 {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Submit'}
                             </button>

@@ -4,17 +4,19 @@ const CareerOpportunities = ({ jobs, onApply, onView }) => {
     return (
         <section className="py-20 bg-[#F6F5F2] px-6">
             <div className="max-w-7xl mx-auto">
-                <h2 className="text-4xl font-medium mb-2">Open positions</h2>
-                <p className="text-gray-500 mb-12">
-                    Browse our current openings and see how you can contribute
-                    to our expanding mission.
-                </p>
+                <div className="text-center">
+                    <h2 className="text-4xl font-medium mb-2">Open positions</h2>
+                    <p className="text-gray-500 mb-12">
+                        Browse our current openings and see how you can contribute
+                        to our expanding mission.
+                    </p>
+                </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {jobs.map((job) => (
                         <div
                             key={job.id}
-                            className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between"
+                            className="bg-white rounded-2xl p-6  transition flex flex-col justify-between"
                         >
                             {/* Header */}
                             <div className="flex justify-between items-start mb-6">
@@ -88,7 +90,7 @@ export default CareerOpportunities;
 //         <section className="py-20 bg-[#F6F5F2] px-6">
 //             <div className="max-w-7xl mx-auto">
 //                 {/* Header */}
-//                 <h2 className="text-4xl font-medium mb-2">Open positions</h2>
+//                  <h2 className="text-4xl  font-medium mb-2">Open positions</h2>
 //                 <p className="text-gray-500 mb-12">
 //                     Browse our current openings and see how you can contribute
 //                     to our expanding mission.
@@ -99,7 +101,7 @@ export default CareerOpportunities;
 //                     {jobs.map((job) => (
 //                         <div
 //                             key={job.id}
-//                             className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition"
+//                             className="bg-white rounded-2xl p-6  sm   transition"
 //                         >
 //                             {/* Top */}
 //                             <div className="flex justify-between items-start mb-6">
@@ -179,7 +181,7 @@ export default CareerOpportunities;
 //             {jobs.map(job => (
 //                 <div
 //                     key={job.id}
-//                     className="bg-white rounded-lg shadow-md border-t-4 border-[#FF1033] p-6"
+//                     className="bg-white rounded-lg  md border-t-4 border-[#FF1033] p-6"
 //                 >
 //                     <h3 className="text-lg font-semibold text-[#FF1033]">
 //                         {job.title}
@@ -199,7 +201,7 @@ export default CareerOpportunities;
 //                         </button>
 //                         <button
 //                             onClick={() => onView(job)}
-//                             className="px-4 py-2 border-0 rounded shadow-2xl hover:bg-gray-100"
+//                             className="px-4 py-2 border-0 rounded  2xl hover:bg-gray-100"
 //                         >
 //                             Job Description
 //                         </button>

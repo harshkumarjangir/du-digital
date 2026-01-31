@@ -1,7 +1,7 @@
 const HomeAboutSection = ({ data }) => {
     return (
 
-        <section className="relative py-24 md:px-20 bg-[#FFFDF5] overflow-hidden">
+        <section className="relative py-24 px-6 md:px-20 bg-[#FFFDF5] overflow-hidden">
 
             {/* ✅ ABSOLUTE BACKGROUND SHAPE */}
             <img
@@ -25,17 +25,17 @@ const HomeAboutSection = ({ data }) => {
 
                 {/* LEFT CONTENT */}
                 <div>
-                    <h2 className="text-3xl lg:text-5xl font-semibold leading-tight mb-6 whitespace-pre-line">
+                    <h2 className="text-[48px]  font-[450px] text-[#000000] leading-11  mb-6 whitespace-pre-line">
                         {data.title}
                     </h2>
 
-                    <p className="text-gray-700 leading-relaxed max-w-xl">
+                    <p className="text-[#000000] max-sm:w-full w-[80%]  max-w-xl  leading-tight">
                         {data.description}
                     </p>
                 </div>
 
                 {/* RIGHT VIDEO */}
-                <div className="relative rounded-xl overflow-hidden shadow-xl bg-black aspect-video">
+                <div className="relative mx-auto md:w-[80%] rounded-xl overflow-hidden bg-black aspect-video">
                     <iframe
                         src={data.video.embedUrl}
                         title="DU Digital Global"
@@ -73,7 +73,7 @@ export default HomeAboutSection;
 
 //                 {/* LEFT CONTENT */}
 //                 <div>
-//                     <h2 className="text-4xl lg:text-5xl font-semibold leading-tight mb-6 whitespace-pre-line">
+//                      <h2 className="text-4xl   font-semibold leading-tight mb-6 whitespace-pre-line">
 //                         {data.title}
 //                     </h2>
 
@@ -83,7 +83,7 @@ export default HomeAboutSection;
 //                 </div>
 
 //                 {/* RIGHT VIDEO */}
-//                 <div className="relative rounded-xl overflow-hidden shadow-xl bg-black aspect-video">
+//                 <div className="relative rounded-xl overflow-hidden  xl bg-black aspect-video">
 //                     <iframe
 //                         src={data.video.embedUrl}
 //                         title="DU Digital Global"

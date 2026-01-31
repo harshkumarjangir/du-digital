@@ -32,11 +32,11 @@ const AboutSwifttravelSection = ({ data }) => {
                     </p>
                 )}
 
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                <h2 className="text-4xl md:text-4xl font-bold text-gray-900">
                     {title}
                 </h2>
 
-                <div className="w-16 h-1 bg-[#FF1033] mx-auto my-4" />
+
 
                 <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">
                     {description}
@@ -52,7 +52,7 @@ const AboutSwifttravelSection = ({ data }) => {
                         return (
                             <div
                                 key={item.id}
-                                className="bg-white rounded-xl p-8 shadow-lg relative overflow-hidden"
+                                className="bg-white rounded-xl p-8   relative overflow-hidden"
                             >
                                 {/* LEFT RED BORDER */}
                                 <div className="absolute left-0 top-0 h-full w-2 bg-[#FF1033]" />

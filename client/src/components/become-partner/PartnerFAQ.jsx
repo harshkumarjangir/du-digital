@@ -5,18 +5,18 @@ const PartnerFAQ = ({ data }) => {
     const [open, setOpen] = useState(null);
 
     return (
-        <section className="py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
+        <section className="py-20 ">
+            <div className="max-w-7xl bg-[#6B0F0F] mx-auto px-6 rounded-xl grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
 
                 {/* LEFT TITLE CARD */}
-                <div className="bg-[#FFE7EA] border border-[#FF1033]/10 rounded-xl p-10">
-                    <h2 className="text-3xl text-gray-900">
+                <div className="  p-10">
+                    <h2 className="text-4xl text-[#FF1033]  font-bold">
                         Our Expertise
                     </h2>
                 </div>
 
                 {/* RIGHT ACCORDION */}
-                <div className="lg:col-span-2 bg-[#FFE7EA] border border-[#FF1033]/10 rounded-xl overflow-hidden">
+                <div className="lg:col-span-2 overflow-hidden">
 
                     {data.map((item, index) => {
                         const isOpen = open === index;
@@ -24,7 +24,7 @@ const PartnerFAQ = ({ data }) => {
                         return (
                             <div
                                 key={index}
-                                className="border-b border-[#E3F1EB] last:border-b-0"
+                                className="border-b border-[#FF1033]  last:border-b-0"
                             >
                                 {/* HEADER */}
                                 <button
@@ -34,17 +34,17 @@ const PartnerFAQ = ({ data }) => {
                                     aria-controls={`faq-answer-${index}`}
                                 >
                                     <div className="flex items-center gap-6">
-                                        <span className="text-sm text-gray-400">
+                                        <span className="text-lg text-[#FF1033]">
                                             {String(index + 1).padStart(2, "0")}
                                         </span>
 
-                                        <span className="text-gray-900 font-medium">
+                                        <span className="text-white font-medium">
                                             {item.question}
                                         </span>
                                     </div>
 
                                     <ChevronDown
-                                        className={`w-5 h-5 text-gray-500 transition-transform ${isOpen ? "rotate-180" : ""
+                                        className={`w-5 h-5 text-white transition-transform ${isOpen ? "rotate-180" : ""
                                             }`}
                                     />
                                 </button>
@@ -53,7 +53,7 @@ const PartnerFAQ = ({ data }) => {
                                 {isOpen && (
                                     <div
                                         id={`faq-answer-${index}`}
-                                        className="px-16 pb-5 text-gray-600 text-sm leading-relaxed"
+                                        className="px-16 pb-5 text-white text-sm leading-relaxed"
                                     >
                                         {item.answer}
                                     </div>
@@ -91,7 +91,7 @@ export default PartnerFAQ;
 
 //                 {/* LEFT CONTENT */}
 //                 <div>
-//                     <h2 className="text-4xl font-bold leading-tight mb-6">
+//                      <h2 className="text-4xl  font-bold leading-tight mb-6">
 //                         Any questions? <br />
 //                         We got you.
 //                     </h2>
@@ -165,7 +165,7 @@ export default PartnerFAQ;
 //     const rightItems = data.slice(mid);
 
 //     const renderItem = (item, index) => (
-//         <div key={index} className="bg-white rounded shadow">
+//         <div key={index} className="bg-white rounded  ">
 //             <button
 //                 onClick={() => setOpen(open === index ? null : index)}
 //                 className={`w-full text-left p-4 font-semibold flex justify-between items-center transition
@@ -185,7 +185,7 @@ export default PartnerFAQ;
 
 //     return (
 //         <section className="py-16 bg-white">
-//             <h2 className="text-3xl font-bold text-center mb-10">
+//              <h2 className="text-4xl font-bold text-center mb-10">
 //                 Partner With Us For
 //             </h2>
 
@@ -223,13 +223,13 @@ export default PartnerFAQ;
 
 //     return (
 //         <section className="py-16 bg-gray-50">
-//             <h2 className="text-3xl font-bold text-center mb-10">
+//              <h2 className="text-4xl font-bold text-center mb-10">
 //                 Partner With Us For
 //             </h2>
 
 //             <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 space-y-0 px-6">
 //                 {data.map((item, i) => (
-//                     <div key={i} className="bg-white rounded shadow">
+//                     <div key={i} className="bg-white rounded  ">
 //                         <button
 //                             onClick={() => setOpen(open === i ? null : i)}
 //                             className={`w-full text-left p-4 font-semibold flex justify-between ${open === i ? 'bg-[#C62625] text-white' : ''}`}

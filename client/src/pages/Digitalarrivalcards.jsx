@@ -125,10 +125,10 @@ const Digitalarrivalcards = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-20 h-full flex items-center">
           <div className="max-w-4xl">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+            <h1 className="text-3xl md:text-4xl  font-bold text-white leading-tight mb-6">
               One Platform for All Your Mandatory Digital Arrival Cards - Thailand, Malaysia, Indonesia, Singapore, South Korea & Taiwan
             </h1>
-            {/* <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+            {/* <p className="text-3xl md:text-4xl  font-bold text-white mb-4">
               - Thailand, Malaysia, Indonesia, Singapore, South Korea & Taiwan
             </p> */}
             <p className="text-xl text-white font-semibold mb-8">
@@ -136,7 +136,7 @@ const Digitalarrivalcards = () => {
             </p>
             <a
               href="#apply-form"
-              className="inline-block px-8 py-4 rounded-full font-bold text-lg text-[#FFFDF5] transition-all duration-300 bg-[#FF1033] hover:bg-[#511313] hover:text-[#FF1033] hover:opacity-90 shadow-lg"
+              className="inline-block px-8 py-4 rounded-full font-bold text-lg text-[#FFFDF5] transition-all duration-300 bg-[#FF1033] hover:bg-[#511313] hover:text-[#FF1033] hover:opacity-90  "
             >
               Start Your Application
             </a>
@@ -173,7 +173,7 @@ const Digitalarrivalcards = () => {
 
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-4xl  font-bold text-white mb-4">
             Travel Ready with DU Global
           </h2>
           <p className="text-gray-50 text-lg md:text-xl leading-relaxed">
@@ -186,7 +186,7 @@ const Digitalarrivalcards = () => {
       {/* ===== MULTI-STEP FORM SECTION ===== */}
       <section id="apply-form" className="py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 md:px-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8">Apply for Digital Arrival Card</h2>
+          <h2 className="text-4xl md:text-4xl font-bold text-center text-gray-900 mb-8">Apply for Digital Arrival Card</h2>
 
           {/* Success/Error Message Display */}
           {submitStatus === 'success' && (
@@ -227,7 +227,7 @@ const Digitalarrivalcards = () => {
 
             {/* Heading */}
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333333]">
+              <h2 className="text-4xl md:text-4xl  font-bold text-[#333333]">
                 Documents Required
               </h2>
               {/* <div className="w-16 h-1 bg-[#C00C02] mx-auto mt-4" /> */}
@@ -241,7 +241,7 @@ const Digitalarrivalcards = () => {
                 return (
                   <div
                     key={doc._id}
-                    className="relative bg-white rounded-2xl p-8 border border-gray-900 shadow-sm min-h-[220px]"
+                    className="relative bg-white rounded-2xl p-8 border border-gray-900  sm min-h-[220px]"
                   >
                     {/* Static Icons (UI only) */}
                     <div className="mb-6 text-[#FF1033]">
@@ -278,13 +278,13 @@ const Digitalarrivalcards = () => {
                   <img
                     src={item.images.length > 0 ? getImageUrl(item.images[0]) : STATIC_IMAGES.whyChoose}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-2xl shadow-2xl"
+                    className="max-w-full h-auto rounded-2xl  2xl"
                     style={{ maxHeight: '400px' }}
                   />
                 </div>
 
                 <div className="text-white">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                  <h2 className="text-4xl md:text-4xl font-bold mb-6">
                     {item.title}
                   </h2>
                   <ul className="space-y-4">
@@ -314,7 +314,7 @@ const Digitalarrivalcards = () => {
 
             {/* LEFT CONTENT */}
             <div>
-              <h2 className="text-4xl font-bold leading-tight mb-6">
+              <h2 className="text-4xl  font-bold leading-tight mb-6">
                 Any questions? <br />
                 We got you.
               </h2>

@@ -17,12 +17,13 @@ const SingleBlog = () => {
         <article className="blog-container">
           {/* Header */}
           <header className="blog-header">
-            <p className="blog-category">{SingleBlog.category}</p>
-            <h1 className="blog-title">{SingleBlog.title}</h1>
+            <div>  
+              <h1 className="blog-title w-[500px]">{SingleBlog.title}</h1></div>
 
-            <div className="blog-meta">
-              <span>By {SingleBlog.author?.name}</span>
-              <span>•</span>
+            <div className="blog-meta flex flex-col">
+                <p className="blog-category">{SingleBlog.category}</p>
+              {/* <span>By {SingleBlog.author?.name}</span>
+              <span>•</span> */}
               <span>{new Date(SingleBlog.publishedAt).toLocaleDateString()}</span>
             </div>
           </header>

@@ -130,6 +130,7 @@ export const getEventById = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
         const event = await Event.findById(id)
+console.log("id");
 
 
         if (!event) {

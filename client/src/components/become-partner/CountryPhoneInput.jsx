@@ -69,7 +69,7 @@ const CountryPhoneInput = ({ onChange }) => {
             </div>
 
             {open && (
-                <div className="absolute z-50 mt-2 w-full bg-white border rounded-md shadow-lg">
+                <div className="absolute z-50 mt-2 w-full bg-white border rounded-md ">
                     <div className="p-2 border-b">
                         <input
                             type="text"

@@ -55,7 +55,7 @@ const InvestorRelation = () => {
     return (
         <div className="w-full">
             {/* ===== HERO ===== */}
-            <section className="relative sm:h-[800px] min-h-[800px]  flex items-center justify-center overflow-hidden">
+            <section className="relative h-[600px]  flex items-center justify-center overflow-hidden">
                 <img
                     src={displayData.hero.backgroundImage}
                     alt="Investor Relation"
@@ -65,7 +65,7 @@ const InvestorRelation = () => {
                     fetchPriority="high"
                 />
                 <div className="absolute inset-0 bg-black/60" />
-                <h1 className="relative z-10 text-white text-4xl md:text-5xl font-semibold">
+                <h1 className="relative z-10 text-white text-4xl  font-semibold">
                     {displayData.hero.title}
                 </h1>
             </section>
@@ -91,7 +91,7 @@ const InvestorRelation = () => {
                                 <div>
                                     <h3
                                         className="
-                                            text-lg font-semibold mb-4 leading-snug
+                                            text-lg font-regular  mb-4 leading-snug
                                             text-gray-900
                                             group-hover:text-white
                                         "
@@ -126,7 +126,7 @@ const InvestorRelation = () => {
                                     target="_blank"
                                     className="
                                         mt-8 inline-flex items-center justify-center
-                                        px-6 py-3 rounded-md font-medium
+                                        px-6 py-3 rounded-md font-normal
                                         border-2 border-[#FF3B1F]
                                         text-[#FF3B1F]
                                         transition-all duration-300
@@ -241,7 +241,7 @@ export default InvestorRelation;
 //                                 // Card Type 1: For /investor-relation page
 //                                 <div
 //                                     key={item._id || index}
-//                                     className="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-between hover:shadow-xl transition"
+//                                     className="bg-white rounded-xl   p-8 flex flex-col justify-between   transition"
 //                                 >
 //                                     <div>
 //                                         <h3 className="text-lg font-semibold mb-4 leading-snug">
@@ -266,7 +266,7 @@ export default InvestorRelation;
 //                                 // Card Type 2: For slug pages (e.g., /postal-ballot)
 //                                 <div
 //                                     key={item._id || index}
-//                                     className="bg-[#E4F2EF] rounded-xl shadow-lg p-8 flex flex-col hover:shadow-xl transition"
+//                                     className="bg-[#E4F2EF] rounded-xl   p-8 flex flex-col   transition"
 //                                 >
 //                                     <div className="mb-6">
 //                                         <h3 className="text-lg font-semibold mb-3 leading-tight text-gray-900">

@@ -1,7 +1,7 @@
 {
     "partnerHero": {
         "backgroundImage": "/assets/become-partner/bg-image-parter.jpg",
-        "title": "Grow your travel business with DU Global",
+        "title": "Grow your travel business with <span class='whitespace-nowrap'>DU Global</span>",
         "highlight": "with DU Global",
         "points": [
             "Access to visa dashboard",
@@ -49,7 +49,7 @@
         }
     },
     "whyUs": {
-        "title": "Why Du Global?",
+        "title": "Why DU Global?",
         "items": [
             {
                 "icon": "rates",
@@ -96,8 +96,7 @@
             },
             {
                 "value": "17",
-                "suffix": " Lac+",
-                "subValue": "(1.7 MILLION+)",
+                "suffix": " L+",
                 "label": "Applications"
             },
             {

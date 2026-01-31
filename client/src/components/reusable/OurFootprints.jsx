@@ -2,7 +2,7 @@ import React from "react";
 
 const OurFootprints = ({ aboutSection, data }) => {
     return (
-        <section className="relative py-24 overflow-hidden bg-white">
+        <section className="relative pb-24 overflow-hidden bg-white">
 
 
             <section className="relative py-24 md:px-20 bg-[#FFFDF5] overflow-hidden">
@@ -29,7 +29,7 @@ const OurFootprints = ({ aboutSection, data }) => {
 
                     {/* LEFT CONTENT */}
                     <div>
-                        <h2 className="text-3xl lg:text-5xl font-semibold leading-tight mb-6 whitespace-pre-line">
+                        <h2 className="text-4xl  font-bold leading-tight mb-6 whitespace-pre-line">
                             {aboutSection.title}
                             {/* Our Footprints */}
                         </h2>
@@ -44,7 +44,7 @@ const OurFootprints = ({ aboutSection, data }) => {
                     </div>
 
                     {/* RIGHT VIDEO */}
-                    <div className="relative rounded-xl overflow-hidden shadow-xl bg-black aspect-video">
+                    <div className="relative rounded-xl overflow-hidden  xl bg-black aspect-video">
                         <iframe
                             src={aboutSection.video.embedUrl}
                             title="DU Digital Global"
@@ -71,7 +71,7 @@ const OurFootprints = ({ aboutSection, data }) => {
             <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
 
                 {/* Heading */}
-                {/* <h2 className="text-4xl md:text-5xl font-semibold text-gray-900">
+                {/*  <h2 className="text-4xl   font-semibold text-gray-900">
                     Our Footprints
                 </h2> */}
 
@@ -100,23 +100,23 @@ const OurFootprints = ({ aboutSection, data }) => {
                         >
                             {/* Value */}
                             <div className="flex justify-center items-end">
-                                <span className="text-4xl font-semibold text-[#FF1033]">
+                                <span className="text-5xl font-bold text-[#FF1033]">
                                     {item.value}
                                 </span>
-                                <span className="text-3xl font-semibold text-[#FF1033] ml-1">
+                                <span className="text-4xl font-bold text-[#FF1033] ml-1">
                                     {item.suffix}
                                 </span>
                             </div>
 
                             {/* Sub value */}
                             {item.subValue && (
-                                <p className="mt-1 text-sm font-semibold text-[#FF1033]">
+                                <p className="mt-1 text-sm font-bold text-[#FF1033]">
                                     {item.subValue}
                                 </p>
                             )}
 
                             {/* Label */}
-                            <p className="mt-4 text-xl font-medium text-gray-900">
+                            <p className="mt-2 text-xl font-medium text-gray-900">
                                 {item.label}
                             </p>
                         </div>
@@ -171,7 +171,7 @@ export default OurFootprints;
 //                     </div>
 
 //                     {/* RIGHT VIDEO */}
-//                     <div className="w-full aspect-video rounded-xl overflow-hidden shadow-lg bg-black">
+//                     <div className="w-full aspect-video rounded-xl overflow-hidden   bg-black">
 //                         <iframe
 //                             className="w-full h-full"
 //                             src={data.video.youtubeId}
@@ -197,7 +197,7 @@ export default OurFootprints;
 //                                 `}
 //                             >
 //                                 <div className="flex justify-center items-end">
-//                                     <span className="text-4xl md:text-5xl font-bold text-[#FF1033]">
+//                                     <span className="text-4xl  font-bold text-[#FF1033]">
 //                                         {item.value}
 //                                     </span>
 //                                     <span className="text-3xl md:text-4xl font-bold text-[#FF1033] ml-1">
@@ -242,7 +242,7 @@ export default OurFootprints;
 //         <section className="py-20 bg-[#F7F8F9]">
 //             <div className="max-w-7xl mx-auto px-6">
 //                 {/* Title */}
-//                 <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+//                  <h2 className="text-4xl md:text-4xl font-bold text-center mb-12">
 //                     Our Footprints
 //                 </h2>
 
@@ -292,7 +292,7 @@ export default OurFootprints;
 //                     </div>
 
 //                     {/* RIGHT VIDEO */}
-//                     <div className="w-full aspect-video rounded-xl overflow-hidden shadow-lg">
+//                     <div className="w-full aspect-video rounded-xl overflow-hidden  ">
 //                         <iframe
 //                             className="w-full h-full"
 //                             src={data.video.youtubeId}
@@ -319,7 +319,7 @@ export default OurFootprints;
 // const OurFootprints = ({ data }) => {
 //     return (
 //         <section className="py-16 text-center">
-//             <h2 className="text-3xl font-bold mb-6">Our Footprints</h2>
+//              <h2 className="text-4xl font-bold mb-6">Our Footprints</h2>
 //             <p className="max-w-3xl mx-auto text-gray-600 mb-10">
 //                 {data.description}
 //             </p>

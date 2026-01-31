@@ -176,13 +176,13 @@ const Egyptvisaforindians = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center place-items-center w-full place-items-center">
             {/* Left - Hero Text */}
             <div className="text-white">
-              <p className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-300">Apply For</p>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              <p className="text-3xl md:text-4xl  font-bold mb-2 text-gray-300">Apply For</p>
+              <h1 className="text-4xl  lg:text-5xl  font-bold leading-tight mb-6">
                 <span style={{ color: '#FF1033' }}>Egypt</span> Visa
               </h1>
-              <p className="text-gray-300 text-lg">
+              {/* <p className="text-gray-300 text-lg">
                 Experience the wonders of Egypt with our hassle-free visa service
-              </p>
+              </p> */}
             </div>
 
             {/* Right - Application Form */}
@@ -357,7 +357,7 @@ const Egyptvisaforindians = () => {
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
+                  <div className="w-20 h-1 mb-6" ></div>
                   <p className="text-gray-600 leading-relaxed whitespace-pre-line">
                     {item.contentHtml}
                   </p>
@@ -369,7 +369,7 @@ const Egyptvisaforindians = () => {
                         key={index}
                         src={getImageUrl(image)}
                         alt={item.title}
-                        className="max-w-full h-auto rounded-2xl shadow-xl"
+                        className="max-w-full h-auto rounded-2xl  xl"
                       // style={{ maxHeight: '450px' }}
                       />
                     ))
@@ -377,7 +377,7 @@ const Egyptvisaforindians = () => {
                     <img
                       src={getImageUrl(item.image)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-2xl shadow-xl"
+                      className="max-w-full h-auto rounded-2xl  xl"
                       style={{ maxHeight: '450px' }}
                     />
                   )}
@@ -398,11 +398,11 @@ const Egyptvisaforindians = () => {
                     <img
                       src={getImageUrl(item.images[0])}
                       alt={item.title}
-                      className="rounded-xl shadow-lg w-full"
+                      className="rounded-xl   w-full"
                     />
                     {item.badge?.text && (
                       <div
-                        className="absolute -bottom-4 -right-4 px-4 py-2 rounded-lg text-white font-bold shadow-lg"
+                        className="absolute -bottom-4 -right-4 px-4 py-2 rounded-lg text-white font-bold  "
                         style={{ backgroundColor: item.badge.background || '#FF1033' }}
                       >
                         {item.badge.text} Happy Customers
@@ -414,11 +414,11 @@ const Egyptvisaforindians = () => {
                     <img
                       src={getImageUrl(item.image)}
                       alt={item.title}
-                      className="rounded-xl shadow-lg w-full"
+                      className="rounded-xl   w-full"
                     />
                     {item.badge?.text && (
                       <div
-                        className="absolute -bottom-4 -right-4 px-4 py-2 rounded-lg text-white font-bold shadow-lg"
+                        className="absolute -bottom-4 -right-4 px-4 py-2 rounded-lg text-white font-bold  "
                         style={{ backgroundColor: item.badge.background || '#FF1033' }}
                       >
                         {item.badge.text} Happy Customers
@@ -440,13 +440,13 @@ const Egyptvisaforindians = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                 {centersSection[0]?.title}
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
             <div className="flex flex-wrap justify-center gap-4">
               {centersSection[0]?.contentHtml?.split('\n').filter(c => c.trim()).map((city, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-4 px-6 py-3 bg-white rounded-full shadow-sm border border-gray-200"
+                  className="flex items-center gap-4 px-6 py-3 bg-white rounded-full  sm border border-gray-200"
                 >
                   <MapPin className="w-5 h-5" style={{ color: '#FF1033' }} />
                   <span className="font-medium text-gray-800">{city.trim()}</span>
@@ -465,7 +465,7 @@ const Egyptvisaforindians = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                 {travelTipsSection[0]?.title}
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
             <div className="space-y-4">
               {travelTipsSection[0]?.contentHtml?.split('\n').filter(p => p.trim()).map((paragraph, pIdx) => (
@@ -492,7 +492,7 @@ const Egyptvisaforindians = () => {
                     <h2 className="text-2xl md:text-3xl text-center font-bold text-gray-900 mb-4">
                       {item.title}
                     </h2>
-                    <div className="w-20 h-1 mb-6 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+                    <div className="w-20 h-1 mb-6 mx-auto"></div>
 
                   </div>
 
@@ -502,7 +502,7 @@ const Egyptvisaforindians = () => {
                     <img
                       src={getImageUrl(item.images[0])}
                       alt={item.title}
-                      className="rounded-xl shadow-lg w-full"
+                      className="rounded-xl   w-full"
                     />
                   </div>
 
@@ -511,7 +511,7 @@ const Egyptvisaforindians = () => {
                   <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
-                    className="rounded-xl shadow-lg w-full"
+                    className="rounded-xl   w-full"
                   />
                 </div>}
                 <p className="text-gray-600 leading-relaxed whitespace-pre-line">
@@ -533,7 +533,7 @@ const Egyptvisaforindians = () => {
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
+                  <div className="w-20 h-1 mb-6" ></div>
                   <p className="text-gray-600 leading-relaxed whitespace-pre-line">
                     {item.contentHtml}
                   </p>
@@ -543,7 +543,7 @@ const Egyptvisaforindians = () => {
                     <img
                       src={getImageUrl(item.images[0])}
                       alt={item.title}
-                      className="rounded-xl shadow-lg w-full"
+                      className="rounded-xl   w-full"
                     />
                   </div>
                 ) : (item?.image &&
@@ -551,7 +551,7 @@ const Egyptvisaforindians = () => {
                     <img
                       src={getImageUrl(item.image)}
                       alt={item.title}
-                      className="rounded-xl shadow-lg w-full"
+                      className="rounded-xl   w-full"
                     />
                   </div>)}
               </div>
@@ -571,7 +571,7 @@ const Egyptvisaforindians = () => {
                     <img
                       src={getImageUrl(item.images[0])}
                       alt={item.title}
-                      className="rounded-xl shadow-lg w-full"
+                      className="rounded-xl   w-full"
                     />
                   </div>
                 ) : (item?.image &&
@@ -579,14 +579,14 @@ const Egyptvisaforindians = () => {
                     <img
                       src={getImageUrl(item.image)}
                       alt={item.title}
-                      className="rounded-xl shadow-lg w-full"
+                      className="rounded-xl   w-full"
                     />
                   </div>)}
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
+                  <div className="w-20 h-1 mb-6" ></div>
                   <p className="text-gray-600 leading-relaxed whitespace-pre-line">
                     {item.contentHtml}
                   </p>
@@ -605,14 +605,14 @@ const Egyptvisaforindians = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                 Egypt Visa Overview: Types, Processing, Fees, and Validity
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             <div className="grid place-items-center md:grid-cols-2 lg:grid-cols-3 gap-4">
               {visaOverviewSection.map((visa, index) => {
                 const details = parseVisaDetails(visa.contentHtml);
                 return (
-                  <div key={visa._id || index} className="bg-white rounded-xl shadow-lg overflow-hidden">
+                  <div key={visa._id || index} className="bg-white rounded-xl   overflow-hidden">
                     <div className="py-4 px-6 text-center" >
                       <h3 className=" text-lg font-bold">{visa.title}</h3>
                     </div>
@@ -673,7 +673,7 @@ const Egyptvisaforindians = () => {
           <div className="max-w-5xl mx-auto px-6 md:px-20">
             <div className="text-center mb-10">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Documents Required</h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             <div className="space-y-8">
@@ -702,7 +702,7 @@ const Egyptvisaforindians = () => {
 
             {/* LEFT CONTENT */}
             <div>
-              <h2 className="text-4xl font-bold leading-tight mb-6">
+              <h2 className="text-4xl  font-bold leading-tight mb-6">
                 Any questions? <br />
                 We got you.
               </h2>

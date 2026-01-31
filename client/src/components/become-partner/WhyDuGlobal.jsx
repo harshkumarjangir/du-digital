@@ -12,7 +12,7 @@ const WhyDuGlobal = ({ data }) => {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
-        <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">
+        <h2 className="text-4xl  font-bold text-center mb-16 text-gray-900">
           {data.title}
         </h2>
 
@@ -24,7 +24,7 @@ const WhyDuGlobal = ({ data }) => {
             return (
               <div
                 key={index}
-                className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-md transition"
+                className="bg-white rounded-2xl border border-gray-200 p-8  transition"
               >
                 {/* Icon */}
                 <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-[#FFE7EA] mb-6">
@@ -75,7 +75,7 @@ export default WhyDuGlobal;
 //     <section className="py-20 bg-white">
 //       <div className="max-w-7xl mx-auto px-4">
 //         {/* Heading */}
-//         <h2 className="text-4xl font-bold text-center mb-16">
+//          <h2 className="text-4xl  font-bold text-center mb-16">
 //           {data.title}
 //         </h2>
 

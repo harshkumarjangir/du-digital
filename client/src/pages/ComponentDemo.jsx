@@ -23,7 +23,7 @@ const ComponentDemo = () => {
                 </h1>
 
                 {/* Controls */}
-                <div className="bg-white rounded-lg shadow p-6 mb-8">
+                <div className="bg-white rounded-lg   p-6 mb-8">
                     <h2 className="text-2xl font-semibold mb-4">Controls</h2>
                     <div className="flex gap-4">
                         <button
@@ -44,14 +44,14 @@ const ComponentDemo = () => {
                 {/* Loading State Examples */}
                 {showLoading && (
                     <div className="space-y-8 mb-8">
-                        <div className="bg-white rounded-lg shadow overflow-hidden">
+                        <div className="bg-white rounded-lg   overflow-hidden">
                             <div className="bg-gray-800 text-white px-6 py-3">
                                 <h3 className="font-semibold">Default Loading State</h3>
                             </div>
                             <LoadingState />
                         </div>
 
-                        <div className="bg-white rounded-lg shadow overflow-hidden">
+                        <div className="bg-white rounded-lg   overflow-hidden">
                             <div className="bg-gray-800 text-white px-6 py-3">
                                 <h3 className="font-semibold">Small Size with Custom Message</h3>
                             </div>
@@ -61,7 +61,7 @@ const ComponentDemo = () => {
                             />
                         </div>
 
-                        <div className="bg-white rounded-lg shadow overflow-hidden">
+                        <div className="bg-white rounded-lg   overflow-hidden">
                             <div className="bg-gray-800 text-white px-6 py-3">
                                 <h3 className="font-semibold">Large Size with Light Theme</h3>
                             </div>
@@ -78,14 +78,14 @@ const ComponentDemo = () => {
                 {/* Error State Examples */}
                 {showError && (
                     <div className="space-y-8">
-                        <div className="bg-white rounded-lg shadow overflow-hidden">
+                        <div className="bg-white rounded-lg   overflow-hidden">
                             <div className="bg-gray-800 text-white px-6 py-3">
                                 <h3 className="font-semibold">Default Error State</h3>
                             </div>
                             <ErrorState error="Something went wrong!" />
                         </div>
 
-                        <div className="bg-white rounded-lg shadow overflow-hidden">
+                        <div className="bg-white rounded-lg   overflow-hidden">
                             <div className="bg-gray-800 text-white px-6 py-3">
                                 <h3 className="font-semibold">Error with Retry Button</h3>
                             </div>
@@ -96,7 +96,7 @@ const ComponentDemo = () => {
                             />
                         </div>
 
-                        <div className="bg-white rounded-lg shadow overflow-hidden">
+                        <div className="bg-white rounded-lg   overflow-hidden">
                             <div className="bg-gray-800 text-white px-6 py-3">
                                 <h3 className="font-semibold">Error with Retry and Home Button</h3>
                             </div>
@@ -108,7 +108,7 @@ const ComponentDemo = () => {
                             />
                         </div>
 
-                        <div className="bg-white rounded-lg shadow overflow-hidden">
+                        <div className="bg-white rounded-lg   overflow-hidden">
                             <div className="bg-gray-800 text-white px-6 py-3">
                                 <h3 className="font-semibold">Light Theme Error</h3>
                             </div>
@@ -126,7 +126,7 @@ const ComponentDemo = () => {
 
                 {/* Code Examples */}
                 {!showLoading && !showError && (
-                    <div className="bg-white rounded-lg shadow p-6">
+                    <div className="bg-white rounded-lg   p-6">
                         <h2 className="text-2xl font-semibold mb-4">Usage Examples</h2>
 
                         <div className="space-y-4">

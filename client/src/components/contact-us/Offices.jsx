@@ -40,7 +40,7 @@ const Offices = () => {
                     <h2 className="text-4xl font-bold text-[#333333]">
                         India Offices
                     </h2>
-                    <div className="w-28 h-1 bg-[#DA3745] mx-auto mt-4 rounded-full" />
+                    <div className="w-28 h-1 mx-auto mt-4 rounded-full" />
                 </div>
 
                 {/* Offices Grid */}
@@ -48,56 +48,58 @@ const Offices = () => {
                     {india.map((office) => (
                         <div
                             key={office._id}
-                            className="bg-white rounded-xl relative border border-gray-200 shadow-sm hover:shadow-md transition p-6"
+                            className="bg-white rounded-xl flex flex-col justify-between  border border-gray-200  transition p-6"
                         >
-                            {/* Office Name */}
-                            <h3 className="text-lg font-semibold text-[#333333] mb-3">
-                                {office.officeName}
-                            </h3>
+                            <div>
+                                {/* Office Name */}
+                                <h3 className="text-lg font-semibold text-[#333333] mb-3">
+                                    {office.officeName}
+                                </h3>
 
-                            {/* Address */}
-                            <div className="text-sm text-[#333333] leading-relaxed space-y-1 mb-4">
-                                <p>{office.address.line1}</p>
-                                {office.address.line2 && <p>{office.address.line2}</p>}
-                                {(office.address.city || office.address.state) && (
-                                    <p>
-                                        {office.address.city}
-                                        {office.address.state && `, ${office.address.state}`}
-                                        {office.address.pincode && ` - ${office.address.pincode}`}
-                                    </p>
-                                )}
+                                {/* Address */}
+                                <div className="text-sm text-[#333333] leading-relaxed space-y-1 mb-4">
+                                    <p>{office.address.line1}</p>
+                                    {office.address.line2 && <p>{office.address.line2}</p>}
+                                    {(office.address.city || office.address.state) && (
+                                        <p>
+                                            {office.address.city}
+                                            {office.address.state && `, ${office.address.state}`}
+                                            {office.address.pincode && ` - ${office.address.pincode}`}
+                                        </p>
+                                    )}
+                                </div>
+
+                                {/* Contact */}
+                                <div className="text-sm text-gray-600 space-y-1 mb-4">
+                                    {office.contact.email && (
+                                        <p>
+                                            Email:{" "}
+                                            <a
+                                                href={`mailto:${office.contact.email}`}
+                                                className="text-blue-600 hover:underline"
+                                            >
+                                                {office.contact.email}
+                                            </a>
+                                        </p>
+                                    )}
+                                    {office.contact.phone && (
+                                        <p>
+                                            Phone:{" "}
+                                            <a
+                                                href={`tel:${office.contact.phone}`}
+                                                className="text-blue-600 hover:underline"
+                                            >
+                                                {office.contact.phone}
+                                            </a>
+                                        </p>
+                                    )}
+                                </div>
+
                             </div>
-
-                            {/* Contact */}
-                            <div className="text-sm text-gray-600 space-y-1 mb-4">
-                                {office.contact.email && (
-                                    <p>
-                                        Email:{" "}
-                                        <a
-                                            href={`mailto:${office.contact.email}`}
-                                            className="text-blue-600 hover:underline"
-                                        >
-                                            {office.contact.email}
-                                        </a>
-                                    </p>
-                                )}
-                                {office.contact.phone && (
-                                    <p>
-                                        Phone:{" "}
-                                        <a
-                                            href={`tel:${office.contact.phone}`}
-                                            className="text-blue-600 hover:underline"
-                                        >
-                                            {office.contact.phone}
-                                        </a>
-                                    </p>
-                                )}
-                            </div>
-
                             {/* View on Maps */}
                             <button
                                 onClick={() => setMapPreviewUrl(office.googleMapLink)}
-                                className="inline-flex items-center pt-2 gap-2 text-sm font-medium text-[#FF1033] hover:text-red-700 bg-transparent absolute bottom-3 border-none cursor-pointer"
+                                className="inline-flex items-center pt-2 gap-2 text-sm font-medium text-[#FF1033] hover:text-red-700 bg-transparent  border-none cursor-pointer"
                             >
                                 <MapPin size={16} />
                                 View on Maps
@@ -112,7 +114,7 @@ const Offices = () => {
                     <h2 className="text-4xl font-bold text-[#333333]">
                         Global Offices
                     </h2>
-                    <div className="w-28 h-1 bg-[#DA3745] mx-auto mt-4 rounded-full" />
+                    <div className="w-28 h-1 mx-auto mt-4 rounded-full" />
                 </div>
 
                 {/* Offices Grid */}
@@ -120,56 +122,58 @@ const Offices = () => {
                     {international.map((office) => (
                         <div
                             key={office._id}
-                            className="bg-white rounded-xl relative border border-gray-200 shadow-sm hover:shadow-md transition p-6"
+                            className="bg-white rounded-xl flex flex-col justify-between border border-gray-200  transition p-6"
                         >
-                            {/* Office Name */}
-                            <h3 className="text-lg font-semibold text-[#333333] mb-3">
-                                {office.officeName}
-                            </h3>
+                            <div>
+                                {/* Office Name */}
+                                <h3 className="text-lg font-semibold text-[#333333] mb-3">
+                                    {office.officeName}
+                                </h3>
 
-                            {/* Address */}
-                            <div className="text-sm text-[#333333] leading-relaxed space-y-1 mb-4">
-                                <p>{office.address.line1}</p>
-                                {office.address.line2 && <p>{office.address.line2}</p>}
-                                {(office.address.city || office.address.state) && (
-                                    <p>
-                                        {office.address.city}
-                                        {office.address.state && `, ${office.address.state}`}
-                                        {office.address.pincode && ` - ${office.address.pincode}`}
-                                    </p>
-                                )}
-                            </div>
+                                {/* Address */}
+                                <div className="text-sm text-[#333333] leading-relaxed space-y-1 mb-4">
+                                    <p>{office.address.line1}</p>
+                                    {office.address.line2 && <p>{office.address.line2}</p>}
+                                    {(office.address.city || office.address.state) && (
+                                        <p>
+                                            {office.address.city}
+                                            {office.address.state && `, ${office.address.state}`}
+                                            {office.address.pincode && ` - ${office.address.pincode}`}
+                                        </p>
+                                    )}
+                                </div>
 
-                            {/* Contact */}
-                            <div className="text-sm text-gray-600 space-y-1 mb-4">
-                                {office.contact.email && (
-                                    <p>
-                                        Email:{" "}
-                                        <a
-                                            href={`mailto:${office.contact.email}`}
-                                            className="text-blue-600 hover:underline"
-                                        >
-                                            {office.contact.email}
-                                        </a>
-                                    </p>
-                                )}
-                                {office.contact.phone && (
-                                    <p>
-                                        Phone:{" "}
-                                        <a
-                                            href={`tel:${office.contact.phone}`}
-                                            className="text-blue-600 hover:underline"
-                                        >
-                                            {office.contact.phone}
-                                        </a>
-                                    </p>
-                                )}
+                                {/* Contact */}
+                                <div className="text-sm text-gray-600 space-y-1 mb-4">
+                                    {office.contact.email && (
+                                        <p>
+                                            Email:{" "}
+                                            <a
+                                                href={`mailto:${office.contact.email}`}
+                                                className="text-blue-600 hover:underline"
+                                            >
+                                                {office.contact.email}
+                                            </a>
+                                        </p>
+                                    )}
+                                    {office.contact.phone && (
+                                        <p>
+                                            Phone:{" "}
+                                            <a
+                                                href={`tel:${office.contact.phone}`}
+                                                className="text-blue-600 hover:underline"
+                                            >
+                                                {office.contact.phone}
+                                            </a>
+                                        </p>
+                                    )}
+                                </div>
                             </div>
 
                             {/* View on Maps */}
                             <button
                                 onClick={() => setMapPreviewUrl(office.googleMapLink)}
-                                className="inline-flex absolute bottom-3 pt-2  items-center gap-2 text-sm font-medium text-[#FF1033] hover:text-red-700 bg-transparent border-none cursor-pointer"
+                                className="inline-flex pt-2  items-center gap-2 text-sm font-medium text-[#FF1033] hover:text-red-700 bg-transparent border-none cursor-pointer"
                             >
                                 <MapPin size={16} />
                                 View on Maps
@@ -190,7 +194,7 @@ const Offices = () => {
                 {/* Google Maps Preview Modal */}
                 {mapPreviewUrl && (
                     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-                        <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl h-[80vh] flex flex-col">
+                        <div className="bg-white rounded-xl  w-full max-w-4xl h-[80vh] flex flex-col">
                             {/* Modal Header */}
                             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
                                 <h2 className="text-xl font-semibold text-gray-900">Google Maps Preview</h2>
@@ -291,7 +295,7 @@ export default Offices;
 //             <div className="max-w-7xl mx-auto px-6">
 //                 {/* Header */}
 //                 <div className="text-center mb-12">
-//                     <h2 className="text-4xl font-bold text-gray-900 mb-2">
+//                      <h2 className="text-4xl  font-bold text-gray-900 mb-2">
 //                         India Offices
 //                     </h2>
 //                     <div className="w-24 h-1 bg-orange-500 mx-auto"></div>
@@ -302,7 +306,7 @@ export default Offices;
 //                     {india.map((office) => (
 //                         <div
 //                             key={office._id}
-//                             className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 p-6"
+//                             className="bg-white rounded-lg  md   transition-  duration-300 p-6"
 //                         >
 //                             {/* Office Name */}
 //                             <h3 className="text-xl font-semibold text-gray-900 mb-4">

@@ -29,12 +29,12 @@ const EventsGrid = ({ data: propData }) => {
 
     // Button color variations
     const BUTTON_COLORS = [
-        { bg: 'bg-[#FF1033]', hover: 'hover:bg-[#511313]', hoverText: 'hover:text-[#FF1033]' },
-        { bg: 'bg-blue-600', hover: 'hover:bg-blue-900', hoverText: 'hover:text-blue-600' },
-        { bg: 'bg-green-600', hover: 'hover:bg-green-900', hoverText: 'hover:text-green-600' },
-        { bg: 'bg-purple-600', hover: 'hover:bg-purple-900', hoverText: 'hover:text-purple-600' },
-        { bg: 'bg-orange-600', hover: 'hover:bg-orange-900', hoverText: 'hover:text-orange-600' },
-        { bg: 'bg-pink-600', hover: 'hover:bg-pink-900', hoverText: 'hover:text-pink-600' },
+        // { bg: 'bg-blue-600', hover: 'hover:bg-blue-900', hoverText: 'hover:text-blue-600' },
+        { bg: 'bg-[#3DADFF]', hover: 'hover:bg-[#3DADFFAA]', hoverText: 'hover:text-[#3DADFF]' },
+        { bg: 'bg-[#00AB63]', hover: 'hover:bg-[#00AB63AA]', hoverText: 'hover:text-[#00AB63]' },
+        { bg: 'bg-[#CDF4D3]', hover: 'hover:bg-[#CDF4D3AA]', hoverText: 'hover:text-[#CDF4D3]' },
+        { bg: 'bg-[#FF1033]', hover: 'hover:bg-[#511313AA]', hoverText: 'hover:text-[#FF1033]' },
+        { bg: 'bg-[#FFD071]', hover: 'hover:bg-[#FFD071AA]', hoverText: 'hover:text-[#FFD071]' },
     ];
 
     const getButtonColor = (id) => {
@@ -54,7 +54,7 @@ const EventsGrid = ({ data: propData }) => {
                 {data?.map((event) => (
                     <div
                         key={event._id}
-                        className="relative rounded-2xl overflow-hidden shadow-none group"
+                        className="relative rounded-2xl overflow-hidden  none group"
                     // onClick={() => navigate(`/events/${event._id}`)}
                     >
                         {/* IMAGE */}
@@ -75,12 +75,12 @@ const EventsGrid = ({ data: propData }) => {
                         {/* TOP RIGHT ARROW BUTTON */}
                         {/* <button
                         onClick={() => navigate(`/events/${event._id}`)}
-                        className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition"
+                        className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center  md hover:scale-105 transition"
                     >
                         <span className="text-xl font-bold text-[#FF1033]">↗</span>
                     </button> */}
 
-                        <Link to={`/events/${event._id}`} aria-label="View event details" className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition z-10">
+                        <Link to={`/events/${event._id}`} aria-label="View event details" className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center  md hover:scale-105 transition z-10">
                             <ArrowUpRight size={24} className="text-[#FF1033] " />
                         </Link>
 
@@ -133,7 +133,7 @@ export default EventsGrid;
 
 // {/* <div
 //     key={event._id}
-//     className="relative h-[460px] rounded-[32px] overflow-hidden group shadow-xl cursor-pointer"
+//     className="relative h-[460px] rounded-[32px] overflow-hidden group  xl cursor-pointer"
 // >
 //     {/* IMAGE */}
 //     {event.imageUrl ? (
@@ -161,7 +161,7 @@ export default EventsGrid;
 //     {/* TOP RIGHT ARROW BUTTON */}
 //     <button
 //         onClick={() => navigate(`/events/${event._id}`)}
-//         className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition"
+//         className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center  md hover:scale-105 transition"
 //     >
 //         <span className="text-xl font-bold text-[#FF1033]">↗</span>
 //     </button>

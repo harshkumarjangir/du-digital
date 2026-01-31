@@ -4,7 +4,7 @@
 //         style={{ backgroundImage: `url(${data.background})` }}
 //     >
 //         <div className="absolute inset-0 bg-red-900/40" />
-//         <h1 className="relative text-4xl md:text-5xl font-bold text-white">
+//         <h1 className="relative text-4xl  font-bold text-white">
 //             {data.title}
 //         </h1>
 //     </section>
@@ -41,7 +41,7 @@ const NewsAndMediaHero = ({ data }) => {
     };
 
     return (
-        <section className="relative w-full h-[650px] overflow-hidden">
+        <section className="relative w-full h-[600px] overflow-hidden">
 
             <AnimatePresence mode="wait">
                 <motion.div
@@ -75,7 +75,7 @@ const NewsAndMediaHero = ({ data }) => {
                     <motion.div
                         className="relative z-20 max-w-7xl mx-auto px-6 md:px-20 h-full flex items-center">
 
-                        <h1 className="relative text-4xl md:text-5xl mx-auto font-bold text-white">
+                        <h1 className="relative text-4xl  mx-auto font-bold text-white">
                             {title}
                         </h1>
 
@@ -161,7 +161,7 @@ export default NewsAndMediaHero;
 //                         transition={{ duration: 2 }}
 //                     >
 //                         <div className="max-w-2xl text-white">
-//                             <h1 className="text-2xl md:text-5xl font-semibold leading-tight">
+//                             <h1 className="text-2xl  font-semibold leading-tight">
 //                                 {slide.title}
 //                             </h1>
 //                             <p className="mt-4 text-base md:text-lg text-gray-200">

@@ -143,8 +143,8 @@ const Moroccovisa = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center place-items-center w-full place-items-center">
             {/* Left - Hero Text */}
             <div className="text-white">
-              <p className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2">Apply For</p>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              <p className="text-4xl    font-bold mb-2">Apply For</p>
+              <h1 className="text-4xl  lg:text-5xl  font-bold leading-tight mb-6">
                 <span style={{ color: '#FF1033' }}>Morocco</span> Visa
               </h1>
               {/* <p className="text-gray-300 text-lg">
@@ -312,10 +312,10 @@ const Moroccovisa = () => {
             {introSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 mb-2 uppercase">
+                  <h2 className="text-4xl md:text-4xl  font-semibold text-gray-900 mb-2 uppercase">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
+                  <div className="w-20 h-1 mb-6" ></div>
 
                   <p className="text-[#333333] leading-relaxed text-lg whitespace-pre-line">
                     {item.contentHtml}
@@ -325,28 +325,28 @@ const Moroccovisa = () => {
                 {/* Image area with overlapping badge */}
                 <div className="relative flex justify-center">
                   {/* Badge overlapping top-left of image */}
-
-                  {item.badge?.text && (
-                    <div
-                      className="absolute -top-4 right-4 z-10 px-5 py-2 flex flex-col items-center rounded-full text-white text-lg font-bold shadow-lg"
-                      style={{ backgroundColor: item.badge.background || '#FF1033' }}
-                    >
-                      {/* {item.badge.text} */}
-                      <span>{item.badge.text.split("+")[0]} +</span>
-                      <span>{item.badge.text.split("+")[1]} </span>
-                    </div>
-                  )}
+                  {
+                    item?.badge && (
+                      <div className="flex flex-col items-center text-white gap-0 absolute -top-10 -right-10 rounded-lg p-4 flex" style={{
+                        backgroundColor: `${item.badge.background || "#FF1033"}`
+                      }}>
+                        <span>{item.badge.text.split("+")[0]}</span>
+                        <div>{item.badge.text.split("+")[1]}</div>
+                        {/* <span className="font-semibold">{item.badge.text}</span> */}
+                      </div>
+                    )
+                  }
                   {item?.images?.length > 0 ? (
                     item.images.map(p => <img
                       src={getImageUrl(p)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-xl shadow-lg"
+                      className="max-w-full h-auto rounded-xl  "
                       style={{ maxHeight: '500px' }}
                     />)
                   ) : item.image && <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    className="max-w-full h-auto rounded-xl  "
                     style={{ maxHeight: '500px' }}
                   />}
 
@@ -362,10 +362,10 @@ const Moroccovisa = () => {
         <section className="py-20 bg-gray-100">
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-5xl font-semibold text-gray-900 mb-3">
+              <h2 className="text-2xl md:text-3xl  font-semibold text-gray-900 mb-3">
                 Morocco Visa Types, Fees, and Processing Time for Indian Citizens
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -386,7 +386,7 @@ const Moroccovisa = () => {
                 }
 
                 return (
-                  <div key={item._id || index} className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
+                  <div key={item._id || index} className="bg-white rounded-xl p-6  md border border-gray-100">
                     <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{item.title}</h3>
                     <div className="space-y-4">
                       {pairs.map((pair, idx) => {
@@ -418,10 +418,10 @@ const Moroccovisa = () => {
         <section className="py-20 bg-white">
           <div className="max-w-4xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-black mb-3">
+              <h2 className="text-4xl md:text-4xl font-bold text-black mb-3">
                 Morocco Visa Requirements for Indians
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             <div className="space-y-8">
@@ -458,7 +458,7 @@ const Moroccovisa = () => {
 
             {/* LEFT CONTENT */}
             <div>
-              <h2 className="text-4xl font-bold leading-tight mb-6">
+              <h2 className="text-4xl  font-bold leading-tight mb-6">
                 Any questions? <br />
                 We got you.
               </h2>

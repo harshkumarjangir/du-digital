@@ -7,7 +7,7 @@ const VisionMission = ({ data }) => {
                 <div className="rounded-2xl p-3 md:p-10">
 
                     {/* HEADING */}
-                    <h2 className="text-2xl md:text-4xl font-bold text-center mb-10">
+                    <h2 className="text-4xl font-bold text-center mb-10">
                         {data.heading}
                     </h2>
 
@@ -30,14 +30,14 @@ const VisionMission = ({ data }) => {
                                     Our Story
                                 </h4>
                                 <p className="text-sm leading-relaxed text-white/90">
-                                    DU Global Limited, founded in 2015, has grown into a
+                                    <span className="whitespace-nowrap">DU Global </span>Limited, founded in 2015, has grown into a
                                     trusted global partner delivering innovative,
                                     technology-driven solutions across borders.
                                 </p>
                             </div>
 
                             {/* PLAY ICON (OPTIONAL) */}
-                            {/* <div className="absolute right-6 top-1/2 -translate-y-1/2 bg-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg cursor-pointer">
+                            {/* <div className="absolute right-6 top-1/2 -translate-y-1/2 bg-white rounded-full w-14 h-14 flex items-center justify-center   cursor-pointer">
                                 <svg
                                     width="20"
                                     height="20"
@@ -50,24 +50,24 @@ const VisionMission = ({ data }) => {
                         </div>
 
                         {/* RIGHT : MISSION + VISION */}
-                        <div className="space-y-6">
+                        <div className="space-y-3">
 
                             {/* MISSION */}
-                            <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-                                <h4 className="text-lg font-semibold mb-2">
+                            <div className=" rounded-xl pt-18 pb-3 bg-[#b7edb7] px-6 border border-gray-200">
+                                <h4 className="text-lg font-semibold  text-black mb-2">
                                     Mission
                                 </h4>
-                                <p className="text-gray-600 leading-relaxed">
+                                <p className="text-gray-500 leading-relaxed">
                                     {data.mission}
                                 </p>
                             </div>
 
                             {/* VISION */}
-                            <div className="bg-[#FF1033]/10 rounded-xl p-6 border border-[#FF1033]/10">
+                            <div className="bg-[#00ab63] pt-18 text-white pb-3 rounded-xl px-6">
                                 <h4 className="text-lg font-semibold mb-2">
                                     Vision
                                 </h4>
-                                <p className="text-gray-700 leading-relaxed">
+                                <p className=" leading-relaxed">
                                     {data.vision}
                                 </p>
                             </div>
@@ -120,7 +120,7 @@ export default VisionMission;
 //                 {/* Cards */}
 //                 <div className="grid md:grid-cols-2 gap-10">
 //                     {/* Vision */}
-//                     <div className="bg-white rounded-xl shadow-lg p-8">
+//                     <div className="bg-white rounded-xl   p-8">
 //                         <FaBinoculars className="text-4xl text-gray-800 mb-6" />
 
 //                         <h4 className="text-2xl font-bold mb-4">Vision</h4>
@@ -130,7 +130,7 @@ export default VisionMission;
 //                     </div>
 
 //                     {/* Mission */}
-//                     <div className="bg-white rounded-xl shadow-lg p-8">
+//                     <div className="bg-white rounded-xl   p-8">
 //                         <FaBullseye className="text-4xl text-[#FF1033] mb-6" />
 
 //                         <h4 className="text-2xl font-bold mb-4">Mission</h4>
@@ -169,11 +169,11 @@ export default VisionMission;
 //         <p className="text-center text-[#FF1033] font-semibold tracking-widest mb-2">
 //             {data.heading}
 //         </p>
-//         <div className="bg-white p-6 shadow rounded">
+//         <div className="bg-white p-6   rounded">
 //             <h3 className="font-bold mb-2">Vision</h3>
 //             <p>{data.vision}</p>
 //         </div>
-//         <div className="bg-white p-6 shadow rounded">
+//         <div className="bg-white p-6   rounded">
 //             <h3 className="font-bold mb-2">Mission</h3>
 //             <p>{data.mission}</p>
 //         </div>

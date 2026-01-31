@@ -134,8 +134,8 @@ const Malaysiavisaforndians = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center place-items-center w-full place-items-center place-items-center">
             {/* Left - Hero Text */}
             <div className="text-white">
-              <p className="text-4xl md:text-5xl lg:text-6xl mb-2">Apply For</p>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              <p className="text-4xl    mb-2">Apply For</p>
+              <h1 className="text-4xl lg:text-5xl   font-bold leading-tight mb-6">
                 <span style={{ color: '#FF1033' }}>Malaysia Visa</span>
               </h1>
               {/* <p className="text-gray-300 text-lg">
@@ -291,10 +291,10 @@ const Malaysiavisaforndians = () => {
             {exploreSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
+                  <h2 className="text-4xl md:text-4xl font-bold text-[#333333] mb-2">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
+                  <div className="w-20 h-1 mb-6" ></div>
 
                   {/* Badge if exists */}
 
@@ -308,25 +308,26 @@ const Malaysiavisaforndians = () => {
                     item.images.map(p => <img
                       src={getImageUrl(p)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-xl shadow-lg"
+                      className="max-w-full h-auto rounded-xl  "
                     // style={{ maxHeight: '400px' }}
                     />)
                   ) : item.image && <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    className="max-w-full h-auto rounded-xl  "
                     style={{ maxHeight: '500px' }}
                   />}
-                  {item.badge?.text && (
-                    <div
-                      className="inline-flex flex-col absolute -top-5 right-0 items-center px-4 py-2 rounded-full text-white text-sm font-semibold mb-4"
-                      style={{ backgroundColor: item.badge.background || '#FF1033' }}
-                    >
-                      {/* {item.badge.text} */}
-                      <span>{item.badge.text.split("+")[0]}+</span>
-                      <span>{item.badge.text.split("+")[1]}</span>
-                    </div>
-                  )}
+                  {
+                    item?.badge && (
+                      <div className="flex flex-col items-center text-white gap-0 absolute -top-10 -right-10 rounded-lg p-4 flex" style={{
+                        backgroundColor: `${item.badge.background || "#FF1033"}`
+                      }}>
+                        <span>{item.badge.text.split("+")[0]}</span>
+                        <div>{item.badge.text.split("+")[1]}</div>
+                        {/* <span className="font-semibold">{item.badge.text}</span> */}
+                      </div>
+                    )
+                  }
                 </div>
               </div>
             ))}
@@ -339,10 +340,10 @@ const Malaysiavisaforndians = () => {
         <section className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-3">
                 TYPES OF VISA
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             {/* Horizontal Tab buttons */}
@@ -439,10 +440,10 @@ const Malaysiavisaforndians = () => {
         <section className="py-20 bg-white">
           <div className="max-w-4xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-semibold text-black mb-3">
+              <h2 className="text-4xl md:text-4xl font-semibold text-black mb-3">
                 DOCUMENTS REQUIRED FOR Malaysia VISA
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             <div className="space-y-8">
@@ -482,7 +483,7 @@ const Malaysiavisaforndians = () => {
 
             {/* LEFT CONTENT */}
             <div>
-              <h2 className="text-4xl font-bold leading-tight mb-6">
+              <h2 className="text-4xl  font-bold leading-tight mb-6">
                 Any questions? <br />
                 We got you.
               </h2>

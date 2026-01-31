@@ -151,12 +151,13 @@ const Serbiaworkpermitvisa = () => {
             {/* Left - Hero Text */}
             <div className="text-white">
               {descriptionLines.map((line, index) => (
-                <p key={index} className={index === 0 ? "text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4" : "text-xl text-gray-300 mb-2"}>
+                <p key={index} className={index === 0 ? "text-4xl    font-bold leading-tight mb-4" : index == 1 ? "text-4xl font-bold text-[#FF1033] mb-2" : "text-xl text-gray-300 mb-2"}>
                   {index === 0 ? (
                     <>
-                      Work in <span style={{ color: '#FF1033' }}>Serbia</span>: Secure Your D-Type Visa with
+                      Work in Serbia: Secure Your D-Type Visa with
                     </>
-                  ) : line}
+                  ) : line
+                  }
                 </p>
               ))}
             </div>
@@ -272,7 +273,7 @@ const Serbiaworkpermitvisa = () => {
                                 className="peer sr-only"
                                 required={field.required}
                               />
-                              <div className={`w-5 h-5 rounded transition-colors flex items-center justify-center mt-1.5 shadow-sm ${formValues[field.name] ? 'bg-[#FF1033]' : 'bg-white'}`}>
+                              <div className={`w-5 h-5 rounded transition-colors flex items-center justify-center mt-1.5  sm ${formValues[field.name] ? 'bg-[#FF1033]' : 'bg-white'}`}>
                                 <Check
                                   className={`w-3.5 h-3.5 text-white font-bold transition-opacity duration-200 ${formValues[field.name] ? 'opacity-100' : 'opacity-0'}`}
                                   strokeWidth={4}
@@ -331,10 +332,10 @@ const Serbiaworkpermitvisa = () => {
             {whatIsSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                  <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-4">
                     {item.title}
                   </h2>
-                  <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
+                  <div className="w-20 h-1 mb-6" ></div>
                   <p className="text-gray-600 leading-relaxed text-lg">
                     {item.contentHtml}
                   </p>
@@ -344,14 +345,14 @@ const Serbiaworkpermitvisa = () => {
                     item.images.map(p => <img
                       src={getImageUrl(p)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-2xl shadow-xl"
+                      className="max-w-full h-auto rounded-2xl  xl"
                       style={{ maxHeight: '400px' }}
                     />)
                   ) : item.image &&
                   <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-2xl shadow-xl"
+                    className="max-w-full h-auto rounded-2xl  xl"
                     style={{ maxHeight: '400px' }}
                   />}
                 </div>
@@ -373,10 +374,10 @@ const Serbiaworkpermitvisa = () => {
               if (item.title === 'Who Can Apply?') {
                 return (
                   <div key={item._id || index} className="mb-16 last:mb-0 text-center">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333333] mb-4">
+                    <h2 className="text-4xl md:text-4xl  font-bold text-[#333333] mb-4">
                       {item.title}
                     </h2>
-                    <div className="w-20 h-1 mx-auto mb-6" style={{ backgroundColor: '#FF1033' }}></div>
+                    <div className="w-20 h-1 mx-auto mb-6" ></div>
                     <p className="text-gray-600 leading-relaxed text-lg max-w-4xl mx-auto">
                       {item.contentHtml}
                     </p>
@@ -391,11 +392,11 @@ const Serbiaworkpermitvisa = () => {
                       <h2 className="text-2xl md:text-3xl font-semibold text-[#333333] mb-4">
                         {item.title}
                       </h2>
-                      <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
+                      <div className="w-20 h-1 mb-6" ></div>
 
                       {isTable || item.title.includes('Checklist') ? (
                         // Render as table
-                        <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+                        <div className="bg-white rounded-xl  md overflow-hidden border border-gray-200">
                           <table className="w-full">
                             <thead>
                               <tr className="bg-gray-100 border-b border-gray-200">
@@ -437,7 +438,7 @@ const Serbiaworkpermitvisa = () => {
                           key={p}
                           src={getImageUrl(p)}
                           alt={item.title}
-                          className="max-w-full h-auto rounded-2xl shadow-xl"
+                          className="max-w-full h-auto rounded-2xl  xl"
 
                         />
                         )
@@ -445,7 +446,7 @@ const Serbiaworkpermitvisa = () => {
                         item.image && <img
                           src={getImageUrl(item.image)}
                           alt={item.title}
-                          className="max-w-full h-auto rounded-2xl shadow-xl"
+                          className="max-w-full h-auto rounded-2xl  xl"
 
                         />}
                     </div>
@@ -462,17 +463,17 @@ const Serbiaworkpermitvisa = () => {
         <section className="py-20 bg-black">
           <div className="max-w-6xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+              <h2 className="text-4xl md:text-4xl font-bold text-white mb-3">
                 Why Choose DU Global?
               </h2>
-              <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-20 h-1 mx-auto" ></div>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
               {whyChooseSection.map((item, index) => {
                 const IconComponent = whyChooseIcons[index % whyChooseIcons.length];
                 return (
-                  <div key={item._id || index} className="text-center bg-white rounded-[2rem] p-10 relative overflow-hidden shadow-lg hover:translate-y-[-5px] transition-all duration-300">
+                  <div key={item._id || index} className="text-center bg-white rounded-[2rem] p-10 relative overflow-hidden   hover:translate-y-[-5px] transition-all duration-300">
                     {/* Red Corner Accent */}
                     <div className="absolute top-0 right-0 w-[100px] h-[100px] bg-[#FF1033] transform translate-x-1/2 -translate-y-1/2 rotate-45" />
 
@@ -498,7 +499,7 @@ const Serbiaworkpermitvisa = () => {
           <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
             {/* LEFT CONTENT */}
             <div>
-              <h2 className="text-4xl font-bold leading-tight mb-6">
+              <h2 className="text-4xl  font-bold leading-tight mb-6">
                 Any questions? <br />
                 We got you.
               </h2>
@@ -547,12 +548,12 @@ const Serbiaworkpermitvisa = () => {
             <div className="max-w-7xl mx-auto px-6 md:px-20 gap-12 items-start">
               {/* LEFT CONTENT */}
               <div>
-                <h2 className="text-3xl md:text-4xl text-center font-bold leading-tight mb-6 text-[#333333]">
+                <h2 className="text-4xl md:text-4xl text-center font-bold leading-tight mb-6 text-[#333333]">
                   {VisaApplicationCentreAddress[0]?.title || "Visa Application Centre Addresses"}
                 </h2>
-                <div className="w-20 h-1 mx-auto mb-6" style={{ backgroundColor: '#FF1033' }}></div>
+                <div className="w-20 h-1 mx-auto mb-6" ></div>
               </div>
-              <div className="bg-white shadow-lg border border-gray-200 rounded-lg overflow-hidden">
+              <div className="bg-white   border border-gray-200 rounded-lg overflow-hidden">
                 <div className="overflow-x-auto no-scrollbar">
                   <table className="w-full border-collapse text-nowrap">
                     <thead>
@@ -604,7 +605,7 @@ const Serbiaworkpermitvisa = () => {
 
               <div className="relative z-10 p-4 md:p-6 flex flex-col h-full text-white">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-semibold mb-3">
+                  <h2 className="text-4xl md:text-4xl font-semibold mb-3">
                     {getStartedSection[0]?.title || 'Get Started Today!'}
                   </h2>
                   <p className="text-gray-200 text-sm md:text-base leading-relaxed mb-0">
@@ -627,7 +628,7 @@ const Serbiaworkpermitvisa = () => {
 
               <div className="relative z-10">
                 <h3 className="text-3xl md:text-4xl font-semibold text-white mb-4">Connect with us</h3>
-                <div className="w-16 h-1 mb-10" style={{ backgroundColor: '#FF1033' }}></div>
+                <div className="w-16 h-1 mb-10" ></div>
 
                 <div className="mb-8">
                   <h4 className="text-2xl md:text-3xl font-semibold text-white mb-2">Karan Khurana</h4>

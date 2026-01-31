@@ -16,20 +16,20 @@ const iconMap = {
     trust: FaHandshake
 };
 
-const OurStrengths = ({ data }) => {
+const OurStrengths = ({ data, image }) => {
     return (
         <section className="py-20 bg-[#F9F9F9]">
-            <div className="max-w-7xl mx-auto px-6 md:px-20">
+            <div className="max-w-7xl mx-auto px-6 md:px-20 relative">
 
                 {/* Heading */}
-                <h2 className="text-4xl font-bold mb-14">
+                <h2 className="text-4xl  font-bold mb-14">
                     {data.heading}
                 </h2>
 
                 <div className="grid lg:grid-cols-3 gap-8">
 
                     {/* LEFT FEATURE CARD */}
-                    <div className="lg:row-span-2 h-[96%] bg-[#FFF4CC] text-gray-900 rounded-2xl px-8 pt-8 pb-6 flex flex-col justify-between">
+                    <div className="lg:row-span-2 h-[96%] relative bg-[#FFF4CC] text-gray-900 rounded-2xl px-8 pt-8 pb-6 flex flex-col justify-between">
 
                         <div>
                             <h3 className="text-2xl font-semibold leading-snug mb-4">
@@ -42,6 +42,7 @@ const OurStrengths = ({ data }) => {
                                 embassies, and applicants worldwide.
                             </p>
                         </div>
+                        <img src={image} className="max-lg:hidden w-[100%] m-0 h-[66%] absolute bottom-0 left-0 right-0  object-cover rounded-2xl" alt="" />
 
                         {/* <button className="mt-8 inline-flex items-center gap-2 text-lg font-bold bg-[#FF1033] text-[#FFFDF5] px-6 py-3 rounded-full w-max hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300">
                             Explore Services →
@@ -56,7 +57,7 @@ const OurStrengths = ({ data }) => {
                             return (
                                 <div
                                     key={i}
-                                    className="bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-md transition"
+                                    className="bg-white rounded-2xl p-6 border border-gray-200   transition"
                                 >
                                     {/* Icon */}
                                     <div className="w-10 h-10 rounded-lg bg-[#FF1033]/10 flex items-center justify-center mb-4">
@@ -114,7 +115,7 @@ export default OurStrengths;
 //         <section className="py-20 bg-black text-white">
 //             <div className="max-w-7xl mx-auto px-6">
 //                 {/* Heading */}
-//                 <h2 className="text-4xl font-bold text-center mb-14">
+//                  <h2 className="text-4xl  font-bold text-center mb-14">
 //                     {data.heading}
 //                 </h2>
 
@@ -130,7 +131,7 @@ export default OurStrengths;
 //                   bg-white text-gray-800
 //                   rounded-xl p-8
 //                   border-l-4 border-[#FF1033]
-//                   shadow-lg hover:shadow-xl
+//
 //                   transition
 //                 "
 //                             >

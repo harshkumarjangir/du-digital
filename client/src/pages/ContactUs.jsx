@@ -20,7 +20,7 @@ const ContactUs = () => {
 
             {/* Hero */}
             <section
-                className="h-[400px] bg-cover bg-center relative flex items-center justify-center"
+                className="h-[500px] bg-cover bg-center relative flex items-center justify-center"
                 style={{ backgroundImage: `url(${hero.backgroundImage})` }}
             >
                 <div className="absolute inset-0 bg-black/60" />
@@ -42,7 +42,7 @@ const ContactUs = () => {
                             WE’RE HERE TO HELP YOU
                         </p>
 
-                        <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                        <h2 className="text-4xl  font-bold text-gray-900 mb-4">
                             Have a question, feedback, or query about DU Global’s services?
                         </h2>
 
@@ -325,7 +325,7 @@ export default ContactUs;
 //                 {offices.map((office, i) => (
 //                     <div
 //                         key={i}
-//                         className="bg-white shadow-md rounded-lg p-6 space-y-4"
+//                         className="bg-white  md rounded-lg p-6 space-y-4"
 //                     >
 //                         <h3 className="font-semibold text-lg">{office.title}</h3>
 

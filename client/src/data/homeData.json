@@ -128,10 +128,9 @@
                 "label": "Office Locations"
             },
             {
-                "value": "17 Lac",
+                "value": "17 L",
                 "suffix": "+",
-                "subValue": "(1.7 Million+)",
-                "label": "Visa Applications"
+                "label": "Applications"
             },
             {
                 "value": "200",
@@ -142,8 +141,8 @@
     },
     "testimonials": {
         "title": "What our clients are saying?",
-        "subtitle": "Discover what our clients say about our seamless services and expert support. Their success is our pride.",
-        "buttonText": "Reviews us on G",
+        "subtitle": "Discover what our clients say about our seamless services and expert support.\n Their success is our pride.",
+        "buttonText": "Reviews us on",
         "buttonLink": "https://search.google.com/local/writereview?placeid=ChIJodMavDbjDDkR1TtffPiCv1s",
         "testimonials": [
             {

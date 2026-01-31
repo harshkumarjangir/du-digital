@@ -62,7 +62,7 @@ const GalleryModal = ({ images, startIndex, onClose }) => {
             </button>
 
             {showShare && (
-              <div className="absolute right-0 mt-2 bg-white text-black rounded shadow w-44 text-sm">
+              <div className="absolute right-0 mt-2 bg-white text-black rounded  w-44 text-sm">
                 <button
                   onClick={() => {
                     navigator.clipboard.writeText(currentImage.imageSrc);
@@ -203,7 +203,7 @@ export default GalleryModal;
 //             </button>
 
 //             {showShare && (
-//               <div className="absolute right-0 mt-2 bg-white text-black rounded shadow w-40 text-sm">
+//               <div className="absolute right-0 mt-2 bg-white text-black rounded   w-40 text-sm">
 //                 <button
 //                   onClick={() => {
 //                     navigator.clipboard.writeText(currentImage);

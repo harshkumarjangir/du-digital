@@ -136,17 +136,17 @@ const HeroSection = ({ data }) => {
         fetchPriority="high"
 
       />
-      {/* <div className="absolute inset-0 bg-white/80" /> */}
+      <div className="absolute inset-0 bg-[#b21a1a3d]" />
 
-      <div className="relative max-w-6xl mx-auto p-2 md:px-4 py-20 grid lg:grid-cols-2 gap-16 items-center place-items-center">
+      <div className="relative max-w-6xl mx-auto  p-2 md:px-4 py-20 grid lg:grid-cols-2 gap-16 items-center place-items-center">
         {/* LEFT CONTENT */}
         <div>
-          <h1 className="text-4xl lg:text-5xl font-bold mb-8">
-            {data.title}
-            {/* <span className="text-[#FF1033]">{data.highlight}</span> */}
-          </h1>
+          <h1
+            className="text-4xl text-white lg:text-5xl font-bold mb-8"
+            dangerouslySetInnerHTML={{ __html: data.title }}
+          />
 
-          <ul className="space-y-4">
+          <ul className="space-y-4 text-white">
             {data.points.map((p, i) => (
               <li key={i} className="text-lg font-semibold">• {p}</li>
             ))}
@@ -154,7 +154,7 @@ const HeroSection = ({ data }) => {
         </div>
 
         {/* FORM */}
-        <div className="bg-white shadow-xl max-w-md lg:ml-auto rounded-lg p-3 md:p-6 ">
+        <div className="bg-white  max-w-md lg:ml-auto rounded-lg p-3 md:p-6 ">
           <form className="space-y-5" onSubmit={handleSubmit}>
             <input
               type="text"
@@ -404,7 +404,7 @@ export default HeroSection;
 
 //         {/* LEFT */}
 //         <div>
-//           <h1 className="text-4xl lg:text-5xl font-bold mb-8">
+//           <h1 className="text-4xl  font-bold mb-8">
 //             {data.title} <span className="text-[#FF1033]">{data.highlight}</span>
 //           </h1>
 
@@ -416,7 +416,7 @@ export default HeroSection;
 //         </div>
 
 //         {/* FORM */}
-//         <div className="bg-white shadow-xl max-w-md ml-auto rounded-lg p-8">
+//         <div className="bg-white  xl max-w-md ml-auto rounded-lg p-8">
 //           <form className="space-y-6" onSubmit={handleSubmit}>
 
 //             <input

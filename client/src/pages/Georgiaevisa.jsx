@@ -109,7 +109,7 @@ const Georgiaevisa = () => {
 
                     {/* Left - Title */}
                     <div className="text-white">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                        <h1 className="text-4xl  lg:text-5xl  font-bold leading-tight">
                             Georgia eVisa <br /> for Indians
                         </h1>
                     </div>
@@ -163,12 +163,12 @@ const Georgiaevisa = () => {
                         {/* Video Section */}
                         {revisedProcessSection.length > 0 && (
                             <>
-                                <h2 className="text-3xl md:text-4xl font-bold text-[#FF1033] mb-8">
+                                <h2 className="text-4xl md:text-4xl font-bold text-[#FF1033] mb-8">
                                     {revisedProcessSection[0]?.title}
                                 </h2>
 
                                 {revisedProcessSection[0]?.youtubeUrl && (
-                                    <div className="aspect-video w-full max-w-3xl mx-auto rounded-xl overflow-hidden shadow-xl mb-12">
+                                    <div className="aspect-video w-full max-w-3xl mx-auto rounded-xl overflow-hidden  xl mb-12">
                                         <video
                                             src={revisedProcessSection[0].youtubeUrl}
                                             controls
@@ -190,7 +190,7 @@ const Georgiaevisa = () => {
             {duVerifySection.length > 0 && (
                 <section className="py-16 bg-gray-50">
                     <div className="max-w-4xl mx-auto px-6 text-center">
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+                        <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-8">
                             {duVerifySection[0]?.title}
                         </h2>
                         <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-line text-left">
@@ -229,12 +229,12 @@ const Georgiaevisa = () => {
             {faqs && faqs.length > 0 && (
                 <section className="py-16 bg-gray-50">
                     <div className="max-w-4xl mx-auto px-6 md:px-20">
-                        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+                        <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">
                             Frequently Asked Questions
                         </h2>
                         <div className="space-y-4">
                             {faqs.map((faq, index) => (
-                                <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden">
+                                <div key={index} className="bg-white rounded-lg  sm overflow-hidden">
                                     <button
                                         onClick={() => setOpenFaq(openFaq === index ? null : index)}
                                         className="w-full flex justify-between items-center p-4 text-left hover:bg-gray-50 transition-all"

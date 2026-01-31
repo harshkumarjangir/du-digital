@@ -3,6 +3,24 @@ import { CheckCircle, Phone, MapPin, Mail, XCircle, Loader2, Check } from "lucid
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
 import ConsultationModal from "../components/reusable/ConsultationModal";
+import OurStrengths from "../components/reusable/OurStrengths";
+import {
+  FaCogs,
+  FaUserCheck,
+  FaGem,
+  FaGlobe,
+  FaMoneyBillWave,
+  FaHandshake
+} from "react-icons/fa";
+
+const iconMap2 = {
+  process: FaCogs,
+  customer: FaUserCheck,
+  value: FaGem,
+  network: FaGlobe,
+  cost: FaMoneyBillWave,
+  trust: FaHandshake
+};
 
 const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
@@ -56,7 +74,7 @@ const Companysetup = () => {
       [name]: type === 'checkbox' ? checked : value
     }));
   };
-
+  const iconMap = ["process", "customer", "value", "network", "cost", "trust"]
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitLoading(true);
@@ -144,11 +162,11 @@ const Companysetup = () => {
         />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%)' }} />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-0 flex items-center">
-          <div className={`${fields.length > 0 ? 'grid md:grid-cols-2 gap-12 items-center place-items-center' : ''} w-full`}>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-0 flex  items-center">
+          <div className={`${fields.length > 0 ? 'grid md:grid-cols-2 gap-12 items-center place-items-center' : ''} w-full `}>
             {/* Left - Hero Text */}
             <div className="text-white">
-              <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
+              <h1 className="text-4xl  font-bold leading-tight mb-6">
                 {name || 'Company Formation in Dubai UAE'}
               </h1>
 
@@ -163,7 +181,7 @@ const Companysetup = () => {
 
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="inline-block px-8 py-4 rounded-full font-bold text-lg text-[#FFFDF5] transition-all duration-300 bg-[#FF1033] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg cursor-pointer"
+                className="inline-block px-8 py-4 rounded-full font-bold text-lg text-[#FFFDF5] transition-all duration-300 bg-[#FF1033] hover:bg-[#511313] hover:text-[#FF1033]   cursor-pointer"
               >
                 Book A Free Consultation
               </button>
@@ -171,8 +189,7 @@ const Companysetup = () => {
 
             {/* Right - Contact Form (only show if fields exist) */}
             {fields.length > 0 && (
-              <div className="bg-white rounded-2xl p-5 md:p-8 shadow-2xl">
-                <h3 className="text-xl font-bold text-gray-900 mb-6">Get Your Free Consultation</h3>
+              <div className="bg-white rounded-2xl w-[80%]  p-5 md:p-8  2xl">
                 <form className="grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit={handleSubmit}>
                   {fields.map((field, index) => {
                     // Get field type from either 'type' or 'fieldType' property
@@ -197,7 +214,7 @@ const Companysetup = () => {
                               paddingRight: '2.5rem'
                             }}
                           >
-                            <option value="" disabled className="text-gray-400">{field.placeholder || field.label}</option>
+                            <option value="" disabled className="text-[12px] text-black">{field.placeholder || field.label}</option>
                             {field.options?.map((opt, optIdx) => (
                               <option key={opt._id || optIdx} value={opt.value || opt}>
                                 {opt.label || opt}
@@ -208,7 +225,7 @@ const Companysetup = () => {
                       );
                     } else if (fieldType === 'checkbox') {
                       return (
-                        <div key={field._id || index} className="col-span-1 md:col-span-2 flex items-start gap-4 mt-2">
+                        <div key={field._id || index} className="col-span-1 md:col-span-2 flex  text-[10px] items-start gap-2 mt-2">
                           <input
                             type="checkbox"
                             name={field.name}
@@ -218,7 +235,7 @@ const Companysetup = () => {
                             className="mt-1 w-5 h-5 rounded border-gray-300 text-[#FF1033] focus:ring-red-500 cursor-pointer accent-red-600"
                             required={field.required || field.isRequired}
                           />
-                          <label htmlFor={`hero-field-${index}`} className="text-xs md:text-sm text-gray-500 leading-snug cursor-pointer">
+                          <label htmlFor={`hero-field-${index}`} className="  text-black leading-snug cursor-pointer">
                             {field.label || field.placeholder}
                           </label>
                         </div>
@@ -251,7 +268,7 @@ const Companysetup = () => {
                           onChange={handleInputChange}
                           type={inputType}
                           placeholder={field.placeholder || field.label}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none"
+                          className="w-full px-4 py-3 text-[12px] text-black border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none"
                           required={field.required || field.isRequired}
                           aria-label={field.label || field.placeholder}
                         />
@@ -290,10 +307,10 @@ const Companysetup = () => {
             {heroSection.map((item, index) => (
               <div key={item._id || index} className="grid md:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
-                  {/* <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                  {/*  <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-6">
                     {item.title}
                   </h2> */}
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                  <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-6">
                     {item.title.split("Company Setup")[0]}
                     <span className="text-[#FF1033] font-bold">Company Setup</span>
                     {item.title.split("Company Setup")[1]}
@@ -310,13 +327,13 @@ const Companysetup = () => {
                     item.images.map(p => <img
                       src={getImageUrl(p)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-xl shadow-lg"
+                      className="max-w-full h-auto rounded-xl  "
                       style={{ maxHeight: '400px' }}
                     />)
                   ) : item.image && <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    className="max-w-full h-auto rounded-xl  "
                     style={{ maxHeight: '400px' }}
                   />}
                 </div>
@@ -345,7 +362,7 @@ const Companysetup = () => {
           <div className="absolute inset-0 bg-black/80 rounded-md" />
 
           <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-20 text-white rounded-md">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+            <h2 className="text-4xl md:text-4xl font-bold mb-6 text-center">
               Company <span style={{ color: '#FF1033' }}>Formation</span> in the Mainland
             </h2>
             <div className="text-gray-300 leading-relaxed space-y-4 text-center">
@@ -368,19 +385,19 @@ const Companysetup = () => {
                     item.images.map(p => <img
                       src={getImageUrl(p)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-xl shadow-lg"
+                      className="max-w-full h-auto rounded-xl  "
                       style={{ maxHeight: '500px' }}
                     />)
                   ) : item.image && <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    className="max-w-full h-auto rounded-xl  "
                     style={{ maxHeight: '500px' }}
                   />}
                 </div>
                 <div className="order-1 md:order-1">
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                    Company Formation in <span style={{ color: '#FF1033' }}>Freezone</span>
+                  <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-6">
+                    Company <span style={{ color: '#FF1033' }}> Formation </span> in Freezone
                   </h2>
                   <div className="text-gray-800 text-base md:text-[17px] leading-relaxed space-y-4">
                     {item.contentHtml?.split('\r\n\r\n').filter(p => p.trim()).map((para, idx) => (
@@ -401,7 +418,7 @@ const Companysetup = () => {
 
           {/* Heading */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+            <h2 className="text-4xl md:text-4xl  font-bold text-white">
               Our <span className="text-[#FF1033]">Partners</span>
             </h2>
           </div>
@@ -427,53 +444,74 @@ const Companysetup = () => {
       </section>
 
 
-      {/* ===== OUR STRENGTH SECTION ===== */}
-      {strengthSection.length > 0 && (
-        <section className="py-20" style={{ backgroundColor: '#FFF5F4' }}>
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-                Our <span style={{ color: '#FF1033' }}>Strength</span>
+      {
+        strengthSection.length > 0 && (
+
+          <section className="py-20 bg-[#F9F9F9]">
+            <div className="max-w-7xl mx-auto px-6 md:px-20">
+
+              {/* Heading */}
+              <h2 className="text-4xl  font-bold mb-14">
+                Our Strength
               </h2>
-              {/* <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div> */}
-            </div>
 
-            <div className="grid md:grid-cols-3 gap-4">
-              {strengthSection.map((item, index) => (
-                <div
-                  key={item._id || index}
-                  className="group bg-white rounded-xl p-8 shadow-md hover:shadow-lg transition-shadow text-center"
-                >
-                  <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-6 bg-[#FF1033] group-hover:bg-black"
-                  // style={{ backgroundColor: 'rgba(161, 0, 0, 0.1)' }}
-                  >
-                    <Check className="w-8 h-8 text-white font-semibold\" />
+              <div className="grid lg:grid-cols-3 gap-8">
+
+                {/* LEFT FEATURE CARD */}
+                <div className="lg:row-span-2 h-[96%] bg-[#FFF4CC] text-gray-900 rounded-2xl px-8 pt-8 pb-6 flex flex-col justify-between">
+
+                  <div>
+                    <h3 className="text-2xl font-semibold leading-snug mb-4">
+                      The future of visa services is globally connected
+                    </h3>
+
+                    <p className="text-gray-900/80 text-sm leading-relaxed">
+                      We build modern, secure, and scalable visa
+                      processing infrastructure to support governments,
+                      embassies, and applicants worldwide.
+                    </p>
                   </div>
-                  <h3 className="text-xl font-bold text-[#333333] mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-[#333333] text-sm md:text-[17px] leading-relaxed">
-                    {item.contentHtml?.replace(/\r?\n/g, ' ').trim()}
-                  </p>
+
+                  {/* <button className="mt-8 inline-flex items-center gap-2 text-lg font-bold bg-[#FF1033] text-[#FFFDF5] px-6 py-3 rounded-full w-max hover:bg-[#511313] hover:text-[#FF1033] transition-all duration-300">
+                            Explore Services →
+                        </button> */}
+                  <img src={heroImage} alt="" />
                 </div>
-              ))}
 
+                {/* RIGHT GRID */}
+                <div className="lg:col-span-2 grid sm:grid-cols-2 gap-6">
+                  {strengthSection.map((item, i) => {
+                    const Icon = iconMap2[iconMap[i]];
 
+                    return (
+                      <div
+                        key={i}
+                        className="bg-white rounded-2xl p-6 border border-gray-200   transition"
+                      >
+                        {/* Icon */}
+                        <div className="w-10 h-10 rounded-lg bg-[#FF1033]/10 flex items-center justify-center mb-4">
+                          <Icon className="text-[#FF1033] text-lg" />
+                        </div>
+
+                        {/* Title */}
+                        <h4 className="font-semibold text-lg mb-2">
+                          {item.title}
+                        </h4>
+
+                        {/* Description */}
+                        <p className="text-gray-600 text-sm leading-relaxed">
+                          {item.contentHtml?.replace(/\r?\n/g, ' ').trim()}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+
+              </div>
             </div>
-
-          </div>
-
-          <div className="flex justify-center mt-8">
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="inline-block px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
-            >
-              Book A Free Consultation
-            </button>
-          </div>
-        </section>
-      )}
+          </section>
+        )
+      }
 
 
       {/* ===== BENEFITS SECTION ===== */}
@@ -483,7 +521,7 @@ const Companysetup = () => {
 
             {/* Heading */}
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+              <h2 className="text-4xl md:text-4xl  font-bold text-gray-900">
                 Benefits of Establishing a{" "}
                 <span className="text-[#FF1033]">Business</span> in the UAE
               </h2>
@@ -500,12 +538,12 @@ const Companysetup = () => {
                     item.images.map(p => <img
                       src={getImageUrl(p)}
                       alt={item.title}
-                      className="max-w-full h-auto rounded-xl shadow-lg"
+                      className="max-w-full h-auto rounded-xl  "
                     />)
                   ) : item.image && <img
                     src={getImageUrl(item.image)}
                     alt={item.title}
-                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    className="max-w-full h-auto rounded-xl  "
 
                   />}
                 </div>
@@ -534,7 +572,7 @@ const Companysetup = () => {
                   {/* CTA Button */}
                   <button
                     onClick={() => setIsModalOpen(true)}
-                    className="inline-block px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+                    className="inline-block px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
                   >
                     Book A Free Consultation
                   </button>
@@ -551,7 +589,7 @@ const Companysetup = () => {
         <section className="py-20" style={{ backgroundColor: '#f5f5f5' }}>
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-3">
                 Types of Business <span style={{ color: '#FF1033' }}>License</span> in the UAE
               </h2>
               {/* <div className="w-16 h-1 mx-auto" style={{ backgroundColor: '#FF1033' }}></div> */}
@@ -564,11 +602,11 @@ const Companysetup = () => {
                 return (
                   <div
                     key={item._id || index}
-                    className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow relative"
+                    className="bg-white rounded-lg overflow-hidden   transition-  relative"
                   >
                     <div className="p-6 pb-16">
                       <div
-                        className="text-5xl font-bold mb-4"
+                        className="text-4xl font-bold mb-4"
                         style={{ color: '#FF1033' }}
                       >
                         {number}
@@ -602,7 +640,7 @@ const Companysetup = () => {
           <div className="max-w-7xl mx-auto px-6 md:px-20 text-left">
             {entityOptionsSection.map((item, index) => (
               <div key={item._id || index}>
-                <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold mb-6">
+                <h2 className="text-4xl md:text-4xl lg:text-4xl font-bold mb-6">
                   Entity Options for <span style={{ color: '#FF1033' }}>Free Zone Company</span> Setup in the UAE
                 </h2>
                 <div className="text-white leading-relaxed">
@@ -621,7 +659,7 @@ const Companysetup = () => {
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-3">
 
                 Steps to Set Up a <span style={{ color: '#FF1033' }}>Business</span> in the UAE Free Zones
               </h2>
@@ -633,7 +671,7 @@ const Companysetup = () => {
               {stepsSection.map((step, index) => (
                 <div
                   key={step._id || index}
-                  className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                  className="bg-white rounded-xl border border-gray-200 overflow-hidden   transition- "
                 >
                   {/* Image */}
                   <div className="h-48 md:h-60 overflow-hidden rounded-xl p-3">
@@ -676,7 +714,7 @@ const Companysetup = () => {
                     {/* CTA Button */}
                     <button
                       onClick={() => setIsModalOpen(true)}
-                      className="inline-block px-5 py-2 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+                      className="inline-block px-5 py-2 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
                     >
                       Book A Free Consultation
                     </button>
@@ -694,10 +732,10 @@ const Companysetup = () => {
           <div className="max-w-7xl mx-auto px-6">
             {documents.map((doc, index) => (
               <div key={doc._id || index}>
-                {/* <h2 className="text-3xl md:text-4xl lg:text-[43px] font-bold text-gray-900 mb-8 text-left">
+                {/*  <h2 className="text-4xl md:text-4xl   font-bold text-gray-900 mb-8 text-left">
                   {doc.title}
                 </h2> */}
-                <h2 className="text-3xl md:text-4xl lg:text-[43px] font-bold text-gray-900 mb-6">
+                <h2 className="text-4xl md:text-4xl   font-bold text-gray-900 mb-6">
                   {doc.title.split("Company Setup")[0]}
                   <span className="text-[#FF1033] font-bold">Company Setup</span>
                   {doc.title.split("Company Setup")[1]}
@@ -720,7 +758,7 @@ const Companysetup = () => {
                   {/* CTA Button */}
                   <button
                     onClick={() => setIsModalOpen(true)}
-                    className="inline-block px-5 py-2 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+                    className="inline-block px-5 py-2 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
                   >
                     Book A Free Consultation
                   </button>
@@ -738,13 +776,13 @@ const Companysetup = () => {
 
           {/* TITLE LEFT / CTA RIGHT */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
-            <h2 className="text-4xl text-white md:text-4xl lg:text-5xl font-bold leading-tight mb-10">
-              Speak to our <br /> experts
+            <h2 className="text-4xl  text-white md:text-4xl  font-bold leading-tight mb-10">
+              Speak to our experts
             </h2>
 
             <button
               onClick={() => setIsModalOpen(true)}
-              className="inline-flex items-center justify-center w-fit px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+              className="inline-flex items-center justify-center w-fit px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
             >
               Contact Now
             </button>
@@ -752,7 +790,7 @@ const Companysetup = () => {
 
           {/* CONTACT CARDS */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8">
-            <div className="bg-white rounded-2xl p-5 shadow-xl">
+            <div className="bg-white rounded-2xl p-5  xl">
               <div className="w-12 h-12 rounded-full bg-[#FF1033] flex items-center justify-center mb-6">
                 <Phone className="w-6 h-6 text-white" />
               </div>
@@ -778,7 +816,7 @@ const Companysetup = () => {
 
 
             {/* LOCATION CARD */}
-            <div className="bg-white rounded-2xl p-5 shadow-xl">
+            <div className="bg-white rounded-2xl p-5  xl">
               <div className="w-12 h-12 rounded-full bg-[#FF1033] flex items-center justify-center mb-6">
                 <MapPin className="w-6 h-6 text-white" />
               </div>
@@ -809,19 +847,19 @@ const Companysetup = () => {
 
         
             <div className="flex justify-center bg-black text-white px-10 py-14 rounded-2xl">
-              <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold leading-tight mb-10">
+               <h2 className="text-4xl  md:text-4xl  font-bold leading-tight mb-10">
                 Speak to our <br /> experts
               </h2>
 
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="inline-flex items-center justify-center w-fit px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+                className="inline-flex items-center justify-center w-fit px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
               >
                 Contact Now
               </button>
             </div>
 
-            <div className="bg-white rounded-2xl p-5 shadow-xl">
+            <div className="bg-white rounded-2xl p-5  xl">
               <div className="w-12 h-12 rounded-full bg-[#FF1033] flex items-center justify-center mb-6">
                 <Phone className="w-6 h-6 text-white" />
               </div>
@@ -847,7 +885,7 @@ const Companysetup = () => {
 
 
           
-            <div className="bg-white rounded-2xl p-5 shadow-xl">
+            <div className="bg-white rounded-2xl p-5  xl">
               <div className="w-12 h-12 rounded-full bg-[#FF1033] flex items-center justify-center mb-6">
                 <MapPin className="w-6 h-6 text-white" />
               </div>

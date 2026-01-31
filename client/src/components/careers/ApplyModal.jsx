@@ -32,7 +32,7 @@ const ApplyModal = ({ open, job, onClose }) => {
 
     return (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center">
-            <div className="bg-white w-[440px] rounded-2xl p-6 relative shadow-xl">
+            <div className="bg-white w-[440px] rounded-2xl p-6 relative ">
 
                 {/* Close */}
                 <button

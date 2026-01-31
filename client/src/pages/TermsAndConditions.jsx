@@ -15,7 +15,7 @@ const TermsAndConditions = () => {
                     className="absolute inset-0 w-full h-full object-center object-cover"
                 />
                 <div className="absolute inset-0 bg-black/50" />
-                <h1 className="relative z-10 text-white text-4xl md:text-5xl font-semibold p-2 text-center">
+                <h1 className="relative z-10 text-white text-4xl  font-semibold p-2 text-center">
                     {hero.title}
                 </h1>
             </section>

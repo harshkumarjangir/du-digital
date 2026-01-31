@@ -22,7 +22,7 @@ const IsoCertificates = ({ data }) => {
                     </h3>
 
                     {/* RED UNDERLINE */}
-                    <div className="w-12 md:w-24 h-[2px] bg-[#FF1033] mx-auto mt-4" />
+                    {/* <div className="w-12 md:w-24 h-[2px] bg-[#FF1033] mx-auto mt-4" /> */}
                 </div>
 
                 {/* CERTIFICATES GRID */}

@@ -5,7 +5,7 @@ const VideoCard = ({ video }) => {
     const embedUrl = getEmbedUrl(video.videoUrl);
 
     return (
-        <div className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden p-0">
+        <div className="bg-white rounded-xl     transition overflow-hidden p-0">
             <div className="aspect-video">
                 <iframe
                     src={embedUrl}

@@ -163,7 +163,7 @@ const IndianEvisa = () => {
 
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full min-h-[800px] xl:h-[800px] overflow-hidden">
+      <section className="relative w-full min-h-[600px] sm:h-[800px] overflow-hidden">
         {/* Hero Image */}
         {formData?.image && (
           <img
@@ -184,7 +184,7 @@ const IndianEvisa = () => {
 
             {/* ===== LEFT CONTENT ===== */}
             <div className="text-white">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              <h1 className="text-4xl    font-bold leading-tight mb-6">
                 Apply eVisa <br />
                 for <span className="text-[#FF1033]">India</span>
               </h1>
@@ -241,7 +241,7 @@ const IndianEvisa = () => {
             </div>
 
             {/* ===== RIGHT FORM CARD ===== */}
-            <div className="bg-black/75 backdrop-blur-md rounded-2xl p-4 lg:p-10 shadow-2xl">
+            <div className="bg-black/75 backdrop-blur-md rounded-2xl p-4 lg:p-10  2xl">
               <h2 className="text-2xl font-bold text-white mb-6">
                 Apply for India E-Visa
               </h2>
@@ -450,10 +450,10 @@ const IndianEvisa = () => {
               {heroSection.map((item, index) => (
                 <div key={item._id || index} className="grid lg:grid-cols-2 gap-16 items-center">
                   <div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
+                    <h2 className="text-4xl md:text-4xl font-bold text-[#333333] mb-2">
                       {item.title}
                     </h2>
-                    <div className="w-20 h-0.75 mb-6" style={{ backgroundColor: '#FF1033' }}></div>
+
                     <div
                       className="text-gray-600 leading-relaxed text-lg"
                       dangerouslySetInnerHTML={{ __html: item.contentHtml }}
@@ -466,19 +466,19 @@ const IndianEvisa = () => {
                         item.images.map(p => <img
                           src={getImageUrl(p)}
                           alt={item.title}
-                          className="max-w-full h-auto rounded-xl shadow-lg"
+                          className="max-w-full h-auto rounded-xl  "
                         // style={{ maxHeight: '400px' }}
                         />)
                       ) : item.image && <img
                         src={getImageUrl(item.image)}
                         alt={item.title}
-                        className="max-w-full h-auto rounded-xl shadow-lg"
+                        className="max-w-full h-auto rounded-xl  "
                       // style={{ maxHeight: '400px' }}
                       />}
                       {/* Badge overlay */}
                       {item.badge?.text && (
                         <div
-                          className="absolute -top-14 -right-4 w-28 h-28 flex flex-col items-center justify-center text-white text-center shadow-lg"
+                          className="absolute -top-14 -right-4 w-28 h-28 flex flex-col items-center justify-center text-white text-center  "
                           style={{ backgroundColor: item.badge.background || '#FF1033' }}
                         >
                           <span className="text-xs font-medium leading-tight px-2">{item.badge.text}</span>
@@ -498,10 +498,9 @@ const IndianEvisa = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
+            <h2 className="text-4xl md:text-4xl font-bold text-[#333333] mb-2">
               Eligibility for India eVisa
             </h2>
-            <div className="w-32 h-0.75 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
           </div>
 
           <div className="rounded-2xl p-0 md:p-10">
@@ -542,10 +541,9 @@ const IndianEvisa = () => {
 
           {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#333333] tracking-wide">
+            <h2 className="text-4xl md:text-4xl font-bold text-[#333333] tracking-wide">
               E-VISA APPLICATION PROCESS
             </h2>
-            <div className="w-24 h-[3px] mx-auto mt-4 bg-[#FF1F3D]"></div>
           </div>
 
           {/* ================= DESKTOP VIEW ================= */}
@@ -557,7 +555,7 @@ const IndianEvisa = () => {
               <div key={index} className="relative flex items-center">
 
                 {/* Card */}
-                <div className="bg-white rounded-2xl px-8 py-8 text-center shadow-lg w-full min-h-[250px]">
+                <div className="bg-white rounded-2xl px-8 py-8 text-center   w-full min-h-[250px]">
                   <div className="flex justify-center mb-6">
                     <div className="w-14 h-14 rounded-full border-4 border-[#FF1F3D] flex items-center justify-center text-[#FF1F3D] text-xl font-bold">
                       {index + 1}
@@ -602,7 +600,7 @@ const IndianEvisa = () => {
                 </div>
 
                 {/* Content Card */}
-                <div className="bg-white rounded-xl p-6 shadow-md">
+                <div className="bg-white rounded-xl p-6  md">
                   <h3 className="text-lg font-semibold text-gray-800 mb-2">
                     {step.title}
                   </h3>
@@ -624,17 +622,16 @@ const IndianEvisa = () => {
           <section className="py-20 bg-[#F7F7F7]">
             <div className="max-w-6xl mx-auto px-6 md:px-20">
               <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
+                <h2 className="text-4xl md:text-4xl font-bold text-[#333333] mb-2">
                   Documents Required
                 </h2>
-                <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#FF1F3D' }}></div>
               </div>
 
               <div className="space-y-4">
                 {documents.filter(d => d.isActive).sort((a, b) => a.order - b.order).map((doc, index) => (
                   <div
                     key={doc._id || index}
-                    className="rounded-xl overflow-hidden shadow-md"
+                    className="rounded-xl overflow-hidden  md"
                   >
                     <button
                       onClick={() => toggleDoc(index)}
@@ -685,7 +682,7 @@ const IndianEvisa = () => {
           // <section className="py-20 bg-white">
           //   <div className="max-w-4xl mx-auto px-6 md:px-20">
           //     <div className="text-center mb-12">
-          //       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+          //        <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-2">
           //         Frequently Asked Questions
           //       </h2>
           //       <div className="w-20 h-1 mx-auto" style={{ backgroundColor: '#e63938' }}></div>
@@ -695,7 +692,7 @@ const IndianEvisa = () => {
           //       {faqs.filter(f => f.isActive).map((faq, index) => (
           //         <div 
           //           key={faq._id || index}
-          //           className="rounded-xl overflow-hidden shadow-md"
+          //           className="rounded-xl overflow-hidden  md"
           //         >
           //           <button
           //             onClick={() => toggleFaq(index)}
@@ -727,7 +724,7 @@ const IndianEvisa = () => {
 
               {/* LEFT CONTENT */}
               <div>
-                <h2 className="text-4xl font-bold leading-tight mb-6">
+                <h2 className="text-4xl  font-bold leading-tight mb-6">
                   Any questions? <br />
                   We got you.
                 </h2>

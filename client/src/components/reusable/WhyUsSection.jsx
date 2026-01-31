@@ -11,15 +11,15 @@ const WhyUsSection = ({ data, button = false, buttonLink = "", buttonName = "" }
             {/* Overlay */}
             <div className="absolute inset-0 bg-black/80" />
 
-            <div className="relative max-w-7xl mx-auto px-6 md:px-20 grid lg:grid-cols-2 gap-16 items-center">
+            <div className="relative max-w-7xl mx-auto px-6 md:px-20 grid lg:grid-cols-2  items-center">
 
                 {/* LEFT CONTENT */}
-                <div>
-                    <h2 className="text-3xl md:text-4xl font-semibold leading-tight mb-6">
+                <div className="w-[80%]">
+                    <h2 className="text-4xl md:text-4xl font-semibold leading-tight mb-6">
                         {data.title}
                     </h2>
 
-                    <div className="w-12 h-[2px] bg-[#FF1033] mb-6" />
+                    {/* <div className="w-12 h-[2px] bg-[#FF1033] mb-6" /> */}
 
                     <p className="text-gray-300 leading-relaxed max-w-xl mb-8">
                         {data.description}

@@ -34,7 +34,7 @@ const AboutUs = () => {
 
 
   // Define the order in which categories should be displayed
-  const categoryOrder = ["Leadership", "Board of Directors", "Management"];
+  const categoryOrder = ["Board of Directors", "Management", "Leadership"];
 
   // Function to get display title for category
   const getCategoryTitle = (category) => {
@@ -88,8 +88,8 @@ const AboutUs = () => {
         </>
       )}
       <VisionMission data={data.visionMission} />
-      <OurStrengths data={data.strengths} />
-      <OurFootprints aboutSection={data.aboutSection} data={data.footprints} />
+      <OurStrengths data={data.strengths} image={data.hero.backgroundImage} />
+      {/* <OurFootprints aboutSection={data.aboutSection} data={data.footprints} /> */}
     </>
   );
 };

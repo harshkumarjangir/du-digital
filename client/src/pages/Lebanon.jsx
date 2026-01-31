@@ -161,7 +161,7 @@ const Lebanon = () => {
         <div className="absolute inset-0 bg-black/40" />
 
         <div className="relative z-10 text-center">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white">
+          <h1 className="text-4xl lg:text-5xl font-bold text-white">
             Lebanon
           </h1>
         </div>
@@ -247,7 +247,7 @@ const Lebanon = () => {
 
       {/* ===== FORM SECTION (if fields exist) ===== */}
       {fields && fields.length > 0 && (
-        <div id="callback-form" className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full ml-auto">
+        <div id="callback-form" className="bg-white rounded-2xl  2xl p-8 max-w-md w-full ml-auto">
           <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Request a Callback</h3>
 
           {submitStatus && (
@@ -282,14 +282,14 @@ const Lebanon = () => {
       {documents.length > 0 && (
         <section className="py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto px-6 md:px-20">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+            <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
               Documents Required
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {documents.map((doc, index) => (
                 <div
                   key={doc._id || index}
-                  className="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-500"
+                  className="bg-white p-6 rounded-lg  md border-l-4 border-red-500"
                 >
                   <h3 className="font-semibold text-gray-800 mb-2">{doc.title || doc.name}</h3>
                   {doc.description && (
@@ -309,7 +309,7 @@ const Lebanon = () => {
 
             {/* LEFT CONTENT */}
             <div>
-              <h2 className="text-4xl font-bold leading-tight mb-6">
+              <h2 className="text-4xl  font-bold leading-tight mb-6">
                 Any questions? <br />
                 We got you.
               </h2>
@@ -360,7 +360,7 @@ const Lebanon = () => {
       {formEmployeesAddresses.length > 0 && (
         <section className="py-16 bg-gray-100">
           <div className="max-w-6xl mx-auto px-6 md:px-20">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+            <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
               Contact Details
             </h2>
 
@@ -368,18 +368,15 @@ const Lebanon = () => {
               {formEmployeesAddresses.map((office, index) => (
                 <div
                   key={office._id || index}
-                  className="bg-white rounded-lg shadow-md overflow-hidden"
+                  className="bg-white rounded-lg  md overflow-hidden"
                 >
                   {/* Red top bar */}
-                  <div
-                    className="h-2"
-                    style={{ backgroundColor: office.color || '#FF1033' }}
-                  />
 
+
+                  <h3 style={{ backgroundColor: office.color || '#FF1033' }} className="text-xl  p-2 font-bold text-white mb-4">
+                    {office.Location}
+                  </h3>
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">
-                      {office.Location}
-                    </h3>
 
                     {office.officeName && (
                       <p className="text-gray-700 font-medium mb-3">

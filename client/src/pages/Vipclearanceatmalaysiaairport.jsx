@@ -108,7 +108,7 @@ const Vipclearanceatmalaysiaairport = () => {
                     <a
                         href="https://docs.google.com/forms/d/e/1FAIpQLScB4u2Ovi_PMj_st6lqisz8NqNgeTdr9d2737UzTvaNcOAnaw/viewform"
                         target="_blank"
-                        className="px-10 py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
+                        className="px-10 py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold text-lg transition-all duration-300  xl"
                     >
                         Book Now
                     </a>
@@ -122,10 +122,10 @@ const Vipclearanceatmalaysiaairport = () => {
                         <h2 className="text-lg md:text-2xl font-bold text-gray-900 mb-2">
                             Say goodbye to long airport lines and hello to a seamless journey with our exclusive
                         </h2>
-                        <h2 className="text-4xl md:text-5xl font-bold text-[#FF1033] mb-12">
+                        <h2 className="text-4xl   font-bold text-[#FF1033] mb-12">
                             VIP clearance service at Malaysian Immigration
                         </h2>
-                        <div className="inline-block bg-[#991b1b] text-white px-8 py-3 rounded-lg text-2xl font-bold shadow-lg">
+                        <div className="inline-block bg-[#FF1033] text-white px-8 py-3 rounded-lg text-2xl font-bold  ">
                             <span className="">What we offer ?</span>
                         </div>
                     </div>
@@ -163,7 +163,7 @@ const Vipclearanceatmalaysiaairport = () => {
                         <a
                             href="https://docs.google.com/forms/d/e/1FAIpQLScB4u2Ovi_PMj_st6lqisz8NqNgeTdr9d2737UzTvaNcOAnaw/viewform"
                             target="_blank"
-                            className="px-10 py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
+                            className="px-10 py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold text-lg transition-all duration-300  xl"
                         >
                             Book Now
                         </a>
@@ -177,7 +177,7 @@ const Vipclearanceatmalaysiaairport = () => {
                     {howItWorksItems.length > 0 ? (
                         <>
                             {howItWorksItems[0].title && (
-                                <h2 className="text-center text-4xl md:text-5xl font-bold text-black mb-16">
+                                <h2 className="text-center text-4xl  font-bold text-black mb-16">
                                     {howItWorksItems[0].title}
                                 </h2>
                             )}
@@ -193,7 +193,7 @@ const Vipclearanceatmalaysiaairport = () => {
                         </>
                     ) : (
                         <>
-                            <h2 className="text-center text-4xl md:text-5xl font-bold text-black mb-16">
+                            <h2 className="text-center text-4xl  font-bold text-black mb-16">
                                 How It Works?
                             </h2>
                             <div className="flex justify-center">
@@ -216,7 +216,7 @@ const Vipclearanceatmalaysiaairport = () => {
 
                         {/* Heading */}
                         <div className="text-center mb-14">
-                            <h2 className="text-4xl md:text-5xl font-bold text-black">
+                            <h2 className="text-4xl   font-bold text-black">
                                 Documents Required
                             </h2>
                         </div>
@@ -250,7 +250,7 @@ const Vipclearanceatmalaysiaairport = () => {
                             <a
                                 href="https://docs.google.com/forms/d/e/1FAIpQLScB4u2Ovi_PMj_st6lqisz8NqNgeTdr9d2737UzTvaNcOAnaw/viewform"
                                 target="_blank"
-                                className="px-10 py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
+                                className="px-10 py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold text-lg transition-all duration-300  xl"
                             >
                                 Book Now
                             </a>
@@ -308,7 +308,7 @@ const Vipclearanceatmalaysiaairport = () => {
                 <section className="py-24 bg-[#2D1F1F]">
                     <div className="max-w-2xl mx-auto px-6">
                         <div className="text-center mb-12">
-                            <h2 className="text-4xl font-bold text-white mb-4">Book Your VIP Service</h2>
+                            <h2 className="text-4xl  font-bold text-white mb-4">Book Your VIP Service</h2>
                             <p className="text-gray-300">Fill in your details and we'll get back to you</p>
                         </div>
 
@@ -346,13 +346,13 @@ const Vipclearanceatmalaysiaairport = () => {
                 <section className="py-24 bg-gray-50">
                     <div className="max-w-4xl mx-auto px-6 md:px-20">
                         <div className="text-center mb-16">
-                            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                            <h2 className="text-4xl  font-bold text-gray-900 mb-4">
                                 Frequently Asked <span className="text-[#FF1033]">Questions</span>
                             </h2>
                         </div>
                         <div className="space-y-4">
                             {faqs.map((faq, index) => (
-                                <div key={index} className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-shadow">
+                                <div key={index} className="bg-white border border-gray-200 rounded-2xl p-6   transition- ">
                                     <h3 className="text-lg font-bold text-gray-900 mb-3">{faq.question}</h3>
                                     <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
                                 </div>

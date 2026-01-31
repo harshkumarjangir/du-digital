@@ -70,7 +70,7 @@ const Step1Location = ({ formData, handleChange, nextStep, options }) => {
                 <button
                     type="submit"
                     disabled={!isStepValid}
-                    className="px-8 py-3 font-semibold rounded-full bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
+                    className="px-8 py-3 font-semibold rounded-full bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] transition-colors disabled:opacity-50 disabled:cursor-not-allowed "
                 >
                     Save and Continue
                 </button>

@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 const OurBusinesses = ({ data }) => {
     const dispatch = useDispatch();
     const { officialPartners } = useSelector((state) => state.partner);
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
     const backendApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
     useEffect(() => {
@@ -23,23 +22,23 @@ const OurBusinesses = ({ data }) => {
 
                 {/* ===== HEADER ===== */}
                 <div className="text-center mb-14">
-                    <h2 className="text-4xl font-semibold text-gray-900">
+                    <h2 className="text-4xl  font-bold text-gray-900">
                         {data.title}
                     </h2>
-                    <div className="w-16 h-[3px] bg-[#FF1033] mx-auto my-4" />
+                    {/* <div className="w-16 h-[3px] bg-[#FF1033] mx-auto my-4" /> */}
                     <p className="text-gray-600 font-medium">
                         {data.subtitle}
                     </p>
                 </div>
 
                 {/* ===== FLAGS ===== */}
-                <div className="flex flex-wrap justify-center gap-10 mb-12">
+                <div className="flex flex-wrap justify-center gap-5 mb-12">
                     {partnersToDisplay.map((country, i) => (
                         <div key={i} className="flex flex-col items-center gap-2">
                             <img
                                 src={country.logo ? (country.logo.startsWith('http') ? country.logo : `${backendApiUrl}${country.logo}`) : country.flag}
                                 alt={country.country || country.name}
-                                className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover"
+                                className="w-[128px] h-[128px] rounded-sm object-cover"
                             />
                             <span className="text-sm font-medium text-gray-700">
                                 {country.country || country.name}
@@ -64,7 +63,7 @@ const OurBusinesses = ({ data }) => {
                         <Link
                             key={i}
                             to={card.link}
-                            className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden"
+                            className="group bg-white rounded-2xl  transition overflow-hidden"
                         >
                             {/* Image */}
                             <div className="h-44 overflow-hidden">

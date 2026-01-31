@@ -23,7 +23,7 @@ const HomeSlider = ({ data }) => {
 
     return (
 
-        <section className="relative  w-full h-[800px]  overflow-hidden">
+        <section className="relative  w-full min-h-[600px] sm:h-[800px]  overflow-hidden">
 
             <AnimatePresence mode="wait">
                 <motion.div
@@ -57,7 +57,7 @@ const HomeSlider = ({ data }) => {
                         transition={{ duration: 0.8, delay: 0.3 }}
                     >
                         <div className="max-w-2xl text-white">
-                            <h1 className="text-2xl md:text-5xl font-semibold leading-tight">
+                            <h1 className="text-2xl  font-semibold leading-tight">
                                 {slides[current].title}
                             </h1>
 
@@ -155,7 +155,7 @@ export default HomeSlider;
 //                         transition={{ duration: 2 }}
 //                     >
 //                         <div className="max-w-2xl text-white">
-//                             <h1 className="text-2xl md:text-5xl font-semibold leading-tight">
+//                             <h1 className="text-2xl  font-semibold leading-tight">
 //                                 {slide.title}
 //                             </h1>
 //                             <p className="mt-4 text-base md:text-lg text-gray-200">

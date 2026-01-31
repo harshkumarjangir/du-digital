@@ -33,7 +33,7 @@ const VideoGallery = () => {
     if (loading) {
         return (
             <div className="w-full">
-                <section className="h-[800px] relative flex items-center justify-center">
+                <section className="h-[600px] relative flex items-center justify-center">
                     <img
                         src="/assets/video-gallery/video-gallery-bg.jpg"
                         alt="Video Gallery Background"
@@ -57,7 +57,7 @@ const VideoGallery = () => {
     if (error) {
         return (
             <div className="w-full">
-                <section className="h-[800px] relative flex items-center justify-center">
+                <section className="h-[600px] relative flex items-center justify-center">
                     <img
                         src="/assets/video-gallery/video-gallery-bg.jpg"
                         alt="Video Gallery Background"
@@ -81,7 +81,7 @@ const VideoGallery = () => {
     if (!videos || videos.length === 0) {
         return (
             <div className="w-full">
-                <section className="h-[800px] relative flex items-center justify-center">
+                <section className="h-[600px] relative flex items-center justify-center">
                     <img
                         src="/assets/video-gallery/video-gallery-bg.jpg"
                         alt="Video Gallery Background"
@@ -107,7 +107,7 @@ const VideoGallery = () => {
     return (
         <div className="w-full">
             {/* ===== Hero ===== */}
-            <section className="h-[800px] relative flex items-center justify-center">
+            <section className="h-[600px] relative flex items-center justify-center">
                 <img
                     src="/assets/video-gallery/video-gallery-bg.jpg"
                     alt="Video Gallery Background"
@@ -144,7 +144,7 @@ const VideoGallery = () => {
                                 <div className="text-center">
                                     <button
                                         onClick={() => handleLoadMore(category)}
-                                        className="mt-6 px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] shadow-lg"
+                                        className="mt-6 px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
                                     >
                                         Load More
                                     </button>
