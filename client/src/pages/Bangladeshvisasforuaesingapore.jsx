@@ -179,7 +179,7 @@ const BangladeshVisasForUaeSingapore = () => {
                 <div>
                   <h2 className="text-4xl  font-bold text-gray-900 mb-6 leading-tight">
                     The Global Experts in <br />
-                    <span className="text-[#FF1033]">Visa & Consular Services</span>
+                    <span >Visa & Consular Services</span>
                   </h2>
 
                   <div className="space-y-4 mb-8">

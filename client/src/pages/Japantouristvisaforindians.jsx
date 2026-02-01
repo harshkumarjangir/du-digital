@@ -219,9 +219,9 @@ const Japantouristvisaforindians = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center place-items-center w-full place-items-center">
             {/* Left - Hero Text */}
             <div className="text-white">
-              <p className="text-4xl    font-bold mb-2">Apply for</p>
-              <h1 className="text-4xl lg:text-5xl   font-bold leading-tight mb-6">
-                <span style={{ color: '#FF1033' }}>Japan <br /> Tourist Visa</span>
+              <p className="text-3xl md:text-4xl    font-bold mb-2">Apply for</p>
+              <h1 className="text-3xl md:text-4xl   font-bold leading-tight mb-6">
+                <span>Japan <br /> Tourist Visa</span>
               </h1>
               {/* <p className="text-gray-300 text-lg">
                 {description}
@@ -380,7 +380,7 @@ const Japantouristvisaforindians = () => {
             {introSection.map((item, index) => (
               <div key={item._id || index} className="grid lg:grid-cols-2 gap-12 items-center place-items-center">
                 <div>
-                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-black mb-4">
+                  <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
                     {item.title}
                   </h2>
                   <div className="w-20 h-1 mb-6" ></div>

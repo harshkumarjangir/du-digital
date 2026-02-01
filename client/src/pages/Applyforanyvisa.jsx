@@ -156,11 +156,13 @@ const Applyforanyvisa = () => {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
 
-        <div className="relative left-0 z-10 max-w-7xl mx-auto px-6 md:px-20">
+        <div className="relative left-0 z-10 max-w-7xl mx-auto pt-20 px-6 md:px-35">
           <div className="text-white max-w-xl">
             {/* <p className="text-lg mb-2 text-gray-300">Welcome to</p> */}
-            <h1 className="text-4xl   lg:text-5xl font-bold leading-tight mb-6">
-              Welcome to DU GLOBAL
+            <h1 className="text-3xl md:text-4xl   font-bold leading-tight mb-6">
+              Welcome to
+              <br />
+              DU GLOBAL
               {/* <span style={{ color: '#FF1033' }}></span> */}
             </h1>
             {/* <p className="text-gray-300 text-lg mb-8">
@@ -348,11 +350,11 @@ const Applyforanyvisa = () => {
               const embedUrl = getYouTubeEmbedUrl(item.youtubeUrl);
 
               return (
-                <div key={item._id || index} className="grid lg:grid-cols-2 gap-y-12 items-center place-items-center">
+                <div key={item._id || index} className="grid lg:grid-cols-2  gap-y-12 items-center place-items-center">
                   <div>
-                    <p className="text-xl md:text-2xl lg:text-4xl font-bold mb-2" style={{ color: '#333333' }}>Global Experts in</p>
+                    <p className="text-3xl md:text-4xl font-bold mb-2" style={{ color: '#333333' }}>Global Experts in</p>
                     <div className="w-14 h-0.5 mr-2"></div>
-                    <h2 className="text-2xl md:text-2xl font-bold text-[#333333] my-6">
+                    <h2 className="text-xl font-semibold text-[#333333] my-6">
                       {item.title}
                     </h2>
                     <p className="text-[#333333] leading-relaxed">

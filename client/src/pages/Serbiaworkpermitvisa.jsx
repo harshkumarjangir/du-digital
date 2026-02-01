@@ -151,7 +151,7 @@ const Serbiaworkpermitvisa = () => {
             {/* Left - Hero Text */}
             <div className="text-white">
               {descriptionLines.map((line, index) => (
-                <p key={index} className={index === 0 ? "text-4xl    font-bold leading-tight mb-4" : index == 1 ? "text-4xl font-bold text-[#FF1033] mb-2" : "text-xl text-gray-300 mb-2"}>
+                <p key={index} className={index === 0 ? "text-4xl    font-bold leading-tight mb-4" : index == 1 ? "text-4xl font-bold uppercase text-[#FF1033] mb-2" : "text-xl text-gray-300 mb-2"}>
                   {index === 0 ? (
                     <>
                       Work in Serbia: Secure Your D-Type Visa with

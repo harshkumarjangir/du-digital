@@ -119,10 +119,10 @@ const Vipclearanceatmalaysiaairport = () => {
             <section id="services-section" className="py-24 bg-white">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center mb-16">
-                        <h2 className="text-lg md:text-2xl font-bold text-gray-900 mb-2">
+                        <h2 className="text-lg md:text-2xl font-bold  mb-2">
                             Say goodbye to long airport lines and hello to a seamless journey with our exclusive
                         </h2>
-                        <h2 className="text-4xl   font-bold text-[#FF1033] mb-12">
+                        <h2 className="text-4xl   font-bold  mb-12">
                             VIP clearance service at Malaysian Immigration
                         </h2>
                         <div className="inline-block bg-[#FF1033] text-white px-8 py-3 rounded-lg text-2xl font-bold  ">

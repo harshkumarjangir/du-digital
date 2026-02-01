@@ -634,8 +634,8 @@ const Southkoreavisaforindians = () => {
                   >
                     {index === 0 ? <Building className="w-6 h-6 text-white" /> : <Check className="w-6 h-6 text-white" />}
                   </div>
-                  <h3 className="text-lg font-bold text-gray-400 mb-2">{item.title}</h3>
-                  <p className="text-gray-400 text-sm">
+                  <h3 className="text-lg font-bold text-black mb-2">{item.title}</h3>
+                  <p className="text-gray-700 text-md">
                     {item.contentHtml?.replace(/\r?\n/g, ' ').trim()}
                   </p>
                   {/* Large faded number */}
