@@ -5,7 +5,7 @@ const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 // Async thunk to fetch all events
 export const fetchEvents = createAsyncThunk(
     'events/fetchEvents',
-    async ({ page = 1, limit = 10 } = {}, { rejectWithValue }) => {
+    async ({ page = 1, limit = 9 } = {}, { rejectWithValue }) => {
         try {
             const response = await fetch(`${BackendURL}/api/events?page=${page}&limit=${limit}`);
 
