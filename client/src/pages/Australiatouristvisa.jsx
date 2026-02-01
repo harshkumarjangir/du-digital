@@ -101,7 +101,7 @@ const Australiatouristvisa = () => {
   // Get sections by API keys
   const additionalDocsSection = contentSections['Additional Documents for Your Australia Tourist Visa (As Applicable)'] || [];
   const howToApplySection = contentSections['How to Apply for Australia Tourist Visa'] || [];
-  const whyChooseSection = contentSections['Why Choose DU Global for Australia Visa'] || [];
+  const whyChooseSection = contentSections['Why Choose DU GLOBAL for Australia Visa'] || [];
 
   // Visa types data - use API data if available, otherwise static
   const visaTypesData = pricingPlans.length > 0 ? pricingPlans[0] : STATIC_VISA_TYPES;
@@ -559,7 +559,7 @@ const Australiatouristvisa = () => {
           <div className="max-w-6xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-4xl  font-bold text-[#333333] mb-3">
-                Why Choose DU Global for Australia Visa
+                Why Choose DU GLOBAL for Australia Visa
               </h2>
               {/* <div className="w-20 h-1 mx-auto" ></div> */}
             </div>

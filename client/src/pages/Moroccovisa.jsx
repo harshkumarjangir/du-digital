@@ -108,7 +108,7 @@ const Moroccovisa = () => {
   const introSection = contentSections['Morocco Visa for Indians'] || [];
   const visaTypesSection = contentSections['Morocco Visa Types, Fees, and Processing Time for Indian Citizens'] || [];
 
-  // Why DU Global features (static data)
+  // Why DU GLOBAL features (static data)
   const whyChooseFeatures = [
     { icon: Award, title: "Quality and Value", desc: "Premium service at competitive pricing" },
     { icon: Users, title: "Experienced Professionals", desc: "Expert team with years of visa expertise" },

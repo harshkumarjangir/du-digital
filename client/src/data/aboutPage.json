@@ -1,16 +1,16 @@
 {
     "hero": {
         "title": "About Us",
-        "subtitle": "DU Global Ltd is a company listed on the National Stock Exchange (NSE) of India. It operates in the digital services and technology sector, specializing in services such as document verification, visa facilitation, and other innovative solutions catering to both government and private sectors.",
+        "subtitle": "DU GLOBAL Ltd is a company listed on the National Stock Exchange (NSE) of India. It operates in the digital services and technology sector, specializing in services such as document verification, visa facilitation, and other innovative solutions catering to both government and private sectors.",
         "backgroundImage": "/assets/about-us/hero/about-hero.jpg"
     },
     "whoWeAre": {
         "title": "DU GLOBAL",
         "heading": "Who We Are?",
         "content": [
-            "DU Global Limited, founded in 2015, stands as a testament to India’s prowess in the global technology and outsourcing landscape. Emerging from the vibrant ecosystem of Indian innovation and entrepreneurship, our company has rapidly grown to become a key player in providing specialized.",
+            "DU GLOBAL Limited, founded in 2015, stands as a testament to India’s prowess in the global technology and outsourcing landscape. Emerging from the vibrant ecosystem of Indian innovation and entrepreneurship, our company has rapidly grown to become a key player in providing specialized.",
             "Solutions to governments and diplomatic missions worldwide. With a strong emphasis on leveraging technology and a deep understanding of client needs, we have earned a reputation for excellence in managing non-administrative and non-judgemental tasks related to visa processing and consular services of governments.",
-            "Our journey reflects the spirit of India’s tech industry, characterized by innovation, adaptability, and a commitment to delivering world-class solutions. As a homegrown company, we take pride in our Indian roots while embracing a global outlook. Our ability to combine indigenous expertise with international standards has enabled us to consistently meet and exceed the expectations of our diverse clientele. In an ever evolving global landscape, DU Global remains dedicated to driving innovation and excellence, showcasing the immense potential of Indian businesses on the global stage."
+            "Our journey reflects the spirit of India’s tech industry, characterized by innovation, adaptability, and a commitment to delivering world-class solutions. As a homegrown company, we take pride in our Indian roots while embracing a global outlook. Our ability to combine indigenous expertise with international standards has enabled us to consistently meet and exceed the expectations of our diverse clientele. In an ever evolving global landscape, DU GLOBAL remains dedicated to driving innovation and excellence, showcasing the immense potential of Indian businesses on the global stage."
         ]
     },
     "timeline": [
@@ -33,7 +33,7 @@
         {
             "year": "2021",
             "title": "Global Partnerships",
-            "subtitle": "Incorporated DU Global LLC in Sharjah, UAE",
+            "subtitle": "Incorporated DU GLOBAL LLC in Sharjah, UAE",
             "flags": [
                 "/assets/about-us/timeline/Georgia.png",
                 "/assets/about-us/timeline/logo-300x83.png",
@@ -75,7 +75,7 @@
         {
             "year": "2021",
             "title": "Global Partnerships",
-            "subtitle": "Incorporated DU Global LLC in Sharjah, UAE",
+            "subtitle": "Incorporated DU GLOBAL LLC in Sharjah, UAE",
             "flags": [
                 "/assets/about-us/timeline/Georgia.png",
                 "/assets/about-us/timeline/logo-300x83.png",

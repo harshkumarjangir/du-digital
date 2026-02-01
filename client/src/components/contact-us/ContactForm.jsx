@@ -103,7 +103,7 @@ const ContactForm = ({ form }) => {
                         onChange={handleChange}
                         className="mt-1"
                     />
-                    By submitting my details, I authorize DU Global to contact me via
+                    By submitting my details, I authorize DU GLOBAL to contact me via
                     Call / SMS / WhatsApp / Email.
                 </label>
 

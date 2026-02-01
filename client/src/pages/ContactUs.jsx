@@ -43,7 +43,7 @@ const ContactUs = () => {
                         </p>
 
                         <h2 className="text-4xl  font-bold text-gray-900 mb-4">
-                            Have a question, feedback, or query about DU Global’s services?
+                            Have a question, feedback, or query about DU GLOBAL’s services?
                         </h2>
 
                         <p className="text-gray-600 mb-6">
@@ -249,7 +249,7 @@ export default ContactUs;
 //                             onChange={handleChange}
 //                             className="mt-1"
 //                         />
-//                         By submitting my details, I authorize DU Global to contact me via
+//                         By submitting my details, I authorize DU GLOBAL to contact me via
 //                         Call / SMS / WhatsApp / Email.
 //                     </label>
 
@@ -384,7 +384,7 @@ export default ContactUs;
 
 //                     <label className="flex items-start gap-4 text-sm text-gray-600">
 //                         <input type="checkbox" className="mt-1" />
-//                         By submitting my details, I authorize DU Global to contact me via
+//                         By submitting my details, I authorize DU GLOBAL to contact me via
 //                         Call / SMS / WhatsApp / Email.
 //                     </label>
 

@@ -1,8 +1,8 @@
 {
     "partnerHero": {
         "backgroundImage": "/assets/become-partner/bg-image-parter.jpg",
-        "title": "Grow your travel business with <span class='whitespace-nowrap'>DU Global</span>",
-        "highlight": "with DU Global",
+        "title": "Grow your travel business with <span class='whitespace-nowrap'>DU GLOBAL</span>",
+        "highlight": "with DU GLOBAL",
         "points": [
             "Access to visa dashboard",
             "Tailored Support",
@@ -49,7 +49,7 @@
         }
     },
     "whyUs": {
-        "title": "Why DU Global?",
+        "title": "Why DU GLOBAL?",
         "items": [
             {
                 "icon": "rates",
@@ -85,7 +85,7 @@
     ],
     "footprints": {
         "description": [
-            "DU Global is a leading provider with a global footprint, offering specialized services for administrative tasks related to visa processing, passport management, identity verification, and other citizen services. Our expertise extends to Company Formation in the UAE and Immigration, Residency & Citizenship programs, ensuring seamless solutions for our customers.",
+            "DU GLOBAL is a leading provider with a global footprint, offering specialized services for administrative tasks related to visa processing, passport management, identity verification, and other citizen services. Our expertise extends to Company Formation in the UAE and Immigration, Residency & Citizenship programs, ensuring seamless solutions for our customers.",
             "Over our 35 centres operating in 6 countries and with an additional 1300 centres available globally with our partner offices, we have the ability to fulfill a wide range of dynamic requirements for our Governmental clients and business partners alike."
         ],
         "stats": [

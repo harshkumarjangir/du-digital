@@ -93,7 +93,7 @@ const Serbiaworkpermitvisa = () => {
   // Get sections by API keys
   const whatIsSection = contentSections['What is a Serbia D-Type Visa?'] || [];
   const whoCanApplySection = contentSections['Who Can Apply?'] || [];
-  const whyChooseSection = contentSections['Why Choose DU Global?'] || [];
+  const whyChooseSection = contentSections['Why Choose DU GLOBAL?'] || [];
   // const getStartedSection = contentSections[' Get Started Today!'] || [];
   const VisaApplicationCentreAddress = contentSections['Visa Application Centre Addresses'] || [];
   const connectWithUsSection = contentSections['Connect with us'] || [];
@@ -464,7 +464,7 @@ const Serbiaworkpermitvisa = () => {
           <div className="max-w-6xl mx-auto px-6 md:px-20">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-4xl font-bold text-white mb-3">
-                Why Choose DU Global?
+                Why Choose DU GLOBAL?
               </h2>
               <div className="w-20 h-1 mx-auto" ></div>
             </div>

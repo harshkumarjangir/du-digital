@@ -67,8 +67,8 @@ const Digitalarrivalcards = () => {
   const { name, description, documents = [], faqs = [], contentSections = {} } = formData || {};
 
   // Get sections by API keys
-  const travelReadySection = contentSections['Travel Ready with DU Global'] || [];
-  const whyChooseSection = contentSections['Why Choose DU Global'] || [];
+  const travelReadySection = contentSections['Travel Ready with DU GLOBAL'] || [];
+  const whyChooseSection = contentSections['Why Choose DU GLOBAL'] || [];
 
   // Parse description for hero text
   const descriptionParts = description?.split('\r\n\r\n').filter(line => line.trim()) || [];

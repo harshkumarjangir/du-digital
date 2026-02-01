@@ -100,8 +100,8 @@ const Southkoreavisaforindians = () => {
   const employedSection = contentSections['For Employed People'] || [];
   const howToApplySection = contentSections['How to Apply for your South Korea Visa'] || [];
   const whyChooseSection = [
-    ...(contentSections['Why Choose DU Global?'] || []),
-    ...(contentSections['Why Choose DU Global'] || [])
+    ...(contentSections['Why Choose DU GLOBAL?'] || []),
+    ...(contentSections['Why Choose DU GLOBAL'] || [])
   ];
 
   // Parse description
@@ -664,7 +664,7 @@ const Southkoreavisaforindians = () => {
             {/* Section Header */}
             <div className="text-center mb-6">
               <h2 className="text-4xl md:text-4xl font-bold mb-3">
-                Why Choose DU Global?
+                Why Choose DU GLOBAL?
               </h2>
             </div>
 

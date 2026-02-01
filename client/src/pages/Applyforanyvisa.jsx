@@ -104,9 +104,9 @@ const Applyforanyvisa = () => {
   const globalExpertsSection = contentSections['Global Experts in'] || [];
   const footprintsSection = contentSections['Our Footprints'] || [];
   const isoCertificatesSection = contentSections['ISO Certificates'] || [];
-  const whyDuGlobalSection = contentSections['Why DU GLOBAL'] || contentSections['Why DU Global'] || [];
+  const whyDuGlobalSection = contentSections['Why DU GLOBAL'] || contentSections['Why DU GLOBAL'] || [];
 
-  // Why DU Global items (static for design matching)
+  // Why DU GLOBAL items (static for design matching)
   const whyDuGlobalItems = [
     { icon: Award, title: "Quality and Value", description: "Since 2015, the company has been expanding its offerings and geographical reach." },
     { icon: Clock, title: "Speed", description: "Prioritizing your time with quick processing and efficient service delivery." },
@@ -160,7 +160,7 @@ const Applyforanyvisa = () => {
           <div className="text-white max-w-xl">
             {/* <p className="text-lg mb-2 text-gray-300">Welcome to</p> */}
             <h1 className="text-4xl   lg:text-5xl font-bold leading-tight mb-6">
-              Welcome to DU Global
+              Welcome to DU GLOBAL
               {/* <span style={{ color: '#FF1033' }}></span> */}
             </h1>
             {/* <p className="text-gray-300 text-lg mb-8">
@@ -365,7 +365,7 @@ const Applyforanyvisa = () => {
                         width="100%"
                         height="315"
                         src={embedUrl}
-                        title={item.title || "DU Global Video"}
+                        title={item.title || "DU GLOBAL Video"}
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen

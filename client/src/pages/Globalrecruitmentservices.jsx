@@ -167,7 +167,7 @@ const Globalrecruitmentservices = () => {
   const { name, description, faqs = [], contentSections = {}, fields = [] } = formData || {};
 
   // Get dynamic sections from API
-  const whyChooseSection = contentSections['Why Choose DU Global?'] || [];
+  const whyChooseSection = contentSections['Why Choose DU GLOBAL?'] || [];
   const ourServicesSection = contentSections['Our Services'] || [];
   const industriesSection = contentSections['Industries We Serve'] || [];
   const trackRecordSection = contentSections['Our Track Record'] || [];
@@ -209,7 +209,7 @@ const Globalrecruitmentservices = () => {
 
             <p className="text-base md:text-lg text-gray-100 leading-relaxed max-w-2xl mb-10">
               {description ||
-                "DU Global is a global recruitment agency that specializes in connecting employers worldwide with highly skilled Indian professionals across various sectors."}
+                "DU GLOBAL is a global recruitment agency that specializes in connecting employers worldwide with highly skilled Indian professionals across various sectors."}
             </p>
 
             {/* <button className="inline-flex items-center gap-4 bg-[#c60505] hover:bg-[#a00000] text-white px-10 py-4 rounded-lg font-bold text-lg transition  ">
@@ -340,8 +340,8 @@ const Globalrecruitmentservices = () => {
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-16">
               <h2 className="text-4xl  font-bold text-[#333333] mb-4">
-                Why Choose DU Global?
-                {/* <span className="text-[#c60505]">DU Global?</span> */}
+                Why Choose DU GLOBAL?
+                {/* <span className="text-[#c60505]">DU GLOBAL?</span> */}
               </h2>
               {/* <div className="w-20 h-1 bg-[#c60505] mx-auto" /> */}
             </div>

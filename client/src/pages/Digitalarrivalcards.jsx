@@ -97,7 +97,7 @@ const Digitalarrivalcards = () => {
   const { documents = [], faqs = [], contentSections = {} } = formData || {};
 
   // Get sections by API keys
-  const whyChooseSection = contentSections['Why Choose DU Global'] || [];
+  const whyChooseSection = contentSections['Why Choose DU GLOBAL'] || [];
 
 
 
@@ -174,7 +174,7 @@ const Digitalarrivalcards = () => {
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 text-center">
           <h2 className="text-4xl md:text-4xl  font-bold text-white mb-4">
-            Travel Ready with DU Global
+            Travel Ready with DU GLOBAL
           </h2>
           <p className="text-gray-50 text-lg md:text-xl leading-relaxed">
             Apply your Digital Arrival Card today and fly worry-free to{' '}

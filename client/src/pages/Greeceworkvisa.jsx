@@ -157,7 +157,7 @@ const GreeceWorkVisa = () => {
                 Work in Greece: Secure Your National D-Type
               </h1>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8" style={{ color: '#FF1033' }}>
-                – Visa with DU Global LLC
+                – Visa with DU GLOBAL LLC
               </h2>
 
               {/* Hero Points with square checkmarks */}
