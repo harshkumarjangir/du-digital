@@ -10,18 +10,18 @@ const WhyUsSection = ({ data, button = false, buttonLink = "", buttonName = "" }
             <img src={data.backgroundImage} alt={data.title} className="absolute inset-0 w-full h-full object-cover" />
             {/* Overlay */}
             <div className="absolute inset-0 bg-black/80" />
-
-            <div className="relative max-w-7xl mx-auto px-6 md:px-20 grid lg:grid-cols-2  items-center">
+            {/* relative max-w-7xl mx-auto px-6 md:px-20 grid lg:grid-cols-2  items-center */}
+            <div className="relative max-w-7xl mx-auto px-6 md:px-20 flex flex-col lg:flex-row gap-x-8 items-center">
 
                 {/* LEFT CONTENT */}
-                <div className="w-[80%]">
+                <div className="w-full lg:w-[70%]">
                     <h2 className="text-4xl md:text-4xl font-semibold leading-tight mb-6">
                         {data.title}
                     </h2>
 
                     {/* <div className="w-12 h-[2px] bg-[#FF1033] mb-6" /> */}
 
-                    <p className="text-gray-300 leading-relaxed max-w-xl mb-8">
+                    <p className="text-gray-300 text-base leading-relaxed max-w-xl mb-8">
                         {data.description}
                     </p>
 
@@ -42,7 +42,7 @@ const WhyUsSection = ({ data, button = false, buttonLink = "", buttonName = "" }
                 </div>
 
                 {/* RIGHT FEATURES */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full">
                     {data.features.map((item, index) => {
                         const Icon = Icons[item.icon] || Icons.HelpCircle;
 
@@ -56,10 +56,10 @@ const WhyUsSection = ({ data, button = false, buttonLink = "", buttonName = "" }
 
                                 {/* TEXT */}
                                 <div>
-                                    <h4 className="text-lg font-semibold mb-1">
+                                    <h4 className="text-2xl font-medium mb-1">
                                         {item.title}
                                     </h4>
-                                    <p className="text-gray-300 text-sm leading-relaxed">
+                                    <p className="text-gray-300 text-base leading-relaxed">
                                         {item.text}
                                     </p>
                                 </div>
