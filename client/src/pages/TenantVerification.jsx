@@ -221,7 +221,7 @@ const TenantVerification = () => {
                 <div>
                   <h2 className="text-4xl md:text-4xl  font-bold text-gray-900 leading-tight mb-6">
                     Why Choose{' '}
-                    <span className="text-[#FF1033]">DuVerify</span> Platform?
+                    <span >DuVerify</span> Platform?
                   </h2>
 
                   <p className="text-xl font-semibold md:font-bold text-gray-800 mb-6">
@@ -281,7 +281,7 @@ const TenantVerification = () => {
             <h2 className="text-4xl md:text-4xl  font-bold text-gray-900 mb-4">
               Key Benefits
             </h2>
-            <div className="w-20 h-[2px] mx-auto bg-[#FF1033]" />
+            <div className="w-20 h-[2px] mx-auto " />
           </div>
 
           {/* Cards */}
@@ -352,7 +352,7 @@ const TenantVerification = () => {
               <h2 className="text-4xl md:text-4xl  font-bold text-gray-900">
                 Pricing Plans
               </h2>
-              <div className="w-20 h-[2px] bg-[#FF1033] mx-auto mt-4 mb-6" />
+              <div className="w-20 h-[2px]  mx-auto mt-4 mb-6" />
               <p className="text-lg text-gray-700 font-medium">
                 Flexible pricing for hassle-free Tenant, Maid, Nanny & Driver verification
               </p>
@@ -754,7 +754,7 @@ const TenantVerification = () => {
               <h2 className="text-4xl md:text-4xl  font-bold text-white">
                 How It Works?
               </h2>
-              <div className="w-20 h-[2px] bg-[#FF1033] mx-auto my-4" />
+              <div className="w-20 h-[2px]  mx-auto my-4" />
               {howItWorksSection[0]?.badge?.text && (
                 <p className="text-lg md:text-xl lg:text-2xl text-gray-100 font-medium">{howItWorksSection[0].badge.text}</p>
               )}
@@ -819,7 +819,7 @@ const TenantVerification = () => {
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             <div className="text-center mb-16">
               <h2 className="text-4xl   font-bold text-black">Deliverables</h2>
-              <div className="w-24 h-1 mx-auto mt-4" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-24 h-1 mx-auto mt-4"></div>
               {deliverablesSection[0]?.badge?.text && (
                 <p className="text-[#333333] text-lg font-bold mt-4">{deliverablesSection[0].badge.text}</p>
               )}

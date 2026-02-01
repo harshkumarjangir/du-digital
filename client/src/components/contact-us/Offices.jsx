@@ -34,9 +34,7 @@ const Offices = () => {
 
                 {/* Header */}
                 <div className="text-center mb-14">
-                    <p className="text-sm font-semibold tracking-wide text-[#DA3745] uppercase mb-2">
-                        DU Digital Global
-                    </p>
+                  
                     <h2 className="text-4xl font-bold text-[#333333]">
                         India Offices
                     </h2>
@@ -108,9 +106,7 @@ const Offices = () => {
                     ))}
                 </div>
                 <div className="text-center my-14">
-                    <p className="text-sm font-semibold tracking-wide text-[#DA3745] uppercase mb-2">
-                        DU Digital Global
-                    </p>
+                  
                     <h2 className="text-4xl font-bold text-[#333333]">
                         Global Offices
                     </h2>

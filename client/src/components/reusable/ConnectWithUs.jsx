@@ -20,7 +20,7 @@ const ConnectWithUs = ({ data }) => {
                 {/* Heading */}
                 <h2 className="text-white text-3xl md:text-4xl font-semibold mb-10 relative">
                     {heading}
-                    <span className="absolute left-1/2 -bottom-3 w-20 h-[3px] bg-[#FF1033] -translate-x-1/2" />
+                    <span className="absolute left-1/2 -bottom-3 w-20 h-[3px]  -translate-x-1/2" />
                 </h2>
 
                 {/* Card */}

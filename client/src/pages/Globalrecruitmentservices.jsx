@@ -167,7 +167,7 @@ const Globalrecruitmentservices = () => {
   const { name, description, faqs = [], contentSections = {}, fields = [] } = formData || {};
 
   // Get dynamic sections from API
-  const whyChooseSection = contentSections['Why Choose DU GLOBAL?'] || [];
+  const whyChooseSection = contentSections['Why Choose DU Global?'] || [];
   const ourServicesSection = contentSections['Our Services'] || [];
   const industriesSection = contentSections['Industries We Serve'] || [];
   const trackRecordSection = contentSections['Our Track Record'] || [];
@@ -198,7 +198,7 @@ const Globalrecruitmentservices = () => {
         <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center place-items-center">
 
           {/* LEFT CONTENT */}
-          <div className="text-white">
+          <div className="text-white ">
             <h1 className="text-4xl    font-bold leading-tight mb-5">
               Global Recruitment Services – Apply Now!
             </h1>
@@ -207,7 +207,7 @@ const Globalrecruitmentservices = () => {
               Connecting Skilled Talents from India to Abroad
             </h2>
 
-            <p className="text-base md:text-lg text-gray-100 leading-relaxed max-w-2xl mb-10">
+            <p className="text-base  text-gray-100 leading-relaxed max-w-2xl mb-10">
               {description ||
                 "DU GLOBAL is a global recruitment agency that specializes in connecting employers worldwide with highly skilled Indian professionals across various sectors."}
             </p>

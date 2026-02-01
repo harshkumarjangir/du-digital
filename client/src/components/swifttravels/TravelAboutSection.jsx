@@ -26,11 +26,7 @@ const AboutSwifttravelSection = ({ data }) => {
         <section className="bg-white">
             {/* TOP CONTENT */}
             <div className="max-w-5xl mx-auto px-6 pt-20 text-center">
-                {badge && (
-                    <p className="text-sm font-semibold text-[#FF1033] tracking-wider mb-3">
-                        {badge}
-                    </p>
-                )}
+              
 
                 <h2 className="text-4xl md:text-4xl font-bold text-gray-900">
                     {title}

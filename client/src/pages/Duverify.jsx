@@ -178,7 +178,7 @@ const Duverify = () => {
                 About DuVerify
                 {/* <span style={{ color: '#FF1033' }}>DuVerify</span> */}
               </h2>
-              <div className="w-16 h-0.75 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-16 h-0.75 mx-auto"></div>
             </div>
 
             {aboutSection.map((item, index) => (
@@ -228,7 +228,7 @@ const Duverify = () => {
               <h2 className="text-4xl  font-bold text-gray-900 mb-4">
                 Why Choose DuVerify?
               </h2>
-              <div className="w-16 h-[3px] bg-[#FF1033] mx-auto" />
+              <div className="w-16 h-[3px]  mx-auto" />
             </div>
 
             {/* Cards */}
@@ -299,7 +299,7 @@ const Duverify = () => {
               <h2 className="text-4xl md:text-4xl  font-bold text-white mb-3">
                 Key Partnerships
               </h2>
-              <div className="w-16 h-0.75 mx-auto" style={{ backgroundColor: '#FF1033' }}></div>
+              <div className="w-16 h-0.75 mx-auto" ></div>
             </div>
 
             {/* Partnership Cards - 2 columns with background images */}
@@ -350,7 +350,7 @@ const Duverify = () => {
               <h2 className="text-4xl md:text-4xl  font-bold text-black mb-4">
                 What DuVerify Can Do For You
               </h2>
-              <div className="w-20 h-[3px] bg-[#FF1033] mx-auto" />
+              <div className="w-20 h-[3px]  mx-auto" />
             </div>
 
             {/* Cards */}
