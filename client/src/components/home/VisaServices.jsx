@@ -68,9 +68,9 @@ const VisaServices = ({ data }) => {
         if (from === 'India') {
             redirectURL = indiaRedirects[to] || defaultRedirect;
         } else if (from === 'South Korea' && to === 'India') {
-            redirectURL = '/sk';
+            redirectURL = '/apply-for-any-visa';
         } else if (from === 'Thailand' && to === 'India') {
-            redirectURL = '/th';
+            redirectURL = '/apply-for-any-visa';
         } else if (from === 'Bangladesh') {
             if (to === 'UAE' || to === 'Singapore' || to === 'Ireland') {
                 redirectURL = '/bangladesh-visas-for-uae-singapore';

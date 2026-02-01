@@ -16,7 +16,7 @@ const OurFootprints = ({ data }) => {
             <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 text-center">
 
                 {/* Heading */}
-                <h2 className="text-4xl   font-bold text-gray-900">
+                <h2 className="text-4xl font-bold text-gray-900 mb-4">
                     Our Footprints
                 </h2>
 
@@ -24,7 +24,7 @@ const OurFootprints = ({ data }) => {
                 {/* <div className="w-16 h-[3px] bg-[#FF1033] mx-auto my-6" /> */}
 
                 {/* Description */}
-                <p className="max-w-5xl mx-auto text-gray-600 text-sm leading-relaxed">
+                <p className="max-w-5xl mx-auto text-gray-600 text-base leading-relaxed">
                     Over our 35 centres operating in 6 countries and with an additional
                     1300 centres available globally with our partner offices, we have the
                     ability to fulfil a wide range of dynamic requirements for our
