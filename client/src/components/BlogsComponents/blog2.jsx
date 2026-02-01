@@ -20,6 +20,22 @@ const getColorFromId = (id) => {
     }
     return COLORS[hash % COLORS.length];
 };
+const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
+const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000/api';
+
+const getImageUrl = (imagePath) => {
+    if (!imagePath) return '';
+    if (imagePath.startsWith('http')) return imagePath;
+    // Handle /api/ paths - use BackendURL directly
+    if (imagePath.startsWith('/api/')) {
+        return `${BackendURL}${imagePath}`;
+    }
+    // Handle /uploads/ paths
+    if (imagePath.startsWith('/uploads/')) {
+        return `${BackendURL}/api${imagePath}`;
+    }
+    return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
+};
 
 export const Blog = ({ data: propData, className }) => {
     const dispatch = useDispatch();
@@ -71,7 +87,7 @@ export const Blog = ({ data: propData, className }) => {
                                 className="w-full max-w-sm h-[420px] rounded-2xl overflow-hidden  bg-white flex flex-col">
                                 {/* Image */}
                                 <img
-                                    src={blog.featuredImage}
+                                    src={getImageUrl(blog.featuredImage)}
                                     alt={blog.title}
                                     className="h-48 w-full object-cover"
                                 />

@@ -13,7 +13,7 @@ const API_URL_AUTH = `${API_BASE_URL}/auth`;
 // Add auth token to requests
 axios.interceptors.request.use((config) => {
     const token = localStorage.getItem("token");
-    if (token) {
+    if (token && !config.skipAuth) {
         config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
@@ -113,8 +113,21 @@ export const deleteOfficeType = async (id) => {
 };
 
 export const getLocations = async (typeId = '') => {
-    const response = await axios.get(`${API_URL_OFFICE}/locations${typeId ? `?typeId=${typeId}` : ''}`);
-    return response.data;
+    // Use grouped endpoint to get full address data (public endpoint)
+    const response = await axios.get(`${API_URL_OFFICE}/locations/grouped`, { skipAuth: true });
+
+    // Flatten the grouped response into a single array
+    const { india = [], international = [] } = response.data;
+    const allLocations = [...india, ...international];
+
+    // Filter by typeId if provided (client-side filtering since we're using the grouped endpoint)
+    if (typeId) {
+        return allLocations.filter(loc =>
+            (loc.officeTypeId?._id === typeId) || (loc.officeTypeId === typeId)
+        );
+    }
+
+    return allLocations;
 };
 
 export const createLocation = async (data) => {

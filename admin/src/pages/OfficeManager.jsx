@@ -167,21 +167,26 @@ const OfficeManager = () => {
     }
   };
 
+  useEffect(() => {
+    if (editingLocation) {
+      setNewLocation({
+        officeTypeId: editingLocation.officeTypeId?._id || editingLocation.officeTypeId || "",
+        officeName: editingLocation.officeName || "",
+        line1: editingLocation.address?.line1 || "",
+        line2: editingLocation.address?.line2 || "",
+        city: editingLocation.address?.city || "",
+        state: editingLocation.address?.state || "",
+        country: editingLocation.address?.country || "",
+        pincode: editingLocation.address?.pincode || "",
+        phone: editingLocation.contact?.phone || "",
+        email: editingLocation.contact?.email || "",
+        googleMapLink: editingLocation.googleMapLink || "",
+      });
+    }
+  }, [editingLocation]);
+
   const handleEditLocation = (location) => {
     setEditingLocation(location);
-    setNewLocation({
-      officeTypeId: location.officeTypeId?._id || location.officeTypeId || "",
-      officeName: location.officeName || "",
-      line1: location.address?.line1 || "",
-      line2: location.address?.line2 || "",
-      city: location.address?.city || "",
-      state: location.address?.state || "",
-      country: location.address?.country || "",
-      pincode: location.address?.pincode || "",
-      phone: location.contact?.phone || "",
-      email: location.contact?.email || "",
-      googleMapLink: location.googleMapLink || "",
-    });
     setIsLocationModalOpen(true);
   };
 
@@ -442,6 +447,7 @@ const OfficeManager = () => {
                     <div className="d-flex align-items-start gap-2 mb-3">
                       <MapPin size={16} className="text-muted mt-1" />
                       <div style={{ fontSize: "0.875rem", lineHeight: "1.5" }}>
+
                         {location.address?.line1 && (
                           <div>{location.address.line1}</div>
                         )}

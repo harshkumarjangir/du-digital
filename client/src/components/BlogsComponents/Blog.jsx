@@ -17,6 +17,21 @@ export const Blog = ({ data: propData, className }) => {
     }
   }, [dispatch, page, propData]);
 
+
+  const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
+  const getImageUrl = (imagePath) => {
+    if (!imagePath) return '';
+    if (imagePath.startsWith('http')) return imagePath;
+    // Handle /api/ paths - use BackendURL directly
+    if (imagePath.startsWith('/api/')) {
+      return `${BackendURL}${imagePath}`;
+    }
+    // Handle /uploads/ paths
+    if (imagePath.startsWith('/uploads/')) {
+      return `${BackendURL}/api${imagePath}`;
+    }
+    return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
+  };
   const { Blogs: reduxData, loading, error, totalPages } = useSelector((state) => state.blog);
 
   // Use propData if available, otherwise use reduxData
@@ -55,7 +70,7 @@ export const Blog = ({ data: propData, className }) => {
             {/* IMAGE */}
             <div className="h-[450px] relative">
               <LazyImage
-                src={blog.featuredImage}
+                src={getImageUrl(blog.featuredImage)}
                 alt={blog.title}
                 className="w-full h-full object-cover"
                 fill
