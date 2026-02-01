@@ -133,12 +133,13 @@ const Australiatouristvisa = () => {
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-20 flex items-center">
-          <div className="grid lg:grid-cols-2 gap-12 items-center place-items-center w-ful place-items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center place-items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
               {/* <p className="text-xl mb-2">Apply for</p> */}
               <h1 className="text-4xl  lg:text-5xl  font-bold text-black leading-tight mb-6">
-                Apply for <span style={{ color: '#FF1033' }}>Australia Tourist Visa</span>
+                Apply for Australia Tourist Visa
+                {/* Apply for <span style={{ color: '#FF1033' }}>Australia Tourist Visa</span> */}
               </h1>
               {/* <p className="text-gray-300 text-lg">
                 {description}
