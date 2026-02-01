@@ -21,21 +21,21 @@ const HomeAboutSection = ({ data }) => {
             {/* Overlay */}
             {/* <div className="absolute inset-0 bg-[#FFFDF5]/50 z-[15]" /> */}
 
-            <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div className="relative max-w-7xl mx-auto h-[300px] grid lg:grid-cols-2 gap-16 items-center">
 
                 {/* LEFT CONTENT */}
                 <div>
-                    <h2 className="text-[48px]  font-[450px] text-[#000000] leading-11  mb-6 whitespace-pre-line">
+                    <h2 className="text-[48px]  font-[450px] text-[#000000] leading-12  mb-10 whitespace-pre-line">
                         {data.title}
                     </h2>
 
-                    <p className="text-[#000000] max-sm:w-full w-[70%]  max-w-xl  leading-tight">
+                    <p className="text-[#000000] max-sm:w-full w-[90%] text-[17px]  leading-normal">
                         {data.description}
                     </p>
                 </div>
 
                 {/* RIGHT VIDEO */}
-                <div className="relative mx-auto md:w-[75%] rounded-xl overflow-hidden bg-black aspect-video">
+                <div className="relative mx-auto md:w-[85%] h-full rounded-xl overflow-hidden bg-black aspect-video">
                     <iframe
                         src={data.video.embedUrl}
                         title="DU Digital Global"

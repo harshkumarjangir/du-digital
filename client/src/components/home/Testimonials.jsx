@@ -61,14 +61,14 @@ const Testimonials = ({ data }) => {
                                 transition={{ duration: 0.4 }}
                                 className="grid grid-cols-1 md:grid-cols-2 gap-8"
                             >
-                                {[0, 2].map((offset) => {
+                                {[0, 1].map((offset) => {
                                     const item = data.testimonials[(index + offset) % total];
 
                                     return (
                                         <div
                                             key={offset}
                                             className={`${offset === 1 ? "" : ""
-                                                } bg-[#FFFCF6] rounded-2xl p-8 text-left flex flex-col justify-between  sm`}
+                                                } bg-[#FFFCF6] rounded-2xl p-8 text-left flex flex-col justify-between`}
                                         >
                                             <p className="text-gray-700 leading-relaxed">
                                                 {item.message}

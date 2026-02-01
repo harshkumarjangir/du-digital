@@ -69,17 +69,16 @@ const Navbar = () => {
               onMouseEnter={() => setHideDropdowns(false)}
             >
               {/* Top Level */}
-              <NavLink
+              <Link
                 to={item.link || "#"}
-                className={`font-semibold text-[15px] text-gray-800 hover:text-[#FF1033] flex items-center gap-1
-                   border-b-2 border-transparent group-hover:border-[#FF1033] pb-1 ${isNavActive(item)
-                    ? "text-[#FF1033] border-[#FF1033]"
-                    : "text-gray-800 border-transparent hover:text-[#FF1033] hover:border-[#FF1033]"
+                className={`font-semibold text-[15px] flex items-center gap-1 border-b-2 pb-1 transition-colors ${isNavActive(item)
+                  ? "text-[#FF1033] border-none"
+                  : "text-gray-800 border-transparent hover:text-[#FF1033] hover:border-[#FF1033]"
                   }`}
               >
                 {item.label}
                 {/* {item.children && <ChevronDown size={20} color="black" />} */}
-              </NavLink>
+              </Link>
 
               {/* Mega Menu - NOT rendered when hideDropdowns is true */}
               {item.children && !hideDropdowns && (
@@ -95,16 +94,18 @@ const Navbar = () => {
                         {child.link ? (
                           <Link
                             to={child.link}
-                            className="px-6 py-3 flex justify-between items-center cursor-pointer
-                       hover:bg-gray-100 hover:text-[#FF1033]"
+                            className={`px-6 py-3 flex justify-between items-center cursor-pointer
+                       hover:bg-gray-100 hover:text-[#FF1033] ${location.pathname === child.link ? "bg-gray-100 text-[#FF1033]" : ""
+                              }`}
                           >
                             {child.label}
                             {child.children && <ChevronDown size={20} color="black" className="-rotate-90" />}
                           </Link>
                         ) : (
                           <div
-                            className="px-6 py-3 flex justify-between items-center cursor-pointer
-                       hover:bg-gray-100 hover:text-[#FF1033]"
+                            className={`px-6 py-3 flex justify-between items-center cursor-pointer
+                       hover:bg-gray-100 hover:text-[#FF1033] ${child.children?.some((sub) => sub.link === location.pathname) ? "bg-gray-100 text-[#FF1033]" : ""
+                              }`}
                           >
                             {child.label}
                             {child.children && <ChevronDown size={20} color="black" className="-rotate-90" />}
@@ -127,7 +128,8 @@ const Navbar = () => {
                                   {sub.link ? (
                                     <Link
                                       to={sub.link}
-                                      className="block px-6 py-2 hover:bg-gray-50 hover:text-[#FF1033]"
+                                      className={`block px-6 py-2 hover:bg-gray-50 hover:text-[#FF1033] ${location.pathname === sub.link ? "bg-gray-50 text-[#FF1033] font-semibold" : ""
+                                        }`}
                                     >
                                       {sub.label}
                                     </Link>
