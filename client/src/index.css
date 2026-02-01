@@ -160,6 +160,13 @@ body {
     font-weight: bold;
 }
 
+.become-partner-swiper .swiper-button-prev,
+.become-partner-swiper .swiper-button-next {
+    top: 8px;
+    transform: translateY(0);
+    color: #FF1033;
+}
+
 
 .industry-dots .swiper-pagination-bullet {
     width: 8px;

@@ -59,7 +59,7 @@ const WhyUsSection = ({ data, button = false, buttonLink = "", buttonName = "" }
                                     <h4 className="text-2xl font-medium mb-1">
                                         {item.title}
                                     </h4>
-                                    <p className="text-gray-300 text-base leading-relaxed">
+                                    <p className="text-gray-300 text-base leading-relaxed" style={{ textWrap: "balance" }}>
                                         {item.text}
                                     </p>
                                 </div>

@@ -184,9 +184,9 @@ const IndianEvisa = () => {
 
             {/* ===== LEFT CONTENT ===== */}
             <div className="text-white">
-              <h1 className="text-4xl    font-bold leading-tight mb-6">
-                Apply eVisa <br />
-                for <span className="text-[#FF1033]">India</span>
+              <h1 className="text-4xl font-bold leading-tight mb-6">
+                Apply eVisa <br />for India
+                {/* Apply eVisa <br />for <span className="text-[#FF1033]">India</span> */}
               </h1>
 
               <p className="text-gray-200 text-lg mb-8 max-w-lg">
@@ -242,9 +242,9 @@ const IndianEvisa = () => {
 
             {/* ===== RIGHT FORM CARD ===== */}
             <div className="bg-black/75 backdrop-blur-md rounded-2xl p-4 lg:p-10  2xl">
-              <h2 className="text-2xl font-bold text-white mb-6">
+              {/* <h2 className="text-2xl font-bold text-white mb-6">
                 Apply for India E-Visa
-              </h2>
+              </h2> */}
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Dynamic Field Rendering */}

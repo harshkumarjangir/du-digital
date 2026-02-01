@@ -72,7 +72,7 @@ const Gallery = () => {
             640: { slidesPerView: 2 },
             1024: { slidesPerView: 3 }
           }}
-          className="pb-10"   // 👈 important
+          className="pb-10 become-partner-swiper"   //  important
         >
           {images.map((img, i) => (
             <SwiperSlide key={img._id || i}>
