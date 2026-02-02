@@ -506,13 +506,7 @@ const Serbiaworkpermitvisa = () => {
               <p className="text-gray-500 max-w-md mb-6">
                 Find answers to common questions about Serbia Work Permit Visa process, requirements, and timelines.
               </p>
-              <a
-                href="#"
-                className="inline-flex items-center font-medium hover:underline"
-                style={{ color: '#FF1033' }}
-              >
-                More FAQs →
-              </a>
+           
             </div>
 
             {/* RIGHT FAQ LIST */}

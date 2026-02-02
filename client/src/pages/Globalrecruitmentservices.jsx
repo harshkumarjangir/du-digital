@@ -199,7 +199,7 @@ const Globalrecruitmentservices = () => {
 
           {/* LEFT CONTENT */}
           <div className="text-white ">
-            <h1 className="text-4xl    font-bold leading-tight mb-5">
+            <h1 className="text-4xl    font-bold leading-tight mb-5" style={{ textWrap: "balance" }}>
               Global Recruitment Services – Apply Now!
             </h1>
 
@@ -207,7 +207,7 @@ const Globalrecruitmentservices = () => {
               Connecting Skilled Talents from India to Abroad
             </h2>
 
-            <p className="text-base  text-gray-100 leading-relaxed max-w-2xl mb-10">
+            <p className="text-base  text-gray-100 leading-relaxed  mb-10" style={{ textWrap: "balance" }}>
               {description ||
                 "DU GLOBAL is a global recruitment agency that specializes in connecting employers worldwide with highly skilled Indian professionals across various sectors."}
             </p>
@@ -436,6 +436,20 @@ const Globalrecruitmentservices = () => {
       {/* ===== INDUSTRIES WE SERVE (SLIDER) ===== */}
       {industriesSection.length > 0 && (
         <section className="py-20 bg-white">
+          <style>{`
+            .industry-dots .swiper-pagination-bullet {
+              background-color: #FF1033 !important;
+              opacity: 0.5 !important;
+              width: 12px;
+              height: 12px;
+              transition: all 0.3s ease;
+            }
+            .industry-dots .swiper-pagination-bullet-active {
+              background-color: #FF1033 !important;
+              opacity: 1 !important;
+              transform: scale(1.2);
+            }
+          `}</style>
           <div className="max-w-6xl mx-auto px-6 md:px-20">
 
             {/* Heading */}
@@ -596,19 +610,19 @@ const Globalrecruitmentservices = () => {
 
             {/* RIGHT IMAGE */}
             {readyToBuildSection[0]?.images?.length > 0 ? (
-              <div className="flex justify-center lg:justify-end">
+              <div className="flex justify-center h-full lg:justify-end">
                 <img
                   src={getImageUrl(readyToBuildSection[0].images[0])}
                   alt="Ready to Build Your Team"
-                  className="w-full max-w-[520px] rounded-[28px]  xl object-cover"
+                  className="w-full max-w-[520px] h-full rounded-[28px]  xl object-cover"
                 />
               </div>
             ) : readyToBuildSection[0]?.image && (
-              <div className="flex justify-center lg:justify-end">
+              <div className="flex justify-center  h-full lg:justify-end">
                 <img
                   src={getImageUrl(readyToBuildSection[0].image)}
                   alt="Ready to Build Your Team"
-                  className="w-full max-w-[520px] rounded-[28px]  xl object-cover"
+                  className="w-full h-full max-w-[520px] rounded-[28px]  xl object-cover"
                 />
               </div>
             )}

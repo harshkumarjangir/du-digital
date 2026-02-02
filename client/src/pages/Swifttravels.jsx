@@ -36,8 +36,8 @@ export const Swifttravels = () => {
           </div>
         </div>
       </section>
-      <div className="flex justify-center  items-center my-5 flex-col">
-        <h2 class="text-4xl  my-5 font-bold">Travel Packages</h2>
+      <div className="flex justify-center  items-center  flex-col">
+        <h2 class="text-4xl  my-6 pt-10 mb-4 font-bold">Travel Packages</h2>
       </div>
 
       <CardData />

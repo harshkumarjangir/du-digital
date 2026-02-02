@@ -44,7 +44,7 @@ const TeamGrid = ({ title, subtitle, data }) => {
                             {/* NAME & DESIGNATION (ON IMAGE) */}
                             <div className="absolute bottom-0 left-0 right-0 p-5 text-white z-10">
                                 <h4 className="text-lg font-semibold">
-                                    {member.name}
+                                    {member.name.toUpperCase()}
                                 </h4>
                                 <p className="text-sm text-white/80">
                                     {member.designation}

@@ -18,7 +18,7 @@ const iconMap = {
 
 const OurStrengths = ({ data, image }) => {
     return (
-        <section className="py-20 bg-[#F9F9F9]">
+        <section className="py-24 pt-0 bg-[#F9F9F9]">
             <div className="max-w-7xl mx-auto px-6 md:px-20 relative">
 
                 {/* Heading */}

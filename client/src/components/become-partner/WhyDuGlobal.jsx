@@ -12,7 +12,7 @@ const WhyDuGlobal = ({ data }) => {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
-        <h2 className="text-4xl  font-bold text-center mb-16 text-gray-900">
+        <h2 className="text-4xl  font-bold text-center mb-6 text-gray-900">
           {data.title}
         </h2>
 

@@ -107,7 +107,7 @@ const Duverify = () => {
         />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 100%)' }} />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-32 flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto h-full px-6 md:px-20 py-32 flex items-center">
           <div className="max-w-3xl text-white">
             {/* <h1 className="text-4xl    font-bold leading-tight mb-6">
               {name || 'DuVerify – Revolutionizing Document Verification for Visa Processes'}
@@ -161,7 +161,7 @@ const Duverify = () => {
             <button
               type="submit"
               disabled={submitLoading}
-              className="w-full py-4 bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold transition-opacity flex justify-center items-center gap-4"
+              className="w-full py-4 cursor-pointer bg-[#FF1033] text-white hover:bg-[#2D1F1F] hover:text-[#FF1033] rounded-full font-bold transition-opacity flex justify-center items-center gap-4"
             >
               {submitLoading ? <Loader2 className="animate-spin w-5 h-5" /> : 'Submit Request'}
             </button>
@@ -221,14 +221,13 @@ const Duverify = () => {
 
       {/* ===== WHY CHOOSE DUVERIFY (IMAGE MATCHED UI) ===== */}
       {whyChooseSection.length > 0 && (
-        <section className="py-24 bg-white">
+        <section className="py-24 pt-12 bg-white">
           <div className="max-w-7xl mx-auto px-6 md:px-20">
             {/* Heading */}
             <div className="text-center mb-16">
               <h2 className="text-4xl  font-bold text-gray-900 mb-4">
                 Why Choose DuVerify?
               </h2>
-              <div className="w-16 h-[3px]  mx-auto" />
             </div>
 
             {/* Cards */}
@@ -299,7 +298,6 @@ const Duverify = () => {
               <h2 className="text-4xl md:text-4xl  font-bold text-white mb-3">
                 Key Partnerships
               </h2>
-              <div className="w-16 h-0.75 mx-auto" ></div>
             </div>
 
             {/* Partnership Cards - 2 columns with background images */}
@@ -350,7 +348,6 @@ const Duverify = () => {
               <h2 className="text-4xl md:text-4xl  font-bold text-black mb-4">
                 What DuVerify Can Do For You
               </h2>
-              <div className="w-20 h-[3px]  mx-auto" />
             </div>
 
             {/* Cards */}

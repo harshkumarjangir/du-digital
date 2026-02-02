@@ -61,7 +61,7 @@ const HomeSlider = ({ data }) => {
                                 {slides[current].title}
                             </h1>
 
-                            <p className="mt-4 text-base md:text-lg text-gray-200">
+                            <p className="mt-4 text-base md:text-lg text-gray-200" style={{ textWrap: "balance" }}>
                                 {slides[current].description}
                             </p>
 

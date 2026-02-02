@@ -5,7 +5,7 @@ const PartnerFAQ = ({ data }) => {
     const [open, setOpen] = useState(null);
 
     return (
-        <section className="py-20 ">
+        <section className="py-10 ">
             <div className="max-w-7xl bg-[#6B0F0F] mx-auto px-6 rounded-xl grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
 
                 {/* LEFT TITLE CARD */}

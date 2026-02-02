@@ -5,7 +5,7 @@ const NewsHome = ({ data }) => {
         import.meta.env.VITE_BACKEND_IMAGES_URL || "http://localhost:5000/api";
 
     return (
-        <div className="max-w-7xl mx-auto px-6 md:px-20 py-12">
+        <div className="max-w-7xl mx-auto px-6 md:px-20 py-12 pt-0">
             {/* Header */}
             <div className="text-center mb-12">
                 <h2 className="text-4xl font-bold mb-3">

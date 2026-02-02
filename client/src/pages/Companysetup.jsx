@@ -163,7 +163,7 @@ const Companysetup = () => {
         />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%)' }} />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-0 flex  items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 h-full py-0 flex  items-center">
           <div className={`${fields.length > 0 ? 'grid md:grid-cols-2 gap-12 items-center place-items-center' : ''} w-full `}>
             {/* Left - Hero Text */}
             <div className="text-white">
@@ -289,7 +289,7 @@ const Companysetup = () => {
                     <button
                       type="submit"
                       disabled={submitLoading}
-                      className="w-full py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-4"
+                      className="w-full py-4 cursor-pointer rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] disabled:opacity-70 flex items-center justify-center gap-4"
                     >
                       {submitLoading ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</> : 'Submit Enquiry'}
                     </button>
@@ -584,7 +584,7 @@ const Companysetup = () => {
                   {/* CTA Button */}
                   <button
                     onClick={() => setIsModalOpen(true)}
-                    className="inline-block px-10 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] cursor-pointer"
+                    className="inline-block px-10 py-3  cursor-pointer rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] "
                   >
                     Book A Free Consultation
                   </button>
@@ -729,7 +729,7 @@ const Companysetup = () => {
                     {/* CTA Button */}
                     <button
                       onClick={() => setIsModalOpen(true)}
-                      className="inline-block px-5 py-2 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
+                      className="inline-block px-5 py-2 cursor-pointer rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
                     >
                       Book A Free Consultation
                     </button>
@@ -774,7 +774,7 @@ const Companysetup = () => {
                   {/* CTA Button */}
                   <button
                     onClick={() => setIsModalOpen(true)}
-                    className="inline-block px-5 py-2 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
+                    className="inline-block px-5 py-2 cursor-pointer rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
                   >
                     Book A Free Consultation
                   </button>
@@ -798,7 +798,7 @@ const Companysetup = () => {
 
             <button
               onClick={() => setIsModalOpen(true)}
-              className="inline-flex items-center justify-center w-fit px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  cursor-pointer"
+              className="inline-flex items-center cursor-pointer justify-center w-fit px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033]  "
             >
               Contact Now
             </button>

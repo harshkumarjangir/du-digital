@@ -72,7 +72,7 @@ export const Blog = ({ data: propData, className }) => {
     const data = propData || reduxData;
 
     return (
-        <div className="w-full my-5 px-4 mt-6">
+        <div className="w-full my-5 container mx-auto mt-10">
             <div className={`grid grid-cols-1 sm:grid-cols-2 ${className || 'md:grid-cols-4'} gap-6 justify-items-center`}>
                 {loading ? <div>Loading...</div> : error && <div>error</div>}
                 {data.length === 0 ? (

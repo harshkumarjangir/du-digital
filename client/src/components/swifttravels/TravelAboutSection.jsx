@@ -28,7 +28,7 @@ const AboutSwifttravelSection = ({ data }) => {
             <div className="max-w-5xl mx-auto px-6 pt-20 text-center">
               
 
-                <h2 className="text-4xl md:text-4xl font-bold text-gray-900">
+                <h2 className="text-4xl md:text-4xl mb-6 font-bold text-gray-900">
                     {title}
                 </h2>
 
@@ -62,7 +62,7 @@ const AboutSwifttravelSection = ({ data }) => {
                                     {item.title}
                                 </h3>
 
-                                <p className="text-gray-600 leading-relaxed">
+                                <p className="text-gray-600 leading-relaxed" style={{ textWrap: "balance" }}>
                                     {item.description}
                                 </p>
                             </div>

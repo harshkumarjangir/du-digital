@@ -57,7 +57,7 @@ const VisionMission = ({ data }) => {
                                 <h4 className="text-lg font-semibold  text-black mb-2">
                                     Mission
                                 </h4>
-                                <p className="text-gray-500 leading-relaxed">
+                                <p className="leading-relaxed">
                                     {data.mission}
                                 </p>
                             </div>

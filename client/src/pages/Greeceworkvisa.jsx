@@ -671,12 +671,7 @@ const GreeceWorkVisa = () => {
                 boisterous the attachment.
               </p>
 
-              <a
-                href="#"
-                className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
-              >
-                More FAQs →
-              </a>
+
             </div>
 
             {/* RIGHT FAQ LIST */}

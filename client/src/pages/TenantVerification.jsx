@@ -273,11 +273,11 @@ const TenantVerification = () => {
 
 
       {/* ===== KEY BENEFITS SECTION ===== */}
-      <section className="py-28 bg-white">
+      <section className="py-24 pt-10 bg-white">
         <div className="max-w-7xl mx-auto px-6 md:px-20">
 
           {/* Heading */}
-          <div className="text-center mb-20">
+          <div className="text-center mb-6">
             <h2 className="text-4xl md:text-4xl  font-bold text-gray-900 mb-4">
               Key Benefits
             </h2>
@@ -294,10 +294,10 @@ const TenantVerification = () => {
                 return (
                   <div
                     key={benefit._id || index}
-                    className="bg-white rounded-3xl p-10  transition-all duration-300"
+                    className="bg-white text-center rounded-3xl p-10  transition-all duration-300"
                   >
                     {/* Icon */}
-                    <div className="mb-8 flex justify-center">
+                    <div className="mb-8 flex  mx-auto justify-center">
                       {isApiData && benefit.image ? (
                         // <img
                         //   src={getImageUrl(benefit.image)}
@@ -344,7 +344,7 @@ const TenantVerification = () => {
 
       {/* ===== PRICING PLANS - COMPARISON TABLE ===== */}
       {pricingPlans.length > 0 && (
-        <section className="py-28 bg-white" id="price_table">
+        <section className="py-24 pt-10 bg-white" id="price_table">
           <div className="max-w-7xl mx-auto px-6 md:px-20">
 
             {/* Heading */}
@@ -590,8 +590,8 @@ const TenantVerification = () => {
                       <div className="toggle-group flex gap-4">
                         <button
                           className={`flex-1 px-6 py-3 rounded-lg font-semibold border transition-all ${policeVerification === "yes"
-                            ? "bg-[#FF1033] border-[#FF1033] text-white"
-                            : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
+                            ? " text-[#FF1033]"
+                            : " text-black"
                             }`}
                           onClick={() => setPoliceVerification("yes")}
                           type="button"
@@ -600,8 +600,8 @@ const TenantVerification = () => {
                         </button>
                         <button
                           className={`flex-1 px-6 py-3 rounded-lg font-semibold border transition-all ${policeVerification === "no"
-                            ? "bg-[#FF1033] border-[#FF1033] text-white"
-                            : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
+                            ? " text-[#FF1033]"
+                            : " text-black"
                             }`}
                           onClick={() => setPoliceVerification("no")}
                           type="button"
@@ -846,7 +846,7 @@ const TenantVerification = () => {
                   )}
 
                   {/* Dark Overlay (default) */}
-                  <div className="absolute inset-0 bg-[#000000d7] transition-opacity duration-500 group-hover:opacity-0" />
+                  <div className="absolute inset-0 bg-[#000000e5] transition-opacity duration-500 group-hover:opacity-0" />
 
                   {/* Red Overlay (hover) */}
                   <div className="absolute inset-0 bg-[#FF1033]/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -888,12 +888,7 @@ const TenantVerification = () => {
                 boisterous the attachment.
               </p>
 
-              <a
-                href="#"
-                className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
-              >
-                More FAQs →
-              </a>
+
             </div>
 
             {/* RIGHT FAQ LIST */}

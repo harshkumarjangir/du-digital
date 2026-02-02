@@ -2,7 +2,7 @@ import React from "react";
 
 const OurFootprints = ({ data }) => {
     return (
-        <section className="relative py-24 overflow-hidden bg-white">
+        <section className="relative py-24 pt-0 overflow-hidden bg-white">
 
             {/* 🔴 Background Pattern */}
             <div

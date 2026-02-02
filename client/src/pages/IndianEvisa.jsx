@@ -179,8 +179,8 @@ const IndianEvisa = () => {
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/55" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-16">
-          <div className="grid lg:grid-cols-2 gap-14 items-center">
+        <div className="relative z-10 max-w-7xl h-full mx-auto px-6 md:px-20 py-16">
+          <div className="grid lg:grid-cols-2 h-full  gap-14 items-center">
 
             {/* ===== LEFT CONTENT ===== */}
             <div className="text-white">
@@ -497,13 +497,13 @@ const IndianEvisa = () => {
       {/* ===== ELIGIBILITY SECTION ===== */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 md:px-10">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-4xl font-bold text-[#333333] mb-2">
+          <div className="text-center mb-6">
+            <h2 className="text-4xl md:text-4xl font-bold text-[#333333]">
               Eligibility for India eVisa
             </h2>
           </div>
 
-          <div className="rounded-2xl p-0 md:p-10">
+          <div className="rounded-2xl p-0 md:p-10 pt-3">
             <div className="space-y-4">
               {[
                 "International travellers whose sole objective for visiting India is recreation, sightseeing, casual visit to meet friends and relatives, attending a short term yoga programme, Short term courses on local languages, music, dance, arts & crafts, cooking, medicine etc. which should not be a formal or structured course/programme (courses not exceeding 6 months duration and not issued with a qualifying certificate/ diploma etc),Voluntary work of short duration (for a maximum period of one month, which do not involve any monetary payment or consideration of any kind in return), medical treatment including treatment under Indian systems of medicine, business purpose, as attendant to e-Medical visa holder, attending a conference/ seminar/ workshop organized by a Ministry or Department of the Government of India, State Governments or UT Administrations etc. & their subordinate/ attached organizations & PSUs and private conferences organized by private persons/companies/organizations.",
@@ -540,7 +540,7 @@ const IndianEvisa = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-20">
 
           {/* Header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-6">
             <h2 className="text-4xl md:text-4xl font-bold text-[#333333] tracking-wide">
               E-VISA APPLICATION PROCESS
             </h2>
@@ -566,7 +566,7 @@ const IndianEvisa = () => {
                     {step.title}
                   </h3>
 
-                  <p className="text-gray-500 text-sm leading-relaxed">
+                  <p className="text-gray-500 text-md leading-relaxed">
                     {step.contentHtml || step.desc}
                   </p>
                 </div>
@@ -619,9 +619,9 @@ const IndianEvisa = () => {
       {/* ===== DOCUMENTS REQUIRED ===== */}
       {
         documents.length > 0 && (
-          <section className="py-20 bg-[#F7F7F7]">
+          <section className="py-24 pt-10 bg-[#F7F7F7]">
             <div className="max-w-6xl mx-auto px-6 md:px-20">
-              <div className="text-center mb-12">
+              <div className="text-center mb-6">
                 <h2 className="text-4xl md:text-4xl font-bold text-[#333333] mb-2">
                   Documents Required
                 </h2>
@@ -735,12 +735,7 @@ const IndianEvisa = () => {
                   boisterous the attachment.
                 </p>
 
-                <a
-                  href="#"
-                  className="inline-flex items-center text-[#FF1033] font-medium hover:underline"
-                >
-                  More FAQs →
-                </a>
+
               </div>
 
               {/* RIGHT FAQ LIST */}

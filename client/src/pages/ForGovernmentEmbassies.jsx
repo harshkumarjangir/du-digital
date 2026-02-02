@@ -42,11 +42,11 @@ const ForGovernmentEmbassies = () => {
 
             {/* NEWS SECTION */}
             <div className="py-10 bg-white">
-                <div className="max-w-7xl mx-auto px-6 mb-8 text-center">
+                <div className="max-w-7xl mx-auto px-6 mb-4 text-center">
                     <h2 className="text-4xl font-bold text-gray-900">News and Media</h2>
                 </div>
                 <NewsHome data={news.slice(0, 3)} />
-                <Link to="/news-and-media" className="block text-center pt-8">
+                <Link to="/news-and-media" className="block text-center">
                     <button className="px-6 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] cursor-pointer">
                         View All News
                     </button>

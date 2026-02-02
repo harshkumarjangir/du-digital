@@ -18,7 +18,7 @@ const OurBusinesses = ({ data }) => {
 
     return (
         <section className="py-24 bg-white">
-            <div className="max-w-7xl mx-auto px-6 md:px-20">
+            <div className="w-7xl mx-auto px-6 md:px-20">
 
                 {/* ===== HEADER ===== */}
                 <div className="text-center mb-14">
@@ -32,9 +32,9 @@ const OurBusinesses = ({ data }) => {
                 </div>
 
                 {/* ===== FLAGS ===== */}
-                <div className="flex flex-wrap justify-center gap-5 mb-12">
+                <div className="flex flex-wrap justify-evenly gap-5 mb-12">
                     {partnersToDisplay.map((country, i) => (
-                        <div key={i} className="flex flex-col items-center gap-2">
+                        <div key={i} className="flex flex-col items-center gap-6">
                             <img
                                 src={country.logo ? (country.logo.startsWith('http') ? country.logo : `${backendApiUrl}${country.logo}`) : country.flag}
                                 alt={country.country || country.name}
