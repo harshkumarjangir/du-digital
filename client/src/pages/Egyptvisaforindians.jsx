@@ -173,7 +173,7 @@ const Egyptvisaforindians = () => {
         <div className="absolute inset-0 bg-black/50" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 py-20 h-[800px] flex items-center">
-          <div className="grid lg:grid-cols-2 gap-12 items-center place-items-center w-full place-items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center place-items-center w-full">
             {/* Left - Hero Text */}
             <div className="text-white">
               <p className="text-3xl md:text-4xl  font-bold mb-2">Apply For</p>
@@ -383,7 +383,7 @@ const Egyptvisaforindians = () => {
                   )}
                   {
                     item?.badge && (
-                      <div className="flex flex-col items-center text-white gap-0 absolute -top-10 -right-10 rounded-lg p-4 flex" style={{
+                      <div className="flex flex-col items-center text-white gap-0 absolute -top-10 -right-10 rounded-lg p-4 " style={{
                         backgroundColor: `${item.badge.background || "#FF1033"}`
                       }}>
                         <span>{item.badge.text.split("+")[0]}+</span>
