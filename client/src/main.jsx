@@ -35,6 +35,10 @@ sudo chown -R www-data:www-data /var/www/du-digital
 sudo chmod -R 755 /var/www/du-digital
 sudo nginx -t
 sudo systemctl reload nginx
-
-
 */
+
+// 608000 komal jiji
+// 373000 dhasrat  jijaji
+// 137500 motu
+// 200000 nitu 
+// 397000 gold 
