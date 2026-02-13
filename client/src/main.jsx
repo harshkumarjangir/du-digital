@@ -37,8 +37,16 @@ sudo nginx -t
 sudo systemctl reload nginx
 */
 
-// 608000 komal jiji
-// 373000 dhasrat  jijaji
-// 137500 motu
-// 200000 nitu 
-// 397000 gold 
+
+// file path 
+// {mv ~/Downloads/okxxx.pem ~/.ssh/ }
+//  ssh -i ~/.ssh/okxxx.pem ubuntu@13.203.217.17
+/*
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+source ~/.bashrc
+nvm list-remote
+
+nvm install lts
+
+*/

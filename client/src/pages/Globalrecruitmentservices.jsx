@@ -124,7 +124,7 @@ const Globalrecruitmentservices = () => {
 
     try {
       // Sending to contact endpoint - mapping fields if necessary or sending raw
-      const response = await fetch(`${BackendURL}/api/contact`, {
+      const response = await fetch(`${BackendURL}/api/form-submissions/slug/global-recruitment-services`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

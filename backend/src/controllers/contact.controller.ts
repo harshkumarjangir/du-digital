@@ -9,8 +9,8 @@ export const createInquiry = async (req: Request, res: Response) => {
             fullName,
             email,
             phone,
-            message,
-            AllowMsg
+            message: message || "",
+            AllowMsg: AllowMsg || false
         });
 
         await newInquiry.save();
