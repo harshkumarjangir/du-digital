@@ -32,6 +32,7 @@ import pricingPlanRoutes from './routes/pricingPlan.routes';
 import formImageRoutes from './routes/formImage.routes';
 import formEmployeesAddressRoutes from './routes/formEmployeesAddress.routes';
 import formSubmissionRoutes from './routes/formSubmission.routes';
+import otpRoutes from './routes/otp.routes';
 
 // Load environment variables
 dotenv.config();
@@ -104,6 +105,7 @@ if (cluster.isPrimary) {
   app.use('/api/form-images', formImageRoutes);
   app.use('/api/form-employees-addresses', formEmployeesAddressRoutes);
   app.use('/api/form-submissions', formSubmissionRoutes);
+  app.use('/api/otp', otpRoutes);
 
   app.get('/', (req: Request, res: Response) => {
     res.send('Hello World');

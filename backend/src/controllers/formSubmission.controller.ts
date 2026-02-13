@@ -3,6 +3,8 @@ import Form from "../models/Pages.model";
 import FormField from "../models/FormField.model";
 import FormSubmission from "../models/FormSubmission.model";
 import { sendEmail } from "../utils/emailService";
+import OtpSchema from "../models/Otp.model";
+import User from "../models/User.model";
 
 // HTML Email Template for User Confirmation
 const generateUserEmail = (formName: string, userName: string, submissionData: any) => {
@@ -145,8 +147,12 @@ export const submitFormBySlug = async (req: Request, res: Response) => {
     try {
         const { slug } = req.params;
         const submissionData = req.body;
-        console.log("slug", slug);
-       
+        // console.log("slug", slug);
+        if (!submissionData["otp"]) {
+            return res.status(400).json({ message: "OTP is required" });
+        }
+
+
 
         // Find form by slug
         const form = await Form.findOne({ slug, isActive: true });
@@ -178,18 +184,38 @@ export const submitFormBySlug = async (req: Request, res: Response) => {
         const userPhone = submissionData.mobile || submissionData.phone || submissionData.mobileNumber || submissionData.phoneNumber || '';
 
         // Create form submission
-        const formSubmission = new FormSubmission({
-            formId: form._id,
-            formSlug: slug,
-            formName: form.name,
-            submissionData,
-            userName,
-            userEmail,
-            userPhone,
-            status: "new"
+        const otp = await OtpSchema.findOne({
+            mobile: userPhone,
+            otp: submissionData["otp"],
+            $or: [
+                { createdAt: { $gte: new Date(Date.now() - 10 * 60 * 1000) } },
+                { updatedAt: { $gte: new Date(Date.now() - 10 * 60 * 1000) } }
+            ]
+        })
+        if (!otp) {
+            return res.status(400).json({ message: "Invalid OTP" });
+        }
+        await OtpSchema.deleteOne({
+            mobile: userPhone,
+            otp: submissionData["otp"]
+        })
+
+        res.status(201).json({
+            message: "Form submitted successfully",
         });
 
-        const savedSubmission = await formSubmission.save();
+        // const formSubmission = new FormSubmission({
+        //     formId: form._id,
+        //     formSlug: slug,
+        //     formName: form.name,
+        //     submissionData,
+        //     userName,
+        //     userEmail,
+        //     userPhone,
+        //     status: "new"
+        // });
+
+        // const savedSubmission = await formSubmission.save();
 
         // Send confirmation email to user
         if (userEmail) {
@@ -200,14 +226,18 @@ export const submitFormBySlug = async (req: Request, res: Response) => {
         // Send notification email to admin
         const adminEmail = (form as any).adminNotificationEmail || process.env.ADMIN_EMAIL || process.env.SMTP_USER;
         if (adminEmail) {
+            const user = await User.find({
+                receivePartnerNotifications: true
+            })
+            user.forEach(async (u: any) => {
+                const adminEmailHtml = generateAdminEmail(form.name, slug, userName, userEmail, userPhone, submissionData);
+                await sendEmail(u.email, `New Form Submission: ${form.name}`, adminEmailHtml);
+            })
             const adminEmailHtml = generateAdminEmail(form.name, slug, userName, userEmail, userPhone, submissionData);
             await sendEmail(adminEmail, `New Form Submission: ${form.name}`, adminEmailHtml);
         }
 
-        res.status(201).json({
-            message: "Form submitted successfully",
-            submissionId: savedSubmission._id
-        });
+
     } catch (error) {
         console.error("Error submitting form:", error);
         res.status(500).json({ message: "Error submitting form", error });
