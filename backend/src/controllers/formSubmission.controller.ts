@@ -181,7 +181,7 @@ export const submitFormBySlug = async (req: Request, res: Response) => {
         // Extract user info from common field names
         const userName = submissionData.fullName || submissionData.name || submissionData.firstName || '';
         const userEmail = submissionData.email || submissionData.userEmail || submissionData.emailAddress || '';
-        const userPhone = submissionData.mobile || submissionData.phone || submissionData.mobileNumber || submissionData.phoneNumber || '';
+        const userPhone = submissionData.mobile || submissionData.phone || submissionData.mobileNumber || submissionData.phoneNumber ||submissionData.number || '';
 
         // Create form submission
         const otp = await OtpSchema.findOne({

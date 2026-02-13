@@ -14,5 +14,3 @@ export async function sendOtp(mobile: string, otp: string) {
     }
 }
 
-
-sendOtp("+917852008477", "123456")

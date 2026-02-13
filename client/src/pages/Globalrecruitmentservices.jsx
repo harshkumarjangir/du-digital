@@ -20,7 +20,8 @@ import {
   ArrowRight,
   Mail,
   Phone,
-  Check
+  Check,
+  XCircle
 } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
@@ -76,6 +77,13 @@ const Globalrecruitmentservices = () => {
   const [formValues, setFormValues] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [otpSent, setOtpSent] = useState(false)
+  const [otp, setOtp] = useState('');
+  
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitMessage, setSubmitMessage] = useState('');
+
+
 
   useEffect(() => {
     fetchFormData();
@@ -123,6 +131,7 @@ const Globalrecruitmentservices = () => {
     setSubmitting(true);
 
     try {
+        if (otpSent) {
       // Sending to contact endpoint - mapping fields if necessary or sending raw
       const response = await fetch(`${BackendURL}/api/form-submissions/slug/global-recruitment-services`, {
         method: 'POST',
@@ -130,23 +139,39 @@ const Globalrecruitmentservices = () => {
         body: JSON.stringify({
           ...formValues,
           source: 'Global Recruitment Services',
-          formId: formData?._id
+          formId: formData?._id,
+          otp
         })
       });
 
+      const res = await response.json();
       if (response.ok) {
         setSubmitSuccess(true);
         // Reset form
-        const resetValues = {};
-        formData.fields?.forEach(field => {
-          resetValues[field.name] = '';
-        });
-        setFormValues(resetValues);
 
-        setTimeout(() => setSubmitSuccess(false), 5000);
+      }else{
+      
+        setSubmitStatus('error');
+        setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+      }
+    } else{
+        
+        await fetch(`${BackendURL}/api/otp/send`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({mobile:formValues.mobile || formValues.phone || formValues.mobileNumber || formValues.phoneNumber ||formValues.number|| ''}),
+        });
+        
+          setSubmitMessage('Thank you! submit the 6 digit otp');
+           setSubmitStatus('success');
+          alert('submit the 6 digit otp');
+          setOtpSent(true);
+        
       }
     } catch (err) {
       console.error("Form submission error:", err);
+      setSubmitStatus('error');
+      setSubmitMessage(err.message||"try again later");
     } finally {
       setSubmitting(false);
     }
@@ -315,8 +340,25 @@ const Globalrecruitmentservices = () => {
                           )}
                     </div>
                   ))}
+                  {otpSent && (
+                    <div className="mb-4">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Enter OTP</label>
+                      <input
+                        type="text"
+                        value={otp}
+                        onChange={(e) => setOtp(e.target.value)}
+                        placeholder="Enter 6-digit OTP"
+                        className="w-full h-12 px-4 rounded-lg border border-gray-300 focus:border-[#c60505] focus:ring-1 focus:ring-[#c60505] outline-none text-gray-900 text-sm"
+                      />
+                    </div>
+                  )}
               </div>
-
+                    {submitStatus && (
+                      <div className={`flex items-center gap-4 p-3 rounded ${submitStatus === 'success' ? 'bg-green-100' : 'bg-red-100'}`}>
+                        {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-600" /> : <XCircle className="w-5 h-5 text-[#FF1033]" />}
+                        <p className={`text-sm ${submitStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>{submitMessage}</p>
+                      </div>
+                    )}
               <button
                 type="submit"
                 disabled={submitting}

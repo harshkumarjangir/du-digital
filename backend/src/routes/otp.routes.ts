@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { sendOtp } from "../utils/sms";
 import OtpSchema from "../models/Otp.model"
-const otpRoutes = Router();
 
+const otpRoutes = Router();
 otpRoutes.post("/send", async (req, res) => {
     try {
         const { mobile } = req.body;

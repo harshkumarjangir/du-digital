@@ -35,6 +35,8 @@ const Companysetup = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [otpSent, setOtpSent] = useState(false)
+  const [otp, setOtp] = useState('');
 
   useEffect(() => {
     fetchFormData();
@@ -83,20 +85,33 @@ const Companysetup = () => {
     setSubmitMessage('');
 
     try {
+       if (otp.length === 6||otpSent) {
       const response = await fetch(`${BackendURL}/api/form-submissions/slug/company-setup-in-the-uae`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formValues),
+        body: JSON.stringify({...formValues,otp}),
       });
       const res = await response.json();
 
       if (response.ok) {
         setSubmitStatus('success');
-        setSubmitMessage('Thank you! Your enquiry has been submitted successfully. Our team will contact you shortly.');
-        setFormValues({});
       } else {
         setSubmitStatus('error');
         setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+      }}
+      else{
+        console.log(formValues);
+        
+        const response = await fetch(`${BackendURL}/api/otp/send`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({mobile:formValues.mobile || formValues.phone || formValues.mobileNumber || formValues.phoneNumber ||formValues.number|| ''}),
+        });
+        if(response.ok){
+          setSubmitMessage('Thank you! submit the 6 digit otp');
+          alert('submit the 6 digit otp');
+          setOtpSent(true);
+        }
       }
     } catch (err) {
       setSubmitStatus('error');
@@ -276,6 +291,20 @@ const Companysetup = () => {
                       );
                     }
                   })}
+                  {
+                    otpSent && (
+                      <input
+                        name="otp"
+                        value={otp}
+                        onChange={(e)=>setOtp(e.target.value)}
+                        type="text"
+                        placeholder="Enter OTP"
+                        className="w-full px-4 py-3 text-[12px] text-black border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none"
+                        required
+                        aria-label="Enter OTP"
+                      />
+                    )
+                  }
 
                   <div className="col-span-1 md:col-span-2 mt-4 space-y-4">
                     {/* Submit Status Message */}
