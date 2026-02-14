@@ -11,7 +11,12 @@ const CardData = () => {
   const { loading, error, data, formLoading, formError, formSuccess } = useSelector(
     (state) => state.travelPackages
   );
-
+const [otpSent, setOtpSent] = useState(false)
+  
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+  
   const [modelId, setModelId] = useState(null);
 
   useEffect(() => {
@@ -39,9 +44,10 @@ const CardData = () => {
     dispatch(resetFormState());
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    dispatch(resetFormState()); // Clear previous messages
+       if(otpSent){
+  // dispatch(resetFormState()); // Clear previous messages
     dispatch(SendQueryTravelPackage({
       name: e.target.customerName.value,
       email: e.target.email.value,
@@ -50,8 +56,21 @@ const CardData = () => {
       child: e.target.child.value,
       infant: e.target.infant.value,
       travelDate: e.target.travelDate.value,
-      packageId: modelId
+      packageId: modelId,
+      otp: e.target.otp.value,
     }));
+  }else{
+        
+        await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/otp/send`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({mobile:e.target.mobileNumber.value}),
+        });
+        
+          alert('submit the 6 digit otp');
+          setOtpSent(true);
+        
+      }
   };
 
   // Get selected package data
@@ -63,9 +82,13 @@ const CardData = () => {
         <div className="flex justify-center items-center min-h-[400px]">
           <div className="text-xl">Loading...</div>
         </div>
-      ) : error ? (
+      ) : submitStatus === 'error' ? (
         <div className="flex justify-center items-center min-h-[400px]">
-          <div className="text-xl text-[#FF1033]">Error: {error}</div>
+          <div className="text-xl text-[#FF1033]"> {submitMessage}</div>
+        </div>
+      ) : submitStatus === 'success' ? (
+        <div className="flex justify-center items-center min-h-[400px]">
+          <div className="text-xl text-green-400"> {submitMessage}</div>
         </div>
       ) : (
         <>
@@ -210,7 +233,18 @@ const CardData = () => {
                       className="w-full border rounded-md px-3 py-2"
                       required
                     />
-
+{
+  otpSent && (
+    <input
+      type="text"
+      name="otp"
+      placeholder="OTP"
+      className="w-full border rounded-md px-3 py-2"
+      required
+    />
+  )
+  
+}
                     <button
                       type="submit"
                       disabled={formLoading || formSuccess}

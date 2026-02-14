@@ -145,7 +145,7 @@ const Moroccovisa = () => {
             <div className="text-white">
               <p className="text-4xl    font-bold mb-2">Apply For</p>
               <h1 className="text-4xl  lg:text-5xl  font-bold leading-tight mb-6">
-                <span style={{ color: '#FF1033' }}>Morocco</span> Visa
+                Morocco Visa
               </h1>
               {/* <p className="text-gray-300 text-lg">
                 {description}
