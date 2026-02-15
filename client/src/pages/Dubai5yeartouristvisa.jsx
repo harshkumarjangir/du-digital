@@ -24,6 +24,9 @@ const Dubai5yeartouristvisa = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
 
+  const [otpSent, setOtpSent] = useState(false)
+  const [otp, setOtp] = useState('');
+  
   useEffect(() => {
     fetchFormData();
   }, []);
@@ -69,22 +72,43 @@ const Dubai5yeartouristvisa = () => {
     setSubmitMessage('');
 
     try {
+  
+
+        if(otpSent){
       const response = await fetch(`${BackendURL}/api/form-submissions/slug/dubai-5year-tourist-visa`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formValues),
+        body: JSON.stringify({...formValues,otp}),
       });
       const res = await response.json();
-
-      if (response.ok) {
+      if (res.ok) {
         setSubmitStatus('success');
-        setSubmitMessage('Thank you! Your application has been submitted successfully. Our team will contact you shortly.');
-        setFormValues({});
-      } else {
+        setSubmitMessage('Thank you! Your eVisa application has been submitted successfully. Our team will contact you shortly.');
+        // Reset form
+        // const resetValues = {};
+        // formData?.fields?.forEach(field => { resetValues[field.name] = ''; });
+        // setFormValues(resetValues);
+      } else{
+      
         setSubmitStatus('error');
         setSubmitMessage(res.message || 'Something went wrong. Please try again.');
       }
-    } catch (err) {
+    } else{
+        
+        await fetch(`${BackendURL}/api/otp/send`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({mobile:formValues.mobile || formValues.phone || formValues.mobileNumber || formValues.phoneNumber ||formValues.number|| ''}),
+        });
+        
+          setSubmitMessage('Thank you! submit the 6 digit otp');
+           setSubmitStatus('success');
+          alert('submit the 6 digit otp');
+          setOtpSent(true);
+        
+     
+    } 
+  }catch (err) {
       setSubmitStatus('error');
       setSubmitMessage('Failed to submit. Please check your connection and try again.');
     } finally {
@@ -117,7 +141,7 @@ const Dubai5yeartouristvisa = () => {
     <div className="bg-white  ">
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full lg:h-[800px] min-h-[800px] overflow-hidden">
+      <section className="relative w-full lg:h-[800px] min-h-[800px] ">
         <img
           src={getImageUrl(formData?.image) || STATIC_IMAGES.hero}
           alt="Hero Background"
@@ -279,6 +303,18 @@ const Dubai5yeartouristvisa = () => {
                     <div className={`flex items-center gap-4 p-3 rounded ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
                       {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 text-green-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
                       <p className={`text-sm ${submitStatus === 'success' ? 'text-green-300' : 'text-red-300'}`}>{submitMessage}</p>
+                    </div>
+                  )}
+                  {otpSent && (
+                    <div className="mb-4">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Enter OTP</label>
+                      <input
+                        type="text"
+                        value={otp}
+                        onChange={(e) => setOtp(e.target.value)}
+                        placeholder="Enter 6-digit OTP"
+                        className="w-full h-12 px-4 rounded-lg border border-gray-300 focus:border-[#c60505] focus:ring-1 focus:ring-[#c60505] outline-none text-gray-900 bg-white text-sm"
+                      />
                     </div>
                   )}
 

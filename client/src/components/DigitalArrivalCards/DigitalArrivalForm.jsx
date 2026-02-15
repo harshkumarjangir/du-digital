@@ -6,7 +6,7 @@ import Step3TravellingDetails from './Step3TravellingDetails';
 import Step4SubmitPay from './Step4SubmitPay';
 import formConfig from '../../data/digitalArrivalForm.json';
 
-const DigitalArrivalForm = ({ onSubmit, serverError, loading }) => {
+const DigitalArrivalForm = ({ onSubmit,sendOpt, serverError, loading ,checkopt}) => {
     const [currentStep, setCurrentStep] = useState(1);
     const [formData, setFormData] = useState({
         country: '',
@@ -81,6 +81,8 @@ const DigitalArrivalForm = ({ onSubmit, serverError, loading }) => {
                 return (
                     <Step4SubmitPay
                         formData={formData}
+                        sendOpt={sendOpt}
+                        checkopt={checkopt}
                         handleChange={handleChange}
                         submitForm={onSubmit}
                         prevStep={prevStep}

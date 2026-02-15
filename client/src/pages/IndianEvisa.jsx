@@ -99,7 +99,7 @@ const IndianEvisa = () => {
       const response = await fetch(`${BackendURL}/api/form-submissions/slug/india-evisa`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formValues),
+        body: JSON.stringify({...formValues,otp}),
       });
       const res = await response.json();
       if (res.ok) {

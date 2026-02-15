@@ -16,7 +16,8 @@ const Georgiaevisa = () => {
     const [submitLoading, setSubmitLoading] = useState(false);
     const [submitMessage, setSubmitMessage] = useState('');
     const [openFaq, setOpenFaq] = useState(null);
-
+const [otpSent, setOtpSent] = useState(false)
+  const [otp, setOtp] = useState('');
     useEffect(() => {
         fetchFormData();
     }, []);
@@ -58,21 +59,40 @@ const Georgiaevisa = () => {
         setSubmitMessage('');
 
         try {
-            const response = await fetch(`${BackendURL}/api/form-submissions/slug/georgia-evisa`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formValues),
-            });
-            const res = await response.json();
-
-            if (response.ok) {
-                setSubmitStatus('success');
-                setSubmitMessage('Thank you! Your application has been submitted.');
-                setFormValues({});
-            } else {
-                setSubmitStatus('error');
-                setSubmitMessage(res.message || 'Something went wrong.');
-            }
+           
+         if(otpSent){
+      const response = await fetch(`${BackendURL}/api/form-submissions/slug/georgia-evisa`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({...formValues,otp}),
+      });
+      const res = await response.json();
+      if (res.ok) {
+        setSubmitStatus('success');
+        setSubmitMessage('Thank you! Your eVisa application has been submitted successfully. Our team will contact you shortly.');
+        // Reset form
+        // const resetValues = {};
+        // formData?.fields?.forEach(field => { resetValues[field.name] = ''; });
+        // setFormValues(resetValues);
+      } else{
+      
+        setSubmitStatus('error');
+        setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+      }
+    } else{
+        
+        await fetch(`${BackendURL}/api/otp/send`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({mobile:formValues.mobile || formValues.phone || formValues.mobileNumber || formValues.phoneNumber ||formValues.number|| ''}),
+        });
+        
+          setSubmitMessage('Thank you! submit the 6 digit otp');
+           setSubmitStatus('success');
+          alert('submit the 6 digit otp');
+          setOtpSent(true);
+        
+      }
         } catch (err) {
             setSubmitStatus('error');
             setSubmitMessage('Failed to submit. Please try again.');
@@ -136,6 +156,18 @@ const Georgiaevisa = () => {
                                         theme="dark"
                                     />
                                 ))}
+                                {otpSent && (
+                    <div className="mb-4">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Enter OTP</label>
+                      <input
+                        type="text"
+                        value={otp}
+                        onChange={(e) => setOtp(e.target.value)}
+                        placeholder="Enter 6-digit OTP"
+                        className="w-full h-12 px-4 rounded-lg border border-gray-300 focus:border-[#c60505] focus:ring-1 focus:ring-[#c60505] outline-none text-gray-900 bg-white text-sm"
+                      />
+                    </div>
+                  )}
                                 <button
                                     type="submit"
                                     disabled={submitLoading}

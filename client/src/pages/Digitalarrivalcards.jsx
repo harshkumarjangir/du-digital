@@ -22,7 +22,9 @@ const Digitalarrivalcards = () => {
   const [submitStatus, setSubmitStatus] = useState(null);
   const [submitLoading, setSubmitLoading] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
-
+  const [otpSent, setOtpSent] = useState(false)
+  const [otp, setOtp] = useState('');
+  
   useEffect(() => {
     fetchFormData();
   }, []);
@@ -59,22 +61,41 @@ const Digitalarrivalcards = () => {
     setSubmitMessage('');
 
     try {
+   
+        if(otpSent){
       const response = await fetch(`${BackendURL}/api/form-submissions/slug/digital-arrival-cards`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(finalData),
+        body: JSON.stringify({...finalData,otp}),
       });
       const res = await response.json();
-
-      if (response.ok) {
+      if (res.ok) {
         setSubmitStatus('success');
-        setSubmitMessage('Thank you! Your application has been submitted successfully. Our team will contact you shortly.');
-        // Optionally redirect or show success modal
-      } else {
+        setSubmitMessage('Thank you! Your eVisa application has been submitted successfully. Our team will contact you shortly.');
+        // Reset form
+        // const resetValues = {};
+        // formData?.fields?.forEach(field => { resetValues[field.name] = ''; });
+        // setfinalData(resetValues);
+      } else{
+      
         setSubmitStatus('error');
         setSubmitMessage(res.message || 'Something went wrong. Please try again.');
-        throw new Error(res.message || 'Submission failed');
       }
+    } else{
+        
+        await fetch(`${BackendURL}/api/otp/send`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({mobile:finalData.mobile || finalData.phone || finalData.mobileNumber || finalData.phoneNumber ||finalData.number|| ''}),
+        });
+        
+          setSubmitMessage('Thank you! submit the 6 digit otp');
+           setSubmitStatus('success');
+          alert('submit the 6 digit otp');
+          setOtpSent(true);
+        
+      }
+    
     } catch (err) {
       setSubmitStatus('error');
       setSubmitMessage(err.message || 'Failed to submit. Please check your connection and try again.');
@@ -209,13 +230,18 @@ const Digitalarrivalcards = () => {
           )}
 
           {/* Render the Form Component */}
-          {submitStatus !== 'success' && (
+         
             <DigitalArrivalForm
               onSubmit={handleFormSubmit}
+              sendOpt={setOtp}
+              checkopt={otpSent}
+
               serverError={submitStatus === 'error' ? submitMessage : null}
               loading={submitLoading}
             />
-          )}
+            
+          
+        
         </div>
       </section>
 

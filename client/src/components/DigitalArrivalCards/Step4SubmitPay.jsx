@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Loader2 } from "lucide-react";
 
-const Step4SubmitPay = ({ formData, handleChange, submitForm, prevStep, loading, error }) => {
+const Step4SubmitPay = ({ formData, handleChange, submitForm, prevStep, loading, error,sendOpt ,checkopt }) => {
     const [isIndividual, setIsIndividual] = useState(true);
 
     // Hardcoded price for demo purposes, could be moved to JSON or derived from props in a real app
@@ -97,11 +97,23 @@ const Step4SubmitPay = ({ formData, handleChange, submitForm, prevStep, loading,
                             <td className="px-6 py-4 text-right font-medium text-gray-800">₹{totalPrice}</td>
                         </tr>
                         <tr className="bg-white border-t border-gray-300 font-bold">
-                            <td className="px-6 py-4 text-right" colSpan="3">Total</td>
+                            <td className="px-6 py-4 text-right" colSpan="3">Total</td> 
                             <td className="px-6 py-4 text-right text-lg">₹{totalPrice}</td>
                         </tr>
                     </tbody>
                 </table>
+                  {checkopt  && (
+                    <div className="mb-4">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Enter OTP</label>
+                      <input
+                        type="text"
+                        
+                        onChange={(e) => sendOpt(e.target.value)}
+                        placeholder="Enter 6-digit OTP"
+                        className="w-full h-12 px-4 rounded-lg border border-gray-300 focus:border-[#c60505] focus:ring-1 focus:ring-[#c60505] outline-none text-gray-900 bg-white text-sm"
+                      />
+                    </div>
+                  )}
             </div>
 
             {error && (

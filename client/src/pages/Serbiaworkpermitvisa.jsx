@@ -16,6 +16,8 @@ const Serbiaworkpermitvisa = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
 
+  const [otpSent, setOtpSent] = useState(false)
+  const [otp, setOtp] = useState('');
   useEffect(() => {
     fetchFormData();
   }, []);
@@ -61,21 +63,41 @@ const Serbiaworkpermitvisa = () => {
     setSubmitMessage('');
 
     try {
-      const response = await fetch(`${BackendURL}/api/form-submissions/slug/serbia-work-permit-visa`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formValues),
-      });
-      const res = await response.json();
 
-      if (response.ok) {
-        setSubmitStatus('success');
-        setSubmitMessage('Thank you! Your application has been submitted successfully. Our team will contact you shortly.');
-        setFormValues({});
+      if (otpSent) {
+        const response = await fetch(`${BackendURL}/api/form-submissions/slug/serbia-work-permit-visa`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...formValues, otp }),
+        });
+        const res = await response.json();
+        if (res.ok) {
+          setSubmitStatus('success');
+          setSubmitMessage('Thank you! Your eVisa application has been submitted successfully. Our team will contact you shortly.');
+          // Reset form
+          // const resetValues = {};
+          // formData?.fields?.forEach(field => { resetValues[field.name] = ''; });
+          // setFormValues(resetValues);
+        } else {
+
+          setSubmitStatus('error');
+          setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+        }
       } else {
-        setSubmitStatus('error');
-        setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+
+        await fetch(`${BackendURL}/api/otp/send`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mobile: formValues.mobile || formValues.phone || formValues.mobileNumber || formValues.phoneNumber || formValues.number || '' }),
+        });
+
+        setSubmitMessage('Thank you! submit the 6 digit otp');
+        setSubmitStatus('success');
+        alert('submit the 6 digit otp');
+        setOtpSent(true);
+
       }
+
     } catch (err) {
       setSubmitStatus('error');
       setSubmitMessage('Failed to submit. Please check your connection and try again.');
@@ -301,7 +323,18 @@ const Serbiaworkpermitvisa = () => {
                         );
                       }
                     })}
-
+                  {otpSent && (
+                    <div className="mb-4">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Enter OTP</label>
+                      <input
+                        type="text"
+                        value={otp}
+                        onChange={(e) => setOtp(e.target.value)}
+                        placeholder="Enter 6-digit OTP"
+                        className="w-full h-12 px-4 rounded-lg border border-gray-300 focus:border-[#c60505] focus:ring-1 focus:ring-[#c60505] outline-none text-gray-900 bg-white text-sm"
+                      />
+                    </div>
+                  )}
                   <div className="col-span-1 md:col-span-2">
                     {submitStatus && (
                       <div className={`flex items-center gap-4 p-3 rounded mb-4 ${submitStatus === 'success' ? 'bg-green-500/20' : 'bg-[#FF1033]/20'}`}>
@@ -506,7 +539,7 @@ const Serbiaworkpermitvisa = () => {
               <p className="text-gray-500 max-w-md mb-6">
                 Find answers to common questions about Serbia Work Permit Visa process, requirements, and timelines.
               </p>
-           
+
             </div>
 
             {/* RIGHT FAQ LIST */}
