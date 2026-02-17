@@ -85,17 +85,24 @@ const Serbiaworkpermitvisa = () => {
         }
       } else {
 
-        await fetch(`${BackendURL}/api/otp/send`, {
+        const data = await fetch(`${BackendURL}/api/otp/send`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ mobile: formValues.mobile || formValues.phone || formValues.mobileNumber || formValues.phoneNumber || formValues.number || '' }),
         });
 
-        setSubmitMessage('Thank you! submit the 6 digit otp');
-        setSubmitStatus('success');
-        alert('submit the 6 digit otp');
-        setOtpSent(true);
+        
+        const res = await data.json();
+        if (res.success) {
+          setSubmitStatus('success');
+          setSubmitMessage('Thank you! submit the 6 digit otp');
+          alert('submit the 6 digit otp');
+          setOtpSent(true);
+        } else {
+          setSubmitMessage('Invaild Number');
 
+          setSubmitStatus('error');
+        }
       }
 
     } catch (err) {

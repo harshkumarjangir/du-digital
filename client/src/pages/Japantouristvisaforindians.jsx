@@ -115,39 +115,46 @@ const Japantouristvisaforindians = () => {
     setSubmitMessage('');
 
     try {
-    
-       if(otpSent){
-      const response = await fetch(`${BackendURL}/api/form-submissions/slug/japan-tourist-visa-for-indians`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({...formValues,otp}),
-      });
-      const res = await response.json();
-      if (res.ok) {
-        setSubmitStatus('success');
-        setSubmitMessage('Thank you! Your eVisa application has been submitted successfully. Our team will contact you shortly.');
-        // Reset form
-        // const resetValues = {};
-        // formData?.fields?.forEach(field => { resetValues[field.name] = ''; });
-        // setFormValues(resetValues);
-      } else{
-      
-        setSubmitStatus('error');
-        setSubmitMessage(res.message || 'Something went wrong. Please try again.');
-      }
-    } else{
-        
-        await fetch(`${BackendURL}/api/otp/send`, {
+
+      if (otpSent) {
+        const response = await fetch(`${BackendURL}/api/form-submissions/slug/japan-tourist-visa-for-indians`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({mobile:formValues.mobile || formValues.phone || formValues.mobileNumber || formValues.phoneNumber ||formValues.number|| ''}),
+          body: JSON.stringify({ ...formValues, otp }),
         });
-        
+        const res = await response.json();
+        if (res.ok) {
+          setSubmitStatus('success');
+          setSubmitMessage('Thank you! Your eVisa application has been submitted successfully. Our team will contact you shortly.');
+          // Reset form
+          // const resetValues = {};
+          // formData?.fields?.forEach(field => { resetValues[field.name] = ''; });
+          // setFormValues(resetValues);
+        } else {
+
+          setSubmitStatus('error');
+          setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+        }
+      } else {
+
+        const data = await fetch(`${BackendURL}/api/otp/send`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mobile: formValues.mobile || formValues.phone || formValues.mobileNumber || formValues.phoneNumber || formValues.number || '' }),
+        });
+
+        const res = data.json()
+        if (res.success) {
           setSubmitMessage('Thank you! submit the 6 digit otp');
-           setSubmitStatus('success');
+          setSubmitStatus('success');
           alert('submit the 6 digit otp');
           setOtpSent(true);
-        
+        } else {
+          setSubmitMessage('Invaild Number');
+
+          setSubmitStatus('error');
+        }
+
       }
     } catch (err) {
       setSubmitStatus('error');
@@ -370,7 +377,7 @@ const Japantouristvisaforindians = () => {
                       </>
                     );
                   })()}
-{otpSent && (
+                  {otpSent && (
                     <div className="mb-4">
                       <label className="block text-sm font-medium text-gray-700 mb-2">Enter OTP</label>
                       <input

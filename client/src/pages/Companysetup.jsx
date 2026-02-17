@@ -85,32 +85,38 @@ const Companysetup = () => {
     setSubmitMessage('');
 
     try {
-       if (otp.length === 6||otpSent) {
-      const response = await fetch(`${BackendURL}/api/form-submissions/slug/company-setup-in-the-uae`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({...formValues,otp}),
-      });
-      const res = await response.json();
-
-      if (response.ok) {
-        setSubmitStatus('success');
-      } else {
-        setSubmitStatus('error');
-        setSubmitMessage(res.message || 'Something went wrong. Please try again.');
-      }}
-      else{
-        console.log(formValues);
-        
-        const response = await fetch(`${BackendURL}/api/otp/send`, {
+      if (otp.length === 6 || otpSent) {
+        const response = await fetch(`${BackendURL}/api/form-submissions/slug/company-setup-in-the-uae`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({mobile:formValues.mobile || formValues.phone || formValues.mobileNumber || formValues.phoneNumber ||formValues.number|| ''}),
+          body: JSON.stringify({ ...formValues, otp }),
         });
-        if(response.ok){
+        const res = await response.json();
+
+        if (response.ok) {
+          setSubmitStatus('success');
+        } else {
+          setSubmitStatus('error');
+          setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+        }
+      }
+      else {
+        console.log(formValues);
+
+        const data = await fetch(`${BackendURL}/api/otp/send`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mobile: formValues.mobile || formValues.phone || formValues.mobileNumber || formValues.phoneNumber || formValues.number || '' }),
+        });
+        const res = await data.json();
+        if (res.success) {
           setSubmitMessage('Thank you! submit the 6 digit otp');
           alert('submit the 6 digit otp');
           setOtpSent(true);
+        } else {
+          setSubmitMessage('Invaild Number');
+
+          setSubmitStatus('error');
         }
       }
     } catch (err) {
@@ -296,7 +302,7 @@ const Companysetup = () => {
                       <input
                         name="otp"
                         value={otp}
-                        onChange={(e)=>setOtp(e.target.value)}
+                        onChange={(e) => setOtp(e.target.value)}
                         type="text"
                         placeholder="Enter OTP"
                         className="w-full px-4 py-3 text-[12px] text-black border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none"

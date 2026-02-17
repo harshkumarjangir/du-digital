@@ -24,7 +24,7 @@ const Digitalarrivalcards = () => {
   const [submitMessage, setSubmitMessage] = useState('');
   const [otpSent, setOtpSent] = useState(false)
   const [otp, setOtp] = useState('');
-  
+
   useEffect(() => {
     fetchFormData();
   }, []);
@@ -61,41 +61,48 @@ const Digitalarrivalcards = () => {
     setSubmitMessage('');
 
     try {
-   
-        if(otpSent){
-      const response = await fetch(`${BackendURL}/api/form-submissions/slug/digital-arrival-cards`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({...finalData,otp}),
-      });
-      const res = await response.json();
-      if (res.ok) {
-        setSubmitStatus('success');
-        setSubmitMessage('Thank you! Your eVisa application has been submitted successfully. Our team will contact you shortly.');
-        // Reset form
-        // const resetValues = {};
-        // formData?.fields?.forEach(field => { resetValues[field.name] = ''; });
-        // setfinalData(resetValues);
-      } else{
-      
-        setSubmitStatus('error');
-        setSubmitMessage(res.message || 'Something went wrong. Please try again.');
-      }
-    } else{
-        
-        await fetch(`${BackendURL}/api/otp/send`, {
+
+      if (otpSent) {
+        const response = await fetch(`${BackendURL}/api/form-submissions/slug/digital-arrival-cards`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({mobile:finalData.mobile || finalData.phone || finalData.mobileNumber || finalData.phoneNumber ||finalData.number|| ''}),
+          body: JSON.stringify({ ...finalData, otp }),
         });
-        
+        const res = await response.json();
+        if (res.ok) {
+          setSubmitStatus('success');
+          setSubmitMessage('Thank you! Your eVisa application has been submitted successfully. Our team will contact you shortly.');
+          // Reset form
+          // const resetValues = {};
+          // formData?.fields?.forEach(field => { resetValues[field.name] = ''; });
+          // setfinalData(resetValues);
+        } else {
+
+          setSubmitStatus('error');
+          setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+        }
+      } else {
+
+        const data = await fetch(`${BackendURL}/api/otp/send`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mobile: finalData.mobile || finalData.phone || finalData.mobileNumber || finalData.phoneNumber || finalData.number || '' }),
+        });
+
+        const res = data.json()
+        if (res.success) {
           setSubmitMessage('Thank you! submit the 6 digit otp');
-           setSubmitStatus('success');
+          setSubmitStatus('success');
           alert('submit the 6 digit otp');
           setOtpSent(true);
-        
+        } else {
+          setSubmitMessage('Invaild Number');
+
+          setSubmitStatus('error');
+        }
+
       }
-    
+
     } catch (err) {
       setSubmitStatus('error');
       setSubmitMessage(err.message || 'Failed to submit. Please check your connection and try again.');
@@ -230,18 +237,18 @@ const Digitalarrivalcards = () => {
           )}
 
           {/* Render the Form Component */}
-         
-            <DigitalArrivalForm
-              onSubmit={handleFormSubmit}
-              sendOpt={setOtp}
-              checkopt={otpSent}
 
-              serverError={submitStatus === 'error' ? submitMessage : null}
-              loading={submitLoading}
-            />
-            
-          
-        
+          <DigitalArrivalForm
+            onSubmit={handleFormSubmit}
+            sendOpt={setOtp}
+            checkopt={otpSent}
+
+            serverError={submitStatus === 'error' ? submitMessage : null}
+            loading={submitLoading}
+          />
+
+
+
         </div>
       </section>
 

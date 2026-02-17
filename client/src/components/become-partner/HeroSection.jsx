@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CountryPhoneInput from "./CountryPhoneInput";
-import { submitPartnerForm, clearPartnerState } from "../../redux/slices/partnerSlice";
+import { submitPartnerForm, clearPartnerState, dataFill } from "../../redux/slices/partnerSlice";
 
 const LOOKING_FOR_OPTIONS = [
   "Travel Agent - Becoming a Partner",
@@ -11,8 +11,9 @@ const LOOKING_FOR_OPTIONS = [
 const CITY_OPTIONS = ["Bangalore", "Chandigarh", "Chennai", "Delhi NCR", "Jammu & Kashmir", "Kolkata", "Mumbai", "Other"];
 
 const HeroSection = ({ data }) => {
+  const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
   const dispatch = useDispatch();
-  const { loading, error, success } = useSelector((state) => state.partner);
+  const { loading, error, success,successMsg } = useSelector((state) => state.partner);
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -24,6 +25,7 @@ const HeroSection = ({ data }) => {
     city: "",
     otherCity: "",
     isMsg: false,
+    otp:""
   });
 
   useEffect(() => {
@@ -76,7 +78,8 @@ const HeroSection = ({ data }) => {
   };
 
 
-
+const [otpSent, setOtpSent] = useState(false)
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(clearPartnerState());
@@ -105,11 +108,13 @@ const HeroSection = ({ data }) => {
       isMsg: formData.isMsg,
       ...(formData.lookingFor.includes("Partner") && {
         businessName: formData.businessName,
+        otp:formData.otp
       }),
     };
 
 
-    const result = await dispatch(submitPartnerForm(payload));
+ if(otpSent){
+   const result = await dispatch(submitPartnerForm(payload));
 
     if (submitPartnerForm.fulfilled.match(result)) {
       setFormData({
@@ -121,9 +126,28 @@ const HeroSection = ({ data }) => {
         destinationCountry: "",
         city: "",
         isMsg: false,
+        otp:""
       });
+    }}
+    else{
+      const data =       await fetch(`${BackendURL}/api/otp/send`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({mobile:formData.phone?.fullNumber|| ''}),
+        });
+        const res = await data.json();
+       if(res.success){
+        dispatch(dataFill({data:{success:true,error:null,msg:'Thank you! submit the 6 digit otp'}}))
+         
+          alert('submit the 6 digit otp');
+          setOtpSent(true);
+       }else{
+        dispatch(dataFill({data:{success:false,error:'invaild number',msg:'invaild number'}}))
+       }
+        
+      }
     }
-  };
+  
 
   return (
     <section className="relative min-h-[800px] ">
@@ -264,11 +288,24 @@ const HeroSection = ({ data }) => {
               />
               <label htmlFor="isMsg" className="text-xs ">{data.form.consentText}</label>
             </div>
+            {
+              otpSent&&(
+                <input
+                type="text"
+                name="otp"
+                placeholder="OTP"
+                className="w-full border px-4 py-3 rounded-md"
+                value={formData.otp}
+                onChange={handleChange}
+                required
+              />
+              )
+            }
 
             {/* MESSAGES */}
             {success && (
               <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-md">
-                Form submitted successfully!
+              {successMsg}
               </div>
             )}
 

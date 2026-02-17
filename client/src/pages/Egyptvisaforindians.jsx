@@ -15,7 +15,7 @@ const Egyptvisaforindians = () => {
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
   const [submitLoading, setSubmitLoading] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
-  
+
   const [otpSent, setOtpSent] = useState(false)
   const [otp, setOtp] = useState('');
   useEffect(() => {
@@ -111,38 +111,45 @@ const Egyptvisaforindians = () => {
       //   body: JSON.stringify(formValues),
       // });
 
-          if(otpSent){
-      const response = await fetch(`${BackendURL}/api/form-submissions/slug/egypt-visa-for-indians`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({...formValues,otp}),
-      });
-      const res = await response.json();
-      if (res.ok) {
-        setSubmitStatus('success');
-        setSubmitMessage('Thank you! Your eVisa application has been submitted successfully. Our team will contact you shortly.');
-        // Reset form
-        // const resetValues = {};
-        // formData?.fields?.forEach(field => { resetValues[field.name] = ''; });
-        // setFormValues(resetValues);
-      } else{
-      
-        setSubmitStatus('error');
-        setSubmitMessage(res.message || 'Something went wrong. Please try again.');
-      }
-    } else{
-        
-        await fetch(`${BackendURL}/api/otp/send`, {
+      if (otpSent) {
+        const response = await fetch(`${BackendURL}/api/form-submissions/slug/egypt-visa-for-indians`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({mobile:formValues.mobile || formValues.phone || formValues.mobileNumber || formValues.phoneNumber ||formValues.number|| ''}),
+          body: JSON.stringify({ ...formValues, otp }),
         });
-        
+        const res = await response.json();
+        if (res.ok) {
+          setSubmitStatus('success');
+          setSubmitMessage('Thank you! Your eVisa application has been submitted successfully. Our team will contact you shortly.');
+          // Reset form
+          // const resetValues = {};
+          // formData?.fields?.forEach(field => { resetValues[field.name] = ''; });
+          // setFormValues(resetValues);
+        } else {
+
+          setSubmitStatus('error');
+          setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+        }
+      } else {
+
+        const data = await fetch(`${BackendURL}/api/otp/send`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mobile: formValues.mobile || formValues.phone || formValues.mobileNumber || formValues.phoneNumber || formValues.number || '' }),
+        });
+
+        const res = data.json()
+        if (res.success) {
           setSubmitMessage('Thank you! submit the 6 digit otp');
-           setSubmitStatus('success');
+          setSubmitStatus('success');
           alert('submit the 6 digit otp');
           setOtpSent(true);
-        
+        } else {
+          setSubmitMessage('Invaild Number');
+
+          setSubmitStatus('error');
+        }
+
       }
     } catch (err) {
       setSubmitStatus('error');
@@ -751,7 +758,7 @@ const Egyptvisaforindians = () => {
                 boisterous the attachment.
               </p>
 
-           
+
             </div>
 
             {/* RIGHT FAQ LIST */}

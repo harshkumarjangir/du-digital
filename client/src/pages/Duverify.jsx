@@ -59,7 +59,7 @@ const Duverify = () => {
     setSubmitMessage('');
 
     try {
-      const response = await fetch(`${BackendURL}/api/form-submissions/slug/bangladesh-visas-for-uae-singapore`, {
+      const response = await fetch(`${BackendURL}/api/form-submissions/slug/duverify`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formValues),

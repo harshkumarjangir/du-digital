@@ -26,7 +26,7 @@ const Dubai5yeartouristvisa = () => {
 
   const [otpSent, setOtpSent] = useState(false)
   const [otp, setOtp] = useState('');
-  
+
   useEffect(() => {
     fetchFormData();
   }, []);
@@ -72,43 +72,50 @@ const Dubai5yeartouristvisa = () => {
     setSubmitMessage('');
 
     try {
-  
 
-        if(otpSent){
-      const response = await fetch(`${BackendURL}/api/form-submissions/slug/dubai-5year-tourist-visa`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({...formValues,otp}),
-      });
-      const res = await response.json();
-      if (res.ok) {
-        setSubmitStatus('success');
-        setSubmitMessage('Thank you! Your eVisa application has been submitted successfully. Our team will contact you shortly.');
-        // Reset form
-        // const resetValues = {};
-        // formData?.fields?.forEach(field => { resetValues[field.name] = ''; });
-        // setFormValues(resetValues);
-      } else{
-      
-        setSubmitStatus('error');
-        setSubmitMessage(res.message || 'Something went wrong. Please try again.');
-      }
-    } else{
-        
-        await fetch(`${BackendURL}/api/otp/send`, {
+
+      if (otpSent) {
+        const response = await fetch(`${BackendURL}/api/form-submissions/slug/dubai-5year-tourist-visa`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({mobile:formValues.mobile || formValues.phone || formValues.mobileNumber || formValues.phoneNumber ||formValues.number|| ''}),
+          body: JSON.stringify({ ...formValues, otp }),
         });
-        
+        const res = await response.json();
+        if (res.ok) {
+          setSubmitStatus('success');
+          setSubmitMessage('Thank you! Your eVisa application has been submitted successfully. Our team will contact you shortly.');
+          // Reset form
+          // const resetValues = {};
+          // formData?.fields?.forEach(field => { resetValues[field.name] = ''; });
+          // setFormValues(resetValues);
+        } else {
+
+          setSubmitStatus('error');
+          setSubmitMessage(res.message || 'Something went wrong. Please try again.');
+        }
+      } else {
+
+        const data = await fetch(`${BackendURL}/api/otp/send`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mobile: formValues.mobile || formValues.phone || formValues.mobileNumber || formValues.phoneNumber || formValues.number || '' }),
+        });
+
+        const res = data.json()
+        if (res.success) {
           setSubmitMessage('Thank you! submit the 6 digit otp');
-           setSubmitStatus('success');
+          setSubmitStatus('success');
           alert('submit the 6 digit otp');
           setOtpSent(true);
-        
-     
-    } 
-  }catch (err) {
+        } else {
+          setSubmitMessage('Invaild Number');
+
+          setSubmitStatus('error');
+        }
+
+
+      }
+    } catch (err) {
       setSubmitStatus('error');
       setSubmitMessage('Failed to submit. Please check your connection and try again.');
     } finally {
@@ -499,7 +506,7 @@ const Dubai5yeartouristvisa = () => {
                 boisterous the attachment.
               </p>
 
-            
+
             </div>
 
             {/* RIGHT FAQ LIST */}

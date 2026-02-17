@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CountryPhoneInput from "../become-partner/CountryPhoneInput";
-import { submitContactForm, clearContactState } from "../../redux/slices/contactSlice";
+import { submitContactForm, clearContactState, dataFill2 } from "../../redux/slices/contactSlice";
 
 const ContactForm = ({ form }) => {
+    
+  const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
     const dispatch = useDispatch();
-    const { loading, error, success } = useSelector((state) => state.contact);
+    
+      const [otpSent, setOtpSent] = useState(false)
+    const { loading, error, success ,successMsg} = useSelector((state) => state.contact);
 
     const [formData, setFormData] = useState({
         name: "",
@@ -13,6 +17,7 @@ const ContactForm = ({ form }) => {
         phone: null,
         message: "",
         consent: false,
+        otp: "",
     });
 
     useEffect(() => {
@@ -43,19 +48,41 @@ const ContactForm = ({ form }) => {
             phone: formData.phone?.fullNumber || "",
             message: formData.message,
             AllowMsg: formData.consent,
+            otp:formData.otp
         };
+if(otpSent){
 
-        const result = await dispatch(submitContactForm(payload));
-
-        if (submitContactForm.fulfilled.match(result)) {
-            setFormData({
-                name: "",
+    
+    const result = await dispatch(submitContactForm(payload));
+    if (submitContactForm.fulfilled.match(result)) {
+        setFormData({
+            name: "",
                 email: "",
                 phone: null,
                 message: "",
                 consent: false,
+                otp:""
             });
         }
+    }else{
+    
+      const data =       await fetch(`${BackendURL}/api/otp/send`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({mobile:formData.phone?.fullNumber|| ''}),
+        });
+        const res = await data.json();
+       if(res.success){
+        dispatch(dataFill2({data:{success:true,error:null,msg:'Thank you! submit the 6 digit otp'}}))
+         
+          alert('submit the 6 digit otp');
+          setOtpSent(true);
+       }else{
+        dispatch(dataFill2({data:{success:false,error:'invaild number',msg:'invaild number'}}))
+       }
+        
+      }
+    
     };
 
     return (
@@ -107,11 +134,27 @@ const ContactForm = ({ form }) => {
                     Call / SMS / WhatsApp / Email.
                 </label>
 
-                {success && (
-                    <div className="bg-green-100 text-green-700 px-4 py-3 rounded-md">
-                        Thank you! Your message has been submitted successfully.
-                    </div>
-                )}
+              {
+              otpSent&&(
+                <input
+                type="text"
+                name="otp"
+                placeholder="OTP"
+                className="w-full border px-4 py-3 rounded-md"
+                value={formData.otp}
+                onChange={handleChange}
+                required
+              />
+              )
+            }
+
+            {/* MESSAGES */}
+            {success && (
+              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-md">
+              {successMsg}
+              </div>
+            )}
+
 
                 {error && (
                     <div className="bg-red-100 text-red-700 px-4 py-3 rounded-md">

@@ -61,14 +61,22 @@ const [otpSent, setOtpSent] = useState(false)
     }));
   }else{
         
-        await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/otp/send`, {
+       const data = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/otp/send`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({mobile:e.target.mobileNumber.value}),
         });
-        
+        const res = await data.json();
+        if (res.success) {
+          setSubmitStatus('success');
+          setSubmitMessage('Thank you! submit the 6 digit otp');
           alert('submit the 6 digit otp');
           setOtpSent(true);
+        } else {
+          setSubmitMessage('Invaild Number');
+
+          setSubmitStatus('error');
+        }
         
       }
   };

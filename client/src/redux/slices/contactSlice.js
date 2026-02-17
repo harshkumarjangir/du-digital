@@ -32,7 +32,8 @@ const initialState = {
     loading: false,
     error: null,
     success: false,
-    submittedData: null
+    submittedData: null,
+    successMsg:null
 }
 
 const contactSlice = createSlice({
@@ -43,6 +44,11 @@ const contactSlice = createSlice({
             state.error = null;
             state.success = false;
             state.submittedData = null;
+            state.successMsg = null;
+        },dataFill2:(state,action)=>{
+            state.success =action.payload.data.success;
+            state.error = action.payload.data.error;
+            state.successMsg = action.payload.data.msg;
         }
     },
     extraReducers: (builder) => {
@@ -66,5 +72,5 @@ const contactSlice = createSlice({
     }
 })
 
-export const { clearContactState } = contactSlice.actions;
+export const { clearContactState,dataFill2 } = contactSlice.actions;
 export default contactSlice.reducer;

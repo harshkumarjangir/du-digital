@@ -3,23 +3,42 @@ import PartnerProgram from "../models/PartnerProgram.model";
 import Partner from "../models/Partner.model";
 import User from "../models/User.model";
 import { sendEmail } from "../utils/emailService";
+import OtpSchema from "../models/Otp.model";
 
 export const createPartnerRequest = async (req: Request, res: Response) => {
     try {
-        const { fullName, email, phone, lookingFor, city, isMsg, businessName } = req.body;
+        const { fullName, email, phone, lookingFor, city, isMsg, businessName, otp } = req.body;
 
-        const newRequest = new PartnerProgram({
-            fullName,
-            email,
-            phone,
-            lookingFor,
-            city,
-            isMsg,
-            businessName,
-            status: "Pending" // Default status
-        });
+        if (!otp) {
+            return res.status(400).json({ message: "OTP is required" });
+        }
+        const otp2 = await OtpSchema.findOne({
+            mobile: phone,
+            otp: otp,
+            $or: [
+                { createdAt: { $gte: new Date(Date.now() - 10 * 60 * 1000) } },
+                { updatedAt: { $gte: new Date(Date.now() - 10 * 60 * 1000) } }
+            ]
+        })
+        if (!otp2) {
+            return res.status(400).json({ message: "Invalid OTP" });
+        }
+        await OtpSchema.deleteOne({
+            mobile: phone,
+            otp: otp
+        })
+        // const newRequest = new PartnerProgram({
+        //     fullName,
+        //     email,
+        //     phone,
+        //     lookingFor,
+        //     city,
+        //     isMsg,
+        //     businessName,
+        //     status: "Pending" // Default status
+        // });
 
-        await newRequest.save();
+        // await newRequest.save();
 
         // Find users who should receive notifications
         const recipients = await User.find({ receivePartnerNotifications: true }).select('email');
@@ -42,7 +61,7 @@ export const createPartnerRequest = async (req: Request, res: Response) => {
             await sendEmail(recipientEmails, emailSubject, emailBody);
         }
 
-        res.status(201).json({ message: "Partner request submitted successfully", request: newRequest });
+        res.status(201).json({ message: "Partner request submitted successfully", request: "" });
     } catch (error) {
         console.error("Create Partner Request Error", error);
         res.status(500).json({ message: "Error submitting request" });

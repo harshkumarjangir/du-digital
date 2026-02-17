@@ -55,7 +55,8 @@ const initialState = {
     success: false,
     submittedData: null,
     officialPartners: [],
-    loadingOfficialPartners: false
+    loadingOfficialPartners: false,
+    successMsg:""
 }
 
 const partnerSlice = createSlice({
@@ -66,6 +67,12 @@ const partnerSlice = createSlice({
             state.error = null;
             state.success = false;
             state.submittedData = null;
+            state.successMsg=null
+        },
+        dataFill:(state,action)=>{
+            state.success =action.payload.data.success;
+            state.error = action.payload.data.error;
+            state.successMsg = action.payload.data.msg;
         }
     },
     extraReducers: (builder) => {
@@ -102,6 +109,6 @@ const partnerSlice = createSlice({
     }
 })
 
-export const { clearPartnerState } = partnerSlice.actions;
+export const { clearPartnerState,dataFill } = partnerSlice.actions;
 export default partnerSlice.reducer;
 
