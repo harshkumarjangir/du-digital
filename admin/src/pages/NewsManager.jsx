@@ -47,7 +47,7 @@ const NewsManager = () => {
   const fetchNews = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/news");
+      const response = await axios.get(`${import.meta.VITE_API_BASE_URL}/news`);
       setNews(response.data);
     } catch (error) {
       console.error("Error fetching news:", error);
@@ -90,12 +90,12 @@ const NewsManager = () => {
 
     try {
       if (editingId) {
-        await axios.put(`http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/news/${editingId}`, data, {
+        await axios.put(`${import.meta.VITE_API_BASE_URL}/news/${editingId}`, data, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         showSuccess("News updated successfully");
       } else {
-        await axios.post("http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/news", data, {
+        await axios.post(`${import.meta.VITE_API_BASE_URL}/news`, data, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         showSuccess("News created successfully");
@@ -130,7 +130,7 @@ const NewsManager = () => {
     if (!window.confirm(`Are you sure you want to delete "${title}"?`)) return;
 
     try {
-      await axios.delete(`http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/news/${id}`);
+      await axios.delete(`${import.meta.VITE_API_BASE_URL}/news/${id}`);
       showSuccess("News deleted successfully");
       fetchNews();
     } catch (error) {
@@ -230,7 +230,7 @@ const NewsManager = () => {
                   <div className="flex-shrink-0">
                     {item.imageUrl ? (
                       <img
-                        src={`http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api${item.imageUrl}`}
+                        src={`${import.meta.VITE_API_BASE_URL}${item.imageUrl}`}
                         alt={item.title}
                         style={{
                           width: "120px",

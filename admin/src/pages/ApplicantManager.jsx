@@ -43,7 +43,7 @@ const ApplicantManager = () => {
 
   const fetchCareers = async () => {
     try {
-      const response = await axios.get("http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/careers");
+      const response = await axios.get(`${import.meta.VITE_API_BASE_URL}/careers`);
       setCareers(response.data);
     } catch (error) {
       console.error("Error fetching careers:", error);
@@ -53,7 +53,7 @@ const ApplicantManager = () => {
   const fetchApplicants = async () => {
     setLoading(true);
     try {
-      let url = "http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/employees";
+      let url = `${import.meta.VITE_API_BASE_URL}/employees`;
       if (selectedCareer) {
         url += `?careerId=${selectedCareer}`;
       }

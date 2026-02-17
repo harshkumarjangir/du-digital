@@ -13,7 +13,7 @@ export const fetchUserProfile = createAsyncThunk(
                 },
             };
 
-            const response = await axios.get('http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/auth/me', config);
+            const response = await axios.get(`${import.meta.VITE_API_BASE_URL}/auth/me`, config);
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response?.data?.message || error.message);

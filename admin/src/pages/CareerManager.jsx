@@ -50,7 +50,7 @@ const CareerManager = () => {
   const fetchCareers = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/careers");
+      const response = await axios.get(`${import.meta.VITE_API_BASE_URL}/careers`);
       setCareers(response.data);
     } catch (error) {
       console.error("Error fetching careers:", error);
@@ -81,10 +81,10 @@ const CareerManager = () => {
 
     try {
       if (editingCareer) {
-        await axios.put(`http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/careers/${editingCareer._id}`, data);
+        await axios.put(`${import.meta.VITE_API_BASE_URL}/careers/${editingCareer._id}`, data);
         showSuccess("Job posting updated successfully");
       } else {
-        await axios.post("http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/careers", data);
+        await axios.post(`${import.meta.VITE_API_BASE_URL}/careers`, data);
         showSuccess("Job posting created successfully");
       }
       fetchCareers();
@@ -102,7 +102,7 @@ const CareerManager = () => {
     if (!window.confirm(`Are you sure you want to delete "${title}"?`)) return;
 
     try {
-      await axios.delete(`http://ec2-13-203-217-17.ap-south-1.compute.amazonaws.com/api/careers/${id}`);
+      await axios.delete(`${import.meta.VITE_API_BASE_URL}/careers/${id}`);
       showSuccess("Job posting deleted successfully");
       fetchCareers();
     } catch (error) {
