@@ -43,7 +43,7 @@ const ApplicantManager = () => {
 
   const fetchCareers = async () => {
     try {
-      const response = await axios.get(`${import.meta.VITE_API_BASE_URL}/careers`);
+      const response = await axios.get(`https://duapi.dudigitalglobal.com/api/careers`);
       setCareers(response.data);
     } catch (error) {
       console.error("Error fetching careers:", error);
@@ -53,7 +53,7 @@ const ApplicantManager = () => {
   const fetchApplicants = async () => {
     setLoading(true);
     try {
-      let url = `${import.meta.VITE_API_BASE_URL}/employees`;
+      let url = `https://duapi.dudigitalglobal.com/api/employees`;
       if (selectedCareer) {
         url += `?careerId=${selectedCareer}`;
       }
