@@ -26,7 +26,7 @@ import Globalrecruitmentservices from './pages/Globalrecruitmentservices'
 // import Edata from './pages/Edata'
 import OurCapabilities from './pages/OurCapabilities'
 import Magazine from './pages/Magazine'
-import CookiePolicy from './pages/CookiePolicy'
+import Policy2 from './pages/CookiePolicy2'
 import FloatingChatCTA from './components/common/FloatingChatCTA'
 import ForGovernmentEmbassies from './pages/ForGovernmentEmbassies'
 import Duverify from './pages/Duverify'
@@ -93,7 +93,7 @@ const App = () => {
                                 <Route path="/vip-clearance-at-malaysia-airport" element={<Vipclearanceatmalaysiaairport />} />
                                 <Route path="/georgia-evisa" element={<Georgiaevisa />} />
                                 <Route path="/lebanon" element={<Lebanon />} />
-                                <Route path="/cookie-policy" element={<CookiePolicy />} />
+                                <Route path="/cookie-policy" element={<Policy2 />} />
                                 <Route path="*" element={<NotFound />} />
                         </Routes>
                         <Footer />
