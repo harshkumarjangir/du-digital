@@ -49,6 +49,23 @@ const BlogManager = () => {
     }
   };
 
+
+const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000';
+
+ const getImageUrl = (imagePath) => {
+    if (!imagePath) return '';
+    if (imagePath.startsWith('http')) return imagePath;
+    // Handle /api/ paths - use BackendURL directly
+    if (imagePath.startsWith('/api/')) {
+      return `${BackendImagesURL}${imagePath}`;
+    }
+    // Handle /uploads/ paths
+    if (imagePath.startsWith('/uploads/')) {
+      return `${BackendImagesURL}/api${imagePath}`;
+    }
+    return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
+  };
+
   const handleDelete = async (id, title) => {
     if (!window.confirm(`Are you sure you want to delete "${title}"?`)) return;
     try {
@@ -173,7 +190,7 @@ const BlogManager = () => {
                     <div className="flex-shrink-0">
                       {blog.featuredImage ? (
                         <img
-                          src={blog.featuredImage}
+                          src={getImageUrl(blog.featuredImage)}
                           alt={blog.title}
                           style={{
                             width: "120px",

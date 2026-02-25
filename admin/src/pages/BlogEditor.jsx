@@ -12,19 +12,18 @@ const BlogEditor = () => {
   const navigate = useNavigate();
   const isEditMode = !!id;
   const { toasts, removeToast, showSuccess, showError } = useToast();
-const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
-  const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000/api';
+const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000';
 
  const getImageUrl = (imagePath) => {
     if (!imagePath) return '';
     if (imagePath.startsWith('http')) return imagePath;
     // Handle /api/ paths - use BackendURL directly
     if (imagePath.startsWith('/api/')) {
-      return `${BackendURL}${imagePath}`;
+      return `${BackendImagesURL}${imagePath}`;
     }
     // Handle /uploads/ paths
     if (imagePath.startsWith('/uploads/')) {
-      return `${BackendURL}/api${imagePath}`;
+      return `${BackendImagesURL}/api${imagePath}`;
     }
     return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
   };
