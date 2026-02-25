@@ -1,6 +1,6 @@
-import data from "../data/cookiePolicy.json";
+import data from "../data/ePolicy2.json";
 
-const CookiePolicy = () => {
+const Policy2 = () => {
     return (
         <section className="bg-white">
             {/* HERO */}
@@ -46,4 +46,4 @@ const CookiePolicy = () => {
     );
 };
 
-export default CookiePolicy;
+export default Policy2;
