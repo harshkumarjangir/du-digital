@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-
+import MDEditor from "@uiw/react-md-editor";
+import "@uiw/react-md-editor/markdown-editor.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleBlog } from "../redux/slices/BlogsSlice";
+
 const SingleBlog = () => {
   const { id } = useParams()
   const dispatch = useDispatch();
@@ -10,7 +12,22 @@ const SingleBlog = () => {
   useEffect(() => {
     dispatch(fetchSingleBlog(id))
   }, [id])
+  const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
+  const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000/api';
 
+ const getImageUrl = (imagePath) => {
+    if (!imagePath) return '';
+    if (imagePath.startsWith('http')) return imagePath;
+    // Handle /api/ paths - use BackendURL directly
+    if (imagePath.startsWith('/api/')) {
+      return `${BackendURL}${imagePath}`;
+    }
+    // Handle /uploads/ paths
+    if (imagePath.startsWith('/uploads/')) {
+      return `${BackendURL}/api${imagePath}`;
+    }
+    return `${BackendImagesURL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
+  };
   return (
     <div>
       {loading ? <div>loading</div> : error ? <div>error</div> : SingleBlog &&
@@ -31,7 +48,7 @@ const SingleBlog = () => {
           {/* Featured Image */}
           <div className="blog-image">
             <img
-              src={SingleBlog.featuredImage}
+              src={getImageUrl(SingleBlog.featuredImage)}
               alt={SingleBlog.title}
               loading="eager"
               decoding="async"
@@ -42,8 +59,11 @@ const SingleBlog = () => {
           {/* Content */}
           <section
             className="blog-content"
-            dangerouslySetInnerHTML={{ __html: SingleBlog.content }}
-          />
+           
+          >
+        
+                        <MDEditor.Markdown source={SingleBlog.content} />
+                </section>
         </article>
       }
     </div>

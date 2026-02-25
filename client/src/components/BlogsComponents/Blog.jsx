@@ -10,6 +10,7 @@ export const Blog = ({ data: propData, className }) => {
 
   const [searchParams] = useSearchParams();
   const page = Number(searchParams.get("page")) || 1;
+const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000/api';
 
   useEffect(() => {
     if (!propData) {
