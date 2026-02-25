@@ -220,7 +220,7 @@ const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://loca
                 />
               </FormGroup>
 
-              <FormGroup label="Short Tital">
+              <FormGroup label="Short Title">
                 <Input
                   type="text"
                   value={formData.tags}
