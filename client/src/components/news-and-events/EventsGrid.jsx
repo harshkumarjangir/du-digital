@@ -14,8 +14,8 @@ const EventsGrid = ({ data: propData }) => {
     const { events: reduxData, totalPages, loading, error } = useSelector((state) => state.events);
     const data = propData || reduxData;
 
-    console.log("propData", propData)
-    console.log("reduxData", reduxData)
+    // console.log("propData", propData)
+    // console.log("reduxData", reduxData)
 
 
     useEffect(() => {
