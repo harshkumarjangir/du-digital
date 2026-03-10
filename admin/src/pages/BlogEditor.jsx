@@ -12,9 +12,9 @@ const BlogEditor = () => {
   const navigate = useNavigate();
   const isEditMode = !!id;
   const { toasts, removeToast, showSuccess, showError } = useToast();
-const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000';
+  const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000';
 
- const getImageUrl = (imagePath) => {
+  const getImageUrl = (imagePath) => {
     if (!imagePath) return '';
     if (imagePath.startsWith('http')) return imagePath;
     // Handle /api/ paths - use BackendURL directly
@@ -113,7 +113,7 @@ const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://loca
 
   if (preview) {
     return (
-      <div>
+      <div className="w-full">
         <PageHeader
           title="Blog Preview"
           description="Preview how your blog will look"
@@ -155,7 +155,7 @@ const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://loca
                 </div>
               )}
             </div>
-            <div className="blog-content">
+            <div className="blog-content " data-color-mode="light">
               <MDEditor.Markdown source={formData.content} />
             </div>
           </div>

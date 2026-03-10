@@ -15,7 +15,7 @@ const SingleBlog = () => {
   const BackendImagesURL = import.meta.env.VITE_BACKEND_IMAGES_URL || 'http://localhost:5000/api';
   const BackendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000/api';
 
- const getImageUrl = (imagePath) => {
+  const getImageUrl = (imagePath) => {
     if (!imagePath) return '';
     if (imagePath.startsWith('http')) return imagePath;
     // Handle /api/ paths - use BackendURL directly
@@ -34,11 +34,11 @@ const SingleBlog = () => {
         <article className="blog-container">
           {/* Header */}
           <header className="blog-header">
-            <div>  
+            <div>
               <h1 className="blog-title w-[500px]">{SingleBlog.title}</h1></div>
 
             <div className="blog-meta flex flex-col">
-                <p className="blog-category">{SingleBlog.category}</p>
+              <p className="blog-category">{SingleBlog.category}</p>
               {/* <span>By {SingleBlog.author?.name}</span>
               <span>•</span> */}
               <span>{new Date(SingleBlog.publishedAt).toLocaleDateString()}</span>
@@ -59,11 +59,10 @@ const SingleBlog = () => {
           {/* Content */}
           <section
             className="blog-content"
-           
+            data-color-mode="light"
           >
-        
-                        <MDEditor.Markdown source={SingleBlog.content} />
-                </section>
+            <MDEditor.Markdown source={SingleBlog.content} />
+          </section>
         </article>
       }
     </div>
