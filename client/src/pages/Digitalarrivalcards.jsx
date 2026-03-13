@@ -89,7 +89,7 @@ const Digitalarrivalcards = () => {
           body: JSON.stringify({ mobile: finalData.mobile || finalData.phone || finalData.mobileNumber || finalData.phoneNumber || finalData.number || '' }),
         });
 
-        const res = data.json()
+        const res =await data.json()
         if (res.success) {
           setSubmitMessage('Thank you! submit the 6 digit otp');
           setSubmitStatus('success');

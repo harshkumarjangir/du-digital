@@ -122,7 +122,7 @@ const IndianEvisa = () => {
           body: JSON.stringify({ mobile: formValues.mobile || formValues.phone || formValues.mobileNumber || formValues.phoneNumber || formValues.number || '' }),
         });
 
-        const res = data.json()
+        const res = await data.json()
         if (res.success) {
           setSubmitMessage('Thank you! submit the 6 digit otp');
           setSubmitStatus('success');
