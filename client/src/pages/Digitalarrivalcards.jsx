@@ -86,7 +86,7 @@ const Digitalarrivalcards = () => {
         const data = await fetch(`${BackendURL}/api/otp/send`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ mobile: finalData.mobile || finalData.phone || finalData.mobileNumber || finalData.phoneNumber || finalData.number || finalData.Phone '' }),
+          body: JSON.stringify({ mobile: finalData.mobile || finalData.phone || finalData.mobileNumber || finalData.phoneNumber || finalData.number || finalData.Phone|| '' }),
         });
 
         const res =await data.json()
