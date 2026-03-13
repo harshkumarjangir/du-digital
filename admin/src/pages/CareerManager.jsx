@@ -50,7 +50,7 @@ const CareerManager = () => {
   const fetchCareers = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`https://duapi.dudigitalglobal.com/api/careers`);
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/careers`);
       setCareers(response.data);
     } catch (error) {
       console.error("Error fetching careers:", error);
@@ -81,10 +81,10 @@ const CareerManager = () => {
 
     try {
       if (editingCareer) {
-        await axios.put(`https://duapi.dudigitalglobal.com/api/careers/${editingCareer._id}`, data);
+        await axios.put(`${import.meta.env.VITE_API_BASE_URL}/careers/${editingCareer._id}`, data);
         showSuccess("Job posting updated successfully");
       } else {
-        await axios.post(`https://duapi.dudigitalglobal.com/api/careers`, data);
+        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/careers`, data);
         showSuccess("Job posting created successfully");
       }
       fetchCareers();
@@ -102,7 +102,7 @@ const CareerManager = () => {
     if (!window.confirm(`Are you sure you want to delete "${title}"?`)) return;
 
     try {
-      await axios.delete(`https://duapi.dudigitalglobal.com/api/careers/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/careers/${id}`);
       showSuccess("Job posting deleted successfully");
       fetchCareers();
     } catch (error) {

@@ -13,7 +13,7 @@ export const fetchUserProfile = createAsyncThunk(
                 },
             };
 
-            const response = await axios.get(`https://duapi.dudigitalglobal.com/api/auth/me`, config);
+            const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/auth/me`, config);
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response?.data?.message || error.message);

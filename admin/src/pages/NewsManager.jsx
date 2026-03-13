@@ -25,6 +25,7 @@ import {
 import axios from "axios";
 
 const NewsManager = () => {
+  const ApiUrl=import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
@@ -47,7 +48,7 @@ const NewsManager = () => {
   const fetchNews = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`https://duapi.dudigitalglobal.com/api/news`);
+      const response = await axios.get(`${ApiUrl}/news`);
       setNews(response.data);
     } catch (error) {
       console.error("Error fetching news:", error);
@@ -90,12 +91,12 @@ const NewsManager = () => {
 
     try {
       if (editingId) {
-        await axios.put(`https://duapi.dudigitalglobal.com/api/news/${editingId}`, data, {
+        await axios.put(`${ApiUrl}/news/${editingId}`, data, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         showSuccess("News updated successfully");
       } else {
-        await axios.post(`https://duapi.dudigitalglobal.com/api/news`, data, {
+        await axios.post(`${ApiUrl}/news`, data, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         showSuccess("News created successfully");
@@ -130,7 +131,7 @@ const NewsManager = () => {
     if (!window.confirm(`Are you sure you want to delete "${title}"?`)) return;
 
     try {
-      await axios.delete(`https://duapi.dudigitalglobal.com/api/news/${id}`);
+      await axios.delete(`${ApiUrl}/news/${id}`);
       showSuccess("News deleted successfully");
       fetchNews();
     } catch (error) {
@@ -230,7 +231,7 @@ const NewsManager = () => {
                   <div className="flex-shrink-0">
                     {item.imageUrl ? (
                       <img
-                        src={`https://duapi.dudigitalglobal.com/api${item.imageUrl}`}
+                        src={`${ApiUrl}${item.imageUrl}`}
                         alt={item.title}
                         style={{
                           width: "120px",
