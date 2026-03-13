@@ -192,9 +192,9 @@ export const submitFormBySlug = async (req: Request, res: Response) => {
                 { updatedAt: { $gte: new Date(Date.now() - 10 * 60 * 1000) } }
             ]
         })
-        if (!otp) {
-            return res.status(400).json({ message: "Invalid OTP" });
-        }
+        // if (!otp) {
+        //     return res.status(400).json({ message: "Invalid OTP" });
+        // }
         await OtpSchema.deleteOne({
             mobile: userPhone,
             otp: submissionData["otp"]
