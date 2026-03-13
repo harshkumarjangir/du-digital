@@ -334,3 +334,8 @@ body {
 .animate-bounce-subtle {
     animation: bounceSubtle 2s infinite ease-in-out;
 }
+woot-widget--standard_small, .woot-widget--standard_medium, .woot-widget--standard_large {
+    box-shadow: none !important;
+    border: none;
+    margin-right: 100px !important
+}

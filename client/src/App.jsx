@@ -27,7 +27,6 @@ import Globalrecruitmentservices from './pages/Globalrecruitmentservices'
 import OurCapabilities from './pages/OurCapabilities'
 import Magazine from './pages/Magazine'
 import Policy2 from './pages/CookiePolicy2'
-import FloatingChatCTA from './components/common/FloatingChatCTA'
 import ForGovernmentEmbassies from './pages/ForGovernmentEmbassies'
 import Duverify from './pages/Duverify'
 import Companysetup from './pages/Companysetup'
@@ -99,7 +98,6 @@ const App = () => {
                         <Footer />
                         <OurOffices />
                         <Copyright />
-                        <FloatingChatCTA />
                 </div>
         );
 }
