@@ -43,11 +43,11 @@ const ContactForm = ({ form }) => {
         dispatch(clearContactState());
 
         const payload = {
-            fullName: formData.name,
-            email: formData.email,
-            phone: formData.phone?.fullNumber || "",
-            message: formData.message,
-            AllowMsg: formData.consent,
+            Last_Name: formData.name,
+            Email: formData.email,
+            Phone: formData.phone?.fullNumber || "",
+            Message: formData.message,
+            Remarks: formData.consent,
             otp:formData.otp
         };
 if(otpSent){

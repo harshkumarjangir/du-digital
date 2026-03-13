@@ -100,20 +100,25 @@ const [otpSent, setOtpSent] = useState(false)
     // };
 
     const payload = {
-      fullName: formData.fullName,
-      email: formData.email,
-      phone: formData.phone?.fullNumber || "",
-      lookingFor: formData.lookingFor,
-      city: formData.city,
-      isMsg: formData.isMsg,
-      ...(formData.lookingFor.includes("Partner") && {
-        businessName: formData.businessName,
-        otp:formData.otp
+      Last_Name: formData.fullName,
+      Email: formData.email,
+      Phone: formData.phone?.fullNumber || "",
+      Looking_For: formData.lookingFor,
+      City: formData.city,
+      Remarks: formData.isMsg,
+      ...(formData.lookingFor.includes("Partner") &&  formData.businessName&&{
+        Business_Name: formData.businessName,
       }),
+        ...(formData.lookingFor.includes("Traveler") &&  formData.destinationCountry&&{
+        Country: formData.destinationCountry,
+      }),
+      otp:formData.otp
     };
 
 
  if(otpSent){
+  console.log("payload",payload);
+  
    const result = await dispatch(submitPartnerForm(payload));
 
     if (submitPartnerForm.fulfilled.match(result)) {
@@ -128,6 +133,8 @@ const [otpSent, setOtpSent] = useState(false)
         isMsg: false,
         otp:""
       });
+      
+setOtpSent(false);
     }}
     else{
       const data =       await fetch(`${BackendURL}/api/otp/send`, {

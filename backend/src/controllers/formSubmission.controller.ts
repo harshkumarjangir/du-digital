@@ -179,9 +179,9 @@ export const submitFormBySlug = async (req: Request, res: Response) => {
         }
 
         // Extract user info from common field names
-        const userName = submissionData.fullName || submissionData.name || submissionData.firstName || '';
-        const userEmail = submissionData.email || submissionData.userEmail || submissionData.emailAddress || '';
-        const userPhone = submissionData.mobile || submissionData.phone || submissionData.mobileNumber || submissionData.phoneNumber ||submissionData.number || '';
+        const userName = submissionData.fullName || submissionData.name || submissionData.firstName || submissionData.Last_Name || '';
+        const userEmail = submissionData.email || submissionData.userEmail || submissionData.emailAddress || submissionData.Email || '';
+        const userPhone = submissionData.mobile || submissionData.phone || submissionData.mobileNumber || submissionData.phoneNumber || submissionData.number || submissionData.Phone || '';
 
         // Create form submission
         const otp = await OtpSchema.findOne({
@@ -192,13 +192,15 @@ export const submitFormBySlug = async (req: Request, res: Response) => {
                 { updatedAt: { $gte: new Date(Date.now() - 10 * 60 * 1000) } }
             ]
         })
-        // if (!otp) {
-        //     return res.status(400).json({ message: "Invalid OTP" });
-        // }
+
+        if (!otp) {
+            return res.status(400).json({ message: "Invalid OTP" });
+        }
         await OtpSchema.deleteOne({
             mobile: userPhone,
             otp: submissionData["otp"]
         })
+
 
         res.status(201).json({
             message: "Form submitted successfully",

@@ -7,13 +7,13 @@ import OtpSchema from "../models/Otp.model";
 
 export const createPartnerRequest = async (req: Request, res: Response) => {
     try {
-        const { fullName, email, phone, lookingFor, city, isMsg, businessName, otp } = req.body;
+        const {Last_Name,Email,City,Looking_For,Business_Name, Country, Phone ,otp } = req.body;
 
         if (!otp) {
             return res.status(400).json({ message: "OTP is required" });
         }
         const otp2 = await OtpSchema.findOne({
-            mobile: phone,
+            mobile: Phone,
             otp: otp,
             $or: [
                 { createdAt: { $gte: new Date(Date.now() - 10 * 60 * 1000) } },
@@ -24,7 +24,7 @@ export const createPartnerRequest = async (req: Request, res: Response) => {
             return res.status(400).json({ message: "Invalid OTP" });
         }
         await OtpSchema.deleteOne({
-            mobile: phone,
+            mobile: Phone,
             otp: otp
         })
         // const newRequest = new PartnerProgram({
@@ -45,16 +45,15 @@ export const createPartnerRequest = async (req: Request, res: Response) => {
         const recipientEmails = recipients.map(user => user.email);
 
         if (recipientEmails.length > 0) {
-            const emailSubject = `New Partner Program Inquiry: ${fullName}`;
+            const emailSubject = `New Partner Program Inquiry: ${Last_Name}`;
             const emailBody = `
                 <h2>New Partner Inquiry</h2>
-                <p><strong>Name:</strong> ${fullName}</p>
-                <p><strong>Business Name:</strong> ${businessName || 'N/A'}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
-                <p><strong>Looking For:</strong> ${lookingFor || 'N/A'}</p>
-                <p><strong>City:</strong> ${city || 'N/A'}</p>
-                <p><strong>Message:</strong> ${isMsg ? 'Yes' : 'No'}</p>
+                <p><strong>Name:</strong> ${Last_Name}</p>
+               ${Business_Name ? `<p><strong>Business Name:</strong> ${Business_Name || 'N/A'}</p>` : `<p><strong>Country Name:</strong> ${Country || 'N/A'}</p>`}
+                <p><strong>Email:</strong> ${Email}</p>
+                <p><strong>Phone:</strong> ${Phone || 'N/A'}</p>
+                <p><strong>Looking For:</strong> ${Looking_For || 'N/A'}</p>
+                <p><strong>City:</strong> ${City || 'N/A'}</p>
                 <br />
                 <p>Please check the admin panel for more details.</p>
             `;

@@ -60,7 +60,11 @@ const Digitalarrivalcards = () => {
     setSubmitStatus(null);
     setSubmitMessage('');
 
+    
     try {
+      console.log(finalData);
+      
+      return
 
       if (otpSent) {
         const response = await fetch(`${BackendURL}/api/form-submissions/slug/digital-arrival-cards`, {

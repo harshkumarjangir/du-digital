@@ -5,8 +5,8 @@ const Step3TravellingDetails = ({ formData, handleChange, nextStep, prevStep, op
     const { travelModes } = options;
 
     const requiredFields = [
-        'passportNumber', 'passportExpiry', 'arrivalDate', 'departureDate',
-        'travelMode', 'flightNumber'
+        'Passport_Number', 'Passport_Expiry', 'Arrival_Date', 'Departure_Date',
+        'Travel_Mode', 'Flight_Number'
     ];
 
     // Optional: check valid passport expiry vs arrival/departure logic here
@@ -27,12 +27,12 @@ const Step3TravellingDetails = ({ formData, handleChange, nextStep, prevStep, op
                 </h3>
                 <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                        <label htmlFor="passportNumber" className="block text-gray-700 font-medium mb-2">Passport Number <span className="text-[#FF1033]">*</span></label>
+                        <label htmlFor="Passport_Number" className="block text-gray-700 font-medium mb-2">Passport Number <span className="text-[#FF1033]">*</span></label>
                         <input
-                            id="passportNumber"
+                            id="Passport_Number"
                             type="text"
-                            name="passportNumber"
-                            value={formData.passportNumber}
+                            name="Passport_Number"
+                            value={formData.Passport_Number}
                             onChange={handleChange}
                             placeholder="Enter Passport Number"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none uppercase"
@@ -40,12 +40,12 @@ const Step3TravellingDetails = ({ formData, handleChange, nextStep, prevStep, op
                         />
                     </div>
                     <div>
-                        <label htmlFor="passportExpiry" className="block text-gray-700 font-medium mb-2">Passport Expiry Date <span className="text-[#FF1033]">*</span></label>
+                        <label htmlFor="Passport_Expiry" className="block text-gray-700 font-medium mb-2">Passport Expiry Date <span className="text-[#FF1033]">*</span></label>
                         <input
-                            id="passportExpiry"
+                            id="Passport_Expiry"
                             type="date"
-                            name="passportExpiry"
-                            value={formData.passportExpiry}
+                            name="Passport_Expiry"
+                            value={formData.Passport_Expiry}
                             onChange={handleChange}
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none"
                             required
@@ -53,24 +53,24 @@ const Step3TravellingDetails = ({ formData, handleChange, nextStep, prevStep, op
                     </div>
 
                     <div>
-                        <label htmlFor="arrivalDate" className="block text-gray-700 font-medium mb-2">Date of Arrival <span className="text-[#FF1033]">*</span></label>
+                        <label htmlFor="Arrival_Date" className="block text-gray-700 font-medium mb-2">Date of Arrival <span className="text-[#FF1033]">*</span></label>
                         <input
-                            id="arrivalDate"
+                            id="Arrival_Date"
                             type="date"
-                            name="arrivalDate"
-                            value={formData.arrivalDate}
+                            name="Arrival_Date"
+                            value={formData.Arrival_Date}
                             onChange={handleChange}
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none"
                             required
                         />
                     </div>
                     <div>
-                        <label htmlFor="departureDate" className="block text-gray-700 font-medium mb-2">Date of Departure <span className="text-[#FF1033]">*</span></label>
+                        <label htmlFor="Departure_Date" className="block text-gray-700 font-medium mb-2">Date of Departure <span className="text-[#FF1033]">*</span></label>
                         <input
-                            id="departureDate"
+                            id="Departure_Date"
                             type="date"
-                            name="departureDate"
-                            value={formData.departureDate}
+                            name="Departure_Date"
+                            value={formData.Departure_Date}
                             onChange={handleChange}
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none"
                             required
@@ -78,12 +78,12 @@ const Step3TravellingDetails = ({ formData, handleChange, nextStep, prevStep, op
                     </div>
 
                     <div>
-                        <label htmlFor="travelMode" className="block text-gray-700 font-medium mb-2">Mode of Travel <span className="text-[#FF1033]">*</span></label>
+                        <label htmlFor="Travel_Mode" className="block text-gray-700 font-medium mb-2">Mode of Travel <span className="text-[#FF1033]">*</span></label>
                         <div className="relative">
                             <select
-                                id="travelMode"
-                                name="travelMode"
-                                value={formData.travelMode}
+                                id="Travel_Mode"
+                                name="Travel_Mode"
+                                value={formData.Travel_Mode}
                                 onChange={handleChange}
                                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none appearance-none bg-white"
                                 required
@@ -100,12 +100,12 @@ const Step3TravellingDetails = ({ formData, handleChange, nextStep, prevStep, op
                     </div>
 
                     <div>
-                        <label htmlFor="flightNumber" className="block text-gray-700 font-medium mb-2">Flight/Transport Number <span className="text-[#FF1033]">*</span></label>
+                        <label htmlFor="Flight_Number" className="block text-gray-700 font-medium mb-2">Flight/Transport Number <span className="text-[#FF1033]">*</span></label>
                         <input
-                            id="flightNumber"
+                            id="Flight_Number"
                             type="text"
-                            name="flightNumber"
-                            value={formData.flightNumber}
+                            name="Flight_Number"
+                            value={formData.Flight_Number}
                             onChange={handleChange}
                             placeholder="e.g. EK501"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none uppercase"
@@ -114,12 +114,12 @@ const Step3TravellingDetails = ({ formData, handleChange, nextStep, prevStep, op
                     </div>
 
                     <div>
-                        <label htmlFor="departureFlightNumber" className="block text-gray-700 font-medium mb-2">Departure Flight Number (Optional)</label>
+                        <label htmlFor="Departure_Flight_Number" className="block text-gray-700 font-medium mb-2">Departure Flight Number (Optional)</label>
                         <input
-                            id="departureFlightNumber"
+                            id="Departure_Flight_Number"
                             type="text"
-                            name="departureFlightNumber"
-                            value={formData.departureFlightNumber}
+                            name="Departure_Flight_Number"
+                            value={formData.Departure_Flight_Number}
                             onChange={handleChange}
                             placeholder="e.g. EK502"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none uppercase"

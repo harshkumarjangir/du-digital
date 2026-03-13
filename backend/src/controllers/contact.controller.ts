@@ -5,12 +5,12 @@ import OtpSchema from "../models/Otp.model";
 
 export const createInquiry = async (req: Request, res: Response) => {
     try {
-        const { fullName, email, phone, message, AllowMsg ,otp} = req.body;
+        const { Last_Name, Email, Phone, Message, Remarks ,otp} = req.body;
         if(!otp){
             return res.status(400).json({ message: "OTP is required" });
         }
    const otp2 = await OtpSchema.findOne({
-            mobile: phone,
+            mobile: Phone,
             otp: otp,
             $or: [
                 { createdAt: { $gte: new Date(Date.now() - 10 * 60 * 1000) } },
@@ -21,19 +21,19 @@ export const createInquiry = async (req: Request, res: Response) => {
             return res.status(400).json({ message: "Invalid OTP" });
         }
         await OtpSchema.deleteOne({
-            mobile: phone,
+            mobile: Phone,
             otp: otp
         })
         // const newInquiry = new ContactInquiry({
-        //     fullName,
-        //     email,
-        //     phone,
+        //     Last_Name,
+        //     Email,
+        //     Phone,
         //     message: message || "",
-        //     AllowMsg: AllowMsg || false
+        //     Remarks: Remarks || false
         // });
 
         // await newInquiry.save();
-        res.status(201).json({ message: "Inquiry submitted successfully", inquiry: {fullName, email, phone, message, AllowMsg ,otp} });
+        res.status(201).json({ message: "Inquiry submitted successfully", inquiry: {Last_Name, Email, Phone, Message, Remarks ,otp} });
     } catch (error) {
         console.error("Create Inquiry Error", error);
         res.status(500).json({ message: "Error submitting inquiry" });

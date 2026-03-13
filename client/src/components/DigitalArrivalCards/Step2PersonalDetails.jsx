@@ -5,8 +5,8 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
     const { nationalities, genderOptions } = options;
 
     const requiredFields = [
-        'firstName', 'lastName', 'email', 'nationality', 'gender', 'dob',
-        'accommodationLine1', 'accommodationCity', 'accommodationState', 'accommodationZip'
+        'First_Name', 'Last_Name', 'Email', 'Nationality', 'Gender', 'DOB',
+        'Accommodation_Line_1', 'Accommodation_City', 'Accommodation_State', 'Accommodation_Zip'
     ];
 
     const isStepValid = requiredFields.every(field => formData[field] && formData[field].trim() !== '');
@@ -28,12 +28,12 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                 </h3>
                 <div className="grid md:grid-cols-3 gap-6">
                     <div>
-                        <label htmlFor="firstName" className="block text-gray-700 font-medium mb-2">First Name <span className="text-[#FF1033]">*</span></label>
+                        <label htmlFor="First_Name" className="block text-gray-700 font-medium mb-2">First Name <span className="text-[#FF1033]">*</span></label>
                         <input
-                            id="firstName"
+                            id="First_Name"
                             type="text"
-                            name="firstName"
-                            value={formData.firstName}
+                            name="First_Name"
+                            value={formData.First_Name}
                             onChange={handleChange}
                             placeholder="Enter Your First Name"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none"
@@ -41,24 +41,24 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                         />
                     </div>
                     <div>
-                        <label htmlFor="middleName" className="block text-gray-700 font-medium mb-2">Middle Name</label>
+                        <label htmlFor="Middle_Name" className="block text-gray-700 font-medium mb-2">Middle Name</label>
                         <input
-                            id="middleName"
+                            id="Middle_Name"
                             type="text"
-                            name="middleName"
-                            value={formData.middleName}
+                            name="Middle_Name"
+                            value={formData.Middle_Name}
                             onChange={handleChange}
                             placeholder="Enter Your Middle Name"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none"
                         />
                     </div>
                     <div>
-                        <label htmlFor="lastName" className="block text-gray-700 font-medium mb-2">Last Name <span className="text-[#FF1033]">*</span></label>
+                        <label htmlFor="Last_Name" className="block text-gray-700 font-medium mb-2">Last Name <span className="text-[#FF1033]">*</span></label>
                         <input
-                            id="lastName"
+                            id="Last_Name"
                             type="text"
-                            name="lastName"
-                            value={formData.lastName}
+                            name="Last_Name"
+                            value={formData.Last_Name}
                             onChange={handleChange}
                             placeholder="Enter Your Last Name"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none"
@@ -67,12 +67,12 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                     </div>
 
                     <div className="md:col-span-2">
-                        <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email Address <span className="text-[#FF1033]">*</span></label>
+                        <label htmlFor="Email" className="block text-gray-700 font-medium mb-2">Email Address <span className="text-[#FF1033]">*</span></label>
                         <input
-                            id="email"
+                            id="Email"
                             type="email"
-                            name="email"
-                            value={formData.email}
+                            name="Email"
+                            value={formData.Email}
                             onChange={handleChange}
                             placeholder="Email Address"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none"
@@ -81,12 +81,12 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                     </div>
 
                     <div>
-                        <label htmlFor="nationality" className="block text-gray-700 font-medium mb-2">Nationality/Citizenship <span className="text-[#FF1033]">*</span></label>
+                        <label htmlFor="Nationality" className="block text-gray-700 font-medium mb-2">Nationality/Citizenship <span className="text-[#FF1033]">*</span></label>
                         <div className="relative">
                             <select
-                                id="nationality"
-                                name="nationality"
-                                value={formData.nationality}
+                                id="Nationality"
+                                name="Nationality"
+                                value={formData.Nationality}
                                 onChange={handleChange}
                                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none appearance-none bg-white"
                                 required
@@ -103,12 +103,12 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                     </div>
 
                     <div>
-                        <label htmlFor="gender" className="block text-gray-700 font-medium mb-2">Gender <span className="text-[#FF1033]">*</span></label>
+                        <label htmlFor="Gender" className="block text-gray-700 font-medium mb-2">Gender <span className="text-[#FF1033]">*</span></label>
                         <div className="relative">
                             <select
-                                id="gender"
-                                name="gender"
-                                value={formData.gender}
+                                id="Gender"
+                                name="Gender"
+                                value={formData.Gender}
                                 onChange={handleChange}
                                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none appearance-none bg-white"
                                 required
@@ -125,12 +125,12 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                     </div>
 
                     <div>
-                        <label htmlFor="dob" className="block text-gray-700 font-medium mb-2">Date of Birth <span className="text-[#FF1033]">*</span></label>
+                        <label htmlFor="DOB" className="block text-gray-700 font-medium mb-2">Date of Birth <span className="text-[#FF1033]">*</span></label>
                         <input
-                            id="dob"
+                            id="DOB"
                             type="date"
-                            name="dob"
-                            value={formData.dob}
+                            name="DOB"
+                            value={formData.DOB}
                             onChange={handleChange}
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none"
                             required
@@ -142,16 +142,16 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
             {/* Accommodation Section */}
             <div>
                 <h3 className="text-xl font-bold text-gray-800 mb-6 pb-2 border-b border-gray-200">
-                    Accommodation Details in {formData.country ? options.countries.find(c => c.value === formData.country)?.label : 'Destination'}
+                    Accommodation Details in {formData.Country ? options.countries.find(c => c.value === formData.Country)?.label : 'Destination'}
                 </h3>
                 <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                        <label htmlFor="accommodationLine1" className="block text-gray-700 font-medium mb-2">Address Line 1 <span className="text-[#FF1033]">*</span></label>
+                        <label htmlFor="Accommodation_Line_1" className="block text-gray-700 font-medium mb-2">Address Line 1 <span className="text-[#FF1033]">*</span></label>
                         <input
-                            id="accommodationLine1"
+                            id="Accommodation_Line_1"
                             type="text"
-                            name="accommodationLine1"
-                            value={formData.accommodationLine1}
+                            name="Accommodation_Line_1"
+                            value={formData.Accommodation_Line_1}
                             onChange={handleChange}
                             placeholder="Street Address"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none"
@@ -159,24 +159,24 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                         />
                     </div>
                     <div>
-                        <label htmlFor="accommodationLine2" className="block text-gray-700 font-medium mb-2">Address Line 2</label>
+                        <label htmlFor="Accommodation_Line_2" className="block text-gray-700 font-medium mb-2">Address Line 2</label>
                         <input
-                            id="accommodationLine2"
+                            id="Accommodation_Line_2"
                             type="text"
-                            name="accommodationLine2"
-                            value={formData.accommodationLine2}
+                            name="Accommodation_Line_2"
+                            value={formData.Accommodation_Line_2}
                             onChange={handleChange}
                             placeholder="Apartment, Suite, Unit, etc."
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none"
                         />
                     </div>
                     <div>
-                        <label htmlFor="accommodationCity" className="block text-gray-700 font-medium mb-2">City <span className="text-[#FF1033]">*</span></label>
+                        <label htmlFor="Accommodation_City" className="block text-gray-700 font-medium mb-2">City <span className="text-[#FF1033]">*</span></label>
                         <input
-                            id="accommodationCity"
+                            id="Accommodation_City"
                             type="text"
-                            name="accommodationCity"
-                            value={formData.accommodationCity}
+                            name="Accommodation_City"
+                            value={formData.Accommodation_City}
                             onChange={handleChange}
                             placeholder="City"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none"
@@ -184,12 +184,12 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                         />
                     </div>
                     <div>
-                        <label htmlFor="accommodationState" className="block text-gray-700 font-medium mb-2">State/Province <span className="text-[#FF1033]">*</span></label>
+                        <label htmlFor="Accommodation_State" className="block text-gray-700 font-medium mb-2">State/Province <span className="text-[#FF1033]">*</span></label>
                         <input
-                            id="accommodationState"
+                            id="Accommodation_State"
                             type="text"
-                            name="accommodationState"
-                            value={formData.accommodationState}
+                            name="Accommodation_State"
+                            value={formData.Accommodation_State}
                             onChange={handleChange}
                             placeholder="State/Province"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none"
@@ -197,12 +197,12 @@ const Step2PersonalDetails = ({ formData, handleChange, nextStep, prevStep, opti
                         />
                     </div>
                     <div>
-                        <label htmlFor="accommodationZip" className="block text-gray-700 font-medium mb-2">Zip/Postal Code <span className="text-[#FF1033]">*</span></label>
+                        <label htmlFor="Accommodation_Zip" className="block text-gray-700 font-medium mb-2">Zip/Postal Code <span className="text-[#FF1033]">*</span></label>
                         <input
-                            id="accommodationZip"
+                            id="Accommodation_Zip"
                             type="text"
-                            name="accommodationZip"
-                            value={formData.accommodationZip}
+                            name="Accommodation_Zip"
+                            value={formData.Accommodation_Zip}
                             onChange={handleChange}
                             placeholder="Zip Code"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none"

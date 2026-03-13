@@ -3,9 +3,9 @@ import { ChevronDown } from "lucide-react";
 
 const Step1Location = ({ formData, handleChange, nextStep, options }) => {
     const { countries } = options;
-    const { country, phoneNumber } = formData;
+    const { Country, Phone } = formData;
 
-    const isStepValid = country && phoneNumber;
+    const isStepValid = Country && Phone;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,14 +18,14 @@ const Step1Location = ({ formData, handleChange, nextStep, options }) => {
         <form onSubmit={handleSubmit} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                    <label htmlFor="country" className="block text-gray-700 font-medium mb-2">
+                    <label htmlFor="Country" className="block text-gray-700 font-medium mb-2">
                         Where are you going? <span className="text-[#FF1033]">*</span>
                     </label>
                     <div className="relative">
                         <select
-                            id="country"
-                            name="country"
-                            value={country}
+                            id="Country"
+                            name="Country"
+                            value={Country}
                             onChange={handleChange}
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all outline-none appearance-none cursor-pointer bg-white"
                             required
@@ -44,7 +44,7 @@ const Step1Location = ({ formData, handleChange, nextStep, options }) => {
                 </div>
 
                 <div>
-                    <label htmlFor="phoneNumber" className="block text-gray-700 font-medium mb-2">
+                    <label htmlFor="Phone" className="block text-gray-700 font-medium mb-2">
                         Phone Number <span className="text-[#FF1033]">*</span>
                     </label>
                     <div className="flex">
@@ -53,10 +53,10 @@ const Step1Location = ({ formData, handleChange, nextStep, options }) => {
                             <ChevronDown className="w-4 h-4 text-gray-500" />
                         </div>
                         <input
-                            id="phoneNumber"
+                            id="Phone"
                             type="tel"
-                            name="phoneNumber"
-                            value={phoneNumber}
+                            name="Phone"
+                            value={Phone}
                             onChange={handleChange}
                             placeholder="Phone Number"
                             required
