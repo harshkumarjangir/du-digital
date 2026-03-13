@@ -101,7 +101,7 @@ const Malaysiavisaforndians = () => {
         const data = await fetch(`${BackendURL}/api/otp/send`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ mobile: formValues.mobile || formValues.phone || formValues.mobileNumber || formValues.phoneNumber || formValues.number || '' }),
+          body: JSON.stringify({ mobile: formValues.mobile || formValues.phone || formValues.mobileNumber || formValues.phoneNumber || formValues.number || formValues.Phone||'' }),
         });
 
         const res =await data.json()
