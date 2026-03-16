@@ -6,6 +6,7 @@ import { sendEmail } from "../utils/emailService";
 import OtpSchema from "../models/Otp.model";
 import User from "../models/User.model";
 import { createLead } from "../utils/ZohoCms";
+import { refreshZohoToken } from "../utils/RefreashToken";
 
 // HTML Email Template for User Confirmation
 const generateUserEmail = (
@@ -245,8 +246,7 @@ export const submitFormBySlug = async (req: Request, res: Response) => {
 
  
 
-    const token =
-      "1000.64a45b5f53a64bc4bb773454d8704070.d3ec5a451aafe5d7e306595a48a4d932";
+    const token = await refreshZohoToken()
 
     //  const formSubmission = new FormSubmission({
     //     formId: form._id,
