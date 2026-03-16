@@ -108,8 +108,13 @@ if (cluster.isPrimary) {
   app.use('/api/otp', otpRoutes);
 
   app.get('/', (req: Request, res: Response) => {
+    console.log("req.body",req.body)
+    console.log("req.params",req.params)
+    console.log("req.query",req.query)
     res.send('Hello World');
   });
+  
+  // 1000.2b879d38ae30eafb54abe054e4eedd58.9b25353dce3aacd9327362ae6e682846
 
   app.listen(port, () => {
     console.log(`Worker ${process.pid} started. Server running on http://localhost:${port}`);
