@@ -129,8 +129,8 @@ const Lebanon = () => {
 
       if (response.ok) {
         setSubmitStatus('success');
-        setSubmitMessage('Thank you! Your request has been submitted.');
-        setFormValues({});
+         setSubmitMessage('Thank you! Your  application has been submitted successfully. Our team will contact you shortly.');
+         setFormValues({});
       } else {
         setSubmitStatus('error');
         setSubmitMessage(res.message || 'Something went wrong.');

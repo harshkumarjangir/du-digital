@@ -87,7 +87,7 @@ const BangladeshVisasForUaeSingapore = () => {
         const res = await response.json();
         if (res.ok) {
           setSubmitStatus('success');
-          setSubmitMessage('Thank you! Your eVisa application has been submitted successfully. Our team will contact you shortly.');
+          setSubmitMessage('Thank you! Your  application has been submitted successfully. Our team will contact you shortly.');
           // Reset form
           // const resetValues = {};
           // formData?.fields?.forEach(field => { resetValues[field.name] = ''; });

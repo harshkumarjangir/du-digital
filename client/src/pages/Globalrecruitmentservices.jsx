@@ -147,6 +147,8 @@ const Globalrecruitmentservices = () => {
         const res = await response.json();
         if (response.ok) {
           setSubmitSuccess(true);
+           setSubmitMessage('Thank you! Your eVisa application has been submitted successfully. Our team will contact you shortly.');
+         
           // Reset form
 
         } else {

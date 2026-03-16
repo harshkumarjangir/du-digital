@@ -95,6 +95,8 @@ const Companysetup = () => {
 
         if (response.ok) {
           setSubmitStatus('success');
+          setSubmitMessage('Thank you! Your  application has been submitted successfully. Our team will contact you shortly.');
+         
         } else {
           setSubmitStatus('error');
           setSubmitMessage(res.message || 'Something went wrong. Please try again.');
