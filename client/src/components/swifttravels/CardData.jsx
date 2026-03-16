@@ -24,15 +24,7 @@ const [otpSent, setOtpSent] = useState(false)
   }, [dispatch]);
 
   // Handle success after form submission
-  useEffect(() => {
-    if (formSuccess) {
-      // Close modal after 2 seconds on success
-      setTimeout(() => {
-        setModelId(null);
-        dispatch(resetFormState());
-      }, 2000);
-    }
-  }, [formSuccess, dispatch]);
+ 
 
   const handleClick = (e) => {
     setModelId(e);
@@ -59,6 +51,10 @@ const [otpSent, setOtpSent] = useState(false)
       packageId: modelId,
       otp: e.target?.otp?.value||"",
     }));
+     setTimeout(() => {
+        setModelId(null);
+        dispatch(resetFormState());
+      }, 2000);
   }else{
         
        const data = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/otp/send`, {
@@ -68,7 +64,6 @@ const [otpSent, setOtpSent] = useState(false)
         });
         const res = await data.json();
         if (res.success) {
-          setSubmitStatus('success');
           setSubmitMessage('Thank you! submit the 6 digit otp');
           alert('submit the 6 digit otp');
           setOtpSent(true);
