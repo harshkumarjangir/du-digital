@@ -1,29 +1,22 @@
 import { Request, Response } from "express";
 import TravelInquiry from "../models/Travelinquery.model"
 import OtpSchema from "../models/Otp.model";
+import { refreshZohoToken } from "../utils/RefreashToken";
+import { createLead } from "../utils/ZohoCms";
 
 // Create a new travel inquiry
 export const createTravelInquiry = async (req: Request, res: Response) => {
     try {
-        const { name, email, mobileNumber, adult, child, infant, travelDate, packageId,otp } = req.body;
+const fromData = req.body;
+        const { Last_Name, Email, Phone, Adult, Child, Infant, Travel_Date, packageId,otp }=fromData
 
-        if (!name || !email || !mobileNumber || !travelDate || !packageId||!otp) {
+        if (!Last_Name || !Email || !Phone || !Travel_Date || !packageId||!otp) {
             return res.status(400).json({ message: "Required fields are missing" });
         }
 
-        // const newInquiry = new TravelInquiry({
-        //     name,
-        //     email,
-        //     mobileNumber,
-        //     adult,
-        //     child,
-        //     infant,
-        //     travelDate,
-        //     packageId
-        // });
-  // Create form submission
+      
         const otp2 = await OtpSchema.findOne({
-            mobile: mobileNumber,
+            mobile: Phone,
             otp: otp,
             $or: [
                 { createdAt: { $gte: new Date(Date.now() - 10 * 60 * 1000) } },
@@ -34,10 +27,14 @@ export const createTravelInquiry = async (req: Request, res: Response) => {
             return res.status(400).json({ message: "Invalid OTP" });
         }
         await OtpSchema.deleteOne({
-            mobile: mobileNumber,
+            mobile: Phone,
             otp: otp
         })
         // await newInquiry.save();
+ const token = await refreshZohoToken()
+    fromData.Lead_Source = "Travellnquiry";
+
+    await createLead(fromData, token);
         res.status(201).json({ message: "Travel inquiry submitted successfully" });
     } catch (error) {
         console.error("Create Travel Inquiry Error", error);

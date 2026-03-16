@@ -46,18 +46,18 @@ const [otpSent, setOtpSent] = useState(false)
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-       if(otpSent){
+       if(!otpSent){
   // dispatch(resetFormState()); // Clear previous messages
     dispatch(SendQueryTravelPackage({
-      name: e.target.customerName.value,
-      email: e.target.email.value,
-      mobileNumber: e.target.mobileNumber.value,
-      adult: e.target.adult.value,
-      child: e.target.child.value,
-      infant: e.target.infant.value,
-      travelDate: e.target.travelDate.value,
+      Last_Name: e.target.customerName.value,
+      Email: e.target.email.value,
+      Phone: e.target.mobileNumber.value,
+      Adult: e.target.adult.value,
+      Child: e.target.child.value,
+      Infant: e.target.infant.value,
+      Travel_Date: e.target.travelDate.value,
       packageId: modelId,
-      otp: e.target.otp.value,
+      otp: e.target?.otp?.value||"",
     }));
   }else{
         
