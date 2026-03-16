@@ -4,10 +4,13 @@ import Partner from "../models/Partner.model";
 import User from "../models/User.model";
 import { sendEmail } from "../utils/emailService";
 import OtpSchema from "../models/Otp.model";
+import { refreshZohoToken } from "../utils/RefreashToken";
+import { createLead } from "../utils/ZohoCms";
 
 export const createPartnerRequest = async (req: Request, res: Response) => {
     try {
-        const {Last_Name,Email,City,Looking_For,Business_Name, Country, Phone ,otp } = req.body;
+        const formData = req.body;
+        const {Last_Name,Email,City,Looking_For,Business_Name, Country, Phone ,otp }=formData   
 
         if (!otp) {
             return res.status(400).json({ message: "OTP is required" });
@@ -40,25 +43,29 @@ export const createPartnerRequest = async (req: Request, res: Response) => {
 
         // await newRequest.save();
 
+        const token = await refreshZohoToken()
+            formData.Lead_Source = "BecomePartner";
+        
+            await createLead(formData, token);
         // Find users who should receive notifications
-        const recipients = await User.find({ receivePartnerNotifications: true }).select('email');
-        const recipientEmails = recipients.map(user => user.email);
+        // const recipients = await User.find({ receivePartnerNotifications: true }).select('email');
+        // const recipientEmails = recipients.map(user => user.email);
 
-        if (recipientEmails.length > 0) {
-            const emailSubject = `New Partner Program Inquiry: ${Last_Name}`;
-            const emailBody = `
-                <h2>New Partner Inquiry</h2>
-                <p><strong>Name:</strong> ${Last_Name}</p>
-               ${Business_Name ? `<p><strong>Business Name:</strong> ${Business_Name || 'N/A'}</p>` : `<p><strong>Country Name:</strong> ${Country || 'N/A'}</p>`}
-                <p><strong>Email:</strong> ${Email}</p>
-                <p><strong>Phone:</strong> ${Phone || 'N/A'}</p>
-                <p><strong>Looking For:</strong> ${Looking_For || 'N/A'}</p>
-                <p><strong>City:</strong> ${City || 'N/A'}</p>
-                <br />
-                <p>Please check the admin panel for more details.</p>
-            `;
-            await sendEmail(recipientEmails, emailSubject, emailBody);
-        }
+        // if (recipientEmails.length > 0) {
+        //     const emailSubject = `New Partner Program Inquiry: ${Last_Name}`;
+        //     const emailBody = `
+        //         <h2>New Partner Inquiry</h2>
+        //         <p><strong>Name:</strong> ${Last_Name}</p>
+        //        ${Business_Name ? `<p><strong>Business Name:</strong> ${Business_Name || 'N/A'}</p>` : `<p><strong>Country Name:</strong> ${Country || 'N/A'}</p>`}
+        //         <p><strong>Email:</strong> ${Email}</p>
+        //         <p><strong>Phone:</strong> ${Phone || 'N/A'}</p>
+        //         <p><strong>Looking For:</strong> ${Looking_For || 'N/A'}</p>
+        //         <p><strong>City:</strong> ${City || 'N/A'}</p>
+        //         <br />
+        //         <p>Please check the admin panel for more details.</p>
+        //     `;
+        //     await sendEmail(recipientEmails, emailSubject, emailBody);
+        // }
 
         res.status(201).json({ message: "Partner request submitted successfully", request: "" });
     } catch (error) {

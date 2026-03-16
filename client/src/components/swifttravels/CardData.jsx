@@ -46,7 +46,7 @@ const [otpSent, setOtpSent] = useState(false)
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-       if(!otpSent){
+       if(otpSent){
   // dispatch(resetFormState()); // Clear previous messages
     dispatch(SendQueryTravelPackage({
       Last_Name: e.target.customerName.value,
