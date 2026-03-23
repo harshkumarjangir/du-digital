@@ -6,11 +6,13 @@ import {
     updateSalesExpert,
     deleteSalesExpert
 } from "../controllers/salesExpert.controller";
+import { protect } from "../middleware/auth.middleware";
 
 const router = express.Router();
 
-router.post("/", addSalesExpert);
 router.get("/", getSalesExperts);
+router.use(protect);
+router.post("/", addSalesExpert);
 router.put("/:id", updateSalesExpert);
 router.delete("/:id", deleteSalesExpert);
 

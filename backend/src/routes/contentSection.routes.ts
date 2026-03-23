@@ -8,6 +8,7 @@ import {
     updateContentSection,
     deleteContentSection
 } from "../controllers/contentSection.controller";
+import { protect } from "../middleware/auth.middleware";
 
 const router = express.Router();
 
@@ -25,6 +26,8 @@ const upload = multer({ storage });
 
 router.get("/", getContentSections);
 router.get("/:id", getContentSectionById);
+
+router.use(protect);
 router.post("/", upload.any(), createContentSection);
 router.put("/:id", upload.any(), updateContentSection);
 router.delete("/:id", deleteContentSection);

@@ -2,6 +2,7 @@ import express from "express";
 import multer from "multer";
 import path from "path";
 import { uploadImage, getImages, deleteImage } from "../controllers/gallery.controller";
+import { protect } from "../middleware/auth.middleware";
 
 const router = express.Router();
 
@@ -18,6 +19,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.get("/", getImages);
+router.use(protect);
 router.post("/", upload.single("image"), uploadImage);
 router.delete("/:id", deleteImage);
 

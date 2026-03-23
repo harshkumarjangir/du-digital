@@ -2,6 +2,7 @@ import express from "express";
 import multer from "multer";
 import path from "path";
 import { createEvent, getEvents, addEventImages, getEventImages, updateEvent, deleteEvent, getEventById, deleteEventImage } from "../controllers/event.controller";
+import { protect } from "../middleware/auth.middleware";
 
 const router = express.Router();
 
@@ -21,11 +22,12 @@ router.post("/", upload.single("image"), createEvent);
 router.get("/", getEvents);
 
 // Multi-upload route & Image operations
-router.post("/:id/images", upload.array("images", 10), addEventImages);
+router.get("/:id", getEventById);
 router.get("/:id/images", getEventImages);
+router.use(protect);
+router.post("/:id/images", upload.array("images", 10), addEventImages);
 router.delete("/images/:id", deleteEventImage);
 
-router.get("/:id", getEventById);
 router.put("/:id", upload.single("image"), updateEvent);
 router.delete("/:id", deleteEvent);
 

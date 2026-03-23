@@ -12,6 +12,7 @@ import {
     deleteReport,
     getDashboardStats
 } from "../controllers/investor.controller";
+import { protect } from "../middleware/auth.middleware";
 
 const router = express.Router();
 
@@ -33,6 +34,7 @@ router.get("/stats", getDashboardStats);
 // Category Routes
 router.get("/categories", getAllCategories);
 router.get("/category/:slug", getCategoryBySlug);
+router.use(protect);
 router.post("/categories", createCategory);
 router.put("/categories/:id", updateCategory);
 router.delete("/categories/:id", deleteCategory);

@@ -577,7 +577,7 @@ const ApplicantManager = () => {
                         </button>
                         {applicant.CVlink && (
                           <a
-                            href={`${import.meta.env.VITE_BACKEND_IMAGES_URL}${applicant.CVlink}`}
+                            href={`${import.meta.env.VITE_BACKEND_IMAGES_URL}/api${applicant.CVlink}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="d-flex align-items-center justify-content-center"
@@ -728,7 +728,7 @@ const ApplicantManager = () => {
                         <FileText size={16} />
                       </div>
                       <a
-                        href={`${import.meta.env.VITE_BACKEND_IMAGES_URL}${selectedApplicant.CVlink}`}
+                        href={`${import.meta.env.VITE_BACKEND_IMAGES_URL}/api${selectedApplicant.CVlink}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-primary d-flex align-items-center gap-2"
@@ -769,7 +769,7 @@ const ApplicantManager = () => {
                   variant="primary"
                   onClick={() =>
                     window.open(
-                      `${import.meta.env.VITE_BACKEND_IMAGES_URL}${selectedApplicant.CVlink}`,
+                      `${import.meta.env.VITE_BACKEND_IMAGES_URL}/api${selectedApplicant.CVlink}`,
                       "_blank"
                     )
                   }>

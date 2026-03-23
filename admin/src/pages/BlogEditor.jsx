@@ -242,7 +242,7 @@ const BlogEditor = () => {
             <div className="card-body">
               <FormGroup label="Featured Image URL">
                 <Input
-                  type="url"
+                  type="text"
                   value={formData.featuredImage}
                   onChange={(e) =>
                     setFormData({ ...formData, featuredImage: e.target.value })

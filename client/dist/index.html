@@ -8,12 +8,53 @@
   <!-- <link rel="shortcut icon" href="/favicon.png" type="image/x-icon"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DU Digital Global</title>
-  <script type="module" crossorigin src="/assets/index-BgYFfuC2.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-B49qZ5Q5.css">
+  <script type="module" crossorigin src="/assets/index-keiDCukb.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/vendor-react-DF3nNwgj.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-router-B0sKNkGZ.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-markdown-CD65H2ew.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DdYTEKX5.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-react-icons-C2rw9w7h.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-redux-Bg4nGq4X.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-swiper-APCm4IJ-.js">
+  <link rel="stylesheet" crossorigin href="/assets/vendor-markdown-ed1TwQco.css">
+  <link rel="stylesheet" crossorigin href="/assets/index-Bs9MV5SE.css">
 </head>
 
 <body>
   <div id="root"></div>
+  <script>
+(function(d,t) {
+        var BASE_URL="https://app.limechat.ai";
+        var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src="https://s3.ap-south-1.amazonaws.com/cdn.limechat.ai/packs/js/LC_sdk/v1/sdk.js";
+        g.defer = true;
+        s.parentNode.insertBefore(g,s);
+        g.onload=function(){
+          window.chatwootSDK.run({
+            websiteToken: 'NrYWNNcsvYv1MDaJUqcd3ZAN',
+            baseUrl: BASE_URL
+          })
+        }
+      })(document,"script");
+</script>
+<script>
+const url = 'https://s3.ap-south-1.amazonaws.com/cdn.limechat.ai/packs/js/whatsapp_widget/lc_wa_widget.js';
+    const s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.defer = true;
+    s.src = url;
+    s.onload = function () {
+      const widgetConfig = {
+        accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6IjkxNzI4OTAwMDA3MSIsImlhdCI6MTcyNzE5MjEzNn0.LDtJWkr9yUmNgFhHDk9cb8w1NNjCENyw_ViedqiR6hE',
+        phoneNumber: '917289000071',
+      };
+
+      const widget = new LimeChatWhatsapp(widgetConfig);
+      widget.initializeWidget();
+    };
+    const x = document.getElementsByTagName('script')[0];
+    x.parentNode.insertBefore(s, x);
+</script>
 </body>
 
 </html>

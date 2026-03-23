@@ -21,6 +21,7 @@ router.get("/stats", getSubmissionStats);
 router.get("/today", getTodaySubmissions);
 router.get("/by-slug/:slug", getSubmissionsBySlug);
 router.get("/:id", getFormSubmissionById);
+
 router.put("/:id/status", updateSubmissionStatus);
 router.delete("/:id", deleteFormSubmission);
 

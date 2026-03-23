@@ -3,6 +3,7 @@ import { getAllTeamMembers, createTeamMember, updateTeamMember, deleteTeamMember
 
 import multer from "multer";
 import path from "path";
+import { protect } from "../middleware/auth.middleware";
 
 const router = express.Router();
 
@@ -19,6 +20,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.get("/", getAllTeamMembers);
+router.use(protect);
 router.post("/", upload.single("image"), createTeamMember);
 router.put("/:id", upload.single("image"), updateTeamMember);
 router.delete("/:id", deleteTeamMember);

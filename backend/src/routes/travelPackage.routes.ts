@@ -7,6 +7,7 @@ import {
     updateTravelPackage,
     deleteTravelPackage
 } from "../controllers/travelPackage.controller";
+import { protect } from "../middleware/auth.middleware";
 
 const router = express.Router();
 
@@ -23,6 +24,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.get("/", getAllTravelPackages);
+router.use(protect);
 router.post("/", upload.single("bannerImage"), createTravelPackage);
 router.put("/:id", upload.single("bannerImage"), updateTravelPackage);
 router.delete("/:id", deleteTravelPackage);

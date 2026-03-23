@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import MDEditor from "@uiw/react-md-editor";
-import "@uiw/react-md-editor/markdown-editor.css";
+import MarkdownPreview from "@uiw/react-markdown-preview";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleBlog } from "../redux/slices/BlogsSlice";
 
@@ -61,7 +60,7 @@ const SingleBlog = () => {
             className="blog-content"
             data-color-mode="light"
           >
-            <MDEditor.Markdown source={SingleBlog.content} />
+            <MarkdownPreview source={SingleBlog.content} style={{ background: 'transparent' }} />
           </section>
         </article>
       }

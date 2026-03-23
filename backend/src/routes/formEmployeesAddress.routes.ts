@@ -7,6 +7,7 @@ import {
     updateFormEmployeesAddress,
     deleteFormEmployeesAddress
 } from "../controllers/formEmployeesAddress.controller";
+import { protect } from "../middleware/auth.middleware";
 
 const router = express.Router();
 
@@ -20,6 +21,8 @@ router.get("/by-slug/:slug", getFormEmployeesAddressesBySlug);
 router.get("/:id", getFormEmployeesAddressById);
 
 // Create a new form employees address
+
+router.use(protect);
 router.post("/", createFormEmployeesAddress);
 
 // Update a form employees address

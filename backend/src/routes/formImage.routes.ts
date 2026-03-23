@@ -11,6 +11,7 @@ import {
     addImagesToFormImage,
     removeImageFromFormImage
 } from "../controllers/formImage.controller";
+import { protect } from "../middleware/auth.middleware";
 
 const router = express.Router();
 
@@ -36,6 +37,8 @@ router.get("/by-slug/:slug", getFormImagesBySlug);
 router.get("/:id", getFormImageById);
 
 // Create a new form image entry
+
+router.use(protect);
 router.post("/", upload.any(), createFormImage);
 
 // Update a form image entry

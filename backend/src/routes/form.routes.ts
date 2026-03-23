@@ -9,6 +9,7 @@ import {
     updateForm,
     deleteForm
 } from "../controllers/form.controller";
+import { protect } from "../middleware/auth.middleware";
 
 const router = express.Router();
 
@@ -27,6 +28,8 @@ const upload = multer({ storage });
 router.get("/", getForms);
 router.get("/slug/:slug", getFormBySlug);
 router.get("/:id", getFormById);
+
+router.use(protect);
 router.post("/", upload.single("image"), createForm);
 router.put("/:id", upload.single("image"), updateForm);
 router.delete("/:id", deleteForm);
