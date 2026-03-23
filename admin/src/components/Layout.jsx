@@ -87,13 +87,16 @@ const Layout = () => {
         }`}>
         <div className="sidebar-header">
           <div className="logo">
-            <h2>DU Digital</h2>
+        
+            {!sidebarOpen ? <Menu  onClick={() => setSidebarOpen(!sidebarOpen)} size={20} />:<>
+           <h2>DU Digital</h2>
             <span>Admin Panel</span>
+          </>}
           </div>
           <button
             className="sidebar-toggle"
             onClick={() => setSidebarOpen(!sidebarOpen)}>
-            {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
+            {sidebarOpen && <X size={20} />}
           </button>
         </div>
 

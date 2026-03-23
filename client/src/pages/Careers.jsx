@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCareers } from "../redux/slices/careersSlice";
+import { clearCareersState, fetchCareers } from "../redux/slices/careersSlice";
 import data from "../data/careers.json";
 
 import CareersHero from "../components/careers/CareersHero";
@@ -19,6 +19,9 @@ const Careers = () => {
     useEffect(() => {
         dispatch(fetchCareers());
     }, [dispatch]);
+    useEffect(() => {
+       dispatch(clearCareersState())
+    }, [jobs])
 
     return (
         <>

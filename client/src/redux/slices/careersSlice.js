@@ -55,7 +55,8 @@ const initialState = {
     jobs: [],
     loading: false,
     error: null,
-    success: false
+    success: false,
+     success2: false
 };
 
 const careersSlice = createSlice({
@@ -65,6 +66,7 @@ const careersSlice = createSlice({
         clearCareersState: (state) => {
             state.error = null;
             state.success = false;
+            state.success2 = false;
         }
     },
     extraReducers: (builder) => {
@@ -73,12 +75,14 @@ const careersSlice = createSlice({
                 state.loading = true;
                 state.error = null;
                 state.success = false;
+                     state.success2 = false;
             })
             .addCase(fetchCareers.fulfilled, (state, action) => {
                 state.loading = false;
                 state.success = true;
                 state.jobs = action.payload;
                 state.error = null;
+                     state.success = false;
             })
             .addCase(fetchCareers.rejected, (state, action) => {
                 state.loading = false;
@@ -87,17 +91,17 @@ const careersSlice = createSlice({
             }).addCase(SubmitCv.pending, (state) => {
                 state.loading = true;
                 state.error = null;
-                state.success = false;
+                state.success2 = false;
             })
             .addCase(SubmitCv.fulfilled, (state, action) => {
                 state.loading = false;
-                state.success = true;
+                state.success2 = true;
                 state.error = null;
             })
             .addCase(SubmitCv.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
-                state.success = false;
+                state.success2 = false;
             });
     }
 });

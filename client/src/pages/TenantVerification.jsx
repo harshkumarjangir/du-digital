@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Shield, Wallet, Clock, Lock, Check, X, FileText, Award, ThumbsUp, Users, Plus, Minus, ArrowRight, CheckCircle, Phone, Share2, Target, Loader2 } from "lucide-react";
+import { Shield, Wallet, Clock, Lock, Check, X, FileText, Award, ThumbsUp, Users, Plus, Minus, ArrowRight, CheckCircle, XCircle, Phone, Share2, Target, Loader2 } from "lucide-react";
 import LoadingState from "../components/reusable/LoadingState";
 import ErrorState from "../components/reusable/ErrorState";
 
@@ -61,13 +61,82 @@ const TenantVerification = () => {
     }
   };
   const proceed = async () => {
-    if (policeVerification == "no") {
+    if (submitLoading) return;
+
+    if (!policeVerification) {
+      setSubmitStatus('error');
+      setSubmitMessage('Please select whether Police Verification is required or not.');
+      setTimeout(() => { setSubmitStatus(null); setSubmitMessage(''); }, 5000);
+      return;
+    }
+
+    if (policeVerification === "no") {
       return window.open(noPlainUrl, '_blank');
     } else {
-      await handleSubmit()
-      window.open(noPlainUrl, '_blank')
+      const formFields = formData?.fields || [];
+
+      // Validate required fields
+      const missingFields = formFields.filter(f => {
+        if (!f.required) return false;
+        const val = formValues[f.name];
+        if (f.type === 'checkbox') return !val;
+        return !val || (typeof val === 'string' && val.trim() === '');
+      });
+
+      if (missingFields.length > 0) {
+        setSubmitStatus('error');
+        const fieldLabels = missingFields.map(f => f.label || f.name).join(', ');
+        setSubmitMessage(`Please fill required fields: ${fieldLabels}`);
+        setTimeout(() => { setSubmitStatus(null); setSubmitMessage(''); }, 5000);
+        document.getElementById('plan-form-container')?.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+
+      // Validate field formats (e.g., 10-digit mobile number, email)
+      const invalidFields = formFields.filter(f => {
+        const val = formValues[f.name];
+        if (!val || val === '' || f.type === 'checkbox') return false;
+
+        const type = (f.type || f.fieldType || '').toLowerCase();
+        const fieldName = (f.name || '').toLowerCase();
+        const label = (f.label || '').toLowerCase();
+
+        // 10-digit Mobile number validation
+        if (type === 'number' || type === 'tel' || fieldName.includes('mobile') || fieldName.includes('phone') || label.includes('mobile') || label.includes('phone') || label.includes('contact')) {
+          const digits = typeof val === 'string' ? val.replace(/\D/g, '') : String(val);
+          return digits.length !== 10;
+        }
+
+        // Email validation
+        if (type === 'email' || fieldName.includes('email') || label.includes('email')) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return !emailRegex.test(val);
+        }
+
+        return false;
+      });
+
+      if (invalidFields.length > 0) {
+        setSubmitStatus('error');
+        const firstInvalid = invalidFields[0];
+        const firstType = (firstInvalid.type || firstInvalid.fieldType || '').toLowerCase();
+        const firstName = (firstInvalid.name || '').toLowerCase();
+        const isEmail = firstType === 'email' || firstName.includes('email');
+
+        setSubmitMessage(isEmail ?
+          `Please enter a valid email address for: ${firstInvalid.label || firstInvalid.name}` :
+          `Please enter a valid 10-digit number for: ${firstInvalid.label || firstInvalid.name}`
+        );
+
+        setTimeout(() => { setSubmitStatus(null); setSubmitMessage(''); }, 5000);
+        document.getElementById('plan-form-container')?.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+
+      await handleSubmit();
+      window.open(noPlainUrl, '_blank');
     }
-  }
+  };
 
   useEffect(() => {
     fetchFormData();
@@ -88,8 +157,8 @@ const TenantVerification = () => {
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues(prev => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setFormValues(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
   };
   const toggleFaq = (index) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -684,6 +753,7 @@ const TenantVerification = () => {
                               key={field._id || index}
                               type={fieldType === 'number' ? 'tel' : fieldType}
                               name={field.name}
+
                               value={formValues[field.name] || ''}
                               onChange={handleInputChange}
                               placeholder={field.placeholder || field.label}
@@ -710,15 +780,15 @@ const TenantVerification = () => {
                         ))}
                       </div>
 
-                      {/* Submit Status Message */}
-                      {submitStatus && (
-                        <div className={`flex items-center gap-4 p-4 rounded-lg border ${submitStatus === 'success' ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`}>
-                          {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 shrink-0" /> : <XCircle className="w-5 h-5 shrink-0" />}
-                          <p className="text-sm font-medium">{submitMessage}</p>
-                        </div>
-                      )}
-
                     </form>
+                  )}
+
+                  {/* Submit Status Message */}
+                  {submitStatus && (
+                    <div className={`mt-6 flex items-center gap-4 p-4 rounded-lg border ${submitStatus === 'success' ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`}>
+                      {submitStatus === 'success' ? <CheckCircle className="w-5 h-5 shrink-0" /> : <XCircle className="w-5 h-5 shrink-0" />}
+                      <p className="text-sm font-medium">{submitMessage}</p>
+                    </div>
                   )}
 
                   <div className="mt-8 pt-6 border-t border-gray-100">
