@@ -6,7 +6,7 @@ import OurOffices from './components/common/OurOffices';
 import Copyright from './components/common/Copyright'
 import ScrollToTop from './components/common/ScrollToTop'
 import LoadingState from './components/reusable/LoadingState'
-
+import SEO from './components/common/SEO'
 // Lazy load all page components for code splitting
 const Home = lazy(() => import('./pages/Home'))
 const NotFound = lazy(() => import('./pages/NotFound'))
@@ -53,6 +53,7 @@ const App = () => {
         return (
                 <div>
                         <ScrollToTop />
+                        <SEO/>
                         <Navbar />
                         <Suspense fallback={<LoadingState message="Loading..." fullScreen />}>
                                 <Routes>
