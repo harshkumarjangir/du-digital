@@ -1,12 +1,13 @@
 import homeData from "../data/homeData.json";
-import { useEffect } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchEvents } from '../redux/slices/eventsSlice';
 import { fetchNews } from '../redux/slices/newsSlice';
 import { fetchBlogs } from '../redux/slices/BlogsSlice';
-import EventsGrid from '../components/news-and-events/EventsGrid';
-import NewsHome from '../components/reusable/NewsHome';
-import { Blog } from '../components/BlogsComponents/Blog';
+
+const EventsGrid = lazy(() => import('../components/news-and-events/EventsGrid'));
+const NewsHome = lazy(() => import('../components/reusable/NewsHome'));
+const Blog = lazy(() => import('../components/BlogsComponents/Blog').then(m => ({ default: m.Blog })));
 import HomeSlider from "../components/home/HomeSlider";
 import VisaServices from "../components/home/VisaServices";
 import HomeAboutSection from "../components/home/HomeAboutSection";
@@ -25,9 +26,9 @@ const Home = () => {
     const { Blogs: blogs } = useSelector((state) => state.blog);
 
     // Refs for lazy loading
-    const [blogsRef, blogsVisible] = useIntersectionObserver({ triggerOnce: true, rootMargin: '500px' });
-    const [newsRef, newsVisible] = useIntersectionObserver({ triggerOnce: true, rootMargin: '500px' });
-    const [eventsRef, eventsVisible] = useIntersectionObserver({ triggerOnce: true, rootMargin: '500px' });
+    const [blogsRef, blogsVisible] = useIntersectionObserver({ triggerOnce: true, rootMargin: '100px' });
+    const [newsRef, newsVisible] = useIntersectionObserver({ triggerOnce: true, rootMargin: '100px' });
+    const [eventsRef, eventsVisible] = useIntersectionObserver({ triggerOnce: true, rootMargin: '100px' });
 
     // Fetch Blogs when section is visible
     useEffect(() => {
@@ -83,7 +84,9 @@ const Home = () => {
 
                 </div>
                 {blogs.length > 0 && (
-                    <Blog data={blogs.slice(0, 3)} className="lg:grid-cols-3" />
+                    <Suspense fallback={<div className="py-10 text-center">Loading Blogs...</div>}>
+                        <Blog data={blogs.slice(0, 3)} className="lg:grid-cols-3" />
+                    </Suspense>
                 )}
                 {/* <Link to="/blogs" className="block text-center pt-2" aria-label="View All Blogs">
                     <span className="inline-block px-6 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] cursor-pointer">
@@ -98,7 +101,9 @@ const Home = () => {
                     <h2 className="text-4xl font-bold text-gray-900">News Coverage</h2>
                 </div>
                 {news.length > 0 && (
-                    <NewsHome data={news.slice(0, 3)} />
+                    <Suspense fallback={<div className="py-10 text-center">Loading News...</div>}>
+                        <NewsHome data={news.slice(0, 3)} />
+                    </Suspense>
                 )}
                 <Link to="/news-and-media" className="block text-center pt-4" aria-label="View All News">
                     <span className="inline-block px-6 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] cursor-pointer">
@@ -115,7 +120,9 @@ const Home = () => {
                     <h2 className="text-4xl font-bold text-gray-900">Latest Updates & Events</h2>
                 </div>
                 {events.length > 0 && (
-                    <EventsGrid data={events.slice(0, 6)} />
+                    <Suspense fallback={<div className="py-10 text-center">Loading Events...</div>}>
+                        <EventsGrid data={events.slice(0, 6)} />
+                    </Suspense>
                 )}
                 <Link to="/events" className="block text-center pt-4" aria-label="View All Events">
                     <span className="inline-block px-6 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-[#FF1033] text-[#FFFDF5] hover:bg-[#511313] hover:text-[#FF1033] cursor-pointer">
